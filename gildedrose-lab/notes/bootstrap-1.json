@@ -1,0 +1,10 @@
+{
+  "status": "fulfilled",
+  "value": {
+    "chunk_id": "704aac",
+    "wall_time_seconds": 0.096865625,
+    "exit_code": 0,
+    "original_token_count": 87,
+    "output": "python3 /Library/Frameworks/Python.framework/Versions/3.13/bin/python3\ngit /usr/local/bin/git\ncmake None\ngcc /usr/bin/gcc\ng++ /usr/bin/g++\ncodex /Users/bemied/.local/bin/codex\nclaude /Users/bemied/.local/bin/claude\nollama /usr/local/bin/ollama\nModel-related variable names only: []\nREADME: # Qualtor\nQualtor - The sovereign of software quality!\n\n"
+  }
+}

@@ -1,0 +1,6 @@
+[
+  {"title": "上游仓库", "url": "https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/main", "accessed": "2026-10-21"},
+  {"title": "Docker bind mounts", "url": "https://docs.docker.com/engine/storage/bind-mounts/", "accessed": "2026-10-21"},
+  {"title": "GCC gcov options", "url": "https://gcc.gnu.org/onlinedocs/gcc/Invoking-Gcov.html", "accessed": "2026-10-21"},
+  {"title": "CMake command line", "url": "https://cmake.org/cmake/help/latest/manual/cmake.1.html", "accessed": "2026-10-21"}
+]
