@@ -11,6 +11,7 @@ import tempfile
 from source_snapshot import verify_snapshot
 
 ROOT=Path(__file__).resolve().parents[1]
+DOCS=ROOT.parent/'docs'
 RUN=ROOT/'runs'/(ROOT/'artifacts/latest-run.txt').read_text().strip()
 EVIDENCE=ROOT/'artifacts'/RUN.name
 
@@ -96,8 +97,9 @@ def main():
     check('完整流水线入口在容器内为Python',before['Path']=='python3' and before['Args']==['/lab/scripts/pipeline.py','--output','/work/'+RUN.name])
     dockerfile=(ROOT/'docker/Dockerfile').read_text()
     check('Dockerfile不复制项目代码',not re.search(r'^\s*(COPY|ADD)\b',dockerfile,re.MULTILINE|re.IGNORECASE))
+    check('四份报告已集中到docs',all((DOCS/name).is_file() for name in ['执行报告.md','全量执行过程.md','变异明细.md','模型盲测逐题结果.md']))
     broken=[]
-    for markdown in (ROOT/'deliverables').glob('*.md'):
+    for markdown in list(DOCS.rglob('*.md'))+[ROOT.parent/'README.md',ROOT.parent/'AGENTS.md']:
         for target in re.findall(r'\]\(([^)]+)\)',markdown.read_text()):
             if '://' in target or target.startswith('#'):
                 continue
@@ -107,12 +109,12 @@ def main():
     patterns=[re.compile(rb'ctx7sk-[A-Za-z0-9_-]{20,}'),re.compile(rb'sk-(?:proj-|ant-)[A-Za-z0-9_-]{20,}'),
               re.compile(rb'AKIA[A-Z0-9]{16}'),re.compile(rb'Bearer\s+[A-Za-z0-9._-]{30,}')]
     secret_files=[]
-    for folder in ['artifacts','notes','benchmark','deliverables']:
-        for f in (ROOT/folder).rglob('*'):
+    for folder in [ROOT/name for name in ['artifacts','notes','benchmark','deliverables']]+[DOCS]:
+        for f in folder.rglob('*'):
             if f.is_file() and f.suffix in ['.json','.jsonl','.log','.md','.txt']:
                 blob=f.read_bytes()
                 if any(p.search(blob) for p in patterns):
-                    secret_files.append(str(f.relative_to(ROOT)))
+                    secret_files.append(str(f.relative_to(ROOT.parent)))
     check('日志附件未发现所扫描的常见凭据模式',not secret_files)
     result={'verified_at':dt.datetime.now(dt.timezone.utc).isoformat(),'passed':True,'checks':checks,
             'note':'这是证据一致性与链接核验；凭据模式扫描不是对任意秘密的完备证明。'}

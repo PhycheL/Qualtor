@@ -3,6 +3,7 @@
 import datetime as dt
 import hashlib
 import json
+import os
 from pathlib import Path
 import shlex
 import sys
@@ -10,6 +11,7 @@ from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'deliverables'
+DOCS = ROOT.parent / 'docs'
 RUN = ROOT / 'runs' / (ROOT / 'artifacts/latest-run.txt').read_text().strip()
 EVIDENCE = ROOT / 'artifacts' / RUN.name
 
@@ -20,8 +22,8 @@ def read(path):
 
 def link(path, label=None):
     path = Path(path)
-    rel = path.relative_to(ROOT)
-    return f'[{label or path.name}](../{quote(str(rel), safe="/")})'
+    rel = os.path.relpath(path, DOCS)
+    return f'[{label or path.name}]({quote(rel, safe="/")})'
 
 
 def table(headers, rows):
@@ -53,6 +55,7 @@ def stamp(value):
 
 def main():
     OUT.mkdir(exist_ok=True)
+    DOCS.mkdir(exist_ok=True)
     summary = read(RUN/'summary.json')
     mutations = read(RUN/'mutation_results.json')
     scores = read(RUN/'llm/scores.json')
@@ -110,7 +113,7 @@ def main():
         table(['验证项','实测结果','证据'],result_rows),
         '100% 行/分支覆盖率对应的是上游 `cpp/src/GildedRose.cc`；100% 变异检出率对应事前固定的20个行为变异；模型100%正确率对应本次44道具体问题。这三个分母不同，均不表示软件没有任何 Bug，也不表示模型能够正确处理所有复杂条件程序。',
         '最初从 [GitHub 上游仓库](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/main) 的 main 分支浅克隆，再固定实际提交。本轮将工作树收敛为仅检出 `cpp/`；被测 [C++ 源码]('+baseline_source+') 未修改，初始与最终 SHA-256 均为 `'+summary['source_sha256']+'`，本机稀疏工作树运行前后 `git status --porcelain` 均为空。Python 负责调度和解析，不是本次 gcov 的被测语言。',
-        f"保留的上游 `cpp/` 共 {len(source_manifest['files'])} 个文件，包括 C++ 源码、头文件、CMake 配置与说明。源码快照逐文件哈希见 "+link(ROOT/'external/source_manifest.json')+'。本机保留隐藏 `.git` 用于提交溯源；交付 ZIP 排除所有 `.git` 对象，以免携带其他语言的历史内容。上游许可证与需求说明另存于 '+link(ROOT/'notes/upstream/license.txt','许可证')+' 和 '+link(ROOT/'notes/upstream/GildedRoseRequirements.md','需求说明')+'。',
+        f"保留的上游 `cpp/` 共 {len(source_manifest['files'])} 个文件，包括 C++ 源码、头文件、CMake 配置与说明。源码快照逐文件哈希见 "+link(ROOT/'external/source_manifest.json')+'。本机保留隐藏 `.git` 用于提交溯源；交付 ZIP 排除所有 `.git` 对象，以免携带其他语言的历史内容。上游许可证与需求说明另存于 '+link(DOCS/'upstream/license.txt','许可证')+' 和 '+link(DOCS/'upstream/GildedRoseRequirements.md','需求说明')+'。',
         '以下是本轮 `compile_commands.json` 中的全部基线编译输入；前两轮也只编译同样的上游 C++ 文件。变异实验只修改 `GildedRose.cc` 的独立副本，额外模型压力题也是 C++，没有执行其他上游语言实现。',
         table(['实际编译文件','角色'],[[f, '生成的 C++ 输入输出探针' if '/generated/' in f else '上游业务实现' if '/src/' in f else '上游 C++ 文本测试'] for f in source_scope['compiled_files']]),
         table(['环境项目','记录值'],environment_rows),
@@ -147,15 +150,15 @@ flowchart LR
         table(['模型测试对象','题数','正确','准确率'],[['原仓库行为',24,24,'100%'],['合成条件树',12,12,'100%'],['合成深层状态更新',8,8,'100%'],['合计',44,44,'100%']]),
         f"合成源码有 {complexity['source_lines']} 个物理行、91个 if、115个逻辑 &&/|| 运算符，最大 if 嵌套22层。tree 函数有31个 if，deep 函数有60个 if 和20级连续门控；不计短路运算的逐函数圈复杂度为32和61。D01、D02 走完20级门控，D06 在最深层走入两级回退条件。涉及负数取模、短路条件、位掩码、嵌套返回和逐级更新状态。合成代码是额外压力题，不冒充上游仓库原有代码。",
         '这20个合成输入对应的实际覆盖率只有 **97/214 行 = 45.33%，149/442 分支 = 33.71%**；剔除 throw 分支后为149/430 = 34.65%。合成器还可能产生相关或不可达条件。因此本次结果只能支持“模型答对了这些给定输入”，不能支持“所有深层分支均已验证”。题目作者和答题者处于同一会话，且 GildedRose 是公开 kata，这是一轮有限自测，不是独立第三方模型评测；没有多模型、多采样或独立随机种子对照，运行时也没有可核验的精确模型快照。',
-        '本次全过程包含真实失败及修复：Docker 沙箱套接字受限；默认凭据助手阻塞；独立 Docker 配置初次未发现 Buildx；APT 单个软件包下载 HTTP 500；首轮容器执行时日志事件 kind 参数冲突。收敛为 cpp/ 后第一次使用 --skip-build 时镜像标签不存在，随后按原 Dockerfile 成功重建并复跑；日志不足以判断标签此前为何消失。所有失败日志均保留。原因、修复与对应日志见 '+link(ROOT/'notes/实现与修复记录.md')+f'。本报告采用最新成功轮次 `{RUN.name}`，容器退出0，源码未变，实验容器已删除，工具链镜像保留供复用。',
+        '本次全过程包含真实失败及修复：Docker 沙箱套接字受限；默认凭据助手阻塞；独立 Docker 配置初次未发现 Buildx；APT 单个软件包下载 HTTP 500；首轮容器执行时日志事件 kind 参数冲突。收敛为 cpp/ 后第一次使用 --skip-build 时镜像标签不存在，随后按原 Dockerfile 成功重建并复跑；日志不足以判断标签此前为何消失。所有失败日志均保留。原因、修复与对应日志见 '+link(DOCS/'实现与修复记录.md')+f'。本报告采用最新成功轮次 `{RUN.name}`，容器退出0，源码未变，实验容器已删除，工具链镜像保留供复用。',
         '复现时在 Qualtor 根目录执行以下命令。首条包含镜像构建；镜像已存在时第二条可直接运行。默认使用新的时间戳目录，不覆盖历史运行。',
         '```bash\npython3 gildedrose-lab/run.py\n# 使用已构建的工具链\npython3 gildedrose-lab/run.py --skip-build\n```',
         '重跑会生成测试与变异、运行全部构建/覆盖/检出流程，并重放已冻结的44份模型预测。**它不会自动产生新的模型回答，也不会发起模型 API 请求。** 要测新的模型，应建立独立题目和答案目录，重新执行“先提交答案、冻结、再评分”的协议。本次 Python 无第三方依赖；Docker 首次构建需要访问公开镜像和 Debian 软件仓库，实验容器禁网。',
         '从 ZIP 解压后也使用相同入口。附件包含上游 cpp/ 快照及固定提交、逐文件哈希；入口支持无 `.git` 的快照模式，先校验目录范围和全部源码哈希，再运行容器。任何源码被更改、缺失或增加，都会在编译前拒绝执行。',
         '全量过程附件包含：上游 cpp/ 源码快照、最终脚本/模板、命令时间线、每条实验命令的 stdout/stderr/stdin、失败尝试、生成用例、28个变异源码与补丁、编译产物、gcov 原始与解析文件、容器/镜像元数据、模型题目/预测/冻结哈希/逐题评分以及 SHA-256 文件清单。历史 C++ 实验日志也保留，以满足全程记录要求；其原始克隆输出可提及其他语言，但不再附带那些语言的源码。Docker 镜像本体不装入过程 ZIP，仍保留在本机 Docker 中。附件入口为 [全量执行过程](全量执行过程.md)。',
-        '日志范围说明：实验下载、镜像构建、容器运行、CMake/CTest/gcov、Bug 注入和模型评分命令均有自动原始日志；日志工具建立前的环境检查以整理记录和工具结果保存，见 '+link(ROOT/'notes/过程记录.md')+'。无关进程标题已从一次进程检查输出中清除，避免把其他应用的参数带入附件。文件哈希清单用于检查附件内容完整性。'
+        '日志范围说明：实验下载、镜像构建、容器运行、CMake/CTest/gcov、Bug 注入和模型评分命令均有自动原始日志；日志工具建立前的环境检查以整理记录和工具结果保存，见 '+link(DOCS/'过程记录.md')+'。无关进程标题已从一次进程检查输出中清除，避免把其他应用的参数带入附件。文件哈希清单用于检查附件内容完整性。'
     ]
-    (OUT/'执行报告.md').write_text('\n\n'.join(paragraphs)+'\n')
+    (DOCS/'执行报告.md').write_text('\n\n'.join(paragraphs)+'\n')
     details=['# 全部变异明细',table(['编号','变异内容','类别','结果','失败用例数','原始结果'],mutation_rows),
              '每项行为变异的第一个反例仅用于解释；检测使用全部预先生成用例。所有失败明细保存在各自 test_result.json。']
     for r in mutations:
@@ -163,7 +166,7 @@ flowchart LR
             counter=r['first_counterexample']
             details.extend([f"**{r['id']}：{r['description']}**。输入 `{json.dumps(counter['input'],ensure_ascii=False)}`；期望 `{json.dumps(counter['expected'],ensure_ascii=False)}`；实际 `{json.dumps(counter['actual'],ensure_ascii=False)}`。",
                             link(RUN/'mutants'/r['id']/'mutation.diff','源码补丁')+' · '+link(RUN/'mutants'/r['id']/'test_result.json','全部反例')])
-    (OUT/'变异明细.md').write_text('\n\n'.join(details)+'\n')
+    (DOCS/'变异明细.md').write_text('\n\n'.join(details)+'\n')
     rose_actual={}
     rose_result=read(RUN/'llm/rose_result.json')
     for line in resolve_recorded(rose_result['stdout_log']).read_text().splitlines():
@@ -174,7 +177,7 @@ flowchart LR
     rose_rows=[[q['id'],repr(q['name']),f"{q['sell_in']}, {q['quality']}, {q['days']}",str(rose_prediction[q['id']]),str(rose_actual[q['id']]),'正确' if rose_prediction[q['id']]==rose_actual[q['id']] else '错误'] for q in read(ROOT/'benchmark/rose_questions.json')]
     stress_map={r['id']:r for r in scores['stress_comparisons']}
     stress_rows=[[q['id'],q['kind'],f"{q['x']}, {q['y']}, {q['z']}, {q['flags']}",stress_map[q['id']]['predicted'],stress_map[q['id']]['actual'],'正确' if stress_map[q['id']]['correct'] else '错误'] for q in read(ROOT/'benchmark/questions.json')]
-    (OUT/'模型盲测逐题结果.md').write_text('\n\n'.join(['# 模型盲测逐题结果','预测文件在运行标准答案前冻结，评分后未修改。以下只是输出与评分，不包含模型内部推理。',
+    (DOCS/'模型盲测逐题结果.md').write_text('\n\n'.join(['# 模型盲测逐题结果','预测文件在运行标准答案前冻结，评分后未修改。以下只是输出与评分，不包含模型内部推理。',
         table(['ID','商品','输入 sellIn,quality,days','预测 (sellIn,quality)','实际 (sellIn,quality)','结果'],rose_rows),
         table(['ID','函数','输入 x,y,z,flags','预测输出','实际输出','结果'],stress_rows),
         '精确哈希、评分时刻、原始执行输出及覆盖信息见 '+link(RUN/'llm/scores.json')+'。'])+'\n')
@@ -187,7 +190,7 @@ flowchart LR
                 event['event_file']=str(f)
                 events.append(event)
     events.sort(key=lambda r:r['started_at'])
-    process=['# 全量执行过程索引',f'本索引包含 {len(events)} 条已结束的实验和环境命令。时间为北京时间 UTC+8；原始 JSON 使用 UTC。先前环境检查见 '+link(ROOT/'notes/过程记录.md')+'，实现变更见 '+link(ROOT/'notes/实现与修复记录.md')+'。',
+    process=['# 全量执行过程索引',f'本索引包含 {len(events)} 条已结束的实验和环境命令。时间为北京时间 UTC+8；原始 JSON 使用 UTC。先前环境检查见 '+link(DOCS/'过程记录.md')+'，实现变更见 '+link(DOCS/'实现与修复记录.md')+'。',
              '日志没有截断；页面只索引输出文件，全部原始内容在 ZIP 内。注入编译错误的非零退出码属于预期实验结果；首轮 Docker 下载与实现失败也如实保留。']
     for i,event in enumerate(events,1):
         paths=[]
@@ -196,7 +199,7 @@ flowchart LR
             if path and path.exists(): paths.append(link(path,label))
         process.extend([f"{i}. **{stamp(event['started_at'])} · {event['stage']}**。退出码 `{event['returncode']}`；耗时 `{event['duration_seconds']}` 秒；超时 `{event['timed_out']}`。",
                         '```text\ncwd: '+event['cwd']+'\n'+shlex.join(event['argv'])+'\n```',' · '.join(paths)])
-    (OUT/'全量执行过程.md').write_text('\n\n'.join(process)+'\n')
+    (DOCS/'全量执行过程.md').write_text('\n\n'.join(process)+'\n')
     provenance={'generated_at':dt.datetime.now(dt.timezone.utc).isoformat(),'run_id':RUN.name,'repository_revision':summary['commit'],
                 'upstream_scope':'cpp/','upstream_snapshot_files':len(source_manifest['files']),
                 'source_sha256':summary['source_sha256'],'cases_sha256':summary['cases_sha256'],

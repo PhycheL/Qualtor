@@ -1,4 +1,5 @@
 # Qualtor
-Qualtor - The sovereign of software quality!
 
-Docker / CMake / gcov / Bug 注入实验见 [gildedrose-lab](gildedrose-lab/README.md)，详细结果见 [执行报告](gildedrose-lab/deliverables/执行报告.md)。
+用大模型生成 C++ 单元测试，通过可复现的评测改进 Agent 和 skill。
+
+全部项目文档统一从 [docs/README.md](docs/README.md) 阅读。
