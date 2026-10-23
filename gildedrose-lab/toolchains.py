@@ -1,0 +1,154 @@
+#!/usr/bin/env python3
+"""构建并验收两套固定版本的 C++11 Docker 工具链。"""
+import argparse
+import datetime as dt
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import sys
+
+ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT / "scripts"))
+from audit import Audit, now
+from source_snapshot import verify_snapshot
+
+IMAGES = {
+    "gcc": "qualtor-gcc:14.2.0-gtest1.12.1-cxx11",
+    "clang": "qualtor-clang:19.1.7-mull0.34.2-gtest1.12.1-cxx11",
+}
+
+
+def write_json(path, value):
+    path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n")
+
+
+def execute(args, evidence, summary):
+    audit = Audit(evidence / "host")
+
+    def call(stage, command, timeout=180, echo=False):
+        result = audit.run(stage, command, cwd=ROOT, timeout=timeout, echo=echo)
+        if result["returncode"] or result["timed_out"]:
+            raise RuntimeError(f"{stage} failed; see {result['stderr_log']}")
+        return result["stdout"]
+
+    endpoint = call("docker-endpoint", ["docker", "context", "inspect", "--format", "{{.Endpoints.docker.Host}}"])
+    client = evidence / "docker-client"
+    client.mkdir()
+    write_json(client / "config.json", {"auths": {}, "cliPluginsExtraDirs": [str(Path.home() / ".docker/cli-plugins")]})
+    docker = ["docker", "--config", str(client), "--host", endpoint.strip()]
+    call("docker-version", docker + ["version"])
+    modes = list(IMAGES) if args.toolchain == "all" else [args.toolchain]
+    inputs = [ROOT / "toolchains.py", ROOT / "docker/Dockerfile.toolchains", ROOT / "docker/.dockerignore",
+              ROOT / "scripts/check_toolchain.py", ROOT / "scripts/audit.py", ROOT / "scripts/coverage.py",
+              ROOT / "scripts/source_snapshot.py", *sorted((ROOT / "toolchains/smoke").glob("*"))]
+    write_json(evidence / "inputs.json", {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
+                                        for p in inputs if p.is_file()})
+    repo = ROOT / "external/GildedRose-Refactoring-Kata"
+    snapshot_path = ROOT / "external/source_manifest.json"
+    if not args.build_only:
+        # 不重新生成清单或更新上游；缺少源码时按实验说明准备固定快照。
+        snapshot = json.loads(snapshot_path.read_text())
+        verify_snapshot(repo, snapshot_path, snapshot["commit"])
+        write_json(evidence / "source_manifest.json", snapshot)
+    run = ROOT / "runs" / args.run_id
+    if not args.build_only:
+        run.mkdir(parents=True, exist_ok=False)
+    for mode in modes:
+        tag = IMAGES[mode]
+        if not args.skip_build:
+            print(f"构建 {mode}：{tag}", flush=True)
+            build = docker + ["build", "--progress", "plain", "--file", str(ROOT / "docker/Dockerfile.toolchains"),
+                              "--target", mode, "--tag", tag]
+            if args.platform:
+                build += ["--platform", args.platform]
+            call(f"build-{mode}", build + [str(ROOT / "docker")], timeout=1800, echo=True)
+        record = json.loads(call(f"inspect-{mode}-image", docker + ["image", "inspect", tag]))[0]
+        image_id = record["Id"]
+        actual_platform = f"{record['Os']}/{record['Architecture']}"
+        if actual_platform not in ("linux/arm64", "linux/amd64"):
+            raise RuntimeError(f"不支持的镜像平台：{actual_platform}")
+        if args.platform and actual_platform != args.platform:
+            raise RuntimeError(f"镜像平台 {actual_platform} 与指定平台 {args.platform} 不一致")
+        write_json(evidence / f"{mode}-image.json", record)
+        (evidence / f"{mode}-history.txt").write_text(call(f"history-{mode}", docker + ["history", "--no-trunc", image_id]))
+        summary["images"][mode] = {"tag": tag, "id": image_id, "platform": actual_platform}
+        if args.build_only:
+            continue
+        output = run / mode
+        output.mkdir()
+        name = f"qualtor-{args.run_id.lower()}-{mode}"
+        command = docker + ["create", "--name", name, "--platform", actual_platform,
+                  "--network", "none", "--cpus", "2", "--memory", "2g", "--pids-limit", "256",
+                  "--cap-drop", "ALL", "--security-opt", "no-new-privileges", "--read-only",
+                  "--tmpfs", "/tmp:rw,nosuid,nodev,size=128m,mode=1777", "--user", f"{os.getuid()}:{os.getgid()}",
+                  "-e", "PYTHONDONTWRITEBYTECODE=1", "-e", "MULL_CONFIG=/smoke/mull.yml",
+                  "--mount", f"type=bind,source={repo},target=/repo,readonly",
+                  "--mount", f"type=bind,source={ROOT / 'scripts'},target=/scripts,readonly",
+                  "--mount", f"type=bind,source={ROOT / 'toolchains/smoke'},target=/smoke,readonly",
+                  "--mount", f"type=bind,source={output},target=/work",
+                  image_id, "python3", "/scripts/check_toolchain.py", "--toolchain", mode]
+        call(f"create-{mode}", command)
+        try:
+            before = json.loads(call(f"inspect-{mode}-before", docker + ["inspect", name]))[0]
+            write_json(evidence / f"{mode}-container-before.json", before)
+            mounts = {m["Destination"]: m for m in before["Mounts"]}
+            if (before["HostConfig"]["NetworkMode"] != "none" or not before["HostConfig"]["ReadonlyRootfs"]
+                    or any(mounts[p]["RW"] for p in ("/repo", "/scripts", "/smoke")) or not mounts["/work"]["RW"]):
+                raise RuntimeError("容器隔离配置不正确")
+            print(f"验收 {mode}（{actual_platform}，C++11）", flush=True)
+            execution = audit.run(f"check-{mode}", docker + ["start", "--attach", name], cwd=ROOT, timeout=600, echo=True)
+            after = json.loads(call(f"inspect-{mode}-after", docker + ["inspect", name]))[0]
+            write_json(evidence / f"{mode}-container-after.json", after)
+            if (execution["returncode"] or execution["timed_out"] or after["State"]["Running"]
+                    or after["State"]["ExitCode"]):
+                raise RuntimeError(f"{mode} 容器验收失败，见 {output} 和 {evidence / 'host'}")
+            result = json.loads((output / "summary.json").read_text())
+            if result["status"] != "passed":
+                raise RuntimeError(f"{mode} 验收未通过")
+            summary["checks"][mode] = result
+        finally:
+            # 超时也只清理本次创建的容器，原始日志和输出目录始终保留。
+            state = call(f"state-{mode}", docker + ["inspect", "--format", "{{.State.Running}}", name]).strip()
+            if state == "true":
+                call(f"stop-{mode}", docker + ["stop", "--time", "5", name])
+            call(f"remove-{mode}", docker + ["rm", name])
+            verify_snapshot(repo, snapshot_path, snapshot["commit"])
+    summary["status"] = "built" if args.build_only else "passed"
+    if not args.build_only:
+        write_json(run / "summary.json", summary)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--toolchain", choices=["all", "gcc", "clang"], default="all")
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("--skip-build", action="store_true", help="使用本机已构建的固定版本镜像")
+    group.add_argument("--build-only", action="store_true", help="只构建镜像，不运行验收")
+    parser.add_argument("--platform", choices=["linux/arm64", "linux/amd64"], help="默认使用 Docker 当前平台")
+    parser.add_argument("--run-id", default=dt.datetime.now(dt.timezone.utc).strftime("toolchains-%Y%m%dT%H%M%S%fZ"))
+    args = parser.parse_args()
+    if not re.fullmatch(r"[a-zA-Z0-9][a-zA-Z0-9_-]{0,79}", args.run_id):
+        parser.error("run-id 只能包含字母、数字、-、_，以字母或数字开头且最多 80 字符")
+    evidence = ROOT / "artifacts/toolchains" / args.run_id
+    if evidence.exists() or (ROOT / "runs" / args.run_id).exists():
+        parser.error("run-id 已使用；请使用新目录保留历史证据")
+    evidence.mkdir(parents=True, exist_ok=False)
+    summary = {"status": "running", "started_at": now(), "run_id": args.run_id, "images": {}, "checks": {}}
+    try:
+        execute(args, evidence, summary)
+    except Exception as error:
+        summary.update(status="failed", error=str(error))
+        print(f"失败：{error}", file=sys.stderr)
+    summary["finished_at"] = now()
+    write_json(evidence / "summary.json", summary)
+    run = ROOT / "runs" / args.run_id
+    if run.exists():
+        write_json(run / "summary.json", summary)
+    print(f"状态：{summary['status']}；证据：{evidence}")
+    return 0 if summary["status"] in ("passed", "built") else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

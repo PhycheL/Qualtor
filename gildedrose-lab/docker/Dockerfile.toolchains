@@ -1,0 +1,76 @@
+# 两个目标分别构建；项目源码和验收测试只通过运行时只读挂载引入。
+FROM debian:trixie-slim@sha256:62bd423aeee912639ca8ee681c2b762cb3e25137e0a92b20be455898a9f034ad AS common
+ENV DEBIAN_FRONTEND=noninteractive LANG=C.UTF-8 LC_ALL=C.UTF-8 \
+    CMAKE_PREFIX_PATH=/opt/googletest
+# 快照固定所有传递依赖；保留 Debian 签名验证，仅关闭历史索引的有效期检查。
+RUN retry() { for retry_n in 1 2 3 4 5; do "$@" && return 0; done; return 1; }; \
+    sed -i \
+      -e 's|http://deb.debian.org/debian-security|http://snapshot.debian.org/archive/debian-security/20261021T000000Z|' \
+      -e 's|http://deb.debian.org/debian$|http://snapshot.debian.org/archive/debian/20261021T000000Z|' \
+      /etc/apt/sources.list.d/debian.sources \
+    && printf 'Acquire::Check-Valid-Until "false";\nAcquire::Retries "5";\nAcquire::http::Timeout "30";\n' > /etc/apt/apt.conf.d/99snapshot \
+    && retry apt-get -o APT::Update::Error-Mode=any update \
+    && retry apt-get install -y --no-install-recommends \
+       gcc-14=14.2.0-19 g++-14=14.2.0-19 \
+       cmake=3.31.6-2 ninja-build=1.12.1-1+b1 python3=3.13.5-1 \
+       ca-certificates curl \
+    && rm -rf /var/lib/apt/lists/* \
+    && ln -s /usr/bin/gcc-14 /usr/local/bin/gcc \
+    && ln -s /usr/bin/g++-14 /usr/local/bin/g++ \
+    && ln -s /usr/bin/gcov-14 /usr/local/bin/gcov \
+    && test "$(g++-14 -dumpfullversion)" = 14.2.0
+# 1.12.1 是最后支持 C++11 的 GoogleTest；构建时下载并验证，运行时无需联网。
+RUN curl -fL --retry 5 --connect-timeout 30 \
+      https://github.com/google/googletest/archive/refs/tags/release-1.12.1.tar.gz \
+      -o /tmp/googletest.tar.gz \
+    && echo '81964fe578e9bd7c94dfdb09c8e4d6e6759e19967e397dbea48d1c10e45d0df2  /tmp/googletest.tar.gz' | sha256sum -c - \
+    && mkdir -p /opt/src/googletest /opt/qualtor \
+    && tar -xzf /tmp/googletest.tar.gz --strip-components=1 -C /opt/src/googletest \
+    && rm /tmp/googletest.tar.gz
+WORKDIR /work
+
+FROM common AS clang
+ENV CC=clang-19 CXX=clang++-19 QUALTOR_TOOLCHAIN=clang
+RUN retry() { for retry_n in 1 2 3 4 5; do "$@" && return 0; done; return 1; }; \
+    retry apt-get -o APT::Update::Error-Mode=any update \
+    && retry apt-get install -y --no-install-recommends \
+       clang-19=1:19.1.7-3+b1 llvm-19=1:19.1.7-3+b1 libclang-cpp19=1:19.1.7-3+b1 \
+    && case "$(dpkg --print-architecture)" in \
+         arm64) mull_arch=aarch64; mull_sha=63a59862e4f55f278780c5f99451bfe178d546bf06d6a1ad5af6f66056833fc3 ;; \
+         amd64) mull_arch=amd64; mull_sha=be12c2cb987d8c755b1e9e3a50adef4cbfe7cc39e2ff6e795ee20026d4b3ce91 ;; \
+         *) echo 'Only linux/arm64 and linux/amd64 are supported' >&2; exit 1 ;; \
+       esac \
+    && curl -fL --retry 5 --connect-timeout 30 \
+       "https://github.com/mull-project/mull/releases/download/0.34.2/Mull-19-0.34.2-LLVM-19.1.7-debian-${mull_arch}-13.deb" \
+       -o /tmp/mull.deb \
+    && echo "${mull_sha}  /tmp/mull.deb" | sha256sum -c - \
+    && retry apt-get install -y --no-install-recommends /tmp/mull.deb \
+    && rm /tmp/mull.deb \
+    && rm -rf /var/lib/apt/lists/* \
+    && ln -s /usr/bin/clang-19 /usr/local/bin/clang \
+    && ln -s /usr/bin/clang++-19 /usr/local/bin/clang++ \
+    && test "$(llvm-config-19 --version)" = 19.1.7 \
+    && mull-runner-19 --version | grep -F 'mull-runner 0.34.2' \
+    && mull-runner-19 --version | grep -F 'LLVM: 19.1.7' \
+    && test -f /usr/lib/mull-ir-frontend-19
+RUN cmake -S /opt/src/googletest -B /tmp/gtest-build -G Ninja \
+      -DCMAKE_C_COMPILER=clang-19 -DCMAKE_CXX_COMPILER=clang++-19 \
+      -DCMAKE_CXX_STANDARD=11 -DCMAKE_CXX_STANDARD_REQUIRED=ON -DCMAKE_CXX_EXTENSIONS=OFF \
+      -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/googletest -DCMAKE_INSTALL_LIBDIR=lib \
+    && cmake --build /tmp/gtest-build --parallel 2 \
+    && cmake --install /tmp/gtest-build \
+    && rm -rf /tmp/gtest-build /opt/src \
+    && dpkg-query -W > /opt/qualtor/packages.txt
+CMD ["clang++-19", "--version"]
+
+FROM common AS gcc
+ENV CC=gcc-14 CXX=g++-14 QUALTOR_TOOLCHAIN=gcc
+RUN cmake -S /opt/src/googletest -B /tmp/gtest-build -G Ninja \
+      -DCMAKE_C_COMPILER=gcc-14 -DCMAKE_CXX_COMPILER=g++-14 \
+      -DCMAKE_CXX_STANDARD=11 -DCMAKE_CXX_STANDARD_REQUIRED=ON -DCMAKE_CXX_EXTENSIONS=OFF \
+      -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/googletest -DCMAKE_INSTALL_LIBDIR=lib \
+    && cmake --build /tmp/gtest-build --parallel 2 \
+    && cmake --install /tmp/gtest-build \
+    && rm -rf /tmp/gtest-build /opt/src \
+    && dpkg-query -W > /opt/qualtor/packages.txt
+CMD ["g++-14", "--version"]

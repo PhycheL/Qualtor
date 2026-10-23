@@ -1,0 +1,6 @@
+# 工具链冒烟验收配置，不是正式评测的变异分母。
+mutators:
+  - cxx_add_to_sub
+  - cxx_sub_to_add
+includePaths:
+  - '/repo/cpp/src/GildedRose\.cc$'
