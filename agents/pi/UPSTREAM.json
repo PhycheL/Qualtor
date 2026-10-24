@@ -1,0 +1,13 @@
+{
+  "repository": "https://github.com/PhycheL/pi.git",
+  "upstream": "https://github.com/earendil-works/pi.git",
+  "commit": "55a905929218199bf50af442f873729a0dad62f1",
+  "copied_tracked_files": 1907,
+  "source": "tracked working tree; no local tracked changes",
+  "excluded": [
+    ".git",
+    "node_modules",
+    "dist",
+    "untracked skill-drafts"
+  ]
+}

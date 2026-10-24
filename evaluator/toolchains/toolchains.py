@@ -11,7 +11,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT.parent / "common"))
-from paths import REPO, COMMON, RUNS, BENCHMARK
+from paths import REPO, COMMON, RUNS, BENCHMARK, AGENTS, GENERATOR
 from audit import Audit, now
 from source_snapshot import verify_snapshot
 
@@ -19,6 +19,8 @@ IMAGES = {
     "gcc": "qualtor-gcc:14.2.0-gtest1.12.1-cxx11",
     "clang": "qualtor-clang:19.1.7-mull0.34.2-gtest1.12.1-cxx11",
 }
+GENERATOR_IMAGE = "qualtor-generator:node24.10.0-gcc14.2.0"
+BUILD_IMAGES = {**IMAGES, "generator": GENERATOR_IMAGE}
 
 
 def write_json(path, value):
@@ -40,10 +42,10 @@ def execute(args, evidence, summary):
     write_json(client / "config.json", {"auths": {}, "cliPluginsExtraDirs": [str(Path.home() / ".docker/cli-plugins")]})
     docker = ["docker", "--config", str(client), "--host", endpoint.strip()]
     call("docker-version", docker + ["version"])
-    modes = list(IMAGES) if args.toolchain == "all" else [args.toolchain]
+    modes = list(BUILD_IMAGES) if args.toolchain == "all" else [args.toolchain]
     inputs = [ROOT / "toolchains.py", ROOT / "docker/Dockerfile.toolchains", ROOT / "docker/.dockerignore",
               ROOT / "check_toolchain.py", COMMON / "audit.py", COMMON / "coverage.py",
-              COMMON / "source_snapshot.py", *sorted((ROOT / "smoke").glob("*"))]
+              COMMON / "source_snapshot.py", ROOT / "build_pi.mjs", *sorted((ROOT / "smoke").glob("*"))]
     write_json(evidence / "inputs.json", {str(p.relative_to(REPO)): hashlib.sha256(p.read_bytes()).hexdigest()
                                         for p in inputs if p.is_file()})
     repo = BENCHMARK / "gildedrose-update-quality/source"
@@ -57,7 +59,7 @@ def execute(args, evidence, summary):
     if not args.build_only:
         run.mkdir(parents=True, exist_ok=True)
     for mode in modes:
-        tag = IMAGES[mode]
+        tag = BUILD_IMAGES[mode]
         if not args.skip_build:
             print(f"构建 {mode}：{tag}", flush=True)
             build = docker + ["build", "--progress", "plain", "--file", str(ROOT / "docker/Dockerfile.toolchains"),
@@ -75,6 +77,30 @@ def execute(args, evidence, summary):
         write_json(evidence / f"{mode}-image.json", record)
         (evidence / f"{mode}-history.txt").write_text(call(f"history-{mode}", docker + ["history", "--no-trunc", image_id]))
         summary["images"][mode] = {"tag": tag, "id": image_id, "platform": actual_platform}
+        if mode == "generator":
+            if not args.skip_build:
+                call("build-pi", docker + ["run", "--rm", "--platform", actual_platform,
+                     "--cpus", "2", "--memory", "4g", "--pids-limit", "512",
+                     "--mount", f"type=bind,source={AGENTS / 'pi'},target=/pi",
+                     "--mount", f"type=bind,source={ROOT / 'build_pi.mjs'},target=/build_pi.mjs,readonly",
+                     "--workdir", "/pi", "-e", "npm_config_cache=/tmp/npm-cache", "-e", "HUSKY=0", image_id,
+                     "sh", "-c", "npm ci --ignore-scripts && node /build_pi.mjs"], timeout=1800, echo=True)
+                sys.path.insert(0, str(GENERATOR))
+                from host import tree_hash
+                write_json(AGENTS / "pi/.qualtor-build.json", {"image_id": image_id, "platform": actual_platform,
+                           "source_sha256": tree_hash(AGENTS / "pi"), "runtime_sha256": tree_hash(AGENTS / "pi", runtime=True)})
+            if not args.build_only:
+                sys.path.insert(0, str(GENERATOR))
+                from selftest import run_case
+                from host import GenerationExecutor
+                from docker_runner import DockerExecutor
+                executor = DockerExecutor(audit, evidence / "generator", args.run_id)
+                result = run_case("smoke", run / "generator", executor, GenerationExecutor(executor), True)
+                summary["checks"][mode] = result
+                if not result["passed"]:
+                    raise RuntimeError("生成镜像冒烟未通过")
+                verify_snapshot(repo, snapshot_path, snapshot["commit"])
+            continue
         if args.build_only:
             continue
         output = run / mode
@@ -124,7 +150,7 @@ def execute(args, evidence, summary):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--toolchain", choices=["all", "gcc", "clang"], default="all")
+    parser.add_argument("--toolchain", choices=["all", "gcc", "clang", "generator"], default="all")
     group = parser.add_mutually_exclusive_group()
     group.add_argument("--skip-build", action="store_true", help="使用本机已构建的固定版本镜像")
     group.add_argument("--build-only", action="store_true", help="只构建镜像，不运行验收")

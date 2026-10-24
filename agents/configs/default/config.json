@@ -1,0 +1,12 @@
+{
+  "provider": null,
+  "model": null,
+  "thinking": "off",
+  "api": "openai-completions",
+  "base_url_env": "QUALTOR_API_BASE_URL",
+  "api_key_env": "QUALTOR_API_KEY",
+  "reasoning": false,
+  "context_window": 131072,
+  "max_tokens": 8192,
+  "cost_per_million": null
+}

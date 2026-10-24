@@ -15,20 +15,21 @@
 
 业务代码和生成测试使用 **C++11 + GoogleTest**。工具链版本固定，以 [Dockerfile.toolchains](evaluator/toolchains/docker/Dockerfile.toolchains) 为实现依据；调整依赖时保持 C++11 兼容，并验证相关工具的版本匹配。
 
-同一份业务源码与测试使用两个独立镜像、两套独立构建目录：
+同一份业务源码与测试用两套独立构建目录评分，生成阶段另有 pi 镜像：
 
 | 镜像 | 职责 |
 |---|---|
 | GCC + gcov + GoogleTest | 编译、运行测试，采集业务源码覆盖率；承接后续稳定性检查和替换版本执行 |
 | Clang + Mull + GoogleTest | 编译、运行同一份测试，执行变异测试 |
+| GCC + Node 24 + pi（只读挂载） | 在受限工作区内生成与修复测试 |
 
-两个镜像本身就是测试执行环境。Python 负责调度，编译、测试和分析在 Docker 内完成；项目源码保留在宿主机，通过挂载引入。工具链面向 `linux/arm64` 和 `linux/amd64`，验证结论按实际执行架构报告。
+GCC、Clang 镜像本身就是评分执行环境。Python 负责调度，编译、测试和分析在 Docker 内完成；项目源码保留在宿主机，通过挂载引入。工具链面向 `linux/arm64` 和 `linux/amd64`，验证结论按实际执行架构报告。
 
 ## 当前起点
 
-- 当前入口是 [toolchains.py](evaluator/toolchains/toolchains.py)，负责构建镜像和冒烟验收。两套工具链已在 Linux ARM64 验证；AMD64 已配置，尚未实测。
+- 当前入口是 [toolchains.py](evaluator/toolchains/toolchains.py)，负责构建镜像和冒烟验收。三套镜像已在 Linux ARM64 验证；AMD64 已配置，尚未实测。
 - 已完成的验收使用 9 个手写 GoogleTest 测试，覆盖测试发现与执行、gcov 和 Mull。
-- 评分器已实现（[evaluator/scorer/](evaluator/scorer/)，入口 `score.py`、`prepare_task.py`、`calibrate.py`、`aggregate.py`）；0.1.1 已在 Linux ARM64 Docker 中完成 GildedRose 变异分母标定和 16 个样本的完整校准，证据见[评分器运行说明](docs/评分器运行说明.md)。模型测试生成与预算内修复仍待实现。
+- 评分器已实现（[evaluator/scorer/](evaluator/scorer/)，入口 `score.py`、`prepare_task.py`、`calibrate.py`、`aggregate.py`）；0.1.2 已在 Linux ARM64 Docker 中通过 16 个样本的完整校准，沿用 47 个变异的冻结分母，证据见[评分器运行说明](docs/评分器运行说明.md)。生成入口 [run.py](evaluator/generator/run.py) 已实现并通过剧本模型闭环验证；真实模型 K=5 验收待用户填写配置，见[生成入口运行说明](docs/生成入口运行说明.md)。
 - 仓库分为 `evaluator/`（框架）、`benchmark/`（题目）、`agents/`（被评测对象）和 `runs/`（执行证据）。路径由 `evaluator/common/paths.py` 统一定义；旧证据按 D010 处理。
 - 具体阶段和待办以 [项目推进流程](docs/项目推进流程.md) 为准；[评测规格](docs/评测规格.md) 仍是草案，区分已定决定、待定参数和未实现能力。
 
@@ -38,7 +39,7 @@
 |---|---|
 | 确定开发顺序、范围或完成标准 | [项目推进流程](docs/项目推进流程.md)、[决策记录](docs/决策记录.md) |
 | 修改镜像、编译、测试、覆盖率或 Mull | [实验运行说明](docs/实验运行说明.md)、[C++11 固定工具链](docs/C++11固定工具链.md)及对应实现 |
-| 实现生成、修复、评分，或比较 Agent/skill | [评测规格](docs/评测规格.md)、[生成入口与受限工作区设计](docs/生成入口与受限工作区设计.md)、[决策记录](docs/决策记录.md)、[评分算法](docs/评分算法.md)、[评分器与校准样本设计](docs/评分器与校准样本设计.md)、[评分器运行说明](docs/评分器运行说明.md) |
+| 实现生成、修复、评分，或比较 Agent/skill | [评测规格](docs/评测规格.md)、[生成入口与受限工作区设计](docs/生成入口与受限工作区设计.md)、[生成入口运行说明](docs/生成入口运行说明.md)、[决策记录](docs/决策记录.md)、[评分算法](docs/评分算法.md)、[评分器与校准样本设计](docs/评分器与校准样本设计.md)、[评分器运行说明](docs/评分器运行说明.md) |
 | 调查历史实验 | [研发日志](docs/研发日志.md)、迁移的 0.1.1 证据及 Git 历史 |
 
 ## 实施与完成

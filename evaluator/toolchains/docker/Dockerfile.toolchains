@@ -74,3 +74,22 @@ RUN cmake -S /opt/src/googletest -B /tmp/gtest-build -G Ninja \
     && rm -rf /tmp/gtest-build /opt/src \
     && dpkg-query -W > /opt/qualtor/packages.txt
 CMD ["g++-14", "--version"]
+
+# 生成环境沿用 GCC；pi 源码和构建产物在宿主机，不复制进镜像。
+FROM gcc AS generator
+RUN apt-get -o APT::Update::Error-Mode=any update \
+    && apt-get install -y --no-install-recommends xz-utils git ripgrep fd-find \
+    && ln -s /usr/bin/fdfind /usr/local/bin/fd \
+    && case "$(dpkg --print-architecture)" in \
+         arm64) node_arch=arm64; node_sha=07f0558316ebb8977dd6fb29b4de8d369a639d3d8cef544293852a6f5eea6af8 ;; \
+         amd64) node_arch=x64; node_sha=2642f4428869aca32443660fd71b3918e2be1277a899bdcaeb64c93b54b5af17 ;; \
+         *) exit 1 ;; \
+       esac \
+    && curl -fL --retry 5 --connect-timeout 30 \
+       "https://nodejs.org/dist/v24.10.0/node-v24.10.0-linux-${node_arch}.tar.xz" -o /tmp/node.tar.xz \
+    && echo "${node_sha}  /tmp/node.tar.xz" | sha256sum -c - \
+    && tar -xJf /tmp/node.tar.xz --strip-components=1 -C /usr/local \
+    && rm /tmp/node.tar.xz && rm -rf /var/lib/apt/lists/* \
+    && test "$(node --version)" = v24.10.0 \
+    && dpkg-query -W > /opt/qualtor/packages.txt
+CMD ["node", "--version"]

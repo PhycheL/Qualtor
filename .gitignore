@@ -4,3 +4,4 @@ __pycache__/
 /runs/
 node_modules/
 dist/
+/agents/pi/.qualtor-build.json

@@ -322,14 +322,14 @@
     }
   },
   "passed": true,
-  "run_id": "calibration-layout-20261024-02",
+  "run_id": "calibration-generator-20261024-01",
   "task": "gildedrose-update-quality",
   "rounds": 2,
   "partial": false,
-  "scorer_version": "0.1.1",
-  "scorer_code_sha256": "82583bb31feedd7fe490ad1271ac7ca1f74627e8228d1d59b90d643e48e46719",
+  "scorer_version": "0.1.2",
+  "scorer_code_sha256": "057fc88d6d8464754f8b68ff0fea091ab34ea1195be885c51e93fbc79345e03f",
   "samples_sha256": "7fdad8a775af4703f7acd757d4d832f50550cec889169d2156db367597836f3a",
-  "task_sha256": "8be9b538b3398a559a6f378f464110a3213b5a4a1b05ad2088776338c269bd66",
+  "task_sha256": "860f4592ad70a8aff882a27ea50fd760c9662149a36c5a0fc04bf348288c9a16",
   "images": {
     "gcc": {
       "tag": "qualtor-gcc:14.2.0-gtest1.12.1-cxx11",
@@ -342,5 +342,5 @@
       "platform": "linux/arm64"
     }
   },
-  "finished_at": "2026-10-24T08:54:50.155164+00:00"
+  "finished_at": "2026-10-24T09:17:30.759280+00:00"
 }

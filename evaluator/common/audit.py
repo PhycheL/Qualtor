@@ -28,7 +28,7 @@ class Audit:
             stream.write(json.dumps(data, ensure_ascii=False) + "\n")
         return data
 
-    def run(self, stage, argv, cwd=None, timeout=180, input_text=None, echo=False):
+    def run(self, stage, argv, cwd=None, timeout=180, input_text=None, echo=False, env=None, user=None, group=None):
         ident = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%S%f")
         label = re.sub(r"[^a-zA-Z0-9_.-]", "_", stage)
         prefix = self.root / (ident + "-" + label)
@@ -50,12 +50,13 @@ class Audit:
                     if echo:
                         output.write(line)
                         output.flush()
-        env = dict(os.environ, LC_ALL="C", LANG="C", PYTHONUNBUFFERED="1")
+        env = dict(os.environ if env is None else env, LC_ALL="C", LANG="C", PYTHONUNBUFFERED="1")
         timed_out = False
         try:
+            identity = {} if user is None else {"user": user, "group": group, "extra_groups": []}
             process = subprocess.Popen(record["argv"], cwd=cwd, env=env, stdin=subprocess.PIPE,
                                        stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
-                                       errors="replace", start_new_session=True)
+                                       errors="replace", start_new_session=True, **identity)
             threads = [threading.Thread(target=drain, args=(process.stdout, record["stdout_log"], stdout, sys.stdout)),
                        threading.Thread(target=drain, args=(process.stderr, record["stderr_log"], stderr, sys.stderr))]
             for thread in threads:

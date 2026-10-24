@@ -1,6 +1,6 @@
-# 校准报告 calibration-layout-20261024-02
+# 校准报告 calibration-generator-20261024-01
 
-- 评分器版本：0.1.1（代码指纹 82583bb31fee）
+- 评分器版本：0.1.2（代码指纹 057fc88d6d84）
 - 结论：**通过**
 - 每个样本评分 2 次；镜像：gcc sha256:79baee0c5650、clang sha256:3ffde674fdda
 

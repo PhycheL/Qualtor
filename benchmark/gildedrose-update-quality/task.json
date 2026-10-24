@@ -37,8 +37,8 @@
   "budget": {
     "tokens": null,
     "seconds": null,
-    "repair_rounds": null,
-    "note": "待阶段 1 定预算后填写"
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
   },
   "scoring_domain": "普通商品质量 0–50；Sulfuras 质量恒为 80；sellIn 任意整数。评分材料（参考测试、探针、等价版本）只在此域内保证与被测代码一致。",
   "params": {

@@ -20,13 +20,13 @@ sys.path.insert(0, str(HERE))
 from common import RUNS, now, read_json, write_json  # noqa: E402
 
 RATIO_METRICS = ["V1", "V2", "V3", "S1", "M1_e2e", "M1_valid", "M2", "M4", "F1", "C1", "C2", "C3"]
-COST_FIELDS = ["tokens_input", "tokens_output", "seconds", "model_calls", "repair_rounds"]
+COST_FIELDS = ["tokens_input", "tokens_output", "tokens_cache_read", "tokens_cache_write", "seconds", "model_calls", "repair_rounds", "usd"]
 HIGHER_IS_BETTER = {"V1", "V2", "M1_e2e", "M1_valid", "M2", "M4", "C1", "C2", "C3"}
 
 
 # ---- 读取 ----
 
-def load_results(runs):
+def load_results(runs, version=None):
     """读取运行目录下全部 result.json，只保留带 agent_version 的正式评分结果（排除校准与准备）。"""
     results = []
     for run in runs:
@@ -34,7 +34,11 @@ def load_results(runs):
         if not root.is_dir():
             raise SystemExit(f"找不到运行目录：{run}")
         for path in sorted(root.rglob("result.json")):
+            if "infra-retries" in path.parts or "generation-attempts" in path.parts:
+                continue
             result = read_json(path)
+            if version is not None and result.get("scorer", {}).get("version") != version:
+                continue
             if result.get("mode") == "score" and (result.get("meta") or {}).get("agent_version"):
                 result["_path"] = str(path)
                 results.append(result)
@@ -46,8 +50,9 @@ def cost_values(cost):
     cost = cost or {}
     tokens = cost.get("tokens") or {}
     return {"tokens_input": tokens.get("input"), "tokens_output": tokens.get("output"),
+            "tokens_cache_read": tokens.get("cache_read"), "tokens_cache_write": tokens.get("cache_write"),
             "seconds": cost.get("seconds"), "model_calls": cost.get("model_calls"),
-            "repair_rounds": cost.get("repair_rounds")}
+            "repair_rounds": cost.get("repair_rounds"), "usd": cost.get("usd")}
 
 
 def metric_value(result, name):
@@ -207,6 +212,7 @@ def main():
         p.add_argument("--runs", nargs="+", required=True)
         p.add_argument("--set", choices=["dev", "acceptance"], default="dev")
         p.add_argument("--phase", choices=["first", "final"], default="final")
+        p.add_argument("--scorer-version", help="只汇总指定评分器版本，避免补评结果重复计入")
         p.add_argument("--out", type=Path)
         p.add_argument("--allow-uncalibrated", action="store_true")
         if name == "compare":
@@ -217,7 +223,7 @@ def main():
             p.add_argument("--bootstrap", type=int, default=10000)
             p.add_argument("--seed", type=int, default=20261024)
     args = parser.parse_args()
-    results = load_results(args.runs)
+    results = load_results(args.runs, args.scorer_version)
     problems = calibration_problems(results)
     if problems and not args.allow_uncalibrated:
         raise SystemExit("；".join(problems) + "（确认只做参考时加 --allow-uncalibrated）")
