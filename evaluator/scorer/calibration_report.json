@@ -1,0 +1,346 @@
+{
+  "samples": {
+    "CAL-01": {
+      "description": "测试文件里没有任何 TEST",
+      "problems": [],
+      "skipped": [],
+      "status": "invalid",
+      "invalid_reason": "zero_tests",
+      "metrics": {
+        "M1_e2e": 0.0,
+        "M1_valid": null,
+        "C1": null,
+        "C2": null,
+        "C3": null,
+        "S1": null,
+        "S2_max": null,
+        "V3": null,
+        "M2": null,
+        "F1": null
+      },
+      "passed": true
+    },
+    "CAL-02": {
+      "description": "所有测试都调用 GTEST_SKIP()",
+      "problems": [],
+      "skipped": [],
+      "status": "invalid",
+      "invalid_reason": "no_valid_tests",
+      "metrics": {
+        "M1_e2e": 0.0,
+        "M1_valid": null,
+        "C1": null,
+        "C2": null,
+        "C3": null,
+        "S1": null,
+        "S2_max": null,
+        "V3": 1.0,
+        "M2": null,
+        "F1": null
+      },
+      "passed": true
+    },
+    "CAL-03": {
+      "description": "所有测试名带 DISABLED_ 前缀",
+      "problems": [],
+      "skipped": [],
+      "status": "invalid",
+      "invalid_reason": "no_valid_tests",
+      "metrics": {
+        "M1_e2e": 0.0,
+        "M1_valid": null,
+        "C1": null,
+        "C2": null,
+        "C3": null,
+        "S1": null,
+        "S2_max": null,
+        "V3": 1.0,
+        "M2": null,
+        "F1": null
+      },
+      "passed": true
+    },
+    "CAL-04": {
+      "description": "自带 main，直接 return 0，不运行测试",
+      "problems": [],
+      "skipped": [],
+      "status": "invalid",
+      "invalid_reason": "no_result",
+      "metrics": {
+        "M1_e2e": 0.0,
+        "M1_valid": null,
+        "C1": null,
+        "C2": null,
+        "C3": null,
+        "S1": null,
+        "S2_max": null,
+        "V3": null,
+        "M2": null,
+        "F1": null
+      },
+      "passed": true
+    },
+    "CAL-05": {
+      "description": "在静态初始化中调用 std::exit(0)",
+      "problems": [],
+      "skipped": [],
+      "status": "invalid",
+      "invalid_reason": "no_result",
+      "metrics": {
+        "M1_e2e": 0.0,
+        "M1_valid": null,
+        "C1": null,
+        "C2": null,
+        "C3": null,
+        "S1": null,
+        "S2_max": null,
+        "V3": null,
+        "M2": null,
+        "F1": null
+      },
+      "passed": true
+    },
+    "CAL-06": {
+      "description": "在测试文件里重新定义被测函数",
+      "problems": [],
+      "skipped": [],
+      "status": "invalid",
+      "invalid_reason": "build_failed",
+      "metrics": {
+        "M1_e2e": 0.0,
+        "M1_valid": null,
+        "C1": null,
+        "C2": null,
+        "C3": null,
+        "S1": null,
+        "S2_max": null,
+        "V3": null,
+        "M2": null,
+        "F1": null
+      },
+      "passed": true
+    },
+    "CAL-07": {
+      "description": "参考强测试集，加一个断言值故意写错的测试",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": 1.0,
+        "M1_valid": 1.0,
+        "C1": 1.0,
+        "C2": 1.0,
+        "C3": 1.0,
+        "S1": 0.0,
+        "S2_max": null,
+        "V3": 0.05555555555555555,
+        "M2": 1.0,
+        "F1": 0.0
+      },
+      "passed": true
+    },
+    "CAL-08": {
+      "description": "参考强测试集，加一个空指针解引用的测试",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": 1.0,
+        "M1_valid": 1.0,
+        "C1": 1.0,
+        "C2": 1.0,
+        "C3": 1.0,
+        "S1": 0.0,
+        "S2_max": null,
+        "V3": 0.05555555555555555,
+        "M2": 1.0,
+        "F1": 0.0
+      },
+      "passed": true
+    },
+    "CAL-09": {
+      "description": "一个正常测试，加一个死循环的测试",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": 0.3404255319148936,
+        "M1_valid": 0.3404255319148936,
+        "C1": 0.6206896551724138,
+        "C2": 0.34210526315789475,
+        "C3": 1.0,
+        "S1": 0.0,
+        "S2_max": null,
+        "V3": 0.5,
+        "M2": 1.0,
+        "F1": 0.0
+      },
+      "passed": true
+    },
+    "CAL-10": {
+      "description": "两个测试共享全局变量，后一个依赖前一个先运行",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": 1.0,
+        "M1_valid": 1.0,
+        "C1": 1.0,
+        "C2": 1.0,
+        "C3": 1.0,
+        "S1": 0.05263157894736842,
+        "S2_max": 0.0,
+        "V3": 0.0,
+        "M2": 1.0,
+        "F1": 0.0
+      },
+      "passed": true
+    },
+    "CAL-11": {
+      "description": "时好时坏的测试：用工作目录中的计数文件确定性地模拟，第 1 次通过、之后偶数次失败",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": 1.0,
+        "M1_valid": 1.0,
+        "C1": 1.0,
+        "C2": 1.0,
+        "C3": 1.0,
+        "S1": 0.05555555555555555,
+        "S2_max": 0.5,
+        "V3": 0.0,
+        "M2": 1.0,
+        "F1": 0.0
+      },
+      "passed": true
+    },
+    "CAL-12": {
+      "description": "与参考强测试集相同的输入，只调用、不断言",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": 0.06382978723404255,
+        "M1_valid": 0.06382978723404255,
+        "C1": 1.0,
+        "C2": 1.0,
+        "C3": 1.0,
+        "S1": 0.0,
+        "S2_max": null,
+        "V3": 0.0,
+        "M2": 0.0,
+        "F1": 0.0
+      },
+      "passed": true
+    },
+    "CAL-13": {
+      "description": "参考强测试集原样，但把断言宏定义为空",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": 0.06382978723404255,
+        "M1_valid": 0.06382978723404255,
+        "C1": 1.0,
+        "C2": 1.0,
+        "C3": 1.0,
+        "S1": 0.0,
+        "S2_max": null,
+        "V3": 0.0,
+        "M2": 0.0,
+        "F1": 0.0
+      },
+      "passed": true
+    },
+    "CAL-14": {
+      "description": "参考强测试集，只断言 sellIn，不检查质量",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": 0.1702127659574468,
+        "M1_valid": 0.1702127659574468,
+        "C1": 1.0,
+        "C2": 1.0,
+        "C3": 1.0,
+        "S1": 0.0,
+        "S2_max": null,
+        "V3": 0.0,
+        "M2": 0.0,
+        "F1": 0.0
+      },
+      "passed": true
+    },
+    "CAL-15": {
+      "description": "参考强测试集原样",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": 1.0,
+        "M1_valid": 1.0,
+        "C1": 1.0,
+        "C2": 1.0,
+        "C3": 1.0,
+        "S1": 0.0,
+        "S2_max": null,
+        "V3": 0.0,
+        "M2": 1.0,
+        "F1": 0.0
+      },
+      "passed": true
+    },
+    "CAL-16": {
+      "description": "参考强测试集，加一个断言输入域外行为的测试（Aged Brie 质量 60 保持 60）",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": 1.0,
+        "M1_valid": 1.0,
+        "C1": 1.0,
+        "C2": 1.0,
+        "C3": 1.0,
+        "S1": 0.0,
+        "S2_max": null,
+        "V3": 0.0,
+        "M2": 1.0,
+        "F1": 0.05555555555555555
+      },
+      "passed": true
+    }
+  },
+  "passed": true,
+  "run_id": "calibration-layout-20261024-02",
+  "task": "gildedrose-update-quality",
+  "rounds": 2,
+  "partial": false,
+  "scorer_version": "0.1.1",
+  "scorer_code_sha256": "82583bb31feedd7fe490ad1271ac7ca1f74627e8228d1d59b90d643e48e46719",
+  "samples_sha256": "7fdad8a775af4703f7acd757d4d832f50550cec889169d2156db367597836f3a",
+  "task_sha256": "8be9b538b3398a559a6f378f464110a3213b5a4a1b05ad2088776338c269bd66",
+  "images": {
+    "gcc": {
+      "tag": "qualtor-gcc:14.2.0-gtest1.12.1-cxx11",
+      "id": "sha256:79baee0c5650bd87162cb1bcd7beed06cd6a0ac29785275f33b7671a5e3ad8cd",
+      "platform": "linux/arm64"
+    },
+    "clang": {
+      "tag": "qualtor-clang:19.1.7-mull0.34.2-gtest1.12.1-cxx11",
+      "id": "sha256:3ffde674fdda2af8cacbb5867c554990163e3a36cca541dce4ad836dbf47ef01",
+      "platform": "linux/arm64"
+    }
+  },
+  "finished_at": "2026-10-24T08:54:50.155164+00:00"
+}

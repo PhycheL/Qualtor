@@ -1,7 +1,0 @@
-{
-  "snapshot_at": "2026-10-21T11:10:56.302280+00:00",
-  "command": "python3 gildedrose-lab/scripts/package_delivery.py",
-  "scope": "上游源码仅含 cpp/，保留所有 C++ 实验和失败记录；排除其他语言、Git 对象、缓存、归档自身及归档完成后生成的校验回执。源码提交和逐文件哈希由 external/source_manifest.json 追溯。",
-  "image_included": false,
-  "image_note": "Docker 镜像保留在本机 Docker 中；归档只包含重建定义与镜像元数据。"
-}

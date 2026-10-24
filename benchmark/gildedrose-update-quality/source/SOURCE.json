@@ -1,0 +1,29 @@
+{
+  "repository": "https://github.com/emilybache/GildedRose-Refactoring-Kata.git",
+  "commit": "d6407909c73b2ba61bfa7568af0d9bdce1902fd5",
+  "scope": [
+    "cpp"
+  ],
+  "files": {
+    "cpp/.gitignore": "08af942f168f38da14f72022c21779b7c6b8c7e83e8ac3d21e2bad5e7d6abf57",
+    "cpp/CMakeLists.txt": "f3f3a6835c9a6f7d96cd6e0c0908b1c34f7ad8c0fff2894bc323c05317f57f0b",
+    "cpp/README.md": "8a82c4294d3e737b8ae0022b87c66a59c0aa9ee52994e4df33e3c13e44b8aa05",
+    "cpp/src/CMakeLists.txt": "7669c38d9a14378143c60fc07d049fab1ca5a02f09115d11e388e7b646e8e9ce",
+    "cpp/src/GildedRose.cc": "97958cdfb5c84c83263426c56080d30144867bc68871c2029ae8015741b197a6",
+    "cpp/src/GildedRose.h": "7c469c00ef5661a3067d15dfd3fe9bf6f401230db3888dd5879272a918ec080f",
+    "cpp/test/CMakeLists.txt": "6c4325a618aeae24bd946055cd6a4297d448f686330813572868b6858c9f4c90",
+    "cpp/test/cpp_catch2_approvaltest/CMakeLists.txt": "6a70488a3b89ebee72fd99d36dbf0f69b33430a0877c9edb36a262c3b9c75a9a",
+    "cpp/test/cpp_catch2_approvaltest/GildedRoseCatch2ApprovalTests.GildedRoseApprovalTests.approved.txt": "8a0d2c6aa4b70f20a136a76e09e9a0252f4e6d021ba0313ba661d9261bc57b97",
+    "cpp/test/cpp_catch2_approvaltest/GildedRoseCatch2ApprovalTests.cc": "3711fa159bea285b9cdd9fd9725c7176326a7ce9a172d8bba8b70fc648fb9b59",
+    "cpp/test/cpp_catch2_unittest/CMakeLists.txt": "fa3eed0ad159acf29732d7939a637744ae62746f23efc7b0fd0214aae4f784e4",
+    "cpp/test/cpp_catch2_unittest/GildedRoseCatch2UnitTests.cc": "b56983cf40921d2f9ed35877e1878d298a1d4dfe4ff03d009104baeddeb0d296",
+    "cpp/test/cpp_googletest_approvaltest/CMakeLists.txt": "5ba09ab5e268110984c72b4301b1c26f1d0478ef9432493ada2e66455381cc57",
+    "cpp/test/cpp_googletest_approvaltest/GildedRoseGoogletestApprovalTests.GildedRoseApprovalTests.VerifyCombinations.approved.txt": "8a0d2c6aa4b70f20a136a76e09e9a0252f4e6d021ba0313ba661d9261bc57b97",
+    "cpp/test/cpp_googletest_approvaltest/GildedRoseGoogletestApprovalTests.cc": "4b11049f005ff39cc6d7dca9fa827c7b385510b420604df78400941477968587",
+    "cpp/test/cpp_googletest_unittest/CMakeLists.txt": "cb1b13220b9ec12f4ed2764ad37e9d6d7cb926eea0690972a8b29f389d5e44ce",
+    "cpp/test/cpp_googletest_unittest/GildedRoseGoogletestUnitTests.cc": "78f1ccaa5b414241de3a00edafc34bb6ebfd71678f415817e93e4da0bf6f59dc",
+    "cpp/test/cpp_texttest/CMakeLists.txt": "75d6083cafb4ae5dd312a62c1a04c9873183781fff6692438b35444f7487582f",
+    "cpp/test/cpp_texttest/GildedRoseTextTests.cc": "46beb5f91d4dc79a1d81f1212c8c0198ec867d94562aa7ee46a11bde9796d5a8",
+    "cpp/test/third_party/ApprovalTests.hpp": "c00f6390b81d9924dc646e9d32b61e1e09abda106c13704f714ac349241bb9ff"
+  }
+}

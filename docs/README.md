@@ -18,19 +18,14 @@
 | Agent 应遵循的目标、技术路线与工作规则 | [AGENTS.md](../AGENTS.md) · [执行细则](项目协作指令.md) |
 | C++11 的固定版本 GCC/gcov/GoogleTest 与 Clang/Mull Docker 工具链 | [C++11 固定工具链](C++11固定工具链.md) |
 | 当前 Docker 工具链怎么运行、目录分别做什么、旧流程的清理范围 | [实验运行说明](实验运行说明.md) |
-| 已执行实验的范围、结果和局限 | [执行报告](执行报告.md) |
-| 每条实验命令及其输出 | [全量执行过程索引](全量执行过程.md) |
-| 每个注入 Bug 的检测结果与反例 | [变异明细](变异明细.md) |
-| 冻结的模型预测与实际运行结果 | [模型盲测逐题结果](模型盲测逐题结果.md) |
-| 初始环境检查和日志范围 | [过程记录](过程记录.md) |
-| 实现变化、失败与修复 | [实现与修复记录](实现与修复记录.md) |
-| 上游业务要求和授权 | [需求说明](upstream/GildedRoseRequirements.md) · [许可证](upstream/license.txt) |
+| 上游业务要求和授权 | [需求说明](../benchmark/gildedrose-update-quality/source/GildedRoseRequirements.md) · [许可证](../benchmark/gildedrose-update-quality/source/license.txt) |
 
-## 原始证据与历史附件
+## 原始证据
 
-- [实验运行结果](../gildedrose-lab/runs/)与[命令、容器和镜像证据](../gildedrose-lab/artifacts/)保留原位，文档中的证据链接已更新。
-- [全量执行过程 ZIP](../gildedrose-lab/deliverables/全量执行过程.zip)及其[校验值](../gildedrose-lab/deliverables/全量执行过程.zip.sha256)是历史归档，内部仍保留当时的目录布局和旧脚本。2026-10-23 已从工作区移除旧运行链路；归档和校验回执保持原样。
-- [上游 cpp 说明](../gildedrose-lab/external/GildedRose-Refactoring-Kata/cpp/README.md)属于固定源码快照；[模型盲测协议](../gildedrose-lab/benchmark/prompt.md)属于冻结的评测输入。它们保留原位，以维持文件哈希与历史证据。
+- 所有执行写入 [runs/](../runs/)，不入 Git。
+- 评分器的[校准状态](../evaluator/scorer/calibration-status.json)与[报告](../evaluator/scorer/calibration_report.md)入库。
+- 0.1.1 的[校准证据](../runs/scorer-docker-calibration-20261024-02/)与[分母证据](../runs/scorer-docker-prepare-20261024-01/)已迁移；其余旧证据按 D010 删除。
+- [上游 cpp 说明](../benchmark/gildedrose-update-quality/source/cpp/README.md)随源码快照保存。
 
 ## 文档维护
 

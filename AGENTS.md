@@ -13,7 +13,7 @@
 
 ## 技术路线
 
-业务代码和生成测试使用 **C++11 + GoogleTest**。工具链版本固定，以 [Dockerfile.toolchains](gildedrose-lab/docker/Dockerfile.toolchains) 为实现依据；调整依赖时保持 C++11 兼容，并验证相关工具的版本匹配。
+业务代码和生成测试使用 **C++11 + GoogleTest**。工具链版本固定，以 [Dockerfile.toolchains](evaluator/toolchains/docker/Dockerfile.toolchains) 为实现依据；调整依赖时保持 C++11 兼容，并验证相关工具的版本匹配。
 
 同一份业务源码与测试使用两个独立镜像、两套独立构建目录：
 
@@ -26,10 +26,10 @@
 
 ## 当前起点
 
-- 当前入口是 [toolchains.py](gildedrose-lab/toolchains.py)，负责构建镜像和冒烟验收。两套工具链已在 Linux ARM64 验证；AMD64 已配置，尚未实测。
+- 当前入口是 [toolchains.py](evaluator/toolchains/toolchains.py)，负责构建镜像和冒烟验收。两套工具链已在 Linux ARM64 验证；AMD64 已配置，尚未实测。
 - 已完成的验收使用 9 个手写 GoogleTest 测试，覆盖测试发现与执行、gcov 和 Mull。
-- 评分器已实现（[gildedrose-lab/scorer/](gildedrose-lab/scorer/)，入口 `score.py`、`prepare_task.py`、`calibrate.py`、`aggregate.py`）；0.1.1 已在 Linux ARM64 Docker 中完成 GildedRose 变异分母标定和 16 个样本的完整校准，证据见[评分器运行说明](docs/评分器运行说明.md)。模型测试生成与预算内修复仍待实现。
-- 旧 `run.py`、旧 Dockerfile 和专用实验代码已移除。新增能力基于当前工具链和共用模块开发；历史结果、日志和冻结材料用于追溯。
+- 评分器已实现（[evaluator/scorer/](evaluator/scorer/)，入口 `score.py`、`prepare_task.py`、`calibrate.py`、`aggregate.py`）；0.1.1 已在 Linux ARM64 Docker 中完成 GildedRose 变异分母标定和 16 个样本的完整校准，证据见[评分器运行说明](docs/评分器运行说明.md)。模型测试生成与预算内修复仍待实现。
+- 仓库分为 `evaluator/`（框架）、`benchmark/`（题目）、`agents/`（被评测对象）和 `runs/`（执行证据）。路径由 `evaluator/common/paths.py` 统一定义；旧证据按 D010 处理。
 - 具体阶段和待办以 [项目推进流程](docs/项目推进流程.md) 为准；[评测规格](docs/评测规格.md) 仍是草案，区分已定决定、待定参数和未实现能力。
 
 ## 按任务读取
@@ -39,7 +39,7 @@
 | 确定开发顺序、范围或完成标准 | [项目推进流程](docs/项目推进流程.md)、[决策记录](docs/决策记录.md) |
 | 修改镜像、编译、测试、覆盖率或 Mull | [实验运行说明](docs/实验运行说明.md)、[C++11 固定工具链](docs/C++11固定工具链.md)及对应实现 |
 | 实现生成、修复、评分，或比较 Agent/skill | [评测规格](docs/评测规格.md)、[生成入口与受限工作区设计](docs/生成入口与受限工作区设计.md)、[决策记录](docs/决策记录.md)、[评分算法](docs/评分算法.md)、[评分器与校准样本设计](docs/评分器与校准样本设计.md)、[评分器运行说明](docs/评分器运行说明.md) |
-| 调查历史实验 | [实现与修复记录](docs/实现与修复记录.md)及所需原始证据 |
+| 调查历史实验 | [研发日志](docs/研发日志.md)、迁移的 0.1.1 证据及 Git 历史 |
 
 ## 实施与完成
 
