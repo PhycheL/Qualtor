@@ -138,8 +138,12 @@ def evaluate(task, samples, results, capabilities):
         entry = {"description": sample["expected"].get("description"), "problems": [], "skipped": [],
                  "status": rounds[0].get("status"), "invalid_reason": rounds[0].get("invalid_reason")}
         entry["problems"] += check_reference_copy(task, sample)
+        expected_cost = read_json(sample["dir"] / "generation" / "cost.json")
         for index, result in enumerate(rounds, 1):
             entry["problems"] += [f"第 {index} 次：{p}" for p in check_hard(sample["expected"].get("hard", {}), result)]
+            if (result.get("cost") != expected_cost
+                    or (result.get("metrics") or {}).get("K1") != expected_cost):
+                entry["problems"].append(f"第 {index} 次：成本记录或 K1 与输入 cost.json 不一致")
         views = [judge.stable_view(r) for r in rounds]
         if any(view != views[0] for view in views[1:]):
             entry["problems"].append("重复评分结果不一致（除耗时字段外）")

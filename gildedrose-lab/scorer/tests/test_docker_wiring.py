@@ -195,6 +195,37 @@ class PipelineWiringTest(unittest.TestCase):
         self.assertEqual(result["status"], "infra_error")
         self.assertIn("judge_mismatch", result["infra_detail"])
 
+    def test_invalid_results_keep_generation_cost(self):
+        from audit import Audit
+        import aggregate
+
+        class BuildFailure(ScriptedExecutor):
+            def run_phase(self, label, *args):
+                return {"status": "build_failed", "reason": "compile_or_link_error"}
+
+        cost = {"tokens": {"input": 120, "output": 40}, "seconds": 12,
+                "model_calls": 2, "repair_rounds": 1}
+        cost_path = self.tmp / "cost.json"
+        common.write_json(cost_path, cost)
+        for reason, executor, product in (
+                ("artifact_rejected", ScriptedExecutor([]), self.tmp / "unfrozen"),
+                ("build_failed", BuildFailure([]), REFERENCE_PRODUCT),
+                ("zero_tests", ScriptedExecutor([]), REFERENCE_PRODUCT)):
+            with self.subTest(reason=reason):
+                result = pipeline.score_product(executor, self.task, product, self.tmp / reason, {},
+                                                Audit(self.tmp / "audit"), cost_path, prep=True)
+                self.assertEqual((result["status"], result["invalid_reason"]), ("invalid", reason))
+                self.assertEqual(result["cost"], cost)
+                self.assertEqual(result["metrics"]["K1"], cost)
+                summary = aggregate.summarize_task({1: result})
+                self.assertEqual(summary["K1.seconds"], {"mean": 12, "median": 12})
+                self.assertEqual(summary["K1.tokens_input"]["mean"], 120)
+
+    def test_invalid_result_reports_missing_cost(self):
+        result = self.score(ScriptedExecutor([]))
+        self.assertEqual(result["invalid_reason"], "zero_tests")
+        self.assertIn("cost_missing", result["warnings"])
+
 
 if __name__ == "__main__":
     unittest.main()

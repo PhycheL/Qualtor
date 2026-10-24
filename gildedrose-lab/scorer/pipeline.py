@@ -103,6 +103,11 @@ class ProductScoring:
         self.result["status"], self.result["invalid_reason"], self.result["infra_detail"] = status, reason, infra
 
     def _score(self):
+        # 成本来自生成过程，即使产物无效也必须保留，不能被后面的提前返回跳过。
+        if self.cost_path and self.cost_path.is_file():
+            self.result["cost"] = read_json(self.cost_path)
+        else:
+            self.result["warnings"].append("cost_missing")
         problem = validate_product(self.product, self.task)
         if problem:
             self.result["product"]["problem"] = problem
@@ -142,11 +147,6 @@ class ProductScoring:
         # 步骤 7：替换版本
         for index, variant in enumerate(sorted(self.task["variants"], key=lambda v: v["id"]), 1):
             self.result["variants"].append(self._variant(index, variant, valid))
-        # 步骤 8：成本
-        if self.cost_path and self.cost_path.is_file():
-            self.result["cost"] = read_json(self.cost_path)
-        else:
-            self.result["warnings"].append("cost_missing")
         self._finish(judge.SCORED, None)
 
     def _check_record(self, record):

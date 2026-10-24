@@ -28,7 +28,7 @@
 
 - 当前入口是 [toolchains.py](gildedrose-lab/toolchains.py)，负责构建镜像和冒烟验收。两套工具链已在 Linux ARM64 验证；AMD64 已配置，尚未实测。
 - 已完成的验收使用 9 个手写 GoogleTest 测试，覆盖测试发现与执行、gcov 和 Mull。
-- 评分器已实现（[gildedrose-lab/scorer/](gildedrose-lab/scorer/)，入口 `score.py`、`prepare_task.py`、`calibrate.py`、`aggregate.py`），GildedRose 题目包和 16 个校准样本已就绪；单元测试与宿主机集成测试通过，**Docker 中的变异分母标定和完整校准尚未执行**。模型测试生成与预算内修复仍待实现。
+- 评分器已实现（[gildedrose-lab/scorer/](gildedrose-lab/scorer/)，入口 `score.py`、`prepare_task.py`、`calibrate.py`、`aggregate.py`）；0.1.1 已在 Linux ARM64 Docker 中完成 GildedRose 变异分母标定和 16 个样本的完整校准，证据见[评分器运行说明](docs/评分器运行说明.md)。模型测试生成与预算内修复仍待实现。
 - 旧 `run.py`、旧 Dockerfile 和专用实验代码已移除。新增能力基于当前工具链和共用模块开发；历史结果、日志和冻结材料用于追溯。
 - 具体阶段和待办以 [项目推进流程](docs/项目推进流程.md) 为准；[评测规格](docs/评测规格.md) 仍是草案，区分已定决定、待定参数和未实现能力。
 

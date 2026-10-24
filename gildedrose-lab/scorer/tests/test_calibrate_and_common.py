@@ -45,6 +45,22 @@ class CalibrationChecksTest(unittest.TestCase):
         self.assertEqual(problems, [])
         self.assertEqual(len(skipped), 2)
 
+    def test_calibration_checks_cost_even_for_invalid_samples(self):
+        task = common.load_task("gildedrose-update-quality")
+        samples = calibrate.load_samples(task["id"], ["CAL-01"])
+        cost = common.read_json(samples["CAL-01"]["dir"] / "generation" / "cost.json")
+        result = {"status": "invalid", "invalid_reason": "zero_tests", "cost": cost,
+                  "metrics": {"K1": cost}}
+        capabilities = {"mull": True, "coverage": True}
+        report = calibrate.evaluate(task, samples, {"CAL-01": [result, result]}, capabilities)
+        self.assertTrue(report["passed"])
+        for field in ("cost", "metrics"):
+            with self.subTest(field=field):
+                broken = dict(result, **{field: None})
+                report = calibrate.evaluate(task, samples, {"CAL-01": [result, broken]}, capabilities)
+                self.assertFalse(report["passed"])
+                self.assertTrue(any("成本" in p for p in report["samples"]["CAL-01"]["problems"]))
+
 
 class ProductAndTaskTest(unittest.TestCase):
     def setUp(self):

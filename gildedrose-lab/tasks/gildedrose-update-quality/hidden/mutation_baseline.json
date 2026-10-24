@@ -1,0 +1,1068 @@
+{
+  "task": "gildedrose-update-quality",
+  "created_at": "2026-10-24T03:21:35.782951+00:00",
+  "created_by_run": "scorer-docker-prepare-20261024-01",
+  "scorer_version": "0.1.0",
+  "scorer_code_sha256": "f0e5024175a00f7fcce87ac43f2b88b8f28f3f504168066379a7f32ed3cfa40d",
+  "images": {
+    "gcc": "sha256:79baee0c5650bd87162cb1bcd7beed06cd6a0ac29785275f33b7671a5e3ad8cd",
+    "clang": "sha256:3ffde674fdda2af8cacbb5867c554990163e3a36cca541dce4ad836dbf47ef01"
+  },
+  "mull": {
+    "config_sha256": "4b25a1a13ae6b86abdd8d74c2b585fc779b73035af084279273a27d3fccbcaba",
+    "config": "# 由评分器根据 task.json 生成；修改算子要升级变异分母。\nmutators:\n  - cxx_all\nincludePaths:\n  - '/repo/cpp/src/GildedRose\\.cc$'\n"
+  },
+  "mutants": [
+    {
+      "id": "cxx_add_to_sub:/repo/cpp/src/GildedRose.cc:26:53:26:54",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 26,
+          "column": 53
+        },
+        "end": {
+          "line": 26,
+          "column": 54
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/cpp/src/GildedRose.cc:34:65:34:66",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 65
+        },
+        "end": {
+          "line": 34,
+          "column": 66
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/cpp/src/GildedRose.cc:42:65:42:66",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 65
+        },
+        "end": {
+          "line": 42,
+          "column": 66
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/cpp/src/GildedRose.cc:77:57:77:58",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 57
+        },
+        "end": {
+          "line": 77,
+          "column": 58
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/cpp/src/GildedRose.cc:18:38:18:39",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 18,
+          "column": 38
+        },
+        "end": {
+          "line": 18,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/cpp/src/GildedRose.cc:26:34:26:35",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 26,
+          "column": 34
+        },
+        "end": {
+          "line": 26,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/cpp/src/GildedRose.cc:34:46:34:47",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 46
+        },
+        "end": {
+          "line": 34,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/cpp/src/GildedRose.cc:42:46:42:47",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 46
+        },
+        "end": {
+          "line": 42,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/cpp/src/GildedRose.cc:51:29:51:30",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 29
+        },
+        "end": {
+          "line": 51,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/cpp/src/GildedRose.cc:64:46:64:47",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 46
+        },
+        "end": {
+          "line": 64,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/cpp/src/GildedRose.cc:70:38:70:39",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 38
+        },
+        "end": {
+          "line": 70,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/cpp/src/GildedRose.cc:77:38:77:39",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 38
+        },
+        "end": {
+          "line": 77,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/cpp/src/GildedRose.cc:14:34:14:35",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 14,
+          "column": 34
+        },
+        "end": {
+          "line": 14,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/cpp/src/GildedRose.cc:60:42:60:43",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 42
+        },
+        "end": {
+          "line": 60,
+          "column": 43
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/cpp/src/GildedRose.cc:14:34:14:35",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 14,
+          "column": 34
+        },
+        "end": {
+          "line": 14,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/cpp/src/GildedRose.cc:60:42:60:43",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 42
+        },
+        "end": {
+          "line": 60,
+          "column": 43
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/cpp/src/GildedRose.cc:10:14:10:15",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 10,
+          "column": 14
+        },
+        "end": {
+          "line": 10,
+          "column": 15
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/cpp/src/GildedRose.cc:10:23:10:24",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 10,
+          "column": 23
+        },
+        "end": {
+          "line": 10,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/cpp/src/GildedRose.cc:24:34:24:35",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 24,
+          "column": 34
+        },
+        "end": {
+          "line": 24,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/cpp/src/GildedRose.cc:30:41:30:42",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 41
+        },
+        "end": {
+          "line": 30,
+          "column": 42
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/cpp/src/GildedRose.cc:32:46:32:47",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 46
+        },
+        "end": {
+          "line": 32,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/cpp/src/GildedRose.cc:38:41:38:42",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 41
+        },
+        "end": {
+          "line": 38,
+          "column": 42
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/cpp/src/GildedRose.cc:40:46:40:47",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 46
+        },
+        "end": {
+          "line": 40,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/cpp/src/GildedRose.cc:54:29:54:30",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 29
+        },
+        "end": {
+          "line": 54,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/cpp/src/GildedRose.cc:75:38:75:39",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 38
+        },
+        "end": {
+          "line": 75,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/cpp/src/GildedRose.cc:10:23:10:24",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 10,
+          "column": 23
+        },
+        "end": {
+          "line": 10,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/cpp/src/GildedRose.cc:24:34:24:35",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 24,
+          "column": 34
+        },
+        "end": {
+          "line": 24,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/cpp/src/GildedRose.cc:30:41:30:42",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 41
+        },
+        "end": {
+          "line": 30,
+          "column": 42
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/cpp/src/GildedRose.cc:32:46:32:47",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 46
+        },
+        "end": {
+          "line": 32,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/cpp/src/GildedRose.cc:38:41:38:42",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 41
+        },
+        "end": {
+          "line": 38,
+          "column": 42
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/cpp/src/GildedRose.cc:40:46:40:47",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 46
+        },
+        "end": {
+          "line": 40,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/cpp/src/GildedRose.cc:54:29:54:30",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 29
+        },
+        "end": {
+          "line": 54,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/cpp/src/GildedRose.cc:75:38:75:39",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 38
+        },
+        "end": {
+          "line": 75,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/cpp/src/GildedRose.cc:10:40:10:42",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 10,
+          "column": 40
+        },
+        "end": {
+          "line": 10,
+          "column": 42
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/cpp/src/GildedRose.cc:10:31:10:35",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 10,
+          "column": 31
+        },
+        "end": {
+          "line": 10,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/cpp/src/GildedRose.cc:12:27:12:29",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 12,
+          "column": 27
+        },
+        "end": {
+          "line": 12,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/cpp/src/GildedRose.cc:12:59:12:61",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 12,
+          "column": 59
+        },
+        "end": {
+          "line": 12,
+          "column": 61
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/cpp/src/GildedRose.cc:16:35:16:37",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 16,
+          "column": 35
+        },
+        "end": {
+          "line": 16,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/cpp/src/GildedRose.cc:28:35:28:37",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 35
+        },
+        "end": {
+          "line": 28,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/cpp/src/GildedRose.cc:49:27:49:29",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 27
+        },
+        "end": {
+          "line": 49,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/cpp/src/GildedRose.cc:56:31:56:33",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 31
+        },
+        "end": {
+          "line": 56,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/cpp/src/GildedRose.cc:58:35:58:37",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 35
+        },
+        "end": {
+          "line": 58,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/cpp/src/GildedRose.cc:62:43:62:45",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 43
+        },
+        "end": {
+          "line": 62,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/cpp/src/GildedRose.cc:18:57:18:58",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 18,
+          "column": 57
+        },
+        "end": {
+          "line": 18,
+          "column": 58
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/cpp/src/GildedRose.cc:51:47:51:48",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 47
+        },
+        "end": {
+          "line": 51,
+          "column": 48
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/cpp/src/GildedRose.cc:64:65:64:66",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 65
+        },
+        "end": {
+          "line": 64,
+          "column": 66
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/cpp/src/GildedRose.cc:70:57:70:58",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 57
+        },
+        "end": {
+          "line": 70,
+          "column": 58
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    }
+  ],
+  "equivalent": [],
+  "unstable": [],
+  "review_needed": [],
+  "review": {
+    "status": "pending",
+    "by": null,
+    "at": null,
+    "note": "等价变异候选由有界穷举探针自动给出；人工逐个复核后，把 status 改为 reviewed 并填写 by、at"
+  },
+  "reference": {
+    "killed": 47,
+    "timeout": 0,
+    "total": 47,
+    "m1": 1.0,
+    "threshold": 0.8,
+    "passes": true
+  }
+}
