@@ -54,7 +54,7 @@ class BoundariesTest(unittest.TestCase):
             public_task(task)
 
     def test_empty_config_fails_before_model_call(self):
-        with self.assertRaisesRegex(ValueError, "provider"):
+        with patch("host.read_json", return_value={}), self.assertRaisesRegex(ValueError, "provider"):
             load_config("default")
 
     def test_stale_calibration_prevents_generator_start(self):

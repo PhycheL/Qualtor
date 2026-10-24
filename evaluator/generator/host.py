@@ -57,8 +57,10 @@ def load_config(name):
     for key in required:
         if not isinstance(config.get(key), str) or not config[key].strip():
             raise ValueError(f"请填写 {path.relative_to(REPO)} 的 {key}")
-    if set(config) - set(required) - {"reasoning", "context_window", "max_tokens", "cost_per_million", "compat"}:
+    if set(config) - set(required) - {"reasoning", "context_window", "max_tokens", "cost_per_million", "compat", "thinking_level_map"}:
         raise ValueError("配置含未知字段；密钥和 API 地址仅从指定环境变量读取")
+    if config["thinking"] not in ("off", "minimal", "low", "medium", "high", "xhigh", "max"):
+        raise ValueError("thinking 必须是 pi 支持的思考级别")
     for key in ("base_url_env", "api_key_env"):
         if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", config[key]):
             raise ValueError(f"{key} 必须是环境变量名")

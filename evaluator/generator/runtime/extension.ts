@@ -48,6 +48,7 @@ export default function (pi: any) {
         reasoning: config.model.reasoning, contextWindow: config.model.context_window,
         maxTokens: config.model.max_tokens,
         cost: config.model.cost_per_million || { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+        ...(config.model.thinking_level_map ? { thinkingLevelMap: config.model.thinking_level_map } : {}),
         ...(config.model.compat ? { compat: config.model.compat } : {}),
       }],
     });

@@ -1,12 +1,25 @@
 {
-  "provider": null,
-  "model": null,
-  "thinking": "off",
+  "provider": "cc-switch-tencent-token-plan",
+  "model": "deepseek/deepseek-flash",
+  "thinking": "max",
   "api": "openai-completions",
   "base_url_env": "QUALTOR_API_BASE_URL",
   "api_key_env": "QUALTOR_API_KEY",
-  "reasoning": false,
-  "context_window": 131072,
-  "max_tokens": 8192,
-  "cost_per_million": null
+  "reasoning": true,
+  "context_window": 1000000,
+  "max_tokens": 384000,
+  "cost_per_million": null,
+  "thinking_level_map": {
+    "minimal": null,
+    "low": null,
+    "medium": null,
+    "high": "high",
+    "max": "max"
+  },
+  "compat": {
+    "supportsStore": false,
+    "supportsDeveloperRole": false,
+    "maxTokensField": "max_tokens",
+    "thinkingFormat": "deepseek"
+  }
 }
