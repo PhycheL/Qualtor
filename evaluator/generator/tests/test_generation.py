@@ -1,5 +1,6 @@
 """覆盖成本口径、可见材料、补评和校准门槛；执行路径由 Docker 剧本验收覆盖。"""
 import json
+import os
 from pathlib import Path
 import sys
 import tempfile
@@ -35,6 +36,66 @@ class CostTest(unittest.TestCase):
             self.assertEqual(result["first"]["repair_rounds"], 0)
             self.assertIsNone(extract(root, priced=False)["final"]["usd"])
             self.assertEqual(add_costs(result["first"], [result["final"]])["model_calls"], 4)
+
+
+class ConfigTest(unittest.TestCase):
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name)
+        self.env_file = self.root / ".env"
+        self.config = {"provider": "test", "model": "test", "thinking": "max", "api": "openai-completions",
+                       "base_url_env": "QUALTOR_API_BASE_URL", "api_key_env": "QUALTOR_API_KEY"}
+        write_json(self.root / "agents/configs/default/config.json", self.config)
+        for target, value in (("host.REPO", self.root), ("host.AGENTS", self.root / "agents")):
+            patcher = patch(target, value)
+            patcher.start()
+            self.addCleanup(patcher.stop)
+        environment = patch.dict(os.environ, {"QUALTOR_API_BASE_URL": "https://stale.invalid/v1",
+                                             "QUALTOR_API_KEY": "stale-shell-secret"})
+        environment.start()
+        self.addCleanup(environment.stop)
+
+    def test_root_dotenv_overrides_shell_without_exporting_other_settings(self):
+        self.env_file.write_text("# 本地配置\nQUALTOR_API_BASE_URL=https://model.invalid/v1\n"
+                                 "QUALTOR_API_KEY=local-test-secret\nPATH=/untrusted\n", encoding="utf-8")
+        original_path = os.environ.get("PATH")
+        # 当前工作目录不是临时仓库，仍必须从仓库根目录读取。
+        config, snapshot = load_config("default")
+        self.assertEqual(config["base_url"], "https://model.invalid/v1")
+        self.assertEqual(os.environ["QUALTOR_API_KEY"], "local-test-secret")
+        self.assertEqual(os.environ["PATH"], original_path)
+        self.assertNotIn("local-test-secret", json.dumps(snapshot))
+
+    def test_missing_file_or_value_does_not_fall_back_to_shell(self):
+        with self.assertRaisesRegex(ValueError, r"缺少.*\.env"):
+            load_config("default")
+        for suffix in ("", "QUALTOR_API_KEY=\n", "QUALTOR_API_KEY='  '\n"):
+            with self.subTest(suffix=suffix):
+                self.env_file.write_text("QUALTOR_API_BASE_URL=https://model.invalid/v1\n" + suffix)
+                with self.assertRaisesRegex(ValueError, "QUALTOR_API_KEY"):
+                    load_config("default")
+
+    def test_comments_quotes_and_literal_special_characters(self):
+        secret = r"literal#key=with${NO_INTERPOLATION}\backslash"
+        for quote in ("", "'", '"'):
+            with self.subTest(quote=quote):
+                self.env_file.write_text("\ufeff# 配置\nexport QUALTOR_API_BASE_URL = 'https://model.invalid/v1' # 地址\n"
+                                         f"QUALTOR_API_KEY={quote}{secret}{quote} # 密钥\n", encoding="utf-8")
+                load_config("default")
+                self.assertEqual(os.environ["QUALTOR_API_KEY"], secret)
+
+    def test_invalid_dotenv_fails_without_disclosing_values(self):
+        secret = "local-test-secret"
+        for invalid in (f"{secret}\n", f"QUALTOR_API_KEY='{secret}\n",
+                        f"QUALTOR_API_KEY={secret}\nQUALTOR_API_KEY=duplicate\n",
+                        f"QUALTOR_API_KEY={secret}\0\n"):
+            with self.subTest(invalid=invalid):
+                self.env_file.write_text(invalid)
+                with self.assertRaisesRegex(ValueError, r"\.env 第 \d+ 行") as caught:
+                    load_config("default")
+                self.assertNotIn(secret, str(caught.exception))
+                self.assertEqual(os.environ["QUALTOR_API_KEY"], "stale-shell-secret")
 
 
 class BoundariesTest(unittest.TestCase):
