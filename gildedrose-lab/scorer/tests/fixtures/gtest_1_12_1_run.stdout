@@ -1,0 +1,38 @@
+Running main() from /tmp/qualtor-hostcheck/src/googletest/src/gtest_main.cc
+[==========] Running 5 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 3 tests from Exp
+[ RUN      ] Exp.Passes
+[       OK ] Exp.Passes (0 ms)
+[ RUN      ] Exp.Fails
+/tmp/qualtor-hostcheck/exp/tests/probe.cc:4: Failure
+Expected equality of these values:
+  1
+  2
+boom
+[  FAILED  ] Exp.Fails (0 ms)
+[ RUN      ] Exp.Skips
+/tmp/qualtor-hostcheck/exp/tests/probe.cc:5: Skipped
+skipped on purpose
+[  SKIPPED ] Exp.Skips (0 ms)
+[ DISABLED ] Exp.DISABLED_Disabled
+[----------] 3 tests from Exp (0 ms total)
+
+[----------] 2 tests from Inst/P
+[ RUN      ] Inst/P.Param/0
+[       OK ] Inst/P.Param/0 (0 ms)
+[ RUN      ] Inst/P.Param/1
+[       OK ] Inst/P.Param/1 (0 ms)
+[----------] 2 tests from Inst/P (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 5 tests from 2 test suites ran. (0 ms total)
+[  PASSED  ] 3 tests.
+[  SKIPPED ] 1 test, listed below:
+[  SKIPPED ] Exp.Skips
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] Exp.Fails
+
+ 1 FAILED TEST
+  YOU HAVE 2 DISABLED TESTS
+

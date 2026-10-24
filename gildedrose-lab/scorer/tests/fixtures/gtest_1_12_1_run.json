@@ -1,0 +1,122 @@
+{
+  "tests": 7,
+  "failures": 1,
+  "disabled": 2,
+  "errors": 0,
+  "timestamp": "2026-10-23T23:19:48Z",
+  "time": "0s",
+  "name": "AllTests",
+  "testsuites": [
+    {
+      "name": "Exp",
+      "tests": 4,
+      "failures": 1,
+      "disabled": 1,
+      "errors": 0,
+      "timestamp": "2026-10-23T23:19:48Z",
+      "time": "0s",
+      "testsuite": [
+        {
+          "name": "Passes",
+          "file": "\/tmp\/qualtor-hostcheck\/exp\/tests\/probe.cc",
+          "line": 3,
+          "status": "RUN",
+          "result": "COMPLETED",
+          "timestamp": "2026-10-23T23:19:48Z",
+          "time": "0s",
+          "classname": "Exp"
+        },
+        {
+          "name": "Fails",
+          "file": "\/tmp\/qualtor-hostcheck\/exp\/tests\/probe.cc",
+          "line": 4,
+          "status": "RUN",
+          "result": "COMPLETED",
+          "timestamp": "2026-10-23T23:19:48Z",
+          "time": "0s",
+          "classname": "Exp",
+          "failures": [
+            {
+              "failure": "\/tmp\/qualtor-hostcheck\/exp\/tests\/probe.cc:4\nExpected equality of these values:\n  1\n  2\nboom",
+              "type": ""
+            }
+          ]
+        },
+        {
+          "name": "Skips",
+          "file": "\/tmp\/qualtor-hostcheck\/exp\/tests\/probe.cc",
+          "line": 5,
+          "status": "RUN",
+          "result": "SKIPPED",
+          "timestamp": "2026-10-23T23:19:48Z",
+          "time": "0s",
+          "classname": "Exp"
+        },
+        {
+          "name": "DISABLED_Disabled",
+          "file": "\/tmp\/qualtor-hostcheck\/exp\/tests\/probe.cc",
+          "line": 6,
+          "status": "NOTRUN",
+          "result": "SUPPRESSED",
+          "timestamp": "1970-01-01T08:00:00Z",
+          "time": "0s",
+          "classname": "Exp"
+        }
+      ]
+    },
+    {
+      "name": "DISABLED_ExpSuite",
+      "tests": 1,
+      "failures": 0,
+      "disabled": 1,
+      "errors": 0,
+      "timestamp": "1970-01-01T08:00:00Z",
+      "time": "0s",
+      "testsuite": [
+        {
+          "name": "InDisabledSuite",
+          "file": "\/tmp\/qualtor-hostcheck\/exp\/tests\/probe.cc",
+          "line": 7,
+          "status": "NOTRUN",
+          "result": "SUPPRESSED",
+          "timestamp": "1970-01-01T08:00:00Z",
+          "time": "0s",
+          "classname": "DISABLED_ExpSuite"
+        }
+      ]
+    },
+    {
+      "name": "Inst\/P",
+      "tests": 2,
+      "failures": 0,
+      "disabled": 0,
+      "errors": 0,
+      "timestamp": "2026-10-23T23:19:48Z",
+      "time": "0s",
+      "testsuite": [
+        {
+          "name": "Param\/0",
+          "value_param": "1",
+          "file": "\/tmp\/qualtor-hostcheck\/exp\/tests\/probe.cc",
+          "line": 9,
+          "status": "RUN",
+          "result": "COMPLETED",
+          "timestamp": "2026-10-23T23:19:48Z",
+          "time": "0s",
+          "classname": "Inst\/P"
+        },
+        {
+          "name": "Param\/1",
+          "value_param": "2",
+          "file": "\/tmp\/qualtor-hostcheck\/exp\/tests\/probe.cc",
+          "line": 9,
+          "status": "RUN",
+          "result": "COMPLETED",
+          "timestamp": "2026-10-23T23:19:48Z",
+          "time": "0s",
+          "classname": "Inst\/P"
+        }
+      ]
+    }
+  ]
+}

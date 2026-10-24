@@ -1,0 +1,10 @@
+{
+  "sample": "CAL-02",
+  "description": "所有测试都调用 GTEST_SKIP()",
+  "reference_copy": null,
+  "hard": {
+    "status": "invalid",
+    "invalid_reason": "no_valid_tests",
+    "tests_default": "skipped"
+  }
+}

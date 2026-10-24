@@ -1,0 +1,21 @@
+{
+  "sample": "CAL-13",
+  "description": "参考强测试集原样，但把断言宏定义为空",
+  "reference_copy": null,
+  "hard": {
+    "status": "scored",
+    "tests_default": "valid",
+    "variants": {
+      "eq-01": "clean",
+      "hw-01": "not_detected"
+    }
+  },
+  "relations": [
+    {
+      "metric": "M1_e2e",
+      "op": "<=",
+      "ref": "CAL-15",
+      "factor": 0.2
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "sample": "CAL-16",
+  "description": "参考强测试集，加一个断言输入域外行为的测试（Aged Brie 质量 60 保持 60）",
+  "reference_copy": "tests/reference_tests.cc",
+  "hard": {
+    "status": "scored",
+    "tests_default": "valid",
+    "variants": {
+      "eq-01": "false_alarm",
+      "hw-01": "detected"
+    },
+    "variant_failed_tests": {
+      "eq-01": [
+        "CalibrationDomain.AgedBrieAboveFiftyStaysUnchanged"
+      ]
+    }
+  }
+}

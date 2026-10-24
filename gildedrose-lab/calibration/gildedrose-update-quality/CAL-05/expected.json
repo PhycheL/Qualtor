@@ -1,0 +1,9 @@
+{
+  "sample": "CAL-05",
+  "description": "在静态初始化中调用 std::exit(0)",
+  "reference_copy": null,
+  "hard": {
+    "status": "invalid",
+    "invalid_reason": "no_result"
+  }
+}

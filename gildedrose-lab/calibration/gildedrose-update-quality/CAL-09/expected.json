@@ -1,0 +1,16 @@
+{
+  "sample": "CAL-09",
+  "description": "一个正常测试，加一个死循环的测试",
+  "reference_copy": null,
+  "hard": {
+    "status": "scored",
+    "variants": {
+      "eq-01": "clean",
+      "hw-01": "detected"
+    },
+    "tests": {
+      "CalibrationHang.NormalTest": "valid",
+      "CalibrationHang.InfiniteLoop": "timed_out"
+    }
+  }
+}

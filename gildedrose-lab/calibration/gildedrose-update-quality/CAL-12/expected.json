@@ -1,0 +1,27 @@
+{
+  "sample": "CAL-12",
+  "description": "与参考强测试集相同的输入，只调用、不断言",
+  "reference_copy": null,
+  "hard": {
+    "status": "scored",
+    "tests_default": "valid",
+    "variants": {
+      "eq-01": "clean",
+      "hw-01": "not_detected"
+    }
+  },
+  "relations": [
+    {
+      "metric": "M1_e2e",
+      "op": "<=",
+      "ref": "CAL-15",
+      "factor": 0.2
+    },
+    {
+      "metric": "C1",
+      "op": "abs_diff_le",
+      "ref": "CAL-15",
+      "value": 0.05
+    }
+  ]
+}

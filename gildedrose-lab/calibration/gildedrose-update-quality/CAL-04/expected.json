@@ -1,0 +1,9 @@
+{
+  "sample": "CAL-04",
+  "description": "自带 main，直接 return 0，不运行测试",
+  "reference_copy": null,
+  "hard": {
+    "status": "invalid",
+    "invalid_reason": "no_result"
+  }
+}

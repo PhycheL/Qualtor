@@ -1,0 +1,9 @@
+{
+  "sample": "CAL-01",
+  "description": "测试文件里没有任何 TEST",
+  "reference_copy": null,
+  "hard": {
+    "status": "invalid",
+    "invalid_reason": "zero_tests"
+  }
+}

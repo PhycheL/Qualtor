@@ -1,0 +1,16 @@
+{
+  "sample": "CAL-08",
+  "description": "参考强测试集，加一个空指针解引用的测试",
+  "reference_copy": "tests/reference_tests.cc",
+  "hard": {
+    "status": "scored",
+    "tests_default": "valid",
+    "variants": {
+      "eq-01": "clean",
+      "hw-01": "detected"
+    },
+    "tests": {
+      "CalibrationCrash.NullDereference": "crashed"
+    }
+  }
+}

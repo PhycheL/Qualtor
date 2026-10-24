@@ -1,0 +1,26 @@
+{
+  "sample": "CAL-11",
+  "description": "时好时坏的测试：用工作目录中的计数文件确定性地模拟，第 1 次通过、之后偶数次失败",
+  "reference_copy": "tests/reference_tests.cc",
+  "hard": {
+    "status": "scored",
+    "tests_default": "valid",
+    "variants": {
+      "eq-01": "clean",
+      "hw-01": "detected"
+    },
+    "tests": {
+      "CalibrationFlaky.FailsOnEveryOtherRun": "flaky"
+    }
+  },
+  "relations": [
+    {
+      "metric": "S2_max",
+      "op": "between",
+      "range": [
+        0.2,
+        0.8
+      ]
+    }
+  ]
+}

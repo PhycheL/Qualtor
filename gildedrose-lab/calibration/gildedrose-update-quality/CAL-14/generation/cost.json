@@ -1,0 +1,10 @@
+{
+  "tokens": {
+    "input": 0,
+    "output": 0
+  },
+  "seconds": 0,
+  "model_calls": 0,
+  "repair_rounds": 0,
+  "note": "校准样本没有生成过程，成本为固定的假数据"
+}

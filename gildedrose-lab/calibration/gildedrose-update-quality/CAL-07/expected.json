@@ -1,0 +1,16 @@
+{
+  "sample": "CAL-07",
+  "description": "参考强测试集，加一个断言值故意写错的测试",
+  "reference_copy": "tests/reference_tests.cc",
+  "hard": {
+    "status": "scored",
+    "tests_default": "valid",
+    "variants": {
+      "eq-01": "clean",
+      "hw-01": "detected"
+    },
+    "tests": {
+      "CalibrationWrongExpectation.ExpectedValueIsWrong": "failed_on_target"
+    }
+  }
+}

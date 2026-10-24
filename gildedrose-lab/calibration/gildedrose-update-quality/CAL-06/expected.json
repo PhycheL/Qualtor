@@ -1,0 +1,9 @@
+{
+  "sample": "CAL-06",
+  "description": "在测试文件里重新定义被测函数",
+  "reference_copy": null,
+  "hard": {
+    "status": "invalid",
+    "invalid_reason": "build_failed"
+  }
+}

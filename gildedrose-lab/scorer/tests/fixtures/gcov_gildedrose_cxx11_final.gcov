@@ -1,0 +1,169 @@
+        -:    0:Source:/repo/cpp/src/GildedRose.cc
+        -:    0:Graph:/work/coverage/raw/GildedRose.cc.gcno
+        -:    0:Data:/work/coverage/raw/GildedRose.cc.gcda
+        -:    0:Runs:1
+        -:    1:#include "GildedRose.h"
+        -:    2:
+        -:    3:using namespace std;
+        -:    4:
+function _ZN10GildedRoseC2ERSt6vectorI4ItemSaIS1_EE called 14 returned 100% blocks executed 100%
+       14:    5:GildedRose::GildedRose(vector<Item> & items) : items(items)
+       14:    6:{}
+        -:    7:    
+function _ZN10GildedRose13updateQualityEv called 14 returned 100% blocks executed 100%
+       14:    8:void GildedRose::updateQuality() 
+        -:    9:{
+       27:   10:    for (int i = 0; i < items.size(); i++)
+call    0 returned 27
+branch  1 taken 13
+branch  2 taken 14 (fallthrough)
+        -:   11:    {
+       13:   12:        if (items[i].name != "Aged Brie" && items[i].name != "Backstage passes to a TAFKAL80ETC concert")
+call    0 returned 13
+call    1 returned 13
+branch  2 taken 10 (fallthrough)
+branch  3 taken 3
+call    4 returned 10
+call    5 returned 10
+branch  6 taken 4 (fallthrough)
+branch  7 taken 6
+branch  8 taken 4 (fallthrough)
+branch  9 taken 9
+        -:   13:        {
+        4:   14:            if (items[i].quality > 0)
+call    0 returned 4
+branch  1 taken 3 (fallthrough)
+branch  2 taken 1
+        -:   15:            {
+        3:   16:                if (items[i].name != "Sulfuras, Hand of Ragnaros")
+call    0 returned 3
+call    1 returned 3
+branch  2 taken 2 (fallthrough)
+branch  3 taken 1
+        -:   17:                {
+        2:   18:                    items[i].quality = items[i].quality - 1;
+call    0 returned 2
+call    1 returned 2
+        -:   19:                }
+        -:   20:            }
+        -:   21:        }
+        -:   22:        else
+        -:   23:        {
+        9:   24:            if (items[i].quality < 50)
+call    0 returned 9
+branch  1 taken 8 (fallthrough)
+branch  2 taken 1
+        -:   25:            {
+        8:   26:                items[i].quality = items[i].quality + 1;
+call    0 returned 8
+call    1 returned 8
+        -:   27:
+        8:   28:                if (items[i].name == "Backstage passes to a TAFKAL80ETC concert")
+call    0 returned 8
+call    1 returned 8
+branch  2 taken 6 (fallthrough)
+branch  3 taken 2
+        -:   29:                {
+        6:   30:                    if (items[i].sellIn < 11)
+call    0 returned 6
+branch  1 taken 5 (fallthrough)
+branch  2 taken 1
+        -:   31:                    {
+        5:   32:                        if (items[i].quality < 50)
+call    0 returned 5
+branch  1 taken 4 (fallthrough)
+branch  2 taken 1
+        -:   33:                        {
+        4:   34:                            items[i].quality = items[i].quality + 1;
+call    0 returned 4
+call    1 returned 4
+        -:   35:                        }
+        -:   36:                    }
+        -:   37:
+        6:   38:                    if (items[i].sellIn < 6)
+call    0 returned 6
+branch  1 taken 3 (fallthrough)
+branch  2 taken 3
+        -:   39:                    {
+        3:   40:                        if (items[i].quality < 50)
+call    0 returned 3
+branch  1 taken 2 (fallthrough)
+branch  2 taken 1
+        -:   41:                        {
+        2:   42:                            items[i].quality = items[i].quality + 1;
+call    0 returned 2
+call    1 returned 2
+        -:   43:                        }
+        -:   44:                    }
+        -:   45:                }
+        -:   46:            }
+        -:   47:        }
+        -:   48:
+       13:   49:        if (items[i].name != "Sulfuras, Hand of Ragnaros")
+call    0 returned 13
+call    1 returned 13
+branch  2 taken 12 (fallthrough)
+branch  3 taken 1
+        -:   50:        {
+       12:   51:            items[i].sellIn = items[i].sellIn - 1;
+call    0 returned 12
+call    1 returned 12
+        -:   52:        }
+        -:   53:
+       13:   54:        if (items[i].sellIn < 0)
+call    0 returned 13
+branch  1 taken 6 (fallthrough)
+branch  2 taken 7
+        -:   55:        {
+        6:   56:            if (items[i].name != "Aged Brie")
+call    0 returned 6
+call    1 returned 6
+branch  2 taken 4 (fallthrough)
+branch  3 taken 2
+        -:   57:            {
+        4:   58:                if (items[i].name != "Backstage passes to a TAFKAL80ETC concert")
+call    0 returned 4
+call    1 returned 4
+branch  2 taken 3 (fallthrough)
+branch  3 taken 1
+        -:   59:                {
+        3:   60:                    if (items[i].quality > 0)
+call    0 returned 3
+branch  1 taken 2 (fallthrough)
+branch  2 taken 1
+        -:   61:                    {
+        2:   62:                        if (items[i].name != "Sulfuras, Hand of Ragnaros")
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 1 (fallthrough)
+branch  3 taken 1
+        -:   63:                        {
+        1:   64:                            items[i].quality = items[i].quality - 1;
+call    0 returned 1
+call    1 returned 1
+        -:   65:                        }
+        -:   66:                    }
+        -:   67:                }
+        -:   68:                else
+        -:   69:                {
+        1:   70:                    items[i].quality = items[i].quality - items[i].quality;
+call    0 returned 1
+call    1 returned 1
+call    2 returned 1
+        -:   71:                }
+        -:   72:            }
+        -:   73:            else
+        -:   74:            {
+        2:   75:                if (items[i].quality < 50)
+call    0 returned 2
+branch  1 taken 1 (fallthrough)
+branch  2 taken 1
+        -:   76:                {
+        1:   77:                    items[i].quality = items[i].quality + 1;
+call    0 returned 1
+call    1 returned 1
+        -:   78:                }
+        -:   79:            }
+        -:   80:        }
+        -:   81:    }
+       14:   82:}

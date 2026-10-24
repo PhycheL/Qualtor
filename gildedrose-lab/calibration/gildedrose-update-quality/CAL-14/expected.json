@@ -1,0 +1,30 @@
+{
+  "sample": "CAL-14",
+  "description": "参考强测试集，只断言 sellIn，不检查质量",
+  "reference_copy": null,
+  "hard": {
+    "status": "scored",
+    "tests_default": "valid",
+    "variants": {
+      "eq-01": "clean",
+      "hw-01": "not_detected"
+    }
+  },
+  "relations": [
+    {
+      "metric": "M1_e2e",
+      "op": ">",
+      "ref": "CAL-12"
+    },
+    {
+      "metric": "M1_e2e",
+      "op": ">",
+      "ref": "CAL-13"
+    },
+    {
+      "metric": "M1_e2e",
+      "op": "<",
+      "ref": "CAL-15"
+    }
+  ]
+}

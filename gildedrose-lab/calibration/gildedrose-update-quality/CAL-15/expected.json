@@ -1,0 +1,25 @@
+{
+  "sample": "CAL-15",
+  "description": "参考强测试集原样",
+  "reference_copy": "tests/reference_tests.cc",
+  "hard": {
+    "status": "scored",
+    "tests_default": "valid",
+    "variants": {
+      "eq-01": "clean",
+      "hw-01": "detected"
+    }
+  },
+  "relations": [
+    {
+      "metric": "M1_valid",
+      "op": ">=",
+      "value": 0.8
+    },
+    {
+      "metric": "S1",
+      "op": "==",
+      "value": 0
+    }
+  ]
+}

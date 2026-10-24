@@ -1,0 +1,23 @@
+{
+  "sample": "CAL-10",
+  "description": "两个测试共享全局变量，后一个依赖前一个先运行",
+  "reference_copy": "tests/reference_tests.cc",
+  "hard": {
+    "status": "scored",
+    "tests_default": "valid",
+    "variants": {
+      "eq-01": "clean",
+      "hw-01": "detected"
+    },
+    "tests": {
+      "CalibrationOrder.BDependsOnSharedState": "flaky"
+    }
+  },
+  "relations": [
+    {
+      "metric": "S1",
+      "op": ">",
+      "value": 0
+    }
+  ]
+}

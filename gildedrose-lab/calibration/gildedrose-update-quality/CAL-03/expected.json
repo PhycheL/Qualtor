@@ -1,0 +1,10 @@
+{
+  "sample": "CAL-03",
+  "description": "所有测试名带 DISABLED_ 前缀",
+  "reference_copy": null,
+  "hard": {
+    "status": "invalid",
+    "invalid_reason": "no_valid_tests",
+    "tests_default": "disabled"
+  }
+}
