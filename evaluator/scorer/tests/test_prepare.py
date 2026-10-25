@@ -36,10 +36,10 @@ class BaselineTest(unittest.TestCase):
                                                     "probe": [run({"b": "Killed"})]}, "text", {}, "run")
 
     def test_admission(self):
-        variants = [{"id": "eq-01", "expect": "pass", "outcome": "false_alarm"},
+        variants = [{"id": "eq-02", "expect": "pass", "outcome": "false_alarm"},
                     {"id": "hw-01", "expect": "fail", "outcome": "detected"}]
         problems = prepare_task.admission(self.task, {"reference": [run({}, variants)], "probe": []})
-        self.assertEqual(problems, ["reference 在 eq-01 上为 false_alarm，应为 clean"])
+        self.assertEqual(problems, ["reference 在 eq-02 上为 false_alarm，应为 clean"])
 
 
 if __name__ == "__main__":

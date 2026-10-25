@@ -12,6 +12,9 @@ import sys
 import threading
 import time
 
+# 主进程退出后，等待输出读完的最长时间。超过即放弃读取，避免残留进程持有管道导致永久阻塞。
+DRAIN_GRACE_SECONDS = 10
+
 
 def now():
     return dt.datetime.now(dt.timezone.utc).isoformat()
@@ -52,13 +55,14 @@ class Audit:
                         output.flush()
         env = dict(os.environ if env is None else env, LC_ALL="C", LANG="C", PYTHONUNBUFFERED="1")
         timed_out = False
+        output_incomplete = False
         try:
             identity = {} if user is None else {"user": user, "group": group, "extra_groups": []}
             process = subprocess.Popen(record["argv"], cwd=cwd, env=env, stdin=subprocess.PIPE,
                                        stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
                                        errors="replace", start_new_session=True, **identity)
-            threads = [threading.Thread(target=drain, args=(process.stdout, record["stdout_log"], stdout, sys.stdout)),
-                       threading.Thread(target=drain, args=(process.stderr, record["stderr_log"], stderr, sys.stderr))]
+            threads = [threading.Thread(target=drain, args=(process.stdout, record["stdout_log"], stdout, sys.stdout), daemon=True),
+                       threading.Thread(target=drain, args=(process.stderr, record["stderr_log"], stderr, sys.stderr), daemon=True)]
             for thread in threads:
                 thread.start()
             if input_text:
@@ -70,15 +74,25 @@ class Audit:
                 timed_out = True
                 os.killpg(process.pid, signal.SIGKILL)
                 process.wait()
+            # 主进程正常退出时，同一进程组里可能还留着它启动的后台进程并持有输出管道，一并清理。
+            try:
+                os.killpg(process.pid, signal.SIGKILL)
+            except (ProcessLookupError, PermissionError):
+                pass
             for thread in threads:
-                thread.join()
+                thread.join(timeout=DRAIN_GRACE_SECONDS)
+            # 脱离进程组的残留进程仍可能持有管道；放弃读取，记录输出不完整。
+            output_incomplete = any(thread.is_alive() for thread in threads)
+            for thread, pipe in zip(threads, (process.stdout, process.stderr)):
+                if not thread.is_alive():
+                    pipe.close()
             returncode = process.returncode
         except OSError as error:
             returncode = 127
             stderr.append(str(error) + "\n")
             Path(record["stderr_log"]).write_text("".join(stderr))
             Path(record["stdout_log"]).touch()
-        record.update(returncode=returncode, timed_out=timed_out,
+        record.update(returncode=returncode, timed_out=timed_out, output_incomplete=output_incomplete,
                       duration_seconds=round(time.monotonic() - started, 6), ended_at=now())
         Path(str(prefix) + ".json").write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n")
         self.event(kind="command_end", **record)

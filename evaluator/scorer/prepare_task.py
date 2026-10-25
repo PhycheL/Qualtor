@@ -21,6 +21,7 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE.parent / "common"))
 
 from audit import Audit  # noqa: E402
+from runs import finish, new_manifest, write_manifest  # noqa: E402
 from common import (REPO, RUNS, check_run_id, default_run_id, freeze_product, hidden_path,  # noqa: E402
                     load_task, mull_config_text, now, scorer_code_sha256, scorer_version, write_json)
 import judge  # noqa: E402
@@ -123,12 +124,23 @@ def main():
     baseline.add_argument("--force", action="store_true", help="允许覆盖已有的变异分母")
     args = parser.parse_args()
     check_run_id(args.run_id)
-    from docker_runner import DockerExecutor
     run_dir, evidence = RUNS / args.run_id, RUNS / args.run_id / "evidence"
     if run_dir.exists() or evidence.exists():
         parser.error("run-id 已使用；请使用新目录保留历史证据")
     evidence.mkdir(parents=True)
-    write_json(run_dir / "run.json", {"kind": "prepare", "run_id": args.run_id, "status": "running"})
+    manifest = new_manifest(args.run_id, "prepare", task=args.task)
+    write_manifest(run_dir, manifest)
+    try:
+        code, passed = run_prepare(args, run_dir, evidence, parser)
+    except BaseException as error:
+        finish(run_dir, manifest, "failed", error=str(error))
+        raise
+    finish(run_dir, manifest, "completed", passed=passed)
+    return code
+
+
+def run_prepare(args, run_dir, evidence, parser):
+    from docker_runner import DockerExecutor
     task = load_task(args.task)
     target = hidden_path(task, "mutation_baseline")
     if args.write and target.exists() and not args.force:
@@ -149,7 +161,7 @@ def main():
     if problems:
         write_json(run_dir / "prepare_report.json", {"passed": False, "problems": problems})
         print("\n".join(problems))
-        return 1
+        return 1, False
     config_text = mull_config_text(task)
     draft = build_baseline(task, runs, config_text, executor.images, args.run_id)
     problems += admission(task, runs)
@@ -170,9 +182,8 @@ def main():
         print(f"已写入 {target}；请人工复核等价变异候选后，把 review.status 改为 reviewed")
     elif args.write:
         print("存在问题，未写入题目包")
-    write_json(run_dir / "run.json", {"kind": "prepare", "run_id": args.run_id, "status": "passed" if not problems else "failed", "finished_at": now()})
     print(f"草稿：{run_dir / 'mutation_baseline.json'}")
-    return 0 if not problems else 1
+    return (0 if not problems else 1), not problems
 
 
 if __name__ == "__main__":

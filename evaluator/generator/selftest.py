@@ -7,13 +7,36 @@ import sys
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 from host import GenerationExecutor, trial
-from paths import RUNS, REPO, TOOLCHAINS
+from paths import RUNS, REPO, SCORER, TOOLCHAINS
 from audit import Audit
+from runs import finish, new_manifest, write_manifest
 from common import (calibration_status, check_run_id, default_run_id, load_task, read_json, sha256_file,
                     sha256_text, write_json, now)
 from docker_runner import DockerExecutor
 from cost import extract
 from scenarios import SCENARIOS, BUILD, config, write
+
+
+def hidden_mount_problems(directory, task):
+    """读取生成容器 inspect 记录中的实际挂载来源，确认隐藏材料、校准样本和其他 run 都没有进入容器。
+    挂载了这些路径的上级目录同样算违规。"""
+    directory = Path(directory).resolve()
+    forbidden = [(task["_dir"] / "hidden").resolve(), (SCORER / "calibration").resolve(),
+                 (SCORER / "calibration-status.json").resolve()]
+    sources = [Path(m["Source"]).resolve() for record in sorted(directory.rglob("container.json"))
+               for m in read_json(record).get("Mounts", [])]
+    if not sources:
+        return ["没有找到生成容器的挂载记录"]
+    problems = []
+    for source in sources:
+        for path in forbidden:
+            if source == path or path in source.parents or source in path.parents:
+                problems.append(f"挂载了隐藏材料或其上级目录：{source}")
+        # runs/ 的上级目录（如仓库根）同时也是 hidden/ 的上级，已在上面拦下。
+        runs = RUNS.resolve()
+        if (source == runs or runs in source.parents) and not (source == directory or directory in source.parents):
+            problems.append(f"挂载了本 trial 之外的运行记录：{source}")
+    return sorted(set(problems))
 
 
 def run_case(name, run, executor, generator, generation_only=False):
@@ -34,7 +57,7 @@ def run_case(name, run, executor, generator, generation_only=False):
     expected = name if name in ("budget_exhausted", "never_built", "generation_stalled") else "finished"
     if name == "agent_error_persistent" or (generation_only and name == "agent_error"):
         expected = "agent_error"
-    checks = {"status": result["status"] == expected}
+    checks = {"status": result["status"] == expected, "no_hidden_mounts": not hidden_mount_problems(directory, task)}
     if name == "budget_exhausted":
         checks["budget_calls"] = result["build_calls"] == 4
         checks["budget_rejection"] = "budget_denied" in (directory / "logs/orchestrator/events.jsonl").read_text()
@@ -94,19 +117,24 @@ def main():
     check_run_id(args.run_id)
     run = RUNS / args.run_id
     run.mkdir(parents=True, exist_ok=False)
-    manifest = {"kind": "eval", "framework_selftest": True, "started_at": now(), "status": "running"}
-    write_json(run / "run.json", manifest)
-    executor = DockerExecutor(Audit(run / "evidence/host"), run / "evidence", args.run_id)
-    generator = GenerationExecutor(executor)
+    manifest = new_manifest(args.run_id, "eval", operation="selftest", framework_selftest=True,
+                            cases=list(args.cases), generation_only=args.generation_only)
+    write_manifest(run, manifest)
     results = []
-    for name in args.cases:
-        print(f"自测 {name}", flush=True)
-        entry = run_case(name, run, executor, generator, args.generation_only)
-        results.append(entry)
-        print(f"  {'通过' if entry['passed'] else '失败'}：{entry['checks']}", flush=True)
+    try:
+        executor = DockerExecutor(Audit(run / "evidence/host"), run / "evidence", args.run_id)
+        generator = GenerationExecutor(executor)
+        for name in args.cases:
+            print(f"自测 {name}", flush=True)
+            entry = run_case(name, run, executor, generator, args.generation_only)
+            results.append(entry)
+            print(f"  {'通过' if entry['passed'] else '失败'}：{entry['checks']}", flush=True)
+    except BaseException as error:
+        finish(run, manifest, "failed", error=str(error))
+        write_json(run / "summary.json", {**manifest, "cases": results})
+        raise
     passed = all(r["passed"] for r in results)
-    manifest.update(status="passed" if passed else "failed", finished_at=now())
-    write_json(run / "run.json", manifest)
+    finish(run, manifest, "completed", passed=passed)
     write_json(run / "summary.json", {**manifest, "cases": results})
     return 0 if passed else 1
 

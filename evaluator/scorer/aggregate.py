@@ -34,7 +34,8 @@ def load_results(runs, version=None):
         if not root.is_dir():
             raise SystemExit(f"找不到运行目录：{run}")
         for path in sorted(root.rglob("result.json")):
-            if "infra-retries" in path.parts or "generation-attempts" in path.parts:
+            # 被重评替换的结果（infra-retries、incomplete）和失败的生成尝试不参与汇总。
+            if {"infra-retries", "incomplete", "generation-attempts"} & set(path.parts):
                 continue
             result = read_json(path)
             if version is not None and result.get("scorer", {}).get("version") != version:

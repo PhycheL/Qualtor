@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""评分冻结产物；--rescore 在原 run 的 score/<当前版本>/ 下补评，绝不覆盖旧版本。"""
+"""评分冻结产物；--rescore 在原 run 的 score/<当前版本>/ 下补评，绝不覆盖旧版本。
+
+补评中断后可直接重跑同一命令：已有有效结果的产物跳过，未完成或基础设施错误的结果移入 incomplete/ 后重评。
+评分器校准状态不是 passed 时拒绝评分；只做参考时加 --allow-uncalibrated，结果中会记录校准状态。
+"""
 import argparse
 from pathlib import Path
 import sys
@@ -7,15 +11,47 @@ import sys
 HERE = Path(__file__).resolve().parent
 sys.path[:0] = [str(HERE), str(HERE.parent / "common")]
 from audit import Audit
+from runs import finish, new_manifest, write_manifest
 from common import (REPO, RUNS, calibration_status, check_run_id, default_run_id, load_task, now,
                     read_json, scorer_version, sha256_file, validate_product, write_json)
 import pipeline
+
+INFRA_RETRIES = 2
+
+
+def finished_result(out):
+    """已有可用结果时返回它；没有 result.json 或结果为基础设施错误时返回 None。"""
+    path = out / "result.json"
+    if not path.is_file():
+        return None
+    result = read_json(path)
+    return result if result.get("status") != "infra_error" else None
+
+
+def set_aside(out):
+    """未完成的评分目录移到 incomplete/ 下保留，不删除、不覆盖。"""
+    holder = out.parent / "incomplete"
+    holder.mkdir(exist_ok=True)
+    index = 1
+    while (holder / f"{out.name}-{index}").exists():
+        index += 1
+    out.rename(holder / f"{out.name}-{index}")
+
+
+def score_with_retry(executor, task, product, out, meta, cost, calibration):
+    for attempt in range(INFRA_RETRIES + 1):
+        result = pipeline.score_product(executor, task, product, out, meta,
+                                        Audit(out.parent / "logs" / f"{out.name}-{attempt + 1}"), cost,
+                                        calibration=calibration)
+        if result["status"] != "infra_error" or attempt == INFRA_RETRIES:
+            return result
+        set_aside(out)
 
 
 def rescore_jobs(run, version):
     jobs = {}
     for path in sorted(run.rglob("result.json")):
-        if "infra-retries" in path.parts or "generation-attempts" in path.parts:
+        if {"infra-retries", "incomplete", "generation-attempts"} & set(path.parts):
             continue
         result = read_json(path)
         if result.get("mode") != "score" or not result.get("meta", {}).get("agent_version"):
@@ -31,8 +67,8 @@ def rescore_jobs(run, version):
         if problem:
             raise ValueError(f"冻结产物校验失败：{product}: {problem}")
         out = run / "trials" / key[0] / f"trial-{key[1]}" / "score" / version / key[2]
-        if out.exists():
-            raise ValueError(f"当前评分器版本已评过，拒绝覆盖：{out}")
+        if out == path.parent:
+            continue  # 当前版本自己的结果，不是补评来源
         previous = jobs.get(key)
         if previous and previous[1] != product:
             raise ValueError(f"同一个 trial/phase 存在不同冻结产物：{key}")
@@ -41,6 +77,20 @@ def rescore_jobs(run, version):
     if not jobs:
         raise ValueError("run 中没有可补评的冻结产物（迁移的校准/标定记录不支持补评）")
     return list(jobs.values())
+
+
+def pending_jobs(jobs):
+    """跳过已有可用结果的产物；未完成的旧目录移开后重评。"""
+    pending, skipped = [], []
+    for job in jobs:
+        out = job[4]
+        if finished_result(out):
+            skipped.append(out)
+            continue
+        if out.exists():
+            set_aside(out)
+        pending.append(job)
+    return pending, skipped
 
 
 def main():
@@ -53,6 +103,8 @@ def main():
     parser.add_argument("--phase", choices=["first", "final"], default="final")
     parser.add_argument("--rescore")
     parser.add_argument("--run-id")
+    parser.add_argument("--allow-uncalibrated", action="store_true",
+                        help="校准状态不是 passed 时仍然评分，结果只作参考，不能用于正式比较")
     args = parser.parse_args()
     if args.rescore and (args.run_id or args.task or args.product):
         parser.error("--rescore 写入原 run，不能同时指定 --run-id、--task 或 --product")
@@ -63,8 +115,14 @@ def main():
         if args.rescore:
             run_id = check_run_id(args.rescore)
             run = RUNS / run_id
-            jobs = rescore_jobs(run, version)
-            evidence = run / "score" / version / "evidence"
+            jobs, skipped = pending_jobs(rescore_jobs(run, version))
+            for out in skipped:
+                print(f"已有结果，跳过：{out.relative_to(run)}")
+            if not jobs:
+                print(f"当前版本 {version} 已全部评完：{run}")
+                return 0
+            session = default_run_id("rescore")
+            evidence = run / "score" / version / session / "evidence"
             evidence.mkdir(parents=True, exist_ok=False)
             record_path = evidence.parent / "rescore.json"
         else:
@@ -79,22 +137,28 @@ def main():
                     "cost_path": pipeline._rel(args.cost.resolve(), REPO) if args.cost else None}
             jobs = [(task, args.product, args.cost, meta, out)]
             record_path = run / "run.json"
-        manifest = {"kind": "eval", "run_id": run_id, "operation": "rescore" if args.rescore else "score",
-                    "scorer_version": version, "status": "running", "started_at": now()}
-        write_json(record_path, manifest)
+        manifest = new_manifest(run_id, "eval", operation="rescore" if args.rescore else "score",
+                                scorer_version=version, jobs=len(jobs))
+        write = (lambda m: write_json(record_path, m)) if args.rescore else (lambda m: write_manifest(run, m))
+        write(manifest)
         from docker_runner import DockerExecutor
         executor = DockerExecutor(Audit(evidence / "host"), evidence, run_id)
+        calibrations = {task["id"]: calibration_status(executor.images, task) for task, *_ in jobs}
+        uncalibrated = {k: v["status"] for k, v in calibrations.items() if v["status"] != "passed"}
+        if uncalibrated and not args.allow_uncalibrated:
+            manifest.update(status="failed", error=f"校准状态不是 passed：{uncalibrated}", finished_at=now())
+            write(manifest)
+            raise ValueError(f"评分器校准状态不是 passed：{uncalibrated}；先运行 calibrate.py，"
+                             "只做参考时加 --allow-uncalibrated")
+        if uncalibrated:
+            print(f"警告：校准状态为 {uncalibrated}，结果不能用于正式比较", file=sys.stderr)
         failed = False
         for task, product, cost, meta, out in jobs:
-            calibration = calibration_status(executor.images, task)
-            if calibration["status"] != "passed":
-                print(f"警告：校准状态为 {calibration['status']}，结果不能用于正式比较", file=sys.stderr)
-            result = pipeline.score_product(executor, task, product, out, meta,
-                        Audit(out.parent / "logs" / out.name), cost, calibration=calibration)
+            result = score_with_retry(executor, task, product, out, meta, cost, calibrations[task["id"]])
             failed |= result["status"] == "infra_error"
             print(f"{out.relative_to(run)}: {result['status']} {result.get('invalid_reason') or ''}")
         manifest.update(status="incomplete" if failed else "completed", finished_at=now())
-        write_json(record_path, manifest)
+        write(manifest)
     except (ValueError, FileNotFoundError, FileExistsError) as error:
         parser.exit(2, str(error) + "\n")
     print(f"结果目录：{run}")

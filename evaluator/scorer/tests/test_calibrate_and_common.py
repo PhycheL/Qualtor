@@ -13,17 +13,17 @@ import common
 class CalibrationChecksTest(unittest.TestCase):
     result = {"status": "scored", "invalid_reason": None,
               "tests": {"S.A": "valid", "S.B": "flaky", "S.C": "valid"},
-              "variants": [{"id": "eq-01", "outcome": "false_alarm", "failed_tests": ["S.C"]},
+              "variants": [{"id": "eq-02", "outcome": "false_alarm", "failed_tests": ["S.C"]},
                            {"id": "hw-01", "outcome": "detected", "failed_tests": ["S.A"]}]}
 
     def test_hard_expectations_pass(self):
         hard = {"status": "scored", "tests": {"S.B": "flaky"}, "tests_default": "valid",
-                "variants": {"eq-01": "false_alarm", "hw-01": "detected"}, "variant_failed_tests": {"eq-01": ["S.C"]}}
+                "variants": {"eq-02": "false_alarm", "hw-01": "detected"}, "variant_failed_tests": {"eq-02": ["S.C"]}}
         self.assertEqual(calibrate.check_hard(hard, self.result), [])
 
     def test_hard_expectations_report_each_mismatch(self):
         hard = {"status": "invalid", "tests_default": "valid", "variants": {"hw-01": "not_detected"},
-                "variant_failed_tests": {"eq-01": []}}
+                "variant_failed_tests": {"eq-02": []}}
         problems = calibrate.check_hard(hard, self.result)
         self.assertEqual(len(problems), 4)
 
@@ -109,6 +109,16 @@ class ProductAndTaskTest(unittest.TestCase):
         self.assertIn("  - cxx_all", text)
         self.assertIn("'/repo/cpp/src/GildedRose\\.cc$'", text)
 
+
+
+class SampleVariantsTest(unittest.TestCase):
+    def test_sample_expectations_only_reference_existing_variants(self):
+        task = common.load_task("gildedrose-update-quality")
+        ids = {variant["id"] for variant in task["variants"]}
+        for sample_id, sample in calibrate.load_samples(task["id"]).items():
+            hard = sample["expected"].get("hard", {})
+            with self.subTest(sample=sample_id):
+                self.assertLessEqual(set(hard.get("variants", {})) | set(hard.get("variant_failed_tests", {})), ids)
 
 if __name__ == "__main__":
     unittest.main()

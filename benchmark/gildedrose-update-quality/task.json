@@ -40,7 +40,7 @@
     "repair_rounds": 3,
     "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
   },
-  "scoring_domain": "普通商品质量 0–50；Sulfuras 质量恒为 80；sellIn 任意整数。评分材料（参考测试、探针、等价版本）只在此域内保证与被测代码一致。",
+  "scoring_domain": "普通商品质量 0–50；Sulfuras 质量恒为 80；sellIn 任意整数。参考测试和有界穷举探针只在此域内保证与被测代码一致；等价版本在全部无未定义行为的输入上与被测代码一致（D011）。",
   "params": {
     "stability_repeats": 10,
     "shuffle_seeds": [
@@ -64,12 +64,12 @@
   },
   "variants": [
     {
-      "id": "eq-01",
+      "id": "eq-02",
       "kind": "equivalent",
       "expect": "pass",
-      "description": "每个商品处理完后把质量截断到 0–50（Sulfuras 除外）。原逻辑在输入域内不会越界，截断在域内不改变结果；域外（如质量 60）结果不同。",
+      "description": "按商品种类拆成独立函数的重构。除 sellIn 为 INT_MIN（原代码在此有符号溢出，属于未定义行为）外，对任意输入与原代码一致，包括 0–50 以外的质量（D011）。",
       "files": {
-        "cpp/src/GildedRose.cc": "1129c5f167ebe8715c9dd6a057df9f950456236e91aabf6c379957e91b520750"
+        "cpp/src/GildedRose.cc": "16fa135a29119ce9ae655ebd2cdf569f04c08d1cf08dc2557793ee6431b784c5"
       }
     },
     {

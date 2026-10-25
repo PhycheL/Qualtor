@@ -1,10 +1,7 @@
 import fs from "node:fs";
-import path from "node:path";
 import net from "node:net";
 import { Type } from "typebox";
-
-const tools = ["read", "write", "edit", "grep", "find", "ls", "build_and_test"];
-const root = "/workspace";
+import { TOOLS, allowedPatterns, checkToolCall } from "./guard.ts";
 
 function request(data: object): Promise<any> {
   return new Promise((resolve, reject) => {
@@ -19,26 +16,9 @@ function request(data: object): Promise<any> {
   });
 }
 
-// 逐级检查链接；对不存在的写入目标也检查最近的已有父目录。
-export function checkedPath(input: unknown): string {
-  if (typeof input !== "string" || input.includes("\0")) throw new Error("路径必须是普通字符串");
-  const resolved = path.resolve(root, input);
-  if (resolved !== root && !resolved.startsWith(root + "/")) throw new Error("只允许读取 /workspace 内的材料");
-  let current = root;
-  for (const part of path.relative(root, resolved).split(path.sep).filter(Boolean)) {
-    current = path.join(current, part);
-    try {
-      if (fs.lstatSync(current).isSymbolicLink()) throw new Error("不允许通过符号链接访问文件");
-    } catch (error: any) { if (error.code !== "ENOENT") throw error; }
-  }
-  return resolved;
-}
-
 export default function (pi: any) {
   const config = JSON.parse(fs.readFileSync("/input/runtime.json", "utf8"));
-  const allowed = config.task.allowed_test_files.map((glob: string) => new RegExp("^" + glob.split("*").map(
-    (part: string) => part.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
-  ).join(".*") + "$"));
+  const allowed = allowedPatterns(config.task.allowed_test_files);
   if (!config.scripted) {
     pi.registerProvider(config.model.provider, {
       baseUrl: config.model.base_url,
@@ -53,19 +33,11 @@ export default function (pi: any) {
       }],
     });
   }
-  pi.on("session_start", () => pi.setActiveTools(tools));
+  pi.on("session_start", () => pi.setActiveTools(TOOLS));
   pi.on("tool_call", async (event: any) => {
     try {
-      if (!tools.includes(event.toolName)) throw new Error("该工具未获授权");
-      if (event.toolName === "build_and_test") return;
-      const resolved = checkedPath(event.input.path ?? ".");
-      if (["write", "edit"].includes(event.toolName)) {
-        const rel = path.relative(root, resolved);
-        if (!rel.startsWith("tests/") || !allowed.some((pattern: RegExp) => pattern.test(rel))) {
-          throw new Error("只能修改 tests/ 下 allowed_test_files 允许的文件");
-        }
-      }
-      event.input.path = resolved;
+      const resolved = checkToolCall(event.toolName, event.input, allowed);
+      if (resolved !== null) event.input.path = resolved;
     } catch (error) {
       const reason = String(error);
       await request({ op: "denied", tool: event.toolName, input: event.input, reason });

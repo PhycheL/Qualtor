@@ -1,4 +1,5 @@
-// 校准样本 CAL-16：断言输入域外行为，在“域内等价、域外截断”的 eq-01 上应误报。
+// 校准样本 CAL-16：域外但行为确定的断言不应误报；依赖有符号溢出（未定义行为）的断言在等价版本 eq-02 上应误报（D011）。
+#include <climits>
 #include "GildedRose.h"
 
 #include <gtest/gtest.h>
@@ -19,4 +20,10 @@ Item updateOnce(const std::string& name, int sellIn, int quality) {
 
 TEST(CalibrationDomain, AgedBrieAboveFiftyStaysUnchanged) {
     EXPECT_EQ(60, updateOnce("Aged Brie", 5, 60).quality);
+}
+
+TEST(CalibrationUndefined, SellInWrapsAroundAtIntMin) {
+    const Item item = updateOnce("+5 Dexterity Vest", INT_MIN, 10);
+    EXPECT_EQ(INT_MAX, item.sellIn);
+    EXPECT_EQ(9, item.quality);
 }

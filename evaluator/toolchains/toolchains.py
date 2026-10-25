@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT.parent / "common"))
 from paths import REPO, COMMON, RUNS, BENCHMARK, AGENTS, GENERATOR
 from audit import Audit, now
+from runs import finish, new_manifest, write_manifest
 from source_snapshot import verify_snapshot
 
 IMAGES = {
@@ -163,18 +164,23 @@ def main():
     if evidence.exists() or (RUNS / args.run_id).exists():
         parser.error("run-id 已使用；请使用新目录保留历史证据")
     evidence.mkdir(parents=True, exist_ok=False)
+    run = RUNS / args.run_id
+    manifest = new_manifest(args.run_id, "toolchain", toolchain=args.toolchain, build_only=args.build_only)
+    write_manifest(run, manifest)
     summary = {"kind": "toolchain", "status": "running", "started_at": now(), "run_id": args.run_id, "images": {}, "checks": {}}
+    crashed = False
     try:
         execute(args, evidence, summary)
     except Exception as error:
+        crashed = True
         summary.update(status="failed", error=str(error))
         print(f"失败：{error}", file=sys.stderr)
     summary["finished_at"] = now()
     write_json(evidence / "summary.json", summary)
-    write_json(RUNS / args.run_id / "run.json", summary)
-    run = RUNS / args.run_id
-    if run.exists():
-        write_json(run / "summary.json", summary)
+    write_json(run / "summary.json", summary)
+    # summary.json 保留验收结论 passed/failed/built；run.json 只用统一状态，结论写在 passed 字段。
+    finish(run, manifest, "failed" if crashed else "completed", passed=summary["status"] in ("passed", "built"),
+           result=summary["status"], **({"error": summary["error"]} if crashed else {}))
     print(f"状态：{summary['status']}；证据：{evidence}")
     return 0 if summary["status"] in ("passed", "built") else 1
 

@@ -5,7 +5,7 @@
   "hard": {
     "status": "scored",
     "variants": {
-      "eq-01": "clean",
+      "eq-02": "clean",
       "hw-01": "detected"
     },
     "tests": {

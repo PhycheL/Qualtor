@@ -23,9 +23,9 @@
 
 ## 原始证据
 
-- 所有执行写入 [runs/](../runs/)，不入 Git。
+- 所有执行写入 `runs/`，不入 Git。
 - 评分器的[校准状态](../evaluator/scorer/calibration-status.json)与[报告](../evaluator/scorer/calibration_report.md)入库。
-- 0.1.1 的[校准证据](../runs/scorer-docker-calibration-20261024-02/)与[分母证据](../runs/scorer-docker-prepare-20261024-01/)已迁移；其余旧证据按 D010 删除。
+- 0.1.1 的校准证据（`runs/scorer-docker-calibration-20261024-02/`）与分母证据（`runs/scorer-docker-prepare-20261024-01/`）已迁移；其余旧证据按 D010 删除。
 - [上游 cpp 说明](../benchmark/gildedrose-update-quality/source/cpp/README.md)随源码快照保存。
 
 ## 文档维护

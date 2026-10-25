@@ -8,13 +8,13 @@ import re
 
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "common"))
-from paths import REPO, SCORER, COMMON as SCRIPTS, BENCHMARK as TASKS, RUNS
+from paths import REPO, SCORER, COMMON, BENCHMARK, RUNS
 
 CALIBRATION = SCORER / "calibration"
 CALIBRATION_STATUS = SCORER / "calibration-status.json"
 
 # 评分器的行为由这些文件决定（scorer/ 下的代码、构建模板、版本号，以及共用脚本）；任何一个变化都要重新校准。
-SHARED_FILES = ["audit.py", "coverage.py", "paths.py"]
+SHARED_FILES = ["audit.py", "coverage.py", "paths.py", "runs.py"]
 
 
 def code_files():
@@ -51,7 +51,7 @@ def scorer_version():
 def scorer_code_sha256():
     """评分器代码指纹：版本号相同但代码变了，校准结果也视为过期。"""
     lines = [f"{name}\0{sha256_file(SCORER / name)}" for name in code_files()]
-    lines += [f"scripts/{name}\0{sha256_file(SCRIPTS / name)}" for name in SHARED_FILES]
+    lines += [f"common/{name}\0{sha256_file(COMMON / name)}" for name in SHARED_FILES]
     return sha256_text("\n".join(lines))
 
 
@@ -84,7 +84,7 @@ def load_task(task):
     """读取并校验题目包；task 可以是题目 ID 或目录路径。"""
     task_dir = Path(task)
     if not task_dir.is_dir():
-        task_dir = TASKS / str(task)
+        task_dir = BENCHMARK / str(task)
     path = task_dir / "task.json"
     if not path.is_file():
         raise TaskError(f"找不到题目包：{task}")

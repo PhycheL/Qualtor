@@ -178,7 +178,7 @@ class PipelineWiringTest(unittest.TestCase):
                 self.assertTrue(str(call["mounts"]["variant"][0]).startswith(hidden))
             if "config" in call["mounts"]:
                 self.assertIn(label, ("clang-build", "mull"))
-        self.assertEqual({v["id"]: v["outcome"] for v in result["variants"]}, {"eq-01": "clean", "hw-01": "detected"})
+        self.assertEqual({v["id"]: v["outcome"] for v in result["variants"]}, {"eq-02": "clean", "hw-01": "detected"})
         self.assertEqual(result["counts"]["coverage"]["files"]["cpp/src/GildedRose.cc"]["lines"]["covered"], 29)
         self.assertEqual(result["raw_mutants"][0]["status"], "Killed")
         self.assertTrue((self.tmp / "out" / "clang-build" / "config" / "mull.yml").is_file())

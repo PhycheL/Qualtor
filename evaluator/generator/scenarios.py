@@ -26,15 +26,29 @@ SCENARIOS = {
     "agent_error": lambda attempt: [{"error": True}] if attempt < 3 else FINISHED,
     "agent_error_persistent": [{"error": True}],
     "access_denied": [write("modified", "project/cpp/src/GildedRose.cc"),
-                      write("modified", "/record/build-state.json"),
+                      write("modified", "/private/record/build-state.json"),
                       write("modified", "tests/forbidden.json"),
                       {"tool": "read", "args": {"path": "/pi/package.json"}},
                       {"tool": "read", "args": {"path": "../input/runtime.json"}},
                       write(), BUILD],
     "compile_repair": [write("this is not C++"), BUILD, write(), BUILD],
     "process_isolation": [write(GOOD + '''
+#include <cstdio>
 #include <fstream>
+#include <string>
 #include <unistd.h>
+// 在容器内能访问到的位置搜索隐藏评分材料的文件名；pi 依赖与系统目录跳过，避免超过单测时限。
+std::string hiddenMaterialFound() {
+    FILE* pipe = popen("find / \\\\( -path /proc -o -path /sys -o -path /pi -o -path /usr \\\\) -prune -o "
+                       "\\\\( -name mutation_baseline.json -o -name reference_tests.cc -o -name probe_tests.cc "
+                       "-o -name generate_probe.cc -o -name calibration-status.json -o -name calibration_report.json \\\\) "
+                       "-print 2>/dev/null", "r");
+    std::string found;
+    char buffer[512];
+    while (pipe && fgets(buffer, sizeof buffer, pipe)) found += buffer;
+    if (pipe) pclose(pipe);
+    return found;
+}
 TEST(Isolation, RefereeAndSourceProtected) {
     EXPECT_EQ(65534, getuid());
     EXPECT_FALSE(std::ofstream("/private/record/build-state.json").good());
@@ -42,8 +56,7 @@ TEST(Isolation, RefereeAndSourceProtected) {
     EXPECT_FALSE(std::ofstream("/snapshots/attempt-1/tests/generated.cc").good());
     EXPECT_FALSE(std::ofstream("/workspace/project/cpp/src/GildedRose.cc").good());
     EXPECT_FALSE(std::ifstream("/agent/state/settings.json").good());
-    EXPECT_FALSE(std::ifstream("/scorer/calibration-status.json").good());
-    EXPECT_FALSE(std::ifstream("/lab/tasks/gildedrose-update-quality/hidden/mutation_baseline.json").good());
+    EXPECT_EQ("", hiddenMaterialFound());
 }
 '''), BUILD],
 }

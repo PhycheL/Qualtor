@@ -3,11 +3,22 @@
   "upstream": "https://github.com/earendil-works/pi.git",
   "commit": "55a905929218199bf50af442f873729a0dad62f1",
   "copied_tracked_files": 1907,
-  "source": "tracked working tree; no local tracked changes",
+  "source": "fork 工作区中已跟踪的文件；复制时相对 fork 的该提交没有未提交改动",
   "excluded": [
     ".git",
     "node_modules",
     "dist",
     "untracked skill-drafts"
-  ]
+  ],
+  "fork_changes": {
+    "upstream_base": "7d75a0e3eb273dff753d49c066ea29fbe7b3b6f6",
+    "note": "fork 在上游提交 7d75a0e3e 之上只有 3 个提交（df4fd9337、2d147a114、55a905929），新增 5 个文件：4 份中文源码阅读文档和 1 个示例，没有修改 pi 的运行代码。基点是否在上游 main 上未联网核实。",
+    "added_files": [
+      "docs/pi-ai/源码初识.md",
+      "docs/pi-ai/源码初识过程/事实审计.md",
+      "docs/pi-ai/源码初识过程/查证记录.md",
+      "docs/pi-ai/源码初识过程/读者核查.md",
+      "packages/agent/examples/learn-agent.ts"
+    ]
+  }
 }

@@ -21,11 +21,33 @@ import pipeline
 from cost import extract, add_costs
 from toolchains import GENERATOR_IMAGE
 
+# Agent 可写目录都是限定大小的 tmpfs，写满时写入失败，不会占满宿主机磁盘；结束时由监督进程复制回 trial 记录。
+AGENT_TMPFS = {"/workspace/tests": "64m", "/agent/state": "16m", "/agent/sessions": "256m"}
+
+
+def deps_fingerprint(root, modules):
+    """依赖目录的元数据指纹（路径、类型、大小、修改时间）。依赖文件多达数万个，逐个读内容太慢；
+    任何安装、删除或修改都会改变大小或修改时间，从而被发现。"""
+    parts = []
+    for directory, dirs, files in os.walk(modules):
+        dirs.sort()
+        for name in sorted(dirs + files):
+            path = Path(directory) / name
+            info = path.lstat()
+            kind = "l" if path.is_symlink() else ("d" if path.is_dir() else "f")
+            parts.append(f"{path.relative_to(root)}\0{kind}\0{info.st_size}\0{info.st_mtime_ns}")
+    return sha256_text("\n".join(parts))
+
 
 def tree_hash(root, runtime=False):
+    """源码按内容哈希。runtime=True 时再加上构建产物 dist/ 和依赖目录 node_modules/ 的元数据指纹，
+    用来确认实际运行的 pi 与构建记录一致。"""
     root = Path(root)
     parts = []
     for directory, dirs, files in os.walk(root):
+        if runtime and "node_modules" in dirs:
+            modules = Path(directory) / "node_modules"
+            parts.append(f"{modules.relative_to(root)}\0deps\0{deps_fingerprint(root, modules)}")
         dirs[:] = sorted(d for d in dirs if d not in (".git", "node_modules", "__pycache__", ".artifacts")
                          and (runtime or d != "dist"))
         for name in sorted(files):
@@ -186,17 +208,20 @@ class GenerationExecutor:
             write_json(inputs / "scenario.json", scenario)
         audit = Audit(record / "logs/container")
         name = "qg-" + uuid.uuid4().hex[:20]
+        uid, gid = os.getuid() or 1000, os.getgid() or 1000
         # root 只负责可信监督服务；pi 与生成的 C++ 分别降权到不同 UID。
         command = self.ex.docker + ["create", "--name", name, "--platform", self.image["platform"],
             "--network", "bridge", "--cpus", "2", "--memory", "2g", "--pids-limit", "256",
             "--read-only", "--cap-drop", "ALL", "--security-opt", "no-new-privileges",
             "--tmpfs", "/tmp:rw,exec,nosuid,nodev,size=512m,mode=1777", "--tmpfs", "/control:rw,nosuid,nodev,size=1m",
             "--tmpfs", "/private:rw,nosuid,nodev,size=1m,mode=700",
-            "--tmpfs", f"/agent:rw,nosuid,nodev,size=1m,mode=700,uid={os.getuid() or 1000},gid={os.getgid() or 1000}",
+            "--tmpfs", f"/agent:rw,nosuid,nodev,size=1m,mode=700,uid={uid},gid={gid}",
             "--tmpfs", "/snapshots:rw,nosuid,nodev,size=128m,mode=755",
             "--tmpfs", "/workspace:rw,nosuid,nodev,size=1m,mode=755", "--workdir", "/workspace",
-            "-e", f"QUALTOR_AGENT_UID={os.getuid() or 1000}", "-e", f"QUALTOR_AGENT_GID={os.getgid() or 1000}",
+            "-e", f"QUALTOR_AGENT_UID={uid}", "-e", f"QUALTOR_AGENT_GID={gid}",
             "-e", "PYTHONDONTWRITEBYTECODE=1"]
+        for target, size in sorted(AGENT_TMPFS.items()):
+            command += ["--tmpfs", f"{target}:rw,noexec,nosuid,nodev,size={size},mode=700,uid={uid},gid={gid}"]
         for cap in ("CHOWN", "DAC_OVERRIDE", "FOWNER", "KILL", "SETUID", "SETGID"):
             command += ["--cap-add", cap]
         if scenario is None:
@@ -205,8 +230,7 @@ class GenerationExecutor:
                   "/helpers/audit.py": (COMMON / "audit.py", True),
                   "/helpers/gtest_results.py": (SCORER / "gtest_results.py", True),
                   "/cmake": (SCORER / "cmake", True), "/input": (inputs, True), "/private/record": (record, False),
-                  "/agent/state": (record / "pi-state", False), "/agent/sessions": (record / "logs/sessions", False),
-                  "/workspace/tests": (record / "workspace/tests", False), "/workspace/TASK.md": (record / "TASK.md", True)}
+                  "/workspace/TASK.md": (record / "TASK.md", True)}
         for rel in public["visible_files"]:
             mounts["/workspace/project/" + rel] = (source_root(task) / rel, True)
         for target, (source, readonly) in sorted(mounts.items()):
@@ -220,6 +244,7 @@ class GenerationExecutor:
             before = json.loads(self.ex._call("generation-inspect", self.ex.docker + ["inspect", "--format", inspect_format, name], audit=audit))
             actual = {m["Destination"]: m for m in before["Mounts"]}
             if (set(actual) != set(mounts) or any(actual[t]["RW"] == ro for t, (_, ro) in mounts.items())
+                    or not set(AGENT_TMPFS) <= set(before["HostConfig"].get("Tmpfs") or {})
                     or not before["HostConfig"]["ReadonlyRootfs"] or before["HostConfig"]["NetworkMode"] != "bridge"):
                 raise ValueError("生成容器挂载或隔离配置不正确")
             write_json(record / "container.json", before)

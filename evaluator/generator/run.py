@@ -12,6 +12,7 @@ from host import GenerationExecutor, git_snapshot, load_config, public_task, tre
 from cost import add_costs
 from paths import AGENTS, BENCHMARK, GENERATOR, RUNS, REPO
 from audit import Audit
+from runs import finish, new_manifest, write_manifest
 from common import (calibration_status, check_run_id, default_run_id, load_task, now, scorer_code_sha256,
                     scorer_version, sha256_file, task_sha256, validate_task, write_json)
 from docker_runner import DockerExecutor
@@ -35,21 +36,39 @@ def select_tasks(names, task_set):
     return list(selected.values())
 
 
+def run_trials(work, jobs_list, jobs):
+    """并行执行 trial。任一 trial 抛出异常后，取消所有尚未开始的 trial；正在运行的等其结束。"""
+    results, errors, cancelled = [], [], []
+    with ThreadPoolExecutor(max_workers=jobs) as pool:
+        futures = {pool.submit(work, task, index): (task["id"], index) for task, index in jobs_list}
+        for future in as_completed(futures):
+            label = futures[future]
+            if future.cancelled():
+                cancelled.append({"task": label[0], "trial": label[1]})
+                continue
+            try:
+                results.append(future.result())
+            except Exception as error:
+                errors.append({"task": label[0], "trial": label[1], "error": f"{type(error).__name__}: {error}"})
+                for other in futures:
+                    other.cancel()
+    return results, errors, cancelled
+
+
 def execute(config, config_snapshot, tasks, count, jobs, run_id, scenario=None, watchdog=900):
     check_run_id(run_id)
     run = RUNS / run_id
     run.mkdir(parents=True, exist_ok=False)
     audit = Audit(run / "evidence/host")
-    manifest = {"schema": 1, "kind": "eval", "run_id": run_id, "status": "preflight", "started_at": now(),
-                "framework_selftest": scenario is not None, "config": config_snapshot,
+    manifest = new_manifest(run_id, "eval", **{
+                "operation": "generate", "framework_selftest": scenario is not None, "config": config_snapshot,
                 "qualtor": git_snapshot(), "trials_per_task": count, "jobs": jobs,
                 "tasks": {t["id"]: {"set": t["set"], "sha256": task_sha256(t), "source": t["source"],
                                      "budget": t["budget"]} for t in tasks},
                 "pi_sha256": tree_hash(AGENTS / "pi"), "pi_runtime_sha256": tree_hash(AGENTS / "pi", runtime=True),
                 "generator_sha256": tree_hash(GENERATOR), "scorer_version": scorer_version(),
-                "scorer_code_sha256": scorer_code_sha256()}
-    write_json(run / "run.json", manifest)
-    results = []
+                "scorer_code_sha256": scorer_code_sha256()})
+    write_manifest(run, manifest)
     try:
         executor = DockerExecutor(audit, run / "evidence", run_id)
         states = {t["id"]: calibration_status(executor.images, t) for t in tasks}
@@ -57,8 +76,8 @@ def execute(config, config_snapshot, tasks, count, jobs, run_id, scenario=None, 
         if any(s["status"] != "passed" for s in states.values()):
             raise ValueError(f"评分器校准必须为 passed，当前：{states}；请先运行 calibrate.py")
         generator = GenerationExecutor(executor)
-        manifest.update(status="running", images={**executor.images, "generator": generator.image})
-        write_json(run / "run.json", manifest)
+        manifest.update(images={**executor.images, "generator": generator.image})
+        write_manifest(run, manifest)
         agent_version = config_snapshot["name"] + "@" + manifest["qualtor"]["commit"][:12] + "-" + config_snapshot["sha256"][:12]
         def work(task, index):
             print(f"生成与评分 {task['id']} trial-{index}", flush=True)
@@ -67,10 +86,15 @@ def execute(config, config_snapshot, tasks, count, jobs, run_id, scenario=None, 
             print(f"  {task['id']} trial-{index}: {result['status']} "
                   + ", ".join(f"{p}={s['status']}" for p, s in result["scores"].items()), flush=True)
             return result
-        with ThreadPoolExecutor(max_workers=jobs) as pool:
-            futures = [pool.submit(work, task, index) for task in tasks for index in range(1, count + 1)]
-            for future in as_completed(futures):
-                results.append(future.result())
+        results, errors, cancelled = run_trials(work, [(task, index) for task in tasks for index in range(1, count + 1)], jobs)
+        if errors:
+            # 基础设施异常：未开始的 trial 已取消，避免继续消耗模型费用；已完成的结果原样保留。
+            summary = {"run_id": run_id, "status": "failed", "scorer_version": scorer_version(),
+                       "framework_selftest": scenario is not None, "errors": errors, "cancelled_trials": cancelled,
+                       "trial_statuses": dict(Counter(r["status"] for r in results)),
+                       "trials": sorted(results, key=lambda r: (r["task"], r["trial"]))}
+            write_json(run / "summary.json", summary)
+            raise RuntimeError(f"{len(errors)} 个 trial 出现基础设施异常，已取消 {len(cancelled)} 个未开始的 trial：{errors[0]['error']}")
         for task in tasks:
             validate_task(task)
         if (tree_hash(GENERATOR) != manifest["generator_sha256"]
@@ -90,13 +114,11 @@ def execute(config, config_snapshot, tasks, count, jobs, run_id, scenario=None, 
         manifest["status"] = "incomplete" if missing else "completed"
         summary["status"] = manifest["status"]
         write_json(run / "summary.json", summary)
-    except Exception as error:
-        manifest.update(status="failed", error=str(error))
+    except BaseException as error:
         audit.event(kind="run_error", error=str(error))
+        finish(run, manifest, "failed", error=str(error))
         raise
-    finally:
-        manifest["finished_at"] = now()
-        write_json(run / "run.json", manifest)
+    finish(run, manifest, manifest["status"])
     return run, summary
 
 
@@ -115,7 +137,7 @@ def main():
         config, snapshot = load_config(args.config)
         tasks = select_tasks(args.tasks, args.set)
         run, summary = execute(config, snapshot, tasks, args.trials, args.jobs, args.run_id)
-    except (ValueError, FileNotFoundError, FileExistsError) as error:
+    except (ValueError, FileNotFoundError, FileExistsError, RuntimeError) as error:
         parser.exit(2, str(error) + "\n")
     print(f"{summary['status']}；结果：{run / 'summary.json'}")
     return 0 if summary["status"] == "completed" else 1

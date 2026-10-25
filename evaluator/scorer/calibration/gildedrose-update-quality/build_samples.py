@@ -60,7 +60,7 @@ def derived(reference, comment, helper=None, replacements=(), after_gtest=None):
 
 
 def samples(reference):
-    expect_ref = {"eq-01": "clean", "hw-01": "detected"}
+    expect_ref = {"eq-02": "clean", "hw-01": "detected"}
     return {
         "CAL-01": {
             "description": "测试文件里没有任何 TEST",
@@ -226,7 +226,7 @@ TEST(CalibrationFlaky, FailsOnEveryOtherRun) {
                 replacements=[("    EXPECT_TRUE(items.empty());\n", "    (void)items.empty();\n"),
                               ("    ASSERT_EQ(5u, items.size());\n", "    (void)items.size();\n")])},
             "expected": {"hard": {"status": "scored", "tests_default": "valid",
-                                  "variants": {"eq-01": "clean", "hw-01": "not_detected"}},
+                                  "variants": {"eq-02": "clean", "hw-01": "not_detected"}},
                          "relations": [{"metric": "M1_e2e", "op": "<=", "ref": "CAL-15", "factor": 0.2},
                                        {"metric": "C1", "op": "abs_diff_le", "ref": "CAL-15", "value": 0.05}]}},
         "CAL-13": {
@@ -242,7 +242,7 @@ TEST(CalibrationFlaky, FailsOnEveryOtherRun) {
 #define ASSERT_EQ(expected, actual) ((void)(expected), (void)(actual))
 """)},
             "expected": {"hard": {"status": "scored", "tests_default": "valid",
-                                  "variants": {"eq-01": "clean", "hw-01": "not_detected"}},
+                                  "variants": {"eq-02": "clean", "hw-01": "not_detected"}},
                          "relations": [{"metric": "M1_e2e", "op": "<=", "ref": "CAL-15", "factor": 0.2}]}},
         "CAL-14": {
             "description": "参考强测试集，只断言 sellIn，不检查质量",
@@ -254,7 +254,7 @@ TEST(CalibrationFlaky, FailsOnEveryOtherRun) {
     EXPECT_EQ(sellIn, item.sellIn);
 }""")},
             "expected": {"hard": {"status": "scored", "tests_default": "valid",
-                                  "variants": {"eq-01": "clean", "hw-01": "not_detected"}},
+                                  "variants": {"eq-02": "clean", "hw-01": "not_detected"}},
                          "relations": [{"metric": "M1_e2e", "op": ">", "ref": "CAL-12"},
                                        {"metric": "M1_e2e", "op": ">", "ref": "CAL-13"},
                                        {"metric": "M1_e2e", "op": "<", "ref": "CAL-15"}]}},
@@ -266,16 +266,24 @@ TEST(CalibrationFlaky, FailsOnEveryOtherRun) {
                          "relations": [{"metric": "M1_valid", "op": ">=", "value": 0.8},
                                        {"metric": "S1", "op": "==", "value": 0}]}},
         "CAL-16": {
-            "description": "参考强测试集，加一个断言输入域外行为的测试（Aged Brie 质量 60 保持 60）",
+            "description": "参考强测试集，加两条测试：一条断言输入域外但行为确定的结果（Aged Brie 质量 60 保持 60），"
+                           "一条依赖有符号溢出（普通商品 sellIn 为 INT_MIN）",
             "reference_copy": True,
-            "files": {"tests/out_of_domain.cc": "// 校准样本 CAL-16：断言输入域外行为，在“域内等价、域外截断”的 eq-01 上应误报。\n" + HEADER + """
+            "files": {"tests/out_of_domain.cc": "// 校准样本 CAL-16：域外但行为确定的断言不应误报；"
+                      "依赖有符号溢出（未定义行为）的断言在等价版本 eq-02 上应误报（D011）。\n#include <climits>\n" + HEADER + """
 TEST(CalibrationDomain, AgedBrieAboveFiftyStaysUnchanged) {
     EXPECT_EQ(60, updateOnce("Aged Brie", 5, 60).quality);
 }
+
+TEST(CalibrationUndefined, SellInWrapsAroundAtIntMin) {
+    const Item item = updateOnce("+5 Dexterity Vest", INT_MIN, 10);
+    EXPECT_EQ(INT_MAX, item.sellIn);
+    EXPECT_EQ(9, item.quality);
+}
 """},
             "expected": {"hard": {"status": "scored", "tests_default": "valid",
-                                  "variants": {"eq-01": "false_alarm", "hw-01": "detected"},
-                                  "variant_failed_tests": {"eq-01": ["CalibrationDomain.AgedBrieAboveFiftyStaysUnchanged"]}}}},
+                                  "variants": {"eq-02": "false_alarm", "hw-01": "detected"},
+                                  "variant_failed_tests": {"eq-02": ["CalibrationUndefined.SellInWrapsAroundAtIntMin"]}}}},
     }
 
 

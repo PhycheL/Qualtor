@@ -6,7 +6,7 @@
     "status": "scored",
     "tests_default": "valid",
     "variants": {
-      "eq-01": "clean",
+      "eq-02": "clean",
       "hw-01": "detected"
     },
     "tests": {

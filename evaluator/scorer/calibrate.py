@@ -21,6 +21,7 @@ from common import (CALIBRATION, CALIBRATION_STATUS, REPO, RUNS, check_run_id, d
                     hidden_path, load_baseline, load_task, now, read_json, samples_sha256, scorer_code_sha256,
                     scorer_version, sha256_file, task_sha256, write_json)
 import judge  # noqa: E402
+from runs import finish, new_manifest, write_manifest  # noqa: E402
 import pipeline  # noqa: E402
 
 NEEDS = {"M1_e2e": "mull", "M1_valid": "mull", "C1": "coverage", "C2": "coverage", "C3": "coverage"}
@@ -186,12 +187,23 @@ def main():
     check_run_id(args.run_id)
     if args.rounds < 2:
         parser.error("至少评分 2 次，才能检查重复评分一致")
-    from docker_runner import DockerExecutor
     run_dir, evidence = RUNS / args.run_id, RUNS / args.run_id / "evidence"
     if run_dir.exists() or evidence.exists():
         parser.error("run-id 已使用；请使用新目录保留历史证据")
     evidence.mkdir(parents=True)
-    write_json(run_dir / "run.json", {"kind": "calibration", "run_id": args.run_id, "status": "running"})
+    manifest = new_manifest(args.run_id, "calibration", task=args.task, partial=bool(args.samples))
+    write_manifest(run_dir, manifest)
+    try:
+        code, passed = run_calibration(args, run_dir, evidence)
+    except BaseException as error:
+        finish(run_dir, manifest, "failed", error=str(error))
+        raise
+    finish(run_dir, manifest, "completed", passed=passed)
+    return code
+
+
+def run_calibration(args, run_dir, evidence):
+    from docker_runner import DockerExecutor
     task = load_task(args.task)
     if not load_baseline(task):
         raise SystemExit("题目缺少变异分母 hidden/mutation_baseline.json，先运行 prepare_task.py baseline")
@@ -222,7 +234,6 @@ def main():
                   finished_at=now())
     write_json(run_dir / "calibration_report.json", report)
     (run_dir / "calibration_report.md").write_text(markdown(report))
-    write_json(run_dir / "run.json", {"kind": "calibration", "run_id": args.run_id, "status": "passed" if report["passed"] else "failed", "finished_at": report["finished_at"]})
     if not selected:
         for name in ("calibration_report.json", "calibration_report.md"):
             shutil.copy2(run_dir / name, CALIBRATION_STATUS.parent / name)
@@ -236,7 +247,7 @@ def main():
                                         "finished_at": report["finished_at"]})
     print(markdown(report))
     print(f"报告：{run_dir / 'calibration_report.md'}")
-    return 0 if report["passed"] else 1
+    return (0 if report["passed"] else 1), bool(report["passed"])
 
 
 if __name__ == "__main__":

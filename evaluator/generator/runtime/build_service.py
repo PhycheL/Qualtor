@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 import shutil
+import signal
 import socketserver
 import threading
 import time
@@ -15,6 +16,39 @@ import gtest_results
 RECORD = Path("/private/record")
 WORKSPACE = Path("/workspace")
 TEST_UID = 65534
+FEEDBACK_LIMIT = 8000
+
+
+def kill_uid(uid, proc=Path("/proc")):
+    """结束指定 UID 的全部进程。生成的测试可能留下脱离进程组的后台进程，每次运行后统一清理。"""
+    killed = []
+    for entry in proc.iterdir():
+        if not entry.name.isdigit():
+            continue
+        try:
+            if entry.stat().st_uid != uid:
+                continue
+            os.kill(int(entry.name), signal.SIGKILL)
+            killed.append(int(entry.name))
+        except (FileNotFoundError, ProcessLookupError, PermissionError):
+            continue
+    return killed
+
+
+def feedback_text(outcomes, details, limit=FEEDBACK_LIMIT):
+    """先给出每个测试的通过/失败汇总，再附失败详情；截断只发生在详情部分。"""
+    failed = [name for name, outcome in outcomes.items() if outcome["outcome"] != "passed"]
+    head = f"测试结果：共 {len(outcomes)} 个，通过 {len(outcomes) - len(failed)} 个，未通过 {len(failed)} 个。\n"
+    if failed:
+        head += "未通过的测试（其余全部通过）：\n" + "".join(f"- {name}: {outcomes[name]['outcome']}\n" for name in failed)
+    else:
+        head += "全部通过。\n"
+    body = "".join(f"\n--- {name}: {outcomes[name]['outcome']}\n{details[name]}" for name in failed)
+    text = head + ("\n失败详情：" + body if body else "")
+    if len(text) > limit:
+        marker = "\n……（输出过长，已截断）"
+        text = text[:max(0, limit - len(marker))] + marker
+    return text
 
 
 def write_json(path, value):
@@ -47,6 +81,9 @@ class BuildService:
         self.task = task
         self.calls = 0
         self.first_at = None
+        # 看门狗只在没有编译任务时计时；编译与测试由各自的阶段超时约束。
+        self.busy = False
+        self.last_activity = time.monotonic()
         self.lock = threading.Lock()
         self.audit = Audit(RECORD / "logs/orchestrator")
         self.env = {"PATH": os.environ["PATH"], "HOME": "/tmp/test-home", "CMAKE_PREFIX_PATH": "/opt/googletest",
@@ -66,27 +103,35 @@ class BuildService:
                 self.audit.event(kind="budget_denied", calls=self.calls, request=data)
                 return {"text": "修复预算已用完。请结束任务；不能继续编译验证。剩余修复轮次：0。",
                         "details": {"budget_exhausted": True, "remaining_repair_rounds": 0}}
-            self.calls += 1
-            attempt = RECORD / "attempts" / f"attempt-{self.calls}"
-            attempt.mkdir(parents=True)
-            started = time.time()
-            self.audit.event(kind="build_start", call=self.calls, request=data, timestamp=started)
-            files = freeze(WORKSPACE / "tests", attempt / "product")
-            if self.calls == 1:
-                self.first_at = started
-                shutil.copytree(attempt / "product", RECORD / "first")
-            write_json(RECORD / "build-state.json", {"calls": self.calls, "first_at": self.first_at,
-                                                     "repair_rounds": max(0, self.calls - 1)})
-            audit = Audit(attempt / "logs")
-            result = self.build(attempt, files, audit)
-            remaining = limit - max(0, self.calls - 1)
-            result["remaining_repair_rounds"] = remaining
-            result["call"] = self.calls
-            write_json(attempt / "result.json", result)
-            self.audit.event(kind="build_end", call=self.calls, status=result["status"], remaining=remaining)
-            # 完整原始输出写审计日志；只将前 8000 字符反馈给 Agent。
-            feedback = result.pop("feedback")[:8000]
-            return {"text": feedback + f"\n剩余修复轮次：{remaining}（首次编译不计修复）。", "details": result}
+            self.busy = True
+            try:
+                return self._build_call(data, limit)
+            finally:
+                self.busy = False
+                self.last_activity = time.monotonic()
+
+    def _build_call(self, data, limit):
+        self.calls += 1
+        attempt = RECORD / "attempts" / f"attempt-{self.calls}"
+        attempt.mkdir(parents=True)
+        started = time.time()
+        self.audit.event(kind="build_start", call=self.calls, request=data, timestamp=started)
+        files = freeze(WORKSPACE / "tests", attempt / "product")
+        if self.calls == 1:
+            self.first_at = started
+            shutil.copytree(attempt / "product", RECORD / "first")
+        write_json(RECORD / "build-state.json", {"calls": self.calls, "first_at": self.first_at,
+                                                 "repair_rounds": max(0, self.calls - 1)})
+        audit = Audit(attempt / "logs")
+        result = self.build(attempt, files, audit)
+        remaining = limit - max(0, self.calls - 1)
+        result["remaining_repair_rounds"] = remaining
+        result["call"] = self.calls
+        write_json(attempt / "result.json", result)
+        self.audit.event(kind="build_end", call=self.calls, status=result["status"], remaining=remaining)
+        # 完整原始输出写审计日志；测试结果反馈已把通过/失败汇总放在最前，这里统一截到 8000 字符。
+        feedback = result.pop("feedback")[:FEEDBACK_LIMIT]
+        return {"text": feedback + f"\n剩余修复轮次：{remaining}（首次编译不计修复）。", "details": result}
 
     def build(self, attempt, files, audit):
         sources = [str(attempt / "product" / rel) for rel in files if rel.endswith((".cc", ".cpp", ".cxx"))]
@@ -108,7 +153,12 @@ class BuildService:
                    "-DQUALTOR_TEST_SOURCES=" + ";".join(sources)]
         def run(label, args, timeout):
             env = dict(self.env, TMPDIR=str(work), HOME=str(work))
-            return audit.run(label, args, cwd=work, timeout=timeout, env=env, user=TEST_UID, group=TEST_UID)
+            try:
+                return audit.run(label, args, cwd=work, timeout=timeout, env=env, user=TEST_UID, group=TEST_UID)
+            finally:
+                leftover = kill_uid(TEST_UID)
+                if leftover:
+                    audit.event(kind="leftover_processes_killed", stage=label, pids=leftover)
         configured = run("configure", command, 300)
         if configured["returncode"]:
             return {"status": "build_failed", "feedback": configured["stdout"] + configured["stderr"]}
@@ -121,7 +171,7 @@ class BuildService:
         tests = gtest_results.parse_list(gtest_results.load_json(work / "list.json"))
         if listed["returncode"] or not tests:
             return {"status": "zero_tests" if tests == [] else "no_result", "feedback": "没有发现可执行测试。\n" + listed["stdout"] + listed["stderr"]}
-        outcomes, output = {}, []
+        outcomes, details = {}, {}
         # 每个测试仅执行一遍，按发现顺序逐个启动；单测超时精确采用 task 参数。
         for index, test in enumerate(tests):
             report = work / f"test-{index}.json"
@@ -132,12 +182,13 @@ class BuildService:
             if executed["returncode"] not in (0, 1):
                 outcome = {"outcome": "timed_out" if executed["timed_out"] else "crashed"}
             outcomes[test["name"]] = outcome
-            output.append(f"{test['name']}: {outcome['outcome']}\n" + executed["stdout"] + executed["stderr"])
+            details[test["name"]] = executed["stdout"] + executed["stderr"]
         for path in work.glob("*.json"):
             shutil.copy2(path, attempt / path.name)
         shutil.copy2(work / "build/compile_commands.json", attempt / "compile_commands.json")
         passed = bool(outcomes) and all(v["outcome"] == "passed" for v in outcomes.values())
-        return {"status": "passed" if passed else "tests_failed", "tests": outcomes, "feedback": "\n".join(output)}
+        return {"status": "passed" if passed else "tests_failed", "tests": outcomes,
+                "feedback": feedback_text(outcomes, details)}
 
 
 def serve(service):

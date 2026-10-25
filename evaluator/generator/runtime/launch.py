@@ -16,6 +16,28 @@ from audit import Audit, now
 from build_service import BuildService, RECORD, freeze, serve, write_json
 
 
+def copy_regular(source, destination):
+    """把 tmpfs 中的内容复制回宿主机记录目录；只复制普通文件和目录，不跟随链接、不复制特殊文件。"""
+    source, destination = Path(source), Path(destination)
+    destination.mkdir(parents=True, exist_ok=True)
+    for path in sorted(source.rglob("*")):
+        if path.is_symlink() or not (path.is_dir() or path.is_file()):
+            continue
+        target = destination / path.relative_to(source)
+        if path.is_dir():
+            target.mkdir(parents=True, exist_ok=True)
+        else:
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(path, target)
+
+
+def stalled_for(now_monotonic, last_event, service):
+    """距最近一次进展的秒数。编译与测试进行中不计时，它们由各自的阶段超时约束。"""
+    if service.busy:
+        return 0.0
+    return now_monotonic - max(last_event, service.last_activity)
+
+
 def main():
     config = json.loads(Path("/input/runtime.json").read_text())
     uid, gid = int(os.environ["QUALTOR_AGENT_UID"]), int(os.environ["QUALTOR_AGENT_GID"])
@@ -74,7 +96,9 @@ def main():
                         event = json.loads(line)
                     except ValueError:
                         continue
-                    last_event[0] = time.monotonic()
+                    # build_and_test 运行期间的进度心跳不代表 Agent 有进展，不刷新看门狗。
+                    if event.get("type") != "tool_execution_update":
+                        last_event[0] = time.monotonic()
                     if event.get("type") == "agent_settled":
                         state["settled"] = True
                     message = event.get("message") or {}
@@ -88,7 +112,7 @@ def main():
         thread.start()
     stalled = False
     while process.poll() is None:
-        if time.monotonic() - last_event[0] >= config["watchdog_seconds"]:
+        if stalled_for(time.monotonic(), last_event[0], service) >= config["watchdog_seconds"]:
             stalled = True
             audit.event(kind="watchdog", seconds=config["watchdog_seconds"])
             os.killpg(process.pid, signal.SIGKILL)
@@ -120,13 +144,14 @@ def main():
         audit.event(kind="pi_end", **result)
     # pi 会话有时含模型服务错误原文；保留结构，只替换实际凭证。
     for path in session_dir.rglob("*.jsonl"):
-        if secret:
+        if secret and path.is_file() and not path.is_symlink():
             path.write_text(redact(path.read_text()))
-        path.chmod(0o644)
-    for path in session_dir.rglob("*"):
-        if path.is_dir():
-            path.chmod(0o755)
-    (RECORD / "logs/sessions").chmod(0o755)
+    # Agent 可写目录是 tmpfs，结束后复制回 trial 记录供审计与成本抽取。
+    copy_regular(session_dir, RECORD / "logs/sessions")
+    copy_regular(state_dir, RECORD / "pi-state")
+    copy_regular(Path("/workspace/tests"), RECORD / "workspace/tests")
+    for path in [RECORD / "logs/sessions", *(RECORD / "logs/sessions").rglob("*")]:
+        path.chmod(0o755 if path.is_dir() else 0o644)
     return 0
 
 

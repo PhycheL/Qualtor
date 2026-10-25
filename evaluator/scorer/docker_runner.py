@@ -6,7 +6,7 @@ from pathlib import Path
 import sys
 import threading
 
-from common import REPO, SCORER, SCRIPTS, write_json
+from common import COMMON, REPO, SCORER, write_json
 
 sys.path.insert(0, str(SCORER.parent / "toolchains"))
 from toolchains import IMAGES  # noqa: E402  镜像标签只在 toolchains.py 维护一份
@@ -72,7 +72,7 @@ class DockerExecutor:
                                  "--user", f"{os.getuid()}:{os.getgid()}", "-e", "PYTHONDONTWRITEBYTECODE=1"]
         for key, value in sorted(env.items()):
             command += ["-e", f"{key}={value}"]
-        expected = {"/scorer": (SCORER, True), "/common": (SCRIPTS, True)}
+        expected = {"/scorer": (SCORER, True), "/common": (COMMON, True)}
         expected.update({"/" + n: (Path(h), ro) for n, (h, ro) in mounts.items()})
         expected["/out"] = (out_host, False)
         for target, (source, readonly) in sorted(expected.items()):
