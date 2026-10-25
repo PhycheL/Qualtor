@@ -301,7 +301,7 @@
       "passed": true
     },
     "CAL-16": {
-      "description": "参考强测试集，加一个断言输入域外行为的测试（Aged Brie 质量 60 保持 60）",
+      "description": "参考强测试集，加两条测试：一条断言输入域外但行为确定的结果（Aged Brie 质量 60 保持 60），一条依赖有符号溢出（普通商品 sellIn 为 INT_MIN）",
       "problems": [],
       "skipped": [],
       "status": "scored",
@@ -316,20 +316,20 @@
         "S2_max": null,
         "V3": 0.0,
         "M2": 1.0,
-        "F1": 0.05555555555555555
+        "F1": 0.05263157894736842
       },
       "passed": true
     }
   },
   "passed": true,
-  "run_id": "calibration-generator-20261024-01",
+  "run_id": "calibration-review-20261025-01",
   "task": "gildedrose-update-quality",
   "rounds": 2,
   "partial": false,
-  "scorer_version": "0.1.2",
-  "scorer_code_sha256": "057fc88d6d8464754f8b68ff0fea091ab34ea1195be885c51e93fbc79345e03f",
-  "samples_sha256": "7fdad8a775af4703f7acd757d4d832f50550cec889169d2156db367597836f3a",
-  "task_sha256": "860f4592ad70a8aff882a27ea50fd760c9662149a36c5a0fc04bf348288c9a16",
+  "scorer_version": "0.1.3",
+  "scorer_code_sha256": "8ef2f487a70e8ca292110efc1316d4aa0fd4cc1afc2ba7c9f28ff8d246f75bdd",
+  "samples_sha256": "eb256ce6fa3095bb1f03e7f8960ab353cf9e796c16d77bf613323dd2c0d59cfc",
+  "task_sha256": "92720d07eeeabc2108b7e7afcfe7554af76147176b3f3de552cd5d19baf24245",
   "images": {
     "gcc": {
       "tag": "qualtor-gcc:14.2.0-gtest1.12.1-cxx11",
@@ -342,5 +342,5 @@
       "platform": "linux/arm64"
     }
   },
-  "finished_at": "2026-10-24T09:17:30.759280+00:00"
+  "finished_at": "2026-10-25T03:24:51.622846+00:00"
 }

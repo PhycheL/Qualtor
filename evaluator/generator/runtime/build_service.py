@@ -44,11 +44,11 @@ def feedback_text(outcomes, details, limit=FEEDBACK_LIMIT):
     else:
         head += "全部通过。\n"
     body = "".join(f"\n--- {name}: {outcomes[name]['outcome']}\n{details[name]}" for name in failed)
-    text = head + ("\n失败详情：" + body if body else "")
-    if len(text) > limit:
+    body = "\n失败详情：" + body if body else ""
+    if len(head) + len(body) > limit:
         marker = "\n……（输出过长，已截断）"
-        text = text[:max(0, limit - len(marker))] + marker
-    return text
+        body = body[:max(0, limit - len(head) - len(marker))] + marker
+    return head + body
 
 
 def write_json(path, value):
@@ -129,8 +129,10 @@ class BuildService:
         result["call"] = self.calls
         write_json(attempt / "result.json", result)
         self.audit.event(kind="build_end", call=self.calls, status=result["status"], remaining=remaining)
-        # 完整原始输出写审计日志；测试结果反馈已把通过/失败汇总放在最前，这里统一截到 8000 字符。
-        feedback = result.pop("feedback")[:FEEDBACK_LIMIT]
+        # 测试反馈只截详情，完整名单可以超过限额；编译诊断仍按字符上限截断。
+        feedback = result.pop("feedback")
+        if "tests" not in result:
+            feedback = feedback[:FEEDBACK_LIMIT]
         return {"text": feedback + f"\n剩余修复轮次：{remaining}（首次编译不计修复）。", "details": result}
 
     def build(self, attempt, files, audit):

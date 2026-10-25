@@ -2,9 +2,10 @@
 """一条命令运行 pi 生成、修复、冻结、首次/最终评分及按集合汇总。"""
 import argparse
 from collections import Counter
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import CancelledError, ThreadPoolExecutor, as_completed
 from pathlib import Path
 import sys
+import threading
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
@@ -36,20 +37,49 @@ def select_tasks(names, task_set):
     return list(selected.values())
 
 
+def infrastructure_failure(result):
+    if result.get("status") == "agent_error":
+        return "生成基础设施错误，已耗尽重试"
+    phases = [phase for phase, score in result.get("scores", {}).items() if score["status"] == "infra_error"]
+    return f"评分基础设施错误，已耗尽重试：{', '.join(phases)}" if phases else None
+
+
 def run_trials(work, jobs_list, jobs):
-    """并行执行 trial。任一 trial 抛出异常后，取消所有尚未开始的 trial；正在运行的等其结束。"""
+    """并行执行 trial。异常或基础设施重试耗尽即取消未开始项；正在运行的等其结束（D012）。"""
     results, errors, cancelled = [], [], []
+    stopped = threading.Event()
+
+    def guarded_work(task, index):
+        # 在 worker 内关闸；不能等主线程读到异常后再取消，worker 此时可能已开始下一项。
+        if stopped.is_set():
+            raise CancelledError()
+        try:
+            result = work(task, index)
+            if infrastructure_failure(result):
+                stopped.set()
+            return result
+        except Exception:
+            stopped.set()
+            raise
+
     with ThreadPoolExecutor(max_workers=jobs) as pool:
-        futures = {pool.submit(work, task, index): (task["id"], index) for task, index in jobs_list}
+        futures = {pool.submit(guarded_work, task, index): (task["id"], index) for task, index in jobs_list}
         for future in as_completed(futures):
             label = futures[future]
             if future.cancelled():
                 cancelled.append({"task": label[0], "trial": label[1]})
                 continue
             try:
-                results.append(future.result())
+                result = future.result()
+                results.append(result)
+                failure = infrastructure_failure(result)
+                if failure:
+                    errors.append({"task": label[0], "trial": label[1], "error": failure})
+            except CancelledError:
+                cancelled.append({"task": label[0], "trial": label[1]})
             except Exception as error:
                 errors.append({"task": label[0], "trial": label[1], "error": f"{type(error).__name__}: {error}"})
+            if stopped.is_set():
                 for other in futures:
                     other.cancel()
     return results, errors, cancelled
@@ -110,15 +140,14 @@ def execute(config, config_snapshot, tasks, count, jobs, run_id, scenario=None, 
             {"tokens": {"input": 0, "output": 0, "cache_read": 0, "cache_write": 0},
              "seconds": 0, "model_calls": 0, "repair_rounds": 0, "usd": 0},
             [r["cost"]["final"] for r in results])
-        missing = [r for r in results if r["status"] == "agent_error" or any(s["status"] == "infra_error" for s in r["scores"].values())]
-        manifest["status"] = "incomplete" if missing else "completed"
-        summary["status"] = manifest["status"]
+        # D012：基础设施故障已在上面终止，此处仅处理完整执行的 run。
+        summary["status"] = "completed"
         write_json(run / "summary.json", summary)
     except BaseException as error:
         audit.event(kind="run_error", error=str(error))
         finish(run, manifest, "failed", error=str(error))
         raise
-    finish(run, manifest, manifest["status"])
+    finish(run, manifest, "completed")
     return run, summary
 
 
@@ -140,7 +169,7 @@ def main():
     except (ValueError, FileNotFoundError, FileExistsError, RuntimeError) as error:
         parser.exit(2, str(error) + "\n")
     print(f"{summary['status']}；结果：{run / 'summary.json'}")
-    return 0 if summary["status"] == "completed" else 1
+    return 0
 
 
 if __name__ == "__main__":

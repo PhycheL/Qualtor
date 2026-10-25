@@ -29,7 +29,7 @@ GCC、Clang 镜像本身就是评分执行环境。Python 负责调度，编译�
 
 - 当前入口是 [toolchains.py](evaluator/toolchains/toolchains.py)，负责构建镜像和冒烟验收。三套镜像已在 Linux ARM64 验证；AMD64 已配置，尚未实测。
 - 已完成的验收使用 9 个手写 GoogleTest 测试，覆盖测试发现与执行、gcov 和 Mull。
-- 评分器已实现（[evaluator/scorer/](evaluator/scorer/)，入口 `score.py`、`prepare_task.py`、`calibrate.py`、`aggregate.py`）；0.1.2 已在 Linux ARM64 Docker 中通过 16 个样本的完整校准，沿用 47 个变异的冻结分母，证据见[评分器运行说明](docs/评分器运行说明.md)。0.1.3（D011 用真等价的 eq-02 替换 eq-01、重做 CAL-16，另含补评续跑与 run 记录统一）单元测试通过，**尚待 Docker 重新校准**；校准前生成入口会因校准失效拒绝运行。生成入口 [run.py](evaluator/generator/run.py) 已通过剧本失败路径与真实 pi K=5 验收：使用用户指定的 DeepSeek Flash / max，10 份首次、最终产物自动评分，见[生成入口运行说明](docs/生成入口运行说明.md)。
+- 评分器已实现（[evaluator/scorer/](evaluator/scorer/)，入口 `score.py`、`prepare_task.py`、`calibrate.py`、`aggregate.py`）；0.1.3 已在 Linux ARM64 Docker 中通过 16 个样本各两次的完整校准，沿用 47 个变异的冻结分母，D011 的 eq-02 差分与 CAL-16 均通过，证据见[评分器运行说明](docs/评分器运行说明.md)。生成入口 [run.py](evaluator/generator/run.py) 已通过真实 pi / DeepSeek Flash / max 的 K=5 验收；本轮另验证了 tmpfs 回收、进程清理、看门狗、故障取消及冻结后评分，见[生成入口运行说明](docs/生成入口运行说明.md)。
 - 仓库分为 `evaluator/`（框架）、`benchmark/`（题目）、`agents/`（被评测对象）和 `runs/`（执行证据）。路径由 `evaluator/common/paths.py` 统一定义；旧证据按 D010 处理。
 - 具体阶段和待办以 [项目推进流程](docs/项目推进流程.md) 为准；[评测规格](docs/评测规格.md) 仍是草案，区分已定决定、待定参数和未实现能力。
 

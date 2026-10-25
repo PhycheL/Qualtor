@@ -13,7 +13,7 @@ sys.path[:0] = [str(HERE), str(HERE.parent / "common")]
 from audit import Audit
 from runs import finish, new_manifest, write_manifest
 from common import (REPO, RUNS, calibration_status, check_run_id, default_run_id, load_task, now,
-                    read_json, scorer_version, sha256_file, validate_product, write_json)
+                    read_json, scorer_code_sha256, scorer_version, sha256_file, validate_product, write_json)
 import pipeline
 
 INFRA_RETRIES = 2
@@ -24,8 +24,11 @@ def finished_result(out):
     path = out / "result.json"
     if not path.is_file():
         return None
-    result = read_json(path)
-    return result if result.get("status") != "infra_error" else None
+    try:
+        result = read_json(path)
+    except (ValueError, UnicodeError):
+        return None  # 中断时可能留下空文件或半写 JSON，交给 set_aside 保留后重评。
+    return result if isinstance(result, dict) and result.get("status") in ("scored", "invalid") else None
 
 
 def set_aside(out):
@@ -53,6 +56,8 @@ def rescore_jobs(run, version):
     for path in sorted(run.rglob("result.json")):
         if {"infra-retries", "incomplete", "generation-attempts"} & set(path.parts):
             continue
+        if path.parent.parent.name == version and path.parent.parent.parent.name == "score":
+            continue  # 当前版本可能留下半写 JSON；只由 pending_jobs 判断能否复用。
         result = read_json(path)
         if result.get("mode") != "score" or not result.get("meta", {}).get("agent_version"):
             continue
@@ -79,12 +84,21 @@ def rescore_jobs(run, version):
     return list(jobs.values())
 
 
-def pending_jobs(jobs):
+def pending_jobs(jobs, calibrations=None, images=None):
     """跳过已有可用结果的产物；未完成的旧目录移开后重评。"""
     pending, skipped = [], []
+    code = scorer_code_sha256() if calibrations is not None else None
     for job in jobs:
-        out = job[4]
-        if finished_result(out):
+        task, product, _, _, out = job
+        done = finished_result(out)
+        if done and calibrations is not None:
+            # 参考结果、旧指纹结果必须重评；不能在校准通过后仍跳过旧的未校准结果。
+            done = (done.get("scorer") == {"version": scorer_version(), "code_sha256": code,
+                                          "calibration": calibrations[task["id"]]}
+                    and done.get("task", {}).get("task_json_sha256") == task["_sha256"]
+                    and done.get("product", {}).get("manifest_sha256") == sha256_file(product / "manifest.json")
+                    and done.get("images") == images)
+        if done:
             skipped.append(out)
             continue
         if out.exists():
@@ -111,16 +125,12 @@ def main():
     if not args.rescore and not (args.task and args.product):
         parser.error("需要 --task 和 --product，或者 --rescore")
     version = scorer_version()
+    manifest, write = None, None
     try:
         if args.rescore:
             run_id = check_run_id(args.rescore)
             run = RUNS / run_id
-            jobs, skipped = pending_jobs(rescore_jobs(run, version))
-            for out in skipped:
-                print(f"已有结果，跳过：{out.relative_to(run)}")
-            if not jobs:
-                print(f"当前版本 {version} 已全部评完：{run}")
-                return 0
+            jobs = rescore_jobs(run, version)
             session = default_run_id("rescore")
             evidence = run / "score" / version / session / "evidence"
             evidence.mkdir(parents=True, exist_ok=False)
@@ -152,6 +162,12 @@ def main():
                              "只做参考时加 --allow-uncalibrated")
         if uncalibrated:
             print(f"警告：校准状态为 {uncalibrated}，结果不能用于正式比较", file=sys.stderr)
+        if args.rescore:
+            jobs, skipped = pending_jobs(jobs, calibrations, executor.images)
+            manifest.update(jobs=len(jobs), skipped=[str(out.relative_to(run)) for out in skipped])
+            write(manifest)
+            for out in skipped:
+                print(f"已有结果，跳过：{out.relative_to(run)}")
         failed = False
         for task, product, cost, meta, out in jobs:
             result = score_with_retry(executor, task, product, out, meta, cost, calibrations[task["id"]])
@@ -159,8 +175,13 @@ def main():
             print(f"{out.relative_to(run)}: {result['status']} {result.get('invalid_reason') or ''}")
         manifest.update(status="incomplete" if failed else "completed", finished_at=now())
         write(manifest)
-    except (ValueError, FileNotFoundError, FileExistsError) as error:
-        parser.exit(2, str(error) + "\n")
+    except BaseException as error:
+        if manifest is not None and write is not None:
+            manifest.update(status="failed", error=f"{type(error).__name__}: {error}", finished_at=now())
+            write(manifest)
+        if isinstance(error, (ValueError, FileNotFoundError, FileExistsError, RuntimeError)):
+            parser.exit(2, str(error) + "\n")
+        raise
     print(f"结果目录：{run}")
     return 1 if failed else 0
 

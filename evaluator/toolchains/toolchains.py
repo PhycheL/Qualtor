@@ -169,10 +169,13 @@ def main():
     write_manifest(run, manifest)
     summary = {"kind": "toolchain", "status": "running", "started_at": now(), "run_id": args.run_id, "images": {}, "checks": {}}
     crashed = False
+    interruption = None
     try:
         execute(args, evidence, summary)
-    except Exception as error:
+    except BaseException as error:
         crashed = True
+        if not isinstance(error, Exception):
+            interruption = error
         summary.update(status="failed", error=str(error))
         print(f"失败：{error}", file=sys.stderr)
     summary["finished_at"] = now()
@@ -182,6 +185,8 @@ def main():
     finish(run, manifest, "failed" if crashed else "completed", passed=summary["status"] in ("passed", "built"),
            result=summary["status"], **({"error": summary["error"]} if crashed else {}))
     print(f"状态：{summary['status']}；证据：{evidence}")
+    if interruption is not None:
+        raise interruption
     return 0 if summary["status"] in ("passed", "built") else 1
 
 

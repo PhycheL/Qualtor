@@ -45,7 +45,7 @@ class Audit:
         started = time.monotonic()
         stdout, stderr = [], []
         def drain(pipe, path, target, output):
-            with open(path, "w") as log:
+            with pipe, open(path, "w") as log:
                 for line in iter(pipe.readline, ""):
                     log.write(line)
                     log.flush()
@@ -79,13 +79,11 @@ class Audit:
                 os.killpg(process.pid, signal.SIGKILL)
             except (ProcessLookupError, PermissionError):
                 pass
+            drain_deadline = time.monotonic() + DRAIN_GRACE_SECONDS
             for thread in threads:
-                thread.join(timeout=DRAIN_GRACE_SECONDS)
+                thread.join(timeout=max(0, drain_deadline - time.monotonic()))
             # 脱离进程组的残留进程仍可能持有管道；放弃读取，记录输出不完整。
             output_incomplete = any(thread.is_alive() for thread in threads)
-            for thread, pipe in zip(threads, (process.stdout, process.stderr)):
-                if not thread.is_alive():
-                    pipe.close()
             returncode = process.returncode
         except OSError as error:
             returncode = 127

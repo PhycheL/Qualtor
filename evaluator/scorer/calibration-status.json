@@ -1,16 +1,16 @@
 {
-  "scorer_version": "0.1.2",
-  "scorer_code_sha256": "057fc88d6d8464754f8b68ff0fea091ab34ea1195be885c51e93fbc79345e03f",
-  "samples_sha256": "7fdad8a775af4703f7acd757d4d832f50550cec889169d2156db367597836f3a",
+  "scorer_version": "0.1.3",
+  "scorer_code_sha256": "8ef2f487a70e8ca292110efc1316d4aa0fd4cc1afc2ba7c9f28ff8d246f75bdd",
+  "samples_sha256": "eb256ce6fa3095bb1f03e7f8960ab353cf9e796c16d77bf613323dd2c0d59cfc",
   "tasks": {
-    "gildedrose-update-quality": "860f4592ad70a8aff882a27ea50fd760c9662149a36c5a0fc04bf348288c9a16"
+    "gildedrose-update-quality": "92720d07eeeabc2108b7e7afcfe7554af76147176b3f3de552cd5d19baf24245"
   },
   "images": {
     "gcc": "sha256:79baee0c5650bd87162cb1bcd7beed06cd6a0ac29785275f33b7671a5e3ad8cd",
     "clang": "sha256:3ffde674fdda2af8cacbb5867c554990163e3a36cca541dce4ad836dbf47ef01"
   },
-  "run_id": "calibration-generator-20261024-01",
+  "run_id": "calibration-review-20261025-01",
   "passed": true,
   "report": "evaluator/scorer/calibration_report.json",
-  "finished_at": "2026-10-24T09:17:30.759280+00:00"
+  "finished_at": "2026-10-25T03:24:51.622846+00:00"
 }
