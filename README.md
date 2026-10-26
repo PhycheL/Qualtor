@@ -93,16 +93,16 @@ Qualtor/
 
 - **使用生成产品**：阅读 [产品 README](agents/README.md)，用 `agents/setup.py` 安装，在 `agents/.env` 配置连接，再通过 `agents/run.py` 提交公开任务。
 - **运行批量实验**：阅读 [生成入口运行说明](docs/生成入口运行说明.md)，使用 `evaluator/run.py`。评测还需要 Clang/Mull 镜像及通过校准的 assessment。
-- **评测已有测试或补评旧实验**：阅读 [评测运行说明](docs/评分器运行说明.md)，使用 `evaluator/assessment/evaluate.py`；汇总与比较使用同目录的 `aggregate.py`。
-- **了解生成工具**：阅读 [产品接口与运行边界](agents/docs/接口与运行边界.md)，核对工具限制、编译反馈和生成状态；工具注册位于 `agents/generator/runtime/extension.ts`。
+- **评测已有测试或补评旧实验**：阅读 [评测运行说明](docs/评测运行说明.md)，使用 `evaluator/assessment/evaluate.py`；汇总与比较使用同目录的 `aggregate.py`。
+- **了解生成工具**：阅读 [产品接口与运行边界](docs/接口与运行边界.md)，核对工具限制、编译反馈和生成状态；工具注册位于 `agents/generator/runtime/extension.ts`。
 - **了解评测原理**：阅读 [评测模块与校准样本设计](docs/评测模块与校准样本设计.md)和 [评分算法](docs/评分算法.md)。
 
 ## 当前实现与验证范围
 
 当前已接入 C++11 + GoogleTest，支持自动生成、预算内修复、保存首次/最终测试快照、独立评测和按版本补评。评测模块 **0.1.5** 已完成 GildedRose 的 **16 个样本各两次校准**，沿用 47 个冻结变异，判定与指标同 0.1.4 一致，见 [校准报告](evaluator/assessment/calibration_report.md)。
 
-宿主机 pi 的真实 DeepSeek Flash / max 五次 trial 已完成，10 份首次/最终产物均完成评测；独立交付、自动修复、失败处理和改名后的闭环验证也已完成。各次验收的范围和原始证据见 [生成运行说明](docs/生成入口运行说明.md)与 [评测运行说明](docs/评分器运行说明.md)。
+宿主机 pi 的真实 DeepSeek Flash / max 五次 trial 已完成，10 份首次/最终产物均完成评测；独立交付、自动修复、失败处理和改名后的闭环验证也已完成。各次验收的范围和原始证据见 [生成运行说明](docs/生成入口运行说明.md)与 [评测运行说明](docs/评测运行说明.md)。
 
-实际验证环境为 macOS ARM64 宿主机与 Linux ARM64 Docker；AMD64 已配置，尚未实测。当前只有一道公开开发题，尚无验收题和真实缺陷题，增量覆盖与人类基线也未接入。后续工作以 [项目推进流程](docs/项目推进流程.md)为准。
+实际验证环境为 macOS ARM64 宿主机与 Linux ARM64 Docker；AMD64 已配置，尚未实测。当前只有一道公开开发题，尚无验收题和真实缺陷题，增量覆盖与人类基线也未接入。后续工作以 [评测规格第 7 节](docs/评测规格.md#7-后续工作与待定事项)为准。
 
-生成 Agent 的读写限制由工具白名单和路径检查实现，C++ 编译执行使用禁网、资源受限的 Docker；宿主机 pi 的限制不构成操作系统沙箱。产品与评测各自的具体保证和限制，见 [产品接口与边界](agents/docs/接口与运行边界.md)和 [评测设计](docs/评测模块与校准样本设计.md)。
+生成 Agent 的读写限制由工具白名单和路径检查实现，C++ 编译执行使用禁网、资源受限的 Docker；宿主机 pi 的限制不构成操作系统沙箱。产品与评测各自的具体保证和限制，见 [产品接口与边界](docs/接口与运行边界.md)和 [评测设计](docs/评测模块与校准样本设计.md)。

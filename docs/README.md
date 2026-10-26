@@ -1,39 +1,21 @@
 # Qualtor 文档索引
 
-项目目标是生成 C++ 单元测试并独立评价质量与成本。按 D013，`agents/` 是可独立交付产品：pi 在宿主机运行，生成测试在 Docker 编译并反馈；`evaluator/` 负责批量实验和评分。测试评测模块 0.1.5 已通过 GildedRose 的 16 个样本各两次 Linux ARM64 校准，沿用 47 个冻结变异。当前命令和本轮证据见运行说明。
+从 [根 README](../README.md)了解整体流程、主要目录和评测指标，再按需要阅读下表。当前实现与验证范围分别由设计、运行说明维护；历史记录不作为当前待办。
 
-先看规划和运行说明，需要核对结果时再看报告与原始证据。
-
-| 想了解什么 | 文档 |
+| 用途 | 文档 |
 |---|---|
-| 当前生成与评测架构、交付边界、主要目录、评测指标主次、使用入口和验证范围 | [根目录 README](../README.md) |
-| 单独交付 agents/：安装、模型连接配置、公开任务与生成命令 | [产品 README](../agents/README.md) |
-| 产品 JSON/CLI 契约、工具调用、编译前保存测试快照、Docker 反馈与结束状态 | [产品接口与运行边界](../agents/docs/接口与运行边界.md) |
-| 生成产品、测试快照、实验编排、测试评测、判定与指标计算等名称的准确含义 | [项目术语](GLOSSARY.md) |
-| 整件事分几步做、每一步的产出和过关标准、现在在哪一步 | [项目推进流程](项目推进流程.md) |
-| 测评内容、方法、指标和总体测评流程（v0.4 草案） | [评测规格](评测规格.md) |
-| 每个指标怎么计数、怎样汇总、两个版本怎么比较并下结论（v0.2，已实现） | [评分算法](评分算法.md) |
-| 评测执行细节、校准样本和期望判定（已通过 ARM64 容器校准） | [评测实现与校准样本](评测模块与校准样本设计.md) |
-| 怎么标定变异分母、校准评测模块、评测测试快照、汇总比较；Docker 验证证据与修复记录 | [评测运行说明](评分器运行说明.md) |
-| 宿主机 pi、Docker 编译反馈、产品与评测职责，以及原设计记录 | [生成入口与受限工作区设计](生成入口与受限工作区设计.md) |
-| 一条命令运行 pi、模型与 `.env` 配置、受限工作区、取消清理、日志与成本、补评、剧本验收和审计修复证据 | [生成入口运行说明](生成入口运行说明.md) |
-| 已定决定，包括故障取消（D012）、独立产品交付（D013）、assessment 命名与历史兼容（D014） | [决策记录](决策记录.md) |
-| 每次研发做了什么、遇到的问题、验证结果（按日期） | [研发日志](研发日志.md) |
-| 评测怎么设计：测什么、标准答案从哪来、尺子校准、指标与统计、外部验证 | [评测与改进建议](大模型生成C++单元测试的评测与改进建议.md) |
-| Agent 应遵循的目标、技术路线与工作规则 | [AGENTS.md](../AGENTS.md) · [执行细则](项目协作指令.md) |
-| C++11 的固定版本 GCC/gcov/GoogleTest 与 Clang/Mull Docker 工具链 | [C++11 固定工具链](C++11固定工具链.md) |
-| 当前 Docker 工具链怎么运行、目录分别做什么、旧流程的清理范围 | [实验运行说明](实验运行说明.md) |
-| 上游业务要求和授权 | [需求说明](../benchmark/gildedrose-update-quality/source/GildedRoseRequirements.md) · [许可证](../benchmark/gildedrose-update-quality/source/license.txt) |
+| 独立使用生成产品：安装、连接配置、公开任务、输出与结束状态 | [产品 README](../agents/README.md) |
+| 产品实现契约：工具调用、测试快照、Docker 反馈和隔离边界 | [接口与运行边界](接口与运行边界.md) |
+| 批量生成与独立评测：配置、trial、取消、成本、框架验收及证据 | [生成入口运行说明](生成入口运行说明.md) |
+| 评测对象、术语、方法、指标、实现状态与后续工作 | [评测规格](评测规格.md) |
+| 状态判定、指标公式、汇总与版本比较 | [评分算法](评分算法.md) |
+| assessment 的结构、阶段执行、题目包与校准样本 | [评测模块与校准样本设计](评测模块与校准样本设计.md) |
+| 变异分母标定、校准、单份评测、补评与汇总命令 | [评测运行说明](评测运行说明.md) |
+| GCC/gcov/GoogleTest 和 Clang/Mull 的固定版本、构建与验收 | [C++11 固定工具链](C++11固定工具链.md) |
+| 设计决定、理由及被后续决定替代的范围 | [决策记录](决策记录.md) |
+| 历次研发过程、失败与验证结果 | [研发日志](研发日志.md) |
+| 开发 Agent 的按任务阅读入口、实施规则和完成标准 | [AGENTS.md](../AGENTS.md) |
 
-## 原始证据
+校准[状态](../evaluator/assessment/calibration-status.json)和[报告](../evaluator/assessment/calibration_report.md)随评测模块入库；原始执行证据位于不入 Git 的 `runs/`，具体位置见两份运行说明。历史命令与日志保留执行时的名称和路径。
 
-- 所有执行写入 `runs/`，不入 Git。
-- 评测模块的[校准状态](../evaluator/assessment/calibration-status.json)与[报告](../evaluator/assessment/calibration_report.md)入库。
-- 0.1.1 的校准证据（`runs/scorer-docker-calibration-20261024-02/`）与分母证据（`runs/scorer-docker-prepare-20261024-01/`）已迁移；其余旧证据按 D010 删除。
-- [上游 cpp 说明](../benchmark/gildedrose-update-quality/source/cpp/README.md)随源码快照保存。
-
-## 文档维护
-
-项目规划和报告放在 `docs/`，随产品交付的说明放在 `agents/README.md`、`agents/docs/`，均在本索引登记。根 README 提供目录导览；`AGENTS.md` 维护协作入口，执行要求集中在[执行细则](项目协作指令.md)。
-
-文档中的历史命令和原始日志保留执行时的路径；当前阅读入口以本索引和文档链接为准。实验代码、源码快照、测试数据和构建产物不作为说明文档搬迁。
+上游[需求说明](../benchmark/gildedrose-update-quality/source/GildedRoseRequirements.md)、[许可证](../benchmark/gildedrose-update-quality/source/license.txt)、[C++ 说明](../benchmark/gildedrose-update-quality/source/cpp/README.md)和来源记录随源码保留；[替换版本说明](../benchmark/gildedrose-update-quality/hidden/variants/README.md)、[解析夹具来源](../evaluator/assessment/tests/fixtures/README.md)随数据保留。这些文件用于复现与追溯，不按普通知识文档清理。
