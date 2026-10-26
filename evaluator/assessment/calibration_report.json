@@ -322,13 +322,13 @@
     }
   },
   "passed": true,
-  "run_id": "calibration-host-split-20261026-01",
+  "run_id": "calibration-assessment-rename-20261026-02",
   "task": "gildedrose-update-quality",
   "rounds": 2,
   "partial": false,
-  "scorer_version": "0.1.4",
-  "scorer_code_sha256": "97dff33ce88250a77cc1cc3df169fb4d307263460fe820da81dce90c18b3339b",
-  "samples_sha256": "eb256ce6fa3095bb1f03e7f8960ab353cf9e796c16d77bf613323dd2c0d59cfc",
+  "scorer_version": "0.1.5",
+  "scorer_code_sha256": "4ca4b8edbd0712321e5bbfa490e9e859683ef129a3492146fb5b14eea56ed5eb",
+  "samples_sha256": "245c11f6aaf0d8d526d1f70eb1b7389129c5806737bbffaaff32ece83edc33ca",
   "task_sha256": "92720d07eeeabc2108b7e7afcfe7554af76147176b3f3de552cd5d19baf24245",
   "images": {
     "gcc": {
@@ -342,5 +342,5 @@
       "platform": "linux/arm64"
     }
   },
-  "finished_at": "2026-10-26T03:16:06.175055+00:00"
+  "finished_at": "2026-10-26T09:22:20.224149+00:00"
 }

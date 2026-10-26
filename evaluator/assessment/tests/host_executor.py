@@ -1,6 +1,6 @@
 """宿主机辅助检查用的执行器：直接在本机运行 container_steps.py，不用 Docker。
 
-只用于评分器自身的集成测试，不能产生正式评分：本机编译器不是固定版本，也没有 gcov 和 Mull，
+只用于评测模块自身的集成测试，不能产生正式评分：本机编译器不是固定版本，也没有 gcov 和 Mull，
 所以覆盖率（步骤 5）和变异测试（步骤 6）会跳过。需要以下环境变量：
 - QUALTOR_HOST_CMAKE、QUALTOR_HOST_NINJA：CMake 与 Ninja 可执行文件；
 - QUALTOR_HOST_GTEST：GoogleTest 1.12.1 的安装前缀；
@@ -12,7 +12,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-SCORER = Path(__file__).resolve().parents[1]
+ASSESSMENT = Path(__file__).resolve().parents[1]
 ENV_KEYS = ("QUALTOR_HOST_CMAKE", "QUALTOR_HOST_NINJA", "QUALTOR_HOST_GTEST")
 
 
@@ -29,7 +29,7 @@ class HostExecutor:
 
     @staticmethod
     def at(name, host_path):
-        return str(Path(host_path).resolve()) if name != "scorer" else str(SCORER)
+        return str(Path(host_path).resolve()) if name != "assessment" else str(ASSESSMENT)
 
     def tools(self, toolchain):
         return {"cmake": os.environ["QUALTOR_HOST_CMAKE"], "make_program": os.environ["QUALTOR_HOST_NINJA"],
@@ -39,7 +39,7 @@ class HostExecutor:
         out_host = Path(out_host)
         out_host.mkdir(parents=True, exist_ok=True)
         (out_host / "job.json").write_text(json.dumps(job, ensure_ascii=False, indent=2) + "\n")
-        completed = subprocess.run([sys.executable, "-B", str(SCORER / "container_steps.py"), "--job",
+        completed = subprocess.run([sys.executable, "-B", str(ASSESSMENT / "container_steps.py"), "--job",
                                     str(out_host / "job.json")], env=dict(os.environ, **env),
                                    capture_output=True, text=True, timeout=timeout)
         (out_host / "executor.stdout.log").write_text(completed.stdout)

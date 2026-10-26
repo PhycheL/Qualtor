@@ -1,0 +1,16 @@
+{
+  "scorer_version": "0.1.5",
+  "scorer_code_sha256": "4ca4b8edbd0712321e5bbfa490e9e859683ef129a3492146fb5b14eea56ed5eb",
+  "samples_sha256": "245c11f6aaf0d8d526d1f70eb1b7389129c5806737bbffaaff32ece83edc33ca",
+  "tasks": {
+    "gildedrose-update-quality": "92720d07eeeabc2108b7e7afcfe7554af76147176b3f3de552cd5d19baf24245"
+  },
+  "images": {
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
+  },
+  "run_id": "calibration-assessment-rename-20261026-02",
+  "passed": true,
+  "report": "evaluator/assessment/calibration_report.json",
+  "finished_at": "2026-10-26T09:22:20.224149+00:00"
+}

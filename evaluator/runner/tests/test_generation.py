@@ -13,7 +13,7 @@ import host
 from host import public_task
 import run
 import run as run_module
-import score
+import evaluate
 import aggregate
 import runs
 from common import freeze_product, load_task, sha256_file, write_json
@@ -58,6 +58,6 @@ class BoundariesTest(unittest.TestCase):
     def test_no_rescore_inputs_rejected(self):
         with tempfile.TemporaryDirectory() as tmp:
             with self.assertRaisesRegex(ValueError, "没有可补评"):
-                score.rescore_jobs(Path(tmp), "0.1.2")
+                evaluate.rescore_jobs(Path(tmp), "0.1.2")
 
 if __name__ == "__main__": unittest.main()

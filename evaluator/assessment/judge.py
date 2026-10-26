@@ -173,7 +173,7 @@ def m1(counts):
 # ---- 步骤 7：替换版本 ----
 
 def variant_outcome(variant, build_ok, outcomes, valid):
-    """docs/评分器与校准样本设计.md 第 5.7 节。返回 (outcome, failed_tests, infra_problem)。"""
+    """docs/评测模块与校准样本设计.md 第 5.7 节。返回 (outcome, failed_tests, infra_problem)。"""
     if not build_ok:
         if variant["expect"] == "fail":
             return "build_failed", [], None

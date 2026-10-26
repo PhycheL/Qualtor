@@ -13,7 +13,7 @@ import host
 from host import public_task
 import run
 import run as run_module
-import score
+import evaluate
 import aggregate
 import runs
 from common import freeze_product, load_task, sha256_file, write_json
@@ -52,7 +52,7 @@ class RescoreResumeTest(unittest.TestCase):
             write_json(infra / "result.json", {"status": "infra_error"})
             (partial / "gcc-build").mkdir(parents=True)
             jobs = [("task", "product", None, {}, out) for out in (done, infra, partial, fresh)]
-            pending, skipped = score.pending_jobs(jobs)
+            pending, skipped = evaluate.pending_jobs(jobs)
             self.assertEqual(skipped, [done])
             self.assertEqual([job[4] for job in pending], [infra, partial, fresh])
             self.assertFalse(infra.exists())
@@ -69,17 +69,17 @@ class RescoreResumeTest(unittest.TestCase):
             run = Path(tmp) / "eval-x"
             out = run / "trials/t/trial-1/score/0.1.3/final"
             job = ({"id": "t"}, Path(tmp) / "product", None, {}, out)
-            with patch.object(score, "RUNS", Path(tmp)), patch.object(score, "rescore_jobs", return_value=[job]), \
-                 patch.object(score, "calibration_status", return_value={"status": "stale"}), \
+            with patch.object(evaluate, "RUNS", Path(tmp)), patch.object(evaluate, "rescore_jobs", return_value=[job]), \
+                 patch.object(evaluate, "calibration_status", return_value={"status": "stale"}), \
                  patch("docker_runner.DockerExecutor") as docker, \
-                 patch.object(score.pipeline, "score_product") as scored, \
-                 patch.object(sys, "argv", ["score.py", "--rescore", "eval-x"]):
+                 patch.object(evaluate.pipeline, "assess_product") as scored, \
+                 patch.object(sys, "argv", ["evaluate.py", "--rescore", "eval-x"]):
                 docker.return_value.images = {}
                 with self.assertRaises(SystemExit) as caught:
-                    score.main()
+                    evaluate.main()
             self.assertEqual(caught.exception.code, 2)
             scored.assert_not_called()
-            record = json.loads(next((run / "score" / score.scorer_version()).glob("*/rescore.json")).read_text())
+            record = json.loads(next((run / "score" / evaluate.assessment_version()).glob("*/rescore.json")).read_text())
             self.assertEqual(record["status"], "failed")
 
 class RunManifestTest(unittest.TestCase):

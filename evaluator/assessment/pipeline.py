@@ -1,12 +1,12 @@
-"""宿主机侧评分流水线：对一份冻结产物依次执行步骤 1–8，写出 result.json。
+"""宿主机侧测试评测流程：对一份冻结产物依次执行步骤 1–8，写出 result.json。
 
-步骤与判定见 docs/评分器与校准样本设计.md 第 5 节、docs/评分算法.md 第 3–4 节。
+步骤与判定见 docs/评测模块与校准样本设计.md 第 5 节、docs/评分算法.md 第 3–4 节。
 """
 from pathlib import Path
 import traceback
 
-from common import (REPO, SCORER, load_baseline, mull_config_text, now, product_test_sources, read_json,
-                    scorer_code_sha256, scorer_version, sha256_file, sha256_text, source_root, validate_product,
+from common import (REPO, ASSESSMENT, load_baseline, mull_config_text, now, product_test_sources, read_json,
+                    assessment_code_sha256, assessment_version, sha256_file, sha256_text, source_root, validate_product,
                     variant_dir, write_json)
 import judge
 
@@ -14,7 +14,7 @@ TIMEOUT = {"build": 900, "run": 1800, "mull": 3600}
 
 
 class Infra(Exception):
-    """评分器、工具链或题目材料的问题：这次评分记为基础设施错误，修复后重评。"""
+    """评测模块、工具链或题目材料的问题：这次评分记为基础设施错误，修复后重评。"""
 
 
 def _rel(path, base):
@@ -24,7 +24,7 @@ def _rel(path, base):
         return str(path)
 
 
-class ProductScoring:
+class ProductAssessment:
     def __init__(self, executor, task, product, out_dir, meta, audit, cost_path=None, prep=False,
                  calibration=None):
         self.ex, self.task, self.audit, self.prep = executor, task, audit, prep
@@ -36,7 +36,8 @@ class ProductScoring:
         manifest = self.product / "manifest.json"
         self.result = {
             "schema": 1,
-            "scorer": {"version": scorer_version(), "code_sha256": scorer_code_sha256(),
+            # schema 1 保留旧字段名；历史结果与补评、汇总共用同一契约。
+            "scorer": {"version": assessment_version(), "code_sha256": assessment_code_sha256(),
                        "calibration": calibration or {"status": "not_checked"}},
             "task": {"id": task["id"], "set": task["set"], "task_json_sha256": task["_sha256"]},
             "product": {"path": _rel(self.product, REPO),
@@ -66,7 +67,7 @@ class ProductScoring:
 
     def build_job(self, mode, build_mount, target_sources):
         product = self.at("product", self.product)
-        return {"phase": "build", "mode": mode, "template_dir": f"{self.at('scorer', SCORER)}/cmake",
+        return {"phase": "build", "mode": mode, "template_dir": f"{self.at('assessment', ASSESSMENT)}/cmake",
                 "build_dir": build_mount, "target_sources": target_sources,
                 "include_dirs": [self.repo_path(rel) for rel in self.task["include_dirs"]] + [f"{product}/tests"],
                 "test_sources": [f"{product}/{rel}" for rel in product_test_sources(self.product)],
@@ -89,7 +90,7 @@ class ProductScoring:
     def run(self):
         self.out.mkdir(parents=True, exist_ok=False)
         try:
-            self._score()
+            self._assess()
         except Infra as error:
             self._finish(judge.INFRA_ERROR, None, infra=str(error))
         except Exception:
@@ -102,7 +103,7 @@ class ProductScoring:
     def _finish(self, status, reason, infra=None):
         self.result["status"], self.result["invalid_reason"], self.result["infra_detail"] = status, reason, infra
 
-    def _score(self):
+    def _assess(self):
         # 成本来自生成过程，即使产物无效也必须保留，不能被后面的提前返回跳过。
         if self.cost_path and self.cost_path.is_file():
             self.result["cost"] = read_json(self.cost_path)
@@ -150,7 +151,7 @@ class ProductScoring:
         self._finish(judge.SCORED, None)
 
     def _check_record(self, record):
-        """宿主机按原始记录重新判定一次，与容器内的判定不一致即视为评分器故障。"""
+        """宿主机按原始记录重新判定一次，与容器内的判定不一致即视为评测模块故障。"""
         discovery = record.get("discovery") or {}
         if not discovery.get("ok") or not discovery.get("tests"):
             return
@@ -238,5 +239,5 @@ class ProductScoring:
                 "failed_tests": failed, "label": label}
 
 
-def score_product(executor, task, product, out_dir, meta, audit, cost_path=None, prep=False, calibration=None):
-    return ProductScoring(executor, task, product, out_dir, meta, audit, cost_path, prep, calibration).run()
+def assess_product(executor, task, product, out_dir, meta, audit, cost_path=None, prep=False, calibration=None):
+    return ProductAssessment(executor, task, product, out_dir, meta, audit, cost_path, prep, calibration).run()

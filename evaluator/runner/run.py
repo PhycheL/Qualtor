@@ -15,8 +15,8 @@ from product_process import Cancellation
 from paths import AGENTS, BENCHMARK, GENERATOR, RUNS, REPO
 from audit import Audit
 from runs import finish, new_manifest, write_manifest
-from common import (calibration_status, check_run_id, default_run_id, load_task, now, scorer_code_sha256,
-                    scorer_version, sha256_file, task_sha256, validate_task, write_json)
+from common import (calibration_status, check_run_id, default_run_id, load_task, now, assessment_code_sha256,
+                    assessment_version, sha256_file, task_sha256, validate_task, write_json)
 from docker_runner import DockerExecutor
 import aggregate
 
@@ -100,15 +100,15 @@ def execute(config, config_snapshot, tasks, count, jobs, run_id, scenario=None, 
                                      "budget": t["budget"]} for t in tasks},
                 "pi_sha256": tree_hash(AGENTS / "pi"), "pi_runtime_sha256": tree_hash(AGENTS / "pi", runtime=True),
                 "generator_sha256": tree_hash(GENERATOR), "agent_product_sha256": tree_hash(AGENTS),
-                "scorer_version": scorer_version(),
-                "scorer_code_sha256": scorer_code_sha256()})
+                "scorer_version": assessment_version(),
+                "scorer_code_sha256": assessment_code_sha256()})
     write_manifest(run, manifest)
     try:
         executor = DockerExecutor(audit, run / "evidence", run_id)
         states = {t["id"]: calibration_status(executor.images, t) for t in tasks}
         manifest["calibration"] = states
         if any(s["status"] != "passed" for s in states.values()):
-            raise ValueError(f"评分器校准必须为 passed，当前：{states}；请先运行 calibrate.py")
+            raise ValueError(f"评测模块校准必须为 passed，当前：{states}；请先运行 calibrate.py")
         generator = GenerationExecutor(executor)
         manifest.update(images=executor.images, generation_runtime="host-pi")
         write_manifest(run, manifest)
@@ -128,7 +128,7 @@ def execute(config, config_snapshot, tasks, count, jobs, run_id, scenario=None, 
                 errors.append({"error": "用户取消评测", "signal": cancellation.signum})
         if errors:
             # 基础设施异常：未开始的 trial 已取消，避免继续消耗模型费用；已完成的结果原样保留。
-            summary = {"run_id": run_id, "status": "failed", "scorer_version": scorer_version(),
+            summary = {"run_id": run_id, "status": "failed", "scorer_version": assessment_version(),
                        "framework_selftest": scenario is not None, "errors": errors, "cancelled_trials": cancelled,
                        "trial_statuses": dict(Counter(r["status"] for r in results)),
                        "trials": sorted(results, key=lambda r: (r["task"], r["trial"]))}
@@ -140,11 +140,11 @@ def execute(config, config_snapshot, tasks, count, jobs, run_id, scenario=None, 
             validate_task(task)
         if (tree_hash(GENERATOR) != manifest["generator_sha256"]
                 or tree_hash(AGENTS) != manifest["agent_product_sha256"]
-                or scorer_code_sha256() != manifest["scorer_code_sha256"]
+                or assessment_code_sha256() != manifest["scorer_code_sha256"]
                 or tree_hash(AGENTS / "pi", runtime=True) != manifest["pi_runtime_sha256"]):
             raise ValueError("运行期间框架或 pi 文件发生变化，本轮不用于正式比较")
-        scores = aggregate.load_results([run], version=scorer_version())
-        summary = {"run_id": run_id, "scorer_version": scorer_version(), "framework_selftest": scenario is not None,
+        scores = aggregate.load_results([run], version=assessment_version())
+        summary = {"run_id": run_id, "scorer_version": assessment_version(), "framework_selftest": scenario is not None,
                    "trial_statuses": dict(Counter(r["status"] for r in results)), "trials": sorted(results, key=lambda r: (r["task"], r["trial"])),
                    "sets": {task_set: {phase: aggregate.summarize(scores, task_set, phase) for phase in ("first", "final")}
                             for task_set in sorted({t["set"] for t in tasks})}}

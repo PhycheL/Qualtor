@@ -1,11 +1,11 @@
-"""冻结普通文件及内容哈希。"""
+"""保存测试快照及内容哈希。"""
 import hashlib
 from pathlib import Path
 from common.audit import now
 from generator.support import write_json
 
 def freeze(source, destination):
-    """复制普通测试文件后立即冻结；绝不跟随链接、FIFO 或设备文件。"""
+    """复制普通测试文件、设为只读并记录哈希；绝不跟随链接、FIFO 或设备文件。"""
     source, destination = Path(source), Path(destination)
     (destination / "tests").mkdir(parents=True, exist_ok=False)
     files = {}

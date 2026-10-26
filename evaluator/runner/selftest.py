@@ -7,7 +7,7 @@ import sys
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 from host import GenerationExecutor, trial
-from paths import RUNS, REPO, SCORER, TOOLCHAINS
+from paths import RUNS, REPO, ASSESSMENT, TOOLCHAINS
 from audit import Audit
 from runs import finish, new_manifest, write_manifest
 from common import (calibration_status, check_run_id, default_run_id, load_task, read_json, sha256_file,
@@ -20,8 +20,8 @@ def hidden_mount_problems(directory, task):
     """读取生成容器 inspect 记录中的实际挂载来源，确认隐藏材料、校准样本和其他 run 都没有进入容器。
     挂载了这些路径的上级目录同样算违规。"""
     directory = Path(directory).resolve()
-    forbidden = [(task["_dir"] / "hidden").resolve(), (SCORER / "calibration").resolve(),
-                 (SCORER / "calibration-status.json").resolve()]
+    forbidden = [(task["_dir"] / "hidden").resolve(), (ASSESSMENT / "calibration").resolve(),
+                 (ASSESSMENT / "calibration-status.json").resolve()]
     sources = [Path(m["Source"]).resolve() for record in sorted(directory.rglob("container.json"))
                for m in read_json(record).get("Mounts", [])]
     if not sources:
@@ -49,7 +49,7 @@ def run_case(name, run, executor, generator, generation_only=False):
     else:
         calibration = calibration_status(executor.images, task)
         if calibration["status"] != "passed":
-            raise ValueError(f"完整自测要求评分器已校准：{calibration}")
+            raise ValueError(f"完整自测要求评测模块已校准：{calibration}")
         result = trial(executor, generator, task, config(), directory, 1, "framework-scripted", calibration,
                        scenario=plan, watchdog=8 if name == "generation_stalled" else 900)
     expected = name if name in ("budget_exhausted", "never_built", "generation_stalled") else "finished"

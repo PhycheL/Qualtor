@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""宿主机 pi 监督进程：事件记录、看门狗和冻结；C++ 由独立 Docker 服务执行。"""
+"""宿主机 pi 监督进程：事件记录、看门狗和结束时保存测试快照；C++ 由独立 Docker 服务执行。"""
 import json
 import os
 from pathlib import Path

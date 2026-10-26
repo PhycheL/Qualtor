@@ -2,8 +2,8 @@
 """题目准备：标定变异分母，并做准入检查。
 
 用法（在装有 Docker 和两个工具链镜像的机器上，从项目根目录执行）：
-    python3 evaluator/scorer/prepare_task.py baseline --task gildedrose-update-quality
-    python3 evaluator/scorer/prepare_task.py baseline --task gildedrose-update-quality --write
+    python3 evaluator/assessment/prepare_task.py baseline --task gildedrose-update-quality
+    python3 evaluator/assessment/prepare_task.py baseline --task gildedrose-update-quality --write
 
 做法：用参考强测试集和有界穷举探针各评分 --repeats 次（准备模式：记录 Mull 原始结果，不比对分母）。
 - 各次结果不一致的变异列为“不稳定”，从分母中剔除；
@@ -23,7 +23,7 @@ sys.path.insert(0, str(HERE.parent / "common"))
 from audit import Audit  # noqa: E402
 from runs import finish, new_manifest, write_manifest  # noqa: E402
 from common import (REPO, RUNS, check_run_id, default_run_id, freeze_product, hidden_path,  # noqa: E402
-                    load_task, mull_config_text, now, scorer_code_sha256, scorer_version, write_json)
+                    load_task, mull_config_text, now, assessment_code_sha256, assessment_version, write_json)
 import judge  # noqa: E402
 import pipeline  # noqa: E402
 
@@ -90,7 +90,7 @@ def build_baseline(task, runs, config_text, images, run_id):
     threshold = task["params"]["reference_min_m1"]
     return {
         "task": task["id"], "created_at": now(), "created_by_run": run_id,
-        "scorer_version": scorer_version(), "scorer_code_sha256": scorer_code_sha256(),
+        "scorer_version": assessment_version(), "scorer_code_sha256": assessment_code_sha256(),
         "images": {k: v["id"] for k, v in images.items()},
         "mull": {"config_sha256": runs["reference"][0]["mull_config_sha256"], "config": config_text},
         "mutants": mutants, "equivalent": equivalent, "unstable": unstable, "review_needed": review,
@@ -153,7 +153,7 @@ def run_prepare(args, run_dir, evidence, parser):
         for suite, product in products.items():
             print(f"准备模式评分：{suite} 第 {index} 次", flush=True)
             out = run_dir / "prep" / f"{suite}-{index}"
-            result = pipeline.score_product(executor, task, product, out, {"prep_suite": suite, "round": index},
+            result = pipeline.assess_product(executor, task, product, out, {"prep_suite": suite, "round": index},
                                             Audit(out.parent / f"{suite}-{index}-host"), prep=True,
                                             calibration={"status": "not_required_for_prep"})
             runs[suite].append(result)

@@ -2,7 +2,7 @@
 """重建 GildedRose 开发题的校准样本：写测试文件、期望结果、固定的假成本记录，并冻结 manifest。
 
 校准样本是评分器的验收标准。修改样本（包括参考强测试集变化后重建）要升评分器版本并重新校准。
-用法：python3 evaluator/scorer/calibration/gildedrose-update-quality/build_samples.py
+用法：python3 evaluator/assessment/calibration/gildedrose-update-quality/build_samples.py
 """
 import json
 from pathlib import Path

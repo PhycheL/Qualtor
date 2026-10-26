@@ -29,7 +29,7 @@ GCC、Clang 镜像本身就是评分执行环境。Python 负责调度，编译�
 - [agents/](agents/) 是独立交付产品，入口 [run.py](agents/run.py)，安装入口 [setup.py](agents/setup.py)。评测入口为 [evaluator/run.py](evaluator/run.py)，通过产品 CLI 调用生成，不导入其私有运行逻辑。职责见 D013。
 - [toolchains.py](evaluator/toolchains/toolchains.py) 构建和验收两套 C++ 镜像。Linux ARM64 已验证；AMD64 已配置，尚未实测。pi 不使用生成镜像，当前验证宿主机为 macOS ARM64 / Node 26.12.0。
 - 已完成的验收使用 9 个手写 GoogleTest 测试，覆盖测试发现与执行、gcov 和 Mull。
-- 评分器 [evaluator/scorer/](evaluator/scorer/) 的 0.1.4 已通过 16 个样本各两次 Linux ARM64 校准，沿用 47 个变异的冻结分母。宿主机 pi 的真实 DeepSeek Flash / max K=5 已完成，37 次模型调用，10 份产物均完成评分；独立交付、修复与故障路径也已通过，证据及范围见[生成入口运行说明](docs/生成入口运行说明.md)。
+- 测试评测模块 [evaluator/assessment/](evaluator/assessment/) 的 0.1.5 已通过 16 个样本各两次 Linux ARM64 校准，沿用 47 个变异的冻结分母。宿主机 pi 的真实 DeepSeek Flash / max K=5 已完成，37 次模型调用，10 份产物均完成评分；独立交付、修复与故障路径也已通过，证据及范围见[生成入口运行说明](docs/生成入口运行说明.md)。
 - `agents/` 自行定位产品路径，连接配置在 `agents/.env`；评测路径由 `evaluator/common/paths.py` 定义。保留既有 runs 和冻结产物，D010 的一次性历史清理不再重做。
 - 具体阶段和待办以 [项目推进流程](docs/项目推进流程.md) 为准；[评测规格](docs/评测规格.md) 仍是草案，区分已定决定、待定参数和未实现能力。
 
@@ -39,7 +39,7 @@ GCC、Clang 镜像本身就是评分执行环境。Python 负责调度，编译�
 |---|---|
 | 确定开发顺序、范围或完成标准 | [项目推进流程](docs/项目推进流程.md)、[决策记录](docs/决策记录.md) |
 | 修改镜像、编译、测试、覆盖率或 Mull | [实验运行说明](docs/实验运行说明.md)、[C++11 固定工具链](docs/C++11固定工具链.md)及对应实现 |
-| 实现生成、修复、评分，或比较 Agent/skill | [评测规格](docs/评测规格.md)、[生成入口与受限工作区设计](docs/生成入口与受限工作区设计.md)、[生成入口运行说明](docs/生成入口运行说明.md)、[决策记录](docs/决策记录.md)、[评分算法](docs/评分算法.md)、[评分器与校准样本设计](docs/评分器与校准样本设计.md)、[评分器运行说明](docs/评分器运行说明.md) |
+| 实现生成、修复、评分，或比较 Agent/skill | [评测规格](docs/评测规格.md)、[生成入口与受限工作区设计](docs/生成入口与受限工作区设计.md)、[生成入口运行说明](docs/生成入口运行说明.md)、[决策记录](docs/决策记录.md)、[测试评测模块设计](docs/测试评测模块设计.md)、[评分算法](docs/评分算法.md)、[评测实现与校准样本](docs/评测模块与校准样本设计.md)、[评分器运行说明](docs/评分器运行说明.md) |
 | 调查历史实验 | [研发日志](docs/研发日志.md)、迁移的 0.1.1 证据及 Git 历史 |
 
 ## 实施与完成

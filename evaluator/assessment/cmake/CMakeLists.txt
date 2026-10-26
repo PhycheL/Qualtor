@@ -9,7 +9,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 foreach(required QUALTOR_MODE QUALTOR_TARGET_SOURCES)
   if(NOT DEFINED ${required} OR "${${required}}" STREQUAL "")
-    message(FATAL_ERROR "${required} must be set by the scorer")
+    message(FATAL_ERROR "${required} must be set by the assessment module")
   endif()
 endforeach()
 

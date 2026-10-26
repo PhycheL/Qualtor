@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""生成产品公开入口：宿主机运行 pi，Docker 编译测试，输出冻结产物和生成成本。"""
+"""生成产品公开入口：宿主机运行 pi，Docker 编译测试，输出测试快照和生成成本。"""
 import argparse
 import json
 import math

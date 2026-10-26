@@ -13,7 +13,7 @@ import host
 from host import public_task
 import run
 import run as run_module
-import score
+import evaluate
 import aggregate
 import runs
 from common import freeze_product, load_task, sha256_file, write_json
@@ -84,8 +84,8 @@ class RescoreRecoveryTest(unittest.TestCase):
                 (product / "tests/a.cc").write_text("// frozen fixture\n")
                 freeze_product(product)
                 calibration = {"status": "passed", "run_id": "calibration-current"}
-                result = {"status": "scored", "scorer": {"version": score.scorer_version(),
-                          "code_sha256": score.scorer_code_sha256(), "calibration": calibration},
+                result = {"status": "scored", "scorer": {"version": evaluate.assessment_version(),
+                          "code_sha256": evaluate.assessment_code_sha256(), "calibration": calibration},
                           "task": {"task_json_sha256": task["_sha256"]}, "images": {},
                           "product": {"manifest_sha256": sha256_file(product / "manifest.json")}}
                 if mismatch == "calibration":
@@ -97,7 +97,7 @@ class RescoreRecoveryTest(unittest.TestCase):
                 elif mismatch == "images":
                     result["images"] = {"gcc": {"id": "old"}}
                 write_json(out / "result.json", result)
-                pending, skipped = score.pending_jobs([(task, product, None, {}, out)], {task["id"]: calibration}, {})
+                pending, skipped = evaluate.pending_jobs([(task, product, None, {}, out)], {task["id"]: calibration}, {})
                 self.assertEqual(len(pending), int(mismatch is not None))
                 self.assertEqual(len(skipped), int(mismatch is None))
 
@@ -116,8 +116,8 @@ class RescoreRecoveryTest(unittest.TestCase):
                        "manifest_sha256": sha256_file(product / "manifest.json")}})
             current.mkdir(parents=True)
             (current / "result.json").write_text('{"status":')
-            with patch.object(score, "REPO", root):
-                pending, skipped = score.pending_jobs(score.rescore_jobs(root, "0.1.3"))
+            with patch.object(evaluate, "REPO", root):
+                pending, skipped = evaluate.pending_jobs(evaluate.rescore_jobs(root, "0.1.3"))
             self.assertEqual(len(pending), 1)
             self.assertEqual(skipped, [])
             self.assertEqual((current.parent / "incomplete/final-1/result.json").read_text(), '{"status":')
@@ -127,12 +127,12 @@ class RescoreRecoveryTest(unittest.TestCase):
             with self.subTest(error=type(error).__name__), tempfile.TemporaryDirectory() as tmp:
                 root = Path(tmp)
                 job = ({"id": "t"}, root / "product", None, {}, root / "eval-x/trials/t/trial-1/score/0.1.3/final")
-                with patch.object(score, "RUNS", root), patch.object(score, "rescore_jobs", return_value=[job]), \
+                with patch.object(evaluate, "RUNS", root), patch.object(evaluate, "rescore_jobs", return_value=[job]), \
                      patch("docker_runner.DockerExecutor", side_effect=error), \
-                     patch.object(sys, "argv", ["score.py", "--rescore", "eval-x"]):
+                     patch.object(sys, "argv", ["evaluate.py", "--rescore", "eval-x"]):
                     with self.assertRaises(BaseException):
-                        score.main()
-                record = json.loads(next((root / "eval-x/score" / score.scorer_version()).glob("*/rescore.json")).read_text())
+                        evaluate.main()
+                record = json.loads(next((root / "eval-x/score" / evaluate.assessment_version()).glob("*/rescore.json")).read_text())
                 self.assertEqual(record["status"], "failed")
                 self.assertIn("finished_at", record)
 

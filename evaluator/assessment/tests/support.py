@@ -3,9 +3,9 @@ from pathlib import Path
 import sys
 
 TESTS = Path(__file__).resolve().parent
-SCORER = TESTS.parent
+ASSESSMENT = TESTS.parent
 FIXTURES = TESTS / "fixtures"
-for path in (SCORER, SCORER.parent / "common", TESTS):
+for path in (ASSESSMENT, ASSESSMENT.parent / "common", TESTS):
     if str(path) not in sys.path:
         sys.path.insert(0, str(path))
 

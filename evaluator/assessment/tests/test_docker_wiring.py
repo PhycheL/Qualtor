@@ -9,7 +9,7 @@ import shutil
 import tempfile
 import unittest
 
-from support import SCORER
+from support import ASSESSMENT
 import common
 import docker_runner
 import judge
@@ -74,7 +74,7 @@ class DockerExecutorTest(unittest.TestCase):
         mounts = [create[i + 1] for i, t in enumerate(create) if t == "--mount"]
         self.assertIn(f"type=bind,source={self.tmp},target=/repo,readonly", mounts)
         self.assertIn(f"type=bind,source={self.tmp / 'b'},target=/build", mounts)
-        self.assertIn(f"type=bind,source={SCORER},target=/scorer,readonly", mounts)
+        self.assertIn(f"type=bind,source={ASSESSMENT},target=/assessment,readonly", mounts)
         self.assertTrue(any(c[-2:] == ["--force", c[-1]] and "rm" in c for c in audit.commands))
         self.assertEqual(json.loads((self.tmp / "out" / "job.json").read_text()), {"phase": "build"})
 
@@ -142,7 +142,7 @@ class PipelineWiringTest(unittest.TestCase):
 
     def score(self, executor):
         from audit import Audit
-        return pipeline.score_product(executor, self.task, REFERENCE_PRODUCT, self.tmp / "out", {"unit": True},
+        return pipeline.assess_product(executor, self.task, REFERENCE_PRODUCT, self.tmp / "out", {"unit": True},
                                       Audit(self.tmp / "audit"), prep=True)
 
     def test_jobs_and_mounts(self):
@@ -157,7 +157,7 @@ class PipelineWiringTest(unittest.TestCase):
         self.assertEqual(build["target_sources"], ["/repo/cpp/src/GildedRose.cc"])
         self.assertEqual(build["test_sources"], ["/product/tests/reference_tests.cc"])
         self.assertEqual(build["include_dirs"], ["/repo/cpp/src", "/product/tests"])
-        self.assertEqual((build["build_dir"], build["template_dir"], build["out_dir"]), ("/build", "/scorer/cmake", "/out"))
+        self.assertEqual((build["build_dir"], build["template_dir"], build["out_dir"]), ("/build", "/assessment/cmake", "/out"))
         self.assertEqual(calls["clang-build"]["job"]["mode"], "mull")
         self.assertEqual(calls["clang-build"]["env"], {"MULL_CONFIG": "/config/mull.yml"})
         self.assertEqual(calls["mull"]["job"]["tests"], ["S.A", "S.B"])
@@ -212,7 +212,7 @@ class PipelineWiringTest(unittest.TestCase):
                 ("build_failed", BuildFailure([]), REFERENCE_PRODUCT),
                 ("zero_tests", ScriptedExecutor([]), REFERENCE_PRODUCT)):
             with self.subTest(reason=reason):
-                result = pipeline.score_product(executor, self.task, product, self.tmp / reason, {},
+                result = pipeline.assess_product(executor, self.task, product, self.tmp / reason, {},
                                                 Audit(self.tmp / "audit"), cost_path, prep=True)
                 self.assertEqual((result["status"], result["invalid_reason"]), ("invalid", reason))
                 self.assertEqual(result["cost"], cost)

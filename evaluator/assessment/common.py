@@ -1,4 +1,4 @@
-"""评分器宿主机侧的公共函数：路径、哈希、题目包与产物校验、Mull 配置、校准状态。"""
+"""评测模块宿主机侧的公共函数：路径、哈希、题目包与产物校验、Mull 配置、校准状态。"""
 import datetime as dt
 import fnmatch
 import hashlib
@@ -8,18 +8,18 @@ import re
 
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "common"))
-from paths import REPO, SCORER, COMMON, BENCHMARK, RUNS
+from paths import REPO, ASSESSMENT, COMMON, BENCHMARK, RUNS
 
-CALIBRATION = SCORER / "calibration"
-CALIBRATION_STATUS = SCORER / "calibration-status.json"
+CALIBRATION = ASSESSMENT / "calibration"
+CALIBRATION_STATUS = ASSESSMENT / "calibration-status.json"
 
-# 评分器的行为由这些文件决定（scorer/ 下的代码、构建模板、版本号，以及共用脚本）；任何一个变化都要重新校准。
+# 评测模块的行为由这些文件决定（assessment/ 下的代码、构建模板、版本号，以及共用脚本）；任何一个变化都要重新校准。
 SHARED_FILES = ["audit.py", "coverage.py", "paths.py", "runs.py"]
 
 
 def code_files():
-    files = sorted(SCORER.glob("*.py")) + sorted((SCORER / "cmake").glob("*")) + [SCORER / "VERSION"]
-    return [str(p.relative_to(SCORER)) for p in files if p.is_file()]
+    files = sorted(ASSESSMENT.glob("*.py")) + sorted((ASSESSMENT / "cmake").glob("*")) + [ASSESSMENT / "VERSION"]
+    return [str(p.relative_to(ASSESSMENT)) for p in files if p.is_file()]
 
 
 def now():
@@ -44,13 +44,13 @@ def sha256_text(text):
     return hashlib.sha256(text.encode()).hexdigest()
 
 
-def scorer_version():
-    return (SCORER / "VERSION").read_text().strip()
+def assessment_version():
+    return (ASSESSMENT / "VERSION").read_text().strip()
 
 
-def scorer_code_sha256():
-    """评分器代码指纹：版本号相同但代码变了，校准结果也视为过期。"""
-    lines = [f"{name}\0{sha256_file(SCORER / name)}" for name in code_files()]
+def assessment_code_sha256():
+    """评测模块代码指纹：版本号相同但代码变了，校准结果也视为过期。"""
+    lines = [f"{name}\0{sha256_file(ASSESSMENT / name)}" for name in code_files()]
     lines += [f"common/{name}\0{sha256_file(COMMON / name)}" for name in SHARED_FILES]
     return sha256_text("\n".join(lines))
 
@@ -168,6 +168,7 @@ def task_sha256(task):
 
 def mull_config_text(task, container_root="/repo"):
     """根据 task.json 生成实际使用的 Mull 配置；includePaths 只包含被测源文件。"""
+    # 配置按全文冻结哈希，保留旧注释以兼容已有变异分母；模块改名不改变配置。
     lines = ["# 由评分器根据 task.json 生成；修改算子要升级变异分母。", "mutators:"]
     lines += [f"  - {name}" for name in task["mull"]["mutators"]]
     if task["mull"].get("ignore_mutators"):
@@ -225,14 +226,14 @@ def freeze_product(product, frozen_at=None):
 # ---- 校准状态 ----
 
 def calibration_status(images, task=None):
-    """返回当前评分器代码、样本、镜像（以及校准所用题目）对应的校准状态：passed、failed、stale 或 missing。"""
+    """返回当前评测模块代码、样本、镜像（以及校准所用题目）对应的校准状态：passed、failed、stale 或 missing。"""
     if not CALIBRATION_STATUS.is_file():
         return {"status": "missing"}
     record = read_json(CALIBRATION_STATUS)
     if task is not None and task["id"] in (record.get("tasks") or {}):
         if record["tasks"][task["id"]] != task_sha256(task):
             return {"status": "stale", "run_id": record.get("run_id"), "reason": "题目材料已变化"}
-    current = {"scorer_version": scorer_version(), "scorer_code_sha256": scorer_code_sha256(),
+    current = {"scorer_version": assessment_version(), "scorer_code_sha256": assessment_code_sha256(),
                "samples_sha256": samples_sha256(),
                "images": {k: v["id"] for k, v in images.items()} if images else None}
     stale = (record.get("scorer_version") != current["scorer_version"]

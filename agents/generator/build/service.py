@@ -1,4 +1,4 @@
-"""宿主机持有编译预算和冻结快照，通过本地 socket 向 pi 提供编译反馈。"""
+"""宿主机管理编译预算，编译前保存本轮测试快照，通过本地 socket 向 pi 提供反馈。"""
 import json
 import os
 from pathlib import Path

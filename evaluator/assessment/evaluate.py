@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""评分冻结产物；--rescore 在原 run 的 score/<当前版本>/ 下补评，绝不覆盖旧版本。
+"""独立评测冻结测试产物；--rescore 在原 run 的 score/<当前版本>/ 下补评，绝不覆盖旧版本。
 
 补评中断后可直接重跑同一命令：已有有效结果的产物跳过，未完成或基础设施错误的结果移入 incomplete/ 后重评。
-评分器校准状态不是 passed 时拒绝评分；只做参考时加 --allow-uncalibrated，结果中会记录校准状态。
+评测模块校准状态不是 passed 时拒绝评分；只做参考时加 --allow-uncalibrated，结果中会记录校准状态。
 """
 import argparse
 from pathlib import Path
@@ -13,7 +13,7 @@ sys.path[:0] = [str(HERE), str(HERE.parent / "common")]
 from audit import Audit
 from runs import finish, new_manifest, write_manifest
 from common import (REPO, RUNS, calibration_status, check_run_id, default_run_id, load_task, now,
-                    read_json, scorer_code_sha256, scorer_version, sha256_file, validate_product, write_json)
+                    read_json, assessment_code_sha256, assessment_version, sha256_file, validate_product, write_json)
 import pipeline
 
 INFRA_RETRIES = 2
@@ -41,9 +41,9 @@ def set_aside(out):
     out.rename(holder / f"{out.name}-{index}")
 
 
-def score_with_retry(executor, task, product, out, meta, cost, calibration):
+def evaluate_with_retry(executor, task, product, out, meta, cost, calibration):
     for attempt in range(INFRA_RETRIES + 1):
-        result = pipeline.score_product(executor, task, product, out, meta,
+        result = pipeline.assess_product(executor, task, product, out, meta,
                                         Audit(out.parent / "logs" / f"{out.name}-{attempt + 1}"), cost,
                                         calibration=calibration)
         if result["status"] != "infra_error" or attempt == INFRA_RETRIES:
@@ -87,13 +87,13 @@ def rescore_jobs(run, version):
 def pending_jobs(jobs, calibrations=None, images=None):
     """跳过已有可用结果的产物；未完成的旧目录移开后重评。"""
     pending, skipped = [], []
-    code = scorer_code_sha256() if calibrations is not None else None
+    code = assessment_code_sha256() if calibrations is not None else None
     for job in jobs:
         task, product, _, _, out = job
         done = finished_result(out)
         if done and calibrations is not None:
             # 参考结果、旧指纹结果必须重评；不能在校准通过后仍跳过旧的未校准结果。
-            done = (done.get("scorer") == {"version": scorer_version(), "code_sha256": code,
+            done = (done.get("scorer") == {"version": assessment_version(), "code_sha256": code,
                                           "calibration": calibrations[task["id"]]}
                     and done.get("task", {}).get("task_json_sha256") == task["_sha256"]
                     and done.get("product", {}).get("manifest_sha256") == sha256_file(product / "manifest.json")
@@ -124,7 +124,7 @@ def main():
         parser.error("--rescore 写入原 run，不能同时指定 --run-id、--task 或 --product")
     if not args.rescore and not (args.task and args.product):
         parser.error("需要 --task 和 --product，或者 --rescore")
-    version = scorer_version()
+    version = assessment_version()
     manifest, write = None, None
     try:
         if args.rescore:
@@ -158,7 +158,7 @@ def main():
         if uncalibrated and not args.allow_uncalibrated:
             manifest.update(status="failed", error=f"校准状态不是 passed：{uncalibrated}", finished_at=now())
             write(manifest)
-            raise ValueError(f"评分器校准状态不是 passed：{uncalibrated}；先运行 calibrate.py，"
+            raise ValueError(f"评测模块校准状态不是 passed：{uncalibrated}；先运行 calibrate.py，"
                              "只做参考时加 --allow-uncalibrated")
         if uncalibrated:
             print(f"警告：校准状态为 {uncalibrated}，结果不能用于正式比较", file=sys.stderr)
@@ -170,7 +170,7 @@ def main():
                 print(f"已有结果，跳过：{out.relative_to(run)}")
         failed = False
         for task, product, cost, meta, out in jobs:
-            result = score_with_retry(executor, task, product, out, meta, cost, calibrations[task["id"]])
+            result = evaluate_with_retry(executor, task, product, out, meta, cost, calibrations[task["id"]])
             failed |= result["status"] == "infra_error"
             print(f"{out.relative_to(run)}: {result['status']} {result.get('invalid_reason') or ''}")
         manifest.update(status="incomplete" if failed else "completed", finished_at=now())

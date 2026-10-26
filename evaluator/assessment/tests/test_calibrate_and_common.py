@@ -109,6 +109,11 @@ class ProductAndTaskTest(unittest.TestCase):
         self.assertIn("  - cxx_all", text)
         self.assertIn("'/repo/cpp/src/GildedRose\\.cc$'", text)
 
+    def test_mull_config_matches_frozen_baseline(self):
+        baseline = common.load_baseline(self.task)
+        self.assertEqual(common.sha256_text(common.mull_config_text(self.task)),
+                         baseline["mull"]["config_sha256"])
+
 
 
 class SampleVariantsTest(unittest.TestCase):
@@ -137,7 +142,7 @@ class CalibrationStatusTest(unittest.TestCase):
         shutil.rmtree(self.tmp)
 
     def write(self, **changes):
-        record = {"scorer_version": common.scorer_version(), "scorer_code_sha256": common.scorer_code_sha256(),
+        record = {"scorer_version": common.assessment_version(), "scorer_code_sha256": common.assessment_code_sha256(),
                   "samples_sha256": common.samples_sha256(), "images": {"gcc": "g1", "clang": "c1"},
                   "tasks": {self.task["id"]: common.task_sha256(self.task)}, "passed": True, "run_id": "r"}
         record.update(changes)

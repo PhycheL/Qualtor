@@ -29,7 +29,7 @@ class HostIntegrationTest(unittest.TestCase):
                 rounds = []
                 for index in (1, 2):
                     out = out_root / sid / f"round-{index}"
-                    rounds.append(pipeline.score_product(executor, task, sample["dir"] / "final", out,
+                    rounds.append(pipeline.assess_product(executor, task, sample["dir"] / "final", out,
                                                          {"calibration_sample": sid, "round": index},
                                                          Audit(out_root / sid / f"round-{index}-host"),
                                                          sample["dir"] / "generation" / "cost.json"))

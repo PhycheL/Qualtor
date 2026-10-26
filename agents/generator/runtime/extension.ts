@@ -64,7 +64,7 @@ export default function (pi: any) {
   });
   pi.registerTool({
     name: "build_and_test", label: "编译并运行测试",
-    description: "用固定 GCC / C++11 / GoogleTest 编译并运行 tests/。首次调用冻结首次产物；以后每次消耗一个修复轮次。只返回编译、测试结果和剩余轮次。",
+    description: "用固定 GCC / C++11 / GoogleTest 编译并运行 tests/。编译前保存本轮测试快照，首次快照另存为首次产物；首次编译不计修复，以后每次消耗一个修复轮次。只返回编译、测试结果和剩余轮次。",
     parameters: Type.Object({}), executionMode: "sequential",
     async execute(toolCallId: string, _params: object, _signal: unknown, onUpdate: any) {
       const timer = setInterval(() => onUpdate?.({ content: [{ type: "text", text: "编译或测试仍在运行。" }] }), 30000);

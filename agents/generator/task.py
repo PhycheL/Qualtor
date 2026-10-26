@@ -59,11 +59,12 @@ def task_text(task):
 - 可见文件：{', '.join('project/' + p for p in task['visible_files'])}
 - 允许修改：{', '.join(task['allowed_test_files'])}。只提交这些测试文件。
 - 头文件目录：{', '.join('project/' + p for p in task['include_dirs'])}；构建时也包含 tests/。
-- 修复预算：{task['budget']['repair_rounds']} 轮。第 1 次 build_and_test 冻结首次产物，不算修复；以后每次调用消耗 1 轮。
+- 测试快照：build_and_test 在编译前保存本轮测试快照，第 1 次快照同时作为首次产物保留；你可以根据反馈继续修改测试。
+- 修复预算：{task['budget']['repair_rounds']} 轮。第 1 次 build_and_test 不算修复；以后每次调用消耗 1 轮。
 - 单测超时：{task['test_timeout_seconds']} 秒。build_and_test 返回编译错误或测试结果、剩余轮次，以及 feedback/ 中完整日志的位置，可使用 read 继续查看。
 
 先生成能检查行为的测试，主动编译验证；如编译失败或断言失败，根据结果修正并在预算内再次验证。
-预算用尽后工具会拒绝再次编译。完成后结束对话，框架将自动冻结最终产物。
+预算用尽后工具会拒绝再次编译。完成后结束对话，框架将自动保存最终测试快照。
 """
 
 

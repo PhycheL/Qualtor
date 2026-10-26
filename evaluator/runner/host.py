@@ -13,10 +13,10 @@ from concurrent.futures import CancelledError
 from urllib.parse import urlsplit
 
 HERE = Path(__file__).resolve().parent
-sys.path[:0] = [str(HERE.parent / "scorer"), str(HERE.parent / "common"), str(HERE.parent / "toolchains")]
-from paths import AGENTS, COMMON, GENERATOR, REPO, SCORER
+sys.path[:0] = [str(HERE.parent / "assessment"), str(HERE.parent / "common"), str(HERE.parent / "toolchains")]
+from paths import AGENTS, COMMON, GENERATOR, REPO, ASSESSMENT
 from audit import Audit
-from common import (freeze_product, now, read_json, scorer_version, sha256_file, sha256_text, source_root,
+from common import (freeze_product, now, read_json, assessment_version, sha256_file, sha256_text, source_root,
                     validate_product, write_json)
 import pipeline
 from cost import add_costs
@@ -95,7 +95,7 @@ def score_frozen(executor, task, product, out, meta, cost_path, calibration):
     if out.exists():
         raise ValueError(f"评分目录已存在，拒绝覆盖：{out}")
     for attempt in range(3):
-        result = pipeline.score_product(executor, task, product, out, meta,
+        result = pipeline.assess_product(executor, task, product, out, meta,
                     Audit(out.parent / "logs" / f"{out.name}-{attempt + 1}"), cost_path, calibration=calibration)
         if result["status"] != "infra_error" or attempt == 2:
             return result
@@ -168,7 +168,7 @@ def trial(executor, generator, task, config, trial_dir, index, agent_version, ca
                 result.setdefault("product_problems", {})[phase] = problem
             cost_path = trial_dir / f"cost-{phase}.json"
             write_json(cost_path, generation["cost"][phase])
-            scored = score_frozen(executor, task, trial_dir / phase, trial_dir / "score" / scorer_version() / phase,
+            scored = score_frozen(executor, task, trial_dir / phase, trial_dir / "score" / assessment_version() / phase,
                                  {"agent_version": agent_version, "trial": index, "phase": phase,
                                   "cost_path": str(cost_path.relative_to(REPO))}, cost_path, calibration)
             result["scores"][phase] = {"status": scored["status"], "invalid_reason": scored["invalid_reason"],

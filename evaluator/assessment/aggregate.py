@@ -2,8 +2,8 @@
 """汇总与比较：按 docs/评分算法.md 第 5–6 节，把各次运行的 result.json 汇总到题目和题库，并比较两个版本。
 
 用法：
-    python3 evaluator/scorer/aggregate.py summarize --runs <run-id> [<run-id> ...]
-    python3 evaluator/scorer/aggregate.py compare --runs <run-id> ... --baseline A --candidate B \\
+    python3 evaluator/assessment/aggregate.py summarize --runs <run-id> [<run-id> ...]
+    python3 evaluator/assessment/aggregate.py compare --runs <run-id> ... --baseline A --candidate B \\
         --delta 0.05 --tolerance V2=0.05 --tolerance S1=0.05 --tolerance K1.seconds=60
 汇总器只读结果文件中的计数和指标，不重新执行任何测试。
 """
@@ -198,10 +198,10 @@ def calibration_problems(results):
     states = {(r["scorer"]["version"], r["scorer"]["code_sha256"]) for r in results}
     problems = []
     if len(states) > 1:
-        problems.append(f"结果来自不同版本的评分器：{sorted(states)}；先用同一版本补评")
+        problems.append(f"结果来自不同版本的评测模块：{sorted(states)}；先用同一版本补评")
     uncalibrated = sorted({r["_path"] for r in results if r["scorer"].get("calibration", {}).get("status") != "passed"})
     if uncalibrated:
-        problems.append(f"{len(uncalibrated)} 份结果的评分器校准状态不是 passed")
+        problems.append(f"{len(uncalibrated)} 份结果的评测模块校准状态不是 passed")
     return problems
 
 
@@ -213,7 +213,8 @@ def main():
         p.add_argument("--runs", nargs="+", required=True)
         p.add_argument("--set", choices=["dev", "acceptance"], default="dev")
         p.add_argument("--phase", choices=["first", "final"], default="final")
-        p.add_argument("--scorer-version", help="只汇总指定评分器版本，避免补评结果重复计入")
+        p.add_argument("--assessment-version", "--scorer-version", dest="assessment_version",
+                       help="只汇总指定评测模块版本；--scorer-version 是兼容旧命令的别名")
         p.add_argument("--out", type=Path)
         p.add_argument("--allow-uncalibrated", action="store_true")
         if name == "compare":
@@ -224,7 +225,7 @@ def main():
             p.add_argument("--bootstrap", type=int, default=10000)
             p.add_argument("--seed", type=int, default=20261024)
     args = parser.parse_args()
-    results = load_results(args.runs, args.scorer_version)
+    results = load_results(args.runs, args.assessment_version)
     problems = calibration_problems(results)
     if problems and not args.allow_uncalibrated:
         raise SystemExit("；".join(problems) + "（确认只做参考时加 --allow-uncalibrated）")

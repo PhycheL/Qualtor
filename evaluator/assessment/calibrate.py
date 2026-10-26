@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""评分器校准：对校准样本逐个评分两次，与期望比对，检查重复评分一致，写校准报告和校准状态。
+"""评测模块校准：对校准样本逐个评分两次，与期望比对，检查重复评分一致，写校准报告和校准状态。
 
 用法（在装有 Docker 和两个工具链镜像的机器上，从项目根目录执行）：
-    python3 evaluator/scorer/calibrate.py
-    python3 evaluator/scorer/calibrate.py --samples CAL-01,CAL-07 --jobs 2
+    python3 evaluator/assessment/calibrate.py
+    python3 evaluator/assessment/calibrate.py --samples CAL-01,CAL-07 --jobs 2
 只校准部分样本时会写报告，但不会把校准状态记为通过。
 """
 import argparse
@@ -18,8 +18,8 @@ sys.path.insert(0, str(HERE.parent / "common"))
 
 from audit import Audit  # noqa: E402
 from common import (CALIBRATION, CALIBRATION_STATUS, REPO, RUNS, check_run_id, default_run_id,  # noqa: E402
-                    hidden_path, load_baseline, load_task, now, read_json, samples_sha256, scorer_code_sha256,
-                    scorer_version, sha256_file, task_sha256, write_json)
+                    hidden_path, load_baseline, load_task, now, read_json, samples_sha256, assessment_code_sha256,
+                    assessment_version, sha256_file, task_sha256, write_json)
 import judge  # noqa: E402
 from runs import finish, new_manifest, write_manifest  # noqa: E402
 import pipeline  # noqa: E402
@@ -162,7 +162,7 @@ def evaluate(task, samples, results, capabilities):
 
 def markdown(report):
     lines = [f"# 校准报告 {report['run_id']}", "",
-             f"- 评分器版本：{report['scorer_version']}（代码指纹 {report['scorer_code_sha256'][:12]}）",
+             f"- 评测模块版本：{report['scorer_version']}（代码指纹 {report['scorer_code_sha256'][:12]}）",
              f"- 结论：**{'通过' if report['passed'] else '未通过'}**" + ("（部分样本，不计为正式校准）" if report["partial"] else ""),
              f"- 每个样本评分 {report['rounds']} 次；镜像：" + "、".join(f"{k} {v['id'][:19]}" for k, v in report["images"].items()),
              "", "| 样本 | 结论 | 状态 | M1 端到端 | C1 | S1 | 问题 |", "|---|---|---|---|---|---|---|"]
@@ -216,7 +216,7 @@ def run_calibration(args, run_dir, evidence):
         out = run_dir / "calibration" / task["id"] / sid / f"round-{index}"
         sample = samples[sid]["dir"]
         print(f"评分 {sid} 第 {index} 次", flush=True)
-        return job, pipeline.score_product(executor, task, sample / "final", out,
+        return job, pipeline.assess_product(executor, task, sample / "final", out,
                                            {"calibration_sample": sid, "round": index},
                                            Audit(out.parent / f"round-{index}-host"), sample / "generation" / "cost.json",
                                            calibration={"status": "in_calibration"})
@@ -229,7 +229,7 @@ def run_calibration(args, run_dir, evidence):
             print(f"  {sid} 第 {index} 次：{result['status']} {result.get('invalid_reason') or ''}", flush=True)
     report = evaluate(task, samples, results, executor.capabilities)
     report.update(run_id=args.run_id, task=task["id"], rounds=args.rounds, partial=bool(selected),
-                  scorer_version=scorer_version(), scorer_code_sha256=scorer_code_sha256(),
+                  scorer_version=assessment_version(), scorer_code_sha256=assessment_code_sha256(),
                   samples_sha256=samples_sha256(), task_sha256=task_sha256(task), images=executor.images,
                   finished_at=now())
     write_json(run_dir / "calibration_report.json", report)

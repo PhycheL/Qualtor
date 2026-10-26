@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """冻结测试产物：为 <产物目录>（含 tests/）写 manifest.json，记录每个文件的 SHA-256。
 
-冻结之后评分器只校验、不改写；修改测试文件后要重新冻结，并作为一份新的产物记录。
-用法：python3 evaluator/scorer/freeze_product.py <产物目录> [--force]
+冻结之后评测模块只校验、不改写；修改测试文件后要重新冻结，并作为一份新的产物记录。
+用法：python3 evaluator/assessment/freeze_product.py <产物目录> [--force]
 """
 import argparse
 from pathlib import Path
