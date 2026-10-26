@@ -1,0 +1,3 @@
+{
+  "gcc": "qualtor-gcc:14.2.0-gtest1.12.1-cxx11"
+}

@@ -1,16 +1,16 @@
 {
-  "scorer_version": "0.1.3",
-  "scorer_code_sha256": "8ef2f487a70e8ca292110efc1316d4aa0fd4cc1afc2ba7c9f28ff8d246f75bdd",
+  "scorer_version": "0.1.4",
+  "scorer_code_sha256": "97dff33ce88250a77cc1cc3df169fb4d307263460fe820da81dce90c18b3339b",
   "samples_sha256": "eb256ce6fa3095bb1f03e7f8960ab353cf9e796c16d77bf613323dd2c0d59cfc",
   "tasks": {
     "gildedrose-update-quality": "92720d07eeeabc2108b7e7afcfe7554af76147176b3f3de552cd5d19baf24245"
   },
   "images": {
-    "gcc": "sha256:79baee0c5650bd87162cb1bcd7beed06cd6a0ac29785275f33b7671a5e3ad8cd",
-    "clang": "sha256:3ffde674fdda2af8cacbb5867c554990163e3a36cca541dce4ad836dbf47ef01"
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
   },
-  "run_id": "calibration-review-20261025-01",
+  "run_id": "calibration-host-split-20261026-01",
   "passed": true,
   "report": "evaluator/scorer/calibration_report.json",
-  "finished_at": "2026-10-25T03:24:51.622846+00:00"
+  "finished_at": "2026-10-26T03:16:06.175055+00:00"
 }

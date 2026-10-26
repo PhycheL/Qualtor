@@ -1,8 +1,8 @@
-# 校准报告 calibration-review-20261025-01
+# 校准报告 calibration-host-split-20261026-01
 
-- 评分器版本：0.1.3（代码指纹 8ef2f487a70e）
+- 评分器版本：0.1.4（代码指纹 97dff33ce882）
 - 结论：**通过**
-- 每个样本评分 2 次；镜像：gcc sha256:79baee0c5650、clang sha256:3ffde674fdda
+- 每个样本评分 2 次；镜像：gcc sha256:bd01e6e4f0e7、clang sha256:013ac35a1dae
 
 | 样本 | 结论 | 状态 | M1 端到端 | C1 | S1 | 问题 |
 |---|---|---|---|---|---|---|

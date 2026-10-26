@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+/.cache/
+/output/
+node_modules/
+dist/
+__pycache__/
+*.pyc
+/pi/.qualtor-build.json

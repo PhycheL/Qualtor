@@ -8,3 +8,8 @@ dist/
 /.env
 /.env.*
 !/.env.example
+/agents/.env
+/agents/.env.*
+!/agents/.env.example
+/agents/output/
+/agents/.cache/

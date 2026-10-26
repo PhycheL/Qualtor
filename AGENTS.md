@@ -13,24 +13,24 @@
 
 ## 技术路线
 
-业务代码和生成测试使用 **C++11 + GoogleTest**。工具链版本固定，以 [Dockerfile.toolchains](evaluator/toolchains/docker/Dockerfile.toolchains) 为实现依据；调整依赖时保持 C++11 兼容，并验证相关工具的版本匹配。
+业务代码和生成测试使用 **C++11 + GoogleTest**。工具链以 [GCC 定义](agents/toolchains/docker/Dockerfile.gcc)和 [Clang/Mull 定义](evaluator/toolchains/docker/Dockerfile.toolchains)为准；调整依赖时保持 C++11 兼容，并验证工具版本匹配。
 
-同一份业务源码与测试用两套独立构建目录评分，生成阶段另有 pi 镜像：
+pi 在宿主机运行。生成测试的编译验证和独立评分使用 Docker，各阶段的容器与构建目录分开：
 
 | 镜像 | 职责 |
 |---|---|
-| GCC + gcov + GoogleTest | 编译、运行测试，采集业务源码覆盖率；承接后续稳定性检查和替换版本执行 |
+| GCC + gcov + GoogleTest | 产品普通编译验证；评分时采集覆盖率、检查稳定性和执行替换版本 |
 | Clang + Mull + GoogleTest | 编译、运行同一份测试，执行变异测试 |
-| GCC + Node 24 + pi（只读挂载） | 在受限工作区内生成与修复测试 |
 
 GCC、Clang 镜像本身就是评分执行环境。Python 负责调度，编译、测试和分析在 Docker 内完成；项目源码保留在宿主机，通过挂载引入。工具链面向 `linux/arm64` 和 `linux/amd64`，验证结论按实际执行架构报告。
 
 ## 当前起点
 
-- 当前入口是 [toolchains.py](evaluator/toolchains/toolchains.py)，负责构建镜像和冒烟验收。三套镜像已在 Linux ARM64 验证；AMD64 已配置，尚未实测。
+- [agents/](agents/) 是独立交付产品，入口 [run.py](agents/run.py)，安装入口 [setup.py](agents/setup.py)。评测入口为 [evaluator/run.py](evaluator/run.py)，通过产品 CLI 调用生成，不导入其私有运行逻辑。职责见 D013。
+- [toolchains.py](evaluator/toolchains/toolchains.py) 构建和验收两套 C++ 镜像。Linux ARM64 已验证；AMD64 已配置，尚未实测。pi 不使用生成镜像，当前验证宿主机为 macOS ARM64 / Node 26.12.0。
 - 已完成的验收使用 9 个手写 GoogleTest 测试，覆盖测试发现与执行、gcov 和 Mull。
-- 评分器已实现（[evaluator/scorer/](evaluator/scorer/)，入口 `score.py`、`prepare_task.py`、`calibrate.py`、`aggregate.py`）；0.1.3 已在 Linux ARM64 Docker 中通过 16 个样本各两次的完整校准，沿用 47 个变异的冻结分母，D011 的 eq-02 差分与 CAL-16 均通过，证据见[评分器运行说明](docs/评分器运行说明.md)。生成入口 [run.py](evaluator/generator/run.py) 已通过真实 pi / DeepSeek Flash / max 的 K=5 验收；本轮另验证了 tmpfs 回收、进程清理、看门狗、故障取消及冻结后评分，见[生成入口运行说明](docs/生成入口运行说明.md)。
-- 仓库分为 `evaluator/`（框架）、`benchmark/`（题目）、`agents/`（被评测对象）和 `runs/`（执行证据）。路径由 `evaluator/common/paths.py` 统一定义；旧证据按 D010 处理。
+- 评分器 [evaluator/scorer/](evaluator/scorer/) 的 0.1.4 已通过 16 个样本各两次 Linux ARM64 校准，沿用 47 个变异的冻结分母。宿主机 pi 的真实 DeepSeek Flash / max K=5 已完成，37 次模型调用，10 份产物均完成评分；独立交付、修复与故障路径也已通过，证据及范围见[生成入口运行说明](docs/生成入口运行说明.md)。
+- `agents/` 自行定位产品路径，连接配置在 `agents/.env`；评测路径由 `evaluator/common/paths.py` 定义。保留既有 runs 和冻结产物，D010 的一次性历史清理不再重做。
 - 具体阶段和待办以 [项目推进流程](docs/项目推进流程.md) 为准；[评测规格](docs/评测规格.md) 仍是草案，区分已定决定、待定参数和未实现能力。
 
 ## 按任务读取
