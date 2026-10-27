@@ -99,16 +99,18 @@ def task_report(task_id):
            f"{'—' if raw is None else f'{raw:.3f}'}；分母口径 M1 {baseline['reference'].get('m1')}。",
            f"- 复核状态：`{baseline['review']['status']}`。复核方法见 docs/评测运行说明.md 第 3 节："
            "确认等价的保留在 `equivalent`，不等价的从 `equivalent` 删除（移回分母），并补参考测试。",
-           "- 复核提示：`assign_const`、`init_const`、`replace_scalar_call` 把值换成 42；目标是 bool 时，"
-           "Clang 生成的代码只取最低位，42 相当于 false，这类变异通常与原值为 false 时等价。"
-           "固定种子的随机数、上游代码保证不会出现的输入（如题面约定的前提）也常让变异无法区分。", ""]
+           "- 下表的变异后写法仅为源码位置示意，结论以实际 Mull IR 为准：同一位置可能对应多个调用，"
+           "同一 ID 也可能对应多个内部变异，实际删除的可能是临时对象的析构。",
+           "- 常量 42 对 bool 的效果须核对 IR 位宽及后续读取；例如 i8 存储后截成 i1 可得到 false，"
+           "不能把它解释为标准 C++ 的 bool = 42。固定随机种子仍可能在长调用序列上区分变异。",
+           "- 按 D011 检查原代码全部有定义的输入；题面限制、探针未覆盖、当前机器未崩溃均不能单独证明等价。", ""]
     counts = {}
     for title, ids in sections:
         counts[title] = len(ids)
         out += [f"## {title}：{len(ids)} 个", ""]
         if not ids:
             continue
-        out += ["| 位置 | 算子 | 原始代码 | 变异后 | 参考测试 | 探针 | 复核结论 |", "|---|---|---|---|---|---|---|"]
+        out += ["| 位置 | 算子 | 原始代码 | 变异后（源码示意） | 参考测试 | 探针 | 复核结论 |", "|---|---|---|---|---|---|---|"]
         for mutant_id in sorted(ids, key=lambda i: (LOCATION.match(i).group("path") if LOCATION.match(i) else i,
                                                     int(LOCATION.match(i).group("l1")) if LOCATION.match(i) else 0)):
             m = mutants.get(mutant_id, {})

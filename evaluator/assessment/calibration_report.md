@@ -1,6 +1,6 @@
-# 校准报告 calibration-assessment-rename-20261026-02
+# 校准报告 calibration-bank-016-20261027-01
 
-- 评测模块版本：0.1.5（代码指纹 4ca4b8edbd07）
+- 评测模块版本：0.1.6（代码指纹 b98b550d7fa8）
 - 结论：**通过**
 - 每个样本评分 2 次；镜像：gcc sha256:bd01e6e4f0e7、clang sha256:013ac35a1dae
 
