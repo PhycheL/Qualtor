@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/difference_of_squares.cpp": "exercises/practice/difference-of-squares/.meta/example.cpp",
+    "src/difference_of_squares.h": "exercises/practice/difference-of-squares/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/difference-of-squares/difference_of_squares_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/difference_of_squares.cpp": "4c8eb445eaeb702efe8f464ffe0f46aa4be6c8e3d0778c13b51319fca85d0035",
+    "src/difference_of_squares.h": "da40ab27f3a5b25e89f8c8d1695f8e7ae11a1c731effb749384eb4adb7f9395d"
+  }
+}

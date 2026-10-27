@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/isbn_verifier.cpp": "exercises/practice/isbn-verifier/.meta/example.cpp",
+    "src/isbn_verifier.h": "exercises/practice/isbn-verifier/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/isbn-verifier/isbn_verifier_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/isbn_verifier.cpp": "6e6b4fa7473258549809ef23df0ed8efbd5258bde4033099195549fde6e5c6d8",
+    "src/isbn_verifier.h": "2d73f8ab8953113424d13ca56470764ce60dabdfb22f34662882390ddb322c38"
+  }
+}

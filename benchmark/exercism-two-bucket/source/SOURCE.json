@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/two_bucket.cpp": "exercises/practice/two-bucket/.meta/example.cpp",
+    "src/two_bucket.h": "exercises/practice/two-bucket/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/two-bucket/two_bucket_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/two_bucket.cpp": "f0d33ff58f426a7d03c357b697444bd522edb7a17ee9140048a01e82aeec6774",
+    "src/two_bucket.h": "549b8d944d14ef5bab89d9573bdce27866b111d2b766bf04ba518d9fb19e980d"
+  }
+}

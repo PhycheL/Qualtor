@@ -1,0 +1,1301 @@
+{
+  "task": "exercism-rail-fence-cipher",
+  "created_at": "2026-10-27T06:59:22.297219+00:00",
+  "created_by_run": "bank-prepare-20261027-01-exercism-rail-fence-cipher",
+  "scorer_version": "0.1.5",
+  "scorer_code_sha256": "4ca4b8edbd0712321e5bbfa490e9e859683ef129a3492146fb5b14eea56ed5eb",
+  "images": {
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
+  },
+  "mull": {
+    "config_sha256": "bdb4a1185759117541c78b9d654a0c89f52533d320fb16fd459c3331b3604cfb",
+    "config": "# 由评分器根据 task.json 生成；修改算子要升级变异分母。\nmutators:\n  - cxx_all\nincludePaths:\n  - '/repo/src/rail_fence_cipher\\.cpp$'\n"
+  },
+  "mutants": [
+    {
+      "id": "cxx_add_assign_to_sub_assign:/repo/src/rail_fence_cipher.cpp:15:51:15:53",
+      "mutator": "cxx_add_assign_to_sub_assign",
+      "location": {
+        "start": {
+          "line": 15,
+          "column": 51
+        },
+        "end": {
+          "line": 15,
+          "column": 53
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_assign_to_sub_assign:/repo/src/rail_fence_cipher.cpp:37:51:37:53",
+      "mutator": "cxx_add_assign_to_sub_assign",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 51
+        },
+        "end": {
+          "line": 37,
+          "column": 53
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/rail_fence_cipher.cpp:18:39:18:40",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 18,
+          "column": 39
+        },
+        "end": {
+          "line": 18,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/rail_fence_cipher.cpp:40:39:40:40",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 39
+        },
+        "end": {
+          "line": 40,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/rail_fence_cipher.cpp:16:20:16:21",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 16,
+          "column": 20
+        },
+        "end": {
+          "line": 16,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/rail_fence_cipher.cpp:19:47:19:48",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 19,
+          "column": 47
+        },
+        "end": {
+          "line": 19,
+          "column": 48
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/rail_fence_cipher.cpp:38:25:38:26",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 25
+        },
+        "end": {
+          "line": 38,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/rail_fence_cipher.cpp:41:57:41:58",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 57
+        },
+        "end": {
+          "line": 41,
+          "column": 58
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/rail_fence_cipher.cpp:14:14:14:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 14,
+          "column": 14
+        },
+        "end": {
+          "line": 14,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/rail_fence_cipher.cpp:15:21:15:24",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 15,
+          "column": 21
+        },
+        "end": {
+          "line": 15,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/rail_fence_cipher.cpp:18:24:18:32",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 18,
+          "column": 24
+        },
+        "end": {
+          "line": 18,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/rail_fence_cipher.cpp:36:14:36:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 14
+        },
+        "end": {
+          "line": 36,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/rail_fence_cipher.cpp:37:21:37:24",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 21
+        },
+        "end": {
+          "line": 37,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/rail_fence_cipher.cpp:40:24:40:32",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 24
+        },
+        "end": {
+          "line": 40,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/src/rail_fence_cipher.cpp:28:19:28:21",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 19
+        },
+        "end": {
+          "line": 28,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/src/rail_fence_cipher.cpp:6:19:6:21",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 6,
+          "column": 19
+        },
+        "end": {
+          "line": 6,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/rail_fence_cipher.cpp:28:19:28:21",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 19
+        },
+        "end": {
+          "line": 28,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/rail_fence_cipher.cpp:6:19:6:21",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 6,
+          "column": 19
+        },
+        "end": {
+          "line": 6,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/rail_fence_cipher.cpp:14:29:14:30",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 14,
+          "column": 29
+        },
+        "end": {
+          "line": 14,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/rail_fence_cipher.cpp:15:37:15:38",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 15,
+          "column": 37
+        },
+        "end": {
+          "line": 15,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/rail_fence_cipher.cpp:17:19:17:20",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 17,
+          "column": 19
+        },
+        "end": {
+          "line": 17,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/rail_fence_cipher.cpp:17:34:17:35",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 17,
+          "column": 34
+        },
+        "end": {
+          "line": 17,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/rail_fence_cipher.cpp:19:30:19:31",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 19,
+          "column": 30
+        },
+        "end": {
+          "line": 19,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/rail_fence_cipher.cpp:36:29:36:30",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 29
+        },
+        "end": {
+          "line": 36,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/rail_fence_cipher.cpp:37:37:37:38",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 37
+        },
+        "end": {
+          "line": 37,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/rail_fence_cipher.cpp:39:19:39:20",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 19
+        },
+        "end": {
+          "line": 39,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/rail_fence_cipher.cpp:39:34:39:35",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 34
+        },
+        "end": {
+          "line": 39,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/rail_fence_cipher.cpp:41:30:41:31",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 30
+        },
+        "end": {
+          "line": 41,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/rail_fence_cipher.cpp:14:29:14:30",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 14,
+          "column": 29
+        },
+        "end": {
+          "line": 14,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/rail_fence_cipher.cpp:15:37:15:38",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 15,
+          "column": 37
+        },
+        "end": {
+          "line": 15,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/rail_fence_cipher.cpp:17:19:17:20",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 17,
+          "column": 19
+        },
+        "end": {
+          "line": 17,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/rail_fence_cipher.cpp:17:34:17:35",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 17,
+          "column": 34
+        },
+        "end": {
+          "line": 17,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/rail_fence_cipher.cpp:19:30:19:31",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 19,
+          "column": 30
+        },
+        "end": {
+          "line": 19,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/rail_fence_cipher.cpp:36:29:36:30",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 29
+        },
+        "end": {
+          "line": 36,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/rail_fence_cipher.cpp:37:37:37:38",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 37
+        },
+        "end": {
+          "line": 37,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/rail_fence_cipher.cpp:39:19:39:20",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 19
+        },
+        "end": {
+          "line": 39,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/rail_fence_cipher.cpp:39:34:39:35",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 34
+        },
+        "end": {
+          "line": 39,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/rail_fence_cipher.cpp:41:30:41:31",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 30
+        },
+        "end": {
+          "line": 41,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/src/rail_fence_cipher.cpp:18:55:18:56",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 18,
+          "column": 55
+        },
+        "end": {
+          "line": 18,
+          "column": 56
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/src/rail_fence_cipher.cpp:30:35:30:36",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 35
+        },
+        "end": {
+          "line": 30,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/src/rail_fence_cipher.cpp:40:55:40:56",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 55
+        },
+        "end": {
+          "line": 40,
+          "column": 56
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/src/rail_fence_cipher.cpp:8:35:8:36",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 8,
+          "column": 35
+        },
+        "end": {
+          "line": 8,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/rail_fence_cipher.cpp:14:42:14:44",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 14,
+          "column": 42
+        },
+        "end": {
+          "line": 14,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/rail_fence_cipher.cpp:36:42:36:44",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 42
+        },
+        "end": {
+          "line": 36,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/rail_fence_cipher.cpp:16:14:16:17",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 16,
+          "column": 14
+        },
+        "end": {
+          "line": 16,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/rail_fence_cipher.cpp:19:41:19:44",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 19,
+          "column": 41
+        },
+        "end": {
+          "line": 19,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/rail_fence_cipher.cpp:31:36:31:40",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 36
+        },
+        "end": {
+          "line": 31,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/rail_fence_cipher.cpp:38:28:38:31",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 28
+        },
+        "end": {
+          "line": 38,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/rail_fence_cipher.cpp:41:60:41:63",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 60
+        },
+        "end": {
+          "line": 41,
+          "column": 63
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/rail_fence_cipher.cpp:9:35:9:39",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 9,
+          "column": 35
+        },
+        "end": {
+          "line": 9,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/rail_fence_cipher.cpp:17:46:17:47",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 17,
+          "column": 46
+        },
+        "end": {
+          "line": 17,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/rail_fence_cipher.cpp:18:48:18:49",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 18,
+          "column": 48
+        },
+        "end": {
+          "line": 18,
+          "column": 49
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/rail_fence_cipher.cpp:30:39:30:40",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 39
+        },
+        "end": {
+          "line": 30,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/rail_fence_cipher.cpp:39:46:39:47",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 46
+        },
+        "end": {
+          "line": 39,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/rail_fence_cipher.cpp:40:48:40:49",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 48
+        },
+        "end": {
+          "line": 40,
+          "column": 49
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/rail_fence_cipher.cpp:8:39:8:40",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 8,
+          "column": 39
+        },
+        "end": {
+          "line": 8,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    }
+  ],
+  "equivalent": [
+    {
+      "id": "cxx_le_to_lt:/repo/src/rail_fence_cipher.cpp:28:19:28:21",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/rail_fence_cipher.cpp:6:19:6:21",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/rail_fence_cipher.cpp:14:29:14:30",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/rail_fence_cipher.cpp:19:30:19:31",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/rail_fence_cipher.cpp:41:30:41:31",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    }
+  ],
+  "unstable": [],
+  "review_needed": [
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/rail_fence_cipher.cpp:14:42:14:44",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/rail_fence_cipher.cpp:36:42:36:44",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    }
+  ],
+  "review": {
+    "status": "pending",
+    "by": null,
+    "at": null,
+    "note": "等价变异候选由有界穷举探针自动给出；人工逐个复核后，把 status 改为 reviewed 并填写 by、at"
+  },
+  "reference": {
+    "killed": 49,
+    "timeout": 2,
+    "total": 51,
+    "m1": 1.0,
+    "threshold": 0.8,
+    "passes": true
+  }
+}

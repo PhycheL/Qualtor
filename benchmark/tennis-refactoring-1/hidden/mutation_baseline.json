@@ -1,0 +1,463 @@
+{
+  "task": "tennis-refactoring-1",
+  "created_at": "2026-10-27T07:16:42.846740+00:00",
+  "created_by_run": "bank-prepare-20261027-01-tennis-refactoring-1",
+  "scorer_version": "0.1.5",
+  "scorer_code_sha256": "4ca4b8edbd0712321e5bbfa490e9e859683ef129a3492146fb5b14eea56ed5eb",
+  "images": {
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
+  },
+  "mull": {
+    "config_sha256": "e675270cb77abf7be5661380fd16c0f177b709ee115f3c18fd557ecf30664870",
+    "config": "# 由评分器根据 task.json 生成；修改算子要升级变异分母。\nmutators:\n  - cxx_all\nincludePaths:\n  - '/repo/src/tennis1\\.cc$'\n"
+  },
+  "mutants": [
+    {
+      "id": "cxx_assign_const:/repo/src/tennis1.cc:37:33:37:34",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 33
+        },
+        "end": {
+          "line": 37,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/tennis1.cc:38:42:38:43",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 42
+        },
+        "end": {
+          "line": 38,
+          "column": 43
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/tennis1.cc:28:24:28:26",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 24
+        },
+        "end": {
+          "line": 28,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/tennis1.cc:29:30:29:32",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 30
+        },
+        "end": {
+          "line": 29,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/tennis1.cc:37:18:37:20",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 18
+        },
+        "end": {
+          "line": 37,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/tennis1.cc:6:16:6:18",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 6,
+          "column": 16
+        },
+        "end": {
+          "line": 6,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/tennis1.cc:25:21:25:23",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 25,
+          "column": 21
+        },
+        "end": {
+          "line": 25,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/tennis1.cc:25:35:25:37",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 25,
+          "column": 35
+        },
+        "end": {
+          "line": 25,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/tennis1.cc:30:29:30:31",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 29
+        },
+        "end": {
+          "line": 30,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/tennis1.cc:25:21:25:23",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 25,
+          "column": 21
+        },
+        "end": {
+          "line": 25,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/tennis1.cc:25:35:25:37",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 25,
+          "column": 35
+        },
+        "end": {
+          "line": 25,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/tennis1.cc:30:29:30:31",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 29
+        },
+        "end": {
+          "line": 30,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/tennis1.cc:27:13:27:24",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 27,
+          "column": 13
+        },
+        "end": {
+          "line": 27,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/tennis1.cc:35:18:35:19",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 18
+        },
+        "end": {
+          "line": 35,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/tennis1.cc:5:9:5:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 5,
+          "column": 9
+        },
+        "end": {
+          "line": 5,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/tennis1.cc:35:24:35:25",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 24
+        },
+        "end": {
+          "line": 35,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/tennis1.cc:35:24:35:25",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 24
+        },
+        "end": {
+          "line": 35,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/tennis1.cc:35:29:35:31",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 29
+        },
+        "end": {
+          "line": 35,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/tennis1.cc:27:34:27:35",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 27,
+          "column": 34
+        },
+        "end": {
+          "line": 27,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    }
+  ],
+  "equivalent": [
+    {
+      "id": "cxx_init_const:/repo/src/tennis1.cc:5:9:5:18",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    }
+  ],
+  "unstable": [],
+  "review_needed": [
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/tennis1.cc:35:29:35:31",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    }
+  ],
+  "review": {
+    "status": "pending",
+    "by": null,
+    "at": null,
+    "note": "等价变异候选由有界穷举探针自动给出；人工逐个复核后，把 status 改为 reviewed 并填写 by、at"
+  },
+  "reference": {
+    "killed": 17,
+    "timeout": 1,
+    "total": 18,
+    "m1": 1.0,
+    "threshold": 0.8,
+    "passes": true
+  }
+}

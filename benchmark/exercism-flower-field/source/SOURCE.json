@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/flower_field.cpp": "exercises/practice/flower-field/.meta/example.cpp",
+    "src/flower_field.h": "exercises/practice/flower-field/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/flower-field/flower_field_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/flower_field.cpp": "069dbd1a0a5c72d8375a6706a8cdee91983610b7e16e3746fa9898687eff5d34",
+    "src/flower_field.h": "a7b90d0b6c99438a008e3ad81e46a39bfc7569783b521754b8aea13d945d5af6"
+  }
+}

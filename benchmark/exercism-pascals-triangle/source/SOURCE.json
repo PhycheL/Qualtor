@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/pascals_triangle.cpp": "exercises/practice/pascals-triangle/.meta/example.cpp",
+    "src/pascals_triangle.h": "exercises/practice/pascals-triangle/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/pascals-triangle/pascals_triangle_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/pascals_triangle.cpp": "8722fb7286ccde6f413eecf46fcaee9654d5a1d87cf554c207e639693051a9ff",
+    "src/pascals_triangle.h": "38fa0e1d8c18d1270570a852359cc016037b84dc2de88c1728cb999304027233"
+  }
+}

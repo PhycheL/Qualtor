@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/binary.cpp": "exercises/practice/binary/.meta/example.cpp",
+    "src/binary.h": "exercises/practice/binary/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/binary/binary_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/binary.cpp": "47a11416e5e8310fde74e314c252d4e75903dabe7dbce6ff18c42693195af94a",
+    "src/binary.h": "9cfa3d294682a6ebc02d9a7f7b51f2a9ed0a0e89302d56edd9fd2a10df829fa6"
+  }
+}

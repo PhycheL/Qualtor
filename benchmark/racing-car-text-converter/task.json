@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "id": "racing-car-text-converter",
+  "set": "dev",
+  "tier": "easy",
+  "tags": [
+    "kata",
+    "file_io"
+  ],
+  "title": "文本转 HTML 单元测试",
+  "description": "Racing-Car-Katas 的 TextConverter：读取文本文件转为 HTML，按 PAGE_BREAK 分页。公开代码，开发题。",
+  "source": {
+    "repository": "https://github.com/emilybache/Racing-Car-Katas",
+    "commit": "6584af9b6d9bd3d8105b8c8ad4fc544d3c09fed6",
+    "root": "benchmark/racing-car-text-converter/source",
+    "files": {
+      "TextConverter/include/HtmlPagesConverter.h": "c0786da84a5a30ad8bb6ed94b9756fe2a64d2a60a6ff53ec742a592cc68c0a11",
+      "TextConverter/include/HtmlTextConverter.h": "de7d824148e16c9395f1ac9d5dd9b59577b50da96fdd11a2d838a86593964996",
+      "TextConverter/include/StringEscapeUtils.h": "592bee391d462fd1eb0c6879aaa77faea2b0f76f454e8cf6c3ff62bc59705a53",
+      "TextConverter/source/HtmlPagesConverter.cpp": "1b0d146da8a133941dede681d25a6d63fd2ee1c885bf265d7b4d3acca51ade64",
+      "TextConverter/source/HtmlTextConverter.cpp": "0e3bf8ea688b2b70b51bc8df85eae1aea1aa2c0a34d1298f7997b2dbbb54f272"
+    }
+  },
+  "target_sources": [
+    "TextConverter/source/HtmlPagesConverter.cpp",
+    "TextConverter/source/HtmlTextConverter.cpp"
+  ],
+  "include_dirs": [
+    "TextConverter/include"
+  ],
+  "visible": {
+    "files": [
+      "TextConverter/include/HtmlPagesConverter.h",
+      "TextConverter/include/HtmlTextConverter.h",
+      "TextConverter/include/StringEscapeUtils.h",
+      "TextConverter/source/HtmlPagesConverter.cpp",
+      "TextConverter/source/HtmlTextConverter.cpp"
+    ],
+    "notes": "可见材料只有被测源码、头文件和构建方式（C++11 + GoogleTest 1.12.1）。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": false,
+    "note": "上游测试只有占位断言，未采用。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "参考测试覆盖的输入；未单独界定评分输入域，探针即参考测试。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/build_katas.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": []
+}

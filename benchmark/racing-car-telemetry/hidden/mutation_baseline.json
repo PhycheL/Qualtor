@@ -1,0 +1,696 @@
+{
+  "task": "racing-car-telemetry",
+  "created_at": "2026-10-27T07:15:09.531177+00:00",
+  "created_by_run": "bank-prepare-20261027-01-racing-car-telemetry",
+  "scorer_version": "0.1.5",
+  "scorer_code_sha256": "4ca4b8edbd0712321e5bbfa490e9e859683ef129a3492146fb5b14eea56ed5eb",
+  "images": {
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
+  },
+  "mull": {
+    "config_sha256": "d422dbd9b0fc32d5728049a99e93b5205eb06b3d86d5c53a7e66732518d72afe",
+    "config": "# 由评分器根据 task.json 生成；修改算子要升级变异分母。\nmutators:\n  - cxx_all\nincludePaths:\n  - '/repo/TelemetrySystem/source/TelemetryClient\\.cpp$'\n  - '/repo/TelemetrySystem/source/TelemetryDiagnosticControls\\.cpp$'\n"
+  },
+  "mutants": [
+    {
+      "id": "cxx_add_to_sub:/repo/TelemetrySystem/source/TelemetryClient.cpp:78:80:78:81",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 80
+        },
+        "end": {
+          "line": 78,
+          "column": 81
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/TelemetrySystem/source/TelemetryClient.cpp:81:81:81:82",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 81
+        },
+        "end": {
+          "line": 81,
+          "column": 82
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/TelemetrySystem/source/TelemetryClient.cpp:30:20:30:21",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 20
+        },
+        "end": {
+          "line": 30,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/TelemetrySystem/source/TelemetryClient.cpp:35:20:35:21",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 20
+        },
+        "end": {
+          "line": 35,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/TelemetrySystem/source/TelemetryDiagnosticControls.cpp:29:48:29:50",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 48
+        },
+        "end": {
+          "line": 29,
+          "column": 50
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/TelemetrySystem/source/TelemetryDiagnosticControls.cpp:35:44:35:46",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 44
+        },
+        "end": {
+          "line": 35,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/TelemetrySystem/source/TelemetryClient.cpp:79:38:79:40",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 38
+        },
+        "end": {
+          "line": 79,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/TelemetrySystem/source/TelemetryClient.cpp:79:38:79:40",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 38
+        },
+        "end": {
+          "line": 79,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/TelemetrySystem/source/TelemetryDiagnosticControls.cpp:29:70:29:71",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 70
+        },
+        "end": {
+          "line": 29,
+          "column": 71
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/TelemetrySystem/source/TelemetryDiagnosticControls.cpp:29:70:29:71",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 70
+        },
+        "end": {
+          "line": 29,
+          "column": 71
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/TelemetrySystem/source/TelemetryClient.cpp:28:10:28:17",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 10
+        },
+        "end": {
+          "line": 28,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/TelemetrySystem/source/TelemetryClient.cpp:78:13:78:26",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 13
+        },
+        "end": {
+          "line": 78,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/TelemetrySystem/source/TelemetryClient.cpp:79:17:79:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 17
+        },
+        "end": {
+          "line": 79,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/TelemetrySystem/source/TelemetryDiagnosticControls.cpp:28:9:28:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 9
+        },
+        "end": {
+          "line": 28,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/TelemetrySystem/source/TelemetryClient.cpp:28:70:28:72",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 70
+        },
+        "end": {
+          "line": 28,
+          "column": 72
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/TelemetrySystem/source/TelemetryClient.cpp:28:70:28:72",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 70
+        },
+        "end": {
+          "line": 28,
+          "column": 72
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_pre_dec_to_pre_inc:/repo/TelemetrySystem/source/TelemetryClient.cpp:79:43:79:45",
+      "mutator": "cxx_pre_dec_to_pre_inc",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 43
+        },
+        "end": {
+          "line": 79,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/TelemetrySystem/source/TelemetryDiagnosticControls.cpp:26:23:26:33",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 26,
+          "column": 23
+        },
+        "end": {
+          "line": 26,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/TelemetrySystem/source/TelemetryDiagnosticControls.cpp:31:27:31:34",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 27
+        },
+        "end": {
+          "line": 31,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/TelemetrySystem/source/TelemetryDiagnosticControls.cpp:40:23:40:27",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 23
+        },
+        "end": {
+          "line": 40,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/TelemetrySystem/source/TelemetryClient.cpp:22:41:22:46",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 22,
+          "column": 41
+        },
+        "end": {
+          "line": 22,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/TelemetrySystem/source/TelemetryClient.cpp:28:20:28:69",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 20
+        },
+        "end": {
+          "line": 28,
+          "column": 69
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/TelemetrySystem/source/TelemetryClient.cpp:40:17:40:22",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 17
+        },
+        "end": {
+          "line": 40,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/TelemetrySystem/source/TelemetryClient.cpp:45:17:45:19",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 17
+        },
+        "end": {
+          "line": 45,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/TelemetrySystem/source/TelemetryClient.cpp:74:35:74:40",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 35
+        },
+        "end": {
+          "line": 74,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/TelemetrySystem/source/TelemetryDiagnosticControls.cpp:29:30:29:45",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 30
+        },
+        "end": {
+          "line": 29,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/TelemetrySystem/source/TelemetryDiagnosticControls.cpp:35:26:35:41",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 26
+        },
+        "end": {
+          "line": 35,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_assign_to_add_assign:/repo/TelemetrySystem/source/TelemetryDiagnosticControls.cpp:32:19:32:21",
+      "mutator": "cxx_sub_assign_to_add_assign",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 19
+        },
+        "end": {
+          "line": 32,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    }
+  ],
+  "equivalent": [
+    {
+      "id": "cxx_assign_const:/repo/TelemetrySystem/source/TelemetryClient.cpp:35:20:35:21",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/TelemetrySystem/source/TelemetryClient.cpp:79:38:79:40",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/TelemetrySystem/source/TelemetryDiagnosticControls.cpp:29:70:29:71",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_init_const:/repo/TelemetrySystem/source/TelemetryDiagnosticControls.cpp:28:9:28:18",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/TelemetrySystem/source/TelemetryClient.cpp:28:70:28:72",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/TelemetrySystem/source/TelemetryDiagnosticControls.cpp:26:23:26:33",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/TelemetrySystem/source/TelemetryDiagnosticControls.cpp:29:30:29:45",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_sub_assign_to_add_assign:/repo/TelemetrySystem/source/TelemetryDiagnosticControls.cpp:32:19:32:21",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    }
+  ],
+  "unstable": [],
+  "review_needed": [
+    {
+      "id": "cxx_pre_dec_to_pre_inc:/repo/TelemetrySystem/source/TelemetryClient.cpp:79:43:79:45",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    }
+  ],
+  "review": {
+    "status": "pending",
+    "by": null,
+    "at": null,
+    "note": "等价变异候选由有界穷举探针自动给出；人工逐个复核后，把 status 改为 reviewed 并填写 by、at"
+  },
+  "reference": {
+    "killed": 19,
+    "timeout": 1,
+    "total": 20,
+    "m1": 1.0,
+    "threshold": 0.8,
+    "passes": true
+  }
+}

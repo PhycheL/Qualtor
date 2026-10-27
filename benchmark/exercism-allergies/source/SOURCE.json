@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/allergies.cpp": "exercises/practice/allergies/.meta/example.cpp",
+    "src/allergies.h": "exercises/practice/allergies/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/allergies/allergies_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/allergies.cpp": "ea5f1a549fbcfcc8c200f5317e9f1f1d1dc3a4a2badf761e3e0150c8bd9e088d",
+    "src/allergies.h": "72cd424b2a5e7a0503112190b94f3cf589b977043da74ea8bb342831e6d61100"
+  }
+}

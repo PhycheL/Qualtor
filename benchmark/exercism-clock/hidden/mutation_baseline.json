@@ -1,0 +1,615 @@
+{
+  "task": "exercism-clock",
+  "created_at": "2026-10-27T06:53:11.833396+00:00",
+  "created_by_run": "bank-prepare-20261027-01-exercism-clock",
+  "scorer_version": "0.1.5",
+  "scorer_code_sha256": "4ca4b8edbd0712321e5bbfa490e9e859683ef129a3492146fb5b14eea56ed5eb",
+  "images": {
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
+  },
+  "mull": {
+    "config_sha256": "5dadaf9649b6ef1fa428f19dfe552774415b0255c4783031e00a06960a6a51a3",
+    "config": "# 由评分器根据 task.json 生成；修改算子要升级变异分母。\nmutators:\n  - cxx_all\nincludePaths:\n  - '/repo/src/clock\\.cpp$'\n"
+  },
+  "mutants": [
+    {
+      "id": "cxx_add_assign_to_sub_assign:/repo/src/clock.cpp:18:13:18:15",
+      "mutator": "cxx_add_assign_to_sub_assign",
+      "location": {
+        "start": {
+          "line": 18,
+          "column": 13
+        },
+        "end": {
+          "line": 18,
+          "column": 15
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_assign_to_sub_assign:/repo/src/clock.cpp:42:17:42:19",
+      "mutator": "cxx_add_assign_to_sub_assign",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 17
+        },
+        "end": {
+          "line": 42,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_assign_to_sub_assign:/repo/src/clock.cpp:44:26:44:28",
+      "mutator": "cxx_add_assign_to_sub_assign",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 26
+        },
+        "end": {
+          "line": 44,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_assign_to_sub_assign:/repo/src/clock.cpp:45:11:45:13",
+      "mutator": "cxx_add_assign_to_sub_assign",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 11
+        },
+        "end": {
+          "line": 45,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/clock.cpp:40:21:40:22",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 21
+        },
+        "end": {
+          "line": 40,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/clock.cpp:44:48:44:49",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 48
+        },
+        "end": {
+          "line": 44,
+          "column": 49
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_div_to_mul:/repo/src/clock.cpp:40:32:40:33",
+      "mutator": "cxx_div_to_mul",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 32
+        },
+        "end": {
+          "line": 40,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_div_to_mul:/repo/src/clock.cpp:44:57:44:58",
+      "mutator": "cxx_div_to_mul",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 57
+        },
+        "end": {
+          "line": 44,
+          "column": 58
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_div_to_mul:/repo/src/clock.cpp:45:22:45:23",
+      "mutator": "cxx_div_to_mul",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 22
+        },
+        "end": {
+          "line": 45,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/clock.cpp:53:18:53:20",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 18
+        },
+        "end": {
+          "line": 53,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/clock.cpp:53:42:53:44",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 42
+        },
+        "end": {
+          "line": 53,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/clock.cpp:40:13:40:16",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 13
+        },
+        "end": {
+          "line": 40,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/clock.cpp:39:17:39:18",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 17
+        },
+        "end": {
+          "line": 39,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/clock.cpp:44:15:44:16",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 15
+        },
+        "end": {
+          "line": 44,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/clock.cpp:39:17:39:18",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 17
+        },
+        "end": {
+          "line": 39,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/clock.cpp:44:15:44:16",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 15
+        },
+        "end": {
+          "line": 44,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/src/clock.cpp:42:37:42:38",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 37
+        },
+        "end": {
+          "line": 42,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/src/clock.cpp:44:43:44:44",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 43
+        },
+        "end": {
+          "line": 44,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rem_assign_to_div_assign:/repo/src/clock.cpp:46:11:46:13",
+      "mutator": "cxx_rem_assign_to_div_assign",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 11
+        },
+        "end": {
+          "line": 46,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rem_assign_to_div_assign:/repo/src/clock.cpp:47:13:47:15",
+      "mutator": "cxx_rem_assign_to_div_assign",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 13
+        },
+        "end": {
+          "line": 47,
+          "column": 15
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/clock.cpp:19:5:19:12",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 19,
+          "column": 5
+        },
+        "end": {
+          "line": 19,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/clock.cpp:25:5:25:12",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 25,
+          "column": 5
+        },
+        "end": {
+          "line": 25,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/clock.cpp:36:69:36:76",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 69
+        },
+        "end": {
+          "line": 36,
+          "column": 76
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_assign_to_add_assign:/repo/src/clock.cpp:24:13:24:15",
+      "mutator": "cxx_sub_assign_to_add_assign",
+      "location": {
+        "start": {
+          "line": 24,
+          "column": 13
+        },
+        "end": {
+          "line": 24,
+          "column": 15
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_sub_assign_to_add_assign:/repo/src/clock.cpp:41:15:41:17",
+      "mutator": "cxx_sub_assign_to_add_assign",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 15
+        },
+        "end": {
+          "line": 41,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    }
+  ],
+  "equivalent": [
+    {
+      "id": "cxx_div_to_mul:/repo/src/clock.cpp:40:32:40:33",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_div_to_mul:/repo/src/clock.cpp:44:57:44:58",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/clock.cpp:39:17:39:18",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/clock.cpp:44:15:44:16",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/clock.cpp:25:5:25:12",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_sub_assign_to_add_assign:/repo/src/clock.cpp:24:13:24:15",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    }
+  ],
+  "unstable": [],
+  "review_needed": [],
+  "review": {
+    "status": "pending",
+    "by": null,
+    "at": null,
+    "note": "等价变异候选由有界穷举探针自动给出；人工逐个复核后，把 status 改为 reviewed 并填写 by、at"
+  },
+  "reference": {
+    "killed": 19,
+    "timeout": 0,
+    "total": 19,
+    "m1": 1.0,
+    "threshold": 0.8,
+    "passes": true
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "repository": "https://github.com/emilybache/Racing-Car-Katas",
+  "commit": "6584af9b6d9bd3d8105b8c8ad4fc544d3c09fed6",
+  "license": "MIT",
+  "upstream_paths": {
+    "TextConverter/include/HtmlPagesConverter.h": "Cpp/TextConverter/include/HtmlPagesConverter.h",
+    "TextConverter/include/HtmlTextConverter.h": "Cpp/TextConverter/include/HtmlTextConverter.h",
+    "TextConverter/include/StringEscapeUtils.h": "Cpp/TextConverter/include/StringEscapeUtils.h",
+    "TextConverter/source/HtmlPagesConverter.cpp": "Cpp/TextConverter/source/HtmlPagesConverter.cpp",
+    "TextConverter/source/HtmlTextConverter.cpp": "Cpp/TextConverter/source/HtmlTextConverter.cpp"
+  },
+  "added_by_qualtor": [],
+  "files": {
+    "LICENSE": "b6c892eef2e97dbdc8a959a20053f7fd6477fc335829e79e5f2169ca34cb9b1e",
+    "TextConverter/include/HtmlPagesConverter.h": "c0786da84a5a30ad8bb6ed94b9756fe2a64d2a60a6ff53ec742a592cc68c0a11",
+    "TextConverter/include/HtmlTextConverter.h": "de7d824148e16c9395f1ac9d5dd9b59577b50da96fdd11a2d838a86593964996",
+    "TextConverter/include/StringEscapeUtils.h": "592bee391d462fd1eb0c6879aaa77faea2b0f76f454e8cf6c3ff62bc59705a53",
+    "TextConverter/source/HtmlPagesConverter.cpp": "1b0d146da8a133941dede681d25a6d63fd2ee1c885bf265d7b4d3acca51ade64",
+    "TextConverter/source/HtmlTextConverter.cpp": "0e3bf8ea688b2b70b51bc8df85eae1aea1aa2c0a34d1298f7997b2dbbb54f272"
+  }
+}

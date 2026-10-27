@@ -1,0 +1,386 @@
+{
+  "task": "exercism-robot-simulator",
+  "created_at": "2026-10-27T07:00:00.221724+00:00",
+  "created_by_run": "bank-prepare-20261027-01-exercism-robot-simulator",
+  "scorer_version": "0.1.5",
+  "scorer_code_sha256": "4ca4b8edbd0712321e5bbfa490e9e859683ef129a3492146fb5b14eea56ed5eb",
+  "images": {
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
+  },
+  "mull": {
+    "config_sha256": "5fbebe8de0ec4ba8562c7fb9465938b0a781270cfdf92887ae8493206f117e04",
+    "config": "# 由评分器根据 task.json 生成；修改算子要升级变异分母。\nmutators:\n  - cxx_all\nincludePaths:\n  - '/repo/src/robot_simulator\\.cpp$'\n"
+  },
+  "mutants": [
+    {
+      "id": "cxx_assign_const:/repo/src/robot_simulator.cpp:18:27:18:28",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 18,
+          "column": 27
+        },
+        "end": {
+          "line": 18,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/robot_simulator.cpp:22:27:22:28",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 22,
+          "column": 27
+        },
+        "end": {
+          "line": 22,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/robot_simulator.cpp:26:27:26:28",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 26,
+          "column": 27
+        },
+        "end": {
+          "line": 26,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/robot_simulator.cpp:30:27:30:28",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 27
+        },
+        "end": {
+          "line": 30,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/robot_simulator.cpp:37:27:37:28",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 27
+        },
+        "end": {
+          "line": 37,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/robot_simulator.cpp:41:27:41:28",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 27
+        },
+        "end": {
+          "line": 41,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/robot_simulator.cpp:45:27:45:28",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 27
+        },
+        "end": {
+          "line": 45,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/robot_simulator.cpp:49:27:49:28",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 27
+        },
+        "end": {
+          "line": 49,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/robot_simulator.cpp:75:15:75:16",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 15
+        },
+        "end": {
+          "line": 75,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_dec_to_post_inc:/repo/src/robot_simulator.cpp:61:33:61:35",
+      "mutator": "cxx_post_dec_to_post_inc",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 33
+        },
+        "end": {
+          "line": 61,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_dec_to_post_inc:/repo/src/robot_simulator.cpp:65:34:65:36",
+      "mutator": "cxx_post_dec_to_post_inc",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 34
+        },
+        "end": {
+          "line": 65,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/robot_simulator.cpp:57:34:57:36",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 34
+        },
+        "end": {
+          "line": 57,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/robot_simulator.cpp:69:33:69:35",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 33
+        },
+        "end": {
+          "line": 69,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/robot_simulator.cpp:78:17:78:28",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 17
+        },
+        "end": {
+          "line": 78,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/robot_simulator.cpp:82:17:82:29",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 17
+        },
+        "end": {
+          "line": 82,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/robot_simulator.cpp:86:17:86:26",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 17
+        },
+        "end": {
+          "line": 86,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    }
+  ],
+  "equivalent": [],
+  "unstable": [],
+  "review_needed": [],
+  "review": {
+    "status": "pending",
+    "by": null,
+    "at": null,
+    "note": "等价变异候选由有界穷举探针自动给出；人工逐个复核后，把 status 改为 reviewed 并填写 by、at"
+  },
+  "reference": {
+    "killed": 16,
+    "timeout": 0,
+    "total": 16,
+    "m1": 1.0,
+    "threshold": 0.8,
+    "passes": true
+  }
+}

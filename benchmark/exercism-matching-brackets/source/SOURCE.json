@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/matching_brackets.cpp": "exercises/practice/matching-brackets/.meta/example.cpp",
+    "src/matching_brackets.h": "exercises/practice/matching-brackets/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/matching-brackets/matching_brackets_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/matching_brackets.cpp": "1dcbb2547df9579c2a5d0fad9a70600092bbb1ee5961ac011581c4fec56679ee",
+    "src/matching_brackets.h": "586b2f7e638dfad219bedbed7023195da840a0a37c7d88ed5f4505f6ef169a55"
+  }
+}

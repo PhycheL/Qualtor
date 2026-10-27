@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/sieve.cpp": "exercises/practice/sieve/.meta/example.cpp",
+    "src/sieve.h": "exercises/practice/sieve/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/sieve/sieve_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/sieve.cpp": "7e524c4f779ca557a8a7da8e11908acfeea6456b67201344b764852b148077ae",
+    "src/sieve.h": "f9e87c37662ba6c9540df159865d7f0701f5136516e97d638648d49d3eb09850"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/all_your_base.cpp": "exercises/practice/all-your-base/.meta/example.cpp",
+    "src/all_your_base.h": "exercises/practice/all-your-base/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/all-your-base/all_your_base_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/all_your_base.cpp": "33d2cf6036ebf47dc35796d1f00e4a0cfbc33669a1f9344d5af74657ae4f7bd5",
+    "src/all_your_base.h": "7bffd71148a8392bc0e397a88591377b55e12f85ad964028c9601142cb526b3e"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "repository": "https://github.com/emilybache/Racing-Car-Katas",
+  "commit": "6584af9b6d9bd3d8105b8c8ad4fc544d3c09fed6",
+  "license": "MIT",
+  "upstream_paths": {
+    "LeaderBoard/include/Driver.h": "Cpp/LeaderBoard/include/Driver.h",
+    "LeaderBoard/include/LeaderBoard.h": "Cpp/LeaderBoard/include/LeaderBoard.h",
+    "LeaderBoard/include/Race.h": "Cpp/LeaderBoard/include/Race.h",
+    "LeaderBoard/include/SelfDrivingCar.h": "Cpp/LeaderBoard/include/SelfDrivingCar.h",
+    "LeaderBoard/source/Driver.cpp": "Cpp/LeaderBoard/source/Driver.cpp",
+    "LeaderBoard/source/LeaderBoard.cpp": "Cpp/LeaderBoard/source/LeaderBoard.cpp",
+    "LeaderBoard/source/Race.cpp": "Cpp/LeaderBoard/source/Race.cpp",
+    "LeaderBoard/source/SelfDrivingCar.cpp": "Cpp/LeaderBoard/source/SelfDrivingCar.cpp"
+  },
+  "added_by_qualtor": [],
+  "files": {
+    "LICENSE": "b6c892eef2e97dbdc8a959a20053f7fd6477fc335829e79e5f2169ca34cb9b1e",
+    "LeaderBoard/include/Driver.h": "38f70fa9e067e9cb4a3e0b179b51d3cdefb4e4ebd70cae3034d3ec46b611bbae",
+    "LeaderBoard/include/LeaderBoard.h": "84639e8579f3096b5d8acb6a96cb00641c23356949924a95b4a17e4d3dc9926f",
+    "LeaderBoard/include/Race.h": "722dc357a7026c49bdb1bf06c41bb9a9e6a61e75727e9e64edbaa9c23d4580a8",
+    "LeaderBoard/include/SelfDrivingCar.h": "8b3334a0591b083b59702e9da8e384797f3ffb40b15522ff0e8ee171e8b00236",
+    "LeaderBoard/source/Driver.cpp": "be499ed1d1d47e412d3f580eea24eed50ef1cbf47d52a10cae8c8f0cab8cc4b7",
+    "LeaderBoard/source/LeaderBoard.cpp": "478e9865e5c80d9fb50564c51803a0fe498c03cbd2cdcf231c0c9132913560e4",
+    "LeaderBoard/source/Race.cpp": "66148160bfc65b486cda5ae12ba7e2a47e61051728dbd62b579735a0d520c02f",
+    "LeaderBoard/source/SelfDrivingCar.cpp": "813871670200005eaa2ec15486014cc713c147723c75603dc5d95aaffe06f634"
+  }
+}

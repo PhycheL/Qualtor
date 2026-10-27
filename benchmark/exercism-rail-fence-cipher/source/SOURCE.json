@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/rail_fence_cipher.cpp": "exercises/practice/rail-fence-cipher/.meta/example.cpp",
+    "src/rail_fence_cipher.h": "exercises/practice/rail-fence-cipher/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/rail-fence-cipher/rail_fence_cipher_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/rail_fence_cipher.cpp": "dafd9939b20c20165d5ad0fbf063a76656e3f9f1032d4dc09a63a966d3e41083",
+    "src/rail_fence_cipher.h": "1d49800a65a0ce7c23327f53d24f166370a4c2560adcd6292fc526b73bd99b54"
+  }
+}

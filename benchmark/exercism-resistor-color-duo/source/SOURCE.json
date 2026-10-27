@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/resistor_color_duo.cpp": "exercises/practice/resistor-color-duo/.meta/example.cpp",
+    "src/resistor_color_duo.h": "exercises/practice/resistor-color-duo/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/resistor-color-duo/resistor_color_duo_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/resistor_color_duo.cpp": "6d81f14a639b4801fd8320a27b7e2d4e879e4a3f2cfa81bde35ecf43d7bfff97",
+    "src/resistor_color_duo.h": "0d77739496ed72acb96163e55737bffb933a64f19c16dda9a2a01406608bd3ba"
+  }
+}

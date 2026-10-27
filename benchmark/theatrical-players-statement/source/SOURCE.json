@@ -1,0 +1,17 @@
+{
+  "repository": "https://github.com/emilybache/Theatrical-Players-Refactoring-Kata",
+  "commit": "d76f8d4968f1bceff2a0bac17ba27759894bebf4",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/statement.cpp": "cpp/statement.cpp",
+    "src/statement.h": "cpp/statement.h",
+    "third_party/json.hpp": "cpp/third_party/json.hpp"
+  },
+  "added_by_qualtor": [],
+  "files": {
+    "LICENSE": "ed2eb9ab7c969f19d0467ed00af46814abfa774d2785d82213560e12ab6f7403",
+    "src/statement.cpp": "0d27fd2cc597ba6138e1d86cfd13f0d60d5849d722c6df09956f9e28be5e0661",
+    "src/statement.h": "fea2e31998e4abac34489e9942077d5cfb73d9034918f6ee08a6fbde2d33d679",
+    "third_party/json.hpp": "9bea4c8066ef4a1c206b2be5a36302f8926f7fdc6087af5d20b417d0cf103ea6"
+  }
+}

@@ -15,24 +15,34 @@ from product_process import Cancellation
 from paths import AGENTS, BENCHMARK, GENERATOR, RUNS, REPO
 from audit import Audit
 from runs import finish, new_manifest, write_manifest
-from common import (calibration_status, check_run_id, default_run_id, load_task, now, assessment_code_sha256,
-                    assessment_version, sha256_file, task_sha256, validate_task, write_json)
+from common import (calibration_status, check_run_id, default_run_id, load_baseline, load_task, now,
+                    assessment_code_sha256, assessment_version, sha256_file, task_sha256, validate_task, write_json)
 from docker_runner import DockerExecutor
 import aggregate
 
 
 def select_tasks(names, task_set):
-    selected = {}
+    selected, skipped = {}, set()
     for name in names:
-        if name == "all" or Path(name).resolve() == BENCHMARK:
+        whole = name == "all" or Path(name).resolve() == BENCHMARK
+        if whole:
             choices = [p.parent for p in BENCHMARK.glob("*/task.json")]
         else:
             choices = [p for p in name.split(",") if p]
         for choice in choices:
             task = load_task(choice)
-            if task_set is None or task["set"] == task_set:
-                public_task(task)
-                selected[task["id"]] = task
+            if task_set is not None and task["set"] != task_set:
+                continue
+            # 未标定变异分母的题目评分必然是基础设施错误：点名时在生成前报错，批量选择时跳过。
+            if load_baseline(task) is None:
+                if not whole:
+                    raise ValueError(f"题目 {task['id']} 尚未标定变异分母，先运行 prepare_task.py baseline --write")
+                skipped.add(task["id"])
+                continue
+            public_task(task)
+            selected[task["id"]] = task
+    if skipped:
+        print("跳过尚未标定变异分母的题目：" + ", ".join(sorted(skipped)), file=sys.stderr)
     if not selected:
         raise ValueError("没有符合筛选条件的题目")
     return list(selected.values())

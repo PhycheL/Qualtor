@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/bob.cpp": "exercises/practice/bob/.meta/example.cpp",
+    "src/bob.h": "exercises/practice/bob/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/bob/bob_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/bob.cpp": "c48429675028bfceaeb39259f21ffb22c9a7a70a5427e7dcf8331ce128616b49",
+    "src/bob.h": "502fb0cca6991fdd86b3daf34fdb67f60862ba6d05fe80ccf8cb82a039df1951"
+  }
+}

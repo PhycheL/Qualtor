@@ -171,7 +171,8 @@ class ProductAssessment:
         for path, stats in data["files"].items():
             files[_rel(path, self.repo_path(""))] = {"lines": stats["line"], "branches": stats["branch_all"],
                                                        "functions": stats["function"],
-                                                       "uncovered_functions": stats["uncovered_functions"]}
+                                                       "uncovered_functions": stats["uncovered_functions"],
+                                                       "no_executable_code": stats.get("no_executable_code", False)}
         return {"files": files, "total": data["total"]}
 
     def _mull(self, valid):

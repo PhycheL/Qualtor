@@ -1,0 +1,31 @@
+// HumanEval-X CPP/46（prompt + canonical_solution）
+#include "humaneval_x_cpp_06.h"
+#include<stdio.h>
+
+/*
+The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:
+fib4(0) -> 0
+fib4(1) -> 0
+fib4(2) -> 2
+fib4(3) -> 0
+fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).
+Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.
+>>> fib4(5)
+4
+>>> fib4(6)
+8
+>>> fib4(7)
+14
+*/
+int fib4(int n){
+    int f[100];
+    f[0]=0;
+    f[1]=0;
+    f[2]=2;
+    f[3]=0;
+    for (int i=4;i<=n;i++)
+    {
+        f[i]=f[i-1]+f[i-2]+f[i-3]+f[i-4];
+    }
+    return f[n];
+}

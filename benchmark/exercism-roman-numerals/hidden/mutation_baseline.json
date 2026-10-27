@@ -1,0 +1,496 @@
+{
+  "task": "exercism-roman-numerals",
+  "created_at": "2026-10-27T07:00:25.981141+00:00",
+  "created_by_run": "bank-prepare-20261027-01-exercism-roman-numerals",
+  "scorer_version": "0.1.5",
+  "scorer_code_sha256": "4ca4b8edbd0712321e5bbfa490e9e859683ef129a3492146fb5b14eea56ed5eb",
+  "images": {
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
+  },
+  "mull": {
+    "config_sha256": "44e12c7a76b4a222c011790770d088253e7d26fd242664b3d1952ab0e77836db",
+    "config": "# 由评分器根据 task.json 生成；修改算子要升级变异分母。\nmutators:\n  - cxx_all\nincludePaths:\n  - '/repo/src/roman_numerals\\.cpp$'\n"
+  },
+  "mutants": [
+    {
+      "id": "cxx_add_to_sub:/repo/src/roman_numerals.cpp:50:35:50:36",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 35
+        },
+        "end": {
+          "line": 50,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/roman_numerals.cpp:53:34:53:35",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 34
+        },
+        "end": {
+          "line": 53,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/roman_numerals.cpp:59:15:59:17",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 15
+        },
+        "end": {
+          "line": 59,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/roman_numerals.cpp:68:12:68:14",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 12
+        },
+        "end": {
+          "line": 68,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/roman_numerals.cpp:59:15:59:17",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 15
+        },
+        "end": {
+          "line": 59,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "killed",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/roman_numerals.cpp:68:12:68:14",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 12
+        },
+        "end": {
+          "line": 68,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/roman_numerals.cpp:34:5:34:16",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 5
+        },
+        "end": {
+          "line": 34,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/roman_numerals.cpp:35:5:35:15",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 5
+        },
+        "end": {
+          "line": 35,
+          "column": 15
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/roman_numerals.cpp:36:5:36:11",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 5
+        },
+        "end": {
+          "line": 36,
+          "column": 11
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/roman_numerals.cpp:37:5:37:11",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 5
+        },
+        "end": {
+          "line": 37,
+          "column": 11
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/roman_numerals.cpp:41:31:41:39",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 31
+        },
+        "end": {
+          "line": 41,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/roman_numerals.cpp:43:30:43:38",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 30
+        },
+        "end": {
+          "line": 43,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/roman_numerals.cpp:45:26:45:34",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 26
+        },
+        "end": {
+          "line": 45,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/roman_numerals.cpp:51:5:51:25",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 5
+        },
+        "end": {
+          "line": 51,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/roman_numerals.cpp:52:5:52:50",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 5
+        },
+        "end": {
+          "line": 52,
+          "column": 50
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/roman_numerals.cpp:54:5:54:30",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 5
+        },
+        "end": {
+          "line": 54,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/roman_numerals.cpp:55:5:55:55",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 5
+        },
+        "end": {
+          "line": 55,
+          "column": 55
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_assign_to_add_assign:/repo/src/roman_numerals.cpp:61:12:61:14",
+      "mutator": "cxx_sub_assign_to_add_assign",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 12
+        },
+        "end": {
+          "line": 61,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_sub_assign_to_add_assign:/repo/src/roman_numerals.cpp:71:12:71:14",
+      "mutator": "cxx_sub_assign_to_add_assign",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 12
+        },
+        "end": {
+          "line": 71,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/roman_numerals.cpp:67:37:67:38",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 37
+        },
+        "end": {
+          "line": 67,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    }
+  ],
+  "equivalent": [],
+  "unstable": [
+    {
+      "id": "cxx_ge_to_lt:/repo/src/roman_numerals.cpp:59:15:59:17",
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "killed",
+        "timeout"
+      ],
+      "reason": "多次运行结果不一致（可能是未定义行为导致的偶然崩溃），从分母中剔除"
+    }
+  ],
+  "review_needed": [
+    {
+      "id": "cxx_add_to_sub:/repo/src/roman_numerals.cpp:50:35:50:36",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_sub_assign_to_add_assign:/repo/src/roman_numerals.cpp:61:12:61:14",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    }
+  ],
+  "review": {
+    "status": "pending",
+    "by": null,
+    "at": null,
+    "note": "等价变异候选由有界穷举探针自动给出；人工逐个复核后，把 status 改为 reviewed 并填写 by、at"
+  },
+  "reference": {
+    "killed": 17,
+    "timeout": 2,
+    "total": 19,
+    "m1": 1.0,
+    "threshold": 0.8,
+    "passes": true
+  }
+}

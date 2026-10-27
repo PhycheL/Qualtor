@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "id": "supermarket-receipt",
+  "set": "dev",
+  "tier": "medium",
+  "tags": [
+    "kata",
+    "multi_file"
+  ],
+  "title": "超市小票与优惠单元测试",
+  "description": "SupermarketReceipt Refactoring Kata：商品目录、购物车、四种优惠与小票打印。公开代码，开发题。",
+  "source": {
+    "repository": "https://github.com/emilybache/SupermarketReceipt-Refactoring-Kata",
+    "commit": "c72d68abd77a417f84193b72a3b8d14177336066",
+    "root": "benchmark/supermarket-receipt/source",
+    "files": {
+      "src/Discount.cpp": "15a9007f004878763a921e87b79d04a7c82b524a69b7f74c0aaf9e84ae53de8f",
+      "src/Discount.h": "cb2c0be97b5027c486d4c3559eb079e07497c46d0cd3486c19e57fd37b053e1e",
+      "src/FakeCatalog.cpp": "7d04033a3f7a8d83384ff53a7905465e25a7f19a844e0b88f21c1f7aa73415de",
+      "src/FakeCatalog.h": "d50464add3e4c7d834951eac0d9f924c95ac436d1779bb94a7ea1564c1a46f3f",
+      "src/Offer.cpp": "67cb30a1ab9ef21301194b8fa011438274be1a3d29bbba015f35ad373c650e35",
+      "src/Offer.h": "4356c5262dac19138f448d62d38aadf79ef3935b59cd56cc416cae45ea7b4128",
+      "src/Product.cpp": "b4da98568c12ba894801b2c2daad507e9373f3abdfe173966b1989a08b9a66f9",
+      "src/Product.h": "705ed5156989751590663eb5174bb7bf138a7c53bc75a9839c3e05e4fe564ed7",
+      "src/ProductQuantity.cpp": "5f8e8f9d99f0a9faedc94533e15a3b399cb5979b9cb9bab42c4c6652a7542b79",
+      "src/ProductQuantity.h": "865133093ede05865930dedaefed788536939f2575d2eb9fb2e261676fadaf7b",
+      "src/ProductUnit.h": "8d2be4ed118de5affa9b0abc0ae5523be7e9ab6ea58475c059aea8123ba6cb5a",
+      "src/Receipt.cpp": "56265316b181c05fd4c2d6ea8be9dfedd5182bbc332c436880e793be03ee9fdb",
+      "src/Receipt.h": "a6122c854ab211029901c3fda01257df0d0671fa77218d373bfaf7cc15b43387",
+      "src/ReceiptItem.cpp": "18f6a6bfde5aee524949d5b001d86e4bc3b20a2f9be63abcfe1eb1354d21faf5",
+      "src/ReceiptItem.h": "7212185b62d19d4e3b302feae89192ed50e16e6b987604b5d3001e780b254fe8",
+      "src/ReceiptPrinter.cpp": "aa3ac81de6bd7f02a2552f9264b4f458a356134db2063d559e859e9d6d8fee9c",
+      "src/ReceiptPrinter.h": "5111972d74fe20c7e9050daa1e13fce8f75440b3d50bc26b4440c847a34e4e4a",
+      "src/ShoppingCart.cpp": "9789ad9a66a395fa0497e561daf955f6fc4e81aba042c967fdd76fc159bd1e34",
+      "src/ShoppingCart.h": "61e75a16b4dadadcfbfd322c9a7000e1d25421ec80d755874d3a6e436b3eb097",
+      "src/SpecialOfferType.h": "a0be04986cb71217c84d92b1d142e77059aac45232bd0826d87a8395730a9636",
+      "src/SupermarketCatalog.h": "3d977877adf5d34d87e91ed6be88554519b740d416936a1936f83cc0d605ca2f",
+      "src/Teller.cpp": "859405024a782c80aea66515dbd36b261c3c86dbe60f78b83c8a10855b7160f5",
+      "src/Teller.h": "81bd91f8a1ef1c29b7c97069481ecc2eea3dc0aaacd38875a6031f20c2c9e3af"
+    }
+  },
+  "target_sources": [
+    "src/Discount.cpp",
+    "src/FakeCatalog.cpp",
+    "src/Offer.cpp",
+    "src/Product.cpp",
+    "src/ProductQuantity.cpp",
+    "src/Receipt.cpp",
+    "src/ReceiptItem.cpp",
+    "src/ReceiptPrinter.cpp",
+    "src/ShoppingCart.cpp",
+    "src/Teller.cpp"
+  ],
+  "include_dirs": [
+    "src"
+  ],
+  "visible": {
+    "files": [
+      "src/Discount.cpp",
+      "src/Discount.h",
+      "src/FakeCatalog.cpp",
+      "src/FakeCatalog.h",
+      "src/Offer.cpp",
+      "src/Offer.h",
+      "src/Product.cpp",
+      "src/Product.h",
+      "src/ProductQuantity.cpp",
+      "src/ProductQuantity.h",
+      "src/ProductUnit.h",
+      "src/Receipt.cpp",
+      "src/Receipt.h",
+      "src/ReceiptItem.cpp",
+      "src/ReceiptItem.h",
+      "src/ReceiptPrinter.cpp",
+      "src/ReceiptPrinter.h",
+      "src/ShoppingCart.cpp",
+      "src/ShoppingCart.h",
+      "src/SpecialOfferType.h",
+      "src/SupermarketCatalog.h",
+      "src/Teller.cpp",
+      "src/Teller.h"
+    ],
+    "notes": "可见材料只有被测源码、头文件和构建方式（C++11 + GoogleTest 1.12.1）。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": false,
+    "note": "上游 GoogleTest 只有一个依赖 ApprovalTests 的样例，未采用。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "参考测试覆盖的输入；未单独界定评分输入域，探针即参考测试。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/build_katas.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": []
+}

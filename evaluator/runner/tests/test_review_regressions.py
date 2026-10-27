@@ -19,6 +19,23 @@ import runs
 from common import freeze_product, load_task, sha256_file, write_json
 from run import execute
 
+class TaskSelectionTest(unittest.TestCase):
+    def test_tasks_without_mutation_baseline_are_skipped_or_rejected(self):
+        with tempfile.TemporaryDirectory() as root:
+            tasks = {name: {"id": name, "set": "dev"} for name in ("prepared", "unprepared")}
+            for name in tasks:
+                (Path(root) / name).mkdir()
+                (Path(root) / name / "task.json").write_text("{}")
+            with patch.object(run, "BENCHMARK", Path(root)), \
+                    patch.object(run, "load_task", side_effect=lambda choice: tasks[Path(choice).name]), \
+                    patch.object(run, "load_baseline", side_effect=lambda task: {} if task["id"] == "prepared" else None), \
+                    patch.object(run, "public_task", side_effect=lambda task: task):
+                self.assertEqual([t["id"] for t in run.select_tasks(["all"], None)], ["prepared"])
+                self.assertEqual([t["id"] for t in run.select_tasks(["prepared"], "dev")], ["prepared"])
+                with self.assertRaisesRegex(ValueError, "尚未标定变异分母"):
+                    run.select_tasks(["unprepared"], None)
+
+
 class TrialCancellationTest(unittest.TestCase):
     def test_running_trial_finishes_after_other_worker_fails(self):
         second_started = threading.Event()

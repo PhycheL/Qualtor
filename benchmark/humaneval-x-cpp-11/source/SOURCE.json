@@ -1,0 +1,29 @@
+{
+  "repository": "https://github.com/zai-org/CodeGeeX",
+  "commit": "2838420b7b4492cf3d16bce5320e26e65960c9e2",
+  "license": "Apache-2.0",
+  "dataset": "codegeex/benchmark/humaneval-x/cpp/data/humaneval_cpp.jsonl.gz",
+  "dataset_sha256": "dcf2e280a1e91bbc3c5f90edb41397e8a9ac1ccc9f5d2b70082f0b0fbfb6dbb0",
+  "problems": [
+    "CPP/81",
+    "CPP/82",
+    "CPP/83",
+    "CPP/84",
+    "CPP/85",
+    "CPP/86",
+    "CPP/87",
+    "CPP/88"
+  ],
+  "files": {
+    "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "src/cpp_081.cc": "0db40dfaf1ec55fa3d1967184fb12ab919b64530f33872bd96bf292df52afdc2",
+    "src/cpp_082.cc": "4a4e5f5d11ef5d74d00d86266df91844bf8710f80fb600c0f03375d852373401",
+    "src/cpp_083.cc": "040ca535fa6e87bf9fcaa5b1f392dc4591982d5a365959c210eee957e3a416b8",
+    "src/cpp_084.cc": "f3104f28fc84734f703056ea6c6ff5e51a7343c74eadd735fb2bce04d60b4361",
+    "src/cpp_085.cc": "d53d9dca5b1eeae774b840403b90586d13ba0ce989dd68422c699a0ce9533eb2",
+    "src/cpp_086.cc": "75080f9ea5b13048e92c802f73923be4d7d26b5e16dcf521207b95f7316767f3",
+    "src/cpp_087.cc": "ab755a866cf1b6130f2e3fb7fb9d66ed51e3eb509a8a9eedf7cc578218113fef",
+    "src/cpp_088.cc": "e02f5129e7971ad912f6073a3fb2d617e1c128d6190b617c3b82dfb802fc21cf",
+    "src/humaneval_x_cpp_11.h": "df28e3c95a5addd0ff9edaf5434cdb02513442b095ba904a2745e587a68a02f7"
+  }
+}

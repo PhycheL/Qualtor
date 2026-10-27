@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/zebra_puzzle.cpp": "exercises/practice/zebra-puzzle/.meta/example.cpp",
+    "src/zebra_puzzle.h": "exercises/practice/zebra-puzzle/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/zebra-puzzle/zebra_puzzle_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/zebra_puzzle.cpp": "28cf73650870d6cd6574d548accf78d90d8c47efeb8fb5820b9219d4ecddd149",
+    "src/zebra_puzzle.h": "bb8758ee5f0097715412c268c2dc1969ceb02d9ff06003d7418d640476d60073"
+  }
+}

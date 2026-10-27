@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/eliuds_eggs.cpp": "exercises/practice/eliuds-eggs/.meta/example.cpp",
+    "src/eliuds_eggs.h": "exercises/practice/eliuds-eggs/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/eliuds-eggs/eliuds_eggs_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/eliuds_eggs.cpp": "61e52cee01af117bd25668fcc74dacf11629e2b751185a43de36cb0dcc1d76c1",
+    "src/eliuds_eggs.h": "708a0f05730099faa08489e9cba039b88004a1a6ef54c5edc6873f623b737051"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/beer_song.cpp": "exercises/practice/beer-song/.meta/example.cpp",
+    "src/beer_song.h": "exercises/practice/beer-song/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/beer-song/beer_song_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/beer_song.cpp": "0e52ccac98f4ec1b176a0687b5385b1e197e2319e2742c4ca934da60edcd15aa",
+    "src/beer_song.h": "906e74e1dd908e400285ed0370ce9ef75d174ac74e4f60555b23d058484db9ec"
+  }
+}

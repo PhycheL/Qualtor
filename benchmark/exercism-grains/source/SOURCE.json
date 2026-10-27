@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/grains.cpp": "exercises/practice/grains/.meta/example.cpp",
+    "src/grains.h": "exercises/practice/grains/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/grains/grains_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/grains.cpp": "84f50977c783a031c75b6a31da8d8a47295167d1972e05de201ad91704e2aa1a",
+    "src/grains.h": "68ae5f050fe85d7d469905e0e6b90f203e9ff92efa4964726f361a7ca75d493a"
+  }
+}

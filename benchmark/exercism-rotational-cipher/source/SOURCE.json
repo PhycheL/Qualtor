@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/rotational_cipher.cpp": "exercises/practice/rotational-cipher/.meta/example.cpp",
+    "src/rotational_cipher.h": "exercises/practice/rotational-cipher/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/rotational-cipher/rotational_cipher_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/rotational_cipher.cpp": "b238f4eca3cc1563c0927e6a2d69f2f8028f224550d97654b0eb737b1803451c",
+    "src/rotational_cipher.h": "84492b301a84fbc1cb9549017e1b536c3c8aeddc3883206498893c8dce08a6cb"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "id": "racing-car-tire-pressure",
+  "set": "dev",
+  "tier": "medium",
+  "tags": [
+    "kata",
+    "link_seam"
+  ],
+  "title": "胎压报警单元测试",
+  "description": "Racing-Car-Katas 的 TirePressureMonitoring：只编译 Alarm.cpp，Sensor 需要测试提供链接替身。公开代码，开发题。",
+  "source": {
+    "repository": "https://github.com/emilybache/Racing-Car-Katas",
+    "commit": "6584af9b6d9bd3d8105b8c8ad4fc544d3c09fed6",
+    "root": "benchmark/racing-car-tire-pressure/source",
+    "files": {
+      "TirePressureMonitoring/include/Alarm.h": "089042ea45b17b9f7df94e21f78649fd7f69c9d7ed11faf72c035cbc0a4f0a61",
+      "TirePressureMonitoring/include/Sensor.h": "ec3e5afac366aa395926df45da90311b464278bd627bebd7d21ba0fe892e414b",
+      "TirePressureMonitoring/source/Alarm.cpp": "fc0623c559c12b0c73176b84bd30bf0e51e45bd3f145b31b2f8ee209cb87c156"
+    }
+  },
+  "target_sources": [
+    "TirePressureMonitoring/source/Alarm.cpp"
+  ],
+  "include_dirs": [
+    "TirePressureMonitoring/include"
+  ],
+  "visible": {
+    "files": [
+      "TirePressureMonitoring/include/Alarm.h",
+      "TirePressureMonitoring/include/Sensor.h",
+      "TirePressureMonitoring/source/Alarm.cpp"
+    ],
+    "notes": "可见材料只有被测源码、头文件和构建方式（C++11 + GoogleTest 1.12.1）。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": false,
+    "note": "上游测试只有占位断言，未采用。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "参考测试覆盖的输入；未单独界定评分输入域，探针即参考测试。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/build_katas.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": []
+}

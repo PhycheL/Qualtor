@@ -20,7 +20,8 @@ def parse_text(path):
             current_line = int(number)
             count = count.strip()
             if current_line and count != "-":
-                lines[current_line] = 0 if count in ("#####", "=====") else int(count.replace("*", ""))
+                # 同一行属于多个函数符号时，gcov 先给出合并后的计数，再按符号分节重复列出；以合并行为准。
+                lines.setdefault(current_line, 0 if count in ("#####", "=====") else int(count.replace("*", "")))
         branch = re.match(r"branch\s+(\d+)\s+(?:taken\s+(\d+)|(never executed))(.*)", text.strip())
         if branch:
             ident, count, never, flags = branch.groups()
@@ -33,6 +34,23 @@ def parse_text(path):
             "uncovered_branches": [b for b in branches if not b["count"]]}
 
 
+def merged_lines(lines):
+    """gcov JSON 中同一行可能有多条记录（如析构函数的 D0、D2 版本各一条），按行号合并计数，与文本报告一致。"""
+    merged = {}
+    for line in lines:
+        merged[line["line_number"]] = merged.get(line["line_number"], 0) + line["count"]
+    return merged
+
+
+def merged_functions(functions):
+    """同一源函数的多个符号版本（构造、析构函数的 C1/C2、D0/D1/D2）按名称与起始行合并，任一版本执行过即算调用过。"""
+    merged = {}
+    for function in functions:
+        key = (function.get("demangled_name", function.get("name")), function.get("start_line"))
+        merged[key] = merged.get(key, 0) + function.get("execution_count", 0)
+    return merged
+
+
 def parse_json(path, source_name="GildedRose.cc"):
     with gzip.open(path, "rt") as stream:
         document = json.load(stream)
@@ -40,12 +58,12 @@ def parse_json(path, source_name="GildedRose.cc"):
     if len(files) != 1:
         raise ValueError(f"expected one {source_name}, found {len(files)}")
     source = files[0]
-    lines = source["lines"]
-    branches = [b for line in lines for b in line.get("branches", [])]
+    lines = merged_lines(source["lines"])
+    branches = [b for line in source["lines"] for b in line.get("branches", [])]
     normal = [b for b in branches if not b.get("throw", False)]
     return {"source": source["file"], "format_version": document["format_version"],
             "gcc_version": document.get("gcc_version"),
-            "line": ratio(sum(l["count"] > 0 for l in lines), len(lines)),
+            "line": ratio(sum(c > 0 for c in lines.values()), len(lines)),
             "branch_all": ratio(sum(b["count"] > 0 for b in branches), len(branches)),
             "branch_nonthrow": ratio(sum(b["count"] > 0 for b in normal), len(normal))}
 
@@ -102,19 +120,39 @@ def parse_json_sources(path, sources):
     for entry in document["files"]:
         if entry["file"] not in sources:
             continue
-        lines = entry["lines"]
-        branches = [b for line in lines for b in line.get("branches", [])]
+        lines = merged_lines(entry["lines"])
+        branches = [b for line in entry["lines"] for b in line.get("branches", [])]
         normal = [b for b in branches if not b.get("throw", False)]
-        functions = entry.get("functions", [])
+        functions = merged_functions(entry.get("functions", []))
         found[entry["file"]] = {
-            "line": ratio(sum(l["count"] > 0 for l in lines), len(lines)),
+            "line": ratio(sum(c > 0 for c in lines.values()), len(lines)),
             "branch_all": ratio(sum(b["count"] > 0 for b in branches), len(branches)),
             "branch_nonthrow": ratio(sum(b["count"] > 0 for b in normal), len(normal)),
-            "function": ratio(sum(f.get("execution_count", 0) > 0 for f in functions), len(functions)),
-            "uncovered_functions": sorted(f.get("demangled_name", f.get("name")) for f in functions
-                                          if not f.get("execution_count")),
+            "function": ratio(sum(c > 0 for c in functions.values()), len(functions)),
+            "uncovered_functions": sorted(name for (name, _), count in functions.items() if not count),
             "format_version": document.get("format_version"), "gcc_version": document.get("gcc_version")}
     return found
+
+
+def empty_targets(prefix_dir, gcdas, sources, missing):
+    """没有 .gcda 的被测源文件中，构建目录里有对应 .gcno 的，是编译过但没有任何可执行代码的文件（例如只有 #include）。
+
+    GCOV_PREFIX_STRIP=0 时，.gcda 位于 前缀 + 目标文件的绝对路径；由已有的 .gcda 反推目标文件目录，再找缺失文件的 .gcno。
+    """
+    object_dirs = set()
+    for data in gcdas:
+        original = "/" + str(Path(data).relative_to(prefix_dir))
+        for source in sources:
+            if original.endswith(source + ".gcda"):
+                object_dirs.add(original[:-len(source + ".gcda")])
+    return sorted(source for source in missing
+                  if any(Path(directory + source + ".gcno").is_file() for directory in object_dirs))
+
+
+def no_code_stats():
+    empty = ratio(0, 0)
+    return {"line": empty, "branch_all": empty, "branch_nonthrow": empty, "function": empty,
+            "uncovered_functions": [], "format_version": None, "gcc_version": None, "no_executable_code": True}
 
 
 def collect_targets(prefix_dir, sources, output, audit, gcov="gcov"):
@@ -148,13 +186,19 @@ def collect_targets(prefix_dir, sources, output, audit, gcov="gcov"):
             if source in sources:
                 text_stats[source] = parse_text(report)
     missing = sorted(sources - set(per_file))
+    empty = empty_targets(prefix_dir, gcdas, sources, missing)
+    for source in empty:  # 没有可执行代码的文件按 0/0 计入，不再让整题覆盖率不可用
+        per_file[source] = no_code_stats()
+        text_stats[source] = {"line": ratio(0, 0), "branch_all": ratio(0, 0), "branch_nonthrow": ratio(0, 0),
+                              "uncovered_lines": [], "uncovered_branches": []}
+    missing = [source for source in missing if source not in empty]
     agree = all(source in text_stats and all(text_stats[source][k] == per_file[source][k]
                                              for k in ("line", "branch_all", "branch_nonthrow"))
                 for source in per_file)
     total = {key: {"covered": sum(per_file[s][field]["covered"] for s in per_file),
                    "total": sum(per_file[s][field]["total"] for s in per_file)}
              for key, field in (("lines", "line"), ("branches", "branch_all"), ("functions", "function"))}
-    result = {"files": per_file, "total": total, "missing_sources": missing, "parsers_agree": agree,
+    result = {"files": per_file, "total": total, "missing_sources": missing, "empty_sources": empty, "parsers_agree": agree,
               "text_uncovered_lines": {s: text_stats[s]["uncovered_lines"] for s in text_stats}}
     (output / "coverage.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
     return result

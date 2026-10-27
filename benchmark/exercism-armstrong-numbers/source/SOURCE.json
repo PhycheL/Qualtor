@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/armstrong_numbers.cpp": "exercises/practice/armstrong-numbers/.meta/example.cpp",
+    "src/armstrong_numbers.h": "exercises/practice/armstrong-numbers/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/armstrong-numbers/armstrong_numbers_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/armstrong_numbers.cpp": "9cb63864d7f3610d1300e58b83553b6f8518b6bb75f154d94a6a1d236188818e",
+    "src/armstrong_numbers.h": "f007de292f89633e6683648dbf99ffa2556162b36bcb609f8590590c2687fbe0"
+  }
+}

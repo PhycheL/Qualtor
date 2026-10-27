@@ -1,4 +1,6 @@
 import json
+from pathlib import Path
+import tempfile
 import unittest
 
 from support import FIXTURES
@@ -31,6 +33,42 @@ class CoverageParsingTest(unittest.TestCase):
                                             {"/repo/cpp/src/GildedRose.cc"})["/repo/cpp/src/GildedRose.cc"]
         for key in ("line", "branch_all", "branch_nonthrow"):
             self.assertEqual(text[key], stats[key])
+
+
+class CoverageMergeTest(unittest.TestCase):
+    """2026-10-27 题库标定中 tennis-refactoring-4 的真实 gcov 14.2.0 输出：虚析构函数的 D0、D2 两个符号共用第 26 行。"""
+
+    SOURCE = "/repo/src/tennis4.cc"
+
+    def test_json_merges_symbol_variants_of_one_line(self):
+        stats = coverage.parse_json_sources(FIXTURES / "gcov_tennis4_dtor_variants.gcov.json.gz", {self.SOURCE})[self.SOURCE]
+        self.assertEqual((stats["line"]["covered"], stats["line"]["total"]), (79, 79))
+        self.assertEqual((stats["function"]["covered"], stats["function"]["total"]), (24, 24))
+        self.assertEqual(stats["uncovered_functions"], [])
+
+    def test_text_uses_merged_listing_and_agrees_with_json(self):
+        path = FIXTURES / "gcov_tennis4_dtor_variants.gcov"
+        text = coverage.parse_text(path)
+        self.assertNotIn(26, text["uncovered_lines"])
+        stats = coverage.parse_json_sources(FIXTURES / "gcov_tennis4_dtor_variants.gcov.json.gz", {self.SOURCE})[self.SOURCE]
+        for key in ("line", "branch_all", "branch_nonthrow"):
+            self.assertEqual(text[key], stats[key])
+
+    def test_source_without_executable_code_is_recognised_by_gcno(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp).resolve()
+            prefix, objects = tmp / "prefix", tmp / "build" / "obj"
+            gcda = prefix / str(objects).lstrip("/") / "repo/src/Teller.cpp.gcda"
+            gcda.parent.mkdir(parents=True)
+            gcda.write_bytes(b"")
+            (objects / "repo/src").mkdir(parents=True)
+            (objects / "repo/src/ReceiptPrinter.cpp.gcno").write_bytes(b"")
+            sources = {"/repo/src/Teller.cpp", "/repo/src/ReceiptPrinter.cpp", "/repo/src/Missing.cpp"}
+            empty = coverage.empty_targets(prefix, [gcda], sources, ["/repo/src/Missing.cpp", "/repo/src/ReceiptPrinter.cpp"])
+            self.assertEqual(empty, ["/repo/src/ReceiptPrinter.cpp"])
+        stats = coverage.no_code_stats()
+        self.assertEqual((stats["line"]["total"], stats["function"]["total"]), (0, 0))
+        self.assertTrue(stats["no_executable_code"])
 
 
 class MullParsingTest(unittest.TestCase):

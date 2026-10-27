@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/secret_handshake.cpp": "exercises/practice/secret-handshake/.meta/example.cpp",
+    "src/secret_handshake.h": "exercises/practice/secret-handshake/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/secret-handshake/secret_handshake_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/secret_handshake.cpp": "27286f3bcf8b7072467b71479f02e5d68cfb7c725904f1435dfd362e0c46a0cd",
+    "src/secret_handshake.h": "3cddf2d5b469af7b61105fa40211b9a3a3e0f54280e7d679cd729291b35fd736"
+  }
+}

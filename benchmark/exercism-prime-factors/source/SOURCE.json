@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/prime_factors.cpp": "exercises/practice/prime-factors/.meta/example.cpp",
+    "src/prime_factors.h": "exercises/practice/prime-factors/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/prime-factors/prime_factors_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/prime_factors.cpp": "2599f40eed00d03ecc669c878546aced926be5e29921ec49f243474329030b54",
+    "src/prime_factors.h": "4f955b2059a3cdbc7eb43f23dac2fc733b961841a21d6b1c17ade6d60262b4c2"
+  }
+}

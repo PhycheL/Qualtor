@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "id": "humaneval-x-cpp-05",
+  "set": "dev",
+  "tier": "easy",
+  "tags": [
+    "humaneval-x",
+    "pure_functions",
+    "multi_file"
+  ],
+  "title": "C++ 函数集 05 单元测试",
+  "description": "HumanEval-X C++ 的 8 道题合为一题，每题一个源文件；上游 assert 测试转换为 GoogleTest，另由生成器记录原代码在大量输入上的实际结果。公开数据，开发题。",
+  "source": {
+    "repository": "https://github.com/zai-org/CodeGeeX",
+    "commit": "2838420b7b4492cf3d16bce5320e26e65960c9e2",
+    "root": "benchmark/humaneval-x-cpp-05/source",
+    "files": {
+      "src/cpp_033.cc": "25e01d0cd808c355afd046acbc47dd5dd6e8a5c7b5510d14fd194c7386f2f057",
+      "src/cpp_034.cc": "3a52da93189f8c2cfc7e57376ba6c65effd437e2a03524e83aa5011c02e36607",
+      "src/cpp_035.cc": "b233dffa817aa69556c62e668fad118509531468b47c69e27121a0929863a8ce",
+      "src/cpp_036.cc": "273132b4ec2aba065e95da2941caf705b84a8d24d34eda8eee6d9ba08ab87b2b",
+      "src/cpp_037.cc": "a5567cdb7953d9d7a0fa56674a97fb5c5737ad7283a37ef93fa8ccb924975b6b",
+      "src/cpp_038.cc": "e24a82e5c1403d2bae8c4ecd3f053d3c29968f626f42bccce77ada5fc8e72711",
+      "src/cpp_039.cc": "2d00770085661f85424840e9494f4ce99de9dab8e91d45769243412199ab33b4",
+      "src/cpp_040.cc": "2eb5887faad67f3fb6160c56d32a03f661f22492a85620a465a353d01fc91335",
+      "src/humaneval_x_cpp_05.h": "449398f11af26f785687628109e5b6ca0bee05c0acc1ab49a5a3e9969cb5a2ca"
+    }
+  },
+  "target_sources": [
+    "src/cpp_033.cc",
+    "src/cpp_034.cc",
+    "src/cpp_035.cc",
+    "src/cpp_036.cc",
+    "src/cpp_037.cc",
+    "src/cpp_038.cc",
+    "src/cpp_039.cc",
+    "src/cpp_040.cc"
+  ],
+  "include_dirs": [
+    "src"
+  ],
+  "visible": {
+    "files": [
+      "src/cpp_033.cc",
+      "src/cpp_034.cc",
+      "src/cpp_035.cc",
+      "src/cpp_036.cc",
+      "src/cpp_037.cc",
+      "src/cpp_038.cc",
+      "src/cpp_039.cc",
+      "src/cpp_040.cc",
+      "src/humaneval_x_cpp_05.h"
+    ],
+    "notes": "可见材料只有被测源码、头文件和构建方式（C++11 + GoogleTest 1.12.1）。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": true,
+    "note": "HumanEval-X 自带的 assert 测试已转换为 GoogleTest 参考测试，对 Agent 不可见。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "生成器从上游测试与题面字面值出发随机生成的输入（含扰动），已过滤触发未定义行为、崩溃、超时或依赖未初始化内存的输入；上游测试的输入照原样保留。参考测试与探针只在这些输入上保证与被测代码一致。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests"
+  },
+  "preparation": {
+    "probe_mode": "generated",
+    "probe_note": "探针由生成器在原代码上运行大量输入得到，并包含全部参考测试；探针也区分不出的变异列为等价候选。",
+    "generated_by": "benchmark/tools/import_humaneval_x.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": []
+}

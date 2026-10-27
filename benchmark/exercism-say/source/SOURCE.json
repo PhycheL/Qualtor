@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/say.cpp": "exercises/practice/say/.meta/example.cpp",
+    "src/say.h": "exercises/practice/say/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/say/say_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/say.cpp": "1a701eb26113d5223678660f94195b25f6f4a0512080660bfd936d819a46add5",
+    "src/say.h": "f5cf8648c2e54a1dc955b350aca22cf2271911a9611cbca8233c6cd92720e718"
+  }
+}

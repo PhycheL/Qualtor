@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/grade_school.cpp": "exercises/practice/grade-school/.meta/example.cpp",
+    "src/grade_school.h": "exercises/practice/grade-school/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/grade-school/grade_school_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/grade_school.cpp": "9efe7711e1a49626d7c489ae28657fd817ea03eebe237758c2de5a23c3046334",
+    "src/grade_school.h": "c84afb8dd3b1760e2d5a07fe654f7345febe0c4f96893b8b85c431414c3f63b0"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/clock.cpp": "exercises/practice/clock/.meta/example.cpp",
+    "src/clock.h": "exercises/practice/clock/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/clock/clock_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/clock.cpp": "22963e877766e66b36bb2bdfb05f89eb38cee5b7e9eac2e534b2b09b300aa530",
+    "src/clock.h": "a7cf020c2a282acf03d5e5624a0c24295b1dcadb12fdfb0092622c6821d707b0"
+  }
+}

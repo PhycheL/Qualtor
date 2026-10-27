@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/luhn.cpp": "exercises/practice/luhn/.meta/example.cpp",
+    "src/luhn.h": "exercises/practice/luhn/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/luhn/luhn_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/luhn.cpp": "286101138a8c016743de09a4ec89f25fc3252ef74104b83b947404ea3894c08b",
+    "src/luhn.h": "49700315e37b7c3039485805a36efa9d592c32449bbc281987fb70f602e959ba"
+  }
+}

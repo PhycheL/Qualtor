@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/protein_translation.cpp": "exercises/practice/protein-translation/.meta/example.cpp",
+    "src/protein_translation.h": "exercises/practice/protein-translation/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/protein-translation/protein_translation_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/protein_translation.cpp": "cd91cfb177d2a279e9773313861c9fcbf4d52701496ef0d783662736160cc088",
+    "src/protein_translation.h": "bad5054bedaf9048d875e5392907b8796ed8792fda20ee2ab492852caa2ad2e2"
+  }
+}

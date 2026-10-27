@@ -1,0 +1,19 @@
+{
+  "repository": "https://github.com/emilybache/Racing-Car-Katas",
+  "commit": "6584af9b6d9bd3d8105b8c8ad4fc544d3c09fed6",
+  "license": "MIT",
+  "upstream_paths": {
+    "TelemetrySystem/include/TelemetryClient.h": "Cpp/TelemetrySystem/include/TelemetryClient.h",
+    "TelemetrySystem/include/TelemetryDiagnosticControls.h": "Cpp/TelemetrySystem/include/TelemetryDiagnosticControls.h",
+    "TelemetrySystem/source/TelemetryClient.cpp": "Cpp/TelemetrySystem/source/TelemetryClient.cpp",
+    "TelemetrySystem/source/TelemetryDiagnosticControls.cpp": "Cpp/TelemetrySystem/source/TelemetryDiagnosticControls.cpp"
+  },
+  "added_by_qualtor": [],
+  "files": {
+    "LICENSE": "b6c892eef2e97dbdc8a959a20053f7fd6477fc335829e79e5f2169ca34cb9b1e",
+    "TelemetrySystem/include/TelemetryClient.h": "4b4c727ca31cf1c0018361654ef5fd924b2b5856b4b3452d0c3e50d1444c1256",
+    "TelemetrySystem/include/TelemetryDiagnosticControls.h": "709f4c807698524e057ec53e0e5af693ef12425b0c8382ac195ded1b42bf6084",
+    "TelemetrySystem/source/TelemetryClient.cpp": "150b058f4f9f3548d326c4019a861f55d8a749012a7c13a5b6f13802fd41218c",
+    "TelemetrySystem/source/TelemetryDiagnosticControls.cpp": "e093517b0af47238e50fbe23ff85126c6c714c3c6a12a6efa2b178aad605c2f6"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/nth_prime.cpp": "exercises/practice/nth-prime/.meta/example.cpp",
+    "src/nth_prime.h": "exercises/practice/nth-prime/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/nth-prime/nth_prime_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/nth_prime.cpp": "0ff4e7e25712d0dedb357204f933165259ecab3a8e3c2b12441384b5ba9ffc62",
+    "src/nth_prime.h": "c995ddc1067772ff24b4f0531d0aec86e84c4f9ba488f65e3ade2905e5caa1b4"
+  }
+}

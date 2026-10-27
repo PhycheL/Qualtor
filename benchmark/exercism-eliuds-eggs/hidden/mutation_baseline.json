@@ -1,0 +1,149 @@
+{
+  "task": "exercism-eliuds-eggs",
+  "created_at": "2026-10-27T06:55:25.204271+00:00",
+  "created_by_run": "bank-prepare-20261027-01-exercism-eliuds-eggs",
+  "scorer_version": "0.1.5",
+  "scorer_code_sha256": "4ca4b8edbd0712321e5bbfa490e9e859683ef129a3492146fb5b14eea56ed5eb",
+  "images": {
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
+  },
+  "mull": {
+    "config_sha256": "b583493bf0453ceb7344c273c0149ccdac782d80fb305716878048a4f0597dd5",
+    "config": "# 由评分器根据 task.json 生成；修改算子要升级变异分母。\nmutators:\n  - cxx_all\nincludePaths:\n  - '/repo/src/eliuds_eggs\\.cpp$'\n"
+  },
+  "mutants": [
+    {
+      "id": "cxx_div_assign_to_mul_assign:/repo/src/eliuds_eggs.cpp:8:23:8:25",
+      "mutator": "cxx_div_assign_to_mul_assign",
+      "location": {
+        "start": {
+          "line": 8,
+          "column": 23
+        },
+        "end": {
+          "line": 8,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/eliuds_eggs.cpp:5:9:5:16",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 5,
+          "column": 9
+        },
+        "end": {
+          "line": 5,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/eliuds_eggs.cpp:6:26:6:28",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 6,
+          "column": 26
+        },
+        "end": {
+          "line": 6,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/eliuds_eggs.cpp:7:32:7:34",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 7,
+          "column": 32
+        },
+        "end": {
+          "line": 7,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rem_to_div:/repo/src/eliuds_eggs.cpp:7:27:7:28",
+      "mutator": "cxx_rem_to_div",
+      "location": {
+        "start": {
+          "line": 7,
+          "column": 27
+        },
+        "end": {
+          "line": 7,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    }
+  ],
+  "equivalent": [],
+  "unstable": [],
+  "review_needed": [
+    {
+      "id": "cxx_ne_to_eq:/repo/src/eliuds_eggs.cpp:6:26:6:28",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    }
+  ],
+  "review": {
+    "status": "pending",
+    "by": null,
+    "at": null,
+    "note": "等价变异候选由有界穷举探针自动给出；人工逐个复核后，把 status 改为 reviewed 并填写 by、at"
+  },
+  "reference": {
+    "killed": 4,
+    "timeout": 1,
+    "total": 5,
+    "m1": 1.0,
+    "threshold": 0.8,
+    "passes": true
+  }
+}

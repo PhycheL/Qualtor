@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/affine_cipher.cpp": "exercises/practice/affine-cipher/.meta/example.cpp",
+    "src/affine_cipher.h": "exercises/practice/affine-cipher/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/affine-cipher/affine_cipher_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/affine_cipher.cpp": "06d811664c8536a3e392de4136c0204c7f0fce95d8bc35d48ad59c295b268706",
+    "src/affine_cipher.h": "0fbaed39c11af953d196a73c58d67ba4f1825eebba53bd142035c542f8de6304"
+  }
+}

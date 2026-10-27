@@ -1,0 +1,470 @@
+        -:    0:Source:/repo/src/tennis4.cc
+        -:    0:Graph:/out/gcov-final/build/CMakeFiles/scored_tests.dir/repo/src/tennis4.cc.gcno
+        -:    0:Data:/out/gcov-final/build/CMakeFiles/scored_tests.dir/repo/src/tennis4.cc.gcda
+        -:    0:Runs:1
+        -:    1:#include <string>
+        -:    2:
+        -:    3:class TennisResult {
+        -:    4:public:
+function _ZN12TennisResultC2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_ called 45 returned 100% blocks executed 67%
+       45:    5:    TennisResult(std::string serverScore, std::string receiverScore) {
+call    0 returned 45
+call    1 returned 45
+       45:    6:        this->serverScore = serverScore;
+call    0 returned 45
+branch  1 taken 45 (fallthrough)
+branch  2 taken 0 (throw)
+       45:    7:        this->receiverScore = receiverScore;
+call    0 returned 45
+branch  1 taken 45 (fallthrough)
+branch  2 taken 0 (throw)
+       45:    8:    }
+call    0 never executed
+call    1 never executed
+        -:    9:
+function _ZN12TennisResult6formatB5cxx11Ev called 45 returned 100% blocks executed 87%
+       45:   10:    std::string format() {
+       45:   11:        if ("" == this->receiverScore)
+call    0 returned 45
+branch  1 taken 28 (fallthrough)
+branch  2 taken 17
+       28:   12:            return this->serverScore;
+call    0 returned 28
+       17:   13:        if (serverScore == this->receiverScore)
+call    0 returned 17
+branch  1 taken 3 (fallthrough)
+branch  2 taken 14
+        3:   14:            return serverScore + "-All";
+call    0 returned 3
+       14:   15:        return this->serverScore + "-" + this->receiverScore;
+call    0 returned 14
+branch  1 taken 14 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 14
+branch  4 taken 14 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 14
+call    7 never executed
+        -:   16:    }
+        -:   17:
+        -:   18:private:
+        -:   19:    std::string serverScore;
+        -:   20:    std::string receiverScore;
+        -:   21:};
+        -:   22:
+        -:   23:class ResultProvider {
+        -:   24:public:
+        -:   25:    virtual TennisResult getResult() const = 0;
+     405*:   26:    virtual ~ResultProvider() = default;
+------------------
+_ZN14ResultProviderD0Ev:
+function _ZN14ResultProviderD0Ev called 0 returned 0% blocks executed 0%
+    #####:   26:    virtual ~ResultProvider() = default;
+call    0 never executed
+call    1 never executed
+------------------
+_ZN14ResultProviderD2Ev:
+function _ZN14ResultProviderD2Ev called 405 returned 100% blocks executed 100%
+      405:   26:    virtual ~ResultProvider() = default;
+------------------
+        -:   27:};
+        -:   28:
+        -:   29:class TennisGame4 : ResultProvider {
+        -:   30:public:
+        -:   31:    int serverScore = 0, receiverScore = 0;
+        -:   32:    std::string server;
+        -:   33:    std::string receiver;
+        -:   34:
+function _ZN11TennisGame4C2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_ called 45 returned 100% blocks executed 58%
+       45:   35:    TennisGame4(std::string player1, std::string player2) {
+call    0 returned 45
+call    1 returned 45
+call    2 returned 45
+       45:   36:        this->server = player1;
+call    0 returned 45
+branch  1 taken 45 (fallthrough)
+branch  2 taken 0 (throw)
+       45:   37:        this->receiver = player2;
+call    0 returned 45
+branch  1 taken 45 (fallthrough)
+branch  2 taken 0 (throw)
+       45:   38:    }
+call    0 never executed
+call    1 never executed
+call    2 never executed
+        -:   39:
+        -:   40:    TennisResult getResult() const override;
+        -:   41:    void wonPoint(std::string playerName);
+        -:   42:    bool receiverHasAdvantage() const;
+        -:   43:    bool serverHasAdvantage() const;
+        -:   44:    bool receiverHasWon() const;
+        -:   45:    bool serverHasWon() const;
+        -:   46:    bool isDeuce() const;
+        -:   47:};
+        -:   48:
+        -:   49:class Deuce : ResultProvider {
+        -:   50:public:
+function _ZN5DeuceC2ERK11TennisGame4RK14ResultProvider called 45 returned 100% blocks executed 100%
+       45:   51:    Deuce(TennisGame4 const & game, ResultProvider const & nextResult) : game(game), nextResult(nextResult) { }
+call    0 returned 45
+        -:   52:
+function _ZNK5Deuce9getResultEv called 45 returned 100% blocks executed 61%
+       45:   53:    TennisResult getResult() const override {
+       45:   54:        if (game.isDeuce())
+call    0 returned 45
+branch  1 taken 3 (fallthrough)
+branch  2 taken 42
+       12:   55:            return TennisResult("Deuce", "");
+call    0 returned 3
+branch  1 taken 3 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 3
+branch  4 taken 3 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 3
+branch  7 taken 3 (fallthrough)
+branch  8 taken 0 (throw)
+call    9 returned 3
+call   10 returned 3
+call   11 never executed
+call   12 never executed
+       42:   56:        return this->nextResult.getResult();
+call    0 returned 42
+        -:   57:    }
+        -:   58:
+        -:   59:private:
+        -:   60:    TennisGame4 const & game;
+        -:   61:    ResultProvider const & nextResult;
+        -:   62:};
+        -:   63:
+        -:   64:
+        -:   65:class GameServer : public ResultProvider {
+        -:   66:public:
+function _ZN10GameServerC2ERK11TennisGame4RK14ResultProvider called 45 returned 100% blocks executed 100%
+       45:   67:    GameServer(TennisGame4 const & game, ResultProvider const & nextResult) : game(game), nextResult(nextResult) { }
+call    0 returned 45
+        -:   68:
+function _ZNK10GameServer9getResultEv called 42 returned 100% blocks executed 64%
+       42:   69:    TennisResult getResult() const override {
+       42:   70:        if (game.serverHasWon())
+call    0 returned 42
+branch  1 taken 12 (fallthrough)
+branch  2 taken 30
+       36:   71:            return TennisResult("Win for " + game.server, "");
+call    0 returned 12
+branch  1 taken 12 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 12
+branch  4 taken 12 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 12
+branch  7 taken 12 (fallthrough)
+branch  8 taken 0 (throw)
+call    9 returned 12
+call   10 returned 12
+call   11 never executed
+call   12 never executed
+       30:   72:        return nextResult.getResult();
+call    0 returned 30
+        -:   73:    }
+        -:   74:
+        -:   75:private:
+        -:   76:    TennisGame4 const & game;
+        -:   77:    ResultProvider const & nextResult;
+        -:   78:};
+        -:   79:
+        -:   80:class GameReceiver : public ResultProvider {
+        -:   81:private:
+        -:   82:    TennisGame4 const & game;
+        -:   83:    ResultProvider const & nextResult;
+        -:   84:
+        -:   85:public:
+function _ZN12GameReceiverC2ERK11TennisGame4RK14ResultProvider called 45 returned 100% blocks executed 100%
+       45:   86:    GameReceiver(TennisGame4 const & game, ResultProvider const & nextResult) : game(game), nextResult(nextResult) { }
+call    0 returned 45
+        -:   87:
+        -:   88:public:
+function _ZNK12GameReceiver9getResultEv called 30 returned 100% blocks executed 64%
+       30:   89:    TennisResult getResult() const override {
+       30:   90:        if (game.receiverHasWon())
+call    0 returned 30
+branch  1 taken 7 (fallthrough)
+branch  2 taken 23
+       21:   91:            return TennisResult("Win for " + game.receiver, "");
+call    0 returned 7
+branch  1 taken 7 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 7
+branch  4 taken 7 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 7
+branch  7 taken 7 (fallthrough)
+branch  8 taken 0 (throw)
+call    9 returned 7
+call   10 returned 7
+call   11 never executed
+call   12 never executed
+       23:   92:        return this->nextResult.getResult();
+call    0 returned 23
+        -:   93:    }
+        -:   94:};
+        -:   95:
+        -:   96:class AdvantageServer : public ResultProvider {
+        -:   97:public:
+function _ZN15AdvantageServerC2ERK11TennisGame4RK14ResultProvider called 45 returned 100% blocks executed 100%
+       45:   98:    AdvantageServer(TennisGame4 const & game, ResultProvider const & nextResult) : game(game), nextResult(nextResult) { }
+call    0 returned 45
+        -:   99:
+function _ZNK15AdvantageServer9getResultEv called 23 returned 100% blocks executed 64%
+       23:  100:    TennisResult getResult() const override {
+       23:  101:        if (game.serverHasAdvantage())
+call    0 returned 23
+branch  1 taken 3 (fallthrough)
+branch  2 taken 20
+        9:  102:            return TennisResult("Advantage " + game.server, "");
+call    0 returned 3
+branch  1 taken 3 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 3
+branch  4 taken 3 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 3
+branch  7 taken 3 (fallthrough)
+branch  8 taken 0 (throw)
+call    9 returned 3
+call   10 returned 3
+call   11 never executed
+call   12 never executed
+       20:  103:        return this->nextResult.getResult();
+call    0 returned 20
+        -:  104:    }
+        -:  105:
+        -:  106:private:
+        -:  107:    TennisGame4 const & game;
+        -:  108:    ResultProvider const & nextResult;
+        -:  109:};
+        -:  110:
+        -:  111:class AdvantageReceiver : public ResultProvider {
+        -:  112:public:
+function _ZN17AdvantageReceiverC2E11TennisGame4RK14ResultProvider called 45 returned 100% blocks executed 80%
+       45:  113:    AdvantageReceiver(TennisGame4 game, ResultProvider const & nextResult) : game(game), nextResult(nextResult) { }
+call    0 returned 45
+call    1 returned 45
+branch  2 taken 45 (fallthrough)
+branch  3 taken 0 (throw)
+call    4 never executed
+        -:  114:
+function _ZNK17AdvantageReceiver9getResultEv called 20 returned 100% blocks executed 64%
+       20:  115:    TennisResult getResult() const override {
+       20:  116:        if (game.receiverHasAdvantage())
+call    0 returned 20
+branch  1 taken 3 (fallthrough)
+branch  2 taken 17
+        9:  117:            return TennisResult("Advantage " + game.receiver, "");
+call    0 returned 3
+branch  1 taken 3 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 3
+branch  4 taken 3 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 3
+branch  7 taken 3 (fallthrough)
+branch  8 taken 0 (throw)
+call    9 returned 3
+call   10 returned 3
+call   11 never executed
+call   12 never executed
+       17:  118:        return this->nextResult.getResult();
+call    0 returned 17
+        -:  119:    }
+        -:  120:
+        -:  121:private:
+        -:  122:    const TennisGame4 game;
+        -:  123:    ResultProvider const & nextResult;
+        -:  124:};
+        -:  125:
+        -:  126:
+        -:  127:class DefaultResult : public ResultProvider {
+        -:  128:public:
+function _ZN13DefaultResultC2ERK11TennisGame4 called 45 returned 100% blocks executed 100%
+       45:  129:    explicit DefaultResult(TennisGame4 const & game) : game(game) { }
+call    0 returned 45
+        -:  130:
+function _ZNK13DefaultResult9getResultEv called 17 returned 100% blocks executed 62%
+       17:  131:    TennisResult getResult() const override {
+       17:  132:        return TennisResult(scores[game.serverScore], scores[game.receiverScore]);
+call    0 returned 17
+branch  1 taken 17 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 17
+branch  4 taken 17 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 17
+branch  7 taken 17 (fallthrough)
+branch  8 taken 0 (throw)
+call    9 returned 17
+call   10 returned 17
+call   11 never executed
+call   12 never executed
+        -:  133:    }
+        -:  134:
+        -:  135:private:
+        -:  136:    static const std::string scores[];
+        -:  137:    TennisGame4 const & game;
+        -:  138:};
+        -:  139:
+        -:  140:const std::string DefaultResult::scores[] = {"Love", "Fifteen", "Thirty", "Forty"};
+        -:  141:
+function _ZNK11TennisGame49getResultEv called 45 returned 100% blocks executed 47%
+       45:  142:TennisResult TennisGame4::getResult() const {
+       45:  143:    TennisGame4 const & thisGame = *this;
+       45:  144:    TennisResult result = Deuce(
+call    0 returned 45
+call    1 never executed
+       45:  145:        thisGame, GameServer(
+call    0 returned 45
+call    1 never executed
+       45:  146:        thisGame, GameReceiver(
+call    0 returned 45
+call    1 never executed
+       45:  147:        thisGame, AdvantageServer(
+call    0 returned 45
+call    1 never executed
+       45:  148:        thisGame, AdvantageReceiver(
+call    0 returned 45
+call    1 never executed
+       90:  149:        thisGame, DefaultResult(thisGame)))))
+call    0 returned 45
+branch  1 taken 45 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 45
+call    4 returned 45
+branch  5 taken 45 (fallthrough)
+branch  6 taken 0 (throw)
+call    7 returned 45
+call    8 returned 45
+call    9 returned 45
+call   10 returned 45
+call   11 returned 45
+call   12 never executed
+call   13 never executed
+       45:  150:    ).getResult();
+call    0 returned 45
+call    1 returned 45
+branch  2 taken 45 (fallthrough)
+branch  3 taken 0 (throw)
+       45:  151:    return result;
+        -:  152:}
+        -:  153:
+function _ZN11TennisGame48wonPointENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 433 returned 100% blocks executed 100%
+      433:  154:void TennisGame4::wonPoint(std::string playerName) {
+      433:  155:    if (server == playerName)
+call    0 returned 433
+branch  1 taken 228 (fallthrough)
+branch  2 taken 205
+      228:  156:        serverScore += 1;
+        -:  157:    else
+      205:  158:        receiverScore += 1;
+      433:  159:}
+        -:  160:
+function _ZNK11TennisGame420receiverHasAdvantageEv called 20 returned 100% blocks executed 100%
+       20:  161:bool TennisGame4::receiverHasAdvantage() const {
+       20:  162:    return receiverScore >= 4 && (receiverScore - serverScore) == 1;
+branch  0 taken 3 (fallthrough)
+branch  1 taken 17
+branch  2 taken 3 (fallthrough)
+branch  3 taken 0
+        -:  163:}
+        -:  164:
+function _ZNK11TennisGame418serverHasAdvantageEv called 23 returned 100% blocks executed 100%
+       23:  165:bool TennisGame4::serverHasAdvantage() const {
+       23:  166:    return serverScore >= 4 && (serverScore - receiverScore) == 1;
+branch  0 taken 5 (fallthrough)
+branch  1 taken 18
+branch  2 taken 3 (fallthrough)
+branch  3 taken 2
+        -:  167:}
+        -:  168:
+function _ZNK11TennisGame414receiverHasWonEv called 30 returned 100% blocks executed 100%
+       30:  169:bool TennisGame4::receiverHasWon() const {
+       30:  170:    return receiverScore >= 4 && (receiverScore - serverScore) >= 2;
+branch  0 taken 12 (fallthrough)
+branch  1 taken 18
+branch  2 taken 7 (fallthrough)
+branch  3 taken 5
+        -:  171:}
+        -:  172:
+function _ZNK11TennisGame412serverHasWonEv called 42 returned 100% blocks executed 100%
+       42:  173:bool TennisGame4::serverHasWon() const {
+       42:  174:    return serverScore >= 4 && (serverScore - receiverScore) >= 2;
+branch  0 taken 21 (fallthrough)
+branch  1 taken 21
+branch  2 taken 12 (fallthrough)
+branch  3 taken 9
+        -:  175:}
+        -:  176:
+function _ZNK11TennisGame47isDeuceEv called 45 returned 100% blocks executed 100%
+       45:  177:bool TennisGame4::isDeuce() const {
+       45:  178:    return serverScore >= 3 && receiverScore >= 3 && (serverScore == receiverScore);
+branch  0 taken 28 (fallthrough)
+branch  1 taken 17
+branch  2 taken 20 (fallthrough)
+branch  3 taken 8
+branch  4 taken 3 (fallthrough)
+branch  5 taken 17
+        -:  179:}
+        -:  180:
+function _Z12tennis_scoreB5cxx11ii called 45 returned 100% blocks executed 63%
+       45:  181:const std::string tennis_score(int player1Score, int player2Score) {
+       45:  182:    int highestScore = player1Score >  player2Score ? player1Score : player2Score;
+branch  0 taken 22 (fallthrough)
+branch  1 taken 23
+      135:  183:    TennisGame4 game("player1", "player2");
+call    0 returned 45
+branch  1 taken 45 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 45
+branch  4 taken 45 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 45
+branch  7 taken 45 (fallthrough)
+branch  8 taken 0 (throw)
+call    9 returned 45
+call   10 returned 45
+call   11 never executed
+call   12 never executed
+      316:  184:    for (int i = 0; i < highestScore; i++) {
+branch  0 taken 271
+branch  1 taken 45 (fallthrough)
+      271:  185:        if (i < player1Score)
+branch  0 taken 228 (fallthrough)
+branch  1 taken 43
+      456:  186:            game.wonPoint("player1");
+call    0 returned 228
+branch  1 taken 228 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 228
+call    4 returned 228
+      271:  187:        if (i < player2Score)
+branch  0 taken 205 (fallthrough)
+branch  1 taken 66
+      410:  188:            game.wonPoint("player2");
+call    0 returned 205
+branch  1 taken 205 (fallthrough)
+branch  2 taken 0 (throw)
+call    3 returned 205
+call    4 returned 205
+        -:  189:    }
+       45:  190:    TennisResult result = game.getResult();
+call    0 returned 45
+branch  1 taken 45 (fallthrough)
+branch  2 taken 0 (throw)
+       90:  191:    return result.format();
+call    0 returned 45
+branch  1 taken 45 (fallthrough)
+branch  2 taken 0 (throw)
+       45:  192:}
+call    0 returned 45
+call    1 returned 45
+call    2 never executed
+call    3 never executed

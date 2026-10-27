@@ -1,0 +1,23 @@
+{
+  "repository": "https://github.com/emilybache/Racing-Car-Katas",
+  "commit": "6584af9b6d9bd3d8105b8c8ad4fc544d3c09fed6",
+  "license": "MIT",
+  "upstream_paths": {
+    "TurnTicketDispenser/include/TicketDispenser.h": "Cpp/TurnTicketDispenser/include/TicketDispenser.h",
+    "TurnTicketDispenser/include/TurnNumberSequence.h": "Cpp/TurnTicketDispenser/include/TurnNumberSequence.h",
+    "TurnTicketDispenser/include/TurnTicket.h": "Cpp/TurnTicketDispenser/include/TurnTicket.h",
+    "TurnTicketDispenser/source/TicketDispenser.cpp": "Cpp/TurnTicketDispenser/source/TicketDispenser.cpp",
+    "TurnTicketDispenser/source/TurnNumberSequence.cpp": "Cpp/TurnTicketDispenser/source/TurnNumberSequence.cpp",
+    "TurnTicketDispenser/source/TurnTicket.cpp": "Cpp/TurnTicketDispenser/source/TurnTicket.cpp"
+  },
+  "added_by_qualtor": [],
+  "files": {
+    "LICENSE": "b6c892eef2e97dbdc8a959a20053f7fd6477fc335829e79e5f2169ca34cb9b1e",
+    "TurnTicketDispenser/include/TicketDispenser.h": "c4a6468178454cb6ce5cf6f6377a5126935cf88c30f656a8946db7cc7747eaee",
+    "TurnTicketDispenser/include/TurnNumberSequence.h": "a64e46097f93cca0761d3b6474e7f06fe7083452b4e92b8308128493a542a4e3",
+    "TurnTicketDispenser/include/TurnTicket.h": "4e2e2f3a55abbaf2faa42214ea92632b8b8f1b57e73751e94d970ad16da4fd79",
+    "TurnTicketDispenser/source/TicketDispenser.cpp": "5b07e7a7dafc3fd7793db95f7062cf4868366e1fcc5fe7ccf50adcdafb53f0f8",
+    "TurnTicketDispenser/source/TurnNumberSequence.cpp": "47593b3d001fdd60f397afdd3b18d6fd6a9edb560ea1d010625aec4a6ae2ede7",
+    "TurnTicketDispenser/source/TurnTicket.cpp": "6c420aa1cd3cce176ba20604e7b7fc84952036bd5baa510b35a0a9c061508f3e"
+  }
+}

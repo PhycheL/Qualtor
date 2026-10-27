@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/darts.cpp": "exercises/practice/darts/.meta/example.cpp",
+    "src/darts.h": "exercises/practice/darts/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/darts/darts_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/darts.cpp": "708149770a10a2978f834bec1a865a89ea75f8091121513228f889ccd4b794db",
+    "src/darts.h": "fea1c0ab58e7a308de2dc6fc2a051c697f57fd3b60587b5d75708144257f7747"
+  }
+}

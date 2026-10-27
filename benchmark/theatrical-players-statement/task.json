@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "id": "theatrical-players-statement",
+  "set": "dev",
+  "tier": "medium",
+  "tags": [
+    "kata",
+    "third_party_header"
+  ],
+  "title": "剧团账单 statement 单元测试",
+  "description": "Theatrical Players Refactoring Kata：按剧目类型与观众人数计算账单金额与积分，依赖随仓库提供的 nlohmann/json 3.11.3。公开代码，开发题。",
+  "source": {
+    "repository": "https://github.com/emilybache/Theatrical-Players-Refactoring-Kata",
+    "commit": "d76f8d4968f1bceff2a0bac17ba27759894bebf4",
+    "root": "benchmark/theatrical-players-statement/source",
+    "files": {
+      "src/statement.cpp": "0d27fd2cc597ba6138e1d86cfd13f0d60d5849d722c6df09956f9e28be5e0661",
+      "src/statement.h": "fea2e31998e4abac34489e9942077d5cfb73d9034918f6ee08a6fbde2d33d679",
+      "third_party/json.hpp": "9bea4c8066ef4a1c206b2be5a36302f8926f7fdc6087af5d20b417d0cf103ea6"
+    }
+  },
+  "target_sources": [
+    "src/statement.cpp"
+  ],
+  "include_dirs": [
+    "src",
+    "third_party"
+  ],
+  "visible": {
+    "files": [
+      "src/statement.cpp",
+      "src/statement.h",
+      "third_party/json.hpp"
+    ],
+    "notes": "可见材料只有被测源码、头文件和构建方式（C++11 + GoogleTest 1.12.1）。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": false,
+    "note": "上游测试依赖 ApprovalTests，未采用。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "参考测试覆盖的输入；未单独界定评分输入域，探针即参考测试。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/build_katas.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": []
+}

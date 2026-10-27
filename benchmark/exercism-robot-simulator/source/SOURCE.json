@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/robot_simulator.cpp": "exercises/practice/robot-simulator/.meta/example.cpp",
+    "src/robot_simulator.h": "exercises/practice/robot-simulator/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/robot-simulator/robot_simulator_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/robot_simulator.cpp": "255ab1bd093539b207fdce8455a206220976691c45e4bde8fbdaf3ab262cc97f",
+    "src/robot_simulator.h": "d85ceb9cd69dfff4840eda647b2184449674d74136c1d50b5c4fedb404d94811"
+  }
+}

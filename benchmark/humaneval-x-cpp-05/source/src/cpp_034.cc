@@ -1,0 +1,19 @@
+// HumanEval-X CPP/34（prompt + canonical_solution）
+#include "humaneval_x_cpp_05.h"
+#include<stdio.h>
+#include<vector>
+#include<algorithm>
+
+/*
+Return sorted unique elements in a vector
+>>> unique({5, 3, 5, 2, 3, 3, 9, 0, 123})
+{0, 2, 3, 5, 9, 123}
+*/
+vector<int> unique(vector<int> l){
+    vector<int> out={};
+    for (int i=0;i<l.size();i++)
+        if (find(out.begin(),out.end(),l[i])==out.end())
+            out.push_back(l[i]);
+    sort(out.begin(),out.end());
+    return out;
+}

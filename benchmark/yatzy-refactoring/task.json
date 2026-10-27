@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "id": "yatzy-refactoring",
+  "set": "dev",
+  "tier": "easy",
+  "tags": [
+    "kata",
+    "upstream_tests"
+  ],
+  "title": "Yatzy 计分单元测试",
+  "description": "Yatzy Refactoring Kata 的 yatzy1 实现；上游 GoogleTest 测试与穷举记录的实际结果作参考测试。公开代码，开发题。",
+  "source": {
+    "repository": "https://github.com/emilybache/Yatzy-Refactoring-Kata",
+    "commit": "8a2ad924e5154a36423e72c2573cfe3129cf4fd8",
+    "root": "benchmark/yatzy-refactoring/source",
+    "files": {
+      "src/yatzy1.cpp": "3342c0c1f9bd990164ec902d7d87c7533709e795f9add08167ab8381d4b1dba5",
+      "src/yatzy1.hpp": "dd62422f0ed0d3c701aa8bd9fdd05d43443bf2076381c092ed8dd8afa0fc2fda"
+    }
+  },
+  "target_sources": [
+    "src/yatzy1.cpp"
+  ],
+  "include_dirs": [
+    "src"
+  ],
+  "visible": {
+    "files": [
+      "src/yatzy1.cpp",
+      "src/yatzy1.hpp"
+    ],
+    "notes": "可见材料只有被测源码、头文件和构建方式（C++11 + GoogleTest 1.12.1）。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": true,
+    "note": "上游 cpp/test-gtest/sample_gtest.cpp 已原样作参考测试，对 Agent 不可见。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "5 个骰子各为 1–6 的全部 7776 种组合。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests"
+  },
+  "preparation": {
+    "probe_mode": "generated",
+    "probe_note": "探针由生成器在原代码上运行大量输入得到，并包含全部参考测试；探针也区分不出的变异列为等价候选。",
+    "generated_by": "benchmark/tools/build_katas.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": []
+}

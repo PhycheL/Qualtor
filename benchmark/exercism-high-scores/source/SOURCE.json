@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/high_scores.cpp": "exercises/practice/high-scores/.meta/example.cpp",
+    "src/high_scores.h": "exercises/practice/high-scores/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/high-scores/high_scores_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/high_scores.cpp": "8990b54e8e0fb87a9ddf4bee31e6be766f9016262dfa732f8d6b1855061f5928",
+    "src/high_scores.h": "d4e53cf4bce7340e781ce53912c30f562ea48bf584ed2f21c0fd8923e0bae962"
+  }
+}

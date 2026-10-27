@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/queen_attack.cpp": "exercises/practice/queen-attack/.meta/example.cpp",
+    "src/queen_attack.h": "exercises/practice/queen-attack/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/queen-attack/queen_attack_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/queen_attack.cpp": "9bc6ddabfea2a2a45c7cdde23eec19f829b9ec0457ad43e63e4845dc04aa2694",
+    "src/queen_attack.h": "14495502a7b30f841c2ce1664e7acb7dce8a892322788438e62b15d0f5f5fded"
+  }
+}

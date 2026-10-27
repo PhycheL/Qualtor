@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "id": "racing-car-turn-ticket",
+  "set": "dev",
+  "tier": "easy",
+  "tags": [
+    "kata",
+    "global_state"
+  ],
+  "title": "排队取号单元测试",
+  "description": "Racing-Car-Katas 的 TurnTicketDispenser：取号机与全局递增的号码序列。公开代码，开发题。",
+  "source": {
+    "repository": "https://github.com/emilybache/Racing-Car-Katas",
+    "commit": "6584af9b6d9bd3d8105b8c8ad4fc544d3c09fed6",
+    "root": "benchmark/racing-car-turn-ticket/source",
+    "files": {
+      "TurnTicketDispenser/include/TicketDispenser.h": "c4a6468178454cb6ce5cf6f6377a5126935cf88c30f656a8946db7cc7747eaee",
+      "TurnTicketDispenser/include/TurnNumberSequence.h": "a64e46097f93cca0761d3b6474e7f06fe7083452b4e92b8308128493a542a4e3",
+      "TurnTicketDispenser/include/TurnTicket.h": "4e2e2f3a55abbaf2faa42214ea92632b8b8f1b57e73751e94d970ad16da4fd79",
+      "TurnTicketDispenser/source/TicketDispenser.cpp": "5b07e7a7dafc3fd7793db95f7062cf4868366e1fcc5fe7ccf50adcdafb53f0f8",
+      "TurnTicketDispenser/source/TurnNumberSequence.cpp": "47593b3d001fdd60f397afdd3b18d6fd6a9edb560ea1d010625aec4a6ae2ede7",
+      "TurnTicketDispenser/source/TurnTicket.cpp": "6c420aa1cd3cce176ba20604e7b7fc84952036bd5baa510b35a0a9c061508f3e"
+    }
+  },
+  "target_sources": [
+    "TurnTicketDispenser/source/TicketDispenser.cpp",
+    "TurnTicketDispenser/source/TurnNumberSequence.cpp",
+    "TurnTicketDispenser/source/TurnTicket.cpp"
+  ],
+  "include_dirs": [
+    "TurnTicketDispenser/include"
+  ],
+  "visible": {
+    "files": [
+      "TurnTicketDispenser/include/TicketDispenser.h",
+      "TurnTicketDispenser/include/TurnNumberSequence.h",
+      "TurnTicketDispenser/include/TurnTicket.h",
+      "TurnTicketDispenser/source/TicketDispenser.cpp",
+      "TurnTicketDispenser/source/TurnNumberSequence.cpp",
+      "TurnTicketDispenser/source/TurnTicket.cpp"
+    ],
+    "notes": "可见材料只有被测源码、头文件和构建方式（C++11 + GoogleTest 1.12.1）。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": false,
+    "note": "上游测试只有占位断言，未采用。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "参考测试覆盖的输入；未单独界定评分输入域，探针即参考测试。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/build_katas.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": []
+}

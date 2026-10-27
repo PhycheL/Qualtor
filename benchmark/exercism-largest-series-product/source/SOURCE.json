@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/largest_series_product.cpp": "exercises/practice/largest-series-product/.meta/example.cpp",
+    "src/largest_series_product.h": "exercises/practice/largest-series-product/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/largest-series-product/largest_series_product_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/largest_series_product.cpp": "ff18163eece465ac9052b19b4e792d52800f46281cc62defd2bcec58c8870ef8",
+    "src/largest_series_product.h": "cdf4e6f597f543cba804a4a8a2f76bfa1e9072bd90b54c8849bef717d8639e12"
+  }
+}

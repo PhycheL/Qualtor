@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/acronym.cpp": "exercises/practice/acronym/.meta/example.cpp",
+    "src/acronym.h": "exercises/practice/acronym/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/acronym/acronym_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/acronym.cpp": "b7aa7d1f54ac68e0947e6f7402262f0fc0a0b7810337936bd6d233e54f5cf442",
+    "src/acronym.h": "e1085c46e882fc46cdbc362ba82ea6d8717993e0439c1c1dd4e36d7bb5133516"
+  }
+}

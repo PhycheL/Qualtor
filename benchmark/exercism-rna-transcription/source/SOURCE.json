@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/rna_transcription.cpp": "exercises/practice/rna-transcription/.meta/example.cpp",
+    "src/rna_transcription.h": "exercises/practice/rna-transcription/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/rna-transcription/rna_transcription_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/rna_transcription.cpp": "5ba7ed713880f87c041d99cad0a65b0abc1c07c03890b5667403af096478f73b",
+    "src/rna_transcription.h": "63400f8deae0e4b00c20b976b4b6b828de5abbc6160a89672588067da3fc30b4"
+  }
+}

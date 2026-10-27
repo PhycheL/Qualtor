@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/run_length_encoding.cpp": "exercises/practice/run-length-encoding/.meta/example.cpp",
+    "src/run_length_encoding.h": "exercises/practice/run-length-encoding/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/run-length-encoding/run_length_encoding_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/run_length_encoding.cpp": "9ac7884d0f54d73dd9bce6fd2e83d283e9876629fc9cd80dca3aeda8ddacf3be",
+    "src/run_length_encoding.h": "f0ec9fed23611d9193012826b2217fc474ad44032750dca25999136114c7441c"
+  }
+}

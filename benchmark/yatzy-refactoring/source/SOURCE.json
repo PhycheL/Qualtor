@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/emilybache/Yatzy-Refactoring-Kata",
+  "commit": "8a2ad924e5154a36423e72c2573cfe3129cf4fd8",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/yatzy1.cpp": "cpp/src/yatzy1.cpp",
+    "src/yatzy1.hpp": "cpp/src/yatzy1.hpp"
+  },
+  "added_by_qualtor": [],
+  "files": {
+    "LICENSE": "b6c892eef2e97dbdc8a959a20053f7fd6477fc335829e79e5f2169ca34cb9b1e",
+    "src/yatzy1.cpp": "3342c0c1f9bd990164ec902d7d87c7533709e795f9add08167ab8381d4b1dba5",
+    "src/yatzy1.hpp": "dd62422f0ed0d3c701aa8bd9fdd05d43443bf2076381c092ed8dd8afa0fc2fda"
+  }
+}

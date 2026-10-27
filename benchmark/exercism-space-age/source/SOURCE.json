@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/space_age.cpp": "exercises/practice/space-age/.meta/example.cpp",
+    "src/space_age.h": "exercises/practice/space-age/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/space-age/space_age_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/space_age.cpp": "96a1322256b25314134587cd91e58d09960fac5d118eb7de44628c51352323e6",
+    "src/space_age.h": "44a83c30fde216d3cee25a2df75e8109a8fb5fcc593b850b2acbdd4121da4069"
+  }
+}

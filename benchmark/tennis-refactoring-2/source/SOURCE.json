@@ -1,0 +1,16 @@
+{
+  "repository": "https://github.com/emilybache/Tennis-Refactoring-Kata",
+  "commit": "a8ecc946929084eb4fe187ce2fcf3716dcb88f96",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/tennis2.cc": "cpp/tennis2.cc"
+  },
+  "added_by_qualtor": [
+    "src/tennis.h"
+  ],
+  "files": {
+    "LICENSE": "b6c892eef2e97dbdc8a959a20053f7fd6477fc335829e79e5f2169ca34cb9b1e",
+    "src/tennis.h": "31c507a6c7190428e60197b2fdef699aff5874f209d17a17f37446c15d57f62e",
+    "src/tennis2.cc": "62faa10fbd6aef65fe13a365be725a25774761c27f07ed2d8ce676af0ef6c0ce"
+  }
+}

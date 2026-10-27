@@ -1,0 +1,19 @@
+{
+  "repository": "https://github.com/emilybache/Racing-Car-Katas",
+  "commit": "6584af9b6d9bd3d8105b8c8ad4fc544d3c09fed6",
+  "license": "MIT",
+  "upstream_paths": {
+    "TirePressureMonitoring/include/Alarm.h": "Cpp/TirePressureMonitoring/include/Alarm.h",
+    "TirePressureMonitoring/include/Sensor.h": "Cpp/TirePressureMonitoring/include/Sensor.h",
+    "TirePressureMonitoring/source/Alarm.cpp": "Cpp/TirePressureMonitoring/source/Alarm.cpp",
+    "TirePressureMonitoring/source/Sensor.cpp": "Cpp/TirePressureMonitoring/source/Sensor.cpp"
+  },
+  "added_by_qualtor": [],
+  "files": {
+    "LICENSE": "b6c892eef2e97dbdc8a959a20053f7fd6477fc335829e79e5f2169ca34cb9b1e",
+    "TirePressureMonitoring/include/Alarm.h": "089042ea45b17b9f7df94e21f78649fd7f69c9d7ed11faf72c035cbc0a4f0a61",
+    "TirePressureMonitoring/include/Sensor.h": "ec3e5afac366aa395926df45da90311b464278bd627bebd7d21ba0fe892e414b",
+    "TirePressureMonitoring/source/Alarm.cpp": "fc0623c559c12b0c73176b84bd30bf0e51e45bd3f145b31b2f8ee209cb87c156",
+    "TirePressureMonitoring/source/Sensor.cpp": "18e2a83fda9c933c58b735619ac6f304ae2876c77ac36b0886caf909055346b1"
+  }
+}

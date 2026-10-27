@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/food_chain.cpp": "exercises/practice/food-chain/.meta/example.cpp",
+    "src/food_chain.h": "exercises/practice/food-chain/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/food-chain/food_chain_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/food_chain.cpp": "c823ac529216b45861688119fe257c597a0df4ad38c20f165c5d74a6d0e6544f",
+    "src/food_chain.h": "5cd027fcbb3216e87059fada6a77c55490ce2db65e05343a3af7768c90c32919"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/emilybache/Parrot-Refactoring-Kata",
+  "commit": "28fe97beb296acd28fe5febdccca34def62e8616",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/Parrot.cpp": "cpp/src/Parrot.cpp",
+    "src/Parrot.h": "cpp/src/Parrot.h"
+  },
+  "added_by_qualtor": [],
+  "files": {
+    "LICENSE": "b6c892eef2e97dbdc8a959a20053f7fd6477fc335829e79e5f2169ca34cb9b1e",
+    "src/Parrot.cpp": "27c5c6663a4e8fa7fb26888b110bb7e85cbdc545f374ef2420e4c712a2a19885",
+    "src/Parrot.h": "de6eb5bfd5d98055cdbb0c67e1a1dd19e71b91b2514ca9e3d163eb3a7817f9de"
+  }
+}

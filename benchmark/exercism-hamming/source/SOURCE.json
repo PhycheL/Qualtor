@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/hamming.cpp": "exercises/practice/hamming/.meta/example.cpp",
+    "src/hamming.h": "exercises/practice/hamming/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/hamming/hamming_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/hamming.cpp": "f65c745523e1695583ee1b11fb9fbf98da8e7bb5c1ca2aac87529b590f1f8de0",
+    "src/hamming.h": "529f004d3f003158bfafe0c6bec22c37c7b43fb5a0f1c288e9d09d95cbf2a2b2"
+  }
+}

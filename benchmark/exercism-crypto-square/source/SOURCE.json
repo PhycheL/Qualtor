@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/crypto_square.cpp": "exercises/practice/crypto-square/.meta/example.cpp",
+    "src/crypto_square.h": "exercises/practice/crypto-square/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/crypto-square/crypto_square_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/crypto_square.cpp": "6c954d795661d4a536b1abe55d69f43bea8efd59fc21157372670e83bd5eb1f4",
+    "src/crypto_square.h": "6e1771f15fe599b5edda8b313d1b498de9d9d1d44c8be030e7e988a9cf405dc8"
+  }
+}

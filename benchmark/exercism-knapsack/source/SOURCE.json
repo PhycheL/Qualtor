@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/knapsack.cpp": "exercises/practice/knapsack/.meta/example.cpp",
+    "src/knapsack.h": "exercises/practice/knapsack/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/knapsack/knapsack_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/knapsack.cpp": "d5745ffbccd7f3b11367c955f11c70843e319b9efed07e60b307c28b7d766e1a",
+    "src/knapsack.h": "fc5e9f1688514ad4aff4b044054ff816c8fcec810f89b6f3a3b76891f5db4299"
+  }
+}

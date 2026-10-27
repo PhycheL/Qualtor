@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "id": "exercism-prime-factors",
+  "set": "dev",
+  "tier": "easy",
+  "tags": [
+    "exercism",
+    "upstream_tests"
+  ],
+  "title": "prime_factors 模块单元测试",
+  "description": "Exercism C++ 练习 prime-factors 的参考解作为被测代码；上游 Catch2 测试机械转换为 GoogleTest 作参考测试。公开代码，开发题。",
+  "source": {
+    "repository": "https://github.com/exercism/cpp",
+    "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+    "root": "benchmark/exercism-prime-factors/source",
+    "files": {
+      "src/prime_factors.cpp": "2599f40eed00d03ecc669c878546aced926be5e29921ec49f243474329030b54",
+      "src/prime_factors.h": "4f955b2059a3cdbc7eb43f23dac2fc733b961841a21d6b1c17ade6d60262b4c2"
+    }
+  },
+  "target_sources": [
+    "src/prime_factors.cpp"
+  ],
+  "include_dirs": [
+    "src"
+  ],
+  "visible": {
+    "files": [
+      "src/prime_factors.cpp",
+      "src/prime_factors.h"
+    ],
+    "notes": "可见材料只有被测源码、头文件和构建方式（C++11 + GoogleTest 1.12.1）。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": true,
+    "note": "上游 Catch2 测试已转换为 GoogleTest 参考测试，对 Agent 不可见。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "上游测试覆盖的输入；未单独界定评分输入域，探针即参考测试。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/import_exercism.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": []
+}

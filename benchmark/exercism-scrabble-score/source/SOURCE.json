@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/scrabble_score.cpp": "exercises/practice/scrabble-score/.meta/example.cpp",
+    "src/scrabble_score.h": "exercises/practice/scrabble-score/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/scrabble-score/scrabble_score_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/scrabble_score.cpp": "cd013837be7dea0c555be9b55e6045604c0a439786d59c636592226f1767a678",
+    "src/scrabble_score.h": "aefc9d605a1fd73cedf8610d320a5dfa7429cf5ae16c8d728f6f8bf63ffa85fc"
+  }
+}

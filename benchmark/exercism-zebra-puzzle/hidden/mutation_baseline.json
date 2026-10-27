@@ -1,0 +1,3718 @@
+{
+  "task": "exercism-zebra-puzzle",
+  "created_at": "2026-10-27T07:03:43.873999+00:00",
+  "created_by_run": "bank-prepare-20261027-01-exercism-zebra-puzzle",
+  "scorer_version": "0.1.5",
+  "scorer_code_sha256": "4ca4b8edbd0712321e5bbfa490e9e859683ef129a3492146fb5b14eea56ed5eb",
+  "images": {
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
+  },
+  "mull": {
+    "config_sha256": "491176ae2c1e143447ec42fdc6dbc0c858d5f0bc6fbf8109cf17a94b777b773c",
+    "config": "# 由评分器根据 task.json 生成；修改算子要升级变异分母。\nmutators:\n  - cxx_all\nincludePaths:\n  - '/repo/src/zebra_puzzle\\.cpp$'\n"
+  },
+  "mutants": [
+    {
+      "id": "cxx_add_to_sub:/repo/src/zebra_puzzle.cpp:164:24:164:25",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 164,
+          "column": 24
+        },
+        "end": {
+          "line": 164,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/zebra_puzzle.cpp:169:23:169:24",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 23
+        },
+        "end": {
+          "line": 169,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/zebra_puzzle.cpp:66:24:66:25",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 24
+        },
+        "end": {
+          "line": 66,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/zebra_puzzle.cpp:71:23:71:24",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 23
+        },
+        "end": {
+          "line": 71,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/zebra_puzzle.cpp:85:24:85:25",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 24
+        },
+        "end": {
+          "line": 85,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/zebra_puzzle.cpp:90:23:90:24",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 23
+        },
+        "end": {
+          "line": 90,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/zebra_puzzle.cpp:192:33:192:34",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 33
+        },
+        "end": {
+          "line": 192,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/zebra_puzzle.cpp:197:33:197:34",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 33
+        },
+        "end": {
+          "line": 197,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/zebra_puzzle.cpp:206:35:206:36",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 206,
+          "column": 35
+        },
+        "end": {
+          "line": 206,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/zebra_puzzle.cpp:215:47:215:48",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 215,
+          "column": 47
+        },
+        "end": {
+          "line": 215,
+          "column": 48
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/zebra_puzzle.cpp:224:45:224:46",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 45
+        },
+        "end": {
+          "line": 224,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:107:32:107:34",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 32
+        },
+        "end": {
+          "line": 107,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:112:32:112:34",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 32
+        },
+        "end": {
+          "line": 112,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:117:16:117:18",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 16
+        },
+        "end": {
+          "line": 117,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:122:32:122:34",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 32
+        },
+        "end": {
+          "line": 122,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:135:26:135:28",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 26
+        },
+        "end": {
+          "line": 135,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:140:26:140:28",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 26
+        },
+        "end": {
+          "line": 140,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:146:37:146:39",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 37
+        },
+        "end": {
+          "line": 146,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:151:16:151:18",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 16
+        },
+        "end": {
+          "line": 151,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:151:38:151:40",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 38
+        },
+        "end": {
+          "line": 151,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:156:26:156:28",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 156,
+          "column": 26
+        },
+        "end": {
+          "line": 156,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:161:44:161:46",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 44
+        },
+        "end": {
+          "line": 161,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:163:44:163:46",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 44
+        },
+        "end": {
+          "line": 163,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:168:16:168:18",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 16
+        },
+        "end": {
+          "line": 168,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:168:44:168:46",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 44
+        },
+        "end": {
+          "line": 168,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:173:16:173:18",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 16
+        },
+        "end": {
+          "line": 173,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:173:44:173:46",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 44
+        },
+        "end": {
+          "line": 173,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:249:27:249:29",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 249,
+          "column": 27
+        },
+        "end": {
+          "line": 249,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:257:29:257:31",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 29
+        },
+        "end": {
+          "line": 257,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:40:16:40:18",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 16
+        },
+        "end": {
+          "line": 40,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:45:30:45:32",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 30
+        },
+        "end": {
+          "line": 45,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:57:24:57:26",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 24
+        },
+        "end": {
+          "line": 57,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:63:36:63:38",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 36
+        },
+        "end": {
+          "line": 63,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:65:36:65:38",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 36
+        },
+        "end": {
+          "line": 65,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:70:16:70:18",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 16
+        },
+        "end": {
+          "line": 70,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:70:36:70:38",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 36
+        },
+        "end": {
+          "line": 70,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:75:16:75:18",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 16
+        },
+        "end": {
+          "line": 75,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:75:36:75:38",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 36
+        },
+        "end": {
+          "line": 75,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:82:36:82:38",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 36
+        },
+        "end": {
+          "line": 82,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:84:36:84:38",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 36
+        },
+        "end": {
+          "line": 84,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:89:16:89:18",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 16
+        },
+        "end": {
+          "line": 89,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:89:36:89:38",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 36
+        },
+        "end": {
+          "line": 89,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:94:16:94:18",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 16
+        },
+        "end": {
+          "line": 94,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:94:36:94:38",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 36
+        },
+        "end": {
+          "line": 94,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/zebra_puzzle.cpp:146:16:146:17",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 16
+        },
+        "end": {
+          "line": 146,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/zebra_puzzle.cpp:161:17:161:18",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 17
+        },
+        "end": {
+          "line": 161,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/zebra_puzzle.cpp:63:17:63:18",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 17
+        },
+        "end": {
+          "line": 63,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/zebra_puzzle.cpp:82:17:82:18",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 17
+        },
+        "end": {
+          "line": 82,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/zebra_puzzle.cpp:146:16:146:17",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 16
+        },
+        "end": {
+          "line": 146,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/zebra_puzzle.cpp:161:17:161:18",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 17
+        },
+        "end": {
+          "line": 161,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/zebra_puzzle.cpp:63:17:63:18",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 17
+        },
+        "end": {
+          "line": 63,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/zebra_puzzle.cpp:82:17:82:18",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 17
+        },
+        "end": {
+          "line": 82,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/zebra_puzzle.cpp:103:17:103:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 17
+        },
+        "end": {
+          "line": 103,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/zebra_puzzle.cpp:131:17:131:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 17
+        },
+        "end": {
+          "line": 131,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/zebra_puzzle.cpp:191:21:191:22",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 21
+        },
+        "end": {
+          "line": 191,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/zebra_puzzle.cpp:196:25:196:26",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 25
+        },
+        "end": {
+          "line": 196,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/zebra_puzzle.cpp:205:29:205:30",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 29
+        },
+        "end": {
+          "line": 205,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/zebra_puzzle.cpp:214:33:214:34",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 33
+        },
+        "end": {
+          "line": 214,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/zebra_puzzle.cpp:223:37:223:38",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 37
+        },
+        "end": {
+          "line": 223,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/zebra_puzzle.cpp:248:17:248:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 248,
+          "column": 17
+        },
+        "end": {
+          "line": 248,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/zebra_puzzle.cpp:256:17:256:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 17
+        },
+        "end": {
+          "line": 256,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/zebra_puzzle.cpp:36:17:36:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 17
+        },
+        "end": {
+          "line": 36,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/zebra_puzzle.cpp:53:17:53:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 17
+        },
+        "end": {
+          "line": 53,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:103:26:103:27",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 26
+        },
+        "end": {
+          "line": 103,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:131:26:131:27",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 26
+        },
+        "end": {
+          "line": 131,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:163:17:163:18",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 17
+        },
+        "end": {
+          "line": 163,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:191:30:191:31",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 30
+        },
+        "end": {
+          "line": 191,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:196:34:196:35",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 34
+        },
+        "end": {
+          "line": 196,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:205:38:205:39",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 38
+        },
+        "end": {
+          "line": 205,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:214:42:214:43",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 42
+        },
+        "end": {
+          "line": 214,
+          "column": 43
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:223:46:223:47",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 46
+        },
+        "end": {
+          "line": 223,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:248:26:248:27",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 248,
+          "column": 26
+        },
+        "end": {
+          "line": 248,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:256:26:256:27",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 26
+        },
+        "end": {
+          "line": 256,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:36:26:36:27",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 26
+        },
+        "end": {
+          "line": 36,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:53:26:53:27",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 26
+        },
+        "end": {
+          "line": 53,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:65:17:65:18",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 17
+        },
+        "end": {
+          "line": 65,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:84:17:84:18",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 17
+        },
+        "end": {
+          "line": 84,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:103:26:103:27",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 26
+        },
+        "end": {
+          "line": 103,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:131:26:131:27",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 26
+        },
+        "end": {
+          "line": 131,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:163:17:163:18",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 17
+        },
+        "end": {
+          "line": 163,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:191:30:191:31",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 30
+        },
+        "end": {
+          "line": 191,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:196:34:196:35",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 34
+        },
+        "end": {
+          "line": 196,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:205:38:205:39",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 38
+        },
+        "end": {
+          "line": 205,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:214:42:214:43",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 42
+        },
+        "end": {
+          "line": 214,
+          "column": 43
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:223:46:223:47",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 46
+        },
+        "end": {
+          "line": 223,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:248:26:248:27",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 248,
+          "column": 26
+        },
+        "end": {
+          "line": 248,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:256:26:256:27",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 26
+        },
+        "end": {
+          "line": 256,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:36:26:36:27",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 26
+        },
+        "end": {
+          "line": 36,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:53:26:53:27",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 26
+        },
+        "end": {
+          "line": 53,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:65:17:65:18",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 17
+        },
+        "end": {
+          "line": 65,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:84:17:84:18",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 17
+        },
+        "end": {
+          "line": 84,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:107:59:107:61",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 59
+        },
+        "end": {
+          "line": 107,
+          "column": 61
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:112:62:112:64",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 62
+        },
+        "end": {
+          "line": 112,
+          "column": 64
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:117:44:117:46",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 44
+        },
+        "end": {
+          "line": 117,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:123:30:123:32",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 30
+        },
+        "end": {
+          "line": 123,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:135:56:135:58",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 56
+        },
+        "end": {
+          "line": 135,
+          "column": 58
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:140:52:140:54",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 52
+        },
+        "end": {
+          "line": 140,
+          "column": 54
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:147:34:147:36",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 34
+        },
+        "end": {
+          "line": 147,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:156:57:156:59",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 156,
+          "column": 57
+        },
+        "end": {
+          "line": 156,
+          "column": 59
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:162:35:162:37",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 35
+        },
+        "end": {
+          "line": 162,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:164:35:164:37",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 164,
+          "column": 35
+        },
+        "end": {
+          "line": 164,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:169:34:169:36",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 34
+        },
+        "end": {
+          "line": 169,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:174:34:174:36",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 34
+        },
+        "end": {
+          "line": 174,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:40:38:40:40",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 38
+        },
+        "end": {
+          "line": 40,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:45:62:45:64",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 62
+        },
+        "end": {
+          "line": 45,
+          "column": 64
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:57:55:57:57",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 55
+        },
+        "end": {
+          "line": 57,
+          "column": 57
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:64:39:64:41",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 39
+        },
+        "end": {
+          "line": 64,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:66:39:66:41",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 39
+        },
+        "end": {
+          "line": 66,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:71:38:71:40",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 38
+        },
+        "end": {
+          "line": 71,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:76:38:76:40",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 38
+        },
+        "end": {
+          "line": 76,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:83:39:83:41",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 39
+        },
+        "end": {
+          "line": 83,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:85:39:85:41",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 39
+        },
+        "end": {
+          "line": 85,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:90:38:90:40",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 38
+        },
+        "end": {
+          "line": 90,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:95:38:95:40",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 38
+        },
+        "end": {
+          "line": 95,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/zebra_puzzle.cpp:103:44:103:46",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 44
+        },
+        "end": {
+          "line": 103,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/zebra_puzzle.cpp:131:44:131:46",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 44
+        },
+        "end": {
+          "line": 131,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/zebra_puzzle.cpp:191:36:191:38",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 36
+        },
+        "end": {
+          "line": 191,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/zebra_puzzle.cpp:196:40:196:42",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 40
+        },
+        "end": {
+          "line": 196,
+          "column": 42
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/zebra_puzzle.cpp:205:44:205:46",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 44
+        },
+        "end": {
+          "line": 205,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/zebra_puzzle.cpp:214:48:214:50",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 48
+        },
+        "end": {
+          "line": 214,
+          "column": 50
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/zebra_puzzle.cpp:223:52:223:54",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 52
+        },
+        "end": {
+          "line": 223,
+          "column": 54
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/zebra_puzzle.cpp:248:44:248:46",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 248,
+          "column": 44
+        },
+        "end": {
+          "line": 248,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/zebra_puzzle.cpp:256:44:256:46",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 44
+        },
+        "end": {
+          "line": 256,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/zebra_puzzle.cpp:36:44:36:46",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 44
+        },
+        "end": {
+          "line": 36,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/zebra_puzzle.cpp:53:44:53:46",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 44
+        },
+        "end": {
+          "line": 53,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/zebra_puzzle.cpp:244:5:244:29",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 244,
+          "column": 5
+        },
+        "end": {
+          "line": 244,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:103:35:103:39",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 35
+        },
+        "end": {
+          "line": 103,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:131:35:131:39",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 35
+        },
+        "end": {
+          "line": 131,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:200:18:200:53",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 200,
+          "column": 18
+        },
+        "end": {
+          "line": 200,
+          "column": 53
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:209:22:209:61",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 22
+        },
+        "end": {
+          "line": 209,
+          "column": 61
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:218:26:218:77",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 218,
+          "column": 26
+        },
+        "end": {
+          "line": 218,
+          "column": 77
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:227:29:227:86",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 29
+        },
+        "end": {
+          "line": 227,
+          "column": 86
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:231:54:231:59",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 231,
+          "column": 54
+        },
+        "end": {
+          "line": 231,
+          "column": 59
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:231:70:231:73",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 231,
+          "column": 70
+        },
+        "end": {
+          "line": 231,
+          "column": 73
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:233:57:233:62",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 233,
+          "column": 57
+        },
+        "end": {
+          "line": 233,
+          "column": 62
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:234:57:234:60",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 57
+        },
+        "end": {
+          "line": 234,
+          "column": 60
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:236:44:236:49",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 236,
+          "column": 44
+        },
+        "end": {
+          "line": 236,
+          "column": 49
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:236:58:236:61",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 236,
+          "column": 58
+        },
+        "end": {
+          "line": 236,
+          "column": 61
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:238:42:238:47",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 42
+        },
+        "end": {
+          "line": 238,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:238:58:238:61",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 58
+        },
+        "end": {
+          "line": 238,
+          "column": 61
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:240:42:240:47",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 240,
+          "column": 42
+        },
+        "end": {
+          "line": 240,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:240:62:240:65",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 240,
+          "column": 62
+        },
+        "end": {
+          "line": 240,
+          "column": 65
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:248:35:248:39",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 248,
+          "column": 35
+        },
+        "end": {
+          "line": 248,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:256:35:256:39",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 35
+        },
+        "end": {
+          "line": 256,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:36:35:36:39",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 35
+        },
+        "end": {
+          "line": 36,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:53:35:53:39",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 35
+        },
+        "end": {
+          "line": 53,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:147:23:147:24",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 23
+        },
+        "end": {
+          "line": 147,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:162:24:162:25",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 24
+        },
+        "end": {
+          "line": 162,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:174:23:174:24",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 23
+        },
+        "end": {
+          "line": 174,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:64:24:64:25",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 24
+        },
+        "end": {
+          "line": 64,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:76:23:76:24",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 23
+        },
+        "end": {
+          "line": 76,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:83:24:83:25",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 24
+        },
+        "end": {
+          "line": 83,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:95:23:95:24",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 23
+        },
+        "end": {
+          "line": 95,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    }
+  ],
+  "equivalent": [
+    {
+      "id": "cxx_add_to_sub:/repo/src/zebra_puzzle.cpp:164:24:164:25",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/zebra_puzzle.cpp:66:24:66:25",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/zebra_puzzle.cpp:85:24:85:25",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/zebra_puzzle.cpp:90:23:90:24",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:161:44:161:46",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:163:44:163:46",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:168:16:168:18",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:168:44:168:46",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:63:36:63:38",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:65:36:65:38",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:70:16:70:18",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:70:36:70:38",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/zebra_puzzle.cpp:146:16:146:17",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/zebra_puzzle.cpp:161:17:161:18",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/zebra_puzzle.cpp:63:17:63:18",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/zebra_puzzle.cpp:82:17:82:18",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/zebra_puzzle.cpp:146:16:146:17",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/zebra_puzzle.cpp:161:17:161:18",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/zebra_puzzle.cpp:63:17:63:18",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_init_const:/repo/src/zebra_puzzle.cpp:53:17:53:18",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:163:17:163:18",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:53:26:53:27",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:65:17:65:18",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:103:26:103:27",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:163:17:163:18",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:191:30:191:31",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:196:34:196:35",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:205:38:205:39",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:223:46:223:47",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:248:26:248:27",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:256:26:256:27",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:36:26:36:27",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:53:26:53:27",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:65:17:65:18",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:84:17:84:18",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:117:44:117:46",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:123:30:123:32",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:135:56:135:58",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:147:34:147:36",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:156:57:156:59",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:162:35:162:37",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:164:35:164:37",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:169:34:169:36",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:174:34:174:36",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:64:39:64:41",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:66:39:66:41",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:76:38:76:40",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/zebra_puzzle.cpp:256:44:256:46",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:103:35:103:39",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:240:42:240:47",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:248:35:248:39",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:256:35:256:39",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:36:35:36:39",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:53:35:53:39",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:147:23:147:24",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:162:24:162:25",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:174:23:174:24",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:64:24:64:25",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:76:23:76:24",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:95:23:95:24",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    }
+  ],
+  "unstable": [],
+  "review_needed": [
+    {
+      "id": "cxx_assign_const:/repo/src/zebra_puzzle.cpp:206:35:206:36",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:233:57:233:62",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:236:44:236:49",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:238:42:238:47",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    }
+  ],
+  "review": {
+    "status": "pending",
+    "by": null,
+    "at": null,
+    "note": "等价变异候选由有界穷举探针自动给出；人工逐个复核后，把 status 改为 reviewed 并填写 by、at"
+  },
+  "reference": {
+    "killed": 90,
+    "timeout": 3,
+    "total": 93,
+    "m1": 1.0,
+    "threshold": 0.8,
+    "passes": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/roman_numerals.cpp": "exercises/practice/roman-numerals/.meta/example.cpp",
+    "src/roman_numerals.h": "exercises/practice/roman-numerals/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/roman-numerals/roman_numerals_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/roman_numerals.cpp": "6587f0c002c4101dd75b0399a72acf0550a45d7658165c3ee5af35431bd61543",
+    "src/roman_numerals.h": "2fac78c740a6bee4fbe476239c1b67d012f0cbd3950d6094bf651be0f302c111"
+  }
+}

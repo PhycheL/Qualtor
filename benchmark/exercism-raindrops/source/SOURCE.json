@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/raindrops.cpp": "exercises/practice/raindrops/.meta/example.cpp",
+    "src/raindrops.h": "exercises/practice/raindrops/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/raindrops/raindrops_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/raindrops.cpp": "3432661af8eccf03e3c489ba26b89491893e125d4e963f0fe498cbd9ac1de2b4",
+    "src/raindrops.h": "80f828b7ef7608d3d29fe85082072eeb91d2416bfa3fa7129649a68ecbaa2b05"
+  }
+}

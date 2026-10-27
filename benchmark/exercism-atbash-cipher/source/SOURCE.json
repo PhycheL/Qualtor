@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/atbash_cipher.cpp": "exercises/practice/atbash-cipher/.meta/example.cpp",
+    "src/atbash_cipher.h": "exercises/practice/atbash-cipher/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/atbash-cipher/atbash_cipher_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/atbash_cipher.cpp": "918d9e581b61bb4a549f0e1da022e6b268ea8649d7e84fbb9569241a4f14282c",
+    "src/atbash_cipher.h": "69262852feb5cd18479ad5d91810a7ba14af4006c5cab259837c72b232e06f0f"
+  }
+}

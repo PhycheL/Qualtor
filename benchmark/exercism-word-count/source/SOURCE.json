@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/word_count.cpp": "exercises/practice/word-count/.meta/example.cpp",
+    "src/word_count.h": "exercises/practice/word-count/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/word-count/word_count_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/word_count.cpp": "e08799dbdf9950f46b4b31480a15499c51cc84a2d3c285ef256fbe85d85a5111",
+    "src/word_count.h": "075aa059e29c09c051263ff60a1691f2875bbbced293b5a138d48d010bea2a04"
+  }
+}

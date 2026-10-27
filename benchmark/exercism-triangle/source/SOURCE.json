@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/triangle.cpp": "exercises/practice/triangle/.meta/example.cpp",
+    "src/triangle.h": "exercises/practice/triangle/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/triangle/triangle_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/triangle.cpp": "1a939eb9c5f10c2f3e125c866ce3eaa445b39676ca15a99f7fc2da1a0543d38e",
+    "src/triangle.h": "1b41ec7e73a8dfb11a0c363ceb66798d0d7c9a99dbf42658fb3b5c7fc84742c4"
+  }
+}

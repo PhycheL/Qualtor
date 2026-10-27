@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/pangram.cpp": "exercises/practice/pangram/.meta/example.cpp",
+    "src/pangram.h": "exercises/practice/pangram/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/pangram/pangram_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/pangram.cpp": "f466b1fd8718d80e8f27ee9cecfacf905e00bd30a0e3ebc18539eafe5acb3fe9",
+    "src/pangram.h": "0a0c9768c960e695156ca0b9fa2b3a256c44603cbd92fa83485b1a45d76373da"
+  }
+}

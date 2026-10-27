@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/phone_number.cpp": "exercises/practice/phone-number/.meta/example.cpp",
+    "src/phone_number.h": "exercises/practice/phone-number/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/phone-number/phone_number_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/phone_number.cpp": "64019a0770afaca5378b1522ac9fbe8716a58bd54be1b45be19cdb2897ff4f5e",
+    "src/phone_number.h": "828002bfed962c6c5be8d0643f875fe834140d051cab45bedb864d1b804985e8"
+  }
+}

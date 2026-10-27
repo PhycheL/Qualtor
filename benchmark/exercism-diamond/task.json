@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "id": "exercism-diamond",
+  "set": "dev",
+  "tier": "easy",
+  "tags": [
+    "exercism",
+    "upstream_tests"
+  ],
+  "title": "diamond 模块单元测试",
+  "description": "Exercism C++ 练习 diamond 的参考解作为被测代码；上游 Catch2 测试机械转换为 GoogleTest 作参考测试。公开代码，开发题。",
+  "source": {
+    "repository": "https://github.com/exercism/cpp",
+    "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+    "root": "benchmark/exercism-diamond/source",
+    "files": {
+      "src/diamond.cpp": "77a0be8e4002384fcb63c2ab71c88f0e63884a3aa22eaff973e823539f33d388",
+      "src/diamond.h": "b9580b022a43606848e0a5eb7183d60f1280883caafadb4463f93741dd23da43"
+    }
+  },
+  "target_sources": [
+    "src/diamond.cpp"
+  ],
+  "include_dirs": [
+    "src"
+  ],
+  "visible": {
+    "files": [
+      "src/diamond.cpp",
+      "src/diamond.h"
+    ],
+    "notes": "可见材料只有被测源码、头文件和构建方式（C++11 + GoogleTest 1.12.1）。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": true,
+    "note": "上游 Catch2 测试已转换为 GoogleTest 参考测试，对 Agent 不可见。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "上游测试覆盖的输入；未单独界定评分输入域，探针即参考测试。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/import_exercism.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": []
+}

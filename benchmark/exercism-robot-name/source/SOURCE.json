@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/robot_name.cpp": "exercises/practice/robot-name/.meta/example.cpp",
+    "src/robot_name.h": "exercises/practice/robot-name/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/robot-name/robot_name_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/robot_name.cpp": "6ed3097528b561b513873edc3f940851334abc471570d85bc7e1dbedaf6384b9",
+    "src/robot_name.h": "1a1da47f0dcd759c19d79acf89d2e5e332cb1935d8ed52d34bee99da5d273950"
+  }
+}

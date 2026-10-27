@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/sublist.cpp": "exercises/practice/sublist/.meta/example.cpp",
+    "src/sublist.h": "exercises/practice/sublist/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/sublist/sublist_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/sublist.cpp": "f384f99ce0f9ed9db8dc70e72a0c83873d127d0090383e09e6eb124bd13066f3",
+    "src/sublist.h": "016bae37ea9b32d98c3882a77afa708fe16a21d9312c4945fe46407ec3f536c4"
+  }
+}

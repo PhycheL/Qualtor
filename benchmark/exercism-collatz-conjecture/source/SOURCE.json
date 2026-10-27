@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/collatz_conjecture.cpp": "exercises/practice/collatz-conjecture/.meta/example.cpp",
+    "src/collatz_conjecture.h": "exercises/practice/collatz-conjecture/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/collatz-conjecture/collatz_conjecture_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/collatz_conjecture.cpp": "2e01863033dbab9ec32c67ed7eb5e10f99294720c0e2365c45de494e0782e25e",
+    "src/collatz_conjecture.h": "e744e67fd691b4172ccdd9ff261431dea8674d92a762c42369e9fedc86bb3cd8"
+  }
+}

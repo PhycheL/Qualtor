@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/sum_of_multiples.cpp": "exercises/practice/sum-of-multiples/.meta/example.cpp",
+    "src/sum_of_multiples.h": "exercises/practice/sum-of-multiples/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/sum-of-multiples/sum_of_multiples_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/sum_of_multiples.cpp": "022bc9b599bd7c71f933a331ac8950e1f2ef97dbcbad4119edf49739df8e15d2",
+    "src/sum_of_multiples.h": "6be4c6c2704a0df1d9447523d431ac4b90f72dc405f18f0a71a0a454ba0c88bc"
+  }
+}

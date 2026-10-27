@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "id": "tennis-refactoring-2",
+  "set": "dev",
+  "tier": "easy",
+  "tags": [
+    "kata",
+    "upstream_tests"
+  ],
+  "title": "网球计分 tennis2 单元测试",
+  "description": "Tennis Refactoring Kata 的第 2 种实现；上游 GoogleTest 测试与生成器记录的实际结果作参考测试。公开代码，开发题。",
+  "source": {
+    "repository": "https://github.com/emilybache/Tennis-Refactoring-Kata",
+    "commit": "a8ecc946929084eb4fe187ce2fcf3716dcb88f96",
+    "root": "benchmark/tennis-refactoring-2/source",
+    "files": {
+      "src/tennis.h": "31c507a6c7190428e60197b2fdef699aff5874f209d17a17f37446c15d57f62e",
+      "src/tennis2.cc": "62faa10fbd6aef65fe13a365be725a25774761c27f07ed2d8ce676af0ef6c0ce"
+    }
+  },
+  "target_sources": [
+    "src/tennis2.cc"
+  ],
+  "include_dirs": [
+    "src"
+  ],
+  "visible": {
+    "files": [
+      "src/tennis.h",
+      "src/tennis2.cc"
+    ],
+    "notes": "可见材料只有被测源码、头文件和构建方式（C++11 + GoogleTest 1.12.1）。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": true,
+    "note": "上游 cpp/gtest_all.cpp 已作参考测试（只把函数声明换成 tennis.h），对 Agent 不可见。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "两名选手 0–15 分的全部组合，排除触发未定义行为、崩溃或超时的组合。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests"
+  },
+  "preparation": {
+    "probe_mode": "generated",
+    "probe_note": "探针由生成器在原代码上运行大量输入得到，并包含全部参考测试；探针也区分不出的变异列为等价候选。",
+    "generated_by": "benchmark/tools/build_katas.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": []
+}

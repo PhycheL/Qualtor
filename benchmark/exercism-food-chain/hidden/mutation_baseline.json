@@ -1,0 +1,304 @@
+{
+  "task": "exercism-food-chain",
+  "created_at": "2026-10-27T06:55:36.771627+00:00",
+  "created_by_run": "bank-prepare-20261027-01-exercism-food-chain",
+  "scorer_version": "0.1.5",
+  "scorer_code_sha256": "4ca4b8edbd0712321e5bbfa490e9e859683ef129a3492146fb5b14eea56ed5eb",
+  "images": {
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
+  },
+  "mull": {
+    "config_sha256": "f2db37299a1d83cebb56a1424f07a660e7c19b4f15f67af8f201034e139e1c6f",
+    "config": "# 由评分器根据 task.json 生成；修改算子要升级变异分母。\nmutators:\n  - cxx_all\nincludePaths:\n  - '/repo/src/food_chain\\.cpp$'\n"
+  },
+  "mutants": [
+    {
+      "id": "cxx_gt_to_ge:/repo/src/food_chain.cpp:50:13:50:14",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 13
+        },
+        "end": {
+          "line": 50,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/food_chain.cpp:50:13:50:14",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 13
+        },
+        "end": {
+          "line": 50,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/food_chain.cpp:65:19:65:20",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 19
+        },
+        "end": {
+          "line": 65,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/src/food_chain.cpp:50:24:50:26",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 24
+        },
+        "end": {
+          "line": 50,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/src/food_chain.cpp:65:32:65:34",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 32
+        },
+        "end": {
+          "line": 65,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/food_chain.cpp:50:24:50:26",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 24
+        },
+        "end": {
+          "line": 50,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/food_chain.cpp:65:32:65:34",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 32
+        },
+        "end": {
+          "line": 65,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/food_chain.cpp:53:17:53:18",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 17
+        },
+        "end": {
+          "line": 53,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/food_chain.cpp:53:17:53:18",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 17
+        },
+        "end": {
+          "line": 53,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_dec_to_post_inc:/repo/src/food_chain.cpp:54:23:54:25",
+      "mutator": "cxx_post_dec_to_post_inc",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 23
+        },
+        "end": {
+          "line": 54,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_dec_to_pre_inc:/repo/src/food_chain.cpp:51:9:51:11",
+      "mutator": "cxx_pre_dec_to_pre_inc",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 9
+        },
+        "end": {
+          "line": 51,
+          "column": 11
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/food_chain.cpp:65:40:65:42",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 40
+        },
+        "end": {
+          "line": 65,
+          "column": 42
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    }
+  ],
+  "equivalent": [
+    {
+      "id": "cxx_gt_to_ge:/repo/src/food_chain.cpp:50:13:50:14",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    }
+  ],
+  "unstable": [],
+  "review_needed": [],
+  "review": {
+    "status": "pending",
+    "by": null,
+    "at": null,
+    "note": "等价变异候选由有界穷举探针自动给出；人工逐个复核后，把 status 改为 reviewed 并填写 by、at"
+  },
+  "reference": {
+    "killed": 11,
+    "timeout": 0,
+    "total": 11,
+    "m1": 1.0,
+    "threshold": 0.8,
+    "passes": true
+  }
+}
