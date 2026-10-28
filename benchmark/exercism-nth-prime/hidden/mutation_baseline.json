@@ -391,10 +391,10 @@
     }
   ],
   "review": {
-    "status": "pending",
-    "by": null,
-    "at": null,
-    "note": "等价变异候选由有界穷举探针自动给出；人工逐个复核后，把 status 改为 reviewed 并填写 by、at"
+    "status": "reviewed",
+    "by": "Codex（AI 复核，Linux ARM64）",
+    "at": "2026-10-28",
+    "note": "依据 D015/D016、各题复核记录及历次 Linux ARM64 Docker 标定签署；本轮 0.2.1 校准、两处门禁回归、8 项删除调用 IR（5 旧+3 新）和 Zebra 52 项固定 GCC 源码副本取证通过。证据：runs/eval-bank-021-20261028-01/summary.md。保留 206 探针超时、39 参考测试缺口及 46 不稳定项的现有分类；不代表参考测试完备或 AMD64 已验证。"
   },
   "reference": {
     "killed": 11,

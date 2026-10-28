@@ -208,6 +208,19 @@ class CalibrationStatusTest(unittest.TestCase):
         self.write(passed=False)
         self.assertEqual(common.calibration_status(self.images, self.task)["status"], "failed")
 
+    def test_calibration_task_change_affects_every_task(self):
+        # 校准题材料变化后，查询其他题目或不指定题目，都不能再复用这次校准
+        other = common.load_task("exercism-binary")
+        self.write()
+        self.assertEqual(common.calibration_status(self.images, other)["status"], "passed")
+        self.write(tasks={self.task["id"]: "changed"})
+        for task in (other, None, self.task):
+            state = common.calibration_status(self.images, task)
+            self.assertEqual(state["status"], "stale", task and task["id"])
+            self.assertIn(self.task["id"], state["reason"])
+        self.write(tasks={"no-such-task": "x"})
+        self.assertEqual(common.calibration_status(self.images, other)["status"], "stale")
+
     def test_any_fingerprint_change_makes_it_stale(self):
         for change in ({"scorer_code_sha256": "x"}, {"samples_sha256": "x"}, {"scorer_version": "9.9.9"},
                        {"images": {"gcc": "other", "clang": "c1"}}, {"tasks": {self.task["id"]: "x"}}):

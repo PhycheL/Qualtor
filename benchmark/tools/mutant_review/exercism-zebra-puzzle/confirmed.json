@@ -8,7 +8,9 @@
       "verdict": "undefined_only",
       "evidence": [
         "runs/bank-review-20261028-06/zebra-sweep.md",
-        "runs/bank-review-20261028-06/zebra-sweep.json"
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "runs/bank-ub-20261028-01/ub-sweep.md",
+        "runs/bank-ub-20261028-01/ub-sweep.json"
       ],
       "note": "源码副本（变异后：(houses[i - 1].cigarette != Kools)) {）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
     },
@@ -17,7 +19,9 @@
       "verdict": "undefined_only",
       "evidence": [
         "runs/bank-review-20261028-06/zebra-sweep.md",
-        "runs/bank-review-20261028-06/zebra-sweep.json"
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "runs/bank-ub-20261028-01/ub-sweep.md",
+        "runs/bank-ub-20261028-01/ub-sweep.json"
       ],
       "note": "源码副本（变异后：if ((i != 0) && (house.pet == Fox) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
     },
@@ -26,7 +30,9 @@
       "verdict": "undefined_only",
       "evidence": [
         "runs/bank-review-20261028-06/zebra-sweep.md",
-        "runs/bank-review-20261028-06/zebra-sweep.json"
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "runs/bank-ub-20261028-01/ub-sweep.md",
+        "runs/bank-ub-20261028-01/ub-sweep.json"
       ],
       "note": "源码副本（变异后：if ((i >= 0) && (house.color == Green) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
     },
@@ -35,7 +41,9 @@
       "verdict": "undefined_only",
       "evidence": [
         "runs/bank-review-20261028-06/zebra-sweep.md",
-        "runs/bank-review-20261028-06/zebra-sweep.json"
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "runs/bank-ub-20261028-01/ub-sweep.md",
+        "runs/bank-ub-20261028-01/ub-sweep.json"
       ],
       "note": "源码副本（变异后：if (((i >= 0) && (house.nationality == Norwegian) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
     },
@@ -44,7 +52,9 @@
       "verdict": "undefined_only",
       "evidence": [
         "runs/bank-review-20261028-06/zebra-sweep.md",
-        "runs/bank-review-20261028-06/zebra-sweep.json"
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "runs/bank-ub-20261028-01/ub-sweep.md",
+        "runs/bank-ub-20261028-01/ub-sweep.json"
       ],
       "note": "源码副本（变异后：if (((i >= 0) && (house.pet == Fox) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
     },
@@ -53,7 +63,9 @@
       "verdict": "undefined_only",
       "evidence": [
         "runs/bank-review-20261028-06/zebra-sweep.md",
-        "runs/bank-review-20261028-06/zebra-sweep.json"
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "runs/bank-ub-20261028-01/ub-sweep.md",
+        "runs/bank-ub-20261028-01/ub-sweep.json"
       ],
       "note": "源码副本（变异后：if (((i >= 0) && (house.pet == Horse) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
     },
@@ -62,7 +74,9 @@
       "verdict": "undefined_only",
       "evidence": [
         "runs/bank-review-20261028-06/zebra-sweep.md",
-        "runs/bank-review-20261028-06/zebra-sweep.json"
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "runs/bank-ub-20261028-01/ub-sweep.md",
+        "runs/bank-ub-20261028-01/ub-sweep.json"
       ],
       "note": "源码副本（变异后：if ((i <= 0) && (house.color == Green) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
     },
@@ -71,7 +85,9 @@
       "verdict": "undefined_only",
       "evidence": [
         "runs/bank-review-20261028-06/zebra-sweep.md",
-        "runs/bank-review-20261028-06/zebra-sweep.json"
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "runs/bank-ub-20261028-01/ub-sweep.md",
+        "runs/bank-ub-20261028-01/ub-sweep.json"
       ],
       "note": "源码副本（变异后：if (((i <= 0) && (house.nationality == Norwegian) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
     },
@@ -80,7 +96,9 @@
       "verdict": "undefined_only",
       "evidence": [
         "runs/bank-review-20261028-06/zebra-sweep.md",
-        "runs/bank-review-20261028-06/zebra-sweep.json"
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "runs/bank-ub-20261028-01/ub-sweep.md",
+        "runs/bank-ub-20261028-01/ub-sweep.json"
       ],
       "note": "源码副本（变异后：if (((i <= 0) && (house.pet == Fox) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
     },
@@ -89,7 +107,9 @@
       "verdict": "undefined_only",
       "evidence": [
         "runs/bank-review-20261028-06/zebra-sweep.md",
-        "runs/bank-review-20261028-06/zebra-sweep.json"
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "runs/bank-ub-20261028-01/ub-sweep.md",
+        "runs/bank-ub-20261028-01/ub-sweep.json"
       ],
       "note": "源码副本（变异后：((i >= 4) && (house.pet == Fox) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
     },
@@ -168,7 +188,9 @@
       "verdict": "undefined_only",
       "evidence": [
         "runs/bank-review-20261028-06/zebra-sweep.md",
-        "runs/bank-review-20261028-06/zebra-sweep.json"
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "runs/bank-ub-20261028-01/ub-sweep.md",
+        "runs/bank-ub-20261028-01/ub-sweep.json"
       ],
       "note": "源码副本（变异后：((i <= 4) && (house.pet == Fox) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
     },
@@ -177,7 +199,9 @@
       "verdict": "undefined_only",
       "evidence": [
         "runs/bank-review-20261028-06/zebra-sweep.md",
-        "runs/bank-review-20261028-06/zebra-sweep.json"
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "runs/bank-ub-20261028-01/ub-sweep.md",
+        "runs/bank-ub-20261028-01/ub-sweep.json"
       ],
       "note": "源码副本（变异后：((i <= 4) && (house.pet == Horse) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
     },
@@ -186,7 +210,9 @@
       "verdict": "undefined_only",
       "evidence": [
         "runs/bank-review-20261028-06/zebra-sweep.md",
-        "runs/bank-review-20261028-06/zebra-sweep.json"
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "runs/bank-ub-20261028-01/ub-sweep.md",
+        "runs/bank-ub-20261028-01/ub-sweep.json"
       ],
       "note": "源码副本（变异后：for (size_t i = 0; i < 42; i++) {）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
     },
@@ -205,7 +231,9 @@
       "verdict": "undefined_only",
       "evidence": [
         "runs/bank-review-20261028-06/zebra-sweep.md",
-        "runs/bank-review-20261028-06/zebra-sweep.json"
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "runs/bank-ub-20261028-01/ub-sweep.md",
+        "runs/bank-ub-20261028-01/ub-sweep.json"
       ],
       "note": "源码副本（变异后：for (size_t i = 0; i < 42; i++) {）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
     },
@@ -214,7 +242,9 @@
       "verdict": "undefined_only",
       "evidence": [
         "runs/bank-review-20261028-06/zebra-sweep.md",
-        "runs/bank-review-20261028-06/zebra-sweep.json"
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "runs/bank-ub-20261028-01/ub-sweep.md",
+        "runs/bank-ub-20261028-01/ub-sweep.json"
       ],
       "note": "源码副本（变异后：for (size_t i = 0; i < 42; i++) {）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
     },
@@ -223,7 +253,9 @@
       "verdict": "undefined_only",
       "evidence": [
         "runs/bank-review-20261028-06/zebra-sweep.md",
-        "runs/bank-review-20261028-06/zebra-sweep.json"
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "runs/bank-ub-20261028-01/ub-sweep.md",
+        "runs/bank-ub-20261028-01/ub-sweep.json"
       ],
       "note": "源码副本（变异后：(houses[i + 1].color != Ivory)) {）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
     },
@@ -232,7 +264,9 @@
       "verdict": "undefined_only",
       "evidence": [
         "runs/bank-review-20261028-06/zebra-sweep.md",
-        "runs/bank-review-20261028-06/zebra-sweep.json"
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "runs/bank-ub-20261028-01/ub-sweep.md",
+        "runs/bank-ub-20261028-01/ub-sweep.json"
       ],
       "note": "源码副本（变异后：(houses[i + 1].cigarette != Chesterfields)) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
     },
@@ -241,7 +275,9 @@
       "verdict": "undefined_only",
       "evidence": [
         "runs/bank-review-20261028-06/zebra-sweep.md",
-        "runs/bank-review-20261028-06/zebra-sweep.json"
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "runs/bank-ub-20261028-01/ub-sweep.md",
+        "runs/bank-ub-20261028-01/ub-sweep.json"
       ],
       "note": "源码副本（变异后：(houses[i + 1].cigarette != Chesterfields)) {）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
     },
@@ -250,7 +286,9 @@
       "verdict": "undefined_only",
       "evidence": [
         "runs/bank-review-20261028-06/zebra-sweep.md",
-        "runs/bank-review-20261028-06/zebra-sweep.json"
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "runs/bank-ub-20261028-01/ub-sweep.md",
+        "runs/bank-ub-20261028-01/ub-sweep.json"
       ],
       "note": "源码副本（变异后：(houses[i + 1].cigarette != Kools)) {）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
     }

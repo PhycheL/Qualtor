@@ -4,7 +4,7 @@
 准入条件（docs/题库构建方案.md 第 4 节）：
 1. 题目包能加载、源码哈希一致，可见文件都在源码目录内；有变异分母，参考强测试集达到阈值；
 2. mutant_review/<题目 ID>/confirmed.json 的复核结论都已落实到分母；
-3. 分母中每个等价候选都在 mutant_review/<题目 ID>/equivalent.json 中有等价结论。
+3. 分母中每个等价候选都在 mutant_review/<题目 ID>/equivalent.json 中有等价结论，且结论没有标记 pending（待补证据）。
 不稳定、探针超时和参考测试缺口不阻止准入，数量写进登记记录。编译、确定性运行与参考强度
 由 Docker 标定（prepare_new_tasks.py）保证，本脚本只核对其结果，不重新执行测试。
 
@@ -58,11 +58,11 @@ def check(task_id):
     problems += review_problems
     if pending:
         problems.append(f"{len(pending)} 项复核结论尚未落实到分母（apply_review.py --write）")
-    concluded = bankutil.load_equivalent(task_id)
-    open_ids = [m["id"] for m in baseline["equivalent"] if m["id"] not in concluded]
-    if open_ids:
-        problems.append(f"{len(open_ids)} 个等价候选没有等价结论：" + "、".join(i.split("/src/")[-1] for i in open_ids[:5])
-                        + ("……" if len(open_ids) > 5 else ""))
+    open_ids, pending = bankutil.review_gaps(baseline, task_id)
+    for ids, label in ((open_ids, "个等价候选没有等价结论"), (pending, "项结论标记为待补证据")):
+        if ids:
+            problems.append(f"{len(ids)} {label}：" + "、".join(i.split("/src/")[-1] for i in ids[:5])
+                            + ("……" if len(ids) > 5 else ""))
     return problems, info
 
 

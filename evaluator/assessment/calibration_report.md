@@ -1,6 +1,6 @@
-# 校准报告 calibration-020-20261028-01
+# 校准报告 calibration-021-20261028-01
 
-- 评测模块版本：0.2.0（代码指纹 4de897c62e59）
+- 评测模块版本：0.2.1（代码指纹 b2b68084b4d8）
 - 结论：**通过**
 - 题目：gildedrose-update-quality（16 个样本）
 - 每个样本评分 2 次；镜像：gcc sha256:bd01e6e4f0e7、clang sha256:013ac35a1dae

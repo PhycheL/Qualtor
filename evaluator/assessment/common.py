@@ -228,13 +228,22 @@ def freeze_product(product, frozen_at=None):
 # ---- 校准状态 ----
 
 def calibration_status(images, task=None):
-    """返回当前评测模块代码、样本、镜像（以及校准所用题目）对应的校准状态：passed、failed、stale 或 missing。"""
+    """返回当前评测模块代码、样本、镜像和全部校准题目对应的校准状态：passed、failed、stale 或 missing。
+
+    task 只用来复用已加载的题目对象；无论查询哪道题，都核对校准记录中的每一道校准题。
+    """
     if not CALIBRATION_STATUS.is_file():
         return {"status": "missing"}
     record = read_json(CALIBRATION_STATUS)
-    if task is not None and task["id"] in (record.get("tasks") or {}):
-        if record["tasks"][task["id"]] != task_sha256(task):
-            return {"status": "stale", "run_id": record.get("run_id"), "reason": "题目材料已变化"}
+    # 校准结论依赖全部校准题的材料：任何一道校准题变化，所有题目的正式评测都不能再复用这次校准。
+    for task_id, digest in sorted((record.get("tasks") or {}).items()):
+        try:
+            current = task if task is not None and task["id"] == task_id else load_task(task_id)
+            changed = task_sha256(current) != digest
+        except TaskError:
+            changed = True
+        if changed:
+            return {"status": "stale", "run_id": record.get("run_id"), "reason": f"校准题目 {task_id} 的材料已变化"}
     current = {"scorer_version": assessment_version(), "scorer_code_sha256": assessment_code_sha256(),
                "samples_sha256": samples_sha256(),
                "images": {k: v["id"] for k, v in images.items()} if images else None}

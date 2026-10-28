@@ -15,19 +15,23 @@
     },
     {
       "id": "cxx_remove_void_call:/repo/src/Receipt.cpp:12:5:12:71",
-      "reason": "同一位置的实际变异删除的是临时对象的析构调用：若删除的是调用本身，现有参考测试会因结果缺项而检出，而该变异在参考与探针上都幸存。临时对象已被移动进容器（或按值传参的副本），ReceiptItem 临时对象移动进 items 后，跳过析构至多少释放其已移走的成员，不影响收据内容；即便发生复制，也只是内存泄漏，属于资源差异（D015）。",
+      "reason": "同一位置的实际变异删除的是临时对象的析构调用：若删除的是调用本身，现有参考测试会因结果缺项而检出，而该变异在参考与探针上都幸存。临时对象已被移动进容器（或按值传参的副本），ReceiptItem 临时对象移动进 items 后，跳过析构至多少释放其已移走的成员，不影响收据内容；即便发生复制，也只是内存泄漏，属于资源差异（D015）。固定 Clang 19/Mull IR 核对：同一 ID 有两个内部变异，生效的是副本 .4，与原始函数相比只删去一次ReceiptItem 析构（D2）调用。",
       "evidence": [
         "benchmark/supermarket-receipt/source/src/Receipt.cpp:12",
-        "runs/bank-review-20261027-03/supermarket-receipt.md"
+        "runs/bank-review-20261027-03/supermarket-receipt.md",
+        "runs/eval-bank-followup-20261027-01/review-ir/supermarket-receipt/Receipt.cpp.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
       ],
       "by": "Claude（2026-10-28 源码复核）"
     },
     {
       "id": "cxx_remove_void_call:/repo/src/Teller.cpp:19:5:19:51",
-      "reason": "同一位置的实际变异删除的是临时对象的析构调用：若删除的是调用本身，现有参考测试会因结果缺项而检出，而该变异在参考与探针上都幸存。临时对象已被移动进容器（或按值传参的副本），实际跳过的是按值传入 handleOffers 的 offers 副本（std::map）的析构，只造成内存泄漏，折扣与收据内容不变，属于资源差异（D015）。",
+      "reason": "同一位置的实际变异删除的是临时对象的析构调用：若删除的是调用本身，现有参考测试会因结果缺项而检出，而该变异在参考与探针上都幸存。临时对象已被移动进容器（或按值传参的副本），实际跳过的是按值传入 handleOffers 的 offers 副本（std::map）的析构，只造成内存泄漏，折扣与收据内容不变，属于资源差异（D015）。固定 Clang 19/Mull IR 核对：同一 ID 有两个内部变异，生效的是副本 .7，与原始函数相比只删去一次std::map<Product, Offer> 析构（D2）调用。",
       "evidence": [
         "benchmark/supermarket-receipt/source/src/Teller.cpp:19",
-        "runs/bank-review-20261027-03/supermarket-receipt.md"
+        "runs/bank-review-20261027-03/supermarket-receipt.md",
+        "runs/eval-bank-followup-20261027-01/review-ir/supermarket-receipt/Teller.cpp.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
       ],
       "by": "Claude（2026-10-28 源码复核）"
     }

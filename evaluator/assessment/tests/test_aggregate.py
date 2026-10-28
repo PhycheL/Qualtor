@@ -79,18 +79,23 @@ class CompareTest(unittest.TestCase):
         self.assertFalse(aggregate.calibration_problems(runs("A", {"t1": [0.5]})))
 
     def test_admission_problems(self):
-        results = runs("A", {"t1": [0.5], "t2": [0.5], "t3": [0.5]})
-        for result, sha in zip(results, ("h1", "old", None)):
+        results = runs("A", {"t1": [0.5], "t2": [0.5], "t3": [0.5], "t4": [0.5]})
+        for result, sha in zip(results, ("h1", "h2", None, "h4-old")):
             result["task"]["sha256"] = sha
-        admitted = {"t1": {"task_sha256": "h1"}, "t2": {"task_sha256": "h2"}}
-        problems = aggregate.admission_problems(results, admitted)
-        # t1 指纹一致；t2 准入后材料变化；t3 未准入
-        self.assertEqual(problems, ["未准入的题目：t3", "准入后材料已变化或结果未记录题目指纹的题目：t2"])
-        self.assertEqual(aggregate.admission_problems(results[:1], admitted), [])
-        # 旧结果没有记录题目指纹，即使题目已准入也不能直接用于正式比较
+        admitted = {"t1": {"task_sha256": "h1"}, "t2": {"task_sha256": "h2"}, "t4": {"task_sha256": "h4"}}
+        current = {"t1": "h1", "t2": "h2-new", "t3": "h3", "t4": "h4"}
+        problems = aggregate.admission_problems(results, admitted, current)
+        # t1 有效；t2 当前材料已变、准入失效，即使旧结果与登记一致也拒绝；t3 未准入；t4 结果评分时的材料与登记不同
+        self.assertEqual(problems, ["未准入的题目：t3",
+                                    "结果评分时的题目指纹与准入登记不一致（或旧结果未记录指纹，需补评）的题目：t4",
+                                    "准入后材料已变化、准入已失效的题目：t2"])
+        self.assertEqual(aggregate.admission_problems(results[:1], admitted, current), [])
+        # 旧结果没有记录题目指纹，即使题目当前已准入也要补评
         legacy = runs("A", {"t1": [0.5]})
-        self.assertEqual(len(aggregate.admission_problems(legacy, admitted)), 1)
-
+        self.assertEqual(len(aggregate.admission_problems(legacy, admitted, current)), 1)
+        # 题目包缺失时按未准入处理
+        self.assertEqual(aggregate.admission_problems(results[:1], admitted, {"t1": None}),
+                         ["准入后材料已变化、准入已失效的题目：t1"])
 
 if __name__ == "__main__":
     unittest.main()

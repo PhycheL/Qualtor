@@ -457,12 +457,22 @@
     },
     {
       "id": "cxx_remove_void_call:/repo/src/cpp_087.cc:29:23:29:43",
-      "reason": "同一位置的实际变异删除的是临时对象的析构调用：若删除的是调用本身，现有参考测试会因结果缺项而检出，而该变异在参考与探针上都幸存。临时对象已被移动进容器（或按值传参的副本），push_back 移动了 {i,j} 构造的临时 vector，跳过其析构没有可观察效果。",
+      "reason": "固定 Clang 19.1.7/Mull 0.34.2 IR 已核对：同一 ID 的生效副本 .16 只删去一次 std::__new_allocator<int> 的 D2 析构调用，没有新增调用；不是删除 push_back，也不是删除 std::vector<int> 析构。该析构函数体只有局部 this 指针存取和 ret void，无外部可观察副作用，因此等价。",
       "evidence": [
         "benchmark/humaneval-x-cpp-11/source/src/cpp_087.cc:29",
-        "runs/bank-review-20261027-03/humaneval-x-cpp-11.md"
+        "runs/bank-review-20261027-03/humaneval-x-cpp-11.md",
+        "runs/bank-ir-20261028-03/mutant-ir.md",
+        "runs/bank-ir-20261028-03/mutant-ir.json",
+        "runs/bank-ir-20261028-03/cpp_087.cc.ll",
+        "runs/eval-bank-021-20261028-01/ir-verification.json"
       ],
-      "by": "Claude（2026-10-28 源码复核）"
+      "by": "Claude（2026-10-28 源码复核）",
+      "fixed_toolchain_review": {
+        "by": "Codex（AI 复核）",
+        "at": "2026-10-28",
+        "run_id": "bank-ir-20261028-03",
+        "note": "更正此前 vector 析构的解释；等价判定不变。"
+      }
     }
   ]
 }

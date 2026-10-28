@@ -4,19 +4,23 @@
   "mutants": [
     {
       "id": "cxx_remove_void_call:/repo/src/word_count.cpp:29:17:29:74",
-      "reason": "同一位置的实际变异删除的是临时对象的析构调用：若删除的是调用本身，现有参考测试会因结果缺项而检出，而该变异在参考与探针上都幸存。临时对象已被移动进容器（或按值传参的副本），push_back 移动了 substr 返回的临时 string，跳过其析构没有可观察效果。",
+      "reason": "同一位置的实际变异删除的是临时对象的析构调用：若删除的是调用本身，现有参考测试会因结果缺项而检出，而该变异在参考与探针上都幸存。临时对象已被移动进容器（或按值传参的副本），push_back 移动了 substr 返回的临时 string，跳过其析构没有可观察效果。固定 Clang 19/Mull IR 核对：同一 ID 有两个内部变异，生效的是副本 .8，与原始函数相比只删去一次std::string 析构（basic_string D1）调用。",
       "evidence": [
         "benchmark/exercism-word-count/source/src/word_count.cpp:29",
-        "runs/bank-review-20261027-03/exercism-word-count.md"
+        "runs/bank-review-20261027-03/exercism-word-count.md",
+        "runs/eval-bank-followup-20261027-01/review-ir/exercism-word-count/word_count.cpp.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
       ],
       "by": "Claude（2026-10-28 源码复核）"
     },
     {
       "id": "cxx_remove_void_call:/repo/src/word_count.cpp:35:9:35:70",
-      "reason": "同一位置的实际变异删除的是临时对象的析构调用：若删除的是调用本身，现有参考测试会因结果缺项而检出，而该变异在参考与探针上都幸存。临时对象已被移动进容器（或按值传参的副本），push_back 移动了 substr 返回的临时 string，跳过其析构没有可观察效果。",
+      "reason": "同一位置的实际变异删除的是临时对象的析构调用：若删除的是调用本身，现有参考测试会因结果缺项而检出，而该变异在参考与探针上都幸存。临时对象已被移动进容器（或按值传参的副本），push_back 移动了 substr 返回的临时 string，跳过其析构没有可观察效果。固定 Clang 19/Mull IR 核对：同一 ID 有两个内部变异，生效的是副本 .11，与原始函数相比只删去一次std::string 析构（basic_string D1）调用。",
       "evidence": [
         "benchmark/exercism-word-count/source/src/word_count.cpp:35",
-        "runs/bank-review-20261027-03/exercism-word-count.md"
+        "runs/bank-review-20261027-03/exercism-word-count.md",
+        "runs/eval-bank-followup-20261027-01/review-ir/exercism-word-count/word_count.cpp.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
       ],
       "by": "Claude（2026-10-28 源码复核）"
     }

@@ -188,6 +188,15 @@ def load_equivalent(task_id):
     return {m["id"]: m for m in data}
 
 
+def review_gaps(baseline, task_id):
+    """准入前要补的复核：(没有结论的等价候选 ID, 结论标记了 pending、仍待补证据的 ID)。"""
+    concluded = load_equivalent(task_id)
+    open_ids = [m["id"] for m in baseline["equivalent"] if m["id"] not in concluded]
+    pending = [m["id"] for m in baseline["equivalent"] if concluded.get(m["id"], {}).get("pending")]
+    pending += [m["id"] for m in load_confirmed(task_id) if m.get("pending")]
+    return open_ids, pending
+
+
 def apply_confirmed(baseline, task_id):
     """把 confirmed.json 的复核结论落到分母上，并按 prepare_task.py 的口径重算参考强测试集的 M1。
 

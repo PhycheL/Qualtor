@@ -17,7 +17,8 @@ import sys
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
-from common import RUNS, admission_state, load_admission, now, read_json, write_json  # noqa: E402
+from common import (RUNS, TaskError, admission_state, load_admission, load_task, now, read_json,  # noqa: E402
+                    task_sha256, write_json)
 
 RATIO_METRICS = ["V1", "V2", "V3", "S1", "M1_e2e", "M1_valid", "M2", "M4", "F1", "C1", "C2", "C3"]
 COST_FIELDS = ["tokens_input", "tokens_output", "tokens_cache_read", "tokens_cache_write", "seconds", "model_calls", "repair_rounds", "usd"]
@@ -205,17 +206,35 @@ def calibration_problems(results):
     return problems
 
 
-def admission_problems(results, admitted=None):
-    """R-08：正式比较只用已准入题目的结果，且结果评分时的题目指纹须与准入登记一致。"""
+def current_task_sha(task_id):
+    """题目当前的指纹；题目包缺失或无效时为 None。"""
+    try:
+        return task_sha256(load_task(task_id))
+    except TaskError:
+        return None
+
+
+def admission_problems(results, admitted=None, current=None):
+    """R-08：正式比较只用当前已准入题目的结果，且结果评分时的题目指纹须与准入登记一致。
+
+    两项都要满足：题目现在的材料与准入登记一致（否则准入已失效），结果也是在这份材料上评出的。
+    current 为 {题目 ID: 当前指纹}，缺省时从题目包计算。
+    """
     admitted = load_admission() if admitted is None else admitted
-    states = {}
+    current = {} if current is None else dict(current)
+    problems = {}
     for r in results:
-        task = r.get("task") or {}
-        state = admission_state(task.get("id"), task.get("sha256"), admitted)["status"]
-        if state != "admitted":
-            states.setdefault(state, set()).add(task.get("id"))
-    labels = {"not_admitted": "未准入", "stale": "准入后材料已变化或结果未记录题目指纹"}
-    return [f"{labels[state]}的题目：{', '.join(sorted(map(str, ids)))}" for state, ids in sorted(states.items())]
+        task_id = (r.get("task") or {}).get("id")
+        if task_id not in current:
+            current[task_id] = current_task_sha(task_id)
+        now_state = admission_state(task_id, current[task_id], admitted)["status"]
+        if now_state != "admitted":
+            problems.setdefault(now_state, set()).add(task_id)
+        elif admission_state(task_id, (r.get("task") or {}).get("sha256"), admitted)["status"] != "admitted":
+            problems.setdefault("result_mismatch", set()).add(task_id)
+    labels = {"not_admitted": "未准入的题目", "stale": "准入后材料已变化、准入已失效的题目",
+              "result_mismatch": "结果评分时的题目指纹与准入登记不一致（或旧结果未记录指纹，需补评）的题目"}
+    return [f"{labels[state]}：{', '.join(sorted(map(str, ids)))}" for state, ids in sorted(problems.items())]
 
 
 def main():

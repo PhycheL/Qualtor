@@ -16,7 +16,10 @@
       "reason": "同一位置的实际变异删除的是临时对象的析构调用：若删除的是调用本身，现有参考测试会因结果缺项而检出，而该变异在参考与探针上都幸存。临时对象已被移动进容器（或按值传参的副本），emplace_back 收到的是 slice_me 返回的临时 string，移动后不再持有堆内存，跳过析构没有可观察效果。",
       "evidence": [
         "benchmark/exercism-series/source/src/series.cpp:32",
-        "runs/bank-review-20261027-03/exercism-series.md"
+        "runs/bank-review-20261027-03/exercism-series.md",
+        "runs/bank-ir-20261028-01/mutant-ir.md",
+        "runs/bank-ir-20261028-01/mutant-ir.json",
+        "runs/bank-ir-20261028-01/series.cpp.ll"
       ],
       "by": "Claude（2026-10-28 源码复核）"
     }

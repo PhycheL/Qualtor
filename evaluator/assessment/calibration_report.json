@@ -362,11 +362,11 @@
     }
   },
   "passed": true,
-  "run_id": "calibration-020-20261028-01",
+  "run_id": "calibration-021-20261028-01",
   "rounds": 2,
   "partial": false,
-  "scorer_version": "0.2.0",
-  "scorer_code_sha256": "4de897c62e591517f98bb901c1f6ee4bab2d5196df014de1d78d3a982b957ad4",
+  "scorer_version": "0.2.1",
+  "scorer_code_sha256": "b2b68084b4d83670f1c115c4f9a0625e21a69b44879d856273ab93c6234e2806",
   "samples_sha256": "245c11f6aaf0d8d526d1f70eb1b7389129c5806737bbffaaff32ece83edc33ca",
   "images": {
     "gcc": {
@@ -380,5 +380,5 @@
       "platform": "linux/arm64"
     }
   },
-  "finished_at": "2026-10-28T02:55:31.158818+00:00"
+  "finished_at": "2026-10-28T03:35:30.507055+00:00"
 }
