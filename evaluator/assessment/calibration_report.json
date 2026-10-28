@@ -1,6 +1,7 @@
 {
   "samples": {
     "CAL-01": {
+      "task": "gildedrose-update-quality",
       "description": "测试文件里没有任何 TEST",
       "problems": [],
       "skipped": [],
@@ -21,6 +22,7 @@
       "passed": true
     },
     "CAL-02": {
+      "task": "gildedrose-update-quality",
       "description": "所有测试都调用 GTEST_SKIP()",
       "problems": [],
       "skipped": [],
@@ -41,6 +43,7 @@
       "passed": true
     },
     "CAL-03": {
+      "task": "gildedrose-update-quality",
       "description": "所有测试名带 DISABLED_ 前缀",
       "problems": [],
       "skipped": [],
@@ -61,6 +64,7 @@
       "passed": true
     },
     "CAL-04": {
+      "task": "gildedrose-update-quality",
       "description": "自带 main，直接 return 0，不运行测试",
       "problems": [],
       "skipped": [],
@@ -81,6 +85,7 @@
       "passed": true
     },
     "CAL-05": {
+      "task": "gildedrose-update-quality",
       "description": "在静态初始化中调用 std::exit(0)",
       "problems": [],
       "skipped": [],
@@ -101,6 +106,7 @@
       "passed": true
     },
     "CAL-06": {
+      "task": "gildedrose-update-quality",
       "description": "在测试文件里重新定义被测函数",
       "problems": [],
       "skipped": [],
@@ -121,6 +127,7 @@
       "passed": true
     },
     "CAL-07": {
+      "task": "gildedrose-update-quality",
       "description": "参考强测试集，加一个断言值故意写错的测试",
       "problems": [],
       "skipped": [],
@@ -141,6 +148,7 @@
       "passed": true
     },
     "CAL-08": {
+      "task": "gildedrose-update-quality",
       "description": "参考强测试集，加一个空指针解引用的测试",
       "problems": [],
       "skipped": [],
@@ -161,6 +169,7 @@
       "passed": true
     },
     "CAL-09": {
+      "task": "gildedrose-update-quality",
       "description": "一个正常测试，加一个死循环的测试",
       "problems": [],
       "skipped": [],
@@ -181,6 +190,7 @@
       "passed": true
     },
     "CAL-10": {
+      "task": "gildedrose-update-quality",
       "description": "两个测试共享全局变量，后一个依赖前一个先运行",
       "problems": [],
       "skipped": [],
@@ -201,6 +211,7 @@
       "passed": true
     },
     "CAL-11": {
+      "task": "gildedrose-update-quality",
       "description": "时好时坏的测试：用工作目录中的计数文件确定性地模拟，第 1 次通过、之后偶数次失败",
       "problems": [],
       "skipped": [],
@@ -221,6 +232,7 @@
       "passed": true
     },
     "CAL-12": {
+      "task": "gildedrose-update-quality",
       "description": "与参考强测试集相同的输入，只调用、不断言",
       "problems": [],
       "skipped": [],
@@ -241,6 +253,7 @@
       "passed": true
     },
     "CAL-13": {
+      "task": "gildedrose-update-quality",
       "description": "参考强测试集原样，但把断言宏定义为空",
       "problems": [],
       "skipped": [],
@@ -261,6 +274,7 @@
       "passed": true
     },
     "CAL-14": {
+      "task": "gildedrose-update-quality",
       "description": "参考强测试集，只断言 sellIn，不检查质量",
       "problems": [],
       "skipped": [],
@@ -281,6 +295,7 @@
       "passed": true
     },
     "CAL-15": {
+      "task": "gildedrose-update-quality",
       "description": "参考强测试集原样",
       "problems": [],
       "skipped": [],
@@ -301,6 +316,7 @@
       "passed": true
     },
     "CAL-16": {
+      "task": "gildedrose-update-quality",
       "description": "参考强测试集，加两条测试：一条断言输入域外但行为确定的结果（Aged Brie 质量 60 保持 60），一条依赖有符号溢出（普通商品 sellIn 为 INT_MIN）",
       "problems": [],
       "skipped": [],
@@ -321,15 +337,37 @@
       "passed": true
     }
   },
+  "tasks": {
+    "gildedrose-update-quality": {
+      "task_sha256": "92720d07eeeabc2108b7e7afcfe7554af76147176b3f3de552cd5d19baf24245",
+      "passed": true,
+      "samples": [
+        "CAL-01",
+        "CAL-02",
+        "CAL-03",
+        "CAL-04",
+        "CAL-05",
+        "CAL-06",
+        "CAL-07",
+        "CAL-08",
+        "CAL-09",
+        "CAL-10",
+        "CAL-11",
+        "CAL-12",
+        "CAL-13",
+        "CAL-14",
+        "CAL-15",
+        "CAL-16"
+      ]
+    }
+  },
   "passed": true,
-  "run_id": "calibration-bank-016-20261027-01",
-  "task": "gildedrose-update-quality",
+  "run_id": "calibration-020-20261028-01",
   "rounds": 2,
   "partial": false,
-  "scorer_version": "0.1.6",
-  "scorer_code_sha256": "b98b550d7fa8f07011be4c1abaa93450feca5cbf16cf6951ef2ece8a6394005d",
+  "scorer_version": "0.2.0",
+  "scorer_code_sha256": "4de897c62e591517f98bb901c1f6ee4bab2d5196df014de1d78d3a982b957ad4",
   "samples_sha256": "245c11f6aaf0d8d526d1f70eb1b7389129c5806737bbffaaff32ece83edc33ca",
-  "task_sha256": "92720d07eeeabc2108b7e7afcfe7554af76147176b3f3de552cd5d19baf24245",
   "images": {
     "gcc": {
       "tag": "qualtor-gcc:14.2.0-gtest1.12.1-cxx11",
@@ -342,5 +380,5 @@
       "platform": "linux/arm64"
     }
   },
-  "finished_at": "2026-10-27T08:32:26.446116+00:00"
+  "finished_at": "2026-10-28T02:55:31.158818+00:00"
 }

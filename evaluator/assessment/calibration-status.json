@@ -1,6 +1,6 @@
 {
-  "scorer_version": "0.1.6",
-  "scorer_code_sha256": "b98b550d7fa8f07011be4c1abaa93450feca5cbf16cf6951ef2ece8a6394005d",
+  "scorer_version": "0.2.0",
+  "scorer_code_sha256": "4de897c62e591517f98bb901c1f6ee4bab2d5196df014de1d78d3a982b957ad4",
   "samples_sha256": "245c11f6aaf0d8d526d1f70eb1b7389129c5806737bbffaaff32ece83edc33ca",
   "tasks": {
     "gildedrose-update-quality": "92720d07eeeabc2108b7e7afcfe7554af76147176b3f3de552cd5d19baf24245"
@@ -9,8 +9,8 @@
     "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
     "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
   },
-  "run_id": "calibration-bank-016-20261027-01",
+  "run_id": "calibration-020-20261028-01",
   "passed": true,
   "report": "evaluator/assessment/calibration_report.json",
-  "finished_at": "2026-10-27T08:32:26.446116+00:00"
+  "finished_at": "2026-10-28T02:55:31.158818+00:00"
 }
