@@ -1,0 +1,51 @@
+{
+  "task": "humaneval-x-cpp-01",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_006.cc:27:18:27:19",
+      "reason": "level==max_level 时赋回同值，不改变最大深度。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-01/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-01/source/src/cpp_006.cc:27"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_init_const:/repo/src/cpp_004.cc:19:9:19:10",
+      "reason": "循环变量 i 的初值在两段 for 的初始化中覆盖后才使用。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-01/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-01/source/src/cpp_004.cc:19"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_000.cc:18:15:18:16",
+      "reason": "外层多一次迭代时更内层从 i+1/j+1 开始，仍受真实 size 上界限制，循环体不执行。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-01/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-01/source/src/cpp_000.cc:18"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_001.cc:21:15:21:16",
+      "reason": "只额外读取 C++11 string[size()] 的零字符；该处零字符不触发计数/括号/分隔分支，或只追加到随后丢弃的局部尾段，不进入返回结果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-01/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-01/source/src/cpp_001.cc:21"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_006.cc:21:15:21:16",
+      "reason": "只额外读取 C++11 string[size()] 的零字符；该处零字符不触发计数/括号/分隔分支，或只追加到随后丢弃的局部尾段，不进入返回结果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-01/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-01/source/src/cpp_006.cc:21"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

@@ -1,0 +1,336 @@
+{
+  "task": "exercism-zebra-puzzle",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_add_to_sub:/repo/src/zebra_puzzle.cpp:164:24:164:25",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:164"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：(houses[i - 1].color != Blue))) {）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/zebra_puzzle.cpp:66:24:66:25",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:66"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：(houses[i - 1].cigarette != Chesterfields))) {）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/zebra_puzzle.cpp:85:24:85:25",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:85"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：(houses[i - 1].cigarette != Kools))) {）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:161:44:161:46",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:161"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：if (((i > 0) && (house.nationality != Norwegian) &&）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:163:44:163:46",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:163"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：((i < 4) && (house.nationality != Norwegian) &&）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:168:16:168:18",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:168"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：if ((i != 0) && (house.nationality == Norwegian) &&）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:168:44:168:46",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:168"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：if ((i == 0) && (house.nationality != Norwegian) &&）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:63:36:63:38",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:63"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：if (((i > 0) && (house.pet != Fox) &&）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:65:36:65:38",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:65"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：((i < 4) && (house.pet != Fox) &&）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:70:36:70:38",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:70"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：if ((i == 0) && (house.pet != Fox) &&）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_init_const:/repo/src/zebra_puzzle.cpp:53:17:53:18",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:53"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：for (size_t i = 42; i < houses.size(); i++) {）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:163:17:163:18",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:163"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：((i >= 4) && (house.nationality == Norwegian) &&）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:53:26:53:27",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:53"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：for (size_t i = 0; i >= houses.size(); i++) {）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:163:17:163:18",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:163"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：((i <= 4) && (house.nationality == Norwegian) &&）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:248:26:248:27",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:248"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：for (size_t i = 0; i <= houses.size(); i++) {）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:256:26:256:27",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:256"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：for (size_t i = 0; i <= houses.size(); i++) {）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:117:44:117:46",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:117"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：if ((i == 0) && (house.nationality == Norwegian)) {）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:123:30:123:32",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:123"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：(house.cigarette == Parliaments)) {）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:135:56:135:58",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:135"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：if ((house.color == Red) && (house.nationality == Englishman)) {）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:147:34:147:36",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:147"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：(houses[i - 1].color == Ivory)) {）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:156:57:156:59",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:156"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：if ((house.color == Yellow) && (house.cigarette == Kools)) {）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:162:35:162:37",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:162"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：(houses[i - 1].color == Blue)) &&）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:164:35:164:37",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:164"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：(houses[i + 1].color == Blue))) {）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:169:34:169:36",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:169"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：(houses[i + 1].color == Blue)) {）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:174:34:174:36",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:174"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：(houses[i - 1].color == Blue)) {）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:64:39:64:41",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:64"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：(houses[i - 1].cigarette == Chesterfields)) &&）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:66:39:66:41",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:66"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：(houses[i + 1].cigarette == Chesterfields))) {）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/zebra_puzzle.cpp:76:38:76:40",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:76"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：(houses[i - 1].cigarette == Chesterfields)) {）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/zebra_puzzle.cpp:256:44:256:46",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:256"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：for (size_t i = 0; i < houses.size(); i--) {）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:248:35:248:39",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:248"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：for (size_t i = 0; i < 42; i++) {）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:256:35:256:39",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:256"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：for (size_t i = 0; i < 42; i++) {）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:162:24:162:25",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:162"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：(houses[i + 1].color != Blue)) &&）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:174:23:174:24",
+      "by": "Claude（2026-10-28 源码副本扫描）",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:174"
+      ],
+      "reason": "求解函数没有输入。源码副本（变异后：(houses[i + 1].color != Blue)) {）在 ASan、UBSan 与 libc++ 调试强化模式下于同一进程调用两次 solve()，答案与原代码相同，没有任何报告；变异只改变搜索中的约束判断或扫描范围，不影响唯一解。"
+    }
+  ]
+}

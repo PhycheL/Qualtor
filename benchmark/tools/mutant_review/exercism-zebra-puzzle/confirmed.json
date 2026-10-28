@@ -1,0 +1,258 @@
+{
+  "task": "exercism-zebra-puzzle",
+  "note": "复核结论。non_equivalent_verified：真实 Mull 反例检出，计入分母；undefined_only：只在未定义行为下与原代码不同（D015），列为不稳定、不计入分母。prepare_new_tasks.py 写入分母前、apply_review.py 修订已有分母时应用。",
+  "review": "runs/bank-review-20261027-03",
+  "mutants": [
+    {
+      "id": "cxx_add_to_sub:/repo/src/zebra_puzzle.cpp:90:23:90:24",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "note": "源码副本（变异后：(houses[i - 1].cigarette != Kools)) {）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:70:16:70:18",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "note": "源码副本（变异后：if ((i != 0) && (house.pet == Fox) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/zebra_puzzle.cpp:146:16:146:17",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "note": "源码副本（变异后：if ((i >= 0) && (house.color == Green) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/zebra_puzzle.cpp:161:17:161:18",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "note": "源码副本（变异后：if (((i >= 0) && (house.nationality == Norwegian) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/zebra_puzzle.cpp:63:17:63:18",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "note": "源码副本（变异后：if (((i >= 0) && (house.pet == Fox) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/zebra_puzzle.cpp:82:17:82:18",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "note": "源码副本（变异后：if (((i >= 0) && (house.pet == Horse) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/zebra_puzzle.cpp:146:16:146:17",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "note": "源码副本（变异后：if ((i <= 0) && (house.color == Green) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/zebra_puzzle.cpp:161:17:161:18",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "note": "源码副本（变异后：if (((i <= 0) && (house.nationality == Norwegian) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/zebra_puzzle.cpp:63:17:63:18",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "note": "源码副本（变异后：if (((i <= 0) && (house.pet == Fox) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:65:17:65:18",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "note": "源码副本（变异后：((i >= 4) && (house.pet == Fox) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:103:26:103:27",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-zebra-puzzle/mutation_baseline.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:103",
+        "runs/eval-bank-followup-20261027-01/undefined-review/exercism-zebra-puzzle/results.json"
+      ],
+      "note": "求解函数没有输入，变异只造成数组越界访问（源码副本 sanitizer 已报告），答案不变；没有有定义的可观察差异。"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:191:30:191:31",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-zebra-puzzle/mutation_baseline.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:191",
+        "runs/eval-bank-followup-20261027-01/undefined-review/exercism-zebra-puzzle/results.json"
+      ],
+      "note": "求解函数没有输入，变异只造成数组越界访问（源码副本 sanitizer 已报告），答案不变；没有有定义的可观察差异。"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:196:34:196:35",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-zebra-puzzle/mutation_baseline.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:196",
+        "runs/eval-bank-followup-20261027-01/undefined-review/exercism-zebra-puzzle/results.json"
+      ],
+      "note": "求解函数没有输入，变异只造成数组越界访问（源码副本 sanitizer 已报告），答案不变；没有有定义的可观察差异。"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:205:38:205:39",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-zebra-puzzle/mutation_baseline.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:205",
+        "runs/eval-bank-followup-20261027-01/undefined-review/exercism-zebra-puzzle/results.json"
+      ],
+      "note": "求解函数没有输入，变异只造成数组越界访问（源码副本 sanitizer 已报告），答案不变；没有有定义的可观察差异。"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:223:46:223:47",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-zebra-puzzle/mutation_baseline.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:223",
+        "runs/eval-bank-followup-20261027-01/undefined-review/exercism-zebra-puzzle/results.json"
+      ],
+      "note": "求解函数没有输入，变异只造成数组越界访问（源码副本 sanitizer 已报告），答案不变；没有有定义的可观察差异。"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:36:26:36:27",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-zebra-puzzle/mutation_baseline.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:36",
+        "runs/eval-bank-followup-20261027-01/undefined-review/exercism-zebra-puzzle/results.json"
+      ],
+      "note": "求解函数没有输入，变异只造成数组越界访问（源码副本 sanitizer 已报告），答案不变；没有有定义的可观察差异。"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:53:26:53:27",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-zebra-puzzle/mutation_baseline.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:53",
+        "runs/eval-bank-followup-20261027-01/undefined-review/exercism-zebra-puzzle/results.json"
+      ],
+      "note": "求解函数没有输入，变异只造成数组越界访问（源码副本 sanitizer 已报告），答案不变；没有有定义的可观察差异。"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:65:17:65:18",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "note": "源码副本（变异后：((i <= 4) && (house.pet == Fox) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:84:17:84:18",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "note": "源码副本（变异后：((i <= 4) && (house.pet == Horse) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:103:35:103:39",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "note": "源码副本（变异后：for (size_t i = 0; i < 42; i++) {）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:240:42:240:47",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "runs/bank-review-20261028-06/reachability/result.txt"
+      ],
+      "note": "cigarettes.begin() 被替换为地址 42（只能在 IR 层成立）。最外层循环条件会被求值（可达性检查中触发 abort），next_permutation 随即对该无效迭代器自增并比较（IR 中为 poison，属于未定义行为）；在实际路径上，算法从末尾向前找到下降点即返回，不访问 first 所指内存，结果不变。差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:36:35:36:39",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "note": "源码副本（变异后：for (size_t i = 0; i < 42; i++) {）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:53:35:53:39",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "note": "源码副本（变异后：for (size_t i = 0; i < 42; i++) {）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:147:23:147:24",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "note": "源码副本（变异后：(houses[i + 1].color != Ivory)) {）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:64:24:64:25",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "note": "源码副本（变异后：(houses[i + 1].cigarette != Chesterfields)) &&）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:76:23:76:24",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "note": "源码副本（变异后：(houses[i + 1].cigarette != Chesterfields)) {）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:95:23:95:24",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "note": "源码副本（变异后：(houses[i + 1].cigarette != Kools)) {）运行时报告未定义行为（/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__vector/vector.h:406: libc++ Hardening assertion __n < size() failed: vector[] index out）；答案与原代码相同。没有输入，差异只可能通过未定义行为体现（Claude（2026-10-28 源码副本扫描））。"
+    }
+  ]
+}

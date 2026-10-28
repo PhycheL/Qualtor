@@ -1,0 +1,33 @@
+{
+  "task": "exercism-affine-cipher",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_lt_to_le:/repo/src/affine_cipher.cpp:26:14:26:15",
+      "reason": "modinv 成功返回时逆元不可能为 0；否则 26 不可能与 a 互质。条件等号分支不可达。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-affine-cipher/mutation_baseline.json",
+        "benchmark/exercism-affine-cipher/source/src/affine_cipher.cpp:26"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/affine_cipher.cpp:33:22:33:26",
+      "reason": "只改 out.reserve 的参数：结果字符串内容不变，容量属于未规定行为；差异只在分配失败等资源耗尽时出现，按 D015 不计入。",
+      "evidence": [
+        "benchmark/exercism-affine-cipher/source/src/affine_cipher.cpp:33",
+        "runs/bank-review-20261027-03/exercism-affine-cipher.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/affine_cipher.cpp:53:22:53:26",
+      "reason": "只改 out.reserve 的参数：结果字符串内容不变，容量属于未规定行为；差异只在分配失败等资源耗尽时出现，按 D015 不计入。",
+      "evidence": [
+        "benchmark/exercism-affine-cipher/source/src/affine_cipher.cpp:53",
+        "runs/bank-review-20261027-03/exercism-affine-cipher.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    }
+  ]
+}

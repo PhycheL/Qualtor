@@ -1,0 +1,25 @@
+{
+  "task": "exercism-affine-cipher",
+  "note": "复核结论。non_equivalent_verified：真实 Mull 反例检出，计入分母；undefined_only：只在未定义行为下与原代码不同（D015），列为不稳定、不计入分母。prepare_new_tasks.py 写入分母前、apply_review.py 修订已有分母时应用。",
+  "review": "runs/bank-review-20261027-03",
+  "mutants": [
+    {
+      "id": "cxx_add_to_sub:/repo/src/affine_cipher.cpp:26:22:26:23",
+      "verdict": "undefined_only",
+      "note": "逆元改为 t-26，与原值模 26 同余；decode 中 mod(inv*(y-b),26) 的结果相同，只有 inv*(y-b) 有符号溢出（未定义行为）的阈值不同。（Claude（2026-10-28 源码复核））",
+      "evidence": [
+        "benchmark/exercism-affine-cipher/source/src/affine_cipher.cpp:26",
+        "runs/bank-review-20261027-03/exercism-affine-cipher.md"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/affine_cipher.cpp:26:14:26:15",
+      "verdict": "undefined_only",
+      "note": "逆元落在 [26,51] 或 [-25,-1]，与原值模 26 同余；decode 中 mod(inv*(y-b),26) 的结果相同，只有 inv*(y-b) 有符号溢出（未定义行为）的阈值不同。（Claude（2026-10-28 源码复核））",
+      "evidence": [
+        "benchmark/exercism-affine-cipher/source/src/affine_cipher.cpp:26",
+        "runs/bank-review-20261027-03/exercism-affine-cipher.md"
+      ]
+    }
+  ]
+}

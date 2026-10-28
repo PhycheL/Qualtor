@@ -1,0 +1,133 @@
+{
+  "task": "humaneval-x-cpp-05",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_add_to_sub:/repo/src/cpp_038.cc:10:15:10:16",
+      "reason": "num 从未使用，算术/初值变化不影响返回值。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-05/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-05/source/src/cpp_038.cc:10"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/cpp_038.cc:29:15:29:16",
+      "reason": "num 从未使用，算术/初值变化不影响返回值。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-05/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-05/source/src/cpp_038.cc:29"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/cpp_039.cc:30:21:30:22",
+      "reason": "变异把赋给 bool 的 false 改为存入 i8 42。Clang -O0 读取 bool 都是 load i8 后 trunc 到 i1，只取最低位，42 读出仍为 false，与原代码相同（本机 IR 核对见证据；与 Telemetry 在固定工具链上的 IR 结论一致）。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-05/source/src/cpp_039.cc:30",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-05.md",
+        "runs/bank-review-20261028-05/bool-ir.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_div_to_mul:/repo/src/cpp_038.cc:10:18:10:19",
+      "reason": "num 从未使用，算术/初值变化不影响返回值。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-05/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-05/source/src/cpp_038.cc:10"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_div_to_mul:/repo/src/cpp_038.cc:29:18:29:19",
+      "reason": "num 从未使用，算术/初值变化不影响返回值。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-05/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-05/source/src/cpp_038.cc:29"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_init_const:/repo/src/cpp_036.cc:16:14:16:15",
+      "reason": "从 0 改为 42 跳过的 0..41 中，可被 11 或 13 整除的数均不含数字 7，计数贡献全为 0。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-05/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-05/source/src/cpp_036.cc:16"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_init_const:/repo/src/cpp_038.cc:10:9:10:12",
+      "reason": "num 从未使用，算术/初值变化不影响返回值。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-05/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-05/source/src/cpp_038.cc:10"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_init_const:/repo/src/cpp_038.cc:29:9:29:12",
+      "reason": "num 从未使用，算术/初值变化不影响返回值。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-05/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-05/source/src/cpp_038.cc:29"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/cpp_039.cc:27:25:27:27",
+      "reason": "w*w<=f1 改为 < 只在 f1 恰为某素数平方时影响判定。原代码在 int 溢出前可达的 43 个 Fibonacci 数（2 至 1134903170）中没有素数平方（逐一枚举；也符合 Fibonacci 数中的平方只有 0、1、144 这一结论），更大的 n 原代码本身已溢出。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-05/source/src/cpp_039.cc:27",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-05.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_038.cc:13:17:13:18",
+      "reason": "长度为 3 的倍数时多处理一个空子串，拼接空串不改变结果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-05/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-05/source/src/cpp_038.cc:13"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_038.cc:32:17:32:18",
+      "reason": "长度为 3 的倍数时多处理一个空子串，拼接空串不改变结果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-05/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-05/source/src/cpp_038.cc:32"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_039.cc:22:17:22:18",
+      "reason": "count==n 时循环末尾已经 return；有定义的正 n 输入上，循环顶部等号不会新增行为。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-05/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-05/source/src/cpp_039.cc:22"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_040.cc:23:19:23:20",
+      "reason": "外层多一次迭代时更内层从 i+1/j+1 开始，仍受真实 size 上界限制，循环体不执行。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-05/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-05/source/src/cpp_040.cc:23"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_040.cc:24:21:24:22",
+      "reason": "外层多一次迭代时更内层从 i+1/j+1 开始，仍受真实 size 上界限制，循环体不执行。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-05/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-05/source/src/cpp_040.cc:24"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

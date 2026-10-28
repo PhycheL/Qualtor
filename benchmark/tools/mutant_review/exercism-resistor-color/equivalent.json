@@ -1,0 +1,15 @@
+{
+  "task": "exercism-resistor-color",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/resistor_color.cpp:9:43:9:47",
+      "reason": "size() 改为 42 后，无效颜色依旧在 at(10) 抛出 out_of_range；有效颜色在 0–9 返回。注意 <= 改 < 则改变异常行为，已实测区分。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-resistor-color/mutation_baseline.json",
+        "benchmark/exercism-resistor-color/source/src/resistor_color.cpp:9"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

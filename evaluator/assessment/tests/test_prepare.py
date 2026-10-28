@@ -15,12 +15,18 @@ class BaselineTest(unittest.TestCase):
         self.task = common.load_task("gildedrose-update-quality")
 
     def test_classification_and_reference_strength(self):
-        reference = [run({"a": "Killed", "b": "Killed", "c": "Survived", "d": "Killed", "e": "Timeout", "f": "Killed"}),
-                     run({"a": "Killed", "b": "Killed", "c": "Survived", "d": "Survived", "e": "Timeout", "f": "Killed"})]
-        probe = [run({"a": "Killed", "b": "Survived", "c": "Killed", "d": "Killed", "e": "Timeout", "f": "NoCoverage"}),
-                 run({"a": "Killed", "b": "Survived", "c": "Killed", "d": "Killed", "e": "Timeout", "f": "NoCoverage"})]
+        reference = [run({"a": "Killed", "b": "Survived", "c": "Survived", "d": "Killed", "e": "Timeout",
+                          "f": "NoCoverage", "g": "Killed"}),
+                     run({"a": "Killed", "b": "Survived", "c": "Survived", "d": "Survived", "e": "Timeout",
+                          "f": "NoCoverage", "g": "Killed"})]
+        probe = [run({"a": "Killed", "b": "Survived", "c": "Killed", "d": "Killed", "e": "Timeout", "f": "NoCoverage",
+                      "g": "Survived"}),
+                 run({"a": "Killed", "b": "Survived", "c": "Killed", "d": "Killed", "e": "Timeout", "f": "NoCoverage",
+                      "g": "Survived"})]
         draft = prepare_task.build_baseline(self.task, {"reference": reference, "probe": probe}, "text", {}, "run")
-        self.assertEqual([m["id"] for m in draft["unstable"]], ["d"])          # 参考测试两次结果不同
+        # d：参考测试两次结果不同；g：参考测试检出而包含它的探针未检出，结果取决于二进制（D015）
+        self.assertEqual([m["id"] for m in draft["unstable"]], ["d", "g"])
+        self.assertIn("参考测试检出而探针未检出", draft["unstable"][1]["reason"])
         self.assertEqual([m["id"] for m in draft["equivalent"]], ["b", "f"])   # 探针区分不出
         self.assertEqual([m["id"] for m in draft["review_needed"]], ["e"])     # 探针超时
         # 分母：a、c、e；参考测试杀死 a，e 超时不计入；M1 = 1 / (3 - 1)

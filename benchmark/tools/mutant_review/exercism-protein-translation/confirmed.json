@@ -1,0 +1,46 @@
+{
+  "task": "exercism-protein-translation",
+  "note": "复核结论。non_equivalent_verified：真实 Mull 反例检出，计入分母；undefined_only：只在未定义行为下与原代码不同（D015），列为不稳定、不计入分母。prepare_new_tasks.py 写入分母前、apply_review.py 修订已有分母时应用。",
+  "review": "runs/bank-review-20261027-03",
+  "mutants": [
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/protein_translation.cpp:22:34:22:38",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-protein-translation/mutation_baseline.json",
+        "benchmark/exercism-protein-translation/source/src/protein_translation.cpp:22",
+        "runs/eval-review-20261027-exercism-protein-translation/trials/exercism-protein-translation/trial-1/score/0.1.6/final/result.json",
+        "runs/eval-review-20261027-exercism-protein-translation/trials/exercism-protein-translation/trial-1/score/0.1.6/final/mull/mull/mutations.json",
+        "runs/eval-bank-followup-20261027-01/review-products/exercism-protein-translation",
+        "runs/eval-bank-followup-20261027-01/review-ir/exercism-protein-translation/protein_translation.cpp.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/protein_translation.cpp:25:16:25:18",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-protein-translation/mutation_baseline.json",
+        "benchmark/exercism-protein-translation/source/src/protein_translation.cpp:25",
+        "runs/eval-review-20261027-exercism-protein-translation/trials/exercism-protein-translation/trial-1/score/0.1.6/final/result.json",
+        "runs/eval-review-20261027-exercism-protein-translation/trials/exercism-protein-translation/trial-1/score/0.1.6/final/mull/mull/mutations.json",
+        "runs/eval-bank-followup-20261027-01/review-products/exercism-protein-translation",
+        "runs/eval-bank-followup-20261027-01/review-ir/exercism-protein-translation/protein_translation.cpp.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/protein_translation.cpp:25:23:25:26",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-protein-translation/mutation_baseline.json",
+        "benchmark/exercism-protein-translation/source/src/protein_translation.cpp:25",
+        "runs/eval-review-20261027-exercism-protein-translation/trials/exercism-protein-translation/trial-1/score/0.1.6/final/result.json",
+        "runs/eval-review-20261027-exercism-protein-translation/trials/exercism-protein-translation/trial-1/score/0.1.6/final/mull/mull/mutations.json",
+        "runs/eval-bank-followup-20261027-01/review-products/exercism-protein-translation",
+        "runs/eval-bank-followup-20261027-01/review-ir/exercism-protein-translation/protein_translation.cpp.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ]
+    }
+  ]
+}

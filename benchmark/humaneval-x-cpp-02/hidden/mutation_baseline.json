@@ -1,7 +1,7 @@
 {
   "task": "humaneval-x-cpp-02",
-  "created_at": "2026-10-27T08:34:58.084748+00:00",
-  "created_by_run": "bank-prepare-20261027-02-humaneval-x-cpp-02",
+  "created_at": "2026-10-28T01:21:15.152341+00:00",
+  "created_by_run": "bank-prepare-20261028-03-humaneval-x-cpp-02",
   "scorer_version": "0.1.6",
   "scorer_code_sha256": "b98b550d7fa8f07011be4c1abaa93450feca5cbf16cf6951ef2ece8a6394005d",
   "images": {
@@ -1281,12 +1281,12 @@
         }
       },
       "reference_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ],
       "probe_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ]
     },
     {
@@ -1369,12 +1369,12 @@
         }
       },
       "reference_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ],
       "probe_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ]
     },
     {
@@ -1391,12 +1391,12 @@
         }
       },
       "reference_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ],
       "probe_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ]
     },
     {
@@ -1547,21 +1547,6 @@
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
     },
     {
-      "id": "cxx_replace_scalar_call:/repo/src/cpp_010.cc:24:19:24:25",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_replace_scalar_call:/repo/src/cpp_011.cc:16:17:16:23",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_replace_scalar_call:/repo/src/cpp_011.cc:16:34:16:40",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
       "id": "cxx_replace_scalar_call:/repo/src/cpp_011.cc:26:22:26:28",
       "method": "bounded_probe",
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
@@ -1605,9 +1590,9 @@
     "note": "等价变异候选由有界穷举探针自动给出；人工逐个复核后，把 status 改为 reviewed 并填写 by、at"
   },
   "reference": {
-    "killed": 51,
+    "killed": 54,
     "timeout": 6,
-    "total": 57,
+    "total": 60,
     "m1": 1.0,
     "threshold": 0.8,
     "passes": true

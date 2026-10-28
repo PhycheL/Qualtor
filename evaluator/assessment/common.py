@@ -12,6 +12,8 @@ from paths import REPO, ASSESSMENT, COMMON, BENCHMARK, RUNS
 
 CALIBRATION = ASSESSMENT / "calibration"
 CALIBRATION_STATUS = ASSESSMENT / "calibration-status.json"
+# 已准入题目清单（R-08）：正式比较只用登记过、且指纹与登记时一致的题目。由 benchmark/tools/admit.py 写入。
+ADMISSION = BENCHMARK / "admission.json"
 
 # 评测模块的行为由这些文件决定（assessment/ 下的代码、构建模板、版本号，以及共用脚本）；任何一个变化都要重新校准。
 SHARED_FILES = ["audit.py", "coverage.py", "paths.py", "runs.py"]
@@ -244,3 +246,25 @@ def calibration_status(images, task=None):
         return {"status": "stale", "run_id": record.get("run_id")}
     return {"status": "passed" if record.get("passed") else "failed", "run_id": record.get("run_id"),
             "report": record.get("report")}
+
+
+# ---- 准入（R-08） ----
+
+def load_admission():
+    """已准入题目清单：{题目 ID: 登记记录}；文件不存在时为空。"""
+    return read_json(ADMISSION).get("tasks", {}) if ADMISSION.is_file() else {}
+
+
+def admission_state(task_id, task_sha, admitted=None):
+    """按登记时的题目指纹判断准入状态：admitted、stale（登记后材料或分母变化）或 not_admitted。"""
+    record = (load_admission() if admitted is None else admitted).get(task_id)
+    if record is None:
+        return {"status": "not_admitted"}
+    if task_sha is None or record.get("task_sha256") != task_sha:
+        return {"status": "stale", "admitted_at": record.get("admitted_at"),
+                "reason": "题目材料或变异分母在准入后发生变化（或结果未记录题目指纹），需重新准入"}
+    return {"status": "admitted", "admitted_at": record.get("admitted_at"), "by": record.get("by")}
+
+
+def admission_status(task):
+    return admission_state(task["id"], task_sha256(task))

@@ -391,13 +391,15 @@ def build_bundle(number, problems, args):
     for case in cases:
         per_function[case[0]] = per_function.get(case[0], 0) + 1
     visible = sorted([f"src/{header_name}"] + [f"src/{p.name}" for p in sources])
+    note = bankutil.review_note(task_id)
     bankutil.write_text(task_dir / "hidden" / "README.md", (
         f"# {task_id} 隐藏材料\n\n"
         f"- 被测代码：HumanEval-X C++ 的 {len(problems)} 道题（{', '.join(p['task_id'] for p in problems)}），"
         "每题一个源文件，内容为上游 prompt + canonical_solution。\n"
         "- 参考测试：`upstream_tests.cc` 由上游 test 字段机械转换；`characterization_tests.cc` 为生成器记录的每个函数前 "
         f"{REFERENCE_CASES} 个输入的实际结果。\n"
-        f"- 探针（{bankutil.PROBE_MODES['generated']}）：`tests/` 下为参考测试副本与 `probe_tests.cc`；"
+        + (f"- {note}\n" if note else "")
+        + f"- 探针（{bankutil.PROBE_MODES['generated']}）：`tests/` 下为参考测试副本与 `probe_tests.cc`；"
         f"各函数保留的输入数：{json.dumps(per_function, ensure_ascii=False)}。\n"
         "- 生成器：`equivalence_probe/generate_probe.cc` 与 `probe_prelude.h`。输入取自上游测试与题面中的字面值及其扰动；"
         "每个输入在子进程中执行，用 ASan、UBSan 与 libc++ 断言过滤未定义行为、崩溃、超时和超过 20 毫秒的输入；"

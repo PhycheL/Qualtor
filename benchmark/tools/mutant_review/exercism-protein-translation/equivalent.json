@@ -1,0 +1,24 @@
+{
+  "task": "exercism-protein-translation",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_lt_to_le:/repo/src/protein_translation.cpp:22:23:22:24",
+      "reason": "多出的一次迭代只在 i 等于 size-2 时发生：此时 substr(i, 3) 只有 2 个字符，不在密码子表中，循环立即 break，输出不变；substr 的起点不超过长度，不会抛异常。size 小于 2 时两者都不进入循环体或立即 break。",
+      "evidence": [
+        "benchmark/exercism-protein-translation/source/src/protein_translation.cpp:22",
+        "runs/bank-review-20261027-03/exercism-protein-translation.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/protein_translation.cpp:22:41:22:42",
+      "reason": "上界改为 size+2 后，前面的迭代与原代码相同；i 每次加 3，第一个不小于 size-2 的 i 落在 [size-2, size]，substr(i, 3) 不足 3 个字符，不在密码子表中，立即 break，输出不变；substr 的起点不超过长度，不会抛异常。",
+      "evidence": [
+        "benchmark/exercism-protein-translation/source/src/protein_translation.cpp:22",
+        "runs/bank-review-20261027-03/exercism-protein-translation.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    }
+  ]
+}

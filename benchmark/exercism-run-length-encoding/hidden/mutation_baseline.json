@@ -1,9 +1,9 @@
 {
   "task": "exercism-run-length-encoding",
-  "created_at": "2026-10-27T07:00:40.728792+00:00",
-  "created_by_run": "bank-prepare-20261027-01-exercism-run-length-encoding",
-  "scorer_version": "0.1.5",
-  "scorer_code_sha256": "4ca4b8edbd0712321e5bbfa490e9e859683ef129a3492146fb5b14eea56ed5eb",
+  "created_at": "2026-10-28T01:19:02.412988+00:00",
+  "created_by_run": "bank-prepare-20261028-03-exercism-run-length-encoding",
+  "scorer_version": "0.1.6",
+  "scorer_code_sha256": "b98b550d7fa8f07011be4c1abaa93450feca5cbf16cf6951ef2ece8a6394005d",
   "images": {
     "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
     "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
@@ -225,12 +225,12 @@
         }
       },
       "reference_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ],
       "probe_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ]
     },
     {
@@ -511,12 +511,12 @@
         }
       },
       "reference_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ],
       "probe_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ]
     },
     {
@@ -652,18 +652,7 @@
       ]
     }
   ],
-  "equivalent": [
-    {
-      "id": "cxx_ge_to_gt:/repo/src/run_length_encoding.cpp:37:15:37:17",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_le_to_lt:/repo/src/run_length_encoding.cpp:37:27:37:29",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    }
-  ],
+  "equivalent": [],
   "unstable": [],
   "review_needed": [
     {
@@ -678,9 +667,9 @@
     "note": "等价变异候选由有界穷举探针自动给出；人工逐个复核后，把 status 改为 reviewed 并填写 by、at"
   },
   "reference": {
-    "killed": 26,
+    "killed": 28,
     "timeout": 1,
-    "total": 27,
+    "total": 29,
     "m1": 1.0,
     "threshold": 0.8,
     "passes": true

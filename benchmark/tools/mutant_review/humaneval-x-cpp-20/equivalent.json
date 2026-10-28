@@ -1,0 +1,165 @@
+{
+  "task": "humaneval-x-cpp-20",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_add_to_sub:/repo/src/cpp_160.cc:43:54:43:55",
+      "reason": "该变异位于路径压缩循环体内，而循环体从不执行：posto[i+1] 只由运算 i 本身（读取之后）或运算 i+1 的左侧压缩写入，后者要求 posto[i+1] 先已不是根，因此运算 i 读取时 posto[i+1] 恒等于 i+1，右侧循环条件恒假；乘方轮按下标升序处理，左侧的 posto[i] 总指向根，第 42 行循环条件也恒假。变异代码不可达，输出相同。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-20/source/src/cpp_160.cc:43",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-20.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/cpp_160.cc:43:71:43:72",
+      "reason": "该变异位于路径压缩循环体内，而循环体从不执行：posto[i+1] 只由运算 i 本身（读取之后）或运算 i+1 的左侧压缩写入，后者要求 posto[i+1] 先已不是根，因此运算 i 读取时 posto[i+1] 恒等于 i+1，右侧循环条件恒假；乘方轮按下标升序处理，左侧的 posto[i] 总指向根，第 42 行循环条件也恒假。变异代码不可达，输出相同。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-20/source/src/cpp_160.cc:43",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-20.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/cpp_160.cc:51:54:51:55",
+      "reason": "该变异位于路径压缩循环体内，而循环体从不执行：posto[i+1] 只由运算 i 本身（读取之后）或运算 i+1 的左侧压缩写入，后者要求 posto[i+1] 先已不是根，因此运算 i 读取时 posto[i+1] 恒等于 i+1，右侧循环条件恒假；乘方轮按下标升序处理，左侧的 posto[i] 总指向根，第 42 行循环条件也恒假。变异代码不可达，输出相同。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-20/source/src/cpp_160.cc:51",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-20.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/cpp_160.cc:51:71:51:72",
+      "reason": "该变异位于路径压缩循环体内，而循环体从不执行：posto[i+1] 只由运算 i 本身（读取之后）或运算 i+1 的左侧压缩写入，后者要求 posto[i+1] 先已不是根，因此运算 i 读取时 posto[i+1] 恒等于 i+1，右侧循环条件恒假；乘方轮按下标升序处理，左侧的 posto[i] 总指向根，第 42 行循环条件也恒假。变异代码不可达，输出相同。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-20/source/src/cpp_160.cc:51",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-20.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/cpp_160.cc:62:54:62:55",
+      "reason": "该变异位于路径压缩循环体内，而循环体从不执行：posto[i+1] 只由运算 i 本身（读取之后）或运算 i+1 的左侧压缩写入，后者要求 posto[i+1] 先已不是根，因此运算 i 读取时 posto[i+1] 恒等于 i+1，右侧循环条件恒假；乘方轮按下标升序处理，左侧的 posto[i] 总指向根，第 42 行循环条件也恒假。变异代码不可达，输出相同。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-20/source/src/cpp_160.cc:62",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-20.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/cpp_160.cc:62:71:62:72",
+      "reason": "该变异位于路径压缩循环体内，而循环体从不执行：posto[i+1] 只由运算 i 本身（读取之后）或运算 i+1 的左侧压缩写入，后者要求 posto[i+1] 先已不是根，因此运算 i 读取时 posto[i+1] 恒等于 i+1，右侧循环条件恒假；乘方轮按下标升序处理，左侧的 posto[i] 总指向根，第 42 行循环条件也恒假。变异代码不可达，输出相同。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-20/source/src/cpp_160.cc:62",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-20.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/cpp_160.cc:42:51:42:52",
+      "reason": "该变异位于路径压缩循环体内，而循环体从不执行：posto[i+1] 只由运算 i 本身（读取之后）或运算 i+1 的左侧压缩写入，后者要求 posto[i+1] 先已不是根，因此运算 i 读取时 posto[i+1] 恒等于 i+1，右侧循环条件恒假；乘方轮按下标升序处理，左侧的 posto[i] 总指向根，第 42 行循环条件也恒假。变异代码不可达，输出相同。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-20/source/src/cpp_160.cc:42",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-20.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/cpp_160.cc:43:57:43:58",
+      "reason": "该变异位于路径压缩循环体内，而循环体从不执行：posto[i+1] 只由运算 i 本身（读取之后）或运算 i+1 的左侧压缩写入，后者要求 posto[i+1] 先已不是根，因此运算 i 读取时 posto[i+1] 恒等于 i+1，右侧循环条件恒假；乘方轮按下标升序处理，左侧的 posto[i] 总指向根，第 42 行循环条件也恒假。变异代码不可达，输出相同。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-20/source/src/cpp_160.cc:43",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-20.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/cpp_160.cc:51:57:51:58",
+      "reason": "该变异位于路径压缩循环体内，而循环体从不执行：posto[i+1] 只由运算 i 本身（读取之后）或运算 i+1 的左侧压缩写入，后者要求 posto[i+1] 先已不是根，因此运算 i 读取时 posto[i+1] 恒等于 i+1，右侧循环条件恒假；乘方轮按下标升序处理，左侧的 posto[i] 总指向根，第 42 行循环条件也恒假。变异代码不可达，输出相同。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-20/source/src/cpp_160.cc:51",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-20.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/cpp_160.cc:62:57:62:58",
+      "reason": "该变异位于路径压缩循环体内，而循环体从不执行：posto[i+1] 只由运算 i 本身（读取之后）或运算 i+1 的左侧压缩写入，后者要求 posto[i+1] 先已不是根，因此运算 i 读取时 posto[i+1] 恒等于 i+1，右侧循环条件恒假；乘方轮按下标升序处理，左侧的 posto[i] 总指向根，第 42 行循环条件也恒假。变异代码不可达，输出相同。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-20/source/src/cpp_160.cc:62",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-20.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_156.cc:29:19:29:20",
+      "reason": "number 已为 0 时多递增一次 pos，随后外层 while 退出，该值不再读取。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-20/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-20/source/src/cpp_156.cc:29"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_159.cc:35:13:35:14",
+      "reason": "need==remaining 时两分支都返回 {number+need,0}。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-20/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-20/source/src/cpp_159.cc:35"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_157.cc:16:25:16:26",
+      "reason": "实际 IR 是 binary32 的 abs 结果提升 double，与 double 1e-4 无法相等；三项严格/非严格比较相同。其他算术/调用变异已实测可区分。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-20/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-20/source/src/cpp_157.cc:16",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-20/cpp_157.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_157.cc:16:50:16:51",
+      "reason": "实际 IR 是 binary32 的 abs 结果提升 double，与 double 1e-4 无法相等；三项严格/非严格比较相同。其他算术/调用变异已实测可区分。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-20/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-20/source/src/cpp_157.cc:16",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-20/cpp_157.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_157.cc:16:75:16:76",
+      "reason": "实际 IR 是 binary32 的 abs 结果提升 double，与 double 1e-4 无法相等；三项严格/非严格比较相同。其他算术/调用变异已实测可区分。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-20/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-20/source/src/cpp_157.cc:16",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-20/cpp_157.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_160.cc:37:19:37:20",
+      "reason": "多追加的父指针处于原有定义输入的有效索引之外，不被运算符访问。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-20/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-20/source/src/cpp_160.cc:37"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_163.cc:17:10:17:11",
+      "reason": "端点相等时交换相同整数。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-20/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-20/source/src/cpp_163.cc:17"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

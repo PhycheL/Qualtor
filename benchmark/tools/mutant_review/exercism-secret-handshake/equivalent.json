@@ -1,0 +1,50 @@
+{
+  "task": "exercism-secret-handshake",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_remove_void_call:/repo/src/secret_handshake.cpp:11:27:11:51",
+      "reason": "已核对实际 IR：同位置多个内部变异共用环境变量 ID，最后匹配项删除无操作的 __new_allocator<char> 析构；push_back 仍执行。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-secret-handshake/mutation_baseline.json",
+        "benchmark/exercism-secret-handshake/source/src/secret_handshake.cpp:11",
+        "runs/eval-bank-followup-20261027-01/review-ir/exercism-secret-handshake/secret_handshake.cpp.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/secret_handshake.cpp:12:27:12:59",
+      "reason": "已核对实际 IR：同位置多个内部变异共用环境变量 ID，最后匹配项删除无操作的 __new_allocator<char> 析构；push_back 仍执行。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-secret-handshake/mutation_baseline.json",
+        "benchmark/exercism-secret-handshake/source/src/secret_handshake.cpp:12",
+        "runs/eval-bank-followup-20261027-01/review-ir/exercism-secret-handshake/secret_handshake.cpp.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/secret_handshake.cpp:13:27:13:62",
+      "reason": "已核对实际 IR：同位置多个内部变异共用环境变量 ID，最后匹配项删除无操作的 __new_allocator<char> 析构；push_back 仍执行。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-secret-handshake/mutation_baseline.json",
+        "benchmark/exercism-secret-handshake/source/src/secret_handshake.cpp:13",
+        "runs/eval-bank-followup-20261027-01/review-ir/exercism-secret-handshake/secret_handshake.cpp.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/secret_handshake.cpp:14:27:14:51",
+      "reason": "已核对实际 IR：同位置多个内部变异共用环境变量 ID，最后匹配项删除无操作的 __new_allocator<char> 析构；push_back 仍执行。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-secret-handshake/mutation_baseline.json",
+        "benchmark/exercism-secret-handshake/source/src/secret_handshake.cpp:14",
+        "runs/eval-bank-followup-20261027-01/review-ir/exercism-secret-handshake/secret_handshake.cpp.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

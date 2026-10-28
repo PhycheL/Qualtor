@@ -1,0 +1,44 @@
+{
+  "task": "humaneval-x-cpp-13",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_assign_const:/repo/src/cpp_104.cc:25:26:25:27",
+      "reason": "变异把赋给 bool 的 false 改为存入 i8 42。Clang -O0 读取 bool 都是 load i8 后 trunc 到 i1，只取最低位，42 读出仍为 false，与原代码相同（本机 IR 核对见证据；与 Telemetry 在固定工具链上的 IR 结论一致）。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-13/source/src/cpp_104.cc:25",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-13.md",
+        "runs/bank-review-20261028-05/bool-ir.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/cpp_104.cc:28:32:28:33",
+      "reason": "变异把赋给 bool 的 false 改为存入 i8 42。Clang -O0 读取 bool 都是 load i8 后 trunc 到 i1，只取最低位，42 读出仍为 false，与原代码相同（本机 IR 核对见证据；与 Telemetry 在固定工具链上的 IR 结论一致）。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-13/source/src/cpp_104.cc:28",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-13.md",
+        "runs/bank-review-20261028-05/bool-ir.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_098.cc:18:21:18:22",
+      "reason": "只额外读取 C++11 string[size()] 的零字符；该处零字符不触发计数/括号/分隔分支，或只追加到随后丢弃的局部尾段，不进入返回结果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-13/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-13/source/src/cpp_098.cc:18"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_101.cc:19:19:19:20",
+      "reason": "只额外读取 C++11 string[size()] 的零字符；该处零字符不触发计数/括号/分隔分支，或只追加到随后丢弃的局部尾段，不进入返回结果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-13/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-13/source/src/cpp_101.cc:19"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

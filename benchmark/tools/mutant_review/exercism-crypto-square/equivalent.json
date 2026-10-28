@@ -1,0 +1,26 @@
+{
+  "task": "exercism-crypto-square",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_remove_void_call:/repo/src/crypto_square.cpp:46:9:46:58",
+      "reason": "同一位置的实际变异删除的是临时对象的析构调用：若删除的是调用本身，现有参考测试会因结果缺项而检出，而该变异在参考与探针上都幸存。临时对象已被移动进容器（或按值传参的副本），移动后的 string 不再持有堆内存，跳过其析构没有可观察效果。",
+      "evidence": [
+        "benchmark/exercism-crypto-square/source/src/crypto_square.cpp:46",
+        "runs/bank-review-20261027-03/exercism-crypto-square.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/crypto_square.cpp:53:12:53:17",
+      "reason": "空串时额外执行 erase(remove(begin,end),end)，范围为空，内容不变。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-crypto-square/mutation_baseline.json",
+        "benchmark/exercism-crypto-square/source/src/crypto_square.cpp:53",
+        "runs/eval-bank-followup-20261027-01/review-ir/exercism-crypto-square/crypto_square.cpp.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "task": "yatzy-refactoring",
+  "note": "复核结论。non_equivalent_verified：真实 Mull 反例检出，计入分母；undefined_only：只在未定义行为下与原代码不同（D015），列为不稳定、不计入分母。prepare_new_tasks.py 写入分母前、apply_review.py 修订已有分母时应用。",
+  "review": "runs/bank-review-20261027-03",
+  "mutants": [
+    {
+      "id": "cxx_lt_to_le:/repo/src/yatzy1.cpp:101:25:101:26",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-yatzy-refactoring/mutation_baseline.json",
+        "benchmark/yatzy-refactoring/source/src/yatzy1.cpp:101",
+        "runs/eval-bank-followup-20261027-01/undefined-review/yatzy-refactoring/results.json"
+      ],
+      "note": "循环多读 dice[5]，越过 5 个元素的数组（源码副本 sanitizer 已报告）；其余行为不变，差异只来自越界读到的值。"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/yatzy1.cpp:92:19:92:20",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-yatzy-refactoring/mutation_baseline.json",
+        "benchmark/yatzy-refactoring/source/src/yatzy1.cpp:92",
+        "runs/eval-bank-followup-20261027-01/undefined-review/yatzy-refactoring/results.json"
+      ],
+      "note": "循环多读 dice[5]，越过 5 个元素的数组（源码副本 sanitizer 已报告）；其余行为不变，差异只来自越界读到的值。"
+    }
+  ]
+}

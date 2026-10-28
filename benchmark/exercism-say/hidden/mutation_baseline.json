@@ -1,9 +1,9 @@
 {
   "task": "exercism-say",
-  "created_at": "2026-10-27T07:00:37.695968+00:00",
-  "created_by_run": "bank-prepare-20261027-01-exercism-say",
-  "scorer_version": "0.1.5",
-  "scorer_code_sha256": "4ca4b8edbd0712321e5bbfa490e9e859683ef129a3492146fb5b14eea56ed5eb",
+  "created_at": "2026-10-28T01:18:57.864707+00:00",
+  "created_by_run": "bank-prepare-20261028-03-exercism-say",
+  "scorer_version": "0.1.6",
+  "scorer_code_sha256": "b98b550d7fa8f07011be4c1abaa93450feca5cbf16cf6951ef2ece8a6394005d",
   "images": {
     "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
     "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
@@ -256,14 +256,26 @@
       ]
     }
   ],
-  "equivalent": [
+  "equivalent": [],
+  "unstable": [
     {
       "id": "cxx_ge_to_gt:/repo/src/say.cpp:51:16:51:18",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "benchmark/exercism-say/source/src/say.cpp:51",
+        "runs/bank-review-20261027-03/exercism-say.md"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
     }
   ],
-  "unstable": [],
   "review_needed": [],
   "review": {
     "status": "pending",

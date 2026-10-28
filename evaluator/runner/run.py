@@ -15,14 +15,14 @@ from product_process import Cancellation
 from paths import AGENTS, BENCHMARK, GENERATOR, RUNS, REPO
 from audit import Audit
 from runs import finish, new_manifest, write_manifest
-from common import (calibration_status, check_run_id, default_run_id, load_baseline, load_task, now,
+from common import (admission_status, calibration_status, check_run_id, default_run_id, load_baseline, load_task, now,
                     assessment_code_sha256, assessment_version, sha256_file, task_sha256, validate_task, write_json)
 from docker_runner import DockerExecutor
 import aggregate
 
 
-def select_tasks(names, task_set):
-    selected, skipped = {}, set()
+def select_tasks(names, task_set, allow_unadmitted=False):
+    selected, skipped, unadmitted = {}, set(), set()
     for name in names:
         whole = name == "all" or Path(name).resolve() == BENCHMARK
         if whole:
@@ -39,10 +39,20 @@ def select_tasks(names, task_set):
                     raise ValueError(f"题目 {task['id']} 尚未标定变异分母，先运行 prepare_task.py baseline --write")
                 skipped.add(task["id"])
                 continue
+            # R-08：正式运行只用已准入且指纹一致的题目；冒烟或新题试跑显式加 --allow-unadmitted。
+            state = "admitted" if allow_unadmitted else admission_status(task)["status"]
+            if state != "admitted":
+                if not whole:
+                    raise ValueError(f"题目 {task['id']} 未准入或准入后材料已变化（{state}）；"
+                                     "先用 benchmark/tools/admit.py 签署准入，非正式运行加 --allow-unadmitted")
+                unadmitted.add(task["id"])
+                continue
             public_task(task)
             selected[task["id"]] = task
     if skipped:
         print("跳过尚未标定变异分母的题目：" + ", ".join(sorted(skipped)), file=sys.stderr)
+    if unadmitted:
+        print("跳过未准入的题目：" + ", ".join(sorted(unadmitted)), file=sys.stderr)
     if not selected:
         raise ValueError("没有符合筛选条件的题目")
     return list(selected.values())
@@ -117,6 +127,7 @@ def execute(config, config_snapshot, tasks, count, jobs, run_id, scenario=None, 
         executor = DockerExecutor(audit, run / "evidence", run_id)
         states = {t["id"]: calibration_status(executor.images, t) for t in tasks}
         manifest["calibration"] = states
+        manifest["admission"] = {t["id"]: admission_status(t) for t in tasks}
         if any(s["status"] != "passed" for s in states.values()):
             raise ValueError(f"评测模块校准必须为 passed，当前：{states}；请先运行 calibrate.py")
         generator = GenerationExecutor(executor)
@@ -182,12 +193,14 @@ def main():
     parser.add_argument("--trials", type=int, default=5)
     parser.add_argument("--jobs", type=int, default=1)
     parser.add_argument("--run-id", default=default_run_id("eval"))
+    parser.add_argument("--allow-unadmitted", action="store_true",
+                        help="允许未准入的题目（冒烟、新题试跑）；结果不能用于正式比较")
     args = parser.parse_args()
     if args.trials < 1 or args.jobs < 1:
         parser.error("--trials 和 --jobs 必须至少为 1")
     try:
         config, snapshot = load_config(args.config, args.env_file)
-        tasks = select_tasks(args.tasks, args.set)
+        tasks = select_tasks(args.tasks, args.set, args.allow_unadmitted)
         run, summary = execute(config, snapshot, tasks, args.trials, args.jobs, args.run_id)
     except (ValueError, FileNotFoundError, FileExistsError, RuntimeError) as error:
         parser.exit(2, str(error) + "\n")

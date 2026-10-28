@@ -1,0 +1,24 @@
+{
+  "task": "exercism-word-count",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_remove_void_call:/repo/src/word_count.cpp:29:17:29:74",
+      "reason": "同一位置的实际变异删除的是临时对象的析构调用：若删除的是调用本身，现有参考测试会因结果缺项而检出，而该变异在参考与探针上都幸存。临时对象已被移动进容器（或按值传参的副本），push_back 移动了 substr 返回的临时 string，跳过其析构没有可观察效果。",
+      "evidence": [
+        "benchmark/exercism-word-count/source/src/word_count.cpp:29",
+        "runs/bank-review-20261027-03/exercism-word-count.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/word_count.cpp:35:9:35:70",
+      "reason": "同一位置的实际变异删除的是临时对象的析构调用：若删除的是调用本身，现有参考测试会因结果缺项而检出，而该变异在参考与探针上都幸存。临时对象已被移动进容器（或按值传参的副本），push_back 移动了 substr 返回的临时 string，跳过其析构没有可观察效果。",
+      "evidence": [
+        "benchmark/exercism-word-count/source/src/word_count.cpp:35",
+        "runs/bank-review-20261027-03/exercism-word-count.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    }
+  ]
+}

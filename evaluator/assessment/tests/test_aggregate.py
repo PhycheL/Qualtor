@@ -78,6 +78,19 @@ class CompareTest(unittest.TestCase):
         self.assertTrue(aggregate.calibration_problems(results))
         self.assertFalse(aggregate.calibration_problems(runs("A", {"t1": [0.5]})))
 
+    def test_admission_problems(self):
+        results = runs("A", {"t1": [0.5], "t2": [0.5], "t3": [0.5]})
+        for result, sha in zip(results, ("h1", "old", None)):
+            result["task"]["sha256"] = sha
+        admitted = {"t1": {"task_sha256": "h1"}, "t2": {"task_sha256": "h2"}}
+        problems = aggregate.admission_problems(results, admitted)
+        # t1 指纹一致；t2 准入后材料变化；t3 未准入
+        self.assertEqual(problems, ["未准入的题目：t3", "准入后材料已变化或结果未记录题目指纹的题目：t2"])
+        self.assertEqual(aggregate.admission_problems(results[:1], admitted), [])
+        # 旧结果没有记录题目指纹，即使题目已准入也不能直接用于正式比较
+        legacy = runs("A", {"t1": [0.5]})
+        self.assertEqual(len(aggregate.admission_problems(legacy, admitted)), 1)
+
 
 if __name__ == "__main__":
     unittest.main()

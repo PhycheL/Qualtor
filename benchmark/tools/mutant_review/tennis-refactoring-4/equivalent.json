@@ -1,0 +1,50 @@
+{
+  "task": "tennis-refactoring-4",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_gt_to_ge:/repo/src/tennis4.cc:182:37:182:38",
+      "reason": "相等时选择哪个最高分结果相同；外层多迭代一次时两个内层 i<score 条件均假，无人得分。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-tennis-refactoring-4/mutation_baseline.json",
+        "benchmark/tennis-refactoring-4/source/src/tennis4.cc:182",
+        "runs/eval-bank-followup-20261027-01/review-ir/tennis-refactoring-4/tennis4.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/tennis4.cc:184:23:184:24",
+      "reason": "相等时选择哪个最高分结果相同；外层多迭代一次时两个内层 i<score 条件均假，无人得分。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-tennis-refactoring-4/mutation_baseline.json",
+        "benchmark/tennis-refactoring-4/source/src/tennis4.cc:184",
+        "runs/eval-bank-followup-20261027-01/review-ir/tennis-refactoring-4/tennis4.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/tennis4.cc:186:13:186:37",
+      "reason": "实际选中的 IR 只删除无操作的 allocator 析构，wonPoint 仍执行；已逐 ID 核对。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-tennis-refactoring-4/mutation_baseline.json",
+        "benchmark/tennis-refactoring-4/source/src/tennis4.cc:186",
+        "runs/eval-bank-followup-20261027-01/review-ir/tennis-refactoring-4/tennis4.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/tennis4.cc:188:13:188:37",
+      "reason": "实际选中的 IR 只删除无操作的 allocator 析构，wonPoint 仍执行；已逐 ID 核对。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-tennis-refactoring-4/mutation_baseline.json",
+        "benchmark/tennis-refactoring-4/source/src/tennis4.cc:188",
+        "runs/eval-bank-followup-20261027-01/review-ir/tennis-refactoring-4/tennis4.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

@@ -119,12 +119,14 @@ def import_exercise(exercise, args, gtest_include):
     bankutil.copy_reference_as_probe(task_dir)
     snake = Path(cpp_files[0]).stem
     visible = sorted(f"src/{name}" for name in mapping)
+    note = bankutil.review_note(task_id)
     bankutil.write_text(task_dir / "hidden" / "README.md", (
         f"# {task_id} 隐藏材料\n\n"
         f"- 被测代码：Exercism C++ 练习 `{slug}` 的参考解（`.meta/example.*`），提交 `{args.commit}`。\n"
         f"- 参考测试：上游 `{tests[0]}` 由 `benchmark/tools/import_exercism.py` 机械转换为 GoogleTest，共 {cases} 个用例；"
         "`catch_compat.h` 把 Catch2 断言映射为 GoogleTest。\n"
-        f"- 探针：参考测试副本（{bankutil.PROBE_MODES['reference_copy']}）\n"
+        + (f"- {note}\n" if note else "")
+        + f"- 探针：参考测试副本（{bankutil.PROBE_MODES['reference_copy']}）\n"
         "- 重建：重新运行导入脚本并加 `--force`；修改参考测试后要重新标定变异分母。\n"))
     bankutil.write_task(
         task_dir, task_id=task_id, tier="easy" if loc < 100 else "medium", tags=["exercism", "upstream_tests"],

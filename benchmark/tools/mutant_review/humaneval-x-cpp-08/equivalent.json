@@ -1,0 +1,42 @@
+{
+  "task": "humaneval-x-cpp-08",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_assign_const:/repo/src/cpp_057.cc:17:16:17:17",
+      "reason": "标志只赋 1，最终检查 incr+decr==2；未置位用 42 代替 0 时和为 42/43，只有二者都置 1 时才为 2，分类不变。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-08/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-08/source/src/cpp_057.cc:17"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/cpp_057.cc:17:9:17:10",
+      "reason": "标志只赋 1，最终检查 incr+decr==2；未置位用 42 代替 0 时和为 42/43，只有二者都置 1 时才为 2，分类不变。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-08/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-08/source/src/cpp_057.cc:17"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_061.cc:21:19:21:20",
+      "reason": "只额外读取 C++11 string[size()] 的零字符；该处零字符不触发计数/括号/分隔分支，或只追加到随后丢弃的局部尾段，不进入返回结果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-08/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-08/source/src/cpp_061.cc:21"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_064.cc:19:19:19:20",
+      "reason": "只额外读取 C++11 string[size()] 的零字符；该处零字符不触发计数/括号/分隔分支，或只追加到随后丢弃的局部尾段，不进入返回结果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-08/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-08/source/src/cpp_064.cc:19"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

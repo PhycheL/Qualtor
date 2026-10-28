@@ -4,6 +4,7 @@ from pathlib import Path
 import shutil
 import tempfile
 import unittest
+import unittest.mock
 
 import support  # noqa: F401
 import calibrate
@@ -127,6 +128,58 @@ class SampleVariantsTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class CalibrationTasksTest(unittest.TestCase):
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp())
+        self.original = calibrate.CALIBRATION
+        calibrate.CALIBRATION = self.tmp
+        for task, sample in (("task-a", "CAL-01"), ("task-b", "CAL-02"), ("task-c", "notes")):
+            (self.tmp / task / sample).mkdir(parents=True)
+            if sample.startswith("CAL"):
+                (self.tmp / task / sample / "expected.json").write_text("{}")
+
+    def tearDown(self):
+        calibrate.CALIBRATION = self.original
+        shutil.rmtree(self.tmp)
+
+    def test_all_tasks_with_samples_are_calibrated(self):
+        self.assertEqual(calibrate.calibration_tasks(), ["task-a", "task-b"])
+
+    def test_sample_ids_must_be_unique_across_tasks(self):
+        (self.tmp / "task-b" / "CAL-01").mkdir()
+        (self.tmp / "task-b" / "CAL-01" / "expected.json").write_text("{}")
+        with unittest.mock.patch.object(calibrate, "load_task", side_effect=lambda t: {"id": t}), \
+                unittest.mock.patch.object(calibrate, "load_baseline", return_value={"mutants": []}):
+            with self.assertRaisesRegex(SystemExit, "样本 ID 重复"):
+                calibrate.plan(["task-a", "task-b"], None)
+            tasks, samples = calibrate.plan(["task-a"], None)
+            self.assertEqual((list(tasks), list(samples), samples["CAL-01"]["task"]), (["task-a"], ["CAL-01"], "task-a"))
+            with self.assertRaisesRegex(SystemExit, "找不到样本"):
+                calibrate.plan(["task-a"], ["CAL-09"])
+
+
+class AdmissionTest(unittest.TestCase):
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp())
+        self.original = common.ADMISSION
+        common.ADMISSION = self.tmp / "admission.json"
+        self.task = common.load_task("gildedrose-update-quality")
+
+    def tearDown(self):
+        common.ADMISSION = self.original
+        shutil.rmtree(self.tmp)
+
+    def test_states_follow_the_registered_fingerprint(self):
+        self.assertEqual(common.admission_status(self.task)["status"], "not_admitted")
+        common.write_json(common.ADMISSION, {"schema": 1, "tasks": {self.task["id"]: {
+            "task_sha256": common.task_sha256(self.task), "admitted_at": "t", "by": "reviewer"}}})
+        self.assertEqual(common.admission_status(self.task),
+                         {"status": "admitted", "admitted_at": "t", "by": "reviewer"})
+        common.write_json(common.ADMISSION, {"schema": 1, "tasks": {self.task["id"]: {"task_sha256": "old"}}})
+        self.assertEqual(common.admission_status(self.task)["status"], "stale")
+        self.assertEqual(common.admission_state(self.task["id"], None)["status"], "stale")
 
 
 class CalibrationStatusTest(unittest.TestCase):

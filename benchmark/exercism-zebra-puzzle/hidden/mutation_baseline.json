@@ -3397,11 +3397,6 @@
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
     },
     {
-      "id": "cxx_add_to_sub:/repo/src/zebra_puzzle.cpp:90:23:90:24",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
       "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:161:44:161:46",
       "method": "bounded_probe",
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
@@ -3432,47 +3427,7 @@
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
     },
     {
-      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:70:16:70:18",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
       "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:70:36:70:38",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_gt_to_ge:/repo/src/zebra_puzzle.cpp:146:16:146:17",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_gt_to_ge:/repo/src/zebra_puzzle.cpp:161:17:161:18",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_gt_to_ge:/repo/src/zebra_puzzle.cpp:63:17:63:18",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_gt_to_ge:/repo/src/zebra_puzzle.cpp:82:17:82:18",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_gt_to_le:/repo/src/zebra_puzzle.cpp:146:16:146:17",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_gt_to_le:/repo/src/zebra_puzzle.cpp:161:17:161:18",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_gt_to_le:/repo/src/zebra_puzzle.cpp:63:17:63:18",
       "method": "bounded_probe",
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
     },
@@ -3492,37 +3447,7 @@
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
     },
     {
-      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:65:17:65:18",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:103:26:103:27",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
       "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:163:17:163:18",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:191:30:191:31",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:196:34:196:35",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:205:38:205:39",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:223:46:223:47",
       "method": "bounded_probe",
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
     },
@@ -3533,26 +3458,6 @@
     },
     {
       "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:256:26:256:27",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:36:26:36:27",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:53:26:53:27",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:65:17:65:18",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:84:17:84:18",
       "method": "bounded_probe",
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
     },
@@ -3622,37 +3527,12 @@
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
     },
     {
-      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:103:35:103:39",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:240:42:240:47",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
       "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:248:35:248:39",
       "method": "bounded_probe",
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
     },
     {
       "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:256:35:256:39",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:36:35:36:39",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:53:35:53:39",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:147:23:147:24",
       "method": "bounded_probe",
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
     },
@@ -3665,24 +3545,477 @@
       "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:174:23:174:24",
       "method": "bounded_probe",
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    }
+  ],
+  "unstable": [
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:103:26:103:27",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-zebra-puzzle/mutation_baseline.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:103",
+        "runs/eval-bank-followup-20261027-01/undefined-review/exercism-zebra-puzzle/results.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:191:30:191:31",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-zebra-puzzle/mutation_baseline.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:191",
+        "runs/eval-bank-followup-20261027-01/undefined-review/exercism-zebra-puzzle/results.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:196:34:196:35",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-zebra-puzzle/mutation_baseline.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:196",
+        "runs/eval-bank-followup-20261027-01/undefined-review/exercism-zebra-puzzle/results.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:205:38:205:39",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-zebra-puzzle/mutation_baseline.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:205",
+        "runs/eval-bank-followup-20261027-01/undefined-review/exercism-zebra-puzzle/results.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:223:46:223:47",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-zebra-puzzle/mutation_baseline.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:223",
+        "runs/eval-bank-followup-20261027-01/undefined-review/exercism-zebra-puzzle/results.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:36:26:36:27",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-zebra-puzzle/mutation_baseline.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:36",
+        "runs/eval-bank-followup-20261027-01/undefined-review/exercism-zebra-puzzle/results.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:53:26:53:27",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-zebra-puzzle/mutation_baseline.json",
+        "benchmark/exercism-zebra-puzzle/source/src/zebra_puzzle.cpp:53",
+        "runs/eval-bank-followup-20261027-01/undefined-review/exercism-zebra-puzzle/results.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/zebra_puzzle.cpp:90:23:90:24",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/zebra_puzzle.cpp:70:16:70:18",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/zebra_puzzle.cpp:146:16:146:17",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/zebra_puzzle.cpp:161:17:161:18",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/zebra_puzzle.cpp:63:17:63:18",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/zebra_puzzle.cpp:82:17:82:18",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/zebra_puzzle.cpp:146:16:146:17",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/zebra_puzzle.cpp:161:17:161:18",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/zebra_puzzle.cpp:63:17:63:18",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/zebra_puzzle.cpp:65:17:65:18",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:65:17:65:18",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/zebra_puzzle.cpp:84:17:84:18",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:103:35:103:39",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:240:42:240:47",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json",
+        "runs/bank-review-20261028-06/reachability/result.txt"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:36:35:36:39",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/zebra_puzzle.cpp:53:35:53:39",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:147:23:147:24",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
     },
     {
       "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:64:24:64:25",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
     },
     {
       "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:76:23:76:24",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
     },
     {
       "id": "cxx_sub_to_add:/repo/src/zebra_puzzle.cpp:95:23:95:24",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-review-20261028-06/zebra-sweep.md",
+        "runs/bank-review-20261028-06/zebra-sweep.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
     }
   ],
-  "unstable": [],
   "review_needed": [
     {
       "id": "cxx_assign_const:/repo/src/zebra_puzzle.cpp:206:35:206:36",

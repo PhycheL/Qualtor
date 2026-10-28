@@ -1,0 +1,28 @@
+{
+  "task": "humaneval-x-cpp-10",
+  "note": "复核结论。non_equivalent_verified：真实 Mull 反例检出，计入分母；undefined_only：只在未定义行为下与原代码不同（D015），列为不稳定、不计入分母。prepare_new_tasks.py 写入分母前、apply_review.py 修订已有分母时应用。",
+  "review": "runs/bank-review-20261027-03",
+  "mutants": [
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_080.cc:20:19:20:20",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-10/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-10/source/src/cpp_080.cc:20",
+        "runs/eval-review-20261027-humaneval-x-cpp-10/trials/humaneval-x-cpp-10/trial-1/score/0.1.6/final/result.json",
+        "runs/eval-review-20261027-humaneval-x-cpp-10/trials/humaneval-x-cpp-10/trial-1/score/0.1.6/final/mull/mull/mutations.json",
+        "runs/eval-bank-followup-20261027-01/review-products/humaneval-x-cpp-10"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/src/cpp_077.cc:19:19:19:20",
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-10/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-10/source/src/cpp_077.cc:19",
+        "runs/eval-bank-followup-20261027-01/undefined-review/humaneval-x-cpp-10/results.json"
+      ],
+      "note": "循环条件第一次迭代计算 0/0，属于整数除零；i 不小于 1 时循环只是多跑几轮，内层判断不变，结果相同。ARM64 上除零返回 0，x86 上触发 SIGFPE。"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "task": "humaneval-x-cpp-16",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_assign_const:/repo/src/cpp_124.cc:39:7:39:8",
+      "reason": "yy 解析结果不被读取；合法格式检查已保证 4 位数字，替换赋值/atoi 返回不影响年月日判断。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-16/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-16/source/src/cpp_124.cc:39"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/cpp_125.cc:47:19:47:21",
+      "reason": "字符 a(97) 是奇数，本就不会计入偶数字符，排除它不影响计数。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-16/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-16/source/src/cpp_125.cc:47"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_125.cc:24:19:24:20",
+      "reason": "只额外读取 C++11 string[size()] 的零字符；该处零字符不触发计数/括号/分隔分支，或只追加到随后丢弃的局部尾段，不进入返回结果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-16/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-16/source/src/cpp_125.cc:24"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_125.cc:36:19:36:20",
+      "reason": "只额外读取 C++11 string[size()] 的零字符；该处零字符不触发计数/括号/分隔分支，或只追加到随后丢弃的局部尾段，不进入返回结果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-16/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-16/source/src/cpp_125.cc:36"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_125.cc:46:15:46:16",
+      "reason": "额外读取的 C++11 字符串终止符为 0，不满足小写字母范围；计数不变。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-16/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-16/source/src/cpp_125.cc:46"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_128.cc:25:19:25:20",
+      "reason": "arr[i]==0 时 prods 已在上一行置 0，-0 仍是整数 0。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-16/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-16/source/src/cpp_128.cc:25"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/cpp_124.cc:39:8:39:38",
+      "reason": "yy 解析结果不被读取；合法格式检查已保证 4 位数字，替换赋值/atoi 返回不影响年月日判断。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-16/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-16/source/src/cpp_124.cc:39"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

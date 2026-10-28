@@ -1,0 +1,17 @@
+{
+  "task": "racing-car-telemetry",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_assign_const:/repo/TelemetrySystem/source/TelemetryClient.cpp:35:20:35:21",
+      "reason": "仅剩 disconnect 的 false 存储：实际 IR 为 store i8 42，getOnlineStatus 为 load i8 后 trunc i8 to i1，结果仍 false；其他 7 个候选均已有可区分的公开调用序列。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-racing-car-telemetry/mutation_baseline.json",
+        "benchmark/racing-car-telemetry/source/TelemetrySystem/source/TelemetryClient.cpp:35",
+        "runs/eval-bank-followup-20261027-01/review-ir/racing-car-telemetry/TelemetryClient.cpp.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

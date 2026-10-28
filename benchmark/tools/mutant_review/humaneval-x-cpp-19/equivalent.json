@@ -1,0 +1,102 @@
+{
+  "task": "humaneval-x-cpp-19",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_add_assign_to_sub_assign:/repo/src/cpp_147.cc:36:34:36:36",
+      "reason": "两轮线性计数递推都把加法变减法，符号翻转两次抵消，原有定义范围内中间值也安全。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-19/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-19/source/src/cpp_147.cc:36"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/cpp_150.cc:16:17:16:18",
+      "reason": "变异把赋给 bool 的 false 改为存入 i8 42。Clang -O0 读取 bool 都是 load i8 后 trunc 到 i1，只取最低位，42 读出仍为 false，与原代码相同（本机 IR 核对见证据；与 Telemetry 在固定工具链上的 IR 结论一致）。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-19/source/src/cpp_150.cc:16",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-19.md",
+        "runs/bank-review-20261028-05/bool-ir.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/cpp_150.cc:18:20:18:21",
+      "reason": "变异把赋给 bool 的 false 改为存入 i8 42。Clang -O0 读取 bool 都是 load i8 后 trunc 到 i1，只取最低位，42 读出仍为 false，与原代码相同（本机 IR 核对见证据；与 Telemetry 在固定工具链上的 IR 结论一致）。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-19/source/src/cpp_150.cc:18",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-19.md",
+        "runs/bank-review-20261028-05/bool-ir.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/cpp_147.cc:34:14:34:16",
+      "reason": "i==1 时被跳过的项来自 sum[0]，三项均为 0。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-19/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-19/source/src/cpp_147.cc:34"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_146.cc:18:16:18:17",
+      "reason": "10 的末位为偶数，新增等号路径仍不会增加计数。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-19/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-19/source/src/cpp_146.cc:18"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_148.cc:31:13:31:14",
+      "reason": "两位置相等时交换相同整数。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-19/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-19/source/src/cpp_148.cc:31"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_151.cc:22:15:22:16",
+      "reason": "0 仍被后续奇数判定拒绝，>0 改 >=0 不会计入。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-19/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-19/source/src/cpp_151.cc:22",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-19/cpp_151.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_149.cc:29:19:29:20",
+      "reason": "外层额外一轮在完整冒泡排序后不再交换；42 次固定上界另有长序列反例。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-19/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-19/source/src/cpp_149.cc:29"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_151.cc:21:29:21:30",
+      "reason": "float 减法先舍入为 binary32 再提升 double，与不可表示的 1e-4 不会相等，< 与 <= 一致。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-19/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-19/source/src/cpp_151.cc:21",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-19/cpp_151.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_153.cc:30:23:30:24",
+      "reason": "只额外读取 C++11 string[size()] 的零字符；该处零字符不触发计数/括号/分隔分支，或只追加到随后丢弃的局部尾段，不进入返回结果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-19/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-19/source/src/cpp_153.cc:30"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

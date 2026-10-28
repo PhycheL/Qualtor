@@ -1,0 +1,468 @@
+{
+  "task": "humaneval-x-cpp-11",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_ge_to_gt:/repo/src/cpp_081.cc:36:22:36:24",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:36",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_081.cc:37:22:37:23",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:37",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_081.cc:38:22:38:23",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:38",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_081.cc:39:22:39:23",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:39",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_081.cc:40:22:40:23",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:40",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_081.cc:41:22:41:23",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:41",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_081.cc:42:22:42:23",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:42",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_081.cc:43:22:43:23",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:43",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_081.cc:44:22:44:23",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:44",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_081.cc:45:22:45:23",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:45",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_081.cc:46:22:46:23",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:46",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_081.cc:47:22:47:23",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:47",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/cpp_081.cc:38:43:38:45",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:38",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/cpp_081.cc:39:43:39:45",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:39",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/cpp_081.cc:40:43:40:45",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:40",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/cpp_081.cc:41:43:41:45",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:41",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/cpp_081.cc:42:43:42:45",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:42",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/cpp_081.cc:43:43:43:45",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:43",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/cpp_081.cc:44:43:44:45",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:44",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/cpp_081.cc:45:43:45:45",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:45",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/cpp_081.cc:46:43:46:45",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:46",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/cpp_081.cc:47:43:47:45",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:47",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/cpp_081.cc:48:22:48:24",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:48",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_081.cc:37:43:37:44",
+      "reason": "IR 明确先 fpext float 到 double；12 个 double 十进制阈值均不是可表示的 binary32 值，等号永远不成立，严格/非严格比较等价。证据 float-threshold-proof.json。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:37",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_086.cc:23:19:23:20",
+      "reason": "只额外读取 C++11 string[size()] 的零字符；该处零字符不触发计数/括号/分隔分支，或只追加到随后丢弃的局部尾段，不进入返回结果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_086.cc:23"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/cpp_081.cc:36:32:36:51",
+      "reason": "实际 IR 同位置多项共用 ID，生效的是删除无操作 allocator 析构，push_back 保留。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:36",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/cpp_081.cc:37:52:37:70",
+      "reason": "实际 IR 同位置多项共用 ID，生效的是删除无操作 allocator 析构，push_back 保留。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:37",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/cpp_081.cc:38:53:38:72",
+      "reason": "实际 IR 同位置多项共用 ID，生效的是删除无操作 allocator 析构，push_back 保留。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:38",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/cpp_081.cc:39:53:39:72",
+      "reason": "实际 IR 同位置多项共用 ID，生效的是删除无操作 allocator 析构，push_back 保留。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:39",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/cpp_081.cc:40:53:40:71",
+      "reason": "实际 IR 同位置多项共用 ID，生效的是删除无操作 allocator 析构，push_back 保留。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:40",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/cpp_081.cc:41:53:41:72",
+      "reason": "实际 IR 同位置多项共用 ID，生效的是删除无操作 allocator 析构，push_back 保留。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:41",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/cpp_081.cc:42:53:42:72",
+      "reason": "实际 IR 同位置多项共用 ID，生效的是删除无操作 allocator 析构，push_back 保留。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:42",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/cpp_081.cc:43:53:43:71",
+      "reason": "实际 IR 同位置多项共用 ID，生效的是删除无操作 allocator 析构，push_back 保留。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:43",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/cpp_081.cc:44:53:44:72",
+      "reason": "实际 IR 同位置多项共用 ID，生效的是删除无操作 allocator 析构，push_back 保留。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:44",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/cpp_081.cc:45:53:45:72",
+      "reason": "实际 IR 同位置多项共用 ID，生效的是删除无操作 allocator 析构，push_back 保留。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:45",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/cpp_081.cc:46:53:46:71",
+      "reason": "实际 IR 同位置多项共用 ID，生效的是删除无操作 allocator 析构，push_back 保留。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:46",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/cpp_081.cc:47:53:47:72",
+      "reason": "实际 IR 同位置多项共用 ID，生效的是删除无操作 allocator 析构，push_back 保留。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:47",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/cpp_081.cc:48:32:48:50",
+      "reason": "实际 IR 同位置多项共用 ID，生效的是删除无操作 allocator 析构，push_back 保留。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-11/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_081.cc:48",
+        "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-11/cpp_081.cc.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json",
+        "runs/eval-bank-followup-20261027-01/float-threshold-proof.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/cpp_087.cc:29:23:29:43",
+      "reason": "同一位置的实际变异删除的是临时对象的析构调用：若删除的是调用本身，现有参考测试会因结果缺项而检出，而该变异在参考与探针上都幸存。临时对象已被移动进容器（或按值传参的副本），push_back 移动了 {i,j} 构造的临时 vector，跳过其析构没有可观察效果。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-11/source/src/cpp_087.cc:29",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-11.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    }
+  ]
+}

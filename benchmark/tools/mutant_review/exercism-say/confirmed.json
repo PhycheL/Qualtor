@@ -1,0 +1,16 @@
+{
+  "task": "exercism-say",
+  "note": "复核结论。non_equivalent_verified：真实 Mull 反例检出，计入分母；undefined_only：只在未定义行为下与原代码不同（D015），列为不稳定、不计入分母。prepare_new_tasks.py 写入分母前、apply_review.py 修订已有分母时应用。",
+  "review": "runs/bank-review-20261027-03",
+  "mutants": [
+    {
+      "id": "cxx_ge_to_gt:/repo/src/say.cpp:51:16:51:18",
+      "verdict": "undefined_only",
+      "note": "只在 number 为 20 时与原代码不同，此时读取 20 个元素的 singles_and_teens_names[20]，越界；源码副本的驱动得到错误结果，Mull 布局下幸存。",
+      "evidence": [
+        "benchmark/exercism-say/source/src/say.cpp:51",
+        "runs/bank-review-20261027-03/exercism-say.md"
+      ]
+    }
+  ]
+}

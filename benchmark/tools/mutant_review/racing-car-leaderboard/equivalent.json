@@ -1,0 +1,28 @@
+{
+  "task": "racing-car-leaderboard",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_replace_scalar_call:/repo/LeaderBoard/source/LeaderBoard.cpp:18:25:18:28",
+      "reason": "把 end 迭代器改为地址 42 使分支总选 +=；新名字经 map::operator[] 值初始化为 0，0+points 与首次赋值相同，已存在名字的行为也相同。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-racing-car-leaderboard/mutation_baseline.json",
+        "benchmark/racing-car-leaderboard/source/LeaderBoard/source/LeaderBoard.cpp:18",
+        "runs/eval-bank-followup-20261027-01/review-ir/racing-car-leaderboard/LeaderBoard.cpp.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/LeaderBoard/source/Race.cpp:14:28:14:30",
+      "reason": "m_results 是 list<Driver>，元素按值保存，派生对象已切片；typeid(driver)==typeid(SelfDrivingCar) 恒假，i1 常量 42 截为 false。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-racing-car-leaderboard/mutation_baseline.json",
+        "benchmark/racing-car-leaderboard/source/LeaderBoard/source/Race.cpp:14",
+        "runs/eval-bank-followup-20261027-01/review-ir/racing-car-leaderboard/Race.cpp.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

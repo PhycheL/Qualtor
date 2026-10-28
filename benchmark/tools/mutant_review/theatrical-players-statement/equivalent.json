@@ -1,0 +1,15 @@
+{
+  "task": "theatrical-players-statement",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_init_const:/repo/src/statement.cpp:42:15:42:26",
+      "reason": "this_amount 在 tragedy/comedy 分支分别先赋 40000/30000；其余分支直接抛异常，初值不参与输出。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-theatrical-players-statement/mutation_baseline.json",
+        "benchmark/theatrical-players-statement/source/src/statement.cpp:42"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

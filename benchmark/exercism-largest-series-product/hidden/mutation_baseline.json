@@ -481,14 +481,27 @@
       "id": "cxx_lt_to_le:/repo/src/largest_series_product.cpp:14:14:14:15",
       "method": "bounded_probe",
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_lt_to_le:/repo/src/largest_series_product.cpp:27:26:27:27",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
     }
   ],
-  "unstable": [],
+  "unstable": [
+    {
+      "id": "cxx_lt_to_le:/repo/src/largest_series_product.cpp:27:26:27:27",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "benchmark/exercism-largest-series-product/source/src/largest_series_product.cpp:27",
+        "runs/bank-review-20261027-03/exercism-largest-series-product.md"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    }
+  ],
   "review_needed": [],
   "review": {
     "status": "pending",

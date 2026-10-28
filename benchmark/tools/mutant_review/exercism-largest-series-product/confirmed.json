@@ -1,0 +1,16 @@
+{
+  "task": "exercism-largest-series-product",
+  "note": "复核结论。non_equivalent_verified：真实 Mull 反例检出，计入分母；undefined_only：只在未定义行为下与原代码不同（D015），列为不稳定、不计入分母。prepare_new_tasks.py 写入分母前、apply_review.py 修订已有分母时应用。",
+  "review": "runs/bank-review-20261027-03",
+  "mutants": [
+    {
+      "id": "cxx_lt_to_le:/repo/src/largest_series_product.cpp:27:26:27:27",
+      "verdict": "undefined_only",
+      "note": "多出的一个窗口令迭代器越过 end()（未定义行为）；span≥1 时其余窗口与原代码相同。（Claude（2026-10-28 源码复核））",
+      "evidence": [
+        "benchmark/exercism-largest-series-product/source/src/largest_series_product.cpp:27",
+        "runs/bank-review-20261027-03/exercism-largest-series-product.md"
+      ]
+    }
+  ]
+}

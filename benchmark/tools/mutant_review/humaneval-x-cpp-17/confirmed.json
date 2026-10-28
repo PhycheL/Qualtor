@@ -1,0 +1,91 @@
+{
+  "task": "humaneval-x-cpp-17",
+  "note": "复核结论。non_equivalent_verified：真实 Mull 反例检出，计入分母；undefined_only：只在未定义行为下与原代码不同（D015），列为不稳定、不计入分母。prepare_new_tasks.py 写入分母前、apply_review.py 修订已有分母时应用。",
+  "review": "runs/bank-review-20261027-03",
+  "mutants": [
+    {
+      "id": "cxx_ge_to_gt:/repo/src/cpp_134.cc:24:13:24:15",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-17/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-17/source/src/cpp_134.cc:24",
+        "runs/eval-review-20261027-humaneval-x-cpp-17/trials/humaneval-x-cpp-17/trial-1/score/0.1.6/final/result.json",
+        "runs/eval-review-20261027-humaneval-x-cpp-17/trials/humaneval-x-cpp-17/trial-1/score/0.1.6/final/mull/mull/mutations.json",
+        "runs/eval-bank-followup-20261027-01/review-products/humaneval-x-cpp-17"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_134.cc:21:23:21:24",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-17/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-17/source/src/cpp_134.cc:21",
+        "runs/eval-review-20261027-humaneval-x-cpp-17/trials/humaneval-x-cpp-17/trial-1/score/0.1.6/final/result.json",
+        "runs/eval-review-20261027-humaneval-x-cpp-17/trials/humaneval-x-cpp-17/trial-1/score/0.1.6/final/mull/mull/mutations.json",
+        "runs/eval-bank-followup-20261027-01/review-products/humaneval-x-cpp-17"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_134.cc:21:45:21:46",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-17/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-17/source/src/cpp_134.cc:21",
+        "runs/eval-review-20261027-humaneval-x-cpp-17/trials/humaneval-x-cpp-17/trial-1/score/0.1.6/final/result.json",
+        "runs/eval-review-20261027-humaneval-x-cpp-17/trials/humaneval-x-cpp-17/trial-1/score/0.1.6/final/mull/mull/mutations.json",
+        "runs/eval-bank-followup-20261027-01/review-products/humaneval-x-cpp-17"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/cpp_134.cc:24:25:24:27",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-17/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-17/source/src/cpp_134.cc:24",
+        "runs/eval-review-20261027-humaneval-x-cpp-17/trials/humaneval-x-cpp-17/trial-1/score/0.1.6/final/result.json",
+        "runs/eval-review-20261027-humaneval-x-cpp-17/trials/humaneval-x-cpp-17/trial-1/score/0.1.6/final/mull/mull/mutations.json",
+        "runs/eval-bank-followup-20261027-01/review-products/humaneval-x-cpp-17"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_134.cc:21:34:21:35",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-17/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-17/source/src/cpp_134.cc:21",
+        "runs/eval-review-20261027-humaneval-x-cpp-17/trials/humaneval-x-cpp-17/trial-1/score/0.1.6/final/result.json",
+        "runs/eval-review-20261027-humaneval-x-cpp-17/trials/humaneval-x-cpp-17/trial-1/score/0.1.6/final/mull/mull/mutations.json",
+        "runs/eval-bank-followup-20261027-01/review-products/humaneval-x-cpp-17"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/cpp_132.cc:20:24:20:30",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-17/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-17/source/src/cpp_132.cc:20",
+        "runs/eval-review-20261027-humaneval-x-cpp-17/trials/humaneval-x-cpp-17/trial-1/score/0.1.6/final/result.json",
+        "runs/eval-review-20261027-humaneval-x-cpp-17/trials/humaneval-x-cpp-17/trial-1/score/0.1.6/final/mull/mull/mutations.json",
+        "runs/eval-bank-followup-20261027-01/review-products/humaneval-x-cpp-17"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/cpp_134.cc:19:13:19:19",
+      "verdict": "undefined_only",
+      "note": "跳过空串保护后，空串会访问 txt[size()-1]，越界（未定义行为）；其他长度与原代码相同。（Claude（2026-10-28 源码复核））",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-17/source/src/cpp_134.cc:19",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-17.md"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/cpp_134.cc:22:13:22:19",
+      "verdict": "undefined_only",
+      "note": "跳过单字符保护后，长度为 1 的串会访问 txt[size()-2]，越界（未定义行为）；其他长度与原代码相同。（Claude（2026-10-28 源码复核））",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-17/source/src/cpp_134.cc:22",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-17.md"
+      ]
+    }
+  ]
+}

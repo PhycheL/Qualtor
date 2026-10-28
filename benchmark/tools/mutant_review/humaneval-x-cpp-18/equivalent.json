@@ -1,0 +1,98 @@
+{
+  "task": "humaneval-x-cpp-18",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_assign_const:/repo/src/cpp_143.cc:36:21:36:22",
+      "reason": "变异把赋给 bool 的 false 改为存入 i8 42。Clang -O0 读取 bool 都是 load i8 后 trunc 到 i1，只取最低位，42 读出仍为 false，与原代码相同（本机 IR 核对见证据；与 Telemetry 在固定工具链上的 IR 结论一致）。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-18/source/src/cpp_143.cc:36",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-18.md",
+        "runs/bank-review-20261028-05/bool-ir.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/cpp_143.cc:38:28:38:29",
+      "reason": "变异把赋给 bool 的 false 改为存入 i8 42。Clang -O0 读取 bool 都是 load i8 后 trunc 到 i1，只取最低位，42 读出仍为 false，与原代码相同（本机 IR 核对见证据；与 Telemetry 在固定工具链上的 IR 结论一致）。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-18/source/src/cpp_143.cc:38",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-18.md",
+        "runs/bank-review-20261028-05/bool-ir.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_145.cc:26:20:26:21",
+      "reason": "零的符号分支都贡献整数 0；末尾额外零字符统一给每个数位和减 48；或完整排序后多一轮冒泡，均不改变返回顺序。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-18/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-18/source/src/cpp_145.cc:26"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_init_const:/repo/src/cpp_145.cc:23:13:23:16",
+      "reason": "所有排序键统一加 42，不改变稳定排序关系。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-18/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-18/source/src/cpp_145.cc:23"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_141.cc:27:19:27:20",
+      "reason": "只额外读取 C++11 string[size()] 的零字符；该处零字符不触发计数/括号/分隔分支，或只追加到随后丢弃的局部尾段，不进入返回结果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-18/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-18/source/src/cpp_141.cc:27"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_143.cc:30:19:30:20",
+      "reason": "只额外读取 C++11 string[size()] 的零字符；该处零字符不触发计数/括号/分隔分支，或只追加到随后丢弃的局部尾段，不进入返回结果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-18/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-18/source/src/cpp_143.cc:30"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_144.cc:20:15:20:16",
+      "reason": "只额外读取 C++11 string[size()] 的零字符；该处零字符不触发计数/括号/分隔分支，或只追加到随后丢弃的局部尾段，不进入返回结果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-18/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-18/source/src/cpp_144.cc:20"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_144.cc:26:15:26:16",
+      "reason": "只额外读取 C++11 string[size()] 的零字符；该处零字符不触发计数/括号/分隔分支，或只追加到随后丢弃的局部尾段，不进入返回结果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-18/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-18/source/src/cpp_144.cc:26"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_145.cc:24:23:24:24",
+      "reason": "零的符号分支都贡献整数 0；末尾额外零字符统一给每个数位和减 48；或完整排序后多一轮冒泡，均不改变返回顺序。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-18/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-18/source/src/cpp_145.cc:24"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_145.cc:31:19:31:20",
+      "reason": "零的符号分支都贡献整数 0；末尾额外零字符统一给每个数位和减 48；或完整排序后多一轮冒泡，均不改变返回顺序。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-18/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-18/source/src/cpp_145.cc:31"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

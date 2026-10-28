@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """评测模块校准：对校准样本逐个评分两次，与期望比对，检查重复评分一致，写校准报告和校准状态。
 
+样本按题目放在 calibration/<题目 ID>/ 下；默认校准所有带样本的题目，并在校准状态中记录每道题的指纹（R-08）。
+
 用法（在装有 Docker 和两个工具链镜像的机器上，从项目根目录执行）：
     python3 evaluator/assessment/calibrate.py
-    python3 evaluator/assessment/calibrate.py --samples CAL-01,CAL-07 --jobs 2
-只校准部分样本时会写报告，但不会把校准状态记为通过。
+    python3 evaluator/assessment/calibrate.py --task gildedrose-update-quality --samples CAL-01,CAL-07 --jobs 2
+只校准部分题目或部分样本时会写报告，但不会更新校准状态。
 """
 import argparse
 import shutil
@@ -27,6 +29,12 @@ import pipeline  # noqa: E402
 NEEDS = {"M1_e2e": "mull", "M1_valid": "mull", "C1": "coverage", "C2": "coverage", "C3": "coverage"}
 
 
+def calibration_tasks():
+    """带校准样本的题目 ID：calibration/<题目 ID>/ 下至少有一个含 expected.json 的样本目录。"""
+    return sorted(p.name for p in CALIBRATION.iterdir()
+                  if p.is_dir() and any((s / "expected.json").is_file() for s in p.iterdir() if s.is_dir()))
+
+
 def load_samples(task_id, selected=None):
     root = CALIBRATION / task_id
     samples = {}
@@ -34,8 +42,6 @@ def load_samples(task_id, selected=None):
         if selected and path.name not in selected:
             continue
         samples[path.name] = {"dir": path, "expected": read_json(path / "expected.json")}
-    if selected and set(selected) - set(samples):
-        raise SystemExit(f"找不到样本：{sorted(set(selected) - set(samples))}")
     return samples
 
 
@@ -163,22 +169,23 @@ def evaluate(task, samples, results, capabilities):
 def markdown(report):
     lines = [f"# 校准报告 {report['run_id']}", "",
              f"- 评测模块版本：{report['scorer_version']}（代码指纹 {report['scorer_code_sha256'][:12]}）",
-             f"- 结论：**{'通过' if report['passed'] else '未通过'}**" + ("（部分样本，不计为正式校准）" if report["partial"] else ""),
+             f"- 结论：**{'通过' if report['passed'] else '未通过'}**" + ("（部分题目或样本，不计为正式校准）" if report["partial"] else ""),
+             f"- 题目：" + "、".join(f"{tid}（{len(info['samples'])} 个样本）" for tid, info in report["tasks"].items()),
              f"- 每个样本评分 {report['rounds']} 次；镜像：" + "、".join(f"{k} {v['id'][:19]}" for k, v in report["images"].items()),
-             "", "| 样本 | 结论 | 状态 | M1 端到端 | C1 | S1 | 问题 |", "|---|---|---|---|---|---|---|"]
+             "", "| 题目 | 样本 | 结论 | 状态 | M1 端到端 | C1 | S1 | 问题 |", "|---|---|---|---|---|---|---|---|"]
     fmt = lambda v: "—" if v is None else f"{v:.3f}"
     for sid, entry in report["samples"].items():
         m = entry["metrics"]
         status = entry["status"] + (f"（{entry['invalid_reason']}）" if entry["invalid_reason"] else "")
         problems = "；".join(entry["problems"]).replace("|", "/") or "—"
-        lines.append(f"| {sid} | {'通过' if entry['passed'] else '未通过'} | {status} | {fmt(m['M1_e2e'])} | "
+        lines.append(f"| {entry['task']} | {sid} | {'通过' if entry['passed'] else '未通过'} | {status} | {fmt(m['M1_e2e'])} | "
                      f"{fmt(m['C1'])} | {fmt(m['S1'])} | {problems} |")
     return "\n".join(lines) + "\n"
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--task", default="gildedrose-update-quality")
+    parser.add_argument("--task", action="append", help="只校准指定题目（可重复）；省略表示所有带样本的题目")
     parser.add_argument("--run-id", default=default_run_id("calibration"))
     parser.add_argument("--rounds", type=int, default=2)
     parser.add_argument("--jobs", type=int, default=2)
@@ -191,7 +198,8 @@ def main():
     if run_dir.exists() or evidence.exists():
         parser.error("run-id 已使用；请使用新目录保留历史证据")
     evidence.mkdir(parents=True)
-    manifest = new_manifest(args.run_id, "calibration", task=args.task, partial=bool(args.samples))
+    manifest = new_manifest(args.run_id, "calibration", tasks=args.task or calibration_tasks(),
+                            partial=bool(args.task or args.samples))
     write_manifest(run_dir, manifest)
     try:
         code, passed = run_calibration(args, run_dir, evidence)
@@ -202,20 +210,41 @@ def main():
     return code
 
 
+def plan(task_ids, selected):
+    """读取各题的样本；样本 ID 在所有题目中唯一，汇总报告按样本 ID 列出。"""
+    tasks, samples = {}, {}
+    for task_id in task_ids:
+        if not (CALIBRATION / task_id).is_dir():
+            raise SystemExit(f"题目 {task_id} 没有校准样本目录 calibration/{task_id}/")
+        task = load_task(task_id)
+        if not load_baseline(task):
+            raise SystemExit(f"题目 {task_id} 缺少变异分母 hidden/mutation_baseline.json，先运行 prepare_task.py baseline")
+        tasks[task_id] = task
+        for sid, sample in load_samples(task_id, selected).items():
+            if sid in samples:
+                raise SystemExit(f"样本 ID 重复：{sid}（{samples[sid]['task']}、{task_id}）")
+            samples[sid] = {**sample, "task": task_id}
+    if selected and set(selected) - set(samples):
+        raise SystemExit(f"找不到样本：{sorted(set(selected) - set(samples))}")
+    if not samples:
+        raise SystemExit("没有可校准的样本")
+    return tasks, samples
+
+
 def run_calibration(args, run_dir, evidence):
     from docker_runner import DockerExecutor
-    task = load_task(args.task)
-    if not load_baseline(task):
-        raise SystemExit("题目缺少变异分母 hidden/mutation_baseline.json，先运行 prepare_task.py baseline")
+    all_tasks = calibration_tasks()
     selected = [s.strip() for s in args.samples.split(",")] if args.samples else None
-    samples = load_samples(task["id"], selected)
+    tasks, samples = plan(args.task or all_tasks, selected)
+    partial = bool(selected) or set(tasks) != set(all_tasks)
     executor = DockerExecutor(Audit(evidence / "host"), evidence, args.run_id)
 
     def score(job):
         sid, index = job
+        task = tasks[samples[sid]["task"]]
         out = run_dir / "calibration" / task["id"] / sid / f"round-{index}"
         sample = samples[sid]["dir"]
-        print(f"评分 {sid} 第 {index} 次", flush=True)
+        print(f"评分 {task['id']} {sid} 第 {index} 次", flush=True)
         return job, pipeline.assess_product(executor, task, sample / "final", out,
                                            {"calibration_sample": sid, "round": index},
                                            Audit(out.parent / f"round-{index}-host"), sample / "generation" / "cost.json",
@@ -227,20 +256,26 @@ def run_calibration(args, run_dir, evidence):
         for (sid, index), result in pool.map(score, jobs):
             results[sid][index - 1] = result
             print(f"  {sid} 第 {index} 次：{result['status']} {result.get('invalid_reason') or ''}", flush=True)
-    report = evaluate(task, samples, results, executor.capabilities)
-    report.update(run_id=args.run_id, task=task["id"], rounds=args.rounds, partial=bool(selected),
+    report = {"samples": {}, "tasks": {}, "passed": True}
+    for task_id, task in tasks.items():
+        own = {sid: s for sid, s in samples.items() if s["task"] == task_id}
+        part = evaluate(task, own, {sid: results[sid] for sid in own}, executor.capabilities)
+        for sid, entry in part["samples"].items():
+            report["samples"][sid] = {"task": task_id, **entry}
+        report["tasks"][task_id] = {"task_sha256": task_sha256(task), "passed": part["passed"], "samples": sorted(own)}
+        report["passed"] = report["passed"] and part["passed"]
+    report.update(run_id=args.run_id, rounds=args.rounds, partial=partial,
                   scorer_version=assessment_version(), scorer_code_sha256=assessment_code_sha256(),
-                  samples_sha256=samples_sha256(), task_sha256=task_sha256(task), images=executor.images,
-                  finished_at=now())
+                  samples_sha256=samples_sha256(), images=executor.images, finished_at=now())
     write_json(run_dir / "calibration_report.json", report)
     (run_dir / "calibration_report.md").write_text(markdown(report))
-    if not selected:
+    if not partial:
         for name in ("calibration_report.json", "calibration_report.md"):
             shutil.copy2(run_dir / name, CALIBRATION_STATUS.parent / name)
         write_json(CALIBRATION_STATUS, {"scorer_version": report["scorer_version"],
                                         "scorer_code_sha256": report["scorer_code_sha256"],
                                         "samples_sha256": report["samples_sha256"],
-                                        "tasks": {task["id"]: task_sha256(task)},
+                                        "tasks": {tid: info["task_sha256"] for tid, info in report["tasks"].items()},
                                         "images": {k: v["id"] for k, v in executor.images.items()},
                                         "run_id": args.run_id, "passed": report["passed"],
                                         "report": str((CALIBRATION_STATUS.parent / "calibration_report.json").relative_to(REPO)),

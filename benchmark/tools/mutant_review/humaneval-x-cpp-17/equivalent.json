@@ -1,0 +1,105 @@
+{
+  "task": "humaneval-x-cpp-17",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_assign_const:/repo/src/cpp_131.cc:20:16:20:17",
+      "reason": "has 只与 0 比较，1 换成 42 仍表示存在奇数字符。",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-17/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-17/source/src/cpp_131.cc:20"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_132.cc:25:18:25:19",
+      "reason": "count==0 时赋回 0；count==maxcount 时赋回同值。",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-17/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-17/source/src/cpp_132.cc:25"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_136.cc:21:46:21:47",
+      "reason": "相等时给 minpos/maxneg 赋回同一个整数。",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-17/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-17/source/src/cpp_136.cc:21"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_129.cc:43:29:43:30",
+      "reason": "邻居等于 min 时赋回同一个整数。",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-17/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-17/source/src/cpp_129.cc:43"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_129.cc:44:41:44:42",
+      "reason": "邻居等于 min 时赋回同一个整数。",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-17/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-17/source/src/cpp_129.cc:44"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_129.cc:45:29:45:30",
+      "reason": "邻居等于 min 时赋回同一个整数。",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-17/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-17/source/src/cpp_129.cc:45"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_129.cc:46:41:46:42",
+      "reason": "邻居等于 min 时赋回同一个整数。",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-17/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-17/source/src/cpp_129.cc:46"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_131.cc:17:19:17:20",
+      "reason": "只额外读取 C++11 string[size()] 的零字符；该处零字符不触发计数/括号/分隔分支，或只追加到随后丢弃的局部尾段，不进入返回结果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-17/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-17/source/src/cpp_131.cc:17"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_132.cc:20:19:20:20",
+      "reason": "只额外读取 C++11 string[size()] 的零字符；该处零字符不触发计数/括号/分隔分支，或只追加到随后丢弃的局部尾段，不进入返回结果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-17/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-17/source/src/cpp_132.cc:20"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_132.cc:24:18:24:19",
+      "reason": "count==0 时赋回 0；count==maxcount 时赋回同值。",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-17/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-17/source/src/cpp_132.cc:24"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_136.cc:22:46:22:47",
+      "reason": "相等时给 minpos/maxneg 赋回同一个整数。",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-17/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-17/source/src/cpp_136.cc:22"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

@@ -29,11 +29,31 @@ class TaskSelectionTest(unittest.TestCase):
             with patch.object(run, "BENCHMARK", Path(root)), \
                     patch.object(run, "load_task", side_effect=lambda choice: tasks[Path(choice).name]), \
                     patch.object(run, "load_baseline", side_effect=lambda task: {} if task["id"] == "prepared" else None), \
+                    patch.object(run, "admission_status", return_value={"status": "admitted"}), \
                     patch.object(run, "public_task", side_effect=lambda task: task):
                 self.assertEqual([t["id"] for t in run.select_tasks(["all"], None)], ["prepared"])
                 self.assertEqual([t["id"] for t in run.select_tasks(["prepared"], "dev")], ["prepared"])
                 with self.assertRaisesRegex(ValueError, "尚未标定变异分母"):
                     run.select_tasks(["unprepared"], None)
+
+    def test_unadmitted_tasks_need_explicit_permission(self):
+        with tempfile.TemporaryDirectory() as root:
+            tasks = {name: {"id": name, "set": "dev"} for name in ("admitted", "pending", "changed")}
+            for name in tasks:
+                (Path(root) / name).mkdir()
+                (Path(root) / name / "task.json").write_text("{}")
+            states = {"admitted": "admitted", "pending": "not_admitted", "changed": "stale"}
+            with patch.object(run, "BENCHMARK", Path(root)), \
+                    patch.object(run, "load_task", side_effect=lambda choice: tasks[Path(choice).name]), \
+                    patch.object(run, "load_baseline", return_value={}), \
+                    patch.object(run, "admission_status", side_effect=lambda task: {"status": states[task["id"]]}), \
+                    patch.object(run, "public_task", side_effect=lambda task: task):
+                self.assertEqual([t["id"] for t in run.select_tasks(["all"], None)], ["admitted"])
+                for name in ("pending", "changed"):
+                    with self.assertRaisesRegex(ValueError, "未准入"):
+                        run.select_tasks([name], None)
+                self.assertEqual(sorted(t["id"] for t in run.select_tasks(["all"], None, allow_unadmitted=True)),
+                                 ["admitted", "changed", "pending"])
 
 
 class TrialCancellationTest(unittest.TestCase):

@@ -1,0 +1,51 @@
+{
+  "task": "exercism-clock",
+  "note": "复核结论。non_equivalent_verified：真实 Mull 反例检出，计入分母；undefined_only：只在未定义行为下与原代码不同（D015），列为不稳定、不计入分母。prepare_new_tasks.py 写入分母前、apply_review.py 修订已有分母时应用。",
+  "review": "runs/bank-review-20261027-03",
+  "mutants": [
+    {
+      "id": "cxx_div_to_mul:/repo/src/clock.cpp:40:32:40:33",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-clock/mutation_baseline.json",
+        "benchmark/exercism-clock/source/src/clock.cpp:40",
+        "runs/eval-review-extra-20261027-02-exercism-clock/trials/exercism-clock/trial-1/score/0.1.6/final/result.json",
+        "runs/eval-review-extra-20261027-02-exercism-clock/trials/exercism-clock/trial-1/score/0.1.6/final/mull/mull/mutations.json",
+        "runs/eval-bank-followup-20261027-01/review-products-extra/exercism-clock"
+      ]
+    },
+    {
+      "id": "cxx_div_to_mul:/repo/src/clock.cpp:44:57:44:58",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-clock/mutation_baseline.json",
+        "benchmark/exercism-clock/source/src/clock.cpp:44",
+        "runs/eval-review-20261027-exercism-clock/trials/exercism-clock/trial-1/score/0.1.6/final/result.json",
+        "runs/eval-review-20261027-exercism-clock/trials/exercism-clock/trial-1/score/0.1.6/final/mull/mull/mutations.json",
+        "runs/eval-bank-followup-20261027-01/review-products/exercism-clock"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/clock.cpp:25:5:25:12",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-clock/mutation_baseline.json",
+        "benchmark/exercism-clock/source/src/clock.cpp:25",
+        "runs/eval-review-20261027-exercism-clock/trials/exercism-clock/trial-1/score/0.1.6/final/result.json",
+        "runs/eval-review-20261027-exercism-clock/trials/exercism-clock/trial-1/score/0.1.6/final/mull/mull/mutations.json",
+        "runs/eval-bank-followup-20261027-01/review-products/exercism-clock"
+      ]
+    },
+    {
+      "id": "cxx_sub_assign_to_add_assign:/repo/src/clock.cpp:24:13:24:15",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-clock/mutation_baseline.json",
+        "benchmark/exercism-clock/source/src/clock.cpp:24",
+        "runs/eval-review-20261027-exercism-clock/trials/exercism-clock/trial-1/score/0.1.6/final/result.json",
+        "runs/eval-review-20261027-exercism-clock/trials/exercism-clock/trial-1/score/0.1.6/final/mull/mull/mutations.json",
+        "runs/eval-bank-followup-20261027-01/review-products/exercism-clock"
+      ]
+    }
+  ]
+}

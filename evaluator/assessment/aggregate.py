@@ -17,7 +17,7 @@ import sys
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
-from common import RUNS, now, read_json, write_json  # noqa: E402
+from common import RUNS, admission_state, load_admission, now, read_json, write_json  # noqa: E402
 
 RATIO_METRICS = ["V1", "V2", "V3", "S1", "M1_e2e", "M1_valid", "M2", "M4", "F1", "C1", "C2", "C3"]
 COST_FIELDS = ["tokens_input", "tokens_output", "tokens_cache_read", "tokens_cache_write", "seconds", "model_calls", "repair_rounds", "usd"]
@@ -205,6 +205,19 @@ def calibration_problems(results):
     return problems
 
 
+def admission_problems(results, admitted=None):
+    """R-08：正式比较只用已准入题目的结果，且结果评分时的题目指纹须与准入登记一致。"""
+    admitted = load_admission() if admitted is None else admitted
+    states = {}
+    for r in results:
+        task = r.get("task") or {}
+        state = admission_state(task.get("id"), task.get("sha256"), admitted)["status"]
+        if state != "admitted":
+            states.setdefault(state, set()).add(task.get("id"))
+    labels = {"not_admitted": "未准入", "stale": "准入后材料已变化或结果未记录题目指纹"}
+    return [f"{labels[state]}的题目：{', '.join(sorted(map(str, ids)))}" for state, ids in sorted(states.items())]
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -217,6 +230,7 @@ def main():
                        help="只汇总指定评测模块版本；--scorer-version 是兼容旧命令的别名")
         p.add_argument("--out", type=Path)
         p.add_argument("--allow-uncalibrated", action="store_true")
+        p.add_argument("--allow-unadmitted", action="store_true", help="包含未准入题目的结果，只作参考")
         if name == "compare":
             p.add_argument("--baseline", required=True)
             p.add_argument("--candidate", required=True)
@@ -229,6 +243,10 @@ def main():
     problems = calibration_problems(results)
     if problems and not args.allow_uncalibrated:
         raise SystemExit("；".join(problems) + "（确认只做参考时加 --allow-uncalibrated）")
+    unadmitted = admission_problems(results)
+    if unadmitted and not args.allow_unadmitted:
+        raise SystemExit("；".join(unadmitted) + "（正式比较只用已准入题目；确认只做参考时加 --allow-unadmitted）")
+    problems += unadmitted
     if args.command == "summarize":
         output = {"set": args.set, "phase": args.phase, "summary": summarize(results, args.set, args.phase),
                   "warnings": problems}

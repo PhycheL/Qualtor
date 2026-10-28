@@ -1,0 +1,17 @@
+{
+  "task": "exercism-acronym",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_assign_const:/repo/src/acronym.cpp:18:29:18:30",
+      "reason": "枚举状态只与 FOUND(1) 比较；Mull IR 把 NOT_FOUND(0) 存成 42 后仍不等于 1，下一分隔符会覆盖该值。结论限固定 IR，不把非法枚举源码赋值当标准 C++ 等价证明。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-acronym/mutation_baseline.json",
+        "benchmark/exercism-acronym/source/src/acronym.cpp:18",
+        "runs/eval-bank-followup-20261027-01/review-ir/exercism-acronym/acronym.cpp.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

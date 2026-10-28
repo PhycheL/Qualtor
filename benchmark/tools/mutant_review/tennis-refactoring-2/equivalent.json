@@ -1,0 +1,15 @@
+{
+  "task": "tennis-refactoring-2",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_lt_to_le:/repo/src/tennis2.cc:7:39:7:40",
+      "reason": "只剩第 7 行：4:4 时新增的 -All 会被第 17 行的 Deuce 覆盖；其余两项在有定义的负分输入上已区分。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-tennis-refactoring-2/mutation_baseline.json",
+        "benchmark/tennis-refactoring-2/source/src/tennis2.cc:7"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

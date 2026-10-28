@@ -6,7 +6,7 @@
     python3 evaluator/assessment/prepare_task.py baseline --task gildedrose-update-quality --write
 
 做法：用参考强测试集和有界穷举探针各评分 --repeats 次（准备模式：记录 Mull 原始结果，不比对分母）。
-- 各次结果不一致的变异列为“不稳定”，从分母中剔除；
+- 各次结果不一致、或参考测试检出而探针（包含全部参考测试）未检出的变异列为“不稳定”，从分母中剔除；
 - 探针也区分不出（幸存或未覆盖）的变异列为“等价变异候选”，从分母中剔除，复核状态为 pending；
 - 用剩余分母计算参考强测试集的 M1，并检查替换版本：应失败的被检出、等价版本无误报。
 草稿写到运行目录；加 --write 才写入题目的 hidden/mutation_baseline.json。人工复核后把 review.status 改为 reviewed。
@@ -69,6 +69,10 @@ def build_baseline(task, runs, config_text, images, run_id):
         if len(set(ref)) > 1 or len(set(probe)) > 1:
             unstable.append({"id": mid, "reference_status": ref, "probe_status": probe,
                              "reason": "多次运行结果不一致（可能是未定义行为导致的偶然崩溃），从分母中剔除"})
+        elif ref[0] == "killed" and probe[0] in ("survived", "not_covered"):
+            # 探针包含全部参考测试：参考测试检出而探针没有，说明结果取决于二进制，多为未定义行为（D015）。
+            unstable.append({"id": mid, "reference_status": ref, "probe_status": probe,
+                             "reason": "参考测试检出而探针未检出，结果取决于二进制（多为未定义行为），从分母中剔除"})
         elif probe[0] in ("survived", "not_covered"):
             equivalent.append({"id": mid, "method": "bounded_probe",
                                "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"})

@@ -1,0 +1,40 @@
+{
+  "task": "exercism-rotational-cipher",
+  "note": "复核结论。non_equivalent_verified：真实 Mull 反例检出，计入分母；undefined_only：只在未定义行为下与原代码不同（D015），列为不稳定、不计入分母。prepare_new_tasks.py 写入分母前、apply_review.py 修订已有分母时应用。",
+  "review": "runs/bank-review-20261027-03",
+  "mutants": [
+    {
+      "id": "cxx_ge_to_gt:/repo/src/rotational_cipher.cpp:12:22:12:24",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-rotational-cipher/mutation_baseline.json",
+        "benchmark/exercism-rotational-cipher/source/src/rotational_cipher.cpp:12",
+        "runs/eval-review-20261027-exercism-rotational-cipher/trials/exercism-rotational-cipher/trial-1/score/0.1.6/final/result.json",
+        "runs/eval-review-20261027-exercism-rotational-cipher/trials/exercism-rotational-cipher/trial-1/score/0.1.6/final/mull/mull/mutations.json",
+        "runs/eval-bank-followup-20261027-01/review-products/exercism-rotational-cipher"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/rotational_cipher.cpp:12:34:12:36",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-rotational-cipher/mutation_baseline.json",
+        "benchmark/exercism-rotational-cipher/source/src/rotational_cipher.cpp:12",
+        "runs/eval-review-20261027-exercism-rotational-cipher/trials/exercism-rotational-cipher/trial-1/score/0.1.6/final/result.json",
+        "runs/eval-review-20261027-exercism-rotational-cipher/trials/exercism-rotational-cipher/trial-1/score/0.1.6/final/mull/mull/mutations.json",
+        "runs/eval-bank-followup-20261027-01/review-products/exercism-rotational-cipher"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/rotational_cipher.cpp:13:32:13:33",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-rotational-cipher/mutation_baseline.json",
+        "benchmark/exercism-rotational-cipher/source/src/rotational_cipher.cpp:13",
+        "runs/eval-review-20261027-exercism-rotational-cipher/trials/exercism-rotational-cipher/trial-1/score/0.1.6/final/result.json",
+        "runs/eval-review-20261027-exercism-rotational-cipher/trials/exercism-rotational-cipher/trial-1/score/0.1.6/final/mull/mull/mutations.json",
+        "runs/eval-bank-followup-20261027-01/review-products/exercism-rotational-cipher"
+      ]
+    }
+  ]
+}

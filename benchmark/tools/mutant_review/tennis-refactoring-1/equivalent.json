@@ -1,0 +1,15 @@
+{
+  "task": "tennis-refactoring-1",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_init_const:/repo/src/tennis1.cc:5:9:5:18",
+      "reason": "tempScore 每次使用前都由当前球员分数覆盖，初值未读。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-tennis-refactoring-1/mutation_baseline.json",
+        "benchmark/tennis-refactoring-1/source/src/tennis1.cc:5"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

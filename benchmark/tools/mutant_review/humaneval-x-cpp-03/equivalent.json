@@ -1,0 +1,70 @@
+{
+  "task": "humaneval-x-cpp-03",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_017.cc:23:30:23:31",
+      "reason": "空音乐串多追加一个空格，current 仍为空，不匹配任何音符；输出仍为空。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-03/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-03/source/src/cpp_017.cc:23"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_021.cc:18:27:18:28",
+      "reason": "max 只出现在 max-min 中：元素相等时只可能改变零的符号；min 不为 0 时 (±0)-min 都等于 -min，min 也为 0 时全部元素为零，两者都是 0/0 得到默认 NaN。NaN 参与比较时 > 与 >= 都为假。输出相同。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-03/source/src/cpp_021.cc:18",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-03.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_init_const:/repo/src/cpp_016.cc:20:14:20:18",
+      "reason": "变异把赋给 bool 的 false 改为存入 i8 42。Clang -O0 读取 bool 都是 load i8 后 trunc 到 i1，只取最低位，42 读出仍为 false，与原代码相同（本机 IR 核对见证据；与 Telemetry 在固定工具链上的 IR 结论一致）。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-03/source/src/cpp_016.cc:20",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-03.md",
+        "runs/bank-review-20261028-05/bool-ir.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_017.cc:25:19:25:20",
+      "reason": "末尾额外零字符只加入 current，循环后 current 不输出。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-03/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-03/source/src/cpp_017.cc:25"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_019.cc:22:19:22:20",
+      "reason": "最后的零字符只保存在局部 current，之后不再处理，不改变计数。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-03/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-03/source/src/cpp_019.cc:22"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_020.cc:17:19:17:20",
+      "reason": "外层多一次迭代时更内层从 i+1/j+1 开始，仍受真实 size 上界限制，循环体不执行。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-03/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-03/source/src/cpp_020.cc:17"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/cpp_017.cc:23:22:23:28",
+      "reason": "空音乐串多追加一个空格，current 仍为空，不匹配任何音符；输出仍为空。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-03/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-03/source/src/cpp_017.cc:23"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

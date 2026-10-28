@@ -50,6 +50,9 @@ def create(args, task_id, repo_name, files, *, targets, include_dirs, visible, t
     readme = [f"# {task_id} 隐藏材料", "", f"- 被测代码：emilybache/{repo_name} 提交 `{commit}`；"
               f"文件对应关系见 `source/SOURCE.json` 的 `upstream_paths`。"]
     readme += [f"- {line}" for line in notes]
+    note = bankutil.review_note(task_id)
+    if note:
+        readme.append(f"- {note}")
     readme.append(f"- 探针：{bankutil.PROBE_MODES[probe_mode]}")
     readme.append("- 重建：重新运行 `benchmark/tools/build_katas.py --force`；修改参考测试后要重新标定变异分母。")
     return task_dir, meta, readme

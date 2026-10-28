@@ -1,7 +1,8 @@
-"""题库建设工具的公共函数：哈希、JSON 和题目包骨架。只用标准库，兼容 Python 3.9。
+"""题库建设工具的公共函数：哈希、JSON、题目包骨架，以及变异复核结论的应用。只用标准库，兼容 Python 3.9。
 
 题目包格式见 docs/评测模块与校准样本设计.md 第 3 节，建设流程见 docs/题库构建方案.md。
 """
+import copy
 import hashlib
 import json
 from pathlib import Path
@@ -10,6 +11,7 @@ import shutil
 
 REPO = Path(__file__).resolve().parents[2]
 BENCHMARK = REPO / "benchmark"
+MUTANT_REVIEW = Path(__file__).resolve().parent / "mutant_review"
 
 DEFAULT_PARAMS = {"stability_repeats": 10, "shuffle_seeds": [1, 2, 3], "test_timeout_seconds": 5,
                   "mull_minimum_timeout_ms": 3000, "reference_min_m1": 0.8}
@@ -94,9 +96,28 @@ def restore_baseline(task_dir, task_id):
     return "材料已变化，需重新标定"
 
 
+def review_test_files(task_id):
+    """复核补充测试：mutant_review/<题目 ID>/ 下的 .cc/.h，是变异复核中用来区分等价候选的反例。"""
+    folder = MUTANT_REVIEW / task_id
+    return sorted(p for p in folder.iterdir() if p.suffix in (".cc", ".h")) if folder.is_dir() else []
+
+
+def review_note(task_id):
+    """隐藏材料 README 中说明复核补充测试的一句话；没有补充测试时返回 None。"""
+    names = [p.name for p in review_test_files(task_id)]
+    if not names:
+        return None
+    return (f"复核补充测试：{'、'.join(f'`{n}`' for n in names)} 来自 `benchmark/tools/mutant_review/{task_id}/`，"
+            "是变异复核中区分等价候选的反例，已并入参考测试与探针。")
+
+
 def copy_reference_as_probe(task_dir, extra_files=()):
-    """把参考测试复制进探针目录；生成型探针再追加 extra_files。"""
+    """先把复核补充测试并入参考测试，再把参考测试复制进探针目录；生成型探针再追加 extra_files。"""
     ref = task_dir / HIDDEN["reference_tests"]
+    for path in review_test_files(task_dir.name):
+        if (ref / path.name).exists():
+            raise ValueError(f"复核补充测试与已有参考测试同名：{path.name}")
+        shutil.copyfile(path, ref / path.name)
     probe = task_dir / HIDDEN["equivalence_probe"]
     probe.mkdir(parents=True, exist_ok=True)
     for path in sorted(ref.iterdir()):
@@ -148,3 +169,72 @@ def write_task(task_dir, *, task_id, tier, tags, title, description, provenance,
     write_json(task_dir / "task.json", task)
     restore_baseline(task_dir, task_id)
     return task
+
+
+NON_EQUIVALENT = "non_equivalent_verified"  # 真实 Mull 反例检出：计入分母
+UNDEFINED_ONLY = "undefined_only"  # 只在未定义行为下与原代码不同（D015）：列为不稳定，不计入分母
+
+
+def load_confirmed(task_id):
+    """mutant_review/<题目 ID>/confirmed.json 中的复核结论；没有时返回空列表。"""
+    path = MUTANT_REVIEW / task_id / "confirmed.json"
+    return json.loads(path.read_text(encoding="utf-8"))["mutants"] if path.is_file() else []
+
+
+def load_equivalent(task_id):
+    """mutant_review/<题目 ID>/equivalent.json 中已有等价依据的候选：{变异 ID: 结论}。"""
+    path = MUTANT_REVIEW / task_id / "equivalent.json"
+    data = json.loads(path.read_text(encoding="utf-8"))["mutants"] if path.is_file() else []
+    return {m["id"]: m for m in data}
+
+
+def apply_confirmed(baseline, task_id):
+    """把 confirmed.json 的复核结论落到分母上，并按 prepare_task.py 的口径重算参考强测试集的 M1。
+
+    - non_equivalent_verified：探针区分不出、但真实 Mull 反例已证明不等价的变异，从等价候选移回分母；
+    - undefined_only：只在未定义行为下才与原代码不同的变异（D015），从等价候选或分母移入不稳定，不计入分母。
+    返回 (分母, 本次改动的 ID, 问题)；有问题时分母不变，没有改动时返回原对象。
+    """
+    confirmed = load_confirmed(task_id)
+    ids = {m["id"] for m in baseline["mutants"]}
+    missing = sorted(m["id"] for m in confirmed if m["id"] not in ids)
+    unknown = sorted(m["id"] for m in confirmed if m["verdict"] not in (NON_EQUIVALENT, UNDEFINED_ONLY))
+    if missing:
+        return baseline, [], [f"复核结论的变异不在本次变异集合中，需人工核对：{missing}"]
+    if unknown:
+        return baseline, [], [f"复核结论的判定无法识别：{unknown}"]
+    equivalent = {m["id"] for m in baseline["equivalent"]}
+    unstable = {m["id"] for m in baseline["unstable"]}
+    restore = [m for m in confirmed if m["verdict"] == NON_EQUIVALENT and m["id"] in equivalent]
+    undefined = [m for m in confirmed if m["verdict"] == UNDEFINED_ONLY and m["id"] not in unstable]
+    if not restore and not undefined:
+        return baseline, [], []
+    result = copy.deepcopy(baseline)
+    changed = {m["id"] for m in restore} | {m["id"] for m in undefined}
+    statuses = {m["id"]: m for m in result["mutants"]}
+    result["equivalent"] = [m for m in result["equivalent"] if m["id"] not in changed]
+    kept = [m for m in result.get("confirmed_non_equivalent", []) if m["id"] not in changed]
+    result["confirmed_non_equivalent"] = kept + [
+        {"id": m["id"], "verdict": m["verdict"], "evidence": m["evidence"],
+         "reason": "探针未区分，复核已确认不等价，保留在分母中"} for m in sorted(restore, key=lambda m: m["id"])]
+    if not result["confirmed_non_equivalent"]:
+        del result["confirmed_non_equivalent"]
+    result["unstable"] = result["unstable"] + [
+        {"id": m["id"], "reference_status": statuses[m["id"]]["reference_status"],
+         "probe_status": statuses[m["id"]]["probe_status"], "verdict": m["verdict"], "evidence": m["evidence"],
+         "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"}
+        for m in sorted(undefined, key=lambda m: m["id"])]
+    excluded = {m["id"] for m in result["equivalent"]} | {m["id"] for m in result["unstable"]}
+    counts = {"killed": 0, "timeout": 0, "total": 0}
+    for mutant in result["mutants"]:
+        if mutant["id"] in excluded:
+            continue
+        counts["total"] += 1
+        status = mutant["reference_status"][0]
+        if status in ("killed", "timeout"):
+            counts[status] += 1
+    denominator = counts["total"] - counts["timeout"]
+    m1 = counts["killed"] / denominator if denominator else None
+    threshold = result["reference"]["threshold"]
+    result["reference"] = {**counts, "m1": m1, "threshold": threshold, "passes": m1 is not None and m1 >= threshold}
+    return result, sorted(changed), []

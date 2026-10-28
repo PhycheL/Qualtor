@@ -90,6 +90,8 @@ def task_report(task_id):
     gaps = [i for i, m in mutants.items() if i not in excluded and m["reference_status"][0] != "killed"
             and m["probe_status"][0] == "killed"]
     sections.append(("参考测试没杀死、探针杀死的变异（参考测试缺口，保留在分母中）", gaps))
+    sections.append(("复核确认不等价、探针未区分的变异（已移回分母）",
+                     [e["id"] for e in baseline.get("confirmed_non_equivalent", [])]))
     statuses = [m["reference_status"][0] for m in mutants.values()]
     timeouts = statuses.count("timeout")
     raw = statuses.count("killed") / (len(statuses) - timeouts) if len(statuses) > timeouts else None
@@ -141,7 +143,8 @@ def main():
         parser.error("run-id 已使用；请使用新目录保留历史证据")
     manifest = new_manifest(args.run_id, "prepare", mode="mutant_review", tasks=tasks)
     write_manifest(run_dir, manifest)
-    index = ["| 题目 | 探针模式 | 变异 | 原始检出率 | 等价候选 | 不稳定 | 探针超时 | 参考测试缺口 |", "|---|---|---|---|---|---|---|---|"]
+    index = ["| 题目 | 探针模式 | 变异 | 原始检出率 | 等价候选 | 不稳定 | 探针超时 | 参考测试缺口 | 复核移回分母 |",
+             "|---|---|---|---|---|---|---|---|---|"]
     entries = []
     for task_id in tasks:
         entry, text = task_report(task_id)
@@ -151,7 +154,7 @@ def main():
             c = list(entry["counts"].values())
             raw = "—" if entry["reference_raw_m1"] is None else f"{entry['reference_raw_m1']:.3f}"
             index.append(f"| [{task_id}]({task_id}.md) | {entry['probe_mode']} | {entry['mutants']} | {raw} "
-                         f"| {c[0]} | {c[1]} | {c[2]} | {c[3]} |")
+                         f"| {c[0]} | {c[1]} | {c[2]} | {c[3]} | {c[4]} |")
     (run_dir / "index.md").write_text("# 变异复核清单\n\n" + "\n".join(index) + "\n", encoding="utf-8")
     common.write_json(run_dir / "summary.json", {"run_id": args.run_id, "tasks": entries})
     finish(run_dir, manifest, "completed")

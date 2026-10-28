@@ -1,0 +1,61 @@
+{
+  "task": "humaneval-x-cpp-09",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_assign_const:/repo/src/cpp_069.cc:26:16:26:17",
+      "reason": "has=true 改为存入 42，读出为 false，于是同一值重复建立频率条目。但每次出现都会递增该值的全部条目，最早的条目始终是完整计数，重复条目计数不超过它；max 由最早条目先行更新，重复条目只会给出相同的值；max==-1 且 lst[i]==1 的分支在重复时不改变结果。只多做重复工作，输出相同。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-09/source/src/cpp_069.cc:26",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-09.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_069.cc:27:54:27:55",
+      "reason": "freq[j][0]==max 时赋回同一个最大值。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-09/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-09/source/src/cpp_069.cc:27"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_init_const:/repo/src/cpp_069.cc:21:14:21:17",
+      "reason": "变异把赋给 bool 的 false 改为存入 i8 42。Clang -O0 读取 bool 都是 load i8 后 trunc 到 i1，只取最低位，42 读出仍为 false，与原代码相同（本机 IR 核对见证据；与 Telemetry 在固定工具链上的 IR 结论一致）。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-09/source/src/cpp_069.cc:21",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-09.md",
+        "runs/bank-review-20261028-05/bool-ir.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_066.cc:21:19:21:20",
+      "reason": "只额外读取 C++11 string[size()] 的零字符；该处零字符不触发计数/括号/分隔分支，或只追加到随后丢弃的局部尾段，不进入返回结果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-09/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-09/source/src/cpp_066.cc:21"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_067.cc:22:19:22:20",
+      "reason": "末尾零字符不是数字，只可能把局部 is12 改为 1；num1/num2 已解析完，最终 atoi 结果不变。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-humaneval-x-cpp-09/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-09/source/src/cpp_067.cc:22"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/cpp_069.cc:31:9:31:35",
+      "reason": "同一位置的实际变异删除的是临时对象的析构调用：若删除的是调用本身，现有参考测试会因结果缺项而检出，而该变异在参考与探针上都幸存。临时对象已被移动进容器（或按值传参的副本），push_back 移动了 {lst[i],1} 构造的临时 vector，跳过其析构没有可观察效果。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-09/source/src/cpp_069.cc:31",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-09.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    }
+  ]
+}

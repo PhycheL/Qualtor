@@ -1,0 +1,24 @@
+{
+  "task": "exercism-series",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_div_to_mul:/repo/src/series.cpp:29:30:29:31",
+      "reason": "只改 reserve 的参数（len/window 改为 len*window，size_t 运算）：切片内容不变；只有输入达到数百 MB、请求超过 max_size 或分配失败时才不同，属于资源差异，按 D015 不计入。",
+      "evidence": [
+        "benchmark/exercism-series/source/src/series.cpp:29",
+        "runs/bank-review-20261027-03/exercism-series.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/series.cpp:32:9:32:69",
+      "reason": "同一位置的实际变异删除的是临时对象的析构调用：若删除的是调用本身，现有参考测试会因结果缺项而检出，而该变异在参考与探针上都幸存。临时对象已被移动进容器（或按值传参的副本），emplace_back 收到的是 slice_me 返回的临时 string，移动后不再持有堆内存，跳过析构没有可观察效果。",
+      "evidence": [
+        "benchmark/exercism-series/source/src/series.cpp:32",
+        "runs/bank-review-20261027-03/exercism-series.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    }
+  ]
+}

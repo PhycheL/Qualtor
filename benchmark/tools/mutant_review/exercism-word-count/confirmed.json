@@ -1,0 +1,34 @@
+{
+  "task": "exercism-word-count",
+  "note": "复核结论。non_equivalent_verified：真实 Mull 反例检出，计入分母；undefined_only：只在未定义行为下与原代码不同（D015），列为不稳定、不计入分母。prepare_new_tasks.py 写入分母前、apply_review.py 修订已有分母时应用。",
+  "review": "runs/bank-review-20261027-03",
+  "mutants": [
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/word_count.cpp:15:17:15:22",
+      "verdict": "undefined_only",
+      "note": "去掉 !empty() 保护后，只有全部由分隔符组成的单词会在空串上调用 front()（未定义行为）；其他输入与原代码相同。（Claude（2026-10-28 源码复核））",
+      "evidence": [
+        "benchmark/exercism-word-count/source/src/word_count.cpp:15",
+        "runs/bank-review-20261027-03/exercism-word-count.md"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/word_count.cpp:18:17:18:22",
+      "verdict": "undefined_only",
+      "note": "去掉 !empty() 保护后，只有全部由分隔符组成的单词会在空串上调用 back()（未定义行为）；其他输入与原代码相同。（Claude（2026-10-28 源码复核））",
+      "evidence": [
+        "benchmark/exercism-word-count/source/src/word_count.cpp:18",
+        "runs/bank-review-20261027-03/exercism-word-count.md"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/word_count.cpp:35:55:35:58",
+      "verdict": "undefined_only",
+      "note": "s.end() 的结果被替换为地址 42，随后与 start 相减，两个指针不属于同一数组（未定义行为）。（Claude（2026-10-28 源码复核））",
+      "evidence": [
+        "benchmark/exercism-word-count/source/src/word_count.cpp:35",
+        "runs/bank-review-20261027-03/exercism-word-count.md"
+      ]
+    }
+  ]
+}

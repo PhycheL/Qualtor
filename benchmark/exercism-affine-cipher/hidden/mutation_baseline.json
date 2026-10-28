@@ -1248,16 +1248,6 @@
   ],
   "equivalent": [
     {
-      "id": "cxx_add_to_sub:/repo/src/affine_cipher.cpp:26:22:26:23",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_lt_to_ge:/repo/src/affine_cipher.cpp:26:14:26:15",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
       "id": "cxx_lt_to_le:/repo/src/affine_cipher.cpp:26:14:26:15",
       "method": "bounded_probe",
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
@@ -1273,7 +1263,42 @@
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
     }
   ],
-  "unstable": [],
+  "unstable": [
+    {
+      "id": "cxx_add_to_sub:/repo/src/affine_cipher.cpp:26:22:26:23",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "benchmark/exercism-affine-cipher/source/src/affine_cipher.cpp:26",
+        "runs/bank-review-20261027-03/exercism-affine-cipher.md"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/affine_cipher.cpp:26:14:26:15",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "benchmark/exercism-affine-cipher/source/src/affine_cipher.cpp:26",
+        "runs/bank-review-20261027-03/exercism-affine-cipher.md"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    }
+  ],
   "review_needed": [
     {
       "id": "cxx_init_const:/repo/src/affine_cipher.cpp:19:13:19:14",

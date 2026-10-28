@@ -1,0 +1,35 @@
+{
+  "task": "supermarket-receipt",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_init_const:/repo/src/ShoppingCart.cpp:35:17:35:18",
+      "reason": "x 只在 ThreeForTwo/TwoForAmount/FiveForAmount 分支的业务计算中使用，进入这些分支前分别覆盖为 3/2/5；其他分支计算出的 numberOfXs 未用于结果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-supermarket-receipt/mutation_baseline.json",
+        "benchmark/supermarket-receipt/source/src/ShoppingCart.cpp:35",
+        "runs/eval-bank-followup-20261027-01/review-ir/supermarket-receipt/ShoppingCart.cpp.ll",
+        "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/Receipt.cpp:12:5:12:71",
+      "reason": "同一位置的实际变异删除的是临时对象的析构调用：若删除的是调用本身，现有参考测试会因结果缺项而检出，而该变异在参考与探针上都幸存。临时对象已被移动进容器（或按值传参的副本），ReceiptItem 临时对象移动进 items 后，跳过析构至多少释放其已移走的成员，不影响收据内容；即便发生复制，也只是内存泄漏，属于资源差异（D015）。",
+      "evidence": [
+        "benchmark/supermarket-receipt/source/src/Receipt.cpp:12",
+        "runs/bank-review-20261027-03/supermarket-receipt.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/Teller.cpp:19:5:19:51",
+      "reason": "同一位置的实际变异删除的是临时对象的析构调用：若删除的是调用本身，现有参考测试会因结果缺项而检出，而该变异在参考与探针上都幸存。临时对象已被移动进容器（或按值传参的副本），实际跳过的是按值传入 handleOffers 的 offers 副本（std::map）的析构，只造成内存泄漏，折扣与收据内容不变，属于资源差异（D015）。",
+      "evidence": [
+        "benchmark/supermarket-receipt/source/src/Teller.cpp:19",
+        "runs/bank-review-20261027-03/supermarket-receipt.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    }
+  ]
+}

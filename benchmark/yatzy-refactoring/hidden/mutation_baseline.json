@@ -5028,19 +5028,46 @@
       "id": "cxx_init_const:/repo/src/yatzy1.cpp:222:9:222:14",
       "method": "bounded_probe",
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
+    }
+  ],
+  "unstable": [
     {
       "id": "cxx_lt_to_le:/repo/src/yatzy1.cpp:101:25:101:26",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-yatzy-refactoring/mutation_baseline.json",
+        "benchmark/yatzy-refactoring/source/src/yatzy1.cpp:101",
+        "runs/eval-bank-followup-20261027-01/undefined-review/yatzy-refactoring/results.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
     },
     {
       "id": "cxx_lt_to_le:/repo/src/yatzy1.cpp:92:19:92:20",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-yatzy-refactoring/mutation_baseline.json",
+        "benchmark/yatzy-refactoring/source/src/yatzy1.cpp:92",
+        "runs/eval-bank-followup-20261027-01/undefined-review/yatzy-refactoring/results.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
     }
   ],
-  "unstable": [],
   "review_needed": [],
   "review": {
     "status": "pending",

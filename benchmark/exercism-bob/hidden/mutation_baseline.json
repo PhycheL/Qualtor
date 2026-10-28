@@ -454,19 +454,43 @@
       ]
     }
   ],
-  "equivalent": [
+  "equivalent": [],
+  "unstable": [
     {
       "id": "cxx_replace_scalar_call:/repo/src/bob.cpp:15:17:15:22",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "benchmark/exercism-bob/source/src/bob.cpp:15",
+        "runs/bank-review-20261027-03/exercism-bob.md"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
     },
     {
       "id": "cxx_replace_scalar_call:/repo/src/bob.cpp:19:17:19:22",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "benchmark/exercism-bob/source/src/bob.cpp:19",
+        "runs/bank-review-20261027-03/exercism-bob.md"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
     }
   ],
-  "unstable": [],
   "review_needed": [
     {
       "id": "cxx_remove_void_call:/repo/src/bob.cpp:20:13:20:21",

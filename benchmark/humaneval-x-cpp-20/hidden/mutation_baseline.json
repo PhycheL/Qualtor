@@ -1,9 +1,9 @@
 {
   "task": "humaneval-x-cpp-20",
-  "created_at": "2026-10-27T07:16:09.685607+00:00",
-  "created_by_run": "bank-prepare-20261027-01-humaneval-x-cpp-20",
-  "scorer_version": "0.1.5",
-  "scorer_code_sha256": "4ca4b8edbd0712321e5bbfa490e9e859683ef129a3492146fb5b14eea56ed5eb",
+  "created_at": "2026-10-28T01:32:07.843585+00:00",
+  "created_by_run": "bank-prepare-20261028-03-humaneval-x-cpp-20",
+  "scorer_version": "0.1.6",
+  "scorer_code_sha256": "b98b550d7fa8f07011be4c1abaa93450feca5cbf16cf6951ef2ece8a6394005d",
   "images": {
     "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
     "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
@@ -731,8 +731,8 @@
         }
       },
       "reference_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ],
       "probe_status": [
         "killed",
@@ -753,12 +753,12 @@
         }
       },
       "reference_status": [
-        "survived",
-        "survived"
+        "timeout",
+        "timeout"
       ],
       "probe_status": [
-        "survived",
-        "survived"
+        "timeout",
+        "timeout"
       ]
     },
     {
@@ -2293,12 +2293,12 @@
         }
       },
       "reference_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ],
       "probe_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ]
     },
     {
@@ -2425,12 +2425,12 @@
         }
       },
       "reference_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ],
       "probe_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ]
     },
     {
@@ -2623,12 +2623,12 @@
         }
       },
       "reference_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ],
       "probe_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ]
     },
     {
@@ -2953,8 +2953,8 @@
         }
       },
       "reference_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ],
       "probe_status": [
         "killed",
@@ -3173,12 +3173,12 @@
         }
       },
       "reference_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ],
       "probe_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ]
     },
     {
@@ -3459,12 +3459,12 @@
         }
       },
       "reference_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ],
       "probe_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ]
     },
     {
@@ -3481,8 +3481,8 @@
         }
       },
       "reference_status": [
-        "killed",
-        "killed"
+        "survived",
+        "survived"
       ],
       "probe_status": [
         "killed",
@@ -3503,8 +3503,8 @@
         }
       },
       "reference_status": [
-        "killed",
-        "killed"
+        "survived",
+        "survived"
       ],
       "probe_status": [
         "killed",
@@ -3525,8 +3525,8 @@
         }
       },
       "reference_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ],
       "probe_status": [
         "killed",
@@ -3708,11 +3708,6 @@
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
     },
     {
-      "id": "cxx_assign_const:/repo/src/cpp_160.cc:50:51:50:52",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
       "id": "cxx_assign_const:/repo/src/cpp_160.cc:51:57:51:58",
       "method": "bounded_probe",
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
@@ -3733,11 +3728,6 @@
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
     },
     {
-      "id": "cxx_lt_to_le:/repo/src/cpp_154.cc:17:19:17:20",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
       "id": "cxx_lt_to_le:/repo/src/cpp_157.cc:16:25:16:26",
       "method": "bounded_probe",
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
@@ -3753,32 +3743,12 @@
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
     },
     {
-      "id": "cxx_lt_to_le:/repo/src/cpp_158.cc:24:23:24:24",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
       "id": "cxx_lt_to_le:/repo/src/cpp_160.cc:37:19:37:20",
       "method": "bounded_probe",
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
     },
     {
       "id": "cxx_lt_to_le:/repo/src/cpp_163.cc:17:10:17:11",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_mul_to_div:/repo/src/cpp_157.cc:16:43:16:44",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_replace_scalar_call:/repo/src/cpp_157.cc:16:34:16:50",
-      "method": "bounded_probe",
-      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
-    },
-    {
-      "id": "cxx_replace_scalar_call:/repo/src/cpp_160.cc:37:28:37:32",
       "method": "bounded_probe",
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
     }
@@ -3811,6 +3781,10 @@
     },
     {
       "id": "cxx_add_to_sub:/repo/src/cpp_160.cc:62:42:62:43",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/cpp_160.cc:50:51:50:52",
       "reason": "探针结果为 timeout，保留在分母中，请人工确认"
     },
     {
@@ -3877,10 +3851,10 @@
     "note": "等价变异候选由有界穷举探针自动给出；人工逐个复核后，把 status 改为 reviewed 并填写 by、at"
   },
   "reference": {
-    "killed": 115,
-    "timeout": 20,
-    "total": 143,
-    "m1": 0.9349593495934959,
+    "killed": 121,
+    "timeout": 21,
+    "total": 149,
+    "m1": 0.9453125,
     "threshold": 0.8,
     "passes": true
   }

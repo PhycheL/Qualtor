@@ -1,0 +1,33 @@
+{
+  "task": "exercism-triangle",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_lt_to_le:/repo/src/triangle.cpp:19:11:19:12",
+      "reason": "零边已被上一分支拒绝，因此剩余 a/b/c<0 改 <=0 不改变分类。三项三角不等式边界已实测非等价。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-triangle/mutation_baseline.json",
+        "benchmark/exercism-triangle/source/src/triangle.cpp:19"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/triangle.cpp:19:20:19:21",
+      "reason": "零边已被上一分支拒绝，因此剩余 a/b/c<0 改 <=0 不改变分类。三项三角不等式边界已实测非等价。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-triangle/mutation_baseline.json",
+        "benchmark/exercism-triangle/source/src/triangle.cpp:19"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/triangle.cpp:19:29:19:30",
+      "reason": "零边已被上一分支拒绝，因此剩余 a/b/c<0 改 <=0 不改变分类。三项三角不等式边界已实测非等价。",
+      "evidence": [
+        "runs/bank-prepare-20261027-01-exercism-triangle/mutation_baseline.json",
+        "benchmark/exercism-triangle/source/src/triangle.cpp:19"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

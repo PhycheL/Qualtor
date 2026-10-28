@@ -1,0 +1,78 @@
+{
+  "task": "humaneval-x-cpp-02",
+  "note": "等价候选的复核结论：每项写明为什么在原代码全部有定义的输入上不可区分（D011）及证据。admit.py 签署前核对：分母中的每个等价候选都要在这里有结论。",
+  "mutants": [
+    {
+      "id": "cxx_ge_to_gt:/repo/src/cpp_011.cc:26:18:26:20",
+      "reason": "外层循环已经保证 i 同时小于两串长度；内层等号及 else 子句不可达，相关变异无效果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-02/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-02/source/src/cpp_011.cc:26"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/cpp_011.cc:26:18:26:20",
+      "reason": "外层循环已经保证 i 同时小于两串长度；内层等号及 else 子句不可达，相关变异无效果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-02/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-02/source/src/cpp_011.cc:26"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_009.cc:17:23:17:24",
+      "reason": "rolling_max 的参数与 max 都是 int：numbers[i] 等于 max 时，变异只是把相同的值再赋给 max，输出逐项相同。此前按浮点 ±0 判为非等价，不适用于整数。",
+      "evidence": [
+        "benchmark/humaneval-x-cpp-02/source/src/cpp_009.cc:17",
+        "runs/bank-review-20261027-03/humaneval-x-cpp-02.md"
+      ],
+      "by": "Claude（2026-10-28 源码复核）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_010.cc:24:14:24:15",
+      "reason": "非空字符串至少在末字符处找到回文后缀并提前返回；空串多检查空后缀仍返回空串。",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-02/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-02/source/src/cpp_010.cc:24"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_011.cc:16:14:16:15",
+      "reason": "外层循环已经保证 i 同时小于两串长度；内层等号及 else 子句不可达，相关变异无效果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-02/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-02/source/src/cpp_011.cc:16"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_011.cc:16:31:16:32",
+      "reason": "外层循环已经保证 i 同时小于两串长度；内层等号及 else 子句不可达，相关变异无效果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-02/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-02/source/src/cpp_011.cc:16"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_013.cc:15:14:15:15",
+      "reason": "a==b 时交换两个相等整数不改变值。",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-02/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-02/source/src/cpp_013.cc:15"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/cpp_011.cc:26:22:26:28",
+      "reason": "外层循环已经保证 i 同时小于两串长度；内层等号及 else 子句不可达，相关变异无效果。",
+      "evidence": [
+        "runs/bank-prepare-20261027-02-humaneval-x-cpp-02/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-02/source/src/cpp_011.cc:26"
+      ],
+      "by": "Codex（2026-10-27 源码与 Docker 复核，runs/bank-review-20261027-03）"
+    }
+  ]
+}

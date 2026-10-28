@@ -6,8 +6,8 @@ from pathlib import Path
 import traceback
 
 from common import (REPO, ASSESSMENT, load_baseline, mull_config_text, now, product_test_sources, read_json,
-                    assessment_code_sha256, assessment_version, sha256_file, sha256_text, source_root, validate_product,
-                    variant_dir, write_json)
+                    assessment_code_sha256, assessment_version, sha256_file, sha256_text, source_root, task_sha256,
+                    validate_product, variant_dir, write_json)
 import judge
 
 TIMEOUT = {"build": 900, "run": 1800, "mull": 3600}
@@ -39,7 +39,9 @@ class ProductAssessment:
             # schema 1 保留旧字段名；历史结果与补评、汇总共用同一契约。
             "scorer": {"version": assessment_version(), "code_sha256": assessment_code_sha256(),
                        "calibration": calibration or {"status": "not_checked"}},
-            "task": {"id": task["id"], "set": task["set"], "task_json_sha256": task["_sha256"]},
+            # sha256 是题目全部隐藏材料与分母的指纹，汇总时据此核对题目是否已准入（R-08）。
+            "task": {"id": task["id"], "set": task["set"], "task_json_sha256": task["_sha256"],
+                     "sha256": task_sha256(task)},
             "product": {"path": _rel(self.product, REPO),
                         "manifest_sha256": sha256_file(manifest) if manifest.is_file() else None},
             "meta": meta, "mode": "prep" if prep else "score", "executor": executor.mode,
