@@ -1,0 +1,2245 @@
+{
+  "task": "yaml-cpp-document",
+  "created_at": "2026-10-28T07:41:53.954470+00:00",
+  "created_by_run": "step-a-formal-20261028-01-yaml-cpp-document",
+  "scorer_version": "0.3.0",
+  "scorer_code_sha256": "dd055eac2773c9c2cdd9a6d4fa9e5e3e885150cfa5d3605c71a6f05d48419503",
+  "images": {
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
+  },
+  "mull": {
+    "config_sha256": "2d7a7f680bc9900bf1d8c80a4e230e79c6ed1619b1585af91a25a6e8cf4643cf",
+    "config": "# 由评分器根据 task.json 生成；修改算子要升级变异分母。\nmutators:\n  - cxx_all\nincludePaths:\n  - '/repo/src/singledocparser\\.cpp$'\n"
+  },
+  "mutants": [
+    {
+      "id": "cxx_assign_const:/repo/src/singledocparser.cpp:378:10:378:11",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 378,
+          "column": 10
+        },
+        "end": {
+          "line": 378,
+          "column": 11
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/singledocparser.cpp:413:10:413:11",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 413,
+          "column": 10
+        },
+        "end": {
+          "line": 413,
+          "column": 11
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/singledocparser.cpp:421:26:421:27",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 421,
+          "column": 26
+        },
+        "end": {
+          "line": 421,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:133:54:133:56",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 54
+        },
+        "end": {
+          "line": 133,
+          "column": 56
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:179:20:179:22",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 179,
+          "column": 20
+        },
+        "end": {
+          "line": 179,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:185:26:185:28",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 26
+        },
+        "end": {
+          "line": 185,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:186:26:186:28",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 186,
+          "column": 26
+        },
+        "end": {
+          "line": 186,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:208:31:208:33",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 208,
+          "column": 31
+        },
+        "end": {
+          "line": 208,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:222:20:222:22",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 222,
+          "column": 20
+        },
+        "end": {
+          "line": 222,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:265:20:265:22",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 265,
+          "column": 20
+        },
+        "end": {
+          "line": 265,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:271:20:271:22",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 271,
+          "column": 20
+        },
+        "end": {
+          "line": 271,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:279:53:279:55",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 279,
+          "column": 53
+        },
+        "end": {
+          "line": 279,
+          "column": 55
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:302:20:302:22",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 302,
+          "column": 20
+        },
+        "end": {
+          "line": 302,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:308:20:308:22",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 308,
+          "column": 20
+        },
+        "end": {
+          "line": 308,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:316:53:316:55",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 316,
+          "column": 53
+        },
+        "end": {
+          "line": 316,
+          "column": 55
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:329:24:329:26",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 329,
+          "column": 24
+        },
+        "end": {
+          "line": 329,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:348:51:348:53",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 348,
+          "column": 51
+        },
+        "end": {
+          "line": 348,
+          "column": 53
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:37:29:37:31",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 29
+        },
+        "end": {
+          "line": 37,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:46:54:46:56",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 54
+        },
+        "end": {
+          "line": 46,
+          "column": 56
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:63:29:63:31",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 29
+        },
+        "end": {
+          "line": 63,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:71:29:71:31",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 29
+        },
+        "end": {
+          "line": 71,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:95:23:95:25",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 23
+        },
+        "end": {
+          "line": 95,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:97:18:97:20",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 18
+        },
+        "end": {
+          "line": 97,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:98:27:98:29",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 27
+        },
+        "end": {
+          "line": 98,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/singledocparser.cpp:175:20:175:22",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 20
+        },
+        "end": {
+          "line": 175,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/singledocparser.cpp:175:56:175:58",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 56
+        },
+        "end": {
+          "line": 175,
+          "column": 58
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/singledocparser.cpp:224:25:224:27",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 25
+        },
+        "end": {
+          "line": 224,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/singledocparser.cpp:261:20:261:22",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 261,
+          "column": 20
+        },
+        "end": {
+          "line": 261,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/singledocparser.cpp:261:48:261:50",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 261,
+          "column": 48
+        },
+        "end": {
+          "line": 261,
+          "column": 50
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/singledocparser.cpp:262:20:262:22",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 262,
+          "column": 20
+        },
+        "end": {
+          "line": 262,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/singledocparser.cpp:331:29:331:31",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 331,
+          "column": 29
+        },
+        "end": {
+          "line": 331,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/singledocparser.cpp:421:28:421:30",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 421,
+          "column": 28
+        },
+        "end": {
+          "line": 421,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:148:5:148:49",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 5
+        },
+        "end": {
+          "line": 148,
+          "column": 49
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:155:7:155:40",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 7
+        },
+        "end": {
+          "line": 155,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:158:7:158:39",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 158,
+          "column": 7
+        },
+        "end": {
+          "line": 158,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:167:13:167:16",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 167,
+          "column": 13
+        },
+        "end": {
+          "line": 167,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:168:23:168:41",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 23
+        },
+        "end": {
+          "line": 168,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:195:23:195:40",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 195,
+          "column": 23
+        },
+        "end": {
+          "line": 195,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:200:13:200:16",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 200,
+          "column": 13
+        },
+        "end": {
+          "line": 200,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:201:23:201:41",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 201,
+          "column": 23
+        },
+        "end": {
+          "line": 201,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:209:17:209:20",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 17
+        },
+        "end": {
+          "line": 209,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:214:5:214:29",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 5
+        },
+        "end": {
+          "line": 214,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:223:17:223:20",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 17
+        },
+        "end": {
+          "line": 223,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:228:23:228:40",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 23
+        },
+        "end": {
+          "line": 228,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:235:7:235:35",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 235,
+          "column": 7
+        },
+        "end": {
+          "line": 235,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:238:7:238:34",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 7
+        },
+        "end": {
+          "line": 238,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:241:7:241:37",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 241,
+          "column": 7
+        },
+        "end": {
+          "line": 241,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:244:7:244:46",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 244,
+          "column": 7
+        },
+        "end": {
+          "line": 244,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:253:13:253:16",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 253,
+          "column": 13
+        },
+        "end": {
+          "line": 253,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:254:23:254:41",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 254,
+          "column": 23
+        },
+        "end": {
+          "line": 254,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:287:23:287:40",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 287,
+          "column": 23
+        },
+        "end": {
+          "line": 287,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:292:13:292:16",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 292,
+          "column": 13
+        },
+        "end": {
+          "line": 292,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:293:23:293:41",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 293,
+          "column": 23
+        },
+        "end": {
+          "line": 293,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:303:17:303:20",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 303,
+          "column": 17
+        },
+        "end": {
+          "line": 303,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:309:17:309:20",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 309,
+          "column": 17
+        },
+        "end": {
+          "line": 309,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:310:7:310:31",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 310,
+          "column": 7
+        },
+        "end": {
+          "line": 310,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:317:17:317:20",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 317,
+          "column": 17
+        },
+        "end": {
+          "line": 317,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:318:7:318:31",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 318,
+          "column": 7
+        },
+        "end": {
+          "line": 318,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:330:17:330:20",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 330,
+          "column": 17
+        },
+        "end": {
+          "line": 330,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:335:23:335:40",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 335,
+          "column": 23
+        },
+        "end": {
+          "line": 335,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:340:23:340:41",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 340,
+          "column": 23
+        },
+        "end": {
+          "line": 340,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:344:13:344:16",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 344,
+          "column": 13
+        },
+        "end": {
+          "line": 344,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:345:3:345:27",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 345,
+          "column": 3
+        },
+        "end": {
+          "line": 345,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:349:15:349:18",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 349,
+          "column": 15
+        },
+        "end": {
+          "line": 349,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:350:5:350:29",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 350,
+          "column": 5
+        },
+        "end": {
+          "line": 350,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:355:23:355:40",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 355,
+          "column": 23
+        },
+        "end": {
+          "line": 355,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:360:23:360:41",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 360,
+          "column": 23
+        },
+        "end": {
+          "line": 360,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:366:13:366:16",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 366,
+          "column": 13
+        },
+        "end": {
+          "line": 366,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:367:3:367:27",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 367,
+          "column": 3
+        },
+        "end": {
+          "line": 367,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:369:23:369:40",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 369,
+          "column": 23
+        },
+        "end": {
+          "line": 369,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:376:7:376:12",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 376,
+          "column": 7
+        },
+        "end": {
+          "line": 376,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:377:15:377:20",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 377,
+          "column": 15
+        },
+        "end": {
+          "line": 377,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:386:9:386:22",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 386,
+          "column": 9
+        },
+        "end": {
+          "line": 386,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:389:9:389:41",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 389,
+          "column": 9
+        },
+        "end": {
+          "line": 389,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:38:15:38:18",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 15
+        },
+        "end": {
+          "line": 38,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:414:13:414:16",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 414,
+          "column": 13
+        },
+        "end": {
+          "line": 414,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:41:3:41:27",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 3
+        },
+        "end": {
+          "line": 41,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:47:15:47:18",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 15
+        },
+        "end": {
+          "line": 47,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:64:5:64:74",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 5
+        },
+        "end": {
+          "line": 64,
+          "column": 74
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:171:19:171:24",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 171,
+          "column": 19
+        },
+        "end": {
+          "line": 171,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:204:19:204:24",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 204,
+          "column": 19
+        },
+        "end": {
+          "line": 204,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:216:19:216:24",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 216,
+          "column": 19
+        },
+        "end": {
+          "line": 216,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:257:19:257:24",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 19
+        },
+        "end": {
+          "line": 257,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:296:19:296:24",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 296,
+          "column": 19
+        },
+        "end": {
+          "line": 296,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:316:20:316:25",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 316,
+          "column": 20
+        },
+        "end": {
+          "line": 316,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:323:19:323:24",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 323,
+          "column": 19
+        },
+        "end": {
+          "line": 323,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:348:18:348:23",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 348,
+          "column": 18
+        },
+        "end": {
+          "line": 348,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:381:19:381:24",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 381,
+          "column": 19
+        },
+        "end": {
+          "line": 381,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:399:12:399:17",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 399,
+          "column": 12
+        },
+        "end": {
+          "line": 399,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:413:12:413:39",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 413,
+          "column": 12
+        },
+        "end": {
+          "line": 413,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:418:12:418:17",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 418,
+          "column": 12
+        },
+        "end": {
+          "line": 418,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:427:10:427:12",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 427,
+          "column": 10
+        },
+        "end": {
+          "line": 427,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:427:23:427:26",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 427,
+          "column": 23
+        },
+        "end": {
+          "line": 427,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:46:21:46:26",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 21
+        },
+        "end": {
+          "line": 46,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:82:20:82:25",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 20
+        },
+        "end": {
+          "line": 82,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:94:11:94:16",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 11
+        },
+        "end": {
+          "line": 94,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:98:14:98:21",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 14
+        },
+        "end": {
+          "line": 98,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    }
+  ],
+  "equivalent": [
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:148:5:148:49",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:376:7:376:12",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:377:15:377:20",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:64:5:64:74",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    }
+  ],
+  "unstable": [
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:427:10:427:12",
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/step-a-debug-20261028-01/summary.json",
+        "runs/step-a-ir-20261028-01-yaml-cpp-document/mutant-ir.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:427:23:427:26",
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/step-a-debug-20261028-01/summary.json",
+        "runs/step-a-ir-20261028-01-yaml-cpp-document/mutant-ir.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    }
+  ],
+  "review_needed": [
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:271:20:271:22",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/singledocparser.cpp:279:53:279:55",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:386:9:386:22",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:389:9:389:41",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:47:15:47:18",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "by": "Codex（AI 复核，Linux ARM64）",
+    "at": "2026-10-28",
+    "note": "按 benchmark/tools/mutant_review/yaml-cpp-document/ 的复核结论签署：等价候选 4 项均有结论，不稳定 2 项按规则剔除，探针超时 5 项保留在分母中。"
+  },
+  "reference": {
+    "killed": 86,
+    "timeout": 5,
+    "total": 91,
+    "m1": 1.0,
+    "threshold": 0.8,
+    "passes": true
+  }
+}

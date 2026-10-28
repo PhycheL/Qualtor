@@ -1,0 +1,29 @@
+{
+  "repository": "https://github.com/mity/md4c",
+  "commit": "c3340b480e5232711858108be07460a9836c8ab5",
+  "reference_tests": [
+    "test/spec.txt",
+    "test/coverage.txt",
+    "test/tables.txt",
+    "test/strikethrough.txt",
+    "test/tasklists.txt",
+    "test/wiki-links.txt",
+    "test/latex-math.txt",
+    "test/underline.txt",
+    "test/permissive-url-autolinks.txt",
+    "test/permissive-email-autolinks.txt",
+    "test/permissive-www-autolinks.txt"
+  ],
+  "added_by_qualtor": [],
+  "note": "source/ 文件逐字节取自上述提交；隐藏测试的转换见 hidden/README.md。",
+  "files": {
+    "CMakeLists.txt": "838f6958451b1b51904a92b7e4414d714a5895f422c1fb4024c603a4cb54d366",
+    "LICENSE.md": "a1077f18d4dc7e1333968ac13a35273b66bdc5f70b932d30128fffa849074146",
+    "src/entity.c": "88e7f71af81fcb75f89ef16f97f5561607d35a6d7ebc6aa4ace37e25c9f9fc68",
+    "src/entity.h": "e811bdcf174a4f3dd5b629740dd72d296ba28f157eff0bdd5907e528e447a730",
+    "src/md4c-html.c": "93528d393d80372831473741c4877ef900293c01197f841e826ee701f2813b41",
+    "src/md4c-html.h": "1b7f326b944153884bcee300373dc15a2cbad8000f87ab169f6a59f31c99c7b2",
+    "src/md4c.c": "d1914a5c775fb7952d8f367d424c0ddba279103c48c79e95aee8458c03e02a60",
+    "src/md4c.h": "55818bd5c84da4ca36bec4f80951aac7871b3371c0e9c05633615036408f64e0"
+  }
+}

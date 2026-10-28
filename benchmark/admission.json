@@ -1433,19 +1433,19 @@
       }
     },
     "humaneval-x-cpp-01": {
-      "task_sha256": "21a0219594d773aafc5740f25aaf557e5b66d5fb13d32c7e3e77d3911c60c79f",
-      "admitted_at": "2026-10-28T03:40:14.615519+00:00",
+      "task_sha256": "40295964769e965cf2f5cd8aa106b779bb85841d317d8d4027dfee56ca3c9c06",
+      "admitted_at": "2026-10-28T07:58:12.480642+00:00",
       "by": "Codex（AI 复核，Linux ARM64）",
-      "note": "依据 D015/D016、各题复核记录及历次 Linux ARM64 Docker 标定签署；本轮 0.2.1 校准、两处门禁回归、8 项删除调用 IR（5 旧+3 新）和 Zebra 52 项固定 GCC 源码副本取证通过。证据：runs/eval-bank-021-20261028-01/summary.md。保留 206 探针超时、39 参考测试缺口及 46 不稳定项的现有分类；不代表参考测试完备或 AMD64 已验证。",
+      "note": "按 benchmark/tools/mutant_review/humaneval-x-cpp-01/ 的复核结论签署：等价候选 5 项均有结论，不稳定 0 项按规则剔除，探针超时 1 项保留在分母中。",
       "reference": {
-        "killed": 83,
+        "killed": 86,
         "timeout": 0,
         "total": 86,
-        "m1": 0.9651162790697675,
+        "m1": 1.0,
         "threshold": 0.8,
         "passes": true
       },
-      "reference_raw_m1": 0.9120879120879121,
+      "reference_raw_m1": 0.945054945054945,
       "counts": {
         "mutants": 91,
         "equivalent": 5,
@@ -1477,41 +1477,41 @@
       }
     },
     "humaneval-x-cpp-03": {
-      "task_sha256": "bdfeda76ffa098c5b99a6c3ef9c96e989048f7f14a3aea08b5dd5ad77ec11c24",
-      "admitted_at": "2026-10-28T03:40:14.618334+00:00",
+      "task_sha256": "167c4ffa71d1d7dd5411a1024412d044aff0b0297025fdf645da77c9f4b81cac",
+      "admitted_at": "2026-10-28T07:58:12.482306+00:00",
       "by": "Codex（AI 复核，Linux ARM64）",
-      "note": "依据 D015/D016、各题复核记录及历次 Linux ARM64 Docker 标定签署；本轮 0.2.1 校准、两处门禁回归、8 项删除调用 IR（5 旧+3 新）和 Zebra 52 项固定 GCC 源码副本取证通过。证据：runs/eval-bank-021-20261028-01/summary.md。保留 206 探针超时、39 参考测试缺口及 46 不稳定项的现有分类；不代表参考测试完备或 AMD64 已验证。",
+      "note": "按 benchmark/tools/mutant_review/humaneval-x-cpp-03/ 的复核结论签署：等价候选 7 项均有结论，不稳定 2 项按规则剔除，探针超时 7 项保留在分母中。",
       "reference": {
-        "killed": 97,
+        "killed": 98,
         "timeout": 7,
-        "total": 106,
-        "m1": 0.9797979797979798,
+        "total": 105,
+        "m1": 1.0,
         "threshold": 0.8,
         "passes": true
       },
-      "reference_raw_m1": 0.9065420560747663,
+      "reference_raw_m1": 0.9158878504672897,
       "counts": {
         "mutants": 114,
         "equivalent": 7,
-        "unstable": 1,
+        "unstable": 2,
         "review_needed": 7,
         "confirmed_non_equivalent": 0
       }
     },
     "humaneval-x-cpp-04": {
-      "task_sha256": "ce6bf42d13b44f37179eef2b31a3d4e92a89a228adef07f85162363ab49b351e",
-      "admitted_at": "2026-10-28T03:40:14.619729+00:00",
+      "task_sha256": "4bc9d8f9456c398db94e0d14043d46f309bb854c337cdfe1bcb0bb099775e57a",
+      "admitted_at": "2026-10-28T07:58:12.483939+00:00",
       "by": "Codex（AI 复核，Linux ARM64）",
-      "note": "依据 D015/D016、各题复核记录及历次 Linux ARM64 Docker 标定签署；本轮 0.2.1 校准、两处门禁回归、8 项删除调用 IR（5 旧+3 新）和 Zebra 52 项固定 GCC 源码副本取证通过。证据：runs/eval-bank-021-20261028-01/summary.md。保留 206 探针超时、39 参考测试缺口及 46 不稳定项的现有分类；不代表参考测试完备或 AMD64 已验证。",
+      "note": "按 benchmark/tools/mutant_review/humaneval-x-cpp-04/ 的复核结论签署：等价候选 1 项均有结论，不稳定 0 项按规则剔除，探针超时 20 项保留在分母中。",
       "reference": {
-        "killed": 77,
+        "killed": 80,
         "timeout": 20,
         "total": 100,
-        "m1": 0.9625,
+        "m1": 1.0,
         "threshold": 0.8,
         "passes": true
       },
-      "reference_raw_m1": 0.9506172839506173,
+      "reference_raw_m1": 0.9876543209876543,
       "counts": {
         "mutants": 101,
         "equivalent": 1,
@@ -1521,19 +1521,19 @@
       }
     },
     "humaneval-x-cpp-05": {
-      "task_sha256": "acc6930b853ee59ad772be4c28c08dd7b66eadf82dd94449400b4045a62638b2",
-      "admitted_at": "2026-10-28T03:40:14.621250+00:00",
+      "task_sha256": "b7dd4e370faebe64252f177d9d99db57f857eb2dddc8a84e87e3189f4fb9d2c4",
+      "admitted_at": "2026-10-28T07:58:12.485727+00:00",
       "by": "Codex（AI 复核，Linux ARM64）",
-      "note": "依据 D015/D016、各题复核记录及历次 Linux ARM64 Docker 标定签署；本轮 0.2.1 校准、两处门禁回归、8 项删除调用 IR（5 旧+3 新）和 Zebra 52 项固定 GCC 源码副本取证通过。证据：runs/eval-bank-021-20261028-01/summary.md。保留 206 探针超时、39 参考测试缺口及 46 不稳定项的现有分类；不代表参考测试完备或 AMD64 已验证。",
+      "note": "按 benchmark/tools/mutant_review/humaneval-x-cpp-05/ 的复核结论签署：等价候选 14 项均有结论，不稳定 0 项按规则剔除，探针超时 14 项保留在分母中。",
       "reference": {
-        "killed": 105,
+        "killed": 107,
         "timeout": 13,
         "total": 120,
-        "m1": 0.9813084112149533,
+        "m1": 1.0,
         "threshold": 0.8,
         "passes": true
       },
-      "reference_raw_m1": 0.8677685950413223,
+      "reference_raw_m1": 0.8842975206611571,
       "counts": {
         "mutants": 134,
         "equivalent": 14,
@@ -1565,19 +1565,19 @@
       }
     },
     "humaneval-x-cpp-07": {
-      "task_sha256": "79a9cb14b9cbb492c9c981af0f35144bfcbbf36fb1e358b417325fff57272e46",
-      "admitted_at": "2026-10-28T03:40:14.623682+00:00",
+      "task_sha256": "7fe4cb7446a8c7b7b291ea12497347a4c6621db529d59e03c64f315d10735c33",
+      "admitted_at": "2026-10-28T07:58:12.487479+00:00",
       "by": "Codex（AI 复核，Linux ARM64）",
-      "note": "依据 D015/D016、各题复核记录及历次 Linux ARM64 Docker 标定签署；本轮 0.2.1 校准、两处门禁回归、8 项删除调用 IR（5 旧+3 新）和 Zebra 52 项固定 GCC 源码副本取证通过。证据：runs/eval-bank-021-20261028-01/summary.md。保留 206 探针超时、39 参考测试缺口及 46 不稳定项的现有分类；不代表参考测试完备或 AMD64 已验证。",
+      "note": "按 benchmark/tools/mutant_review/humaneval-x-cpp-07/ 的复核结论签署：等价候选 1 项均有结论，不稳定 0 项按规则剔除，探针超时 3 项保留在分母中。",
       "reference": {
-        "killed": 83,
+        "killed": 84,
         "timeout": 3,
         "total": 87,
-        "m1": 0.9880952380952381,
+        "m1": 1.0,
         "threshold": 0.8,
         "passes": true
       },
-      "reference_raw_m1": 0.9764705882352941,
+      "reference_raw_m1": 0.9882352941176471,
       "counts": {
         "mutants": 88,
         "equivalent": 1,
@@ -1587,19 +1587,19 @@
       }
     },
     "humaneval-x-cpp-08": {
-      "task_sha256": "bc33b4664ddadb39863ce3046b2ac15cd7430fb4c894294d543c852733de66c5",
-      "admitted_at": "2026-10-28T03:40:14.625263+00:00",
+      "task_sha256": "4668a40e3153644512aa4f5b55310f9a5b65c7e9c570c4bfb6990573f2f76b09",
+      "admitted_at": "2026-10-28T07:58:12.488995+00:00",
       "by": "Codex（AI 复核，Linux ARM64）",
-      "note": "依据 D015/D016、各题复核记录及历次 Linux ARM64 Docker 标定签署；本轮 0.2.1 校准、两处门禁回归、8 项删除调用 IR（5 旧+3 新）和 Zebra 52 项固定 GCC 源码副本取证通过。证据：runs/eval-bank-021-20261028-01/summary.md。保留 206 探针超时、39 参考测试缺口及 46 不稳定项的现有分类；不代表参考测试完备或 AMD64 已验证。",
+      "note": "按 benchmark/tools/mutant_review/humaneval-x-cpp-08/ 的复核结论签署：等价候选 4 项均有结论，不稳定 0 项按规则剔除，探针超时 3 项保留在分母中。",
       "reference": {
-        "killed": 86,
+        "killed": 87,
         "timeout": 3,
         "total": 90,
-        "m1": 0.9885057471264368,
+        "m1": 1.0,
         "threshold": 0.8,
         "passes": true
       },
-      "reference_raw_m1": 0.945054945054945,
+      "reference_raw_m1": 0.9560439560439561,
       "counts": {
         "mutants": 94,
         "equivalent": 4,
@@ -1609,19 +1609,19 @@
       }
     },
     "humaneval-x-cpp-09": {
-      "task_sha256": "898a81614ef2fb05cca29885ca2d6a9d13d71f5a2f39bafd6d507d8a812b7d6b",
-      "admitted_at": "2026-10-28T03:40:14.626821+00:00",
+      "task_sha256": "2310236ffaeb36738184e2f79bc9656bcb24fa2e5d339f58e7b428234d7d5540",
+      "admitted_at": "2026-10-28T07:58:12.490814+00:00",
       "by": "Codex（AI 复核，Linux ARM64）",
-      "note": "依据 D015/D016、各题复核记录及历次 Linux ARM64 Docker 标定签署；本轮 0.2.1 校准、两处门禁回归、8 项删除调用 IR（5 旧+3 新）和 Zebra 52 项固定 GCC 源码副本取证通过。证据：runs/eval-bank-021-20261028-01/summary.md。保留 206 探针超时、39 参考测试缺口及 46 不稳定项的现有分类；不代表参考测试完备或 AMD64 已验证。",
+      "note": "按 benchmark/tools/mutant_review/humaneval-x-cpp-09/ 的复核结论签署：等价候选 6 项均有结论，不稳定 0 项按规则剔除，探针超时 0 项保留在分母中。",
       "reference": {
-        "killed": 107,
+        "killed": 111,
         "timeout": 0,
         "total": 111,
-        "m1": 0.963963963963964,
+        "m1": 1.0,
         "threshold": 0.8,
         "passes": true
       },
-      "reference_raw_m1": 0.9145299145299145,
+      "reference_raw_m1": 0.9487179487179487,
       "counts": {
         "mutants": 117,
         "equivalent": 6,
@@ -1631,19 +1631,19 @@
       }
     },
     "humaneval-x-cpp-10": {
-      "task_sha256": "d6ca2af23492bfea4eb193ec91a08062dd91fe3aab6d8797dc53a1160b5e9217",
-      "admitted_at": "2026-10-28T03:40:14.628119+00:00",
+      "task_sha256": "961289b46c803776eb4f0c40687bc3de7ca2cacf8342f6b0870160649783d9a5",
+      "admitted_at": "2026-10-28T07:58:12.492360+00:00",
       "by": "Codex（AI 复核，Linux ARM64）",
-      "note": "依据 D015/D016、各题复核记录及历次 Linux ARM64 Docker 标定签署；本轮 0.2.1 校准、两处门禁回归、8 项删除调用 IR（5 旧+3 新）和 Zebra 52 项固定 GCC 源码副本取证通过。证据：runs/eval-bank-021-20261028-01/summary.md。保留 206 探针超时、39 参考测试缺口及 46 不稳定项的现有分类；不代表参考测试完备或 AMD64 已验证。",
+      "note": "按 benchmark/tools/mutant_review/humaneval-x-cpp-10/ 的复核结论签署：等价候选 3 项均有结论，不稳定 1 项按规则剔除，探针超时 8 项保留在分母中。",
       "reference": {
-        "killed": 80,
+        "killed": 81,
         "timeout": 8,
         "total": 89,
-        "m1": 0.9876543209876543,
+        "m1": 1.0,
         "threshold": 0.8,
         "passes": true
       },
-      "reference_raw_m1": 0.9411764705882353,
+      "reference_raw_m1": 0.9529411764705882,
       "counts": {
         "mutants": 93,
         "equivalent": 3,
@@ -1675,37 +1675,37 @@
       }
     },
     "humaneval-x-cpp-12": {
-      "task_sha256": "678dea6fc03025a5ec67724bc9addb35d58c73626df6143d865afeda4bcee496",
-      "admitted_at": "2026-10-28T03:40:14.631303+00:00",
+      "task_sha256": "a182aea7a4e6ced609c6b2dd69dd7e65b907f2e5ddb048776f18a3c3fd51a778",
+      "admitted_at": "2026-10-28T07:58:12.494126+00:00",
       "by": "Codex（AI 复核，Linux ARM64）",
-      "note": "依据 D015/D016、各题复核记录及历次 Linux ARM64 Docker 标定签署；本轮 0.2.1 校准、两处门禁回归、8 项删除调用 IR（5 旧+3 新）和 Zebra 52 项固定 GCC 源码副本取证通过。证据：runs/eval-bank-021-20261028-01/summary.md。保留 206 探针超时、39 参考测试缺口及 46 不稳定项的现有分类；不代表参考测试完备或 AMD64 已验证。",
+      "note": "按 benchmark/tools/mutant_review/humaneval-x-cpp-12/ 的复核结论签署：等价候选 10 项均有结论，不稳定 1 项按规则剔除，探针超时 4 项保留在分母中。",
       "reference": {
-        "killed": 131,
+        "killed": 132,
         "timeout": 3,
-        "total": 136,
-        "m1": 0.9849624060150376,
+        "total": 135,
+        "m1": 1.0,
         "threshold": 0.8,
         "passes": true
       },
-      "reference_raw_m1": 0.916083916083916,
+      "reference_raw_m1": 0.9230769230769231,
       "counts": {
         "mutants": 146,
         "equivalent": 10,
-        "unstable": 0,
+        "unstable": 1,
         "review_needed": 4,
         "confirmed_non_equivalent": 0
       }
     },
     "humaneval-x-cpp-13": {
-      "task_sha256": "531e40b193c0250deb242e2f1724c634e6c525d026c4e912367a015b5041a3f4",
-      "admitted_at": "2026-10-28T03:40:14.632447+00:00",
+      "task_sha256": "cca7767f71d4d102ac3cce18bfaaf99255b46d5abf19ab3cfd46a47551ff99b5",
+      "admitted_at": "2026-10-28T07:58:12.495595+00:00",
       "by": "Codex（AI 复核，Linux ARM64）",
-      "note": "依据 D015/D016、各题复核记录及历次 Linux ARM64 Docker 标定签署；本轮 0.2.1 校准、两处门禁回归、8 项删除调用 IR（5 旧+3 新）和 Zebra 52 项固定 GCC 源码副本取证通过。证据：runs/eval-bank-021-20261028-01/summary.md。保留 206 探针超时、39 参考测试缺口及 46 不稳定项的现有分类；不代表参考测试完备或 AMD64 已验证。",
+      "note": "按 benchmark/tools/mutant_review/humaneval-x-cpp-13/ 的复核结论签署：等价候选 4 项均有结论，不稳定 2 项按规则剔除，探针超时 5 项保留在分母中。",
       "reference": {
-        "killed": 60,
+        "killed": 59,
         "timeout": 4,
-        "total": 65,
-        "m1": 0.9836065573770492,
+        "total": 63,
+        "m1": 1.0,
         "threshold": 0.8,
         "passes": true
       },
@@ -1713,25 +1713,25 @@
       "counts": {
         "mutants": 69,
         "equivalent": 4,
-        "unstable": 0,
+        "unstable": 2,
         "review_needed": 5,
         "confirmed_non_equivalent": 0
       }
     },
     "humaneval-x-cpp-14": {
-      "task_sha256": "a2cc69bae7cf46f180f1c19b241782121b6f13d7ffe6803914665a1bc983ff79",
-      "admitted_at": "2026-10-28T03:40:14.633848+00:00",
+      "task_sha256": "72bedbd9cca0c4ac85fa86fe9c95c05a6ada50e6a389880ba6fe3542f4b081b6",
+      "admitted_at": "2026-10-28T07:58:12.497231+00:00",
       "by": "Codex（AI 复核，Linux ARM64）",
-      "note": "依据 D015/D016、各题复核记录及历次 Linux ARM64 Docker 标定签署；本轮 0.2.1 校准、两处门禁回归、8 项删除调用 IR（5 旧+3 新）和 Zebra 52 项固定 GCC 源码副本取证通过。证据：runs/eval-bank-021-20261028-01/summary.md。保留 206 探针超时、39 参考测试缺口及 46 不稳定项的现有分类；不代表参考测试完备或 AMD64 已验证。",
+      "note": "按 benchmark/tools/mutant_review/humaneval-x-cpp-14/ 的复核结论签署：等价候选 2 项均有结论，不稳定 0 项按规则剔除，探针超时 7 项保留在分母中。",
       "reference": {
-        "killed": 113,
+        "killed": 114,
         "timeout": 7,
         "total": 121,
-        "m1": 0.9912280701754386,
+        "m1": 1.0,
         "threshold": 0.8,
         "passes": true
       },
-      "reference_raw_m1": 0.9741379310344828,
+      "reference_raw_m1": 0.9827586206896551,
       "counts": {
         "mutants": 123,
         "equivalent": 2,
@@ -1741,41 +1741,41 @@
       }
     },
     "humaneval-x-cpp-15": {
-      "task_sha256": "929fb06311ce2b08dd3a7ee05db411249fd8e70673bee4e3f9a5e8965f023492",
-      "admitted_at": "2026-10-28T03:40:14.635497+00:00",
+      "task_sha256": "9f51ab590829d8432b946722d5a67e1d17f4868fe32f591701e6326518427e39",
+      "admitted_at": "2026-10-28T07:58:12.499139+00:00",
       "by": "Codex（AI 复核，Linux ARM64）",
-      "note": "依据 D015/D016、各题复核记录及历次 Linux ARM64 Docker 标定签署；本轮 0.2.1 校准、两处门禁回归、8 项删除调用 IR（5 旧+3 新）和 Zebra 52 项固定 GCC 源码副本取证通过。证据：runs/eval-bank-021-20261028-01/summary.md。保留 206 探针超时、39 参考测试缺口及 46 不稳定项的现有分类；不代表参考测试完备或 AMD64 已验证。",
+      "note": "按 benchmark/tools/mutant_review/humaneval-x-cpp-15/ 的复核结论签署：等价候选 14 项均有结论，不稳定 1 项按规则剔除，探针超时 4 项保留在分母中。",
       "reference": {
-        "killed": 152,
+        "killed": 153,
         "timeout": 4,
-        "total": 158,
-        "m1": 0.987012987012987,
+        "total": 157,
+        "m1": 1.0,
         "threshold": 0.8,
         "passes": true
       },
-      "reference_raw_m1": 0.9047619047619048,
+      "reference_raw_m1": 0.9166666666666666,
       "counts": {
         "mutants": 172,
         "equivalent": 14,
-        "unstable": 0,
+        "unstable": 1,
         "review_needed": 4,
         "confirmed_non_equivalent": 0
       }
     },
     "humaneval-x-cpp-16": {
-      "task_sha256": "31c8f5278d5074dc0013948bde87ca7cc739976e4bd5cd97ec044d70e6118183",
-      "admitted_at": "2026-10-28T03:40:14.637120+00:00",
+      "task_sha256": "5a0e614d1b63a768916436d31330693c7d696e4479de24c6747f3c1e16bd2471",
+      "admitted_at": "2026-10-28T07:58:12.500888+00:00",
       "by": "Codex（AI 复核，Linux ARM64）",
-      "note": "依据 D015/D016、各题复核记录及历次 Linux ARM64 Docker 标定签署；本轮 0.2.1 校准、两处门禁回归、8 项删除调用 IR（5 旧+3 新）和 Zebra 52 项固定 GCC 源码副本取证通过。证据：runs/eval-bank-021-20261028-01/summary.md。保留 206 探针超时、39 参考测试缺口及 46 不稳定项的现有分类；不代表参考测试完备或 AMD64 已验证。",
+      "note": "按 benchmark/tools/mutant_review/humaneval-x-cpp-16/ 的复核结论签署：等价候选 7 项均有结论，不稳定 1 项按规则剔除，探针超时 6 项保留在分母中。",
       "reference": {
-        "killed": 129,
+        "killed": 134,
         "timeout": 6,
         "total": 140,
-        "m1": 0.9626865671641791,
+        "m1": 1.0,
         "threshold": 0.8,
         "passes": true
       },
-      "reference_raw_m1": 0.9084507042253521,
+      "reference_raw_m1": 0.9436619718309859,
       "counts": {
         "mutants": 148,
         "equivalent": 7,
@@ -1785,19 +1785,19 @@
       }
     },
     "humaneval-x-cpp-17": {
-      "task_sha256": "b7ff3221f53fb88dc2c9e726b2360b433b3a37bb917ef7613e8bff3526f4140c",
-      "admitted_at": "2026-10-28T03:40:14.638773+00:00",
+      "task_sha256": "c770d511fc9ecf2c4c5dfc57a34df639d7149ce1b3a6a56ed35910655ae6b339",
+      "admitted_at": "2026-10-28T07:58:12.502790+00:00",
       "by": "Codex（AI 复核，Linux ARM64）",
-      "note": "依据 D015/D016、各题复核记录及历次 Linux ARM64 Docker 标定签署；本轮 0.2.1 校准、两处门禁回归、8 项删除调用 IR（5 旧+3 新）和 Zebra 52 项固定 GCC 源码副本取证通过。证据：runs/eval-bank-021-20261028-01/summary.md。保留 206 探针超时、39 参考测试缺口及 46 不稳定项的现有分类；不代表参考测试完备或 AMD64 已验证。",
+      "note": "按 benchmark/tools/mutant_review/humaneval-x-cpp-17/ 的复核结论签署：等价候选 11 项均有结论，不稳定 2 项按规则剔除，探针超时 3 项保留在分母中。",
       "reference": {
-        "killed": 149,
+        "killed": 151,
         "timeout": 3,
         "total": 154,
-        "m1": 0.9867549668874173,
+        "m1": 1.0,
         "threshold": 0.8,
         "passes": true
       },
-      "reference_raw_m1": 0.9085365853658537,
+      "reference_raw_m1": 0.9207317073170732,
       "counts": {
         "mutants": 167,
         "equivalent": 11,
@@ -1829,46 +1829,68 @@
       }
     },
     "humaneval-x-cpp-19": {
-      "task_sha256": "dee95291ae508fe111ef1e379129ececb0d6534afbd84d6707160ddc14f15bab",
-      "admitted_at": "2026-10-28T03:40:14.641951+00:00",
+      "task_sha256": "d0c98e2dd4a39b23659016040c77bdc64bb4ad31f70c8b662e5620f8dcca16fd",
+      "admitted_at": "2026-10-28T07:58:12.504643+00:00",
       "by": "Codex（AI 复核，Linux ARM64）",
-      "note": "依据 D015/D016、各题复核记录及历次 Linux ARM64 Docker 标定签署；本轮 0.2.1 校准、两处门禁回归、8 项删除调用 IR（5 旧+3 新）和 Zebra 52 项固定 GCC 源码副本取证通过。证据：runs/eval-bank-021-20261028-01/summary.md。保留 206 探针超时、39 参考测试缺口及 46 不稳定项的现有分类；不代表参考测试完备或 AMD64 已验证。",
+      "note": "按 benchmark/tools/mutant_review/humaneval-x-cpp-19/ 的复核结论签署：等价候选 10 项均有结论，不稳定 3 项按规则剔除，探针超时 4 项保留在分母中。",
       "reference": {
         "killed": 142,
         "timeout": 4,
-        "total": 148,
-        "m1": 0.9861111111111112,
+        "total": 146,
+        "m1": 1.0,
         "threshold": 0.8,
         "passes": true
       },
-      "reference_raw_m1": 0.9161290322580645,
+      "reference_raw_m1": 0.922077922077922,
       "counts": {
         "mutants": 159,
         "equivalent": 10,
-        "unstable": 1,
+        "unstable": 3,
         "review_needed": 4,
         "confirmed_non_equivalent": 0
       }
     },
     "humaneval-x-cpp-20": {
-      "task_sha256": "149d3df15068fb02e65e02fd842ecc55ac33789e4736907ef6d7b95908d320b8",
-      "admitted_at": "2026-10-28T03:40:14.643668+00:00",
+      "task_sha256": "8754e573756b926220df2bf7d45fa1725b50e508f771be830bf363f27e5fb13b",
+      "admitted_at": "2026-10-28T07:58:12.506575+00:00",
       "by": "Codex（AI 复核，Linux ARM64）",
-      "note": "依据 D015/D016、各题复核记录及历次 Linux ARM64 Docker 标定签署；本轮 0.2.1 校准、两处门禁回归、8 项删除调用 IR（5 旧+3 新）和 Zebra 52 项固定 GCC 源码副本取证通过。证据：runs/eval-bank-021-20261028-01/summary.md。保留 206 探针超时、39 参考测试缺口及 46 不稳定项的现有分类；不代表参考测试完备或 AMD64 已验证。",
+      "note": "按 benchmark/tools/mutant_review/humaneval-x-cpp-20/ 的复核结论签署：等价候选 17 项均有结论，不稳定 4 项按规则剔除，探针超时 21 项保留在分母中。",
       "reference": {
-        "killed": 121,
-        "timeout": 21,
-        "total": 149,
-        "m1": 0.9453125,
+        "killed": 125,
+        "timeout": 20,
+        "total": 145,
+        "m1": 1.0,
         "threshold": 0.8,
         "passes": true
       },
-      "reference_raw_m1": 0.8344827586206897,
+      "reference_raw_m1": 0.8620689655172413,
       "counts": {
         "mutants": 166,
         "equivalent": 17,
-        "unstable": 0,
-        "review_needed": 22,
+        "unstable": 4,
+        "review_needed": 21,
+        "confirmed_non_equivalent": 0
+      }
+    },
+    "md4c-html": {
+      "task_sha256": "f40d8a6c5bc4be079e313fb517689e1379cdbbc50ba74553392890c0f82fb4bd",
+      "admitted_at": "2026-10-28T07:58:12.513360+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
+      "note": "按 benchmark/tools/mutant_review/md4c-html/ 的复核结论签署：等价候选 8 项均有结论，不稳定 1 项按规则剔除，探针超时 2 项保留在分母中。",
+      "reference": {
+        "killed": 184,
+        "timeout": 2,
+        "total": 186,
+        "m1": 1.0,
+        "threshold": 0.8,
+        "passes": true
+      },
+      "reference_raw_m1": 0.9533678756476683,
+      "counts": {
+        "mutants": 195,
+        "equivalent": 8,
+        "unstable": 1,
+        "review_needed": 2,
         "confirmed_non_equivalent": 0
       }
     },
@@ -2177,6 +2199,50 @@
         "equivalent": 1,
         "unstable": 0,
         "review_needed": 0,
+        "confirmed_non_equivalent": 0
+      }
+    },
+    "tinyexpr-configured": {
+      "task_sha256": "5c9ec23cdb9604261112e5ddf73c498759005c9e094000db430d720cf3cd328d",
+      "admitted_at": "2026-10-28T07:58:12.515497+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
+      "note": "按 benchmark/tools/mutant_review/tinyexpr-configured/ 的复核结论签署：等价候选 26 项均有结论，不稳定 0 项按规则剔除，探针超时 13 项保留在分母中。",
+      "reference": {
+        "killed": 283,
+        "timeout": 13,
+        "total": 296,
+        "m1": 1.0,
+        "threshold": 0.8,
+        "passes": true
+      },
+      "reference_raw_m1": 0.9158576051779935,
+      "counts": {
+        "mutants": 322,
+        "equivalent": 26,
+        "unstable": 0,
+        "review_needed": 13,
+        "confirmed_non_equivalent": 0
+      }
+    },
+    "yaml-cpp-document": {
+      "task_sha256": "01d909231afaaaf68ee8d850038f8af7ceab4c72b24e0fca6044bc9e0f562ca0",
+      "admitted_at": "2026-10-28T07:58:12.510822+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
+      "note": "按 benchmark/tools/mutant_review/yaml-cpp-document/ 的复核结论签署：等价候选 4 项均有结论，不稳定 2 项按规则剔除，探针超时 5 项保留在分母中。",
+      "reference": {
+        "killed": 86,
+        "timeout": 5,
+        "total": 91,
+        "m1": 1.0,
+        "threshold": 0.8,
+        "passes": true
+      },
+      "reference_raw_m1": 0.9565217391304348,
+      "counts": {
+        "mutants": 97,
+        "equivalent": 4,
+        "unstable": 2,
+        "review_needed": 5,
         "confirmed_non_equivalent": 0
       }
     },

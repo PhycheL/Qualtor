@@ -1,9 +1,9 @@
 {
   "task": "humaneval-x-cpp-03",
-  "created_at": "2026-10-28T02:57:27.425337+00:00",
-  "created_by_run": "bank-prepare-20261028-04-humaneval-x-cpp-03",
-  "scorer_version": "0.2.0",
-  "scorer_code_sha256": "4de897c62e591517f98bb901c1f6ee4bab2d5196df014de1d78d3a982b957ad4",
+  "created_at": "2026-10-28T07:43:44.294472+00:00",
+  "created_by_run": "step-a-formal-20261028-01-humaneval-x-cpp-03",
+  "scorer_version": "0.3.0",
+  "scorer_code_sha256": "dd055eac2773c9c2cdd9a6d4fa9e5e3e885150cfa5d3605c71a6f05d48419503",
   "images": {
     "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
     "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
@@ -1567,8 +1567,8 @@
         }
       },
       "reference_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ],
       "probe_status": [
         "killed",
@@ -2576,6 +2576,23 @@
         "runs/bank-review-20261027-03/humaneval-x-cpp-03.md"
       ],
       "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_021.cc:20:19:20:20",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/step-a-ub-20261028-01-humaneval-x-cpp-03/ub-sweep.json",
+        "benchmark/humaneval-x-cpp-03/source/src/cpp_021.cc"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
     }
   ],
   "review_needed": [
@@ -2612,13 +2629,13 @@
     "status": "reviewed",
     "by": "Codex（AI 复核，Linux ARM64）",
     "at": "2026-10-28",
-    "note": "依据 D015/D016、各题复核记录及历次 Linux ARM64 Docker 标定签署；本轮 0.2.1 校准、两处门禁回归、8 项删除调用 IR（5 旧+3 新）和 Zebra 52 项固定 GCC 源码副本取证通过。证据：runs/eval-bank-021-20261028-01/summary.md。保留 206 探针超时、39 参考测试缺口及 46 不稳定项的现有分类；不代表参考测试完备或 AMD64 已验证。"
+    "note": "按 benchmark/tools/mutant_review/humaneval-x-cpp-03/ 的复核结论签署：等价候选 7 项均有结论，不稳定 2 项按规则剔除，探针超时 7 项保留在分母中。"
   },
   "reference": {
-    "killed": 97,
+    "killed": 98,
     "timeout": 7,
-    "total": 106,
-    "m1": 0.9797979797979798,
+    "total": 105,
+    "m1": 1.0,
     "threshold": 0.8,
     "passes": true
   }

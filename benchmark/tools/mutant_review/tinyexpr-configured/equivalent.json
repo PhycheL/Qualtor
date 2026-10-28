@@ -1,0 +1,242 @@
+{
+  "task": "tinyexpr-configured",
+  "note": "D011/D015逐项源码与实际Mull IR复核；不以有限测试幸存作为等价依据。",
+  "mutants": [
+    {
+      "id": "cxx_add_to_sub:/repo/tinyexpr.c:749:41:749:42",
+      "reason": "递归打印的深度由 0 开始；+1 改为 -1 使深度变号。printf(\"%*s\", depth, \"\") 对空串输出 abs(depth) 个空格，左右对齐没有区别。仅达到整数/栈资源极限才可能不同，D015 排除。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:131:12:131:13",
+      "reason": "ARITY 的值为0至7；把释放循环初值改成42与删去递归 te_free 一样，仅少释放内存，按 D015 泄漏口径等价。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:309:21:309:22",
+      "reason": "孤立小数点未推进 s->next；type=42 虽按低5位识别为2参数函数，但下一次 next_token 仍读同一个点，必定不为 TOK_OPEN，随后恢复 TOK_ERROR。返回 NULL 和相同错误位置；只多一次分配，资源差异按 D015 排除。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:366:13:366:14",
+      "reason": "prec 只在 TOK_INFIX/TOK_SEP 分支参与解析；这两类 token 总会分别经 infix 或逗号分支重写 prec。其余 token 的默认 prec 不被使用。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:475:29:475:30",
+      "reason": "错误状态在 base 返回后仅用于与结束/分隔/运算 token 比较；25和42都不匹配，均返回NULL和同一错误位置；不会再按函数token解释。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:481:25:481:26",
+      "reason": "缺少函数括号时错误状态直接向外传播；25和42都不是合法后续 token，均返回NULL和同一错误位置。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:491:25:491:26",
+      "reason": "缺少右括号时错误状态直接向外传播；25和42都不是合法后续 token，均返回NULL和同一错误位置。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:501:21:501:22",
+      "reason": "base 默认分支设置的错误状态向外传播，不会再次进入 token 的 TYPE_MASK 分派；25和42同样不是结束/分隔/运算 token，返回NULL及相同错误位置。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:502:24:502:25",
+      "reason": "默认错误节点必被 te_compile 丢弃；该节点 type=0，不求值也不打印，te_free 不读取 value。NAN改42不可观察。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:528:17:528:18",
+      "reason": "超深时此处随后直接返回NULL，所有调用方沿 CHECK_NULL 返回，te_compile 设置错误码-1；写入的错误 token 值不被读取。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/tinyexpr.c:146:11:146:12",
+      "reason": "仅在 a==UINT_MAX 时条件不同；原程序在阶乘第21步已经返回INFINITY，与提前返回相同。小数和其他输入路径不变。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/tinyexpr.c:151:15:151:16",
+      "reason": "有效阶乘只会走 i=1..21：前20步 i 均不等于 floor(ULLONG_MAX/result)，第21步两种条件均真。逐个整数核算见 integer-bound-proof.json。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json",
+        "runs/step-a-20261028-01/integer-bound-proof.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/tinyexpr.c:170:12:170:13",
+      "reason": "区别只在 ur==floor(un/2)：偶数替换后不变，奇数选相邻对称系数。约分后的每步乘积为二项式系数，未溢出时两者终值一致；若终值超过ULLONG_MAX，两者都在到达终值前返回INFINITY。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/tinyexpr.c:178:20:178:21",
+      "reason": ">= 与 > 仅在 result==floor(ULLONG_MAX/m) 时不同。m<=UINT_MAX，所有可表示的二项式系数与ULLONG_MAX的最近差仍大于UINT_MAX；r=1..33用整数二分证明，r>=34且n>=68已溢出。故边界不可达；证据 integer-bound-proof.json。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json",
+        "runs/step-a-20261028-01/integer-bound-proof.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/tinyexpr.c:232:15:232:16",
+      "reason": "c==0 已在上一行立即返回；本行 c 不可能为0，>改>=不影响分支。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:683:9:683:14",
+      "reason": "known 只参与真假判断，后续最多被置0；初值1和42都为真，优化折叠条件不变。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/tinyexpr.c:338:26:338:27",
+      "reason": "外层 if(exponent && value!=0) 已排除 exponent==0；<0 与 <=0 的差别不可达。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:119:9:119:19",
+      "reason": "实际生效 IR 删除释放节点/参数的调用；返回的值、错误码和语法树内容不变，仅泄漏内存，按 D015 资源差异口径等价。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:120:9:120:19",
+      "reason": "实际生效 IR 删除释放节点/参数的调用；返回的值、错误码和语法树内容不变，仅泄漏内存，按 D015 资源差异口径等价。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:131:42:131:67",
+      "reason": "实际生效 IR 删除释放节点/参数的调用；返回的值、错误码和语法树内容不变，仅泄漏内存，按 D015 资源差异口径等价。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:136:5:136:26",
+      "reason": "实际生效 IR 删除释放节点/参数的调用；返回的值、错误码和语法树内容不变，仅泄漏内存，按 D015 资源差异口径等价。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:137:5:137:12",
+      "reason": "实际生效 IR 删除释放节点/参数的调用；返回的值、错误码和语法树内容不变，仅泄漏内存，按 D015 资源差异口径等价。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:557:9:557:18",
+      "reason": "实际生效 IR 删除释放节点/参数的调用；返回的值、错误码和语法树内容不变，仅泄漏内存，按 D015 资源差异口径等价。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:690:9:690:30",
+      "reason": "实际生效 IR 删除释放节点/参数的调用；返回的值、错误码和语法树内容不变，仅泄漏内存，按 D015 资源差异口径等价。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:712:9:712:22",
+      "reason": "实际生效 IR 删除释放节点/参数的调用；返回的值、错误码和语法树内容不变，仅泄漏内存，按 D015 资源差异口径等价。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:729:5:729:15",
+      "reason": "实际生效 IR 删除释放节点/参数的调用；返回的值、错误码和语法树内容不变，仅泄漏内存，按 D015 资源差异口径等价。",
+      "evidence": [
+        "benchmark/tinyexpr-configured/source/tinyexpr.c",
+        "runs/step-a-ir-20261028-01-tinyexpr-configured/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    }
+  ]
+}

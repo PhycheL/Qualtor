@@ -33,6 +33,16 @@
         "runs/eval-review-20261027-humaneval-x-cpp-03/trials/humaneval-x-cpp-03/trial-1/score/0.1.6/final/mull/mull/mutations.json",
         "runs/eval-bank-followup-20261027-01/review-products/humaneval-x-cpp-03"
       ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_021.cc:20:19:20:20",
+      "verdict": "undefined_only",
+      "reason": "循环条件 <= 新增 numbers[size] 的读写；此前迭代与原程序一致，差异只可能在越界后出现。",
+      "evidence": [
+        "runs/step-a-ub-20261028-01-humaneval-x-cpp-03/ub-sweep.json",
+        "benchmark/humaneval-x-cpp-03/source/src/cpp_021.cc"
+      ],
+      "reviewer": "Codex（AI 复核）"
     }
   ]
 }

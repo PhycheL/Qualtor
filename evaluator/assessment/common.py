@@ -5,6 +5,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+from build_contract import validate_build
 
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "common"))
@@ -109,6 +110,11 @@ def validate_task(task):
     if task["schema"] != 1 or task["set"] not in ("dev", "acceptance"):
         raise TaskError("task.json 的 schema 或 set 不正确")
     root = source_root(task)
+    try:
+        build = validate_build(task.get("build", {}), task["target_sources"],
+                               task.get("visible", {}).get("files", []), root)
+    except ValueError as error:
+        raise TaskError(str(error)) from error
     for rel, digest in task["source"]["files"].items():
         path = root / rel
         if not path.is_file() or sha256_file(path) != digest:
@@ -116,7 +122,7 @@ def validate_task(task):
     for rel in task["target_sources"] + task["include_dirs"]:
         if not (root / rel).exists():
             raise TaskError(f"路径不存在：{rel}")
-    for rel in task["target_sources"]:
+    for rel in task["target_sources"] + build["support_sources"]:
         if rel not in task["source"]["files"]:
             raise TaskError(f"被测源文件未登记哈希：{rel}")
     ids = set()

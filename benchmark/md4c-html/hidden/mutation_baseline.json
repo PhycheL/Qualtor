@@ -1,0 +1,4392 @@
+{
+  "task": "md4c-html",
+  "created_at": "2026-10-28T07:40:33.707302+00:00",
+  "created_by_run": "step-a-formal-20261028-01-md4c-html",
+  "scorer_version": "0.3.0",
+  "scorer_code_sha256": "dd055eac2773c9c2cdd9a6d4fa9e5e3e885150cfa5d3605c71a6f05d48419503",
+  "images": {
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
+  },
+  "mull": {
+    "config_sha256": "e96057927b424580a647e9765076f78eed61a5c0e149ad5220381d3b04960c44",
+    "config": "# 由评分器根据 task.json 生成；修改算子要升级变异分母。\nmutators:\n  - cxx_all\nincludePaths:\n  - '/repo/src/md4c\\-html\\.c$'\n"
+  },
+  "mutants": [
+    {
+      "id": "cxx_add_assign_to_sub_assign:/repo/src/md4c-html.c:98:17:98:19",
+      "mutator": "cxx_add_assign_to_sub_assign",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 17
+        },
+        "end": {
+          "line": 98,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/md4c-html.c:163:25:163:26",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 25
+        },
+        "end": {
+          "line": 163,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/md4c-html.c:165:25:165:26",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 25
+        },
+        "end": {
+          "line": 165,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/md4c-html.c:183:24:183:25",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 24
+        },
+        "end": {
+          "line": 183,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/md4c-html.c:187:24:187:25",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 24
+        },
+        "end": {
+          "line": 187,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/md4c-html.c:188:24:188:25",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 24
+        },
+        "end": {
+          "line": 188,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/md4c-html.c:192:24:192:25",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 24
+        },
+        "end": {
+          "line": 192,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/md4c-html.c:193:24:193:25",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 193,
+          "column": 24
+        },
+        "end": {
+          "line": 193,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/md4c-html.c:194:24:194:25",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 24
+        },
+        "end": {
+          "line": 194,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/md4c-html.c:222:44:222:45",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 222,
+          "column": 44
+        },
+        "end": {
+          "line": 222,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/md4c-html.c:227:44:227:45",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 44
+        },
+        "end": {
+          "line": 227,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/md4c-html.c:257:46:257:47",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 46
+        },
+        "end": {
+          "line": 257,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/md4c-html.c:96:19:96:20",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 19
+        },
+        "end": {
+          "line": 96,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/src/md4c-html.c:143:67:143:68",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 67
+        },
+        "end": {
+          "line": 143,
+          "column": 68
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/src/md4c-html.c:144:67:144:68",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 67
+        },
+        "end": {
+          "line": 144,
+          "column": 68
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/src/md4c-html.c:182:45:182:46",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 45
+        },
+        "end": {
+          "line": 182,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/src/md4c-html.c:183:45:183:46",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 45
+        },
+        "end": {
+          "line": 183,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/src/md4c-html.c:186:45:186:46",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 186,
+          "column": 45
+        },
+        "end": {
+          "line": 186,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/src/md4c-html.c:187:45:187:46",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 45
+        },
+        "end": {
+          "line": 187,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/src/md4c-html.c:188:45:188:46",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 45
+        },
+        "end": {
+          "line": 188,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/src/md4c-html.c:191:45:191:46",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 45
+        },
+        "end": {
+          "line": 191,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/src/md4c-html.c:192:45:192:46",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 45
+        },
+        "end": {
+          "line": 192,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/src/md4c-html.c:193:45:193:46",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 193,
+          "column": 45
+        },
+        "end": {
+          "line": 193,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/src/md4c-html.c:194:45:194:46",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 45
+        },
+        "end": {
+          "line": 194,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/src/md4c-html.c:209:17:209:18",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 17
+        },
+        "end": {
+          "line": 209,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/src/md4c-html.c:527:17:527:18",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 527,
+          "column": 17
+        },
+        "end": {
+          "line": 527,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/src/md4c-html.c:563:23:563:24",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 563,
+          "column": 23
+        },
+        "end": {
+          "line": 563,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:116:13:116:14",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 13
+        },
+        "end": {
+          "line": 116,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:142:28:142:29",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 28
+        },
+        "end": {
+          "line": 142,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:143:28:143:29",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 28
+        },
+        "end": {
+          "line": 143,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:144:28:144:29",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 28
+        },
+        "end": {
+          "line": 144,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:153:13:153:14",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 13
+        },
+        "end": {
+          "line": 153,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:178:11:178:12",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 11
+        },
+        "end": {
+          "line": 178,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:179:17:179:18",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 179,
+          "column": 17
+        },
+        "end": {
+          "line": 179,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:181:11:181:12",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 11
+        },
+        "end": {
+          "line": 181,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:182:17:182:18",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 17
+        },
+        "end": {
+          "line": 182,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:183:17:183:18",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 17
+        },
+        "end": {
+          "line": 183,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:185:11:185:12",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 11
+        },
+        "end": {
+          "line": 185,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:186:17:186:18",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 186,
+          "column": 17
+        },
+        "end": {
+          "line": 186,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:187:17:187:18",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 17
+        },
+        "end": {
+          "line": 187,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:188:17:188:18",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 17
+        },
+        "end": {
+          "line": 188,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:190:11:190:12",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 190,
+          "column": 11
+        },
+        "end": {
+          "line": 190,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:191:17:191:18",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 17
+        },
+        "end": {
+          "line": 191,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:192:17:192:18",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 17
+        },
+        "end": {
+          "line": 192,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:193:17:193:18",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 193,
+          "column": 17
+        },
+        "end": {
+          "line": 193,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:194:17:194:18",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 17
+        },
+        "end": {
+          "line": 194,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:221:19:221:20",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 221,
+          "column": 19
+        },
+        "end": {
+          "line": 221,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:222:27:222:28",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 222,
+          "column": 27
+        },
+        "end": {
+          "line": 222,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:226:19:226:20",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 19
+        },
+        "end": {
+          "line": 226,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:227:27:227:28",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 27
+        },
+        "end": {
+          "line": 227,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:254:11:254:12",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 254,
+          "column": 11
+        },
+        "end": {
+          "line": 254,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/md4c-html.c:552:11:552:12",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 552,
+          "column": 11
+        },
+        "end": {
+          "line": 552,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/md4c-html.c:215:28:215:30",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 215,
+          "column": 28
+        },
+        "end": {
+          "line": 215,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/md4c-html.c:218:20:218:22",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 218,
+          "column": 20
+        },
+        "end": {
+          "line": 218,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/md4c-html.c:218:38:218:40",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 218,
+          "column": 38
+        },
+        "end": {
+          "line": 218,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/md4c-html.c:274:19:274:21",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 274,
+          "column": 19
+        },
+        "end": {
+          "line": 274,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/md4c-html.c:289:27:289:29",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 289,
+          "column": 27
+        },
+        "end": {
+          "line": 289,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/md4c-html.c:289:52:289:54",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 289,
+          "column": 52
+        },
+        "end": {
+          "line": 289,
+          "column": 54
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/md4c-html.c:482:35:482:37",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 482,
+          "column": 35
+        },
+        "end": {
+          "line": 482,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/md4c-html.c:482:50:482:52",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 482,
+          "column": 50
+        },
+        "end": {
+          "line": 482,
+          "column": 52
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/md4c-html.c:558:65:558:67",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 558,
+          "column": 65
+        },
+        "end": {
+          "line": 558,
+          "column": 67
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/md4c-html.c:565:75:565:77",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 565,
+          "column": 75
+        },
+        "end": {
+          "line": 565,
+          "column": 77
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/md4c-html.c:565:23:565:25",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 565,
+          "column": 23
+        },
+        "end": {
+          "line": 565,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/md4c-html.c:565:23:565:25",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 565,
+          "column": 23
+        },
+        "end": {
+          "line": 565,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/md4c-html.c:102:16:102:17",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 16
+        },
+        "end": {
+          "line": 102,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/md4c-html.c:133:16:133:17",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 16
+        },
+        "end": {
+          "line": 133,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/md4c-html.c:215:13:215:14",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 215,
+          "column": 13
+        },
+        "end": {
+          "line": 215,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/md4c-html.c:439:31:439:32",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 439,
+          "column": 31
+        },
+        "end": {
+          "line": 439,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/md4c-html.c:479:31:479:32",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 479,
+          "column": 31
+        },
+        "end": {
+          "line": 479,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/md4c-html.c:102:16:102:17",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 16
+        },
+        "end": {
+          "line": 102,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/md4c-html.c:133:16:133:17",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 16
+        },
+        "end": {
+          "line": 133,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/md4c-html.c:215:13:215:14",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 215,
+          "column": 13
+        },
+        "end": {
+          "line": 215,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/md4c-html.c:439:31:439:32",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 439,
+          "column": 31
+        },
+        "end": {
+          "line": 439,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/md4c-html.c:479:31:479:32",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 479,
+          "column": 31
+        },
+        "end": {
+          "line": 479,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/md4c-html.c:124:15:124:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 15
+        },
+        "end": {
+          "line": 124,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/md4c-html.c:125:15:125:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 15
+        },
+        "end": {
+          "line": 125,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/md4c-html.c:216:18:216:27",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 216,
+          "column": 18
+        },
+        "end": {
+          "line": 216,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/md4c-html.c:255:21:255:25",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 255,
+          "column": 21
+        },
+        "end": {
+          "line": 255,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/md4c-html.c:256:19:256:22",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 19
+        },
+        "end": {
+          "line": 256,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/md4c-html.c:257:17:257:21",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 17
+        },
+        "end": {
+          "line": 257,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/md4c-html.c:553:23:553:25",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 553,
+          "column": 23
+        },
+        "end": {
+          "line": 553,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/md4c-html.c:88:15:88:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 15
+        },
+        "end": {
+          "line": 88,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/md4c-html.c:89:15:89:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 15
+        },
+        "end": {
+          "line": 89,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/src/md4c-html.c:160:12:160:14",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 12
+        },
+        "end": {
+          "line": 160,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/src/md4c-html.c:160:24:160:26",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 24
+        },
+        "end": {
+          "line": 160,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/src/md4c-html.c:162:12:162:14",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 12
+        },
+        "end": {
+          "line": 162,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/src/md4c-html.c:162:24:162:26",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 24
+        },
+        "end": {
+          "line": 162,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/src/md4c-html.c:177:18:177:20",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 18
+        },
+        "end": {
+          "line": 177,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/src/md4c-html.c:180:25:180:27",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 25
+        },
+        "end": {
+          "line": 180,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/src/md4c-html.c:184:25:184:27",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 25
+        },
+        "end": {
+          "line": 184,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/src/md4c-html.c:197:37:197:39",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 37
+        },
+        "end": {
+          "line": 197,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/md4c-html.c:160:12:160:14",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 12
+        },
+        "end": {
+          "line": 160,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/md4c-html.c:160:24:160:26",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 24
+        },
+        "end": {
+          "line": 160,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/md4c-html.c:162:12:162:14",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 12
+        },
+        "end": {
+          "line": 162,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/md4c-html.c:162:24:162:26",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 24
+        },
+        "end": {
+          "line": 162,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/md4c-html.c:177:18:177:20",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 18
+        },
+        "end": {
+          "line": 177,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/md4c-html.c:180:25:180:27",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 25
+        },
+        "end": {
+          "line": 180,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/md4c-html.c:184:25:184:27",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 25
+        },
+        "end": {
+          "line": 184,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/md4c-html.c:197:37:197:39",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 37
+        },
+        "end": {
+          "line": 197,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/md4c-html.c:105:16:105:17",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 16
+        },
+        "end": {
+          "line": 105,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/md4c-html.c:131:19:131:20",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 19
+        },
+        "end": {
+          "line": 131,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/md4c-html.c:136:16:136:17",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 16
+        },
+        "end": {
+          "line": 136,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/md4c-html.c:197:10:197:11",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 10
+        },
+        "end": {
+          "line": 197,
+          "column": 11
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/md4c-html.c:221:26:221:27",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 221,
+          "column": 26
+        },
+        "end": {
+          "line": 221,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/md4c-html.c:226:26:226:27",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 26
+        },
+        "end": {
+          "line": 226,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/md4c-html.c:254:40:254:41",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 254,
+          "column": 40
+        },
+        "end": {
+          "line": 254,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/md4c-html.c:552:18:552:19",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 552,
+          "column": 18
+        },
+        "end": {
+          "line": 552,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/md4c-html.c:96:23:96:24",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 23
+        },
+        "end": {
+          "line": 96,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/md4c-html.c:99:19:99:20",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 19
+        },
+        "end": {
+          "line": 99,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/md4c-html.c:105:16:105:17",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 16
+        },
+        "end": {
+          "line": 105,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/md4c-html.c:131:19:131:20",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 19
+        },
+        "end": {
+          "line": 131,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/md4c-html.c:136:16:136:17",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 16
+        },
+        "end": {
+          "line": 136,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/md4c-html.c:197:10:197:11",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 10
+        },
+        "end": {
+          "line": 197,
+          "column": 11
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/md4c-html.c:221:26:221:27",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 221,
+          "column": 26
+        },
+        "end": {
+          "line": 221,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/md4c-html.c:226:26:226:27",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 26
+        },
+        "end": {
+          "line": 226,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/md4c-html.c:254:40:254:41",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 254,
+          "column": 40
+        },
+        "end": {
+          "line": 254,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/md4c-html.c:552:18:552:19",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 552,
+          "column": 18
+        },
+        "end": {
+          "line": 552,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/md4c-html.c:96:23:96:24",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 23
+        },
+        "end": {
+          "line": 96,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/md4c-html.c:99:19:99:20",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 19
+        },
+        "end": {
+          "line": 99,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/src/md4c-html.c:222:32:222:33",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 222,
+          "column": 32
+        },
+        "end": {
+          "line": 222,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/src/md4c-html.c:227:32:227:33",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 32
+        },
+        "end": {
+          "line": 227,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/md4c-html.c:237:16:237:18",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 16
+        },
+        "end": {
+          "line": 237,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/md4c-html.c:303:23:303:25",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 303,
+          "column": 23
+        },
+        "end": {
+          "line": 303,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/md4c-html.c:332:24:332:26",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 332,
+          "column": 24
+        },
+        "end": {
+          "line": 332,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/md4c-html.c:354:24:354:26",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 354,
+          "column": 24
+        },
+        "end": {
+          "line": 354,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/md4c-html.c:555:32:555:34",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 555,
+          "column": 32
+        },
+        "end": {
+          "line": 555,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_or_assign_to_and_assign:/repo/src/md4c-html.c:556:34:556:36",
+      "mutator": "cxx_or_assign_to_and_assign",
+      "location": {
+        "start": {
+          "line": 556,
+          "column": 34
+        },
+        "end": {
+          "line": 556,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_or_assign_to_and_assign:/repo/src/md4c-html.c:559:34:559:36",
+      "mutator": "cxx_or_assign_to_and_assign",
+      "location": {
+        "start": {
+          "line": 559,
+          "column": 34
+        },
+        "end": {
+          "line": 559,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_or_to_and:/repo/src/md4c-html.c:182:24:182:25",
+      "mutator": "cxx_or_to_and",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 24
+        },
+        "end": {
+          "line": 182,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_or_to_and:/repo/src/md4c-html.c:186:24:186:25",
+      "mutator": "cxx_or_to_and",
+      "location": {
+        "start": {
+          "line": 186,
+          "column": 24
+        },
+        "end": {
+          "line": 186,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_or_to_and:/repo/src/md4c-html.c:191:24:191:25",
+      "mutator": "cxx_or_to_and",
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 24
+        },
+        "end": {
+          "line": 191,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_dec_to_post_inc:/repo/src/md4c-html.c:361:27:361:29",
+      "mutator": "cxx_post_dec_to_post_inc",
+      "location": {
+        "start": {
+          "line": 361,
+          "column": 27
+        },
+        "end": {
+          "line": 361,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/md4c-html.c:100:16:100:18",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 16
+        },
+        "end": {
+          "line": 100,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/md4c-html.c:112:16:112:18",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 16
+        },
+        "end": {
+          "line": 112,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/md4c-html.c:132:16:132:18",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 16
+        },
+        "end": {
+          "line": 132,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/md4c-html.c:148:16:148:18",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 16
+        },
+        "end": {
+          "line": 148,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/md4c-html.c:221:37:221:39",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 221,
+          "column": 37
+        },
+        "end": {
+          "line": 221,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/md4c-html.c:226:37:226:39",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 37
+        },
+        "end": {
+          "line": 226,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/md4c-html.c:254:55:254:57",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 254,
+          "column": 55
+        },
+        "end": {
+          "line": 254,
+          "column": 57
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/md4c-html.c:348:27:348:29",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 348,
+          "column": 27
+        },
+        "end": {
+          "line": 348,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/md4c-html.c:552:26:552:28",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 552,
+          "column": 26
+        },
+        "end": {
+          "line": 552,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:103:13:103:54",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 13
+        },
+        "end": {
+          "line": 103,
+          "column": 54
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:134:13:134:54",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 13
+        },
+        "end": {
+          "line": 134,
+          "column": 54
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:145:21:145:47",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 21
+        },
+        "end": {
+          "line": 145,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:210:9:210:39",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 210,
+          "column": 9
+        },
+        "end": {
+          "line": 210,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:230:9:230:55",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 230,
+          "column": 9
+        },
+        "end": {
+          "line": 230,
+          "column": 55
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:238:13:238:68",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 13
+        },
+        "end": {
+          "line": 238,
+          "column": 68
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:240:17:240:72",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 240,
+          "column": 17
+        },
+        "end": {
+          "line": 240,
+          "column": 72
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:261:37:261:86",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 261,
+          "column": 37
+        },
+        "end": {
+          "line": 261,
+          "column": 86
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:262:37:262:76",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 262,
+          "column": 37
+        },
+        "end": {
+          "line": 262,
+          "column": 76
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:305:9:305:61",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 305,
+          "column": 9
+        },
+        "end": {
+          "line": 305,
+          "column": 61
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:330:5:330:56",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 330,
+          "column": 5
+        },
+        "end": {
+          "line": 330,
+          "column": 56
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:334:9:334:62",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 334,
+          "column": 9
+        },
+        "end": {
+          "line": 334,
+          "column": 62
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:344:5:344:55",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 344,
+          "column": 5
+        },
+        "end": {
+          "line": 344,
+          "column": 55
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:356:9:356:62",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 356,
+          "column": 9
+        },
+        "end": {
+          "line": 356,
+          "column": 62
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:368:5:368:59",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 368,
+          "column": 5
+        },
+        "end": {
+          "line": 368,
+          "column": 59
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:388:33:388:91",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 388,
+          "column": 33
+        },
+        "end": {
+          "line": 388,
+          "column": 91
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:389:33:389:91",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 389,
+          "column": 33
+        },
+        "end": {
+          "line": 389,
+          "column": 91
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:392:33:392:96",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 392,
+          "column": 33
+        },
+        "end": {
+          "line": 392,
+          "column": 96
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:399:33:399:91",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 399,
+          "column": 33
+        },
+        "end": {
+          "line": 399,
+          "column": 91
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:400:33:400:91",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 400,
+          "column": 33
+        },
+        "end": {
+          "line": 400,
+          "column": 91
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:462:41:462:90",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 462,
+          "column": 41
+        },
+        "end": {
+          "line": 462,
+          "column": 90
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:463:41:463:94",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 463,
+          "column": 41
+        },
+        "end": {
+          "line": 463,
+          "column": 94
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:468:41:468:104",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 468,
+          "column": 41
+        },
+        "end": {
+          "line": 468,
+          "column": 104
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:483:13:483:67",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 483,
+          "column": 13
+        },
+        "end": {
+          "line": 483,
+          "column": 67
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:509:33:509:82",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 509,
+          "column": 33
+        },
+        "end": {
+          "line": 509,
+          "column": 82
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:515:33:515:63",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 515,
+          "column": 33
+        },
+        "end": {
+          "line": 515,
+          "column": 63
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:516:33:516:82",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 516,
+          "column": 33
+        },
+        "end": {
+          "line": 516,
+          "column": 82
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/md4c-html.c:517:33:517:67",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 517,
+          "column": 33
+        },
+        "end": {
+          "line": 517,
+          "column": 67
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/md4c-html.c:222:46:222:62",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 222,
+          "column": 46
+        },
+        "end": {
+          "line": 222,
+          "column": 62
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/md4c-html.c:279:5:279:66",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 279,
+          "column": 5
+        },
+        "end": {
+          "line": 279,
+          "column": 66
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/md4c-html.c:528:9:528:43",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 528,
+          "column": 9
+        },
+        "end": {
+          "line": 528,
+          "column": 43
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/md4c-html.c:565:43:565:74",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 565,
+          "column": 43
+        },
+        "end": {
+          "line": 565,
+          "column": 74
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/md4c-html.c:571:12:571:65",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 571,
+          "column": 12
+        },
+        "end": {
+          "line": 571,
+          "column": 65
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/src/md4c-html.c:143:61:143:63",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 61
+        },
+        "end": {
+          "line": 143,
+          "column": 63
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/src/md4c-html.c:144:61:144:63",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 61
+        },
+        "end": {
+          "line": 144,
+          "column": 63
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/src/md4c-html.c:182:38:182:40",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 38
+        },
+        "end": {
+          "line": 182,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/src/md4c-html.c:183:38:183:40",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 38
+        },
+        "end": {
+          "line": 183,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/src/md4c-html.c:186:38:186:40",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 186,
+          "column": 38
+        },
+        "end": {
+          "line": 186,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/src/md4c-html.c:187:38:187:40",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 38
+        },
+        "end": {
+          "line": 187,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/src/md4c-html.c:188:38:188:40",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 38
+        },
+        "end": {
+          "line": 188,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/src/md4c-html.c:191:38:191:40",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 38
+        },
+        "end": {
+          "line": 191,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/src/md4c-html.c:192:38:192:40",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 38
+        },
+        "end": {
+          "line": 192,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/src/md4c-html.c:193:38:193:40",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 193,
+          "column": 38
+        },
+        "end": {
+          "line": 193,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/src/md4c-html.c:194:38:194:40",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 38
+        },
+        "end": {
+          "line": 194,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_sub_assign_to_add_assign:/repo/src/md4c-html.c:567:24:567:26",
+      "mutator": "cxx_sub_assign_to_add_assign",
+      "location": {
+        "start": {
+          "line": 567,
+          "column": 24
+        },
+        "end": {
+          "line": 567,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/md4c-html.c:103:48:103:49",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 48
+        },
+        "end": {
+          "line": 103,
+          "column": 49
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/md4c-html.c:134:48:134:49",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 48
+        },
+        "end": {
+          "line": 134,
+          "column": 49
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/md4c-html.c:161:19:161:20",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 19
+        },
+        "end": {
+          "line": 161,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/md4c-html.c:163:19:163:20",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 19
+        },
+        "end": {
+          "line": 163,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/md4c-html.c:165:19:165:20",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 19
+        },
+        "end": {
+          "line": 165,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/md4c-html.c:221:32:221:33",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 221,
+          "column": 32
+        },
+        "end": {
+          "line": 221,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/md4c-html.c:226:32:226:33",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 32
+        },
+        "end": {
+          "line": 226,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/md4c-html.c:227:55:227:56",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 55
+        },
+        "end": {
+          "line": 227,
+          "column": 56
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/md4c-html.c:257:50:257:51",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 50
+        },
+        "end": {
+          "line": 257,
+          "column": 51
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    }
+  ],
+  "equivalent": [
+    {
+      "id": "cxx_and_to_or:/repo/src/md4c-html.c:527:17:527:18",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/md4c-html.c:215:13:215:14",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/md4c-html.c:162:24:162:26",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/md4c-html.c:528:9:528:43",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/src/md4c-html.c:144:61:144:63",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/src/md4c-html.c:183:38:183:40",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/src/md4c-html.c:188:38:188:40",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/src/md4c-html.c:194:38:194:40",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    }
+  ],
+  "unstable": [
+    {
+      "id": "cxx_lt_to_le:/repo/src/md4c-html.c:552:18:552:19",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/step-a-ub-20261028-03-md4c-html/results.json",
+        "runs/step-a-ir-20261028-01-md4c-html/mutant-ir.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    }
+  ],
+  "review_needed": [
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/md4c-html.c:148:16:148:18",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/md4c-html.c:552:26:552:28",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "by": "Codex（AI 复核，Linux ARM64）",
+    "at": "2026-10-28",
+    "note": "按 benchmark/tools/mutant_review/md4c-html/ 的复核结论签署：等价候选 8 项均有结论，不稳定 1 项按规则剔除，探针超时 2 项保留在分母中。"
+  },
+  "reference": {
+    "killed": 184,
+    "timeout": 2,
+    "total": 186,
+    "m1": 1.0,
+    "threshold": 0.8,
+    "passes": true
+  }
+}

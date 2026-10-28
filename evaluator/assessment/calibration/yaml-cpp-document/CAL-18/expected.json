@@ -1,0 +1,51 @@
+{
+  "description": "只替换 .cpp 的真实缺陷；依赖源文件不覆盖、不变异",
+  "reference_copies": [
+    "tests/error_messages_test.cc",
+    "tests/handler_spec_test.cc",
+    "tests/handler_test.cc",
+    "tests/handler_test.h",
+    "tests/load_node_test.cc",
+    "tests/mock_event_handler.h",
+    "tests/node_spec_test.cc",
+    "tests/parser_test.cc",
+    "tests/reference_options.cc",
+    "tests/specexamples.h",
+    "tests/step_a_boundaries.cc"
+  ],
+  "hard": {
+    "status": "scored",
+    "tests_default": "valid",
+    "variants": {
+      "tagged-null": "detected"
+    }
+  },
+  "relations": [
+    {
+      "metric": "M1_e2e",
+      "op": ">=",
+      "value": 0.8
+    },
+    {
+      "metric": "C1",
+      "op": ">",
+      "value": 0.8
+    },
+    {
+      "metric": "C3",
+      "op": ">",
+      "value": 0
+    },
+    {
+      "metric": "S1",
+      "op": "==",
+      "value": 0
+    },
+    {
+      "metric": "M4",
+      "op": "==",
+      "value": 1
+    }
+  ],
+  "build_evidence": "每次配置检查 compile_commands.json：标准、宏、选项一致；覆盖/Mull 仅作用于 target_sources。"
+}

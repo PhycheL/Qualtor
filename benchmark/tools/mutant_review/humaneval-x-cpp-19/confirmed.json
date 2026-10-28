@@ -33,6 +33,16 @@
         "runs/eval-review-extra-20261027-02-humaneval-x-cpp-19/trials/humaneval-x-cpp-19/trial-1/score/0.1.6/final/mull/mull/mutations.json",
         "runs/eval-bank-followup-20261027-01/review-products-extra/humaneval-x-cpp-19"
       ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/cpp_148.cc:25:24:25:28",
+      "verdict": "undefined_only",
+      "reason": "固定 8 个元素的 planets 循环上界被换成 42；没有提前返回，任何输入均会在读取 planets[8] 时越界。",
+      "evidence": [
+        "runs/step-a-ub-20261028-01-humaneval-x-cpp-19/ub-sweep.json",
+        "benchmark/humaneval-x-cpp-19/source/src/cpp_148.cc"
+      ],
+      "reviewer": "Codex（AI 复核）"
     }
   ]
 }

@@ -1,0 +1,45 @@
+{
+  "description": "C99 被测源文件有覆盖、有变异，C 依赖源文件仅参与链接",
+  "reference_copies": [
+    "tests/coverage.cc",
+    "tests/latex-math.cc",
+    "tests/permissive-email-autolinks.cc",
+    "tests/permissive-url-autolinks.cc",
+    "tests/permissive-www-autolinks.cc",
+    "tests/spec.cc",
+    "tests/step_a_boundaries.cc",
+    "tests/strikethrough.cc",
+    "tests/tables.cc",
+    "tests/tasklists.cc",
+    "tests/underline.cc",
+    "tests/wiki-links.cc"
+  ],
+  "hard": {
+    "status": "scored",
+    "tests_default": "valid",
+    "variants": {}
+  },
+  "relations": [
+    {
+      "metric": "M1_e2e",
+      "op": ">=",
+      "value": 0.8
+    },
+    {
+      "metric": "C1",
+      "op": ">",
+      "value": 0.8
+    },
+    {
+      "metric": "C3",
+      "op": ">",
+      "value": 0
+    },
+    {
+      "metric": "S1",
+      "op": "==",
+      "value": 0
+    }
+  ],
+  "build_evidence": "每次配置检查 compile_commands.json：标准、宏、选项一致；覆盖/Mull 仅作用于 target_sources。"
+}

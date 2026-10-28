@@ -1,0 +1,17 @@
+{
+  "repository": "https://github.com/codeplea/tinyexpr",
+  "commit": "ba2e32bbcc2d1e644a7e132d24c2f542821cabe0",
+  "reference_tests": [
+    "smoke.c",
+    "minctest.h"
+  ],
+  "added_by_qualtor": [],
+  "note": "source/ 文件逐字节取自上述提交；隐藏测试的转换见 hidden/README.md。",
+  "files": {
+    "LICENSE": "aceec33bbb71b99e691681f24fb92f61de7ac6240ca81075863c58ad76d882c9",
+    "Makefile": "9b203a9d5be954a7bf2f5c65addb6bcc691c7c523db2183953eba35d2dea2792",
+    "README.md": "9e834cf30ab74b0402fe5fc3cf2bfa2187a2e588d633388d4c48f1317a4ea184",
+    "tinyexpr.c": "d98452135db9fbd7c233b23e66103450d785df5251067799ddf3cc6bbd96611a",
+    "tinyexpr.h": "6644032507c078167a7ec6e134b6f5bd2147f4d96d955923285dac8c6feb16d8"
+  }
+}

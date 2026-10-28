@@ -1,0 +1,78 @@
+{
+  "task": "md4c-html",
+  "note": "D011/D015逐项源码与实际Mull IR复核；不以有限测试幸存作为等价依据。",
+  "mutants": [
+    {
+      "id": "cxx_and_to_or:/repo/src/md4c-html.c:527:17:527:18",
+      "reason": "debug_log_callback 只由依赖 md_parse 的错误日志调用；本适配器固定 ABI=0 且所有回调返回 0，剩余调用均为内存分配失败。差异只在资源耗尽，按 D015 等价。",
+      "evidence": [
+        "benchmark/md4c-html/source/src/md4c-html.c",
+        "runs/step-a-ir-20261028-01-md4c-html/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/md4c-html.c:215:13:215:14",
+      "reason": "size==3 的 entity 只能是命名实体（例如 &a;），不可能同时 text[1]==#；合法数字 entity 最短 &#0; 共4字节。依赖解析器保证 entity token 形态。",
+      "evidence": [
+        "benchmark/md4c-html/source/src/md4c-html.c",
+        "runs/step-a-ir-20261028-01-md4c-html/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/md4c-html.c:162:24:162:26",
+      "reason": "hex_val 的输入来自已被 md_parse 验证的十六进制 entity，只含 0-9/A-F/a-f，Z 边界不可达；非 entity 文字不走此函数。",
+      "evidence": [
+        "benchmark/md4c-html/source/src/md4c-html.c",
+        "runs/step-a-ir-20261028-01-md4c-html/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/md4c-html.c:528:9:528:43",
+      "reason": "删去 fprintf 仅改变内存分配失败时的 debug 日志；固定 ABI 和总是返回 0 的回调排除其他日志来源，按 D015 资源耗尽口径等价。",
+      "evidence": [
+        "benchmark/md4c-html/source/src/md4c-html.c",
+        "runs/step-a-ir-20261028-01-md4c-html/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/src/md4c-html.c:144:61:144:63",
+      "reason": "无符号整数右移 0 和左移 0 完全相同。",
+      "evidence": [
+        "benchmark/md4c-html/source/src/md4c-html.c",
+        "runs/step-a-ir-20261028-01-md4c-html/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/src/md4c-html.c:183:38:183:40",
+      "reason": "无符号 codepoint 右移 0 和左移 0 完全相同。",
+      "evidence": [
+        "benchmark/md4c-html/source/src/md4c-html.c",
+        "runs/step-a-ir-20261028-01-md4c-html/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/src/md4c-html.c:188:38:188:40",
+      "reason": "无符号 codepoint 右移 0 和左移 0 完全相同。",
+      "evidence": [
+        "benchmark/md4c-html/source/src/md4c-html.c",
+        "runs/step-a-ir-20261028-01-md4c-html/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/src/md4c-html.c:194:38:194:40",
+      "reason": "无符号 codepoint 右移 0 和左移 0 完全相同。",
+      "evidence": [
+        "benchmark/md4c-html/source/src/md4c-html.c",
+        "runs/step-a-ir-20261028-01-md4c-html/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    }
+  ]
+}

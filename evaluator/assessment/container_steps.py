@@ -23,6 +23,7 @@ sys.path.insert(0, str(HERE.parent / "common"))
 from audit import Audit, now  # noqa: E402
 import gtest_results  # noqa: E402
 import judge  # noqa: E402
+from build_contract import cmake_build_args, compile_command_problems  # noqa: E402
 
 LIST_TIMEOUT = 60
 
@@ -45,7 +46,8 @@ def phase_build(job, audit):
                "-DQUALTOR_TARGET_SOURCES=" + ";".join(job["target_sources"]),
                "-DQUALTOR_INCLUDE_DIRS=" + ";".join(job["include_dirs"]),
                "-DQUALTOR_TEST_SOURCES=" + ";".join(job["test_sources"])]
-    for key, option in (("cxx", "CMAKE_CXX_COMPILER"), ("make_program", "CMAKE_MAKE_PROGRAM"),
+    command += cmake_build_args(job.get("build", {}), job.get("support_sources", []))
+    for key, option in (("cc", "CMAKE_C_COMPILER"), ("cxx", "CMAKE_CXX_COMPILER"), ("make_program", "CMAKE_MAKE_PROGRAM"),
                         ("gtest_prefix", "CMAKE_PREFIX_PATH")):
         if job.get(key):
             command.append(f"-D{option}={job[key]}")
@@ -54,12 +56,11 @@ def phase_build(job, audit):
         # 配置阶段不编译测试源文件，失败说明模板或工具链有问题。
         return {"status": "infra_error", "reason": "cmake_configure_failed", "log": configured["stderr_log"]}
     commands = json.loads((build_dir / "compile_commands.json").read_text())
-    files = {entry["file"] for entry in commands}
-    std_ok = all("-std=c++11" in entry["command"].split() for entry in commands)
-    targets_ok = set(job["target_sources"]) <= files and set(job["test_sources"]) <= files
-    if not (std_ok and targets_ok):
+    problems = compile_command_problems(commands, job["target_sources"], job.get("support_sources", []),
+                                        job["test_sources"], job.get("build", {}), job["mode"])
+    if problems:
         return {"status": "infra_error", "reason": "compile_commands_mismatch",
-                "std_ok": std_ok, "targets_ok": targets_ok}
+                "problems": problems}
     built = audit.run("cmake-build", [job.get("cmake", "cmake"), "--build", str(build_dir), "--parallel", "2"],
                       cwd=job["work_dir"], timeout=job.get("timeout", 900))
     binary = build_dir / "scored_tests"

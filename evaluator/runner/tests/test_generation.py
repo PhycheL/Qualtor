@@ -20,6 +20,21 @@ from common import freeze_product, load_task, sha256_file, write_json
 from run import execute
 
 class BoundariesTest(unittest.TestCase):
+    def test_build_projection_remains_acceptable_to_independent_product(self):
+        import subprocess
+        task = load_task("gildedrose-update-quality")
+        task["build"] = {"defines": ["FEATURE=1"], "compile_options": ["-fwrapv"]}
+        public = public_task(task)
+        self.assertEqual(public["build"], task["build"])
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "task.json"
+            write_json(path, public)
+            product = Path(__file__).resolve().parents[3] / "agents"
+            done = subprocess.run([sys.executable, "-B", "-c",
+                                   "from generator.task import load_task; import sys; load_task(sys.argv[1])", str(path)],
+                                  cwd=product, capture_output=True, text=True)
+            self.assertEqual(done.returncode, 0, done.stderr)
+
     def test_task_only_exports_allowed_material(self):
         task = load_task("gildedrose-update-quality")
         visible = public_task(task)

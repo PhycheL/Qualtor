@@ -1,0 +1,35 @@
+{
+  "description": "C11 数学解析库与 C++11 测试均采用公开功能宏",
+  "reference_copies": [
+    "tests/reference_tests.cc",
+    "tests/step_a_boundaries.cc"
+  ],
+  "hard": {
+    "status": "scored",
+    "tests_default": "valid",
+    "variants": {}
+  },
+  "relations": [
+    {
+      "metric": "M1_e2e",
+      "op": ">=",
+      "value": 0.8
+    },
+    {
+      "metric": "C1",
+      "op": ">",
+      "value": 0.8
+    },
+    {
+      "metric": "C3",
+      "op": ">",
+      "value": 0
+    },
+    {
+      "metric": "S1",
+      "op": "==",
+      "value": 0
+    }
+  ],
+  "build_evidence": "每次配置检查 compile_commands.json：标准、宏、选项一致；覆盖/Mull 仅作用于 target_sources。"
+}

@@ -36,7 +36,18 @@ chmod 600 .env
 }
 ```
 
-`source_root` 相对于任务文件，也可使用绝对路径；其他文件路径相对于源码目录。任务必须且只能含上述九个字段；目标源文件必须出现在可见文件清单中，可见文件须为普通文件，禁止越界和符号链接。修复轮数为非负整数，单测超时为有限正数。当前接入 C++11 源码、头文件和 GoogleTest，不支持任意项目的自定义构建步骤、额外链接库或多语言测试。
+`source_root` 相对于任务文件，也可使用绝对路径；其他文件路径相对于源码目录。上述九个字段必填，另可添加唯一可选字段 `build`，未知字段仍拒绝；目标源文件必须出现在可见文件清单中，可见文件须为普通文件，禁止越界和符号链接。修复轮数为非负整数，单测超时为有限正数。支持 C/C++ 业务源码和 C++11 GoogleTest 测试；自定义构建步骤、额外链接库尚未接入。
+
+可选构建配置示例（路径须同时加入 `visible_files`）：
+
+```json
+{"build": {"support_sources": ["src/helper.c"], "c_standard": "c11",
+           "defines": ["FEATURE_ENABLED", "LIMIT=8"], "compile_options": ["-fno-strict-aliasing"]}}
+```
+
+`build` 只接受这四个子字段。三个列表缺省为空；依赖文件与被测文件互斥，参与编译链接。编译宏采用 `NAME` 或 `NAME=value`，值限单个标识符或数值，不接受字符串、路径或表达式；宏名称不能重复。选项白名单为 `-fno-strict-aliasing`、`-fwrapv`、`-fsigned-char`、`-funsigned-char`，后两项不能同时使用。宏和选项作用于被测、依赖、测试全部编译单元。
+
+源文件支持 `.c`、`.cc`、`.cpp`、`.cxx`。含 `.c` 时必须声明 `c99` 或 `c11`；C++ 固定为 C++11，C/C++ 均关闭语言扩展。C++11 断言头只作用于 C++。每次配置后核对并保留 `compile_commands.json`，确认语言标准、宏、选项和编译单元。
 
 ```bash
 python3 run.py --task /path/to/task.json --output /path/to/new-result --config default

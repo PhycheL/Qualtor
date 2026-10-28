@@ -14,8 +14,8 @@ Mull 的 IR 前端把每个变异编译成一个以变异 ID 命名的函数副�
   # 没有新增调用时，清除该结论的 pending 并写入证据（只适用于“删除调用”的等价结论）
   # 任意机器：分析已导出的 IR 文件
   python3 benchmark/tools/mutant_ir.py analyze --ll <文件.ll> --ids '<变异 ID>' ...
-编译参数与评分时的 Mull 构建一致：-std=c++11 -O0 -g -include cxx11_guard.h -grecord-command-line
--fpass-plugin=/usr/lib/mull-ir-frontend-19，Mull 配置由 task.json 生成。
+编译参数与评分时的 Mull 构建一致：按文件语言选择 C/C++ 标准，采用公开 build 宏和选项；
+C++11 使用 cxx11_guard.h。Mull 配置由 task.json 生成。
 """
 import argparse
 import collections
@@ -166,13 +166,17 @@ def emit(args):
     report = []
     for source in sources:
         out = run_dir / (Path(source).name + ".ll")
+        build = task.get("build", {})
+        language = (["clang-19", "-std=" + build["c_standard"]] if Path(source).suffix == ".c"
+                    else ["clang++-19", "-std=c++11", "-include", "/assessment/cxx11_guard.h"])
         command = ["docker", "run", "--rm", "--network", "none", "--read-only", "--cpus", "1", "--memory", "1g",
                    "--pids-limit", "256", "--cap-drop", "ALL", "--security-opt", "no-new-privileges",
                    "--user", f"{os.getuid()}:{os.getgid()}", "--tmpfs", "/tmp:rw,nosuid,nodev,size=256m,mode=1777",
                    "--mount", f"type=bind,source={common.source_root(task)},target=/repo,readonly",
                    "--mount", f"type=bind,source={common.ASSESSMENT / 'cmake'},target=/assessment,readonly",
                    "--mount", f"type=bind,source={run_dir},target=/out", "-e", "MULL_CONFIG=/out/mull.yml", image,
-                   "clang++-19", "-std=c++11", "-O0", "-g", "-include", "/assessment/cxx11_guard.h",
+                   *language, "-O0", "-g", *["-D" + d for d in build.get("defines", [])],
+                   *build.get("compile_options", []),
                    "-grecord-command-line", "-fpass-plugin=/usr/lib/mull-ir-frontend-19", "-S", "-emit-llvm",
                    *[f"-I/repo/{d}" for d in task["include_dirs"]], f"/repo/{source}", "-o", f"/out/{out.name}"]
         result = audit.run(f"emit-{Path(source).name}", command, timeout=300)

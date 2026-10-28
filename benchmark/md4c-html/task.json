@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "id": "md4c-html",
+  "set": "dev",
+  "tier": "medium",
+  "tags": [
+    "c",
+    "support-sources",
+    "multi-file"
+  ],
+  "title": "Markdown HTML 渲染",
+  "description": "C99 HTML 渲染模块；Markdown 解析器只作为编译依赖。",
+  "source": {
+    "repository": "https://github.com/mity/md4c",
+    "commit": "c3340b480e5232711858108be07460a9836c8ab5",
+    "root": "benchmark/md4c-html/source",
+    "files": {
+      "src/entity.c": "88e7f71af81fcb75f89ef16f97f5561607d35a6d7ebc6aa4ace37e25c9f9fc68",
+      "src/entity.h": "e811bdcf174a4f3dd5b629740dd72d296ba28f157eff0bdd5907e528e447a730",
+      "src/md4c-html.c": "93528d393d80372831473741c4877ef900293c01197f841e826ee701f2813b41",
+      "src/md4c-html.h": "1b7f326b944153884bcee300373dc15a2cbad8000f87ab169f6a59f31c99c7b2",
+      "src/md4c.c": "d1914a5c775fb7952d8f367d424c0ddba279103c48c79e95aee8458c03e02a60",
+      "src/md4c.h": "55818bd5c84da4ca36bec4f80951aac7871b3371c0e9c05633615036408f64e0"
+    }
+  },
+  "target_sources": [
+    "src/md4c-html.c"
+  ],
+  "include_dirs": [
+    "src"
+  ],
+  "visible": {
+    "files": [
+      "src/entity.c",
+      "src/entity.h",
+      "src/md4c-html.c",
+      "src/md4c-html.h",
+      "src/md4c.c",
+      "src/md4c.h"
+    ],
+    "notes": "可见材料只有被测及依赖源码、头文件和公开构建配置；测试使用 C++11 / GoogleTest 1.12.1。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": false,
+    "note": "上游测试作为隐藏参考材料，未投影给生成 Agent。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "隐藏参考测试覆盖的输入；断言以固定源码实际行为为准；不以此收窄等价性判定。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/import_step_a.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": [],
+  "build": {
+    "support_sources": [
+      "src/md4c.c",
+      "src/entity.c"
+    ],
+    "c_standard": "c99"
+  }
+}

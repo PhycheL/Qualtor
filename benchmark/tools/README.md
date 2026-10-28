@@ -8,6 +8,9 @@
 | `import_humaneval_x.py` | HumanEval-X C++ → `humaneval-x-cpp-NN`（含探针生成与 GCC 回放） |
 | `import_exercism.py`、`catch_compat.h` | Exercism C++ → `exercism-<练习名>`（Catch2 测试转换为 GoogleTest） |
 | `build_katas.py`、`kata_tests/`、`kata_generators/` | Emily Bache 的 kata → 15 道题；手写参考测试与探针生成器放在子目录 |
+| `import_step_a.py`、`step_a/` | 从固定上游提交导入 yaml-cpp、md4c、TinyExpr；保存测试转换与 md4c 实际输出 |
+| `capture_md4c_outputs.py` | 在固定 GCC Docker 捕获上游 770 个输入的实际 HTML，按 D001 冻结逐字节断言 |
+| `verify_step_a_build.py` | 混合 C/C++ 构建、三类单元宏/选项、失败后修复和 support 排除的 Docker 剧本验收 |
 | `probe_prelude.h` | 探针生成器公共部分：随机输入、C++ 字面值、子进程隔离执行 |
 | `host_check.py` | 宿主机检查：本机编译器跑参考测试、探针与替换版本，不含覆盖率与 Mull |
 | `prepare_new_tasks.py` | Docker 机器上批量标定变异分母并汇总；写入前落实 `mutant_review/` 的复核结论 |
@@ -27,4 +30,15 @@
 
 复核结论可以带 `pending` 字段，表示还缺证据，`admit.py` 视为未就绪。`mutant_ir.py` 和 `ub_sweep.py` 的 `--resolve` 只在固定工具链的结果与结论一致时清除 pending，并追加证据路径。
 
-2026-10-28 Docker 取证已完成：三项 IR 各只删一次析构、无新增调用；第 09/11 组实际删除空 `std::__new_allocator<int>` 析构，已更正原 vector 析构说明。Zebra 为 33 项输出相同、19 项 UB。55 项 pending 已清除并追加证据，100 道题已由 Codex（AI 复核，Linux ARM64）签署；总报告 `runs/eval-bank-021-20261028-01/summary.md`，当前结果见题库验证说明第 13 节。
+此前 0.2.1 的 2026-10-28 Docker 取证：三项 IR 各只删一次析构、无新增调用；第 09/11 组实际删除空 `std::__new_allocator<int>` 析构，已更正原 vector 析构说明。Zebra 为 33 项输出相同、19 项 UB。55 项 pending 已清除并追加证据，100 道题已由 Codex（AI 复核，Linux ARM64）签署；总报告 `runs/eval-bank-021-20261028-01/summary.md`，历史结果见题库验证说明第 13 节；步骤 A 当前结果见第 14 节。
+
+
+步骤 A 的导入与验证顺序（D017）：
+
+1. 在独立工作区重建，保留原题目和 runs。`import_step_a.py` 拒绝覆盖已存在的三个目标目录。`--upstream` 目录下放 `yaml-cpp/`、`md4c/`、`tinyexpr/` Git checkout；前两者由脚本固定提交，TinyExpr checkout 固定为 `ba2e32bbcc2d1e644a7e132d24c2f542821cabe0`。许可证与源码原文一并导入。
+2. 执行 `python3 benchmark/tools/import_step_a.py --upstream <上游目录>`。`step_a/md4c_actual.json` 是固定 GCC 对上游 770 输入的实际结果，附提交号与原始证据；改变源码或选项时先用 `capture_md4c_outputs.py --run-id <新编号>` 重新捕获，并审核差异，不直接沿用旧输出。
+3. 用 `prepare_new_tasks.py --tasks yaml-cpp-document md4c-html tinyexpr-configured --run-id <种子编号> --write` 建立种子分母，补反例、等价和 D015 证据。`mutant_review/<task>/step_a_boundaries.cc` 等补充测试由 bankutil 自动并入参考和探针，反例驱动放子目录以免被自动编入参考。
+4. 运行 `python3 evaluator/assessment/calibration/build_step_a_samples.py` 生成 CAL-18–20 的完整参考副本，再按[评测运行说明](../../docs/评测运行说明.md)完整校准。运行 `verify_step_a_build.py --run-id <新编号>` 验证三类单元与失败后修复。
+5. 使用新 run-id 正式标定（已有分母加 `--force`），再执行 mutant_report、apply_review 核对和 admit 签署。任何新校准题材料或分母实质内容变化都需重新完整校准；仅 review 元数据变化不影响指纹。
+
+本轮重建检查 `runs/step-a-import-replay-20261028-02/summary.json`：三题全部非分母文件逐字节一致。0.3.0 完整校准、19 题正式标定、103 题准入及真实生成证据见[题库验证说明](../../docs/题库验证说明.md)第 14 节。

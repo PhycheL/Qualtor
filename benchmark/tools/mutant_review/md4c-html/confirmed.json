@@ -1,0 +1,15 @@
+{
+  "task": "md4c-html",
+  "mutants": [
+    {
+      "id": "cxx_lt_to_le:/repo/src/md4c-html.c:552:18:552:19",
+      "verdict": "undefined_only",
+      "reason": "i==256 时访问 escape_map[256]，数组只有256字节；此前循环不变，差异仅在越界后出现。GCC C99 UBSan 报 index 256 out of bounds。",
+      "reviewer": "Codex（AI 复核）",
+      "evidence": [
+        "runs/step-a-ub-20261028-03-md4c-html/results.json",
+        "runs/step-a-ir-20261028-01-md4c-html/mutant-ir.json"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7302 @@
+{
+  "task": "tinyexpr-configured",
+  "created_at": "2026-10-28T07:44:35.781975+00:00",
+  "created_by_run": "step-a-formal-20261028-01-tinyexpr-configured",
+  "scorer_version": "0.3.0",
+  "scorer_code_sha256": "dd055eac2773c9c2cdd9a6d4fa9e5e3e885150cfa5d3605c71a6f05d48419503",
+  "images": {
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
+  },
+  "mull": {
+    "config_sha256": "9d5f7e6b899421f1db612531106f484c8e58d3bddb53b0a15f0bbb946821d32f",
+    "config": "# 由评分器根据 task.json 生成；修改算子要升级变异分母。\nmutators:\n  - cxx_all\nincludePaths:\n  - '/repo/tinyexpr\\.c$'\n"
+  },
+  "mutants": [
+    {
+      "id": "cxx_add_assign_to_sub_assign:/repo/tinyexpr.c:331:26:331:28",
+      "mutator": "cxx_add_assign_to_sub_assign",
+      "location": {
+        "start": {
+          "line": 331,
+          "column": 26
+        },
+        "end": {
+          "line": 331,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/tinyexpr.c:101:38:101:39",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 38
+        },
+        "end": {
+          "line": 101,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/tinyexpr.c:101:46:101:47",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 46
+        },
+        "end": {
+          "line": 101,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/tinyexpr.c:174:44:174:45",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 44
+        },
+        "end": {
+          "line": 174,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/tinyexpr.c:228:28:228:29",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 28
+        },
+        "end": {
+          "line": 228,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/tinyexpr.c:232:29:232:30",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 232,
+          "column": 29
+        },
+        "end": {
+          "line": 232,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/tinyexpr.c:247:49:247:50",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 247,
+          "column": 49
+        },
+        "end": {
+          "line": 247,
+          "column": 50
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/tinyexpr.c:287:47:287:48",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 287,
+          "column": 47
+        },
+        "end": {
+          "line": 287,
+          "column": 48
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/tinyexpr.c:287:62:287:63",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 287,
+          "column": 62
+        },
+        "end": {
+          "line": 287,
+          "column": 63
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/tinyexpr.c:328:51:328:52",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 328,
+          "column": 51
+        },
+        "end": {
+          "line": 328,
+          "column": 52
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/tinyexpr.c:603:59:603:60",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 603,
+          "column": 59
+        },
+        "end": {
+          "line": 603,
+          "column": 60
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/tinyexpr.c:749:41:749:42",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 749,
+          "column": 41
+        },
+        "end": {
+          "line": 749,
+          "column": 42
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:109:15:109:16",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 15
+        },
+        "end": {
+          "line": 109,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:131:12:131:13",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 12
+        },
+        "end": {
+          "line": 131,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:150:12:150:13",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 12
+        },
+        "end": {
+          "line": 150,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:160:11:160:12",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 11
+        },
+        "end": {
+          "line": 160,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:161:11:161:12",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 11
+        },
+        "end": {
+          "line": 161,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:170:25:170:26",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 25
+        },
+        "end": {
+          "line": 170,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:171:12:171:13",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 171,
+          "column": 12
+        },
+        "end": {
+          "line": 171,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:230:19:230:20",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 230,
+          "column": 19
+        },
+        "end": {
+          "line": 230,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:232:25:232:26",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 232,
+          "column": 25
+        },
+        "end": {
+          "line": 232,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:232:44:232:45",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 232,
+          "column": 44
+        },
+        "end": {
+          "line": 232,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:239:12:239:13",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 239,
+          "column": 12
+        },
+        "end": {
+          "line": 239,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:288:19:288:20",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 288,
+          "column": 19
+        },
+        "end": {
+          "line": 288,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:295:19:295:20",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 295,
+          "column": 19
+        },
+        "end": {
+          "line": 295,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:302:23:302:24",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 302,
+          "column": 23
+        },
+        "end": {
+          "line": 302,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:309:21:309:22",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 309,
+          "column": 21
+        },
+        "end": {
+          "line": 309,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:322:23:322:24",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 322,
+          "column": 23
+        },
+        "end": {
+          "line": 322,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:328:42:328:43",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 328,
+          "column": 42
+        },
+        "end": {
+          "line": 328,
+          "column": 43
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:346:13:346:14",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 346,
+          "column": 13
+        },
+        "end": {
+          "line": 346,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:353:13:353:14",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 353,
+          "column": 13
+        },
+        "end": {
+          "line": 353,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:355:13:355:14",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 355,
+          "column": 13
+        },
+        "end": {
+          "line": 355,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:365:13:365:14",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 365,
+          "column": 13
+        },
+        "end": {
+          "line": 365,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:366:13:366:14",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 366,
+          "column": 13
+        },
+        "end": {
+          "line": 366,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:370:21:370:22",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 370,
+          "column": 21
+        },
+        "end": {
+          "line": 370,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:375:22:375:23",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 375,
+          "column": 22
+        },
+        "end": {
+          "line": 375,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:384:25:384:26",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 384,
+          "column": 25
+        },
+        "end": {
+          "line": 384,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:386:25:386:26",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 386,
+          "column": 25
+        },
+        "end": {
+          "line": 386,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:390:25:390:26",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 390,
+          "column": 25
+        },
+        "end": {
+          "line": 390,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:394:25:394:26",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 394,
+          "column": 25
+        },
+        "end": {
+          "line": 394,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:405:85:405:86",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 405,
+          "column": 85
+        },
+        "end": {
+          "line": 405,
+          "column": 86
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:408:92:408:93",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 408,
+          "column": 92
+        },
+        "end": {
+          "line": 408,
+          "column": 93
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:409:90:409:91",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 409,
+          "column": 90
+        },
+        "end": {
+          "line": 409,
+          "column": 91
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:410:35:410:36",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 410,
+          "column": 35
+        },
+        "end": {
+          "line": 410,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:411:35:411:36",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 411,
+          "column": 35
+        },
+        "end": {
+          "line": 411,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:412:35:412:36",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 412,
+          "column": 35
+        },
+        "end": {
+          "line": 412,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:412:75:412:76",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 412,
+          "column": 75
+        },
+        "end": {
+          "line": 412,
+          "column": 76
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:414:34:414:35",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 414,
+          "column": 34
+        },
+        "end": {
+          "line": 414,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:434:24:434:25",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 434,
+          "column": 24
+        },
+        "end": {
+          "line": 434,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:450:19:450:20",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 450,
+          "column": 19
+        },
+        "end": {
+          "line": 450,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:475:29:475:30",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 475,
+          "column": 29
+        },
+        "end": {
+          "line": 475,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:481:25:481:26",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 481,
+          "column": 25
+        },
+        "end": {
+          "line": 481,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:491:25:491:26",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 491,
+          "column": 25
+        },
+        "end": {
+          "line": 491,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:501:21:501:22",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 501,
+          "column": 21
+        },
+        "end": {
+          "line": 501,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:502:24:502:25",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 502,
+          "column": 24
+        },
+        "end": {
+          "line": 502,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:520:49:520:50",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 520,
+          "column": 49
+        },
+        "end": {
+          "line": 520,
+          "column": 50
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:521:55:521:56",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 521,
+          "column": 55
+        },
+        "end": {
+          "line": 521,
+          "column": 56
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:528:17:528:18",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 528,
+          "column": 17
+        },
+        "end": {
+          "line": 528,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:540:22:540:23",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 540,
+          "column": 22
+        },
+        "end": {
+          "line": 540,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:684:12:684:13",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 684,
+          "column": 12
+        },
+        "end": {
+          "line": 684,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:686:72:686:73",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 686,
+          "column": 72
+        },
+        "end": {
+          "line": 686,
+          "column": 73
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:691:17:691:18",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 691,
+          "column": 17
+        },
+        "end": {
+          "line": 691,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:692:18:692:19",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 692,
+          "column": 18
+        },
+        "end": {
+          "line": 692,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:701:18:701:19",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 701,
+          "column": 18
+        },
+        "end": {
+          "line": 701,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:702:13:702:14",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 702,
+          "column": 13
+        },
+        "end": {
+          "line": 702,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:707:27:707:28",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 707,
+          "column": 27
+        },
+        "end": {
+          "line": 707,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:714:20:714:21",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 714,
+          "column": 20
+        },
+        "end": {
+          "line": 714,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:715:37:715:38",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 715,
+          "column": 37
+        },
+        "end": {
+          "line": 715,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:721:23:721:24",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 721,
+          "column": 23
+        },
+        "end": {
+          "line": 721,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:742:16:742:17",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 742,
+          "column": 16
+        },
+        "end": {
+          "line": 742,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:744:16:744:17",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 744,
+          "column": 16
+        },
+        "end": {
+          "line": 744,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:748:16:748:17",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 748,
+          "column": 16
+        },
+        "end": {
+          "line": 748,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_div_assign_to_mul_assign:/repo/tinyexpr.c:176:16:176:18",
+      "mutator": "cxx_div_assign_to_mul_assign",
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 16
+        },
+        "end": {
+          "line": 176,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_div_assign_to_mul_assign:/repo/tinyexpr.c:177:11:177:13",
+      "mutator": "cxx_div_assign_to_mul_assign",
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 11
+        },
+        "end": {
+          "line": 177,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_div_assign_to_mul_assign:/repo/tinyexpr.c:339:23:339:25",
+      "mutator": "cxx_div_assign_to_mul_assign",
+      "location": {
+        "start": {
+          "line": 339,
+          "column": 23
+        },
+        "end": {
+          "line": 339,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_div_to_mul:/repo/tinyexpr.c:151:28:151:29",
+      "mutator": "cxx_div_to_mul",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 28
+        },
+        "end": {
+          "line": 151,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_div_to_mul:/repo/tinyexpr.c:170:17:170:18",
+      "mutator": "cxx_div_to_mul",
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 17
+        },
+        "end": {
+          "line": 170,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_div_to_mul:/repo/tinyexpr.c:177:16:177:17",
+      "mutator": "cxx_div_to_mul",
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 16
+        },
+        "end": {
+          "line": 177,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_div_to_mul:/repo/tinyexpr.c:178:33:178:34",
+      "mutator": "cxx_div_to_mul",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 33
+        },
+        "end": {
+          "line": 178,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_div_to_mul:/repo/tinyexpr.c:228:44:228:45",
+      "mutator": "cxx_div_to_mul",
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 44
+        },
+        "end": {
+          "line": 228,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_div_to_mul:/repo/tinyexpr.c:250:52:250:53",
+      "mutator": "cxx_div_to_mul",
+      "location": {
+        "start": {
+          "line": 250,
+          "column": 52
+        },
+        "end": {
+          "line": 250,
+          "column": 53
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:117:39:117:41",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 39
+        },
+        "end": {
+          "line": 117,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:231:15:231:17",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 231,
+          "column": 15
+        },
+        "end": {
+          "line": 231,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:241:43:241:45",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 241,
+          "column": 43
+        },
+        "end": {
+          "line": 241,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:241:66:241:68",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 241,
+          "column": 66
+        },
+        "end": {
+          "line": 241,
+          "column": 68
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:258:51:258:53",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 258,
+          "column": 51
+        },
+        "end": {
+          "line": 258,
+          "column": 53
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:262:47:262:49",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 262,
+          "column": 47
+        },
+        "end": {
+          "line": 262,
+          "column": 49
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:264:56:264:58",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 264,
+          "column": 56
+        },
+        "end": {
+          "line": 264,
+          "column": 58
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:281:14:281:16",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 281,
+          "column": 14
+        },
+        "end": {
+          "line": 281,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:281:30:281:32",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 281,
+          "column": 30
+        },
+        "end": {
+          "line": 281,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:281:45:281:47",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 281,
+          "column": 45
+        },
+        "end": {
+          "line": 281,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:299:18:299:20",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 299,
+          "column": 18
+        },
+        "end": {
+          "line": 299,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:307:20:307:22",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 307,
+          "column": 20
+        },
+        "end": {
+          "line": 307,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:313:18:313:20",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 313,
+          "column": 18
+        },
+        "end": {
+          "line": 313,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:313:33:313:35",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 313,
+          "column": 33
+        },
+        "end": {
+          "line": 313,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:319:23:319:25",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 319,
+          "column": 23
+        },
+        "end": {
+          "line": 319,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:321:30:321:32",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 321,
+          "column": 30
+        },
+        "end": {
+          "line": 321,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:374:62:374:64",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 374,
+          "column": 62
+        },
+        "end": {
+          "line": 374,
+          "column": 64
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:378:69:378:71",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 378,
+          "column": 69
+        },
+        "end": {
+          "line": 378,
+          "column": 71
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:385:45:385:47",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 385,
+          "column": 45
+        },
+        "end": {
+          "line": 385,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:417:22:417:24",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 417,
+          "column": 22
+        },
+        "end": {
+          "line": 417,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:459:23:459:25",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 459,
+          "column": 23
+        },
+        "end": {
+          "line": 459,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:462:32:462:34",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 462,
+          "column": 32
+        },
+        "end": {
+          "line": 462,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:519:20:519:22",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 519,
+          "column": 20
+        },
+        "end": {
+          "line": 519,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:519:49:519:51",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 519,
+          "column": 49
+        },
+        "end": {
+          "line": 519,
+          "column": 51
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:519:71:519:73",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 519,
+          "column": 71
+        },
+        "end": {
+          "line": 519,
+          "column": 73
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:519:93:519:95",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 519,
+          "column": 93
+        },
+        "end": {
+          "line": 519,
+          "column": 95
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:520:25:520:27",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 520,
+          "column": 25
+        },
+        "end": {
+          "line": 520,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:520:59:520:61",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 520,
+          "column": 59
+        },
+        "end": {
+          "line": 520,
+          "column": 61
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:521:42:521:44",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 521,
+          "column": 42
+        },
+        "end": {
+          "line": 521,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:554:39:554:41",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 554,
+          "column": 39
+        },
+        "end": {
+          "line": 554,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:566:20:566:22",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 566,
+          "column": 20
+        },
+        "end": {
+          "line": 566,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:566:48:566:50",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 566,
+          "column": 48
+        },
+        "end": {
+          "line": 566,
+          "column": 50
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:602:17:602:19",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 602,
+          "column": 17
+        },
+        "end": {
+          "line": 602,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:603:17:603:19",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 603,
+          "column": 17
+        },
+        "end": {
+          "line": 603,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:619:21:619:23",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 619,
+          "column": 21
+        },
+        "end": {
+          "line": 619,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:619:45:619:47",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 619,
+          "column": 45
+        },
+        "end": {
+          "line": 619,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:619:68:619:70",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 619,
+          "column": 68
+        },
+        "end": {
+          "line": 619,
+          "column": 70
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:706:14:706:16",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 706,
+          "column": 14
+        },
+        "end": {
+          "line": 706,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:715:24:715:26",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 715,
+          "column": 24
+        },
+        "end": {
+          "line": 715,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/tinyexpr.c:144:13:144:15",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 13
+        },
+        "end": {
+          "line": 144,
+          "column": 15
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/tinyexpr.c:166:13:166:15",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 13
+        },
+        "end": {
+          "line": 166,
+          "column": 15
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/tinyexpr.c:166:28:166:30",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 28
+        },
+        "end": {
+          "line": 166,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/tinyexpr.c:227:17:227:19",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 17
+        },
+        "end": {
+          "line": 227,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/tinyexpr.c:255:56:255:58",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 255,
+          "column": 56
+        },
+        "end": {
+          "line": 255,
+          "column": 58
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/tinyexpr.c:287:30:287:32",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 287,
+          "column": 30
+        },
+        "end": {
+          "line": 287,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/tinyexpr.c:338:42:338:44",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 338,
+          "column": 42
+        },
+        "end": {
+          "line": 338,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/tinyexpr.c:527:18:527:20",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 527,
+          "column": 18
+        },
+        "end": {
+          "line": 527,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/tinyexpr.c:144:13:144:15",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 13
+        },
+        "end": {
+          "line": 144,
+          "column": 15
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/tinyexpr.c:166:13:166:15",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 13
+        },
+        "end": {
+          "line": 166,
+          "column": 15
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/tinyexpr.c:166:28:166:30",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 28
+        },
+        "end": {
+          "line": 166,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/tinyexpr.c:227:17:227:19",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 17
+        },
+        "end": {
+          "line": 227,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/tinyexpr.c:255:56:255:58",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 255,
+          "column": 56
+        },
+        "end": {
+          "line": 255,
+          "column": 58
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/tinyexpr.c:287:30:287:32",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 287,
+          "column": 30
+        },
+        "end": {
+          "line": 287,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/tinyexpr.c:338:42:338:44",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 338,
+          "column": 42
+        },
+        "end": {
+          "line": 338,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/tinyexpr.c:527:18:527:20",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 527,
+          "column": 18
+        },
+        "end": {
+          "line": 527,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/tinyexpr.c:146:11:146:12",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 11
+        },
+        "end": {
+          "line": 146,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/tinyexpr.c:151:15:151:16",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 15
+        },
+        "end": {
+          "line": 151,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/tinyexpr.c:167:11:167:12",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 167,
+          "column": 11
+        },
+        "end": {
+          "line": 167,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/tinyexpr.c:167:27:167:28",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 167,
+          "column": 27
+        },
+        "end": {
+          "line": 167,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/tinyexpr.c:170:12:170:13",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 12
+        },
+        "end": {
+          "line": 170,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/tinyexpr.c:178:20:178:21",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 20
+        },
+        "end": {
+          "line": 178,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/tinyexpr.c:232:15:232:16",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 232,
+          "column": 15
+        },
+        "end": {
+          "line": 232,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/tinyexpr.c:254:53:254:54",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 254,
+          "column": 53
+        },
+        "end": {
+          "line": 254,
+          "column": 54
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/tinyexpr.c:146:11:146:12",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 11
+        },
+        "end": {
+          "line": 146,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/tinyexpr.c:151:15:151:16",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 15
+        },
+        "end": {
+          "line": 151,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/tinyexpr.c:167:11:167:12",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 167,
+          "column": 11
+        },
+        "end": {
+          "line": 167,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/tinyexpr.c:167:27:167:28",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 167,
+          "column": 27
+        },
+        "end": {
+          "line": 167,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/tinyexpr.c:170:12:170:13",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 12
+        },
+        "end": {
+          "line": 170,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/tinyexpr.c:178:20:178:21",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 20
+        },
+        "end": {
+          "line": 178,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/tinyexpr.c:232:15:232:16",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 232,
+          "column": 15
+        },
+        "end": {
+          "line": 232,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/tinyexpr.c:254:53:254:54",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 254,
+          "column": 53
+        },
+        "end": {
+          "line": 254,
+          "column": 54
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:148:18:148:20",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 18
+        },
+        "end": {
+          "line": 148,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:149:28:149:34",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 28
+        },
+        "end": {
+          "line": 149,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:159:32:159:33",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 32
+        },
+        "end": {
+          "line": 159,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:168:28:168:30",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 28
+        },
+        "end": {
+          "line": 168,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:168:52:168:54",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 52
+        },
+        "end": {
+          "line": 168,
+          "column": 54
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:169:28:169:34",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 28
+        },
+        "end": {
+          "line": 169,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:174:32:174:33",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 32
+        },
+        "end": {
+          "line": 174,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:175:32:175:33",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 32
+        },
+        "end": {
+          "line": 175,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:225:19:225:23",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 19
+        },
+        "end": {
+          "line": 225,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:225:9:225:13",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 9
+        },
+        "end": {
+          "line": 225,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:229:13:229:14",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 229,
+          "column": 13
+        },
+        "end": {
+          "line": 229,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:279:12:279:17",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 279,
+          "column": 12
+        },
+        "end": {
+          "line": 279,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:292:13:292:21",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 292,
+          "column": 13
+        },
+        "end": {
+          "line": 292,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:292:27:292:33",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 292,
+          "column": 27
+        },
+        "end": {
+          "line": 292,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:317:17:317:22",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 317,
+          "column": 17
+        },
+        "end": {
+          "line": 317,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:317:28:317:29",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 317,
+          "column": 28
+        },
+        "end": {
+          "line": 317,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:463:21:463:22",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 463,
+          "column": 21
+        },
+        "end": {
+          "line": 463,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:516:19:516:26",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 516,
+          "column": 19
+        },
+        "end": {
+          "line": 516,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:516:9:516:13",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 516,
+          "column": 9
+        },
+        "end": {
+          "line": 516,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:683:9:683:14",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 683,
+          "column": 9
+        },
+        "end": {
+          "line": 683,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/tinyexpr.c:150:19:150:21",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 19
+        },
+        "end": {
+          "line": 150,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/tinyexpr.c:171:19:171:21",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 171,
+          "column": 19
+        },
+        "end": {
+          "line": 171,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/tinyexpr.c:257:54:257:56",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 54
+        },
+        "end": {
+          "line": 257,
+          "column": 56
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/tinyexpr.c:150:19:150:21",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 19
+        },
+        "end": {
+          "line": 150,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/tinyexpr.c:171:19:171:21",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 171,
+          "column": 19
+        },
+        "end": {
+          "line": 171,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/tinyexpr.c:257:54:257:56",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 54
+        },
+        "end": {
+          "line": 257,
+          "column": 56
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/tinyexpr.c:131:19:131:20",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 19
+        },
+        "end": {
+          "line": 131,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/tinyexpr.c:166:41:166:42",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 41
+        },
+        "end": {
+          "line": 166,
+          "column": 42
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/tinyexpr.c:239:32:239:33",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 239,
+          "column": 32
+        },
+        "end": {
+          "line": 239,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/tinyexpr.c:256:51:256:52",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 51
+        },
+        "end": {
+          "line": 256,
+          "column": 52
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/tinyexpr.c:328:27:328:28",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 328,
+          "column": 27
+        },
+        "end": {
+          "line": 328,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/tinyexpr.c:338:26:338:27",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 338,
+          "column": 26
+        },
+        "end": {
+          "line": 338,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/tinyexpr.c:465:26:465:27",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 465,
+          "column": 26
+        },
+        "end": {
+          "line": 465,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/tinyexpr.c:469:27:469:28",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 469,
+          "column": 27
+        },
+        "end": {
+          "line": 469,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/tinyexpr.c:684:19:684:20",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 684,
+          "column": 19
+        },
+        "end": {
+          "line": 684,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/tinyexpr.c:744:23:744:24",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 744,
+          "column": 23
+        },
+        "end": {
+          "line": 744,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/tinyexpr.c:748:23:748:24",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 748,
+          "column": 23
+        },
+        "end": {
+          "line": 748,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/tinyexpr.c:131:19:131:20",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 19
+        },
+        "end": {
+          "line": 131,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/tinyexpr.c:166:41:166:42",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 41
+        },
+        "end": {
+          "line": 166,
+          "column": 42
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/tinyexpr.c:239:32:239:33",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 239,
+          "column": 32
+        },
+        "end": {
+          "line": 239,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/tinyexpr.c:256:51:256:52",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 51
+        },
+        "end": {
+          "line": 256,
+          "column": 52
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/tinyexpr.c:328:27:328:28",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 328,
+          "column": 27
+        },
+        "end": {
+          "line": 328,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/tinyexpr.c:338:26:338:27",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 338,
+          "column": 26
+        },
+        "end": {
+          "line": 338,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/tinyexpr.c:465:26:465:27",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 465,
+          "column": 26
+        },
+        "end": {
+          "line": 465,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/tinyexpr.c:469:27:469:28",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 469,
+          "column": 27
+        },
+        "end": {
+          "line": 469,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/tinyexpr.c:684:19:684:20",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 684,
+          "column": 19
+        },
+        "end": {
+          "line": 684,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/tinyexpr.c:744:23:744:24",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 744,
+          "column": 23
+        },
+        "end": {
+          "line": 744,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/tinyexpr.c:748:23:748:24",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 748,
+          "column": 23
+        },
+        "end": {
+          "line": 748,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_minus_to_noop:/repo/tinyexpr.c:251:40:251:41",
+      "mutator": "cxx_minus_to_noop",
+      "location": {
+        "start": {
+          "line": 251,
+          "column": 40
+        },
+        "end": {
+          "line": 251,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_minus_to_noop:/repo/tinyexpr.c:264:52:264:53",
+      "mutator": "cxx_minus_to_noop",
+      "location": {
+        "start": {
+          "line": 264,
+          "column": 52
+        },
+        "end": {
+          "line": 264,
+          "column": 53
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_minus_to_noop:/repo/tinyexpr.c:265:55:265:56",
+      "mutator": "cxx_minus_to_noop",
+      "location": {
+        "start": {
+          "line": 265,
+          "column": 55
+        },
+        "end": {
+          "line": 265,
+          "column": 56
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_minus_to_noop:/repo/tinyexpr.c:339:38:339:39",
+      "mutator": "cxx_minus_to_noop",
+      "location": {
+        "start": {
+          "line": 339,
+          "column": 38
+        },
+        "end": {
+          "line": 339,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_minus_to_noop:/repo/tinyexpr.c:521:57:521:58",
+      "mutator": "cxx_minus_to_noop",
+      "location": {
+        "start": {
+          "line": 521,
+          "column": 57
+        },
+        "end": {
+          "line": 521,
+          "column": 58
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_assign_to_div_assign:/repo/tinyexpr.c:153:16:153:18",
+      "mutator": "cxx_mul_assign_to_div_assign",
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 16
+        },
+        "end": {
+          "line": 153,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_assign_to_div_assign:/repo/tinyexpr.c:180:16:180:18",
+      "mutator": "cxx_mul_assign_to_div_assign",
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 16
+        },
+        "end": {
+          "line": 180,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_assign_to_div_assign:/repo/tinyexpr.c:341:23:341:25",
+      "mutator": "cxx_mul_assign_to_div_assign",
+      "location": {
+        "start": {
+          "line": 341,
+          "column": 23
+        },
+        "end": {
+          "line": 341,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/tinyexpr.c:100:37:100:38",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 37
+        },
+        "end": {
+          "line": 100,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/tinyexpr.c:184:57:184:58",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 57
+        },
+        "end": {
+          "line": 184,
+          "column": 58
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/tinyexpr.c:249:49:249:50",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 249,
+          "column": 49
+        },
+        "end": {
+          "line": 249,
+          "column": 50
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/tinyexpr.c:328:46:328:47",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 328,
+          "column": 46
+        },
+        "end": {
+          "line": 328,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/tinyexpr.c:331:35:331:36",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 331,
+          "column": 35
+        },
+        "end": {
+          "line": 331,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/tinyexpr.c:259:55:259:57",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 259,
+          "column": 55
+        },
+        "end": {
+          "line": 259,
+          "column": 57
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/tinyexpr.c:260:57:260:59",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 260,
+          "column": 57
+        },
+        "end": {
+          "line": 260,
+          "column": 59
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/tinyexpr.c:260:69:260:71",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 260,
+          "column": 69
+        },
+        "end": {
+          "line": 260,
+          "column": 71
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/tinyexpr.c:261:56:261:58",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 261,
+          "column": 56
+        },
+        "end": {
+          "line": 261,
+          "column": 58
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/tinyexpr.c:261:68:261:70",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 261,
+          "column": 68
+        },
+        "end": {
+          "line": 261,
+          "column": 70
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/tinyexpr.c:263:50:263:52",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 263,
+          "column": 50
+        },
+        "end": {
+          "line": 263,
+          "column": 52
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/tinyexpr.c:265:59:265:61",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 265,
+          "column": 59
+        },
+        "end": {
+          "line": 265,
+          "column": 61
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/tinyexpr.c:337:31:337:33",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 337,
+          "column": 31
+        },
+        "end": {
+          "line": 337,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/tinyexpr.c:359:20:359:22",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 359,
+          "column": 20
+        },
+        "end": {
+          "line": 359,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/tinyexpr.c:388:47:388:49",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 388,
+          "column": 47
+        },
+        "end": {
+          "line": 388,
+          "column": 49
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/tinyexpr.c:470:37:470:39",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 470,
+          "column": 37
+        },
+        "end": {
+          "line": 470,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/tinyexpr.c:474:23:474:25",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 474,
+          "column": 23
+        },
+        "end": {
+          "line": 474,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/tinyexpr.c:474:43:474:45",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 474,
+          "column": 43
+        },
+        "end": {
+          "line": 474,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/tinyexpr.c:479:30:479:32",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 479,
+          "column": 30
+        },
+        "end": {
+          "line": 479,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/tinyexpr.c:490:25:490:27",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 490,
+          "column": 25
+        },
+        "end": {
+          "line": 490,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/tinyexpr.c:525:44:525:46",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 525,
+          "column": 44
+        },
+        "end": {
+          "line": 525,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/tinyexpr.c:540:26:540:28",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 540,
+          "column": 26
+        },
+        "end": {
+          "line": 540,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/tinyexpr.c:686:50:686:52",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 686,
+          "column": 50
+        },
+        "end": {
+          "line": 686,
+          "column": 52
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/tinyexpr.c:711:16:711:18",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 711,
+          "column": 16
+        },
+        "end": {
+          "line": 711,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_dec_to_post_inc:/repo/tinyexpr.c:303:40:303:42",
+      "mutator": "cxx_post_dec_to_post_inc",
+      "location": {
+        "start": {
+          "line": 303,
+          "column": 40
+        },
+        "end": {
+          "line": 303,
+          "column": 42
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_dec_to_post_inc:/repo/tinyexpr.c:533:13:533:15",
+      "mutator": "cxx_post_dec_to_post_inc",
+      "location": {
+        "start": {
+          "line": 533,
+          "column": 13
+        },
+        "end": {
+          "line": 533,
+          "column": 15
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/tinyexpr.c:150:27:150:29",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 27
+        },
+        "end": {
+          "line": 150,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/tinyexpr.c:171:27:171:29",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 171,
+          "column": 27
+        },
+        "end": {
+          "line": 171,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/tinyexpr.c:296:24:296:26",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 296,
+          "column": 24
+        },
+        "end": {
+          "line": 296,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/tinyexpr.c:303:28:303:30",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 303,
+          "column": 28
+        },
+        "end": {
+          "line": 303,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/tinyexpr.c:468:22:468:24",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 468,
+          "column": 22
+        },
+        "end": {
+          "line": 468,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/tinyexpr.c:531:13:531:15",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 531,
+          "column": 13
+        },
+        "end": {
+          "line": 531,
+          "column": 15
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/tinyexpr.c:744:33:744:35",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 744,
+          "column": 33
+        },
+        "end": {
+          "line": 744,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/tinyexpr.c:748:33:748:35",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 748,
+          "column": 33
+        },
+        "end": {
+          "line": 748,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/tinyexpr.c:131:37:131:39",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 37
+        },
+        "end": {
+          "line": 131,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/tinyexpr.c:239:49:239:51",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 239,
+          "column": 49
+        },
+        "end": {
+          "line": 239,
+          "column": 51
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/tinyexpr.c:684:28:684:30",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 684,
+          "column": 28
+        },
+        "end": {
+          "line": 684,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rem_to_div:/repo/tinyexpr.c:159:38:159:39",
+      "mutator": "cxx_rem_to_div",
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 38
+        },
+        "end": {
+          "line": 159,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:119:9:119:19",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 9
+        },
+        "end": {
+          "line": 119,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:120:9:120:19",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 9
+        },
+        "end": {
+          "line": 120,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:131:42:131:67",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 42
+        },
+        "end": {
+          "line": 131,
+          "column": 67
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:136:5:136:26",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 5
+        },
+        "end": {
+          "line": 136,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:137:5:137:12",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 5
+        },
+        "end": {
+          "line": 137,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:398:27:398:50",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 398,
+          "column": 27
+        },
+        "end": {
+          "line": 398,
+          "column": 50
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:399:27:399:50",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 399,
+          "column": 27
+        },
+        "end": {
+          "line": 399,
+          "column": 50
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:400:27:400:51",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 400,
+          "column": 27
+        },
+        "end": {
+          "line": 400,
+          "column": 51
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:401:27:401:54",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 401,
+          "column": 27
+        },
+        "end": {
+          "line": 401,
+          "column": 54
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:402:27:402:50",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 402,
+          "column": 27
+        },
+        "end": {
+          "line": 402,
+          "column": 50
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:403:27:403:52",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 403,
+          "column": 27
+        },
+        "end": {
+          "line": 403,
+          "column": 52
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:404:46:404:74",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 404,
+          "column": 46
+        },
+        "end": {
+          "line": 404,
+          "column": 74
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:404:81:404:113",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 404,
+          "column": 81
+        },
+        "end": {
+          "line": 404,
+          "column": 113
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:405:46:405:70",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 405,
+          "column": 46
+        },
+        "end": {
+          "line": 405,
+          "column": 70
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:406:46:406:74",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 406,
+          "column": 46
+        },
+        "end": {
+          "line": 406,
+          "column": 74
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:406:81:406:106",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 406,
+          "column": 81
+        },
+        "end": {
+          "line": 406,
+          "column": 106
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:407:46:407:76",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 407,
+          "column": 46
+        },
+        "end": {
+          "line": 407,
+          "column": 76
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:407:83:407:110",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 407,
+          "column": 83
+        },
+        "end": {
+          "line": 407,
+          "column": 110
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:408:46:408:77",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 408,
+          "column": 46
+        },
+        "end": {
+          "line": 408,
+          "column": 77
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:409:46:409:75",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 409,
+          "column": 46
+        },
+        "end": {
+          "line": 409,
+          "column": 75
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:435:13:435:26",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 435,
+          "column": 13
+        },
+        "end": {
+          "line": 435,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:443:13:443:26",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 443,
+          "column": 13
+        },
+        "end": {
+          "line": 443,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:457:13:457:26",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 457,
+          "column": 13
+        },
+        "end": {
+          "line": 457,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:464:17:464:30",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 464,
+          "column": 17
+        },
+        "end": {
+          "line": 464,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:471:25:471:38",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 471,
+          "column": 25
+        },
+        "end": {
+          "line": 471,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:477:21:477:34",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 477,
+          "column": 21
+        },
+        "end": {
+          "line": 477,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:486:13:486:26",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 486,
+          "column": 13
+        },
+        "end": {
+          "line": 486,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:493:17:493:30",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 493,
+          "column": 17
+        },
+        "end": {
+          "line": 493,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:522:9:522:22",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 522,
+          "column": 9
+        },
+        "end": {
+          "line": 522,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:557:9:557:18",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 557,
+          "column": 9
+        },
+        "end": {
+          "line": 557,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:567:9:567:22",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 567,
+          "column": 9
+        },
+        "end": {
+          "line": 567,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:621:9:621:22",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 621,
+          "column": 9
+        },
+        "end": {
+          "line": 621,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:685:9:685:35",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 685,
+          "column": 9
+        },
+        "end": {
+          "line": 685,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:690:9:690:30",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 690,
+          "column": 9
+        },
+        "end": {
+          "line": 690,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:704:5:704:19",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 704,
+          "column": 5
+        },
+        "end": {
+          "line": 704,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:712:9:712:22",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 712,
+          "column": 9
+        },
+        "end": {
+          "line": 712,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:720:5:720:19",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 720,
+          "column": 5
+        },
+        "end": {
+          "line": 720,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:729:5:729:15",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 729,
+          "column": 5
+        },
+        "end": {
+          "line": 729,
+          "column": 15
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:749:14:749:45",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 749,
+          "column": 14
+        },
+        "end": {
+          "line": 749,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:757:5:757:13",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 757,
+          "column": 5
+        },
+        "end": {
+          "line": 757,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:175:36:175:50",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 36
+        },
+        "end": {
+          "line": 175,
+          "column": 50
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:184:47:184:56",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 47
+        },
+        "end": {
+          "line": 184,
+          "column": 56
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:184:59:184:65",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 59
+        },
+        "end": {
+          "line": 184,
+          "column": 65
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:229:17:229:54",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 229,
+          "column": 17
+        },
+        "end": {
+          "line": 229,
+          "column": 54
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:241:13:241:42",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 241,
+          "column": 13
+        },
+        "end": {
+          "line": 241,
+          "column": 42
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:341:26:341:45",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 341,
+          "column": 26
+        },
+        "end": {
+          "line": 341,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:375:24:375:39",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 375,
+          "column": 24
+        },
+        "end": {
+          "line": 375,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:404:31:404:44",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 404,
+          "column": 31
+        },
+        "end": {
+          "line": 404,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:405:31:405:44",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 405,
+          "column": 31
+        },
+        "end": {
+          "line": 405,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:406:31:406:44",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 406,
+          "column": 31
+        },
+        "end": {
+          "line": 406,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:407:31:407:44",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 407,
+          "column": 31
+        },
+        "end": {
+          "line": 407,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:408:31:408:44",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 408,
+          "column": 31
+        },
+        "end": {
+          "line": 408,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:409:31:409:44",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 409,
+          "column": 31
+        },
+        "end": {
+          "line": 409,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:689:30:689:40",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 689,
+          "column": 30
+        },
+        "end": {
+          "line": 689,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:728:28:728:38",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 728,
+          "column": 28
+        },
+        "end": {
+          "line": 728,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:735:5:735:29",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 735,
+          "column": 5
+        },
+        "end": {
+          "line": 735,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:738:23:738:47",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 738,
+          "column": 23
+        },
+        "end": {
+          "line": 738,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:739:23:739:53",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 739,
+          "column": 23
+        },
+        "end": {
+          "line": 739,
+          "column": 53
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:743:10:743:30",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 743,
+          "column": 10
+        },
+        "end": {
+          "line": 743,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:745:14:745:45",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 745,
+          "column": 14
+        },
+        "end": {
+          "line": 745,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:747:10:747:22",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 747,
+          "column": 10
+        },
+        "end": {
+          "line": 747,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/tinyexpr.c:170:30:170:31",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 30
+        },
+        "end": {
+          "line": 170,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/tinyexpr.c:174:39:174:40",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 39
+        },
+        "end": {
+          "line": 174,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/tinyexpr.c:228:36:228:37",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 36
+        },
+        "end": {
+          "line": 228,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/tinyexpr.c:230:26:230:27",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 230,
+          "column": 26
+        },
+        "end": {
+          "line": 230,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/tinyexpr.c:232:48:232:49",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 232,
+          "column": 48
+        },
+        "end": {
+          "line": 232,
+          "column": 49
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/tinyexpr.c:248:49:248:50",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 248,
+          "column": 49
+        },
+        "end": {
+          "line": 248,
+          "column": 50
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/tinyexpr.c:286:57:286:58",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 286,
+          "column": 57
+        },
+        "end": {
+          "line": 286,
+          "column": 58
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/tinyexpr.c:287:41:287:42",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 287,
+          "column": 41
+        },
+        "end": {
+          "line": 287,
+          "column": 42
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/tinyexpr.c:287:56:287:57",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 287,
+          "column": 56
+        },
+        "end": {
+          "line": 287,
+          "column": 57
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/tinyexpr.c:295:42:295:43",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 295,
+          "column": 42
+        },
+        "end": {
+          "line": 295,
+          "column": 43
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/tinyexpr.c:302:46:302:47",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 302,
+          "column": 46
+        },
+        "end": {
+          "line": 302,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/tinyexpr.c:328:60:328:61",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 328,
+          "column": 60
+        },
+        "end": {
+          "line": 328,
+          "column": 61
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/tinyexpr.c:380:68:380:69",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 380,
+          "column": 68
+        },
+        "end": {
+          "line": 380,
+          "column": 69
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/tinyexpr.c:381:57:381:58",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 381,
+          "column": 57
+        },
+        "end": {
+          "line": 381,
+          "column": 58
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/tinyexpr.c:714:29:714:30",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 714,
+          "column": 29
+        },
+        "end": {
+          "line": 714,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    }
+  ],
+  "equivalent": [
+    {
+      "id": "cxx_add_to_sub:/repo/tinyexpr.c:749:41:749:42",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:131:12:131:13",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:309:21:309:22",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:366:13:366:14",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:475:29:475:30",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:481:25:481:26",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:491:25:491:26",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:501:21:501:22",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:502:24:502:25",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:528:17:528:18",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/tinyexpr.c:146:11:146:12",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/tinyexpr.c:151:15:151:16",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/tinyexpr.c:170:12:170:13",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/tinyexpr.c:178:20:178:21",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/tinyexpr.c:232:15:232:16",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:683:9:683:14",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/tinyexpr.c:338:26:338:27",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:119:9:119:19",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:120:9:120:19",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:131:42:131:67",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:136:5:136:26",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:137:5:137:12",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:557:9:557:18",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:690:9:690:30",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:712:9:712:22",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:729:5:729:15",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    }
+  ],
+  "unstable": [],
+  "review_needed": [
+    {
+      "id": "cxx_add_to_sub:/repo/tinyexpr.c:232:29:232:30",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:161:11:161:12",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_assign_const:/repo/tinyexpr.c:232:44:232:45",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_div_to_mul:/repo/tinyexpr.c:170:17:170:18",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:417:22:417:24",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/tinyexpr.c:519:20:519:22",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/tinyexpr.c:170:12:170:13",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_init_const:/repo/tinyexpr.c:159:32:159:33",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/tinyexpr.c:171:19:171:21",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_rem_to_div:/repo/tinyexpr.c:159:38:159:39",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/tinyexpr.c:522:9:522:22",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/tinyexpr.c:375:24:375:39",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/tinyexpr.c:232:48:232:49",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "by": "Codex（AI 复核，Linux ARM64）",
+    "at": "2026-10-28",
+    "note": "按 benchmark/tools/mutant_review/tinyexpr-configured/ 的复核结论签署：等价候选 26 项均有结论，不稳定 0 项按规则剔除，探针超时 13 项保留在分母中。"
+  },
+  "reference": {
+    "killed": 283,
+    "timeout": 13,
+    "total": 296,
+    "m1": 1.0,
+    "threshold": 0.8,
+    "passes": true
+  }
+}

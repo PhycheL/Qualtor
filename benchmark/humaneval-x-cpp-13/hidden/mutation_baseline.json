@@ -1,9 +1,9 @@
 {
   "task": "humaneval-x-cpp-13",
-  "created_at": "2026-10-27T07:10:37.129407+00:00",
-  "created_by_run": "bank-prepare-20261027-01-humaneval-x-cpp-13",
-  "scorer_version": "0.1.5",
-  "scorer_code_sha256": "4ca4b8edbd0712321e5bbfa490e9e859683ef129a3492146fb5b14eea56ed5eb",
+  "created_at": "2026-10-28T07:49:26.577931+00:00",
+  "created_by_run": "step-a-formal-20261028-01-humaneval-x-cpp-13",
+  "scorer_version": "0.3.0",
+  "scorer_code_sha256": "dd055eac2773c9c2cdd9a6d4fa9e5e3e885150cfa5d3605c71a6f05d48419503",
   "images": {
     "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
     "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
@@ -1018,7 +1018,7 @@
       },
       "reference_status": [
         "survived",
-        "survived"
+        "killed"
       ],
       "probe_status": [
         "killed",
@@ -1282,7 +1282,7 @@
       },
       "reference_status": [
         "killed",
-        "killed"
+        "survived"
       ],
       "probe_status": [
         "killed",
@@ -1554,7 +1554,32 @@
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
     }
   ],
-  "unstable": [],
+  "unstable": [
+    {
+      "id": "cxx_mul_to_div:/repo/src/cpp_098.cc:18:19:18:20",
+      "reference_status": [
+        "survived",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ],
+      "reason": "多次运行结果不一致（可能是未定义行为导致的偶然崩溃），从分母中剔除"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/cpp_098.cc:18:24:18:30",
+      "reference_status": [
+        "killed",
+        "survived"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ],
+      "reason": "多次运行结果不一致（可能是未定义行为导致的偶然崩溃），从分母中剔除"
+    }
+  ],
   "review_needed": [
     {
       "id": "cxx_assign_const:/repo/src/cpp_103.cc:25:12:25:13",
@@ -1581,13 +1606,13 @@
     "status": "reviewed",
     "by": "Codex（AI 复核，Linux ARM64）",
     "at": "2026-10-28",
-    "note": "依据 D015/D016、各题复核记录及历次 Linux ARM64 Docker 标定签署；本轮 0.2.1 校准、两处门禁回归、8 项删除调用 IR（5 旧+3 新）和 Zebra 52 项固定 GCC 源码副本取证通过。证据：runs/eval-bank-021-20261028-01/summary.md。保留 206 探针超时、39 参考测试缺口及 46 不稳定项的现有分类；不代表参考测试完备或 AMD64 已验证。"
+    "note": "按 benchmark/tools/mutant_review/humaneval-x-cpp-13/ 的复核结论签署：等价候选 4 项均有结论，不稳定 2 项按规则剔除，探针超时 5 项保留在分母中。"
   },
   "reference": {
-    "killed": 60,
+    "killed": 59,
     "timeout": 4,
-    "total": 65,
-    "m1": 0.9836065573770492,
+    "total": 63,
+    "m1": 1.0,
     "threshold": 0.8,
     "passes": true
   }

@@ -1,16 +1,19 @@
 {
-  "scorer_version": "0.2.1",
-  "scorer_code_sha256": "b2b68084b4d83670f1c115c4f9a0625e21a69b44879d856273ab93c6234e2806",
-  "samples_sha256": "245c11f6aaf0d8d526d1f70eb1b7389129c5806737bbffaaff32ece83edc33ca",
+  "scorer_version": "0.3.0",
+  "scorer_code_sha256": "dd055eac2773c9c2cdd9a6d4fa9e5e3e885150cfa5d3605c71a6f05d48419503",
+  "samples_sha256": "202f9fb03a5f23fab0d7435a0b881e3ae90dbbffa120a08f68b27cc66f2724b4",
   "tasks": {
-    "gildedrose-update-quality": "92720d07eeeabc2108b7e7afcfe7554af76147176b3f3de552cd5d19baf24245"
+    "gildedrose-update-quality": "92720d07eeeabc2108b7e7afcfe7554af76147176b3f3de552cd5d19baf24245",
+    "md4c-html": "f40d8a6c5bc4be079e313fb517689e1379cdbbc50ba74553392890c0f82fb4bd",
+    "tinyexpr-configured": "5c9ec23cdb9604261112e5ddf73c498759005c9e094000db430d720cf3cd328d",
+    "yaml-cpp-document": "01d909231afaaaf68ee8d850038f8af7ceab4c72b24e0fca6044bc9e0f562ca0"
   },
   "images": {
     "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
     "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
   },
-  "run_id": "calibration-021-20261028-01",
+  "run_id": "step-a-calibration-20261028-03",
   "passed": true,
   "report": "evaluator/assessment/calibration_report.json",
-  "finished_at": "2026-10-28T03:35:30.507055+00:00"
+  "finished_at": "2026-10-28T08:11:05.252994+00:00"
 }

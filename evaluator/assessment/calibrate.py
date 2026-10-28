@@ -47,14 +47,23 @@ def load_samples(task_id, selected=None):
 
 def check_reference_copy(task, sample):
     """样本里的参考测试副本必须与隐藏的参考强测试集逐字节相同。"""
-    rel = sample["expected"].get("reference_copy")
-    if not rel:
-        return []
-    reference = hidden_path(task, "reference_tests") / Path(rel).name
-    copy = sample["dir"] / "final" / rel
-    if not copy.is_file() or sha256_file(copy) != sha256_file(reference):
-        return [f"{rel} 与参考强测试集不一致，需要重建样本"]
-    return []
+    expected = sample["expected"]
+    relatives = expected.get("reference_copies", [])
+    problems = []
+    reference_root = hidden_path(task, "reference_tests")
+    if "reference_copies" in expected:
+        actual = {"tests/" + p.name for p in reference_root.iterdir()
+                  if p.is_file() and p.suffix in (".cc", ".h")}
+        if set(relatives) != actual:
+            problems.append("reference_copies 与参考强测试集文件清单不一致，需要重建样本")
+    if expected.get("reference_copy"):
+        relatives = list(relatives) + [expected["reference_copy"]]
+    for rel in relatives:
+        reference = reference_root / Path(rel).name
+        copy = sample["dir"] / "final" / rel
+        if not reference.is_file() or not copy.is_file() or sha256_file(copy) != sha256_file(reference):
+            problems.append(f"{rel} 与参考强测试集不一致，需要重建样本")
+    return problems
 
 
 def check_hard(hard, result):

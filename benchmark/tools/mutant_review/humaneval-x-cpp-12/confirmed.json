@@ -57,6 +57,16 @@
         "runs/eval-review-20261027-humaneval-x-cpp-12/trials/humaneval-x-cpp-12/trial-1/score/0.1.6/final/mull/mull/mutations.json",
         "runs/eval-bank-followup-20261027-01/review-products/humaneval-x-cpp-12"
       ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_094.cc:21:19:21:20",
+      "verdict": "undefined_only",
+      "reason": "循环条件 <= 在末尾读取 lst[size]；正常迭代一致，无有定义的行为差异。",
+      "evidence": [
+        "runs/step-a-ub-20261028-01-humaneval-x-cpp-12/ub-sweep.json",
+        "benchmark/humaneval-x-cpp-12/source/src/cpp_094.cc"
+      ],
+      "reviewer": "Codex（AI 复核）"
     }
   ]
 }

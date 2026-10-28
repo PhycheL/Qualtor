@@ -1,0 +1,15 @@
+{
+  "task": "humaneval-x-cpp-13",
+  "mutants": [
+    {
+      "id": "cxx_mul_to_div:/repo/src/cpp_098.cc:18:19:18:20",
+      "verdict": "undefined_only",
+      "reason": "条件 i*2 改为 i/2 后，非空字符串最终访问 s[2*i] 超过 size；空字符串两者均不进循环。额外合法的 s[size] 为零字符，不能增加大写元音计数。",
+      "evidence": [
+        "runs/step-a-ub-20261028-01-humaneval-x-cpp-13/ub-sweep.json",
+        "benchmark/humaneval-x-cpp-13/source/src/cpp_098.cc"
+      ],
+      "reviewer": "Codex（AI 复核）"
+    }
+  ]
+}

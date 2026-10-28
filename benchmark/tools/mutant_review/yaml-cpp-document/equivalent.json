@@ -1,0 +1,42 @@
+{
+  "task": "yaml-cpp-document",
+  "note": "D011/D015逐项源码与实际Mull IR复核；不以有限测试幸存作为等价依据。",
+  "mutants": [
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:148:5:148:49",
+      "reason": "实际生效副本只删除 std::__new_allocator<char> 的空析构，不是 OnScalar；IR 已核对。",
+      "evidence": [
+        "benchmark/yaml-cpp-document/source/src/singledocparser.cpp",
+        "runs/step-a-ir-20261028-01-yaml-cpp-document/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:376:7:376:12",
+      "reason": "ParseProperties 只有 HandleNode 一个调用点；实参 tag 是刚默认构造的空 string，clear 没有可观察效果。",
+      "evidence": [
+        "benchmark/yaml-cpp-document/source/src/singledocparser.cpp",
+        "runs/step-a-ir-20261028-01-yaml-cpp-document/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:377:15:377:20",
+      "reason": "ParseProperties 的 anchor_name 实参也是刚默认构造的空 string，删除 clear 不改变内容或后续分支。",
+      "evidence": [
+        "benchmark/yaml-cpp-document/source/src/singledocparser.cpp",
+        "runs/step-a-ir-20261028-01-yaml-cpp-document/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/singledocparser.cpp:64:5:64:74",
+      "reason": "实际生效副本只删除 std::__new_allocator<char> 的空析构，不是 OnMapStart；IR 已核对。",
+      "evidence": [
+        "benchmark/yaml-cpp-document/source/src/singledocparser.cpp",
+        "runs/step-a-ir-20261028-01-yaml-cpp-document/mutant-ir.json"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    }
+  ]
+}

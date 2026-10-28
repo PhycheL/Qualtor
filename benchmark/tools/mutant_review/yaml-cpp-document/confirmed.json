@@ -1,0 +1,25 @@
+{
+  "task": "yaml-cpp-document",
+  "mutants": [
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:427:10:427:12",
+      "verdict": "undefined_only",
+      "reason": "实际 IR 将相等判定替换为 false。已存在 anchor 不变；未知 anchor 则解引用 map.end，属未定义行为；源码副本的固定 GCC 调试迭代器已复现。",
+      "reviewer": "Codex（AI 复核）",
+      "evidence": [
+        "runs/step-a-debug-20261028-01/summary.json",
+        "runs/step-a-ir-20261028-01-yaml-cpp-document/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/singledocparser.cpp:427:23:427:26",
+      "verdict": "undefined_only",
+      "reason": "实际 IR 将 end 迭代器的指针替换为42，未知 anchor 的保护分支不再触发并解引用 map.end；已存在 anchor 的结果不变。源码副本以跳过相同分支复核 past-the-end 诊断，另保存实际 IR。",
+      "reviewer": "Codex（AI 复核）",
+      "evidence": [
+        "runs/step-a-debug-20261028-01/summary.json",
+        "runs/step-a-ir-20261028-01-yaml-cpp-document/mutant-ir.json"
+      ]
+    }
+  ]
+}

@@ -39,6 +39,47 @@
         "runs/eval-bank-followup-20261027-01/review-ir/humaneval-x-cpp-20/cpp_157.cc.ll",
         "runs/eval-bank-followup-20261027-01/ir-mutation-analysis.json"
       ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_160.cc:39:19:39:20",
+      "verdict": "undefined_only",
+      "reason": "<= 增加一次 operato[size] 读取；此前运算不变，额外访问没有有效 string 对象，不能作为有定义的反例。",
+      "evidence": [
+        "runs/step-a-ub-20261028-01-humaneval-x-cpp-20/ub-sweep.json",
+        "benchmark/humaneval-x-cpp-20/source/src/cpp_160.cc"
+      ],
+      "reviewer": "Codex（AI 复核）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_160.cc:47:19:47:20",
+      "verdict": "undefined_only",
+      "reason": "<= 增加一次 operato[size] 读取；此前运算不变，额外访问没有有效 string 对象，不能作为有定义的反例。",
+      "evidence": [
+        "runs/step-a-ub-20261028-01-humaneval-x-cpp-20/ub-sweep.json",
+        "benchmark/humaneval-x-cpp-20/source/src/cpp_160.cc"
+      ],
+      "reviewer": "Codex（AI 复核）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_160.cc:58:19:58:20",
+      "verdict": "undefined_only",
+      "reason": "<= 增加一次 operato[size] 读取；此前运算不变，额外访问没有有效 string 对象，不能作为有定义的反例。",
+      "evidence": [
+        "runs/step-a-ub-20261028-01-humaneval-x-cpp-20/ub-sweep.json",
+        "benchmark/humaneval-x-cpp-20/source/src/cpp_160.cc"
+      ],
+      "reviewer": "Codex（AI 复核）"
+    },
+    {
+      "id": "cxx_add_assign_to_sub_assign:/repo/src/cpp_156.cc:29:26:29:28",
+      "verdict": "undefined_only",
+      "reason": "本轮正式标定出现参考 timeout、探针 killed 的新项。pos 初值为 0；number <= 0 时不进入循环，正的 1000 整数倍在第一层内循环归零，均不受影响。其余正整数第一次走到 pos-=1 后即读取 num[-1]，此前输出相同，没有有定义的差异。固定 GCC 源码副本在输入 1 触发 vector 下标断言；原程序正常输出。按 D015 剔除，不能按超时或探针崩溃计检出。",
+      "evidence": [
+        "runs/step-a-formal-20261028-01-humaneval-x-cpp-20/mutation_baseline.json",
+        "runs/step-a-ub-20261028-04-humaneval-x-cpp-20/ub-sweep.json",
+        "benchmark/humaneval-x-cpp-20/source/src/cpp_156.cc"
+      ],
+      "reviewer": "Codex（AI 复核）"
     }
   ]
 }

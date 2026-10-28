@@ -1,9 +1,9 @@
 {
   "task": "humaneval-x-cpp-12",
-  "created_at": "2026-10-28T01:25:31.347687+00:00",
-  "created_by_run": "bank-prepare-20261028-03-humaneval-x-cpp-12",
-  "scorer_version": "0.1.6",
-  "scorer_code_sha256": "b98b550d7fa8f07011be4c1abaa93450feca5cbf16cf6951ef2ece8a6394005d",
+  "created_at": "2026-10-28T07:48:30.236470+00:00",
+  "created_by_run": "step-a-formal-20261028-01-humaneval-x-cpp-12",
+  "scorer_version": "0.3.0",
+  "scorer_code_sha256": "dd055eac2773c9c2cdd9a6d4fa9e5e3e885150cfa5d3605c71a6f05d48419503",
   "images": {
     "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
     "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
@@ -1743,8 +1743,8 @@
         }
       },
       "reference_status": [
-        "survived",
-        "survived"
+        "killed",
+        "killed"
       ],
       "probe_status": [
         "killed",
@@ -3278,7 +3278,25 @@
       "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
     }
   ],
-  "unstable": [],
+  "unstable": [
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_094.cc:21:19:21:20",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/step-a-ub-20261028-01-humaneval-x-cpp-12/ub-sweep.json",
+        "benchmark/humaneval-x-cpp-12/source/src/cpp_094.cc"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    }
+  ],
   "review_needed": [
     {
       "id": "cxx_lt_to_ge:/repo/src/cpp_096.cc:20:15:20:16",
@@ -3301,13 +3319,13 @@
     "status": "reviewed",
     "by": "Codex（AI 复核，Linux ARM64）",
     "at": "2026-10-28",
-    "note": "依据 D015/D016、各题复核记录及历次 Linux ARM64 Docker 标定签署；本轮 0.2.1 校准、两处门禁回归、8 项删除调用 IR（5 旧+3 新）和 Zebra 52 项固定 GCC 源码副本取证通过。证据：runs/eval-bank-021-20261028-01/summary.md。保留 206 探针超时、39 参考测试缺口及 46 不稳定项的现有分类；不代表参考测试完备或 AMD64 已验证。"
+    "note": "按 benchmark/tools/mutant_review/humaneval-x-cpp-12/ 的复核结论签署：等价候选 10 项均有结论，不稳定 1 项按规则剔除，探针超时 4 项保留在分母中。"
   },
   "reference": {
-    "killed": 131,
+    "killed": 132,
     "timeout": 3,
-    "total": 136,
-    "m1": 0.9849624060150376,
+    "total": 135,
+    "m1": 1.0,
     "threshold": 0.8,
     "passes": true
   }

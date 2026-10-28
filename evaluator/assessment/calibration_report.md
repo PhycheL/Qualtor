@@ -1,8 +1,8 @@
-# 校准报告 calibration-021-20261028-01
+# 校准报告 step-a-calibration-20261028-03
 
-- 评测模块版本：0.2.1（代码指纹 b2b68084b4d8）
+- 评测模块版本：0.3.0（代码指纹 dd055eac2773）
 - 结论：**通过**
-- 题目：gildedrose-update-quality（16 个样本）
+- 题目：gildedrose-update-quality（16 个样本）、md4c-html（1 个样本）、tinyexpr-configured（1 个样本）、yaml-cpp-document（1 个样本）
 - 每个样本评分 2 次；镜像：gcc sha256:bd01e6e4f0e7、clang sha256:013ac35a1dae
 
 | 题目 | 样本 | 结论 | 状态 | M1 端到端 | C1 | S1 | 问题 |
@@ -23,3 +23,6 @@
 | gildedrose-update-quality | CAL-14 | 通过 | scored | 0.170 | 1.000 | 0.000 | — |
 | gildedrose-update-quality | CAL-15 | 通过 | scored | 1.000 | 1.000 | 0.000 | — |
 | gildedrose-update-quality | CAL-16 | 通过 | scored | 1.000 | 1.000 | 0.000 | — |
+| md4c-html | CAL-19 | 通过 | scored | 1.000 | 0.981 | 0.000 | — |
+| tinyexpr-configured | CAL-20 | 通过 | scored | 1.000 | 0.966 | 0.000 | — |
+| yaml-cpp-document | CAL-18 | 通过 | scored | 1.000 | 0.970 | 0.000 | — |

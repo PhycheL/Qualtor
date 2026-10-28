@@ -2,6 +2,7 @@
 import math
 from pathlib import Path
 from generator.support import read_json
+from generator.build.contract import validate_build
 
 
 def load_task(path):
@@ -9,7 +10,7 @@ def load_task(path):
     task = read_json(path)
     required = {"id", "title", "source_root", "target_sources", "include_dirs", "visible_files",
                 "allowed_test_files", "budget", "test_timeout_seconds"}
-    if not isinstance(task, dict) or set(task) != required:
+    if not isinstance(task, dict) or not required <= set(task) or set(task) - required - {"build"}:
         raise ValueError("公开任务字段不完整或含未知字段；不能传入隐藏评分材料")
     for key in ("id", "title", "source_root"):
         if not isinstance(task[key], str) or not task[key].strip():
@@ -39,6 +40,7 @@ def load_task(path):
             raise ValueError(f"可见文件不存在：{rel}")
     if not set(task["target_sources"]) <= set(task["visible_files"]):
         raise ValueError("target_sources 必须是 visible_files 的子集")
+    validate_build(task.get("build", {}), task["target_sources"], task["visible_files"], root)
     budget = task["budget"]
     if not isinstance(budget, dict) or set(budget) != {"repair_rounds"} or type(budget["repair_rounds"]) is not int or budget["repair_rounds"] < 0:
         raise ValueError("budget 只接受非负整数 repair_rounds")
@@ -50,16 +52,23 @@ def load_task(path):
 
 
 def task_text(task):
+    build = task.get("build", {})
+    configuration = ""
+    if build:
+        configuration = (f"- 依赖源文件（参与编译链接）：{', '.join('project/' + p for p in build.get('support_sources', [])) or '无'}\n"
+                         f"- 全部编译单元的宏：{', '.join(build.get('defines', [])) or '无'}；"
+                         f"编译选项：{', '.join(build.get('compile_options', [])) or '无'}。\n"
+                         f"- C 源文件标准：{build.get('c_standard', '无 C 源文件')}；测试仍使用 C++11 / GoogleTest。\n")
     return f"""# 测试生成任务：{task['title']}
 
-为现有 C++11 代码生成 GoogleTest 1.12.1 单元测试。断言以代码的实际行为为准。
+为现有 C/C++ 代码生成 C++11 / GoogleTest 1.12.1 单元测试。断言以代码的实际行为为准。
 通过 read、grep、find、ls 阅读源码，通过 write、edit 编写测试，通过 build_and_test 编译并运行。
 
 - 被测文件：{', '.join('project/' + p for p in task['target_sources'])}
 - 可见文件：{', '.join('project/' + p for p in task['visible_files'])}
 - 允许修改：{', '.join(task['allowed_test_files'])}。只提交这些测试文件。
 - 头文件目录：{', '.join('project/' + p for p in task['include_dirs'])}；构建时也包含 tests/。
-- 测试快照：build_and_test 在编译前保存本轮测试快照，第 1 次快照同时作为首次产物保留；你可以根据反馈继续修改测试。
+{configuration}- 测试快照：build_and_test 在编译前保存本轮测试快照，第 1 次快照同时作为首次产物保留；你可以根据反馈继续修改测试。
 - 修复预算：{task['budget']['repair_rounds']} 轮。第 1 次 build_and_test 不算修复；以后每次调用消耗 1 轮。
 - 单测超时：{task['test_timeout_seconds']} 秒。build_and_test 返回编译错误或测试结果、剩余轮次，以及 feedback/ 中完整日志的位置，可使用 read 继续查看。
 

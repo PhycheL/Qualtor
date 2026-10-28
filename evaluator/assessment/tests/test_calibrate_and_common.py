@@ -17,6 +17,24 @@ class CalibrationChecksTest(unittest.TestCase):
               "variants": [{"id": "eq-02", "outcome": "false_alarm", "failed_tests": ["S.C"]},
                            {"id": "hw-01", "outcome": "detected", "failed_tests": ["S.A"]}]}
 
+    def test_multifile_reference_copy_detects_changed_and_missing_files(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            reference = root / "reference"
+            copied = root / "sample/final/tests"
+            reference.mkdir()
+            copied.mkdir(parents=True)
+            for name in ("a.cc", "helper.h"):
+                (reference / name).write_text(name)
+                (copied / name).write_text(name)
+            sample = {"dir": root / "sample", "expected": {"reference_copies": ["tests/a.cc", "tests/helper.h"]}}
+            with unittest.mock.patch.object(calibrate, "hidden_path", return_value=reference):
+                self.assertEqual(calibrate.check_reference_copy({}, sample), [])
+                (copied / "helper.h").write_text("changed")
+                self.assertEqual(len(calibrate.check_reference_copy({}, sample)), 1)
+                (reference / "b.cc").write_text("new reference test")
+                self.assertEqual(len(calibrate.check_reference_copy({}, sample)), 2)
+
     def test_hard_expectations_pass(self):
         hard = {"status": "scored", "tests": {"S.B": "flaky"}, "tests_default": "valid",
                 "variants": {"eq-02": "false_alarm", "hw-01": "detected"}, "variant_failed_tests": {"eq-02": ["S.C"]}}

@@ -35,6 +35,16 @@
         "runs/eval-review-20261027-humaneval-x-cpp-15/trials/humaneval-x-cpp-15/trial-1/score/0.1.6/final/mull/mull/mutations.json",
         "runs/eval-bank-followup-20261027-01/review-products/humaneval-x-cpp-15"
       ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/cpp_118.cc:26:40:26:43",
+      "verdict": "undefined_only",
+      "reason": "实际 IR 将 find 范围末端设为地址42；与 vowels.begin 不构成有效迭代器范围。若字符在此前被找到，结果与原程序相同；其余差异都来自无效范围。",
+      "reviewer": "Codex（AI 复核）",
+      "evidence": [
+        "runs/step-a-debug-20261028-01/summary.json",
+        "runs/step-a-ir-20261028-01-humaneval-x-cpp-15/mutant-ir.json"
+      ]
     }
   ]
 }

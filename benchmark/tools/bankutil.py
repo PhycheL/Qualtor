@@ -128,7 +128,7 @@ def copy_reference_as_probe(task_dir, extra_files=()):
 
 
 def write_task(task_dir, *, task_id, tier, tags, title, description, provenance, source_files, target_sources,
-               include_dirs, visible_files, existing_tests, scoring_domain, probe_mode, generated_by, variants=()):
+               include_dirs, visible_files, existing_tests, scoring_domain, probe_mode, generated_by, variants=(), build=None):
     """写 task.json 与 source/SOURCE.json。source_files 是相对 source/ 的全部入库文件。"""
     if probe_mode not in PROBE_MODES:
         raise ValueError(f"未知探针模式：{probe_mode}")
@@ -166,6 +166,9 @@ def write_task(task_dir, *, task_id, tier, tags, title, description, provenance,
                         "generated_by": generated_by, "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"},
         "variants": list(variants),
     }
+    if build is not None:
+        task["build"] = build
+        task["visible"]["notes"] = "可见材料只有被测及依赖源码、头文件和公开构建配置；测试使用 C++11 / GoogleTest 1.12.1。"
     write_json(task_dir / "task.json", task)
     restore_baseline(task_dir, task_id)
     return task

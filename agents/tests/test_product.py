@@ -263,6 +263,19 @@ class PublicTaskTest(unittest.TestCase):
                     self.load()
                 del self.task[key]
 
+    def test_optional_build_is_public_and_c_source_is_supported(self):
+        from generator.task import task_text
+        (self.root / "source/helper.c").write_text("int helper(void) { return 2; }\n")
+        self.task["visible_files"].append("helper.c")
+        self.task["build"] = {"support_sources": ["helper.c"], "c_standard": "c11",
+                              "defines": ["FEATURE=2"], "compile_options": ["-fwrapv"]}
+        task = self.load()
+        self.assertEqual(task["build"], self.task["build"])
+        self.assertIn("FEATURE=2", task_text(task))
+        self.task["build"]["hidden"] = "reference_tests"
+        with self.assertRaises(ValueError):
+            self.load()
+
     def test_visible_path_escape_and_symlink_parent_rejected(self):
         for value in ("../secret.cc", "/etc/passwd", "a.cc;injected.cc"):
             self.task["visible_files"] = [value]

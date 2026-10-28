@@ -27,6 +27,7 @@ sys.path[:0] = [str(Path(__file__).resolve().parent), str(REPO / "evaluator/asse
 import bankutil  # noqa: E402
 
 OPS = {"cxx_add_to_sub": ("+", "-"), "cxx_sub_to_add": ("-", "+"), "cxx_mul_to_div": ("*", "/"),
+       "cxx_add_assign_to_sub_assign": ("+=", "-="),
        "cxx_eq_to_ne": ("==", "!="), "cxx_ne_to_eq": ("!=", "=="), "cxx_gt_to_ge": (">", ">="),
        "cxx_gt_to_le": (">", "<="), "cxx_ge_to_gt": (">=", ">"), "cxx_ge_to_lt": (">=", "<"),
        "cxx_lt_to_ge": ("<", ">="), "cxx_lt_to_le": ("<", "<="), "cxx_le_to_lt": ("<=", "<"), "cxx_le_to_gt": ("<=", ">"),

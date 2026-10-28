@@ -82,12 +82,15 @@ def public_task(task):
             raise ValueError(f"不合法的可见文件：{rel}")
         if not path.resolve().is_relative_to(root):
             raise ValueError(f"可见文件越过源码目录：{rel}")
-    if not set(task["target_sources"]) <= set(visible):
-        raise ValueError("被测源文件必须列入 visible.files")
-    return {"id": task["id"], "title": task["title"], "target_sources": task["target_sources"],
+    if not set(task["target_sources"] + task.get("build", {}).get("support_sources", [])) <= set(visible):
+        raise ValueError("被测和依赖源文件必须列入 visible.files")
+    public = {"id": task["id"], "title": task["title"], "target_sources": task["target_sources"],
             "include_dirs": task["include_dirs"], "visible_files": visible,
             "allowed_test_files": task["allowed_test_files"], "budget": {"repair_rounds": budget},
             "test_timeout_seconds": task["params"]["test_timeout_seconds"], "source_root": str(root)}
+    if "build" in task:
+        public["build"] = task["build"]
+    return public
 
 
 def score_frozen(executor, task, product, out, meta, cost_path, calibration):

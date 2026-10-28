@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "id": "tinyexpr-configured",
+  "set": "dev",
+  "tier": "medium",
+  "tags": [
+    "c",
+    "compile-defines",
+    "parser"
+  ],
+  "title": "数学表达式编译与求值",
+  "description": "带变量、闭包和可配置幂结合方向及对数语义的 C 表达式模块。",
+  "source": {
+    "repository": "https://github.com/codeplea/tinyexpr",
+    "commit": "ba2e32bbcc2d1e644a7e132d24c2f542821cabe0",
+    "root": "benchmark/tinyexpr-configured/source",
+    "files": {
+      "tinyexpr.c": "d98452135db9fbd7c233b23e66103450d785df5251067799ddf3cc6bbd96611a",
+      "tinyexpr.h": "6644032507c078167a7ec6e134b6f5bd2147f4d96d955923285dac8c6feb16d8"
+    }
+  },
+  "target_sources": [
+    "tinyexpr.c"
+  ],
+  "include_dirs": [
+    "."
+  ],
+  "visible": {
+    "files": [
+      "tinyexpr.c",
+      "tinyexpr.h"
+    ],
+    "notes": "可见材料只有被测及依赖源码、头文件和公开构建配置；测试使用 C++11 / GoogleTest 1.12.1。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": false,
+    "note": "上游测试作为隐藏参考材料，未投影给生成 Agent。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "隐藏参考测试覆盖的输入；断言以固定源码实际行为为准；不以此收窄等价性判定。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/import_step_a.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": [],
+  "build": {
+    "support_sources": [],
+    "c_standard": "c11",
+    "defines": [
+      "TE_POW_FROM_RIGHT",
+      "TE_NAT_LOG"
+    ],
+    "compile_options": [
+      "-fno-strict-aliasing"
+    ]
+  }
+}

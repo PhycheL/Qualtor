@@ -71,6 +71,8 @@ class ProductAssessment:
         product = self.at("product", self.product)
         return {"phase": "build", "mode": mode, "template_dir": f"{self.at('assessment', ASSESSMENT)}/cmake",
                 "build_dir": build_mount, "target_sources": target_sources,
+                "support_sources": [self.repo_path(rel) for rel in self.task.get("build", {}).get("support_sources", [])],
+                "build": self.task.get("build", {}),
                 "include_dirs": [self.repo_path(rel) for rel in self.task["include_dirs"]] + [f"{product}/tests"],
                 "test_sources": [f"{product}/{rel}" for rel in product_test_sources(self.product)],
                 "timeout": TIMEOUT["build"]}

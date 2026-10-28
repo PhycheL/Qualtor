@@ -13,9 +13,11 @@ import time
 if __package__:
     from common.audit import Audit, now
     from . import gtest_results
+    from .contract import cmake_build_args, compile_command_problems
 else:
     from audit import Audit, now
     import gtest_results
+    from contract import cmake_build_args, compile_command_problems
 
 TEST_UID = 65534
 FEEDBACK_LIMIT = 8000
@@ -74,6 +76,10 @@ class ContainerBuild:
                    "-DQUALTOR_INCLUDE_DIRS=" + ";".join(["/project/" + s for s in self.task["include_dirs"]]
                                                           + [str(snapshot / "tests")]),
                    "-DQUALTOR_TEST_SOURCES=" + ";".join(sources)]
+        build = self.task.get("build", {})
+        targets = ["/project/" + s for s in self.task["target_sources"]]
+        support = ["/project/" + s for s in build.get("support_sources", [])]
+        command += cmake_build_args(build, support)
         def run(label, args, timeout):
             env = dict(self.env, TMPDIR=str(work), HOME=str(work))
             try:
@@ -85,6 +91,11 @@ class ContainerBuild:
         configured = run("configure", command, 300)
         if configured["returncode"]:
             return {"status": "build_failed", "feedback": configured["stdout"] + configured["stderr"]}
+        shutil.copy2(work / "build/compile_commands.json", attempt / "compile_commands.json")
+        commands = json.loads((attempt / "compile_commands.json").read_text())
+        problems = compile_command_problems(commands, targets, support, sources, build)
+        if problems:
+            raise RuntimeError("compile_commands_mismatch: " + "; ".join(problems))
         built = run("compile", ["cmake", "--build", str(work / "build"), "--parallel", "2"], 900)
         if built["returncode"]:
             return {"status": "build_failed", "feedback": built["stdout"] + built["stderr"]}
@@ -108,7 +119,6 @@ class ContainerBuild:
             details[test["name"]] = executed["stdout"] + executed["stderr"]
         for path in work.glob("*.json"):
             shutil.copy2(path, attempt / path.name)
-        shutil.copy2(work / "build/compile_commands.json", attempt / "compile_commands.json")
         passed = bool(outcomes) and all(v["outcome"] == "passed" for v in outcomes.values())
         return {"status": "passed" if passed else "tests_failed", "tests": outcomes,
                 "feedback": feedback_text(outcomes, details)}

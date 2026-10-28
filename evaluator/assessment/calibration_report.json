@@ -335,6 +335,69 @@
         "F1": 0.05263157894736842
       },
       "passed": true
+    },
+    "CAL-19": {
+      "task": "md4c-html",
+      "description": "C99 被测源文件有覆盖、有变异，C 依赖源文件仅参与链接",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": 1.0,
+        "M1_valid": 1.0,
+        "C1": 0.9809885931558935,
+        "C2": 0.9073170731707317,
+        "C3": 0.9545454545454546,
+        "S1": 0.0,
+        "S2_max": null,
+        "V3": 0.0,
+        "M2": null,
+        "F1": null
+      },
+      "passed": true
+    },
+    "CAL-20": {
+      "task": "tinyexpr-configured",
+      "description": "C11 数学解析库与 C++11 测试均采用公开功能宏",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": 1.0,
+        "M1_valid": 1.0,
+        "C1": 0.9660574412532638,
+        "C2": 0.8806818181818182,
+        "C3": 1.0,
+        "S1": 0.0,
+        "S2_max": null,
+        "V3": 0.0,
+        "M2": null,
+        "F1": null
+      },
+      "passed": true
+    },
+    "CAL-18": {
+      "task": "yaml-cpp-document",
+      "description": "只替换 .cpp 的真实缺陷；依赖源文件不覆盖、不变异",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": 1.0,
+        "M1_valid": 1.0,
+        "C1": 0.9696969696969697,
+        "C2": 0.6584766584766585,
+        "C3": 1.0,
+        "S1": 0.0,
+        "S2_max": null,
+        "V3": 0.0,
+        "M2": null,
+        "F1": null
+      },
+      "passed": true
     }
   },
   "tasks": {
@@ -359,15 +422,36 @@
         "CAL-15",
         "CAL-16"
       ]
+    },
+    "md4c-html": {
+      "task_sha256": "f40d8a6c5bc4be079e313fb517689e1379cdbbc50ba74553392890c0f82fb4bd",
+      "passed": true,
+      "samples": [
+        "CAL-19"
+      ]
+    },
+    "tinyexpr-configured": {
+      "task_sha256": "5c9ec23cdb9604261112e5ddf73c498759005c9e094000db430d720cf3cd328d",
+      "passed": true,
+      "samples": [
+        "CAL-20"
+      ]
+    },
+    "yaml-cpp-document": {
+      "task_sha256": "01d909231afaaaf68ee8d850038f8af7ceab4c72b24e0fca6044bc9e0f562ca0",
+      "passed": true,
+      "samples": [
+        "CAL-18"
+      ]
     }
   },
   "passed": true,
-  "run_id": "calibration-021-20261028-01",
+  "run_id": "step-a-calibration-20261028-03",
   "rounds": 2,
   "partial": false,
-  "scorer_version": "0.2.1",
-  "scorer_code_sha256": "b2b68084b4d83670f1c115c4f9a0625e21a69b44879d856273ab93c6234e2806",
-  "samples_sha256": "245c11f6aaf0d8d526d1f70eb1b7389129c5806737bbffaaff32ece83edc33ca",
+  "scorer_version": "0.3.0",
+  "scorer_code_sha256": "dd055eac2773c9c2cdd9a6d4fa9e5e3e885150cfa5d3605c71a6f05d48419503",
+  "samples_sha256": "202f9fb03a5f23fab0d7435a0b881e3ae90dbbffa120a08f68b27cc66f2724b4",
   "images": {
     "gcc": {
       "tag": "qualtor-gcc:14.2.0-gtest1.12.1-cxx11",
@@ -380,5 +464,5 @@
       "platform": "linux/arm64"
     }
   },
-  "finished_at": "2026-10-28T03:35:30.507055+00:00"
+  "finished_at": "2026-10-28T08:11:05.252994+00:00"
 }

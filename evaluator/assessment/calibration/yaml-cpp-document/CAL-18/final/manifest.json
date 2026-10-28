@@ -1,0 +1,16 @@
+{
+  "files": {
+    "tests/error_messages_test.cc": "8ddd6f67930912f3d0f1b4e5424ac0dfcb29be6dfa1f5ab2c299d33c46867e98",
+    "tests/handler_spec_test.cc": "03cb36f2066ef3e4bbf4d0d467960e0adee0d565a1159fcc5ab22f58d9c3f027",
+    "tests/handler_test.cc": "240c22c54c2db25f830441d6ab97d5538720b6fb2e5bc76d63a2c18c62a5a867",
+    "tests/handler_test.h": "13ca6caff194fc052af11fec6cf8cf228fb325b1b4c12d4dbb34714dd26c4520",
+    "tests/load_node_test.cc": "d014ddf89adf07538b5d94cee90180df6c9e0ee7054446d3c56f64947e823336",
+    "tests/mock_event_handler.h": "ae2825d84fef7fb59b2ee5bebc65cbfc0d69a301f2f6ed7dadcf3ee219247e32",
+    "tests/node_spec_test.cc": "94fd8f8b98969b634a675c03a78aa5bb6272c01d86d0de1e2d0b90029e1caedd",
+    "tests/parser_test.cc": "b1b7770213b3b50192b87af2a5113fe49ac4ba3eaa2ab1786cb1ea680aeecf30",
+    "tests/reference_options.cc": "c7a49d66fe5f2caa4d3730b0db5d0f8ffb75ffd4c4742593dbff8d8ac14df7ed",
+    "tests/specexamples.h": "b89c177c9c0f55006d4d7917552b97b2b2cd363b49261714668b7c9159176c80",
+    "tests/step_a_boundaries.cc": "f6b4a0bcdb7a7427d5fbbb3c2e1f257aaef0fb9a17895503ab27fbe9d0e441cc"
+  },
+  "frozen_at": "2026-10-28T00:00:00+00:00"
+}
