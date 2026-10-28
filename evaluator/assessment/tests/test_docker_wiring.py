@@ -21,8 +21,9 @@ REFERENCE_PRODUCT = common.CALIBRATION / "gildedrose-update-quality" / "CAL-15" 
 class FakeAudit:
     """模拟 docker 命令行：记录命令，并按需返回 inspect 结果、写出 step.json。"""
 
-    def __init__(self, tamper_rw=False):
+    def __init__(self, tamper_rw=False, reject_short_images=False):
         self.commands, self.created, self.tamper_rw = [], {}, tamper_rw
+        self.reject_short_images = reject_short_images
 
     def run(self, stage, command, cwd=None, timeout=180, input_text=None, echo=False):
         self.commands.append(command)
@@ -31,6 +32,8 @@ class FakeAudit:
         if command[:3] == ["docker", "context", "inspect"]:
             out["stdout"] = "unix:///fake.sock\n"
         elif args[:2] == ["image", "inspect"]:
+            if self.reject_short_images and not args[2].startswith("docker.io/library/"):
+                return {**out, "returncode": 1, "stderr": f"No such image: {args[2]}"}
             out["stdout"] = json.dumps([{"Id": "sha256:" + args[2][:10], "Os": "linux", "Architecture": "arm64"}])
         elif args[:1] == ["create"]:
             name = args[args.index("--name") + 1]
@@ -59,6 +62,16 @@ class DockerExecutorTest(unittest.TestCase):
 
     def tearDown(self):
         shutil.rmtree(self.tmp)
+
+    def test_short_name_lookup_failure_does_not_block_startup(self):
+        # 本机捕获的故障：短名称返回 No such image，完整名称仍解析到原镜像。
+        audit = FakeAudit(reject_short_images=True)
+        ex = docker_runner.DockerExecutor(audit, self.tmp / "evidence", "image-reference")
+        self.assertEqual(set(ex.images), {"gcc", "clang"})
+        ex.run_phase("gcc-build", "gcc", {}, {}, {}, self.tmp / "out", 60, audit)
+        create = next(c for c in audit.commands if "create" in c)
+        self.assertIn(ex.images["gcc"]["id"], create)
+        self.assertNotIn(ex.images["gcc"]["tag"], create)
 
     def test_isolation_flags_and_mounts(self):
         audit = FakeAudit()

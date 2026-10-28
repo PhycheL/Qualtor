@@ -18,6 +18,7 @@ from generator.support import write_json, tree_hash, dependency_hash
 from generator.config import load_config
 from generator.cost import extract, add_costs
 from generator.build import container_build as build_service
+from generator.build import docker as build_docker
 from generator.runtime import launch
 HERE = Path(__file__).resolve().parent
 
@@ -142,6 +143,30 @@ class AuditLeftoverProcessTest(unittest.TestCase):
                     os.kill(int(pid.group()), signal.SIGKILL)
                 except ProcessLookupError:
                     pass
+
+class DockerImageReferenceTest(unittest.TestCase):
+    def test_short_name_lookup_failure_does_not_block_startup(self):
+        image_id = "sha256:" + "a" * 64
+        canonical = "docker.io/library/qualtor-gcc:14.2.0-gtest1.12.1-cxx11"
+
+        def response(stage, command, **kwargs):
+            result = {"returncode": 0, "timed_out": False, "cancelled": False,
+                      "stdout": "", "stderr_log": "captured-image-inspect.stderr.log"}
+            if command[:3] == ["docker", "context", "inspect"]:
+                result["stdout"] = "unix:///fake.sock\n"
+            elif command[-3:] == ["image", "inspect", canonical]:
+                result["stdout"] = json.dumps([{"Id": image_id, "Os": "linux", "Architecture": "arm64"}])
+            else:
+                result.update(returncode=1, stderr="No such image: " + command[-1])
+            return result
+
+        command_audit = Mock()
+        command_audit.run.side_effect = response
+        with tempfile.TemporaryDirectory() as tmp, patch.object(build_docker, "Audit", return_value=command_audit):
+            compiler = build_docker.DockerCompiler(tmp)
+            self.assertEqual(compiler.image, {"tag": canonical, "id": image_id, "platform": "linux/arm64"})
+            self.assertEqual(command_audit.run.call_count, 2)
+
 
 class BuildServiceTest(unittest.TestCase):
     def test_compile_manifest_mismatch_preserves_evidence_and_stops_before_compile(self):

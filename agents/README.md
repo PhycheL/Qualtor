@@ -18,6 +18,8 @@ chmod 600 .env
 
 `setup.py --pi-only` 只安装、构建宿主机 pi，`--gcc-only` 只构建 GCC 镜像。源码、固定依赖锁和模型目录保留在 `pi/`。换操作系统、架构或 Node 版本后重新运行安装；安装器会检查缓存的搜索工具，不能在当前宿主机执行时重新获取。安装日志默认保存在 `output/setup-<时间>/`。
 
+GCC 镜像引用配置在 `toolchains/images.json`，使用完整名称 `docker.io/library/qualtor-gcc:14.2.0-gtest1.12.1-cxx11`；安装和生成共用该配置，查询后按返回的镜像 ID 创建编译容器。完整名称用于避开 Docker Desktop 休眠时短名称查询误报 `No such image` 的缓存路径；已有本地镜像可直接按完整名称查询，无需因此重新构建。
+
 ## 公开任务和生成
 
 准备任务文件，例如 `/path/to/task.json`：

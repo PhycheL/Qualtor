@@ -18,7 +18,7 @@ from source_snapshot import verify_snapshot
 
 IMAGES = {
     "gcc": json.loads((AGENTS / "toolchains/images.json").read_text())["gcc"],
-    "clang": "qualtor-clang:19.1.7-mull0.34.2-gtest1.12.1-cxx11",
+    "clang": "docker.io/library/qualtor-clang:19.1.7-mull0.34.2-gtest1.12.1-cxx11",
 }
 BUILD_IMAGES = IMAGES
 
