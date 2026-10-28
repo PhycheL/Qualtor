@@ -4,7 +4,7 @@
 所以覆盖率（步骤 5）和变异测试（步骤 6）会跳过。需要以下环境变量：
 - QUALTOR_HOST_CMAKE、QUALTOR_HOST_NINJA：CMake 与 Ninja 可执行文件；
 - QUALTOR_HOST_GTEST：GoogleTest 1.12.1 的安装前缀；
-- QUALTOR_HOST_CXX（可选）：C++ 编译器，默认 c++。
+- QUALTOR_HOST_CC、QUALTOR_HOST_CXX（可选）：C/C++ 编译器，分别默认 cc、c++。
 """
 import json
 import os
@@ -33,7 +33,8 @@ class HostExecutor:
 
     def tools(self, toolchain):
         return {"cmake": os.environ["QUALTOR_HOST_CMAKE"], "make_program": os.environ["QUALTOR_HOST_NINJA"],
-                "gtest_prefix": os.environ["QUALTOR_HOST_GTEST"], "cxx": os.environ.get("QUALTOR_HOST_CXX", "c++")}
+                "gtest_prefix": os.environ["QUALTOR_HOST_GTEST"], "cc": os.environ.get("QUALTOR_HOST_CC", "cc"),
+                "cxx": os.environ.get("QUALTOR_HOST_CXX", "c++")}
 
     def run_phase(self, label, toolchain, mounts, env, job, out_host, timeout, audit):
         out_host = Path(out_host)

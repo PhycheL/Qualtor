@@ -1,5 +1,6 @@
 """两条独立构建链的契约一致性、输入边界与编译单元隔离回归。"""
 import copy
+import hashlib
 import importlib.util
 from pathlib import Path
 import sys
@@ -17,6 +18,10 @@ spec.loader.exec_module(product_contract)
 
 
 class BuildContractTest(unittest.TestCase):
+    def test_product_and_assessment_contract_files_have_identical_hashes(self):
+        paths = [common.REPO / "agents/generator/build/contract.py", Path(build_contract.__file__)]
+        self.assertEqual(*(hashlib.sha256(p.read_bytes()).hexdigest() for p in paths))
+
     def setUp(self):
         tmp = tempfile.TemporaryDirectory()
         self.addCleanup(tmp.cleanup)

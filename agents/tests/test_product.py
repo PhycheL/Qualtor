@@ -10,7 +10,7 @@ import sys
 import tempfile
 import time
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from common import audit
 from generator import config as host
@@ -144,6 +144,37 @@ class AuditLeftoverProcessTest(unittest.TestCase):
                     pass
 
 class BuildServiceTest(unittest.TestCase):
+    def test_compile_manifest_mismatch_preserves_evidence_and_stops_before_compile(self):
+        task = {"allowed_test_files": ["tests/*.cc"], "target_sources": ["target.c"], "include_dirs": [],
+                "build": {"c_standard": "c11", "support_sources": ["helper.cc"], "defines": ["FEATURE=7"]}}
+        commands = [
+            {"file": "/project/target.c", "arguments": ["gcc-14", "-std=c11", "-DFEATURE=7"]},
+            {"file": "/project/helper.cc", "arguments": ["g++-14", "-std=c++11", "-DFEATURE=7",
+                                                        "-include", "/cmake/cxx11_guard.h"]},
+            # CMake 配置成功，但测试编译单元漏传题目宏；不得继续编译和执行。
+            {"file": "/product/tests/sample.cc", "arguments": ["g++-14", "-std=c++11",
+                                                               "-include", "/cmake/cxx11_guard.h"]},
+        ]
+        with tempfile.TemporaryDirectory() as tmp:
+            work, attempt = Path(tmp) / "work", Path(tmp) / "attempt"
+            attempt.mkdir()
+            manifest = json.dumps(commands)
+
+            def configured(*args, **kwargs):
+                (work / "build").mkdir()
+                (work / "build/compile_commands.json").write_text(manifest)
+                return {"returncode": 0, "stdout": "", "stderr": ""}
+
+            command_audit = Mock()
+            command_audit.run.side_effect = configured
+            with patch.object(build_service, "Path", side_effect=lambda p: work if p == "/tmp/build" else Path(p)), \
+                 patch.object(build_service.os, "chown"), patch.object(build_service, "kill_uid", return_value=[]):
+                with self.assertRaisesRegex(RuntimeError, "compile_commands_mismatch:.*缺少宏 FEATURE=7"):
+                    build_service.ContainerBuild(task).build(attempt, ["tests/sample.cc"], command_audit)
+            command_audit.run.assert_called_once()
+            self.assertEqual(command_audit.run.call_args.args[0], "configure")
+            self.assertEqual((attempt / "compile_commands.json").read_text(), manifest)
+
     def test_feedback_lists_every_failure_before_details(self):
         outcomes = {f"Suite.Test{i:03d}": {"outcome": "passed"} for i in range(300)}
         for i in (5, 150, 299):

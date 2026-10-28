@@ -4,9 +4,11 @@
 需要设置 host_executor.py 中说明的环境变量，否则跳过。不能替代 Docker 容器中的校准。
 """
 from pathlib import Path
+import os
 import shutil
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import support  # noqa: F401
 from audit import Audit
@@ -14,6 +16,23 @@ import calibrate
 import common
 import host_executor
 import pipeline
+
+
+class HostToolsTest(unittest.TestCase):
+    def test_explicit_c_and_cpp_compilers_are_forwarded(self):
+        env = {"QUALTOR_HOST_CMAKE": "/tools/cmake", "QUALTOR_HOST_NINJA": "/tools/ninja",
+               "QUALTOR_HOST_GTEST": "/tools/gtest", "QUALTOR_HOST_CC": "/tools/gcc-14",
+               "QUALTOR_HOST_CXX": "/tools/g++-14"}
+        with patch.dict(os.environ, env, clear=True):
+            tools = host_executor.HostExecutor().tools("gcc")
+        self.assertEqual(tools["cc"], "/tools/gcc-14")
+        self.assertEqual(tools["cxx"], "/tools/g++-14")
+        env.pop("QUALTOR_HOST_CC")
+        env.pop("QUALTOR_HOST_CXX")
+        with patch.dict(os.environ, env, clear=True):
+            tools = host_executor.HostExecutor().tools("gcc")
+        self.assertEqual(tools["cc"], "cc")
+        self.assertEqual(tools["cxx"], "c++")
 
 
 @unittest.skipUnless(host_executor.available(), "未设置宿主机工具链环境变量")
