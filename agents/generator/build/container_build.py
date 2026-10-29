@@ -79,7 +79,8 @@ class ContainerBuild:
         build = self.task.get("build", {})
         targets = ["/project/" + s for s in self.task["target_sources"]]
         support = ["/project/" + s for s in build.get("support_sources", [])]
-        command += cmake_build_args(build, support)
+        headers = ["/project/" + s for s in self.task.get("target_headers", [])]
+        command += cmake_build_args(build, support, headers)
         def run(label, args, timeout):
             env = dict(self.env, TMPDIR=str(work), HOME=str(work))
             try:
@@ -93,7 +94,7 @@ class ContainerBuild:
             return {"status": "build_failed", "feedback": configured["stdout"] + configured["stderr"]}
         shutil.copy2(work / "build/compile_commands.json", attempt / "compile_commands.json")
         commands = json.loads((attempt / "compile_commands.json").read_text())
-        problems = compile_command_problems(commands, targets, support, sources, build)
+        problems = compile_command_problems(commands, targets, support, sources, build, target_headers=headers)
         if problems:
             raise RuntimeError("compile_commands_mismatch: " + "; ".join(problems))
         built = run("compile", ["cmake", "--build", str(work / "build"), "--parallel", "2"], 900)

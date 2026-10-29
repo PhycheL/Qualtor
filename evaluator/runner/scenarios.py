@@ -44,7 +44,7 @@ SCENARIOS = {
 // 在容器内能访问到的位置搜索隐藏评分材料的文件名；pi 依赖与系统目录跳过，避免超过单测时限。
 std::string hiddenMaterialFound() {
     FILE* pipe = popen("find / \\\\( -path /proc -o -path /sys -o -path /pi -o -path /usr \\\\) -prune -o "
-                       "\\\\( -name mutation_baseline.json -o -name reference_tests.cc -o -name probe_tests.cc "
+                       "\\\\( -name mutation_baseline.json -o -name coverage_baseline.json -o -name coverage_instantiation -o -name reference_tests.cc -o -name probe_tests.cc "
                        "-o -name generate_probe.cc -o -name calibration-status.json -o -name calibration_report.json \\\\) "
                        "-print 2>/dev/null", "r");
     std::string found;

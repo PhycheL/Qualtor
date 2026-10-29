@@ -2,7 +2,7 @@
 import math
 from pathlib import Path
 from generator.support import read_json
-from generator.build.contract import validate_build
+from generator.build.contract import validate_build, validate_targets
 
 
 def load_task(path):
@@ -10,7 +10,7 @@ def load_task(path):
     task = read_json(path)
     required = {"id", "title", "source_root", "target_sources", "include_dirs", "visible_files",
                 "allowed_test_files", "budget", "test_timeout_seconds"}
-    if not isinstance(task, dict) or not required <= set(task) or set(task) - required - {"build"}:
+    if not isinstance(task, dict) or not required <= set(task) or set(task) - required - {"build", "target_headers"}:
         raise ValueError("公开任务字段不完整或含未知字段；不能传入隐藏评分材料")
     for key in ("id", "title", "source_root"):
         if not isinstance(task[key], str) or not task[key].strip():
@@ -22,7 +22,7 @@ def load_task(path):
         values = task[key]
         if not isinstance(values, list) or not all(isinstance(v, str) and v for v in values):
             raise ValueError(f"{key} 必须是路径列表")
-        if key != "include_dirs" and not values:
+        if key not in ("include_dirs", "target_sources") and not values:
             raise ValueError(f"{key} 不能为空")
         for value in values:
             rel = Path(value)
@@ -40,7 +40,8 @@ def load_task(path):
             raise ValueError(f"可见文件不存在：{rel}")
     if not set(task["target_sources"]) <= set(task["visible_files"]):
         raise ValueError("target_sources 必须是 visible_files 的子集")
-    validate_build(task.get("build", {}), task["target_sources"], task["visible_files"], root)
+    build = validate_build(task.get("build", {}), task["target_sources"], task["visible_files"], root)
+    validate_targets(task["target_sources"], task.get("target_headers"), task["visible_files"], root, build["support_sources"])
     budget = task["budget"]
     if not isinstance(budget, dict) or set(budget) != {"repair_rounds"} or type(budget["repair_rounds"]) is not int or budget["repair_rounds"] < 0:
         raise ValueError("budget 只接受非负整数 repair_rounds")
@@ -53,6 +54,10 @@ def load_task(path):
 
 def task_text(task):
     build = task.get("build", {})
+    target_line = "被测文件：" + ', '.join('project/' + p for p in task['target_sources'])
+    if task.get("target_headers"):
+        target_line = "被测头文件：" + ', '.join('project/' + p for p in task['target_headers'])
+        target_line += "\n- 被测代码全部位于被测头文件中。"
     configuration = ""
     if build:
         configuration = (f"- 依赖源文件（参与编译链接）：{', '.join('project/' + p for p in build.get('support_sources', [])) or '无'}\n"
@@ -64,7 +69,7 @@ def task_text(task):
 为现有 C/C++ 代码生成 C++11 / GoogleTest 1.12.1 单元测试。断言以代码的实际行为为准。
 通过 read、grep、find、ls 阅读源码，通过 write、edit 编写测试，通过 build_and_test 编译并运行。
 
-- 被测文件：{', '.join('project/' + p for p in task['target_sources'])}
+- {target_line}
 - 可见文件：{', '.join('project/' + p for p in task['visible_files'])}
 - 允许修改：{', '.join(task['allowed_test_files'])}。只提交这些测试文件。
 - 头文件目录：{', '.join('project/' + p for p in task['include_dirs'])}；构建时也包含 tests/。
