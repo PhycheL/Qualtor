@@ -28,9 +28,9 @@
 
 - 根 README 保持简要导览；本文件集中维护协作规则；项目设计、运行说明和历史记录放在 `docs/`，同步更新 [文档索引](docs/README.md)。产品独立使用所需说明必须包含在 `agents/README.md` 中。术语统一见 [评测规格](docs/评测规格.md#项目术语)。
 - 当前实现以代码为准，同步文档时区分已实现、已验证和待实现。历史日志保留当时事实，不能作为现行操作步骤。搜索实现时限定对应产品或评测模块，避免把日志和报告当代码。
-- C++ 业务代码和生成测试使用 **C++11 + GoogleTest**；业务代码可含 C 源文件，须用 `build.c_standard` 声明 `c99` 或 `c11`。依赖源文件、编译宏与白名单选项按 [D017](docs/决策记录.md#d017-题库规模生产构建能力与步骤-a)；第三方库链接、代码生成、头文件变异是后续必须补齐的能力，不能描述为已实现。工具版本以 [GCC 定义](agents/toolchains/docker/Dockerfile.gcc)和 [Clang/Mull 定义](evaluator/toolchains/docker/Dockerfile.toolchains)为准；调整依赖时验证 C++11 兼容性和版本匹配。
+- C++ 业务代码和生成测试使用 **C++11 + GoogleTest**；业务代码可含 C 源文件，须用 `build.c_standard` 声明 `c99` 或 `c11`。依赖源文件、编译宏与白名单选项按 [D017](docs/决策记录.md#d017-题库规模生产构建能力与步骤-a)；第三方库链接、代码生成、头文件变异是后续必须补齐的能力，不能描述为已实现。工具版本以 [GCC 定义](agents/toolchains/docker/Dockerfile.gcc)和 [Clang/Mull 定义](evaluator/toolchains/docker/Dockerfile.toolchains)为准，第三方依赖以构建环境配方为准；调整依赖时验证 C++11 兼容性和版本匹配。
 - 保留 `benchmark/gildedrose-update-quality/source/cpp/` 的完整源码、头文件与构建配置，`.cc` 也是 C++。源码快照、提交和文件哈希必须可追溯；生成、缺陷注入使用独立工作区或副本，不得修改原始业务代码、参考答案或判分规则来抬高成绩。
-- 源码留在宿主机。生成阶段只投影允许可见的文件；编译前保存本轮测试快照，将源码与快照只读挂入 Docker。镜像只安装工具链，不打包项目源码；GCC、Clang 的构建上下文分别限定在 `agents/toolchains/docker/`、`evaluator/toolchains/docker/`。
+- 源码留在宿主机。生成阶段只投影允许可见的文件；编译前保存本轮测试快照，将源码与快照只读挂入 Docker。镜像只安装工具链和构建环境配方中锁定版本的依赖，不打包项目源码；GCC、Clang 的构建上下文分别限定在 `agents/toolchains/docker/`、`evaluator/toolchains/docker/`。
 - 保留编译、评测容器的禁网、资源限制和只读挂载。首次安装下载依赖与宿主机 pi 的模型 API 调用单独配置。Linux ARM64 与 AMD64 分别报告验证结论，配置了某架构不等于已实测。
 - 区分维护系统的开发 Agent 与被评测的生成 Agent。后者仅接触公开任务和允许材料，隐藏评分材料不进入其工作区或编译容器。宿主机工具白名单和路径门卫不构成恶意 pi/扩展的 OS 沙箱；评测执行边界以设计文档为准。
 - 每项生成任务写清目标代码、可见上下文、测试框架、允许修改文件和修复预算。新增测试框架时同步接入构建和测试发现。记录首次测试、每轮修复及最终测试，保存快照和哈希后再接入隐藏材料独立评测。
