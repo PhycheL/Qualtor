@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 import re
 import shutil
-from build_contract import HEADER_SUFFIXES, validate_build, validate_targets
+from build_contract import HEADER_SUFFIXES, validate_build, validate_targets, task_environment
 
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "common"))
@@ -110,13 +110,17 @@ def validate_task(task):
             raise TaskError(f"task.json 缺少 {key}")
     if task["schema"] != 1 or task["set"] not in ("dev", "acceptance"):
         raise TaskError("task.json 的 schema 或 set 不正确")
+    if 'mull_test_timeout_ms' in task['params']:
+        timeout = task['params']['mull_test_timeout_ms']
+        if type(timeout) is not int or timeout <= 0:
+            raise TaskError('mull_test_timeout_ms 必须是正整数毫秒')
     root = source_root(task)
     try:
         build = validate_build(task.get("build", {}), task["target_sources"],
                                task.get("visible", {}).get("files", []), root)
         validate_targets(task["target_sources"], task.get("target_headers"),
                          task.get("visible", {}).get("files", []), root, build["support_sources"])
-    except ValueError as error:
+    except (ValueError, OSError) as error:
         raise TaskError(str(error)) from error
     for rel, digest in task["source"]["files"].items():
         path = root / rel
@@ -128,6 +132,10 @@ def validate_task(task):
     for rel in task["target_sources"] + task.get("target_headers", []) + build["support_sources"]:
         if rel not in task["source"]["files"]:
             raise TaskError(f"被测源文件未登记哈希：{rel}")
+    for entry in build.get('codegen', []):
+        for rel in entry.get('inputs', []):
+            if rel not in task['source']['files']:
+                raise TaskError(f"生成器输入未登记哈希：{rel}")
     ids = set()
     for variant in task["variants"]:
         if variant["id"] in ids or not re.fullmatch(r"[a-z0-9-]+", variant["id"]):
@@ -235,10 +243,15 @@ def task_sha256(task):
                    "unstable": sorted(m["id"] for m in baseline.get("unstable", []))}
         if "mutation" in baseline:
             essence["mutation"] = baseline["mutation"]
+        if "environment" in baseline:
+            essence["environment"] = baseline["environment"]
         parts.append("baseline\0" + sha256_text(json.dumps(essence, sort_keys=True)))
     coverage = load_coverage_baseline(task)
     if coverage:
         parts.append("coverage_baseline\0" + sha256_text(json.dumps(coverage["headers"], sort_keys=True)))
+    environment = task_environment(task.get('build', {}))
+    if environment:
+        parts.append('environment_recipe\0' + environment[1])
     return sha256_text("\n".join(parts))
 
 
@@ -301,7 +314,7 @@ def freeze_product(product, frozen_at=None):
 
 # ---- 校准状态 ----
 
-def calibration_status(images, task=None):
+def calibration_status(images, task=None, environment_resolver=None):
     """返回当前评测模块代码、样本、镜像和全部校准题目对应的校准状态：passed、failed、stale 或 missing。
 
     task 只用来复用已加载的题目对象；无论查询哪道题，都核对校准记录中的每一道校准题。
@@ -309,6 +322,16 @@ def calibration_status(images, task=None):
     if not CALIBRATION_STATUS.is_file():
         return {"status": "missing"}
     record = read_json(CALIBRATION_STATUS)
+    for name, expected in record.get('environments', {}).items():
+        try:
+            selected = task_environment({'environment': name})
+            if selected[1] != expected['recipe_sha256']:
+                raise ValueError('配方变化')
+            if images is not None and (environment_resolver is None or
+                    environment_resolver({'build': {'environment': name}}) != expected):
+                raise ValueError('镜像变化或未核对环境镜像')
+        except (ValueError, OSError, RuntimeError):
+            return {'status': 'stale', 'run_id': record.get('run_id'), 'reason': f'校准环境 {name} 已变化或不可用'}
     # 校准结论依赖全部校准题的材料：任何一道校准题变化，所有题目的正式评测都不能再复用这次校准。
     for task_id, digest in sorted((record.get("tasks") or {}).items()):
         try:
@@ -349,5 +372,14 @@ def admission_state(task_id, task_sha, admitted=None):
     return {"status": "admitted", "admitted_at": record.get("admitted_at"), "by": record.get("by")}
 
 
-def admission_status(task):
-    return admission_state(task["id"], task_sha256(task))
+def admission_status(task, environment_resolver=None):
+    state = admission_state(task["id"], task_sha256(task))
+    if state['status'] == 'admitted' and environment_resolver and task.get('build', {}).get('environment'):
+        baseline = load_baseline(task) or {}
+        try:
+            unchanged = baseline.get('environment') == environment_resolver(task)
+        except (ValueError, OSError, RuntimeError):
+            unchanged = False
+        if not unchanged:
+            return {**state, 'status': 'stale', 'reason': '准入所用环境镜像已变化或不可用，需重新标定和准入'}
+    return state

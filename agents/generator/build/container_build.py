@@ -13,11 +13,11 @@ import time
 if __package__:
     from common.audit import Audit, now
     from . import gtest_results
-    from .contract import cmake_build_args, compile_command_problems
+    from .contract import cmake_build_args, compile_command_problems, generated_units, HEADER_SUFFIXES
 else:
     from audit import Audit, now
     import gtest_results
-    from contract import cmake_build_args, compile_command_problems
+    from contract import cmake_build_args, compile_command_problems, generated_units, HEADER_SUFFIXES
 
 TEST_UID = 65534
 FEEDBACK_LIMIT = 8000
@@ -59,6 +59,9 @@ class ContainerBuild:
     def __init__(self, task):
         self.task = task
         self.env = {"PATH": os.environ["PATH"], "CMAKE_PREFIX_PATH": "/opt/googletest", "CC": "gcc-14", "CXX": "g++-14"}
+        self.recipe = task.get('_environment_recipe')
+        if self.recipe:
+            self.env['CMAKE_PREFIX_PATH'] = ':'.join(['/opt/googletest', *self.recipe['cmake_prefix_path']])
 
     def build(self, attempt, files, audit):
         sources = [str(attempt / "product" / rel) for rel in files if rel.endswith((".cc", ".cpp", ".cxx"))]
@@ -80,7 +83,9 @@ class ContainerBuild:
         targets = ["/project/" + s for s in self.task["target_sources"]]
         support = ["/project/" + s for s in build.get("support_sources", [])]
         headers = ["/project/" + s for s in self.task.get("target_headers", [])]
-        command += cmake_build_args(build, support, headers)
+        moc_headers = ['/project/' + p for p in self.task.get('visible_files', []) if Path(p).suffix in HEADER_SUFFIXES]
+        moc_headers += [str(snapshot / p) for p in files if Path(p).suffix in HEADER_SUFFIXES]
+        command += cmake_build_args(build, support, headers, self.recipe, '/project', moc_headers)
         def run(label, args, timeout):
             env = dict(self.env, TMPDIR=str(work), HOME=str(work))
             try:
@@ -94,7 +99,8 @@ class ContainerBuild:
             return {"status": "build_failed", "feedback": configured["stdout"] + configured["stderr"]}
         shutil.copy2(work / "build/compile_commands.json", attempt / "compile_commands.json")
         commands = json.loads((attempt / "compile_commands.json").read_text())
-        problems = compile_command_problems(commands, targets, support, sources, build, target_headers=headers)
+        problems = compile_command_problems(commands, targets, support, sources, build, target_headers=headers,
+                                            generated=generated_units(build, work / 'build'), recipe=self.recipe)
         if problems:
             raise RuntimeError("compile_commands_mismatch: " + "; ".join(problems))
         built = run("compile", ["cmake", "--build", str(work / "build"), "--parallel", "2"], 900)

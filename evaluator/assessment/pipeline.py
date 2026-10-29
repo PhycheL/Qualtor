@@ -11,6 +11,7 @@ from common import (REPO, ASSESSMENT, copy_variant_tree, load_baseline, load_cov
                     assessment_code_sha256, assessment_version, sha256_file, sha256_text, source_root, task_sha256,
                     validate_product, variant_dir, write_json)
 import judge
+from build_contract import task_environment, HEADER_SUFFIXES
 
 TIMEOUT = {"build": 900, "run": 1800, "mull": 3600}
 
@@ -65,7 +66,7 @@ class ProductAssessment:
 
     def build_job(self, mode, build_mount, target_sources, root=None):
         product = self.at("product", self.product)
-        return {"phase": "build", "mode": mode, "template_dir": f"{self.at('assessment', ASSESSMENT)}/cmake",
+        job = {"phase": "build", "mode": mode, "template_dir": f"{self.at('assessment', ASSESSMENT)}/cmake",
                 "build_dir": build_mount, "target_sources": target_sources,
                 **({"target_headers": [self.repo_path(rel, root) for rel in self.task["target_headers"]]}
                    if self.task.get("target_headers") else {}),
@@ -76,12 +77,21 @@ class ProductAssessment:
                 "test_files": [f"{product}/{p.relative_to(self.product)}"
                                for p in sorted((self.product / "tests").rglob("*")) if p.is_file()],
                 "timeout": TIMEOUT["build"]}
+        environment = task_environment(self.task.get('build', {}))
+        if environment:
+            job.update(environment_recipe=environment[0], source_root=self.at('repo', root or self.root),
+                       moc_headers=[self.repo_path(p, root) for p in self.task.get('visible', {}).get('files', [])
+                                    if Path(p).suffix in HEADER_SUFFIXES]
+                                   + [p for p in job['test_files'] if Path(p).suffix in HEADER_SUFFIXES])
+        return job
 
     def phase(self, label, toolchain, mounts, job, env=None, kind="build"):
         out_host = self.out / label
         out_mount = self.at("out", out_host)
         job["out_dir"], job["work_dir"] = out_mount, f"{out_mount}/work"
         job.update(self.ex.tools(toolchain))
+        if self.task.get('build', {}).get('environment'):
+            job['_environment'] = self.task['build']['environment']
         step = self.ex.run_phase(label, toolchain, mounts, env or {}, job, out_host, TIMEOUT[kind], self.audit)
         self.result["steps"][label] = {"status": step.get("status"), "reason": step.get("reason"),
                                        "dir": _rel(out_host, REPO)}
@@ -108,6 +118,10 @@ class ProductAssessment:
         self.result["status"], self.result["invalid_reason"], self.result["infra_detail"] = status, reason, infra
 
     def _assess(self):
+        if self.task.get('build', {}).get('environment'):
+            self.result['environment'] = self.ex.environment(self.task)
+            if not self.prep and (load_baseline(self.task) or {}).get('environment') != self.result['environment']:
+                raise Infra('mutation_baseline_environment_changed')
         na = mutation_not_applicable(self.task, {} if self.prep else None)
         if na:
             self.result["not_applicable"] = {"M1": na}
@@ -225,6 +239,8 @@ class ProductAssessment:
                "sources": self.target_paths(), "workers": 2,
                "allow_zero_mutants": self.prep,
                "minimum_timeout_ms": self.params["mull_minimum_timeout_ms"], "timeout": TIMEOUT["mull"]}
+        if 'mull_test_timeout_ms' in self.params:
+            job['test_timeout_ms'] = self.params['mull_test_timeout_ms']
         step = self.phase("mull", "clang", {"repo": (self.root, True), "build": (clang_build, True),
                                             "config": (config_dir, True)}, job, env, kind="mull")
         mutants = step["mutants"]

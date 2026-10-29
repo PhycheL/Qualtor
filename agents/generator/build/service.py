@@ -24,7 +24,7 @@ class BuildService:
         self.lock = threading.Lock()
         self.audit = Audit(self.record / "logs/orchestrator")
         self.cancel = cancel
-        self.compiler = DockerCompiler(self.record, cancel)
+        self.compiler = DockerCompiler(self.record, cancel, task=task)
 
     def request(self, data):
         with self.lock:

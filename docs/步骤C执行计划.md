@@ -212,7 +212,7 @@ python3 -B -m unittest discover -s agents/tests -p "test_*.py"
 
 1. 两套 CMake 模板：
    - moc：`set_target_properties(scored_tests PROPERTIES AUTOMOC ON)`；
-   - protoc：`protobuf_generate(TARGET scored_tests ...)`，输出写到构建目录。
+   - protoc：通过固定的 CMake 生成命令调用配方内的 `protobuf::protoc`，按首个包含输入的 import 根保留子目录，输出写到构建目录。不能用扁平输出破坏上游的生成头 include 路径。
 2. `compile_command_problems` 增加 `generated` 参数，按题目声明推出期望的生成单元，规则按 D020-3。共有两处调用：评测侧 `container_steps.py` 和产品侧 `container_build.py`。
 3. 覆盖率和 Mull 不改代码，用测试确认：
    - 覆盖率文件里只有被测文件；

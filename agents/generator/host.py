@@ -61,6 +61,30 @@ def generate(task, model, output, scenario=None, watchdog=900, attempts=3, cance
     output = Path(output).resolve()
     output.mkdir(parents=True, exist_ok=False)
     write_json(output / "runtime.json", {"mode": "host-pi", "product_pid": os.getpid(), "pi": stamp})
+    if task.get('build', {}).get('environment'):
+        from generator.build.docker import DockerCompiler
+        # 在生成重试循环与模型启动之前失败，避免把缺包误报给模型或重复生成。
+        started = time.time()
+        try:
+            DockerCompiler(output / 'environment-preflight', cancel, task=task)
+        except (ValueError, OSError, RuntimeError):
+            if cancel is None or not cancel.is_set():
+                raise
+            empty = output / 'workspace/tests'
+            empty.mkdir(parents=True)
+            for phase in ('first', 'final'):
+                freeze(empty, output / phase)
+            generation = {'status': 'cancelled', 'cancellation_signal': cancel.signum,
+                          'started_at': started, 'ended_at': time.time(), 'first_at': None,
+                          'build_calls': 0, 'repair_rounds': 0}
+            write_json(output / 'generation.json', generation)
+            cost = extract(output, priced=model.get('cost_per_million') is not None or scenario is not None)
+            cost.update(generation_attempts=0, includes_retry_cost=True)
+            write_json(output / 'cost.json', cost)
+            result = {'schema': 1, 'task': task['id'], **generation, 'generation_attempts': 0,
+                      'failed_generations': [], 'cost': cost, 'runtime': 'host-pi', 'toolchain': None}
+            write_json(output / 'result.json', result)
+            return result
     failures = []
     for attempt in range(1, attempts + 1):
         record = output / "generation-attempts" / f"attempt-{attempt}"

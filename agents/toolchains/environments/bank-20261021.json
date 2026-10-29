@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "name": "bank-20261021",
+  "snapshot": "20261021T000000Z",
+  "packages": {
+    "libboost1.83-dev": "1.83.0-4.2",
+    "libboost-date-time1.83-dev": "1.83.0-4.2",
+    "libssl-dev": "3.5.7-1~deb13u3",
+    "zlib1g-dev": "1:1.3.dfsg+really1.3.1-1+b1",
+    "libprotobuf-dev": "3.21.12-11+deb13u1",
+    "protobuf-compiler": "3.21.12-11+deb13u1",
+    "qtbase5-dev": "5.15.15+dfsg-6+deb13u1",
+    "qtbase5-dev-tools": "5.15.15+dfsg-6+deb13u1"
+  },
+  "libraries": ["Boost::headers", "OpenSSL::Crypto", "ZLIB::ZLIB", "protobuf::libprotobuf", "protobuf::libprotobuf-lite", "Qt5::Core"],
+  "generators": ["moc", "protoc"],
+  "cmake_prefix_path": [],
+  "imported_compile_definitions": {"Qt5::Core": ["QT_CORE_LIB", "QT_NO_DEBUG"]},
+  "imported_compile_options": {"Qt5::Core": ["-fPIC"]}
+}

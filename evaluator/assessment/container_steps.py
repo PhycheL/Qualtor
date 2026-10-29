@@ -24,7 +24,7 @@ sys.path.insert(0, str(HERE.parent / "common"))
 from audit import Audit, now  # noqa: E402
 import gtest_results  # noqa: E402
 import judge  # noqa: E402
-from build_contract import cmake_build_args, compile_command_problems  # noqa: E402
+from build_contract import cmake_build_args, compile_command_problems, generated_units  # noqa: E402
 
 LIST_TIMEOUT = 60
 
@@ -63,7 +63,8 @@ def phase_build(job, audit):
                "-DQUALTOR_TARGET_SOURCES=" + ";".join(job["target_sources"]),
                "-DQUALTOR_INCLUDE_DIRS=" + ";".join(job["include_dirs"]),
                "-DQUALTOR_TEST_SOURCES=" + ";".join(job["test_sources"])]
-    command += cmake_build_args(job.get("build", {}), job.get("support_sources", []), job.get("target_headers"))
+    command += cmake_build_args(job.get("build", {}), job.get("support_sources", []), job.get("target_headers"),
+                                job.get('environment_recipe'), job.get('source_root'), job.get('moc_headers'))
     for key, option in (("cc", "CMAKE_C_COMPILER"), ("cxx", "CMAKE_CXX_COMPILER"), ("make_program", "CMAKE_MAKE_PROGRAM"),
                         ("gtest_prefix", "CMAKE_PREFIX_PATH")):
         if job.get(key):
@@ -74,7 +75,8 @@ def phase_build(job, audit):
         return {"status": "infra_error", "reason": "cmake_configure_failed", "log": configured["stderr_log"]}
     commands = json.loads((build_dir / "compile_commands.json").read_text())
     problems = compile_command_problems(commands, job["target_sources"], job.get("support_sources", []),
-                                        job["test_sources"], job.get("build", {}), job["mode"], job.get("target_headers"))
+                                        job["test_sources"], job.get("build", {}), job["mode"], job.get("target_headers"),
+                                        generated_units(job.get('build', {}), build_dir), job.get('environment_recipe'))
     if problems:
         return {"status": "infra_error", "reason": "compile_commands_mismatch",
                 "problems": problems}
@@ -93,7 +95,10 @@ def phase_build(job, audit):
             if errors:
                 result.update(failure_origin="product_tests", errors=errors)
         return result
-    return {"status": "built", "binary": str(binary), "compile_units": len(commands)}
+    result = {"status": "built", "binary": str(binary), "compile_units": len(commands)}
+    if job.get('environment_recipe'):
+        result['generated_units'] = generated_units(job.get('build', {}), build_dir)
+    return result
 
 
 # ---- 测试运行 ----
@@ -273,6 +278,7 @@ def phase_mull(job, audit):
         return {"status": "infra_error", "reason": "multiarch_lookup_failed"}
     command = [job.get("mull_runner", "mull-runner-19"), "--allow-surviving", "--include-not-covered",
                f"--workers={job.get('workers', 2)}", f"--ld-search-path=/usr/lib/{multiarch['stdout'].strip()}",
+               *([f"--timeout={job['test_timeout_ms']}"] if 'test_timeout_ms' in job else []),
                f"--minimum-timeout={job['minimum_timeout_ms']}", "--reporters=Elements",
                f"--report-dir={report_dir}", "--report-name=mutations", job["binary"],
                # mull-runner 用法为 [OPTIONS] <EXECUTABLE> [RUNNER_ARGS]...；参数原样传给测试程序。

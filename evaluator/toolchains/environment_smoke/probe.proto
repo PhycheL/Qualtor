@@ -1,0 +1,8 @@
+syntax = "proto3";
+package qualtor;
+message Probe {
+  message Child { string name = 1; }
+  map<string, Child> children = 1;
+  oneof choice { string label = 2; int32 number = 3; }
+  Child nested = 4;
+}

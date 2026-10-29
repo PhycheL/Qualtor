@@ -47,7 +47,7 @@ def run_case(name, run, executor, generator, generation_only=False):
                                     watchdog=8 if name == "generation_stalled" else 900, attempts=1)
         result = record
     else:
-        calibration = calibration_status(executor.images, task)
+        calibration = calibration_status(executor.images, task, executor.environment)
         if calibration["status"] != "passed":
             raise ValueError(f"完整自测要求评测模块已校准：{calibration}")
         result = trial(executor, generator, task, config(), directory, 1, "framework-scripted", calibration,

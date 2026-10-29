@@ -16,6 +16,7 @@ from runs import new_manifest, write_manifest, finish
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run-id", required=True)
+    parser.add_argument('--environment', help='验证带构建环境的独立安装、链接、生成与修复')
     args = parser.parse_args()
     if not args.run_id.replace("-", "").replace("_", "").isalnum():
         parser.error("run-id 只能包含字母、数字、-、_")
@@ -39,6 +40,16 @@ def main():
         task = {"id": "customer-counter", "title": "独立交付示例", "source_root": "customer-source",
                 "visible_files": ["counter.h", "counter.cc"], "target_sources": ["counter.cc"], "include_dirs": ["."],
                 "allowed_test_files": ["tests/*.cc"], "budget": {"repair_rounds": 3}, "test_timeout_seconds": 5}
+        if args.environment:
+            (project / 'counter.cc').write_text('#include "counter.h"\n#include <zlib.h>\n'
+                'int next_value(int value) { return zlibVersion()[0] == \'1\' ? value + 1 : value - 1; }\n')
+            task['build'] = {'environment': args.environment, 'link_libraries': ['ZLIB::ZLIB']}
+            setup = audit.run('independent-environment-setup',
+                [sys.executable, str(package / 'setup.py'), '--environment', args.environment,
+                 '--output', str(external / 'environment-setup')], cwd=external, timeout=2400)
+            shutil.copytree(external / 'environment-setup', run / 'environment-setup')
+            if setup['returncode']:
+                raise RuntimeError(f"独立环境安装失败，见 {setup['stderr_log']}")
         (external / "task.json").write_text(json.dumps(task))
         good = '#include "counter.h"\n#include <gtest/gtest.h>\nTEST(Counter, Next) { EXPECT_EQ(4, next_value(3)); }\n'
         wrong = good.replace("EXPECT_EQ(4", "EXPECT_EQ(99")
@@ -68,6 +79,10 @@ def main():
                   "feedback_readable": bool(feedback_reads) and all(not e.get("isError") for e in feedback_reads),
                   "docker_source_and_tests_readonly": all(not m["RW"] for c in containers for m in c["Mounts"] if m["Destination"] in ("/project", "/product")),
                   "docker_offline": all(c["HostConfig"]["NetworkMode"] == "none" for c in containers)}
+        if args.environment:
+            environment = result.get('toolchain', {}).get('environment') or {}
+            checks['environment_recorded'] = (environment.get('name') == args.environment
+                and environment.get('gcc_image_id') == result.get('toolchain', {}).get('id'))
         shutil.copytree(output, run / "product-result")
         shutil.copytree(project, run / "source")
         for name in ("task.json", "scenario.json"):

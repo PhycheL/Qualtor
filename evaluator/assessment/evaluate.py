@@ -84,7 +84,7 @@ def rescore_jobs(run, version):
     return list(jobs.values())
 
 
-def pending_jobs(jobs, calibrations=None, images=None):
+def pending_jobs(jobs, calibrations=None, images=None, environments=None):
     """跳过已有可用结果的产物；未完成的旧目录移开后重评。"""
     pending, skipped = [], []
     code = assessment_code_sha256() if calibrations is not None else None
@@ -97,7 +97,8 @@ def pending_jobs(jobs, calibrations=None, images=None):
                                           "calibration": calibrations[task["id"]]}
                     and done.get("task", {}).get("task_json_sha256") == task["_sha256"]
                     and done.get("product", {}).get("manifest_sha256") == sha256_file(product / "manifest.json")
-                    and done.get("images") == images)
+                    and done.get("images") == images
+                    and done.get('environment') == (environments or {}).get(task['id']))
         if done:
             skipped.append(out)
             continue
@@ -153,7 +154,7 @@ def main():
         write(manifest)
         from docker_runner import DockerExecutor
         executor = DockerExecutor(Audit(evidence / "host"), evidence, run_id)
-        calibrations = {task["id"]: calibration_status(executor.images, task) for task, *_ in jobs}
+        calibrations = {task["id"]: calibration_status(executor.images, task, executor.environment) for task, *_ in jobs}
         uncalibrated = {k: v["status"] for k, v in calibrations.items() if v["status"] != "passed"}
         if uncalibrated and not args.allow_uncalibrated:
             manifest.update(status="failed", error=f"校准状态不是 passed：{uncalibrated}", finished_at=now())
@@ -163,7 +164,8 @@ def main():
         if uncalibrated:
             print(f"警告：校准状态为 {uncalibrated}，结果不能用于正式比较", file=sys.stderr)
         if args.rescore:
-            jobs, skipped = pending_jobs(jobs, calibrations, executor.images)
+            environments = {task['id']: executor.environment(task) for task, *_ in jobs if task.get('build', {}).get('environment')}
+            jobs, skipped = pending_jobs(jobs, calibrations, executor.images, environments)
             manifest.update(jobs=len(jobs), skipped=[str(out.relative_to(run)) for out in skipped])
             write(manifest)
             for out in skipped:

@@ -6,6 +6,8 @@ import uuid
 
 from common.audit import Audit
 from generator.support import AGENTS, read_json, write_json
+from generator.build.contract import task_environment, environment_tag, environment_find_packages
+from generator.build.environment import isolated_run
 
 
 def docker_command(audit, evidence, cancel=None):
@@ -18,17 +20,52 @@ def docker_command(audit, evidence, cancel=None):
 
 
 class DockerCompiler:
-    def __init__(self, record, cancel=None):
+    def __init__(self, record, cancel=None, task=None):
         self.record = Path(record)
         self.cancel = cancel
         self.audit = Audit(self.record / "evidence/docker")
         self.command = docker_command(self.audit, self.record / "evidence", cancel)
         tag = read_json(AGENTS / "toolchains/images.json")["gcc"]
         item = json.loads(self.call("inspect-gcc", self.command + ["image", "inspect", tag]))[0]
+        self.recipe = None
+        selected = task_environment((task or {}).get('build', {}))
+        if selected:
+            self.recipe, digest = selected
+            base = item
+            tag = environment_tag(self.recipe, digest, 'gcc')
+            item = json.loads(self.call('inspect-environment-gcc', self.command + ['image', 'inspect', tag]))[0]
+            layers = base.get('RootFS', {}).get('Layers', [])
+            if (item.get('Config', {}).get('Labels', {}).get('org.qualtor.environment.recipe-sha256') != digest
+                    or (item['Os'], item['Architecture']) != (base['Os'], base['Architecture'])
+                    or item.get('RootFS', {}).get('Layers', [])[:len(layers)] != layers):
+                raise ValueError('环境镜像配方、架构或基础层不匹配')
         self.image = {"tag": tag, "id": item["Id"], "platform": f"{item['Os']}/{item['Architecture']}"}
         if self.image["platform"] not in ("linux/arm64", "linux/amd64"):
             raise ValueError("GCC 镜像平台必须为 linux/arm64 或 linux/amd64")
+        if selected:
+            self.image['environment'] = {'name': self.recipe['name'], 'recipe_sha256': digest, 'gcc_image_id': self.image['id']}
+            self.preflight_environment()
         write_json(self.record / "toolchain.json", self.image)
+
+    def preflight_environment(self):
+        directory = self.record / 'evidence/environment-input'
+        directory.mkdir(parents=True)
+        cmake = ('cmake_minimum_required(VERSION 3.20)\nproject(environment_preflight LANGUAGES CXX)\n'
+                 + environment_find_packages(self.recipe))
+        for target in self.recipe['libraries']:
+            cmake += f'if(NOT TARGET {target})\n  message(FATAL_ERROR "Missing {target}")\nendif()\n'
+        (directory / 'CMakeLists.txt').write_text(cmake)
+        write_json(directory / 'recipe.json', self.recipe)
+        program = '''import json,subprocess
+recipe=json.load(open('/check/recipe.json'))
+for name,version in recipe['packages'].items():
+    actual=subprocess.check_output(['dpkg-query','-W','-f=${Version}',name]).decode()
+    if actual != version: raise RuntimeError('Environment package mismatch: '+name)
+subprocess.run(['cmake','-S','/check','-B','/tmp/preflight','-G','Ninja',
+                '-DCMAKE_PREFIX_PATH='+';'.join(['/opt/googletest']+recipe['cmake_prefix_path'])],check=True)
+'''
+        isolated_run(self.audit, self.command, self.image, ['python3', '-c', program],
+                     self.record / 'evidence/environment-container', {'/check': (directory, True)}, cancel=self.cancel)
 
     def call(self, stage, command, audit=None, cleanup=False):
         result = (audit or self.audit).run(stage, command, timeout=15 if cleanup else 180,
@@ -42,7 +79,10 @@ class DockerCompiler:
         output = attempt / "output"
         output.mkdir(mode=0o700)
         inputs = attempt / "input"
-        write_json(inputs / "task.json", {k: v for k, v in task.items() if k != "source_root"})
+        projected = {k: v for k, v in task.items() if k != "source_root"}
+        if self.recipe:
+            projected['_environment_recipe'] = self.recipe
+        write_json(inputs / "task.json", projected)
         audit = Audit(attempt / "docker")
         name = "qg-build-" + uuid.uuid4().hex[:16]
         command = self.command + ["create", "--name", name, "--platform", self.image["platform"],

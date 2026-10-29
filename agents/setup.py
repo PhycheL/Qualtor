@@ -16,6 +16,7 @@ def main():
     scope = parser.add_mutually_exclusive_group()
     scope.add_argument("--pi-only", action="store_true")
     scope.add_argument("--gcc-only", action="store_true")
+    scope.add_argument("--environment", help="构建指定环境的 GCC 镜像（名称或配方路径），不重建基础镜像")
     parser.add_argument("--platform", choices=["linux/arm64", "linux/amd64"])
     parser.add_argument("--output", type=Path, default=AGENTS / "output" / dt.datetime.now(dt.timezone.utc).strftime("setup-%Y%m%d-%H%M%S"))
     args = parser.parse_args()
@@ -32,7 +33,7 @@ def main():
         if result["returncode"] or result["timed_out"]:
             raise RuntimeError(f"{stage} 失败；见 {result['stderr_log']}")
     try:
-        if not args.gcc_only:
+        if not args.gcc_only and not args.environment:
             if tuple(map(int, summary["host"]["node"].lstrip("v").split(".")[:2])) < (23, 6):
                 raise ValueError("产品需要 Node >= 23.6（原生 TypeScript 支持），推荐 Node 24 或更新版本")
             env = dict(os.environ, HUSKY="0", npm_config_cache=str(AGENTS / ".cache/npm"))
@@ -46,7 +47,30 @@ def main():
                      "search_tools": read_json(AGENTS / ".cache/tools/bin/manifest.json")}
             write_json(AGENTS / "pi/.qualtor-build.json", stamp)
             summary["pi"] = stamp
-        if not args.pi_only:
+        if args.environment:
+            from generator.build.contract import load_environment
+            from generator.build.environment import build_environment, isolated_run
+            recipe, digest = load_environment(args.environment, AGENTS / "toolchains/environments")
+            destination = AGENTS / 'toolchains/environments' / (recipe['name'] + '.json')
+            if Path(args.environment).suffix == '.json' and destination.exists():
+                existing, existing_digest = load_environment(str(destination), destination.parent)
+                if existing_digest != digest:
+                    raise ValueError('环境名称已被另一配方使用；请为用户配方使用新的名称')
+            docker = docker_command(audit, args.output / "evidence")
+            tag = read_json(AGENTS / "toolchains/images.json")["gcc"]
+            image = build_environment(audit, docker, recipe, digest, tag, AGENTS / "toolchains/docker",
+                                      args.output / "gcc", "gcc", args.platform)
+            write_json(args.output / "recipe.json", recipe)
+            isolated_run(audit, docker, image,
+                ["python3", "/toolchains/check_environment.py", "--toolchain", "gcc",
+                 "--recipe", "/recipe.json", "--output", "/work"], args.output / "gcc/smoke-container",
+                {"/toolchains": (AGENTS / "toolchains", True), "/common": (AGENTS / "common", True),
+                 "/recipe.json": (args.output / "recipe.json", True), "/work": (args.output / "gcc", False)})
+            summary["environment"] = {"name": recipe["name"], "recipe_sha256": digest, "image": image}
+            if Path(args.environment).suffix == '.json' and not destination.exists():
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                destination.write_bytes(Path(args.environment).read_bytes())
+        elif not args.pi_only:
             docker = docker_command(audit, args.output / "evidence")
             tag = read_json(AGENTS / "toolchains/images.json")["gcc"]
             command = docker + ["build", "--progress", "plain", "--file", str(AGENTS / "toolchains/docker/Dockerfile.gcc"),

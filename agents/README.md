@@ -18,6 +18,18 @@ chmod 600 .env
 
 `setup.py --pi-only` 只安装、构建宿主机 pi，`--gcc-only` 只构建 GCC 镜像。源码、固定依赖锁和模型目录保留在 `pi/`。换操作系统、架构或 Node 版本后重新运行安装；安装器会检查缓存的搜索工具，不能在当前宿主机执行时重新获取。安装日志默认保存在 `output/setup-<时间>/`。
 
+需要第三方库时，先准备基础镜像，再安装构建环境：
+
+```bash
+python3 setup.py --environment bank-20261021
+# 用户配方也使用同一数据格式：
+python3 setup.py --environment /path/to/my-environment.json
+```
+
+配方位于 `toolchains/environments/`。它锁定 Debian 快照 `20261021T000000Z`、顶层包的精确版本、可用 CMake 库目标与生成器，不接受脚本或 Dockerfile。安装器在已存在的 GCC 基础镜像 ID 上增加依赖，检查所有原有包的版本未变，保存前后完整包清单并运行 C++11 冒烟。镜像不包含项目源码。环境标签包含名称和配方 SHA-256 的前 12 位；实际执行固定到查询得到的镜像 ID。当前构建实现使用 Docker 28 的 legacy builder，以支持本地基础镜像 ID；不能支持该构建器的 Docker 版本需先验证兼容性。
+
+用户配方的全部字段与 `bank-20261021.json` 相同：`schema: 1`、`name`、`snapshot`、`packages`（包名到精确版本）、`libraries`、`generators`、`cmake_prefix_path`、`imported_compile_definitions`、`imported_compile_options`。仅支持已有接线的 `Boost::headers`、`OpenSSL::Crypto`、`ZLIB::ZLIB`、`protobuf::libprotobuf`、`protobuf::libprotobuf-lite`、`Qt5::Core`；生成器仅 `moc`、`protoc`。CMake 前缀限定环境内 `/usr/` 或 `/opt/` 的安全路径。导入宏与选项仅允许 QtCore 的 `QT_CORE_LIB`、`QT_NO_DEBUG`、`-fPIC`。同名不同内容的配方拒绝覆盖，需另取环境名。安装成功后配方复制进产品目录，独立交付时一同保留。
+
 GCC 镜像引用配置在 `toolchains/images.json`，使用完整名称 `docker.io/library/qualtor-gcc:14.2.0-gtest1.12.1-cxx11`；安装和生成共用该配置，查询后按返回的镜像 ID 创建编译容器。完整名称用于避开 Docker Desktop 休眠时短名称查询误报 `No such image` 的缓存路径；已有本地镜像可直接按完整名称查询，无需因此重新构建。
 
 ## 公开任务和生成
@@ -38,7 +50,7 @@ GCC 镜像引用配置在 `toolchains/images.json`，使用完整名称 `docker.
 }
 ```
 
-`source_root` 相对于任务文件，也可使用绝对路径；其他文件路径相对于源码目录。上述九个字段必填，另可添加可选字段 `build`、`target_headers`，未知字段仍拒绝；目标源文件必须出现在可见文件清单中，可见文件须为普通文件，禁止越界和符号链接。修复轮数为非负整数，单测超时为有限正数。支持 C/C++ 业务源码和 C++11 GoogleTest 测试；自定义构建步骤、额外链接库尚未接入。
+`source_root` 相对于任务文件，也可使用绝对路径；其他文件路径相对于源码目录。上述九个字段必填，另可添加可选字段 `build`、`target_headers`，未知字段仍拒绝；目标源文件必须出现在可见文件清单中，可见文件须为普通文件，禁止越界和符号链接。修复轮数为非负整数，单测超时为有限正数。支持 C/C++ 业务源码和 C++11 GoogleTest 测试，以及下述配方库和白名单代码生成。
 
 `target_headers` 声明被测头文件（`.h`、`.hh`、`.hpp`、`.hxx`、`.inl`），必须可见、位于源码目录且不经过符号链接。纯头文件题用 `"target_sources": []` 与非空 `target_headers`；暂不支持同时指定被测源文件和被测头文件。两种被测文件均与依赖源文件互斥。纯头文件任务的 TASK.md 列出“被测头文件”，并说明被测代码全部位于其中；普通源文件任务的提示词保持不变。
 
@@ -49,7 +61,18 @@ GCC 镜像引用配置在 `toolchains/images.json`，使用完整名称 `docker.
            "defines": ["FEATURE_ENABLED", "LIMIT=8"], "compile_options": ["-fno-strict-aliasing"]}}
 ```
 
-`build` 只接受这四个子字段。三个列表缺省为空；依赖文件与被测文件互斥，参与编译链接。编译宏采用 `NAME` 或 `NAME=value`，值限单个标识符或数值，不接受字符串、路径或表达式；宏名称不能重复。宏名和标识符形式的宏值不得以 `__` 或下划线加大写字母开头，也不得为 C99/C11/C++11 关键字、替代记号或 `defined`。选项白名单为 `-fno-strict-aliasing`、`-fwrapv`、`-fsigned-char`、`-funsigned-char`，后两项不能同时使用。宏和选项作用于被测、依赖、测试全部编译单元。
+`build` 接受上述四个字段，以及 `environment`、`link_libraries`、`codegen`。三个原有列表缺省为空；依赖文件与被测文件互斥，参与编译链接。编译宏采用 `NAME` 或 `NAME=value`，值限单个标识符或数值，不接受字符串、路径或表达式；宏名称不能重复。宏名和标识符形式的宏值不得以 `__` 或下划线加大写字母开头，也不得为 C99/C11/C++11 关键字、替代记号或 `defined`。选项白名单为 `-fno-strict-aliasing`、`-fwrapv`、`-fsigned-char`、`-funsigned-char`，后两项不能同时使用；带环境的任务拒绝后两项，以保持库 ABI。宏和选项作用于被测、依赖、测试及生成编译单元。
+
+```json
+{"build": {"environment": "bank-20261021",
+           "link_libraries": ["Qt5::Core", "protobuf::libprotobuf"],
+           "codegen": [{"tool": "moc"},
+                       {"tool": "protoc", "inputs": ["proto/nested/api.proto"], "import_dirs": ["proto"]}]}}
+```
+
+链接目标和生成器必须在配方中声明，生成器还须链接相应库；不接受自由链接参数、系统 include 路径或 CMake 片段。`.proto` 必须可见，输入及 import 目录不得越界或经过符号链接。moc 使用 AUTOMOC；protoc 按首个包含输入的 import 根保留子目录，示例输出为构建目录内的 `nested/api.pb.h/.cc`。生成文件只存在于构建目录。只需生成一次的配置头应在出题时生成并作为可见源码提供。
+
+环境任务的 TASK.md 增加“可用库目标”和“构建生成器”两行；不带环境的任务继续使用基础 GCC 镜像，提示词不变。启动模型前检查环境镜像、配方哈希、基础层、架构、包版本和 CMake 目标；缺失时以启动环境错误返回 2，不能作为编译失败反馈给模型。`toolchain.json` 记录实际镜像与环境名、配方哈希，运行测试同样使用派生环境。
 
 源文件支持 `.c`、`.cc`、`.cpp`、`.cxx`。含 `.c` 时必须声明 `c99` 或 `c11`；C++ 固定为 C++11，C/C++ 均关闭语言扩展。C++11 断言头只作用于 C++。每次配置后核对并保留 `compile_commands.json`，确认语言标准、宏、选项和编译单元。
 

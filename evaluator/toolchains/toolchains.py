@@ -43,6 +43,29 @@ def execute(args, evidence, summary):
     docker = ["docker", "--config", str(client), "--host", endpoint.strip()]
     call("docker-version", docker + ["version"])
     modes = list(BUILD_IMAGES) if args.toolchain == "all" else [args.toolchain]
+    if args.environment:
+        sys.path.insert(0, str(ROOT.parent / "assessment"))
+        from build_contract import load_environment
+        from environment_build import build_environment, isolated_run
+        recipe, digest = load_environment(args.environment, AGENTS / "toolchains/environments")
+        write_json(evidence / "recipe.json", recipe)
+        summary["environment"] = {"name": recipe["name"], "recipe_sha256": digest}
+        for mode in modes:
+            context = AGENTS / "toolchains/docker" if mode == "gcc" else ROOT / "docker"
+            output = RUNS / args.run_id / mode
+            print(f"构建环境 {recipe['name']} / {mode}", flush=True)
+            image = build_environment(audit, docker, recipe, digest, IMAGES[mode], context,
+                                      output, mode, args.platform, args.skip_build)
+            summary["images"][mode] = image
+            if not args.build_only:
+                isolated_run(audit, docker, image,
+                    ["python3", "/toolchains/check_environment.py", "--toolchain", mode,
+                     "--recipe", "/recipe.json", "--output", "/work"], output / "smoke-container",
+                    {"/toolchains": (ROOT, True), "/common": (COMMON, True),
+                     "/recipe.json": (evidence / "recipe.json", True), "/work": (output, False)})
+                summary["checks"][mode] = json.loads((output / "summary.json").read_text())
+        summary["status"] = "built" if args.build_only else "passed"
+        return
     inputs = [ROOT / "toolchains.py", ROOT / "docker/Dockerfile.toolchains", ROOT / "docker/.dockerignore",
               ROOT / "check_toolchain.py", COMMON / "audit.py", COMMON / "coverage.py",
               COMMON / "source_snapshot.py", AGENTS / "toolchains/images.json",
@@ -130,6 +153,7 @@ def execute(args, evidence, summary):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--toolchain", choices=["all", "gcc", "clang"], default="all")
+    parser.add_argument("--environment", help="构建环境名称或同格式配方路径；只叠加固定基础镜像")
     group = parser.add_mutually_exclusive_group()
     group.add_argument("--skip-build", action="store_true", help="使用本机已构建的固定版本镜像")
     group.add_argument("--build-only", action="store_true", help="只构建镜像，不运行验收")

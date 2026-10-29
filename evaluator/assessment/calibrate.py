@@ -25,6 +25,7 @@ from common import (CALIBRATION, CALIBRATION_STATUS, REPO, RUNS, check_run_id, d
 import judge  # noqa: E402
 from runs import finish, new_manifest, write_manifest  # noqa: E402
 import pipeline  # noqa: E402
+from build_contract import generated_units, task_environment
 
 NEEDS = {"M1_e2e": "mull", "M1_valid": "mull", "C1": "coverage", "C2": "coverage", "C3": "coverage"}
 
@@ -116,6 +117,36 @@ def _compare(op, value, other):
     raise ValueError(op)
 
 
+def check_environment_boundary(task, expected, result):
+    """从结果与原始构建证据核对环境和生成单元；没有期望的新字段时保持旧样本语义。"""
+    problems = []
+    if 'environment' in expected:
+        environment = expected['environment']
+        if result.get('environment') != environment:
+            problems.append('环境记录与冻结期望不一致')
+        selected = task_environment(task.get('build', {}))
+        if not selected or selected[1] != environment.get('recipe_sha256'):
+            problems.append('环境配方与冻结期望不一致')
+    if expected.get('build_boundary'):
+        targets = set(task.get('target_headers') or task['target_sources'])
+        coverage = (result.get('counts', {}).get('coverage') or {}).get('files', {})
+        if set(coverage) != targets:
+            problems.append('覆盖率文件集合不是声明的被测文件')
+        mutants = result.get('mutants') or {}
+        if task['target_sources'] and not mutants:
+            problems.append('缺少变异记录')
+        if any(not any('/repo/' + target + ':' in mid for target in targets) for mid in mutants):
+            problems.append('变异记录包含被测文件之外的单元')
+        predicted = generated_units(task.get('build', {}), '/build')
+        for label, step in result.get('steps', {}).items():
+            if not label.endswith('-build'):
+                continue
+            path = REPO / step['dir'] / 'step.json'
+            if not path.is_file() or read_json(path).get('generated_units') != predicted:
+                problems.append(label + ' 的生成单元与声明不一致')
+    return problems
+
+
 def check_relations(sample_id, expected, metrics_by_sample, capabilities, not_applicable=None):
     """相对期望：指标的范围或样本之间的大小关系。返回 (problems, skipped)。"""
     problems, skipped = [], []
@@ -173,6 +204,7 @@ def evaluate(task, samples, results, capabilities):
         expected_cost = read_json(sample["dir"] / "generation" / "cost.json")
         for index, result in enumerate(rounds, 1):
             entry["problems"] += [f"第 {index} 次：{p}" for p in check_hard(sample["expected"].get("hard", {}), result)]
+            entry['problems'] += [f'第 {index} 次：{p}' for p in check_environment_boundary(task, sample['expected'], result)]
             if (result.get("cost") != expected_cost
                     or (result.get("metrics") or {}).get("K1") != expected_cost):
                 entry["problems"].append(f"第 {index} 次：成本记录或 K1 与输入 cost.json 不一致")
@@ -297,6 +329,15 @@ def run_calibration(args, run_dir, evidence):
     report.update(run_id=args.run_id, rounds=args.rounds, partial=partial,
                   scorer_version=assessment_version(), scorer_code_sha256=assessment_code_sha256(),
                   samples_sha256=samples_sha256(), images=executor.images, finished_at=now())
+    environments = {task['build']['environment']: executor.environment(task) for task in tasks.values()
+                    if task.get('build', {}).get('environment')}
+    if environments:
+        report['environments'] = environments
+        for sid, rounds in results.items():
+            name = tasks[samples[sid]['task']].get('build', {}).get('environment')
+            if name and any(result.get('environment') != environments[name] for result in rounds):
+                report['samples'][sid]['problems'].append('环境记录与本轮校准环境不一致')
+                report['samples'][sid]['passed'] = report['passed'] = False
     write_json(run_dir / "calibration_report.json", report)
     (run_dir / "calibration_report.md").write_text(markdown(report))
     if not partial:
@@ -307,6 +348,7 @@ def run_calibration(args, run_dir, evidence):
                                         "samples_sha256": report["samples_sha256"],
                                         "tasks": {tid: info["task_sha256"] for tid, info in report["tasks"].items()},
                                         "images": {k: v["id"] for k, v in executor.images.items()},
+                                        **({'environments': environments} if environments else {}),
                                         "run_id": args.run_id, "passed": report["passed"],
                                         "report": str((CALIBRATION_STATUS.parent / "calibration_report.json").relative_to(REPO)),
                                         "finished_at": report["finished_at"]})

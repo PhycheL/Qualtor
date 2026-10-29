@@ -7,6 +7,7 @@ import sys
 import threading
 
 from common import COMMON, REPO, ASSESSMENT, write_json
+from build_contract import task_environment, environment_tag
 
 sys.path.insert(0, str(ASSESSMENT.parent / "toolchains"))
 from toolchains import IMAGES  # noqa: E402  镜像标签只在 toolchains.py 维护一份
@@ -35,13 +36,44 @@ class DockerExecutor:
         self.docker = ["docker", "--config", str(client), "--host", endpoint]
         self._call("docker-version", self.docker + ["version"])
         self.images = {}
+        self._environments = {}
+        self._base_layers = {}
+        self.evidence_dir = Path(evidence_dir)
         for toolchain, tag in IMAGES.items():
             record = json.loads(self._call(f"inspect-{toolchain}-image", self.docker + ["image", "inspect", tag]))[0]
             platform = f"{record['Os']}/{record['Architecture']}"
             if platform not in ("linux/arm64", "linux/amd64"):
                 raise DockerError(f"不支持的镜像平台：{platform}")
             self.images[toolchain] = {"tag": tag, "id": record["Id"], "platform": platform}
+            self._base_layers[toolchain] = record.get("RootFS", {}).get("Layers", [])
         write_json(Path(evidence_dir) / "images.json", self.images)
+
+    def environment(self, task):
+        selected = task_environment(task.get("build", {}))
+        if selected is None:
+            return None
+        recipe, digest = selected
+        key = (recipe['name'], digest)
+        with self._lock:
+            if key not in self._environments:
+                images = {}
+                for mode in ('gcc', 'clang'):
+                    tag = environment_tag(recipe, digest, mode)
+                    record = json.loads(self._call('environment-' + mode, self.docker + ['image', 'inspect', tag]))[0]
+                    platform = f"{record['Os']}/{record['Architecture']}"
+                    layers = self._base_layers[mode]
+                    if (record.get('Config', {}).get('Labels', {}).get('org.qualtor.environment.recipe-sha256') != digest
+                            or platform != self.images[mode]['platform']
+                            or record.get('RootFS', {}).get('Layers', [])[:len(layers)] != layers):
+                        raise DockerError('环境镜像配方、架构或基础层不匹配')
+                    images[mode] = {'tag': tag, 'id': record['Id'], 'platform': platform}
+                self._environments[key] = {'name': recipe['name'], 'recipe_sha256': digest, 'images': images}
+                write_json(self.evidence_dir / f"environment-{recipe['name']}-{digest[:12]}.json", self._environments[key])
+        return self._environments[key]
+
+    def image_for(self, task, toolchain):
+        environment = self.environment(task)
+        return environment['images'][toolchain] if environment else self.images[toolchain]
 
     def _call(self, stage, command, timeout=180, audit=None):
         result = (audit or self.audit).run(stage, command, timeout=timeout)
@@ -64,7 +96,8 @@ class DockerExecutor:
         write_json(out_host / "job.json", job)
         with self._lock:
             name = f"qs-{self.run_tag}-{next(self._counter):04d}"[:63]
-        image = self.images[toolchain]
+        image = (self.image_for({'build': {'environment': job['_environment']}}, toolchain)
+                 if '_environment' in job else self.images[toolchain])
         command = self.docker + ["create", "--name", name, "--platform", image["platform"],
                                  "--network", "none", "--cpus", "2", "--memory", "2g", "--pids-limit", "256",
                                  "--cap-drop", "ALL", "--security-opt", "no-new-privileges", "--read-only",

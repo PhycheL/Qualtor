@@ -1,0 +1,15 @@
+# D020: only add locked packages to an existing fixed toolchain image.
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+ARG PACKAGES
+ARG RECIPE_SHA256
+LABEL org.qualtor.environment.recipe-sha256=${RECIPE_SHA256}
+RUN set -eu; retry() { for attempt in 1 2 3 4 5; do "$@" && return 0; done; return 1; }; \
+    dpkg-query -W -f='${binary:Package}\t${Version}\n' > /opt/qualtor/environment-before.txt; \
+    retry apt-get -o APT::Update::Error-Mode=any update; \
+    apt-mark hold $(dpkg-query -W -f='${binary:Package} '); \
+    retry apt-get install -y --no-install-recommends --no-upgrade $PACKAGES; \
+    dpkg-query -W -f='${binary:Package}\t${Version}\n' > /opt/qualtor/environment-packages.txt; \
+    python3 -c 'from pathlib import Path; parse=lambda p:dict(line.split("\t",1) for line in Path(p).read_text().splitlines()); before=parse("/opt/qualtor/environment-before.txt"); after=parse("/opt/qualtor/environment-packages.txt"); changed={k:(v,after.get(k)) for k,v in before.items() if after.get(k)!=v}; assert not changed,changed'; \
+    for item in $PACKAGES; do name=${item%%=*}; version=${item#*=}; test "$(dpkg-query -W -f='${Version}' "$name")" = "$version"; done; \
+    rm -rf /var/lib/apt/lists/*

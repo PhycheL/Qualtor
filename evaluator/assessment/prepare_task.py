@@ -56,6 +56,12 @@ def suite_problems(name, result):
 
 def build_baseline(task, runs, config_text, images, run_id):
     """runs: {"reference": [result, ...], "probe": [result, ...]}。"""
+    environment = {}
+    if task.get('build', {}).get('environment'):
+        record = runs['reference'][0].get('environment')
+        if not record or any(r.get('environment') != record for values in runs.values() for r in values):
+            raise ValueError('各次分母标定的环境不一致')
+        environment = {'environment': record}
     reasons = {(r.get("not_applicable") or {}).get("M1") for rs in runs.values() for r in rs}
     if reasons != {None}:
         if len(reasons) != 1 or None in reasons:
@@ -66,7 +72,7 @@ def build_baseline(task, runs, config_text, images, run_id):
         threshold = task["params"].get("reference_min_c1", 0.8)
         variants = refs[0].get("variants", [])
         handwritten = [v for v in variants if v["kind"] == "handwritten" and v["expect"] == "fail"]
-        return {"task": task["id"], "created_at": now(), "created_by_run": run_id,
+        return {**environment, "task": task["id"], "created_at": now(), "created_by_run": run_id,
                 "scorer_version": assessment_version(), "scorer_code_sha256": assessment_code_sha256(),
                 "images": {k:v["id"] for k,v in images.items()},
                 "mutation": {"applicable": False, "reason": reason},
@@ -123,7 +129,7 @@ def build_baseline(task, runs, config_text, images, run_id):
     reference_m1 = counts["killed"] / denominator if denominator else None
     threshold = task["params"]["reference_min_m1"]
     return {
-        "task": task["id"], "created_at": now(), "created_by_run": run_id,
+        **environment, "task": task["id"], "created_at": now(), "created_by_run": run_id,
         "scorer_version": assessment_version(), "scorer_code_sha256": assessment_code_sha256(),
         "images": {k: v["id"] for k, v in images.items()},
         "mull": {"config_sha256": runs["reference"][0].get("mull_config_sha256"), "config": config_text},

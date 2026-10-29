@@ -131,6 +131,7 @@ class GenerationExecutor:
         self.cancel = cancel
 
     def generate(self, task, config, record, scenario=None, watchdog=900, attempts=3):
+        image = self.ex.image_for(task, 'gcc') if task.get('build', {}).get('environment') else self.image
         record = Path(record)
         request = record.parent / (record.name + "-request")
         request.mkdir(parents=True, exist_ok=False)
@@ -152,8 +153,14 @@ class GenerationExecutor:
         result = read_json(record / "result.json")
         if result.get("schema") != 1:
             raise ValueError("不支持的产品结果版本")
-        if result.get("toolchain") and result["toolchain"]["id"] != self.image["id"]:
+        if result.get("toolchain") and result["toolchain"]["id"] != image["id"]:
             raise ValueError("产品编译和评分 GCC 镜像不同，本轮不用于比较")
+        if task.get('build', {}).get('environment'):
+            expected = self.ex.environment(task)
+            actual = (result.get('toolchain') or {}).get('environment') or {}
+            if (actual.get('name') != expected['name'] or actual.get('recipe_sha256') != expected['recipe_sha256']
+                    or actual.get('gcc_image_id') != image['id']):
+                raise ValueError('产品与评测的构建环境记录不一致')
         if execution["returncode"] and result["status"] not in ("agent_error", "cancelled"):
             raise RuntimeError("产品入口异常退出")
         return result

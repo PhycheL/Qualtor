@@ -64,6 +64,9 @@ def task_text(task):
                          f"- 全部编译单元的宏：{', '.join(build.get('defines', [])) or '无'}；"
                          f"编译选项：{', '.join(build.get('compile_options', [])) or '无'}。\n"
                          f"- C 源文件标准：{build.get('c_standard', '无 C 源文件')}；测试仍使用 C++11 / GoogleTest。\n")
+    if build.get('environment'):
+        configuration += (f"- 可用的库目标：{', '.join(build.get('link_libraries', [])) or '无'}。\n"
+                          f"- 构建生成器：{', '.join(e['tool'] for e in build.get('codegen', [])) or '无'}。\n")
     return f"""# 测试生成任务：{task['title']}
 
 为现有 C/C++ 代码生成 C++11 / GoogleTest 1.12.1 单元测试。断言以代码的实际行为为准。

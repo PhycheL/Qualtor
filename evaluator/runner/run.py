@@ -125,11 +125,13 @@ def execute(config, config_snapshot, tasks, count, jobs, run_id, scenario=None, 
     write_manifest(run, manifest)
     try:
         executor = DockerExecutor(audit, run / "evidence", run_id)
-        states = {t["id"]: calibration_status(executor.images, t) for t in tasks}
+        states = {t["id"]: calibration_status(executor.images, t, getattr(executor, 'environment', None)) for t in tasks}
         manifest["calibration"] = states
-        manifest["admission"] = {t["id"]: admission_status(t) for t in tasks}
+        manifest["admission"] = {t["id"]: admission_status(t, getattr(executor, 'environment', None)) for t in tasks}
         if any(s["status"] != "passed" for s in states.values()):
             raise ValueError(f"评测模块校准必须为 passed，当前：{states}；请先运行 calibrate.py")
+        if any(s['status'] == 'stale' for s in manifest['admission'].values()):
+            raise ValueError('题目准入已失效，需重新标定和准入')
         generator = GenerationExecutor(executor)
         manifest.update(images=executor.images, generation_runtime="host-pi")
         write_manifest(run, manifest)
