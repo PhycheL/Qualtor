@@ -31,6 +31,7 @@ sys.path[:0] = [str(Path(__file__).resolve().parent), str(REPO / "evaluator/asse
 
 import bankutil  # noqa: E402
 import common  # noqa: E402
+from audit import Audit
 from runs import finish, new_manifest, write_manifest  # noqa: E402
 
 
@@ -51,11 +52,11 @@ def prepare(task_id, args):
         return entry
     command = [sys.executable, str(REPO / "evaluator/assessment/prepare_task.py"), "baseline", "--task", task_id,
                "--run-id", run_id]
-    done = subprocess.run(command, cwd=REPO, capture_output=True, text=True)
+    done = Audit(common.RUNS / args.run_id / "commands" / task_id).run("prepare-task", command, cwd=REPO, timeout=14400)
     run_dir = common.RUNS / run_id
     if run_dir.exists():
-        (run_dir / "batch-stdout.log").write_text(done.stdout, encoding="utf-8")
-    entry["exit_code"] = done.returncode
+        (run_dir / "batch-stdout.log").write_text(done["stdout"], encoding="utf-8")
+    entry["exit_code"] = done["returncode"]
     report_path, draft_path = run_dir / "prepare_report.json", run_dir / "mutation_baseline.json"
     if report_path.is_file():
         report = json.loads(report_path.read_text(encoding="utf-8"))
@@ -64,10 +65,14 @@ def prepare(task_id, args):
                      review_needed=report.get("review_needed"),
                      reference_m1=(report.get("reference") or {}).get("m1"))
     else:
-        entry.update(passed=False, problems=[done.stderr[-1500:] or "没有生成 prepare_report.json"])
+        entry.update(passed=False, problems=[done["stderr"][-1500:] or "没有生成 prepare_report.json"])
     final, moved = None, []
     if draft_path.is_file():
         draft = json.loads(draft_path.read_text(encoding="utf-8"))
+        if draft.get("mutation", {}).get("applicable") is False:
+            entry.update(not_applicable=draft["mutation"]["reason"], reference_c1=draft["reference"].get("c1"),
+                         handwritten=draft["reference"].get("handwritten"),
+                         handwritten_detected=draft["reference"].get("handwritten_detected"))
         statuses = [m["reference_status"][0] for m in draft["mutants"]]
         timeouts = statuses.count("timeout")
         entry["reference_raw_m1"] = statuses.count("killed") / (len(statuses) - timeouts) if len(statuses) > timeouts else None
@@ -92,6 +97,8 @@ def prepare(task_id, args):
         else:
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(draft_path, target)
+        if task.get("target_headers"):
+            shutil.copyfile(run_dir / "coverage_baseline.json", common.hidden_path(task, "coverage_baseline"))
         entry["written"] = True
     print(f"{task_id}：{'通过' if entry.get('passed') else '未通过'}，变异 {entry.get('mutants')}，"
           f"等价候选 {entry.get('equivalent_candidates')}，复核修订 {len(moved)}，参考 M1 {entry.get('reference_m1')}，"

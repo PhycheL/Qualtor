@@ -6,7 +6,7 @@
 - hidden/reference_tests/：转换后的测试与 catch_compat.h；
 - hidden/equivalence_probe/tests/：参考测试副本（探针模式 reference_copy，见 bankutil.PROBE_MODES）。
 
-跳过：参考解只有头文件（等 R-06）、参考解或测试不能按 C++11 编译。下载的上游仓库只作为数据读取，不在其中执行任何脚本。
+跳过：依赖尚未接入的 Boost、参考解或测试不能按 C++11 编译。下载的上游仓库只作为数据读取，不在其中执行任何脚本。
 用法（从项目根目录执行）：
   python3 benchmark/tools/import_exercism.py --source <解压后的 exercism/cpp 根目录> --commit <提交号> [--slugs clock luhn] [--force]
 """
@@ -24,11 +24,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import bankutil  # noqa: E402
 
 TOOLS = Path(__file__).resolve().parent
-# 2026-10-27 Docker 标定确认：这两个练习在当前变异算子下没有任何变异，Mull 报 No mutants found，M1 无法计算。
-# 等零变异题的准入与“M1 不适用”口径确定（R-06）后再纳入。
 EXCLUDED = {
-    "hello-world": "只返回常量字符串，当前变异算子下没有变异",
-    "reverse-string": "实现委托给反向迭代器构造，当前变异算子下没有变异",
+    "meetup": "依赖 Boost（R-01，步骤 C）",
+    "list-ops": "参考解使用 C++17 的 [[maybe_unused]]，不能原样按 C++11 接入",
 }
 CATCH_BLOCK = re.compile(r'^[ \t]*#[ \t]*ifdef[ \t]+EXERCISM_TEST_SUITE[^\n]*\n(?:[^\n]*\n){0,3}?[ \t]*#[ \t]*endif[^\n]*\n', re.M)
 CATCH_LINE = re.compile(r'^[ \t]*#[ \t]*include[ \t]*[<"](?:catch2/catch\.hpp|test/catch\.hpp)[>"][^\n]*\n', re.M)
@@ -81,25 +79,30 @@ def compiles(cxx, files, include_dirs, extra=()):
 def import_exercise(exercise, args, gtest_include):
     slug = exercise.name
     if slug in EXCLUDED:
-        return None, EXCLUDED[slug] + "（等 R-06）"
+        return None, EXCLUDED[slug]
     meta = json.loads((exercise / ".meta" / "config.json").read_text(encoding="utf-8"))
     files = meta.get("files", {})
     solution, tests, examples = files.get("solution", []), files.get("test", []), files.get("example", [])
-    if not any(s.endswith(".cpp") for s in solution) or len(tests) != 1:
-        return None, "参考解只有头文件或测试文件不止一个（等 R-06 或人工处理）"
+    if len(tests) != 1:
+        return None, "测试文件不止一个（需人工处理）"
     by_ext = {Path(s).suffix: Path(s).name for s in solution}
     mapping = {by_ext[Path(e).suffix]: f"exercises/practice/{slug}/{e}" for e in examples if Path(e).suffix in by_ext}
     cpp_files = [name for name in mapping if name.endswith(".cpp")]
-    if not cpp_files or len(mapping) != len(solution):
+    if not mapping or len(mapping) != len(solution):
         return None, "参考解文件与练习规定的文件名对不上"
     with tempfile.TemporaryDirectory(prefix="exercism-import-") as tmp:
         tmp = Path(tmp)
         for name, rel in mapping.items():
             shutil.copyfile(args.source / rel, tmp / name)
-        if not compiles(args.cxx, [tmp / n for n in cpp_files], [tmp]):
+        header_only = not any(has_function_body((tmp / n).read_text(encoding="utf-8")) for n in cpp_files)
+        headers = sorted(n for n in mapping if n.endswith((".h", ".hh", ".hpp", ".hxx", ".inl"))) if header_only else None
+        units = [tmp / n for n in cpp_files]
+        if header_only:
+            check = tmp / "header_check.cc"
+            check.write_text(''.join(f'#include "{n}"\n' for n in headers))
+            units = [check]
+        if not compiles(args.cxx, units, [tmp], extra=("-pedantic-errors",) if header_only else ()):
             return None, "参考解不能按 C++11 编译"
-        if not any(has_function_body((tmp / n).read_text(encoding="utf-8")) for n in cpp_files):
-            return None, "参考解的 .cpp 没有函数实现，代码全在头文件里（等 R-06）"
         loc = sum(len((tmp / n).read_text(encoding="utf-8").splitlines()) for n in mapping)
         suite = bankutil.camel(slug)
         converted, cases = convert_test((exercise / tests[0]).read_text(encoding="utf-8"), suite)
@@ -116,8 +119,13 @@ def import_exercise(exercise, args, gtest_include):
         ref = task_dir / bankutil.HIDDEN["reference_tests"]
         bankutil.copy_file(tmp / test_name, ref / test_name)
         bankutil.copy_file(TOOLS / "catch_compat.h", ref / "catch_compat.h")
+    extra = TOOLS / "step_b" / task_id
+    if extra.is_dir():
+        for path in sorted(extra.rglob("*")):
+            if path.is_file():
+                bankutil.copy_file(path, task_dir / "hidden" / path.relative_to(extra))
     bankutil.copy_reference_as_probe(task_dir)
-    snake = Path(cpp_files[0]).stem
+    snake = Path((headers or cpp_files)[0]).stem
     visible = sorted(f"src/{name}" for name in mapping)
     note = bankutil.review_note(task_id)
     bankutil.write_text(task_dir / "hidden" / "README.md", (
@@ -128,6 +136,11 @@ def import_exercise(exercise, args, gtest_include):
         + (f"- {note}\n" if note else "")
         + f"- 探针：参考测试副本（{bankutil.PROBE_MODES['reference_copy']}）\n"
         "- 重建：重新运行导入脚本并加 `--force`；修改参考测试后要重新标定变异分母。\n"))
+    variants = bankutil.handwritten_variants(task_dir)
+    if header_only:
+        with (task_dir / "hidden/README.md").open("a") as stream:
+            stream.write("\n纯头文件题；参考测试及准备阶段实例化文件确定 coverage_baseline.json。未实例化成员说明见 coverage_notes.md。"
+                         "手写变异来源为 benchmark/tools/handwritten_variants/，检出在 Docker 中核验。\n")
     bankutil.write_task(
         task_dir, task_id=task_id, tier="easy" if loc < 100 else "medium", tags=["exercism", "upstream_tests"],
         title=f"{snake} 模块单元测试",
@@ -135,11 +148,12 @@ def import_exercise(exercise, args, gtest_include):
         provenance={"repository": "https://github.com/exercism/cpp", "commit": args.commit, "license": "MIT",
                     "upstream_paths": dict(sorted({f"src/{k}": v for k, v in mapping.items()}.items())),
                     "upstream_tests": f"exercises/practice/{slug}/{tests[0]}"},
-        source_files=visible + ["LICENSE"], target_sources=sorted(f"src/{n}" for n in cpp_files),
+        source_files=visible + ["LICENSE"], target_sources=[] if header_only else sorted(f"src/{n}" for n in cpp_files),
         include_dirs=["src"], visible_files=visible,
         existing_tests={"available": True, "note": "上游 Catch2 测试已转换为 GoogleTest 参考测试，对 Agent 不可见。"},
         scoring_domain="上游测试覆盖的输入；未单独界定评分输入域，探针即参考测试。",
-        probe_mode="reference_copy", generated_by="benchmark/tools/import_exercism.py")
+        probe_mode="reference_copy", generated_by="benchmark/tools/import_exercism.py", variants=variants,
+        target_headers=[f"src/{n}" for n in headers] if header_only else None)
     return task_id, f"{cases} 个上游用例，{loc} 行"
 
 

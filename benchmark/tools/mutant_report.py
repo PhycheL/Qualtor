@@ -79,6 +79,13 @@ def task_report(task_id):
     baseline = common.load_baseline(task)
     if baseline is None:
         return None, f"# {task_id}\n\n还没有 mutation_baseline.json，跳过。\n"
+    na = common.mutation_not_applicable(task, baseline)
+    if na:
+        ref = baseline["reference"]
+        entry = {"task":task_id, "probe_mode":"not_applicable", "mutants":0, "reference_raw_m1":None,
+                 "counts":{str(i):0 for i in range(5)}, "not_applicable":na}
+        return entry, (f"# {task_id}\n\nM1 不适用：{na}。参考 C1：{ref.get('c1')}；"
+                       f"手写变异检出 {ref.get('handwritten_detected')}/{ref.get('handwritten')}。\n")
     root = common.source_root(task)
     mutants = {m["id"]: m for m in baseline["mutants"]}
     sections = [

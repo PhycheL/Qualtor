@@ -25,6 +25,7 @@ sys.path[:0] = [str(Path(__file__).resolve().parent), str(REPO / "evaluator/asse
 
 import bankutil  # noqa: E402
 import common  # noqa: E402
+from prepare_task import handwritten_minimum
 
 NOTE = "已准入题目清单（R-08）：正式比较只用这里登记、且当前题目指纹与登记时一致的题目。由 benchmark/tools/admit.py 写入。"
 
@@ -44,6 +45,46 @@ def check(task_id):
     baseline = common.load_baseline(task)
     if baseline is None:
         return problems + ["没有变异分母，先在 Docker 中标定"], {}
+    na = common.mutation_not_applicable(task, baseline)
+    if na:
+        reference = baseline["reference"]
+        threshold = task["params"].get("reference_min_c1", 0.8)
+        if baseline.get("mutation") != {"applicable": False, "reason": na} or baseline.get("mutants"):
+            problems.append("M1 不适用状态与分母不一致")
+        if not reference.get("valid_stable"):
+            problems.append("参考测试未验证有效且稳定")
+        if reference.get("c1") is None or reference["c1"] < threshold:
+            problems.append("参考测试 C1 低于阈值或缺失")
+        expected = {v["id"]:v for v in task["variants"]}
+        actual = {v["id"]:v for v in reference.get("variants", [])}
+        if set(actual) != set(expected):
+            problems.append("参考测试替换版本结果不完整")
+        for vid, variant in expected.items():
+            if actual.get(vid, {}).get("outcome") != ("detected" if variant["expect"] == "fail" else "clean"):
+                problems.append(f"替换版本未按期望检出或通过：{vid}")
+        hw = [v for v in expected.values() if v["kind"] == "handwritten" and v["expect"] == "fail"]
+        detected = sum(actual.get(v["id"], {}).get("outcome") == "detected" for v in hw)
+        if len(hw) < handwritten_minimum(task) or detected != len(hw):
+            problems.append("手写变异数量不足或未全部检出")
+        if na == "header_only":
+            frozen = common.load_coverage_baseline(task)
+            if not frozen or set(frozen.get("headers", {})) != set(task["target_headers"]):
+                problems.append("没有完整的头文件覆盖率冻结分母")
+            elif any(not f["lines"] or f["sha256"] != task["source"]["files"][rel]
+                     for rel, f in frozen["headers"].items()):
+                problems.append("头文件冻结分母为空或源码哈希不符")
+        else:
+            evidence = baseline.get("zero_mutants_evidence", [])
+            if len(evidence) < 2 or any(e.get("returncode") != 0 or "No mutants found" not in e.get("stdout", "")
+                                       or e.get("reports") != [] for e in evidence):
+                problems.append("没有重复验证的零变异原始证据")
+        _, pending = bankutil.review_gaps(baseline, task_id)
+        if pending or baseline.get("review_needed"):
+            problems.append("存在 pending 复核结论")
+        info = {k:0 for k in ("mutants", "equivalent", "unstable", "review_needed", "confirmed_non_equivalent")}
+        info.update(reference_m1=None, reference_raw_m1=None, review=baseline["review"]["status"],
+                    not_applicable=na, reference_c1=reference.get("c1"), handwritten=len(hw), handwritten_detected=detected)
+        return problems, info
     statuses = [m["reference_status"][0] for m in baseline["mutants"]]
     timeouts = statuses.count("timeout")
     info = {"mutants": len(baseline["mutants"]), "equivalent": len(baseline["equivalent"]),
@@ -91,6 +132,9 @@ def main():
                  f"参考 M1 {fmt(info['reference_m1'])}，原始检出率 {fmt(info['reference_raw_m1'])}" if info else ""))
         for problem in problems:
             print(f"  - {problem}")
+        if info.get("not_applicable"):
+            print(f"  M1 不适用：{info['not_applicable']}；C1 {fmt(info['reference_c1'])}；"
+                  f"手写变异检出 {info['handwritten_detected']}/{info['handwritten']}")
     print(f"共 {len(tasks)} 道：可签署 {len(ready)}，未就绪 {len(tasks) - len(ready)}；"
           f"已准入且指纹一致 {sum(1 for t in tasks if states[t] == 'admitted')}")
     if not args.write:
@@ -106,6 +150,9 @@ def main():
         info = results[task_id][1]
         note = args.note or (f"按 benchmark/tools/mutant_review/{task_id}/ 的复核结论签署：等价候选 {info['equivalent']} 项均有结论，"
                              f"不稳定 {info['unstable']} 项按规则剔除，探针超时 {info['review_needed']} 项保留在分母中。")
+        if info.get("not_applicable") and not args.note:
+            note = (f"M1 不适用（{info['not_applicable']}）；参考 C1 {info['reference_c1']} 达标，"
+                    f"手写变异 {info['handwritten_detected']}/{info['handwritten']} 检出，真实缺陷与等价版本按预期。")
         baseline["review"] = {"status": "reviewed", "by": args.by, "at": today, "note": note}
         common.write_json(common.hidden_path(task, "mutation_baseline"), baseline)
         record["tasks"][task_id] = {"task_sha256": common.task_sha256(task), "admitted_at": common.now(), "by": args.by,

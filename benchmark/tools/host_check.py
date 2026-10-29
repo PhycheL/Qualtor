@@ -37,6 +37,8 @@ def check_task(task_id, run_dir):
         executor = host_executor.HostExecutor()
         results = {}
         for suite, key in (("reference", "reference_tests"), ("probe", "equivalence_probe")):
+            if suite == "probe" and (common.mutation_not_applicable(task) or not common.hidden_path(task, key)):
+                continue
             product = prepare_task.make_product(common.hidden_path(task, key), out / "products" / suite)
             result = pipeline.assess_product(executor, task, product, out / suite, {"host_check": suite},
                                              Audit(out / f"{suite}-host"), prep=True,

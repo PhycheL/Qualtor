@@ -47,24 +47,38 @@ def create(task_id):
 
 
 def finish_task(directory, repository, commit, targets, support, includes, tier, tags, title, description,
-                origins, build=None, variants=()):
+                origins, build=None, variants=(), target_headers=None, generated_by="benchmark/tools/import_step_a.py"):
     root = directory / "source"
     files = [str(p.relative_to(root)) for p in sorted(root.rglob("*")) if p.is_file()]
-    visible = [p for p in files if Path(p).suffix in (".c", ".cpp", ".h", ".hpp")]
+    visible = [p for p in files if Path(p).suffix in (".c", ".cc", ".cpp", ".cxx", ".h", ".hh", ".hpp", ".hxx", ".inl")]
     config = {"support_sources": support, **(build or {})}
+    copy_reference_as_probe(directory)
+    note = review_note(directory.name)
+    if note:
+        with (directory / "hidden/README.md").open("a") as stream:
+            stream.write("\n" + note + "\n")
     write_task(directory, task_id=directory.name, tier=tier, tags=tags, title=title, description=description,
                provenance={"repository": repository, "commit": commit, "reference_tests": origins,
                            "added_by_qualtor": [], "note": "source/ 文件逐字节取自上述提交；隐藏测试的转换见 hidden/README.md。"},
                source_files=files, target_sources=targets, include_dirs=includes, visible_files=visible,
                existing_tests={"available": False, "note": "上游测试作为隐藏参考材料，未投影给生成 Agent。"},
                scoring_domain="隐藏参考测试覆盖的输入；断言以固定源码实际行为为准；不以此收窄等价性判定。",
-               probe_mode="reference_copy", generated_by="benchmark/tools/import_step_a.py",
-               variants=variants, build=config)
-    copy_reference_as_probe(directory)
-    note = review_note(directory.name)
-    if note:
-        with (directory / "hidden/README.md").open("a") as stream:
-            stream.write("\n" + note + "\n")
+               probe_mode="reference_copy", generated_by=generated_by,
+               variants=variants, build=config, target_headers=target_headers)
+
+
+def parent_replacements(directory, repo, commit, variant_id):
+    """只替换本题 source/ 已保存且修复实际涉及的文件，支持源文件和公共/内部头文件。"""
+    parent = git(repo, "rev-parse", commit + "^").decode().strip()
+    changed = git(repo, "diff", "--name-only", parent, commit).decode().splitlines()
+    relatives = [p for p in changed if (directory / "source" / p).is_file()]
+    for rel in relatives:
+        path = directory / "hidden/variants" / variant_id / rel
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(git(repo, "show", f"{parent}:{rel}"))
+    patch = git(repo, "diff", parent, commit, "--", *relatives)
+    (directory / "hidden/fix.patch").write_bytes(patch)
+    return parent, {rel:sha256_file(directory / "hidden/variants" / variant_id / rel) for rel in relatives}
 
 
 def yaml_task(upstream):
@@ -85,13 +99,8 @@ def yaml_task(upstream):
         write_text(directory / "hidden/reference_tests" / name,
                    yaml_test_text(git(repo, "show", f"{YAML_FIX}:{rel}").decode()))
     write_text(directory / "hidden/reference_tests/reference_options.cc", YAML_OPTIONS)
-    parent = git(repo, "rev-parse", YAML_FIX + "^").decode().strip()
+    parent, replacements = parent_replacements(directory, repo, YAML_FIX, "tagged-null")
     rel = "src/singledocparser.cpp"
-    variant_path = directory / "hidden/variants/tagged-null" / rel
-    variant_path.parent.mkdir(parents=True)
-    variant_path.write_bytes(git(repo, "show", f"{parent}:{rel}"))
-    patch = git(repo, "diff", parent, YAML_FIX, "--", "src", "include")
-    (directory / "hidden/fix.patch").write_bytes(patch)
     write_text(directory / "hidden/README.md", f"""# yaml-cpp 文档解析
 
 源码与上游 GoogleTest 测试取自 `{YAML_FIX}`，保留原许可证。测试扩展名 `.cpp` 改为 `.cc`，无断言改写；8 个上游已禁用的规格用例不注册。参考测试启用 GoogleTest throw_on_failure，防止变异死循环积累 StrictMock 失败报告耗尽容器内存；原程序不触发。
@@ -109,7 +118,7 @@ def yaml_task(upstream):
                 "真实库的单文档事件解析模块；真实缺陷修复只涉及被测源文件。", tests + headers,
                 build={"compile_options": ["-fno-strict-aliasing"]},
                 variants=[{"id": "tagged-null", "kind": "real_bug", "expect": "fail",
-                           "files": {rel: sha256_file(variant_path)},
+                           "files": replacements,
                            "source": {"repository": "https://github.com/jbeder/yaml-cpp", "commit": parent,
                                       "fix_commit": YAML_FIX, "dataset": "BugsC++ yaml_cpp/3"}}])
 

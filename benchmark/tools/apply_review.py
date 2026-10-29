@@ -37,6 +37,9 @@ def main():
             failed = True
             print(f"{task_id}：没有分母（待标定），核对未通过")
             continue
+        if common.mutation_not_applicable(task, baseline):
+            print(f"{task_id}：M1 不适用，跳过 Mull 复核；手写变异由 admit.py 核对")
+            continue
         confirmed = bankutil.load_confirmed(task_id)
         result, moved, problems = bankutil.apply_confirmed(baseline, task_id)
         before, after = baseline["reference"], result["reference"]
