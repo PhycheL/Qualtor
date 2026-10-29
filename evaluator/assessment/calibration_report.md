@@ -1,11 +1,11 @@
-# 校准报告 step-b-calibration-20261029-01
+# 校准报告 step-b-closeout-calibration-20261029-01
 
-- 评测模块版本：0.4.0（代码指纹 a88c9194e273）
+- 评测模块版本：0.4.1（代码指纹 9da5694e4f28）
 - 结论：**通过**
-- 题目：exercism-circular-buffer（3 个样本）、exercism-hello-world（1 个样本）、gildedrose-update-quality（16 个样本）、md4c-html（1 个样本）、tinyexpr-configured（1 个样本）、yaml-cpp-document（2 个样本）、yaml-cpp-emitter-utils（1 个样本）、yaml-cpp-node-impl（2 个样本）
+- 题目：exercism-circular-buffer（3 个样本）、exercism-hello-world（1 个样本）、gildedrose-update-quality（16 个样本）、md4c-html（1 个样本）、tinyexpr-configured（1 个样本）、yaml-cpp-document（2 个样本）、yaml-cpp-emitter-utils（2 个样本）、yaml-cpp-node-impl（2 个样本）
 - 每个样本评分 2 次；镜像：gcc sha256:bd01e6e4f0e7、clang sha256:013ac35a1dae
 
-| 题目 | 样本 | 结论 | 状态 | M1 端到端 | M4 | V2 | C1 | S1 | 不适用原因 | 问题 |
+| 题目 | 样本 | 结论 | 状态 | M1 端到端 | M4 | V2 | C1 | S1 | 不适用或单项失败原因 | 问题 |
 |---|---|---|---|---|---|---|---|---|---|---|
 | exercism-circular-buffer | CAL-22 | 通过 | scored | — | — | 1.000 | 1.000 | 0.000 | M1: header_only, C2: header_only | — |
 | exercism-circular-buffer | CAL-23 | 通过 | scored | — | — | 1.000 | 0.800 | 0.000 | M1: header_only, C2: header_only | — |
@@ -32,5 +32,6 @@
 | yaml-cpp-document | CAL-18 | 通过 | scored | 1.000 | 1.000 | 1.000 | 0.970 | 0.000 | — | — |
 | yaml-cpp-document | CAL-21 | 通过 | scored | 1.000 | 0.000 | 1.000 | 0.970 | 0.000 | — | — |
 | yaml-cpp-emitter-utils | CAL-28 | 通过 | scored | 1.000 | 1.000 | 1.000 | 0.920 | 0.000 | — | — |
-| yaml-cpp-node-impl | CAL-26 | 通过 | scored | — | 1.000 | 1.000 | 0.873 | 0.000 | M1: header_only, C2: header_only | — |
-| yaml-cpp-node-impl | CAL-27 | 通过 | scored | — | 0.000 | 1.000 | 0.864 | 0.000 | M1: header_only, C2: header_only | — |
+| yaml-cpp-emitter-utils | CAL-29 | 通过 | scored | 0.000 | 1.000 | 1.000 | 0.920 | 0.000 | M1 失败: clang_test_compile_failed | — |
+| yaml-cpp-node-impl | CAL-26 | 通过 | scored | — | 1.000 | 1.000 | 0.848 | 0.000 | M1: header_only, C2: header_only | — |
+| yaml-cpp-node-impl | CAL-27 | 通过 | scored | — | 0.000 | 1.000 | 0.840 | 0.000 | M1: header_only, C2: header_only | — |

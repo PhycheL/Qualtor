@@ -1,6 +1,6 @@
 # 步骤 B 执行计划：头文件与模板（R-06、R-07）
 
-> **计划，未实施（2026-10-29）。** 基点为 `08204ac`：评测模块 0.3.0，第 03 轮校准 passed，103 题准入有效，工作区干净。本文供执行方逐步实施，完成后交开发 Agent 按第 9 节验收。实施结果写入[题库验证说明](题库验证说明.md)新增的第 15 节和[研发日志](研发日志.md)，本文不追记执行结果。
+> **历史计划；B0–B6 及 0.4.1 收尾验收完成（2026-10-29）。** 原计划基点为 `08204ac`（0.3.0、103 题）；0.4.0 已交付 115 题与完整校准。用户复核后修订下面第 4、5 条验收标准，并增加 D019、冻结分母补齐、源码副本清理与终检。执行结果统一见[题库验证说明](题库验证说明.md)第 15 节和[研发日志](研发日志.md)。本文命令中的 0.4.0 保留原执行阶段，收尾轮使用 0.4.1。当前所有验证均在 Docker 中进行；文中的“本机复算”条目在维护容器内执行，不安装或调用宿主机编译器。
 >
 > 依据：[题库构建方案](题库构建方案.md)第 2、7 节，[评测规格](评测规格.md)第 7 节，[决策记录](决策记录.md) D015–D017，以及 2026-10-29 对代码影响面、替换版本构建和候选材料的只读调研。
 
@@ -16,15 +16,15 @@
 
 全部满足以下条件，步骤 B 才算完成：
 
-1. 0.4.0 完整校准 passed，全部样本各两次（含 CAL-21–28）。
+1. 0.4.0 原轮完整校准 passed；收尾轮 0.4.1 的 28 样本各两次完整校准 passed（含 CAL-29），指纹有效。
 2. 第 4 节的新题全部签署准入；未纳入的题按第 4.3 节记录原因。
 3. 旧 103 题不受影响，以下各项全部成立：
    - `task.json` 和 `hidden/` 都没有改动；
    - 题目指纹和准入不变，不需要重签；
    - `mull_config_text()` 输出逐字节不变；
    - 产品生成的 TASK.md 逐字节不变。
-4. 旧冻结产物在 0.4.0 下补评，除版本、指纹字段外指标与 0.3.0 完全一致。
-5. 用干净提交跑 `evaluator/run.py` 正式路径，用真实模型对第 6 节列出的 5 道题各生成 1 次，全部 scored，并且 M1 不适用的口径正确。
+4. 旧冻结产物补评的构建与判分一致；变异状态差异只允许出现在原二进制重放已证实会波动的变异上，逐项保留证据。原“逐字段完全一致”标准由用户在收尾轮修订，评测噪声纳入阶段 6。
+5. 用干净提交跑 `evaluator/run.py` 正式路径，用真实模型对第 6 节列出的 5 道题各生成 1 次。十份首次/最终结果没有 `infra_error`，invalid 原因属于产物，M1 不适用口径正确。按实际执行的 trial 计数，首批未开始的题由后续批次补齐；历史 failed 不改写。D019 的缺口通过冻结产物补评修复，不重新生成。
 6. D018 写入决策记录，第 8 节列出的文档全部同步；每条实验命令都有 Audit 记录。
 
 ## 1. 范围
@@ -400,9 +400,9 @@ CAL-01–16 不改，作为 GildedRose 和旧替换版本 hw-01、eq-02 的回�
 | 4 | 正式标定 | `python3 -B benchmark/tools/prepare_new_tasks.py --tasks <新题…> --write --jobs 2 --run-id step-b-formal-YYYYMMDD-01` | 全部写入；M1 不适用的题有 `coverage_baseline.json`，或零变异证据 |
 | 5 | 复核 | `mutant_report.py`，只有 yaml-cpp-emitter-utils 有等价候选；逐题核对手写变异和真实缺陷的检出 | 没有 pending |
 | 6 | 签署 | `python3 -B benchmark/tools/admit.py --tasks <新题…> --by <复核人> --write` | 新题 admitted；旧 103 题仍 admitted，不需要重签 |
-| 7 | 回归补评 | `python3 -B evaluator/assessment/evaluate.py --rescore step-a-runner-20261028-02`，结果写入原 run 的 `score/0.4.0/` | 6 份结果除版本、指纹字段外，指标、状态、变异和替换版本判定与 `score/0.3.0/` 完全一致 |
+| 7 | 回归补评 | `python3 -B evaluator/assessment/evaluate.py --rescore step-a-runner-20261028-02`，结果写入原 run 的 `score/0.4.0/` | 修订：6 份构建与判分一致，除已由原二进制重放证实波动的变异及其派生 M1 外，其余结果与 `score/0.3.0/` 相同 |
 | 8 | 提交 | 提交实现与新题 | `git status` 干净 |
-| 9 | 正式 runner | `python3 -B evaluator/run.py --config default --tasks exercism-circular-buffer exercism-hello-world yaml-cpp-node-impl yaml-cpp-emitter-utils <utfcpp-checked 或 nlohmann-json-to-chars> --trials 1 --run-id step-b-runner-YYYYMMDD-01` | completed；5 题都 finished，10 份结果都 scored；M1 不适用的题 `M1_e2e` 为 null 且原因正确；M4 和 M2 有值 |
+| 9 | 正式 runner | `python3 -B evaluator/run.py --config default --tasks exercism-circular-buffer exercism-hello-world yaml-cpp-node-impl yaml-cpp-emitter-utils <utfcpp-checked 或 nlohmann-json-to-chars> --trials 1 --run-id step-b-runner-YYYYMMDD-01` | 修订：按实际 trial 计数，5 题都 finished；10 份结果无 infra_error，invalid 归因于产物；M1 不适用时为 null，有效产物报告适用的 M2/M4。历史批次状态保留，D019 用 0.4.1 补评 |
 | 10 | 收尾核对 | 编写 `final_checks.py`，生成 `final-checks.json` 和 `summary.md` | 第 9 节各项都有机器核对结果 |
 
 ## 7. 回归与兼容性检查
@@ -417,7 +417,7 @@ CAL-01–16 不改，作为 GildedRose 和旧替换版本 hw-01、eq-02 的回�
 
 **需要 Docker**
 - CAL-01–16、CAL-18–20 在 0.4.0 下仍然通过；
-- 第 6 节第 7 步的补评结果与 0.3.0 一致；
+- 第 6 节第 7 步的补评按第 0 节修订的构建、判分与已证实噪声标准通过；
 - `import_step_a.py` 泛化后，对 3 道旧题的重建逐字节一致，执行时保留审计。
 
 ## 8. 文档同步
@@ -455,9 +455,9 @@ CAL-01–16 不改，作为 GildedRose 和旧替换版本 hw-01、eq-02 的回�
    - 新题冻结分母的实质内容与题目指纹；
    - 手写变异的数量和要求；
    - 隐藏材料没有出现在可见文件中。
-3. **校准证据**：全部样本两轮结果都是 0.4.0；代码指纹、样本指纹和题目指纹与校准状态一致；CAL-22–27 的 `na` 断言和 CAL-23 的冻结分母判定，都能在原始 `result.json` 中找到。
+3. **校准证据**：原轮 0.4.0 的 27 样本、收尾轮 0.4.1 的 28 样本各两轮通过；代码指纹、样本指纹和题目指纹与校准状态一致；CAL-22–27 的 `na` 断言和 CAL-23 的冻结分母判定，都能在原始 `result.json` 中找到。
 4. **标定与准入**：新题的分母、`coverage_baseline.json`、零变异证据、替换版本检出记录；`admission.json` 中旧题的记录不变。
-5. **回归补评**：`score/0.4.0` 与 `score/0.3.0` 逐字段比对，结果一致。
+5. **回归补评**：保留 `score/0.4.0` 与 `score/0.3.0` 逐字段比对；依照第 0 节修订标准核对构建、判分与已证实的变异执行噪声。0.4.1 补评另存，不覆盖历史。
 6. **正式 runner**：
    - 启动审计的参数，以及运行时工作区是否干净；
    - 公开任务的投影（`target_headers` 存在、隐藏材料没有进入）；
