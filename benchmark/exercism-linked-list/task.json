@@ -1,0 +1,131 @@
+{
+  "schema": 1,
+  "id": "exercism-linked-list",
+  "set": "dev",
+  "tier": "easy",
+  "tags": [
+    "exercism",
+    "upstream_tests"
+  ],
+  "title": "linked_list 模块单元测试",
+  "description": "Exercism C++ 练习 linked-list 的参考解作为被测代码；上游 Catch2 测试机械转换为 GoogleTest 作参考测试。公开代码，开发题。",
+  "source": {
+    "repository": "https://github.com/exercism/cpp",
+    "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+    "root": "benchmark/exercism-linked-list/source",
+    "files": {
+      "src/linked_list.cpp": "9ba5f2e1ee93b12ba396f8c7869f764013d3ec92fbfd13ece24e858889eedf9b",
+      "src/linked_list.h": "f1b16f8b0593e41a965a502eb5ba796ec61a23e2516e045b79e01924566137a5"
+    }
+  },
+  "target_sources": [],
+  "include_dirs": [
+    "src"
+  ],
+  "visible": {
+    "files": [
+      "src/linked_list.cpp",
+      "src/linked_list.h"
+    ],
+    "notes": "可见材料只有被测源码、头文件和构建方式（C++11 + GoogleTest 1.12.1）。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": true,
+    "note": "上游 Catch2 测试已转换为 GoogleTest 参考测试，对 Agent 不可见。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "上游测试覆盖的输入；未单独界定评分输入域，探针即参考测试。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests",
+    "coverage_baseline": "hidden/coverage_baseline.json",
+    "coverage_instantiation": "hidden/coverage_instantiation"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/import_exercism.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": [
+    {
+      "id": "hw-01",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/linked_list.h": "69f96f52bf72ec8d6b7d48e03e4c0c6377321cee164b70cf82dbdb85c7871e24"
+      },
+      "description": "push 误插入链表头部，元素顺序错误。",
+      "patch_sha256": "7eb1c094f7c86432be3744ab8a6245fd63fa0e95f42afdb1ca4ae0ccf2d36805"
+    },
+    {
+      "id": "hw-02",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/linked_list.h": "9a431c9a87588d27de168c5d3ebd4a5c8ded9d75d7275c334c312c3a701263d8"
+      },
+      "description": "pop 误删除首元素。",
+      "patch_sha256": "e1cdf93a34e56686325701c815041dbafc3b8af325dca3d311a28d7914a77b63"
+    },
+    {
+      "id": "hw-03",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/linked_list.h": "f953e7dc52b541a0b661427293c0f456cce2befb165c8d323b2f46472998b038"
+      },
+      "description": "shift 误删除末元素。",
+      "patch_sha256": "fb040d13f749423c35bbbe81e7b74ed42a1e2815bdc8ea5e8547388b931af96e"
+    },
+    {
+      "id": "hw-04",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/linked_list.h": "a29d3740e8c7b0b15f2aecf910c59501b2a32868b5c7d1400f566aec202f12d2"
+      },
+      "description": "count 多计一个元素，不影响指针操作。",
+      "patch_sha256": "2fd5f7f98a4cd87256f6e83f2d464913d647a1fd8975175ba2f3b70b5b0a0d07"
+    },
+    {
+      "id": "hw-05",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/linked_list.h": "b1f694a191bc4d0f47288dab9ccbf8c7c36268a9622f99f2269958ee50d706af"
+      },
+      "description": "erase 找到元素并删除后仍返回 false。只用存在元素的用例检出。",
+      "patch_sha256": "793dfc4cea98319d4fb7b1f5463f104ca79e2ca51cbffb6e9ce4177fb9207e2a"
+    }
+  ],
+  "target_headers": [
+    "src/linked_list.h"
+  ]
+}

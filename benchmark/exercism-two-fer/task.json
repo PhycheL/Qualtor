@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "id": "exercism-two-fer",
+  "set": "dev",
+  "tier": "easy",
+  "tags": [
+    "exercism",
+    "upstream_tests"
+  ],
+  "title": "two_fer 模块单元测试",
+  "description": "Exercism C++ 练习 two-fer 的参考解作为被测代码；上游 Catch2 测试机械转换为 GoogleTest 作参考测试。公开代码，开发题。",
+  "source": {
+    "repository": "https://github.com/exercism/cpp",
+    "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+    "root": "benchmark/exercism-two-fer/source",
+    "files": {
+      "src/two_fer.h": "c591ee3830dce2fb76e420bc0a3fb96cbefb05c6e49779629a75cd42ee14d819"
+    }
+  },
+  "target_sources": [],
+  "include_dirs": [
+    "src"
+  ],
+  "visible": {
+    "files": [
+      "src/two_fer.h"
+    ],
+    "notes": "可见材料只有被测源码、头文件和构建方式（C++11 + GoogleTest 1.12.1）。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": true,
+    "note": "上游 Catch2 测试已转换为 GoogleTest 参考测试，对 Agent 不可见。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "上游测试覆盖的输入；未单独界定评分输入域，探针即参考测试。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests",
+    "coverage_baseline": "hidden/coverage_baseline.json"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/import_exercism.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": [
+    {
+      "id": "hw-01",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/two_fer.h": "17ce27830da056f6d8d5949bbaf61d009edfd47644e0847bfb38414114ec9229"
+      },
+      "description": "缺省称呼错误。",
+      "patch_sha256": "0a767c5653b94e7b2d50cf5b3dbd28fde77184a3a2f14808269735160506758c"
+    },
+    {
+      "id": "hw-02",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/two_fer.h": "524da2926d95e08fbd181f5ca79ef8534e2ead72cd1930b9f6ece6b9a82ef4c9"
+      },
+      "description": "忽略显式姓名。",
+      "patch_sha256": "fda3f3fb92df06d796342397756fc2704cba80d8245d48bdd50d96e4aa5e7398"
+    },
+    {
+      "id": "hw-03",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/two_fer.h": "33341a1cd77f70f92b92470fa2a402d55fd020ec04e3231d8e81999fff115c3f"
+      },
+      "description": "句尾句点遗漏。",
+      "patch_sha256": "d462633a9c9729cf6c3a2e10132bd156c131596cc6114dad8c630dc324c455ac"
+    }
+  ],
+  "target_headers": [
+    "src/two_fer.h"
+  ]
+}

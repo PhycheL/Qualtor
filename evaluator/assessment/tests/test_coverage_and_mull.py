@@ -70,6 +70,15 @@ class CoverageMergeTest(unittest.TestCase):
         self.assertEqual((stats["line"]["total"], stats["function"]["total"]), (0, 0))
         self.assertTrue(stats["no_executable_code"])
 
+    def test_template_header_checks_line_counts_not_unstable_branch_layout(self):
+        # GCC 14.2.0 的真实 nlohmann 模板输出：同一 TU 两种格式分支数不同，行计数完全相同。
+        source = "/repo/include/nlohmann/detail/conversions/to_chars.hpp"
+        text = coverage.parse_text(FIXTURES / "gcov_header_templates.gcov", headers=True)
+        data = coverage.parse_json_sources(FIXTURES / "gcov_header_templates.gcov.json.gz", {source}, headers=True)[source]
+        self.assertEqual(text["line_counts"], data["line_counts"])
+        self.assertEqual(text["line"], data["line"])
+        self.assertNotEqual(text["branch_all"], data["branch_all"])
+
 
 class MullParsingTest(unittest.TestCase):
     """用工具链验收中 Mull 0.34.2 的真实 Elements 报告核对解析。"""

@@ -1,5 +1,112 @@
 {
   "samples": {
+    "CAL-22": {
+      "task": "exercism-circular-buffer",
+      "description": "参考测试；全部 API 的冻结行 25/25、函数 9/9",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": null,
+        "M1_valid": null,
+        "C1": 1.0,
+        "C2": null,
+        "C3": 1.0,
+        "S1": 0.0,
+        "S2_max": null,
+        "V2": 1,
+        "V3": 0.0,
+        "M2": 1.0,
+        "M4": null,
+        "F1": null
+      },
+      "not_applicable": {
+        "M1": "header_only",
+        "C2": "header_only"
+      },
+      "passed": true
+    },
+    "CAL-23": {
+      "task": "exercism-circular-buffer",
+      "description": "少实例化不缩小冻结分母；只调用构造、write、read",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": null,
+        "M1_valid": null,
+        "C1": 0.8,
+        "C2": null,
+        "C3": 0.7777777777777778,
+        "S1": 0.0,
+        "S2_max": null,
+        "V2": 1,
+        "V3": 0.0,
+        "M2": 0.2,
+        "M4": null,
+        "F1": null
+      },
+      "not_applicable": {
+        "M1": "header_only",
+        "C2": "header_only"
+      },
+      "passed": true
+    },
+    "CAL-24": {
+      "task": "exercism-circular-buffer",
+      "description": "原代码上全部失败；M1 不适用仍为 null",
+      "problems": [],
+      "skipped": [],
+      "status": "invalid",
+      "invalid_reason": "no_valid_tests",
+      "metrics": {
+        "M1_e2e": null,
+        "M1_valid": null,
+        "C1": null,
+        "C2": null,
+        "C3": null,
+        "S1": null,
+        "S2_max": null,
+        "V2": 0,
+        "V3": 1.0,
+        "M2": null,
+        "M4": null,
+        "F1": null
+      },
+      "not_applicable": {
+        "M1": "header_only",
+        "C2": "header_only"
+      },
+      "passed": true
+    },
+    "CAL-25": {
+      "task": "exercism-hello-world",
+      "description": "Mull 零变异有原始证据，不属于基础设施失败",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": null,
+        "M1_valid": null,
+        "C1": 1.0,
+        "C2": 0.5,
+        "C3": 1.0,
+        "S1": 0.0,
+        "S2_max": null,
+        "V2": 1,
+        "V3": 0.0,
+        "M2": 1.0,
+        "M4": null,
+        "F1": null
+      },
+      "not_applicable": {
+        "M1": "zero_mutants"
+      },
+      "passed": true
+    },
     "CAL-01": {
       "task": "gildedrose-update-quality",
       "description": "测试文件里没有任何 TEST",
@@ -15,10 +122,13 @@
         "C3": null,
         "S1": null,
         "S2_max": null,
+        "V2": 0,
         "V3": null,
         "M2": null,
+        "M4": null,
         "F1": null
       },
+      "not_applicable": {},
       "passed": true
     },
     "CAL-02": {
@@ -36,10 +146,13 @@
         "C3": null,
         "S1": null,
         "S2_max": null,
+        "V2": 0,
         "V3": 1.0,
         "M2": null,
+        "M4": null,
         "F1": null
       },
+      "not_applicable": {},
       "passed": true
     },
     "CAL-03": {
@@ -57,10 +170,13 @@
         "C3": null,
         "S1": null,
         "S2_max": null,
+        "V2": 0,
         "V3": 1.0,
         "M2": null,
+        "M4": null,
         "F1": null
       },
+      "not_applicable": {},
       "passed": true
     },
     "CAL-04": {
@@ -78,10 +194,13 @@
         "C3": null,
         "S1": null,
         "S2_max": null,
+        "V2": 0,
         "V3": null,
         "M2": null,
+        "M4": null,
         "F1": null
       },
+      "not_applicable": {},
       "passed": true
     },
     "CAL-05": {
@@ -99,10 +218,13 @@
         "C3": null,
         "S1": null,
         "S2_max": null,
+        "V2": 0,
         "V3": null,
         "M2": null,
+        "M4": null,
         "F1": null
       },
+      "not_applicable": {},
       "passed": true
     },
     "CAL-06": {
@@ -120,10 +242,13 @@
         "C3": null,
         "S1": null,
         "S2_max": null,
+        "V2": 0,
         "V3": null,
         "M2": null,
+        "M4": null,
         "F1": null
       },
+      "not_applicable": {},
       "passed": true
     },
     "CAL-07": {
@@ -141,10 +266,13 @@
         "C3": 1.0,
         "S1": 0.0,
         "S2_max": null,
+        "V2": 1,
         "V3": 0.05555555555555555,
         "M2": 1.0,
+        "M4": null,
         "F1": 0.0
       },
+      "not_applicable": {},
       "passed": true
     },
     "CAL-08": {
@@ -162,10 +290,13 @@
         "C3": 1.0,
         "S1": 0.0,
         "S2_max": null,
+        "V2": 1,
         "V3": 0.05555555555555555,
         "M2": 1.0,
+        "M4": null,
         "F1": 0.0
       },
+      "not_applicable": {},
       "passed": true
     },
     "CAL-09": {
@@ -183,10 +314,13 @@
         "C3": 1.0,
         "S1": 0.0,
         "S2_max": null,
+        "V2": 1,
         "V3": 0.5,
         "M2": 1.0,
+        "M4": null,
         "F1": 0.0
       },
+      "not_applicable": {},
       "passed": true
     },
     "CAL-10": {
@@ -204,10 +338,13 @@
         "C3": 1.0,
         "S1": 0.05263157894736842,
         "S2_max": 0.0,
+        "V2": 1,
         "V3": 0.0,
         "M2": 1.0,
+        "M4": null,
         "F1": 0.0
       },
+      "not_applicable": {},
       "passed": true
     },
     "CAL-11": {
@@ -225,10 +362,13 @@
         "C3": 1.0,
         "S1": 0.05555555555555555,
         "S2_max": 0.5,
+        "V2": 1,
         "V3": 0.0,
         "M2": 1.0,
+        "M4": null,
         "F1": 0.0
       },
+      "not_applicable": {},
       "passed": true
     },
     "CAL-12": {
@@ -246,10 +386,13 @@
         "C3": 1.0,
         "S1": 0.0,
         "S2_max": null,
+        "V2": 1,
         "V3": 0.0,
         "M2": 0.0,
+        "M4": null,
         "F1": 0.0
       },
+      "not_applicable": {},
       "passed": true
     },
     "CAL-13": {
@@ -267,10 +410,13 @@
         "C3": 1.0,
         "S1": 0.0,
         "S2_max": null,
+        "V2": 1,
         "V3": 0.0,
         "M2": 0.0,
+        "M4": null,
         "F1": 0.0
       },
+      "not_applicable": {},
       "passed": true
     },
     "CAL-14": {
@@ -288,10 +434,13 @@
         "C3": 1.0,
         "S1": 0.0,
         "S2_max": null,
+        "V2": 1,
         "V3": 0.0,
         "M2": 0.0,
+        "M4": null,
         "F1": 0.0
       },
+      "not_applicable": {},
       "passed": true
     },
     "CAL-15": {
@@ -309,10 +458,13 @@
         "C3": 1.0,
         "S1": 0.0,
         "S2_max": null,
+        "V2": 1,
         "V3": 0.0,
         "M2": 1.0,
+        "M4": null,
         "F1": 0.0
       },
+      "not_applicable": {},
       "passed": true
     },
     "CAL-16": {
@@ -330,10 +482,13 @@
         "C3": 1.0,
         "S1": 0.0,
         "S2_max": null,
+        "V2": 1,
         "V3": 0.0,
         "M2": 1.0,
+        "M4": null,
         "F1": 0.05263157894736842
       },
+      "not_applicable": {},
       "passed": true
     },
     "CAL-19": {
@@ -351,10 +506,13 @@
         "C3": 0.9545454545454546,
         "S1": 0.0,
         "S2_max": null,
+        "V2": 1,
         "V3": 0.0,
         "M2": null,
+        "M4": null,
         "F1": null
       },
+      "not_applicable": {},
       "passed": true
     },
     "CAL-20": {
@@ -372,10 +530,13 @@
         "C3": 1.0,
         "S1": 0.0,
         "S2_max": null,
+        "V2": 1,
         "V3": 0.0,
         "M2": null,
+        "M4": null,
         "F1": null
       },
+      "not_applicable": {},
       "passed": true
     },
     "CAL-18": {
@@ -393,14 +554,135 @@
         "C3": 1.0,
         "S1": 0.0,
         "S2_max": null,
+        "V2": 1,
         "V3": 0.0,
         "M2": null,
+        "M4": 1.0,
         "F1": null
+      },
+      "not_applicable": {},
+      "passed": true
+    },
+    "CAL-21": {
+      "task": "yaml-cpp-document",
+      "description": "去掉 tagged-null 的唯一检出用例；M4 应降为零",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": 1.0,
+        "M1_valid": 1.0,
+        "C1": 0.9696969696969697,
+        "C2": 0.6584766584766585,
+        "C3": 1.0,
+        "S1": 0.0,
+        "S2_max": null,
+        "V2": 1,
+        "V3": 0.0,
+        "M2": null,
+        "M4": 0.0,
+        "F1": null
+      },
+      "not_applicable": {},
+      "passed": true
+    },
+    "CAL-28": {
+      "task": "yaml-cpp-emitter-utils",
+      "description": "替换依赖头 exp.h，与被测源文件的 Mull 并存",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": 1.0,
+        "M1_valid": 1.0,
+        "C1": 0.920265780730897,
+        "C2": 0.7191601049868767,
+        "C3": 0.9583333333333334,
+        "S1": 0.0,
+        "S2_max": null,
+        "V2": 1,
+        "V3": 0.0,
+        "M2": null,
+        "M4": 1.0,
+        "F1": null
+      },
+      "not_applicable": {},
+      "passed": true
+    },
+    "CAL-26": {
+      "task": "yaml-cpp-node-impl",
+      "description": "公共头文件的真实缺陷和手写变异均被检出",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": null,
+        "M1_valid": null,
+        "C1": 0.8728813559322034,
+        "C2": null,
+        "C3": 0.9333333333333333,
+        "S1": 0.0,
+        "S2_max": null,
+        "V2": 1,
+        "V3": 0.0,
+        "M2": 1.0,
+        "M4": 1.0,
+        "F1": null
+      },
+      "not_applicable": {
+        "M1": "header_only",
+        "C2": "header_only"
+      },
+      "passed": true
+    },
+    "CAL-27": {
+      "task": "yaml-cpp-node-impl",
+      "description": "去掉 null-string 回归测试后真实缺陷未检出",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": null,
+        "M1_valid": null,
+        "C1": 0.864406779661017,
+        "C2": null,
+        "C3": 0.9333333333333333,
+        "S1": 0.0,
+        "S2_max": null,
+        "V2": 1,
+        "V3": 0.0,
+        "M2": 1.0,
+        "M4": 0.0,
+        "F1": null
+      },
+      "not_applicable": {
+        "M1": "header_only",
+        "C2": "header_only"
       },
       "passed": true
     }
   },
   "tasks": {
+    "exercism-circular-buffer": {
+      "task_sha256": "985dae2d702848c255effb5d7740d3707f64a20dced58e21c3ee9a444179bc72",
+      "passed": true,
+      "samples": [
+        "CAL-22",
+        "CAL-23",
+        "CAL-24"
+      ]
+    },
+    "exercism-hello-world": {
+      "task_sha256": "0a67510db077bdf824bf906c20bdad50ff77870de6ec6b3da385efc897773866",
+      "passed": true,
+      "samples": [
+        "CAL-25"
+      ]
+    },
     "gildedrose-update-quality": {
       "task_sha256": "92720d07eeeabc2108b7e7afcfe7554af76147176b3f3de552cd5d19baf24245",
       "passed": true,
@@ -441,28 +723,44 @@
       "task_sha256": "01d909231afaaaf68ee8d850038f8af7ceab4c72b24e0fca6044bc9e0f562ca0",
       "passed": true,
       "samples": [
-        "CAL-18"
+        "CAL-18",
+        "CAL-21"
+      ]
+    },
+    "yaml-cpp-emitter-utils": {
+      "task_sha256": "c29c582be532c7c0cc6a854c88f8207068cb526f94e91fe9308bf5dd8a32947f",
+      "passed": true,
+      "samples": [
+        "CAL-28"
+      ]
+    },
+    "yaml-cpp-node-impl": {
+      "task_sha256": "ad407ef4c1320a86cd9e26a887eff6c1278ad4c7cb944af2fbb5e6eea504d6ac",
+      "passed": true,
+      "samples": [
+        "CAL-26",
+        "CAL-27"
       ]
     }
   },
   "passed": true,
-  "run_id": "step-a-calibration-20261028-03",
+  "run_id": "step-b-calibration-20261029-01",
   "rounds": 2,
   "partial": false,
-  "scorer_version": "0.3.0",
-  "scorer_code_sha256": "dd055eac2773c9c2cdd9a6d4fa9e5e3e885150cfa5d3605c71a6f05d48419503",
-  "samples_sha256": "202f9fb03a5f23fab0d7435a0b881e3ae90dbbffa120a08f68b27cc66f2724b4",
+  "scorer_version": "0.4.0",
+  "scorer_code_sha256": "a88c9194e273ad9cd3ec962c0b2993a7b1a37b1218a76aee7e406cf7d928af8f",
+  "samples_sha256": "07e40a650d0cdcb9e2d83f0df44e534287032cb834e8fbd39933d94e059ee98b",
   "images": {
     "gcc": {
-      "tag": "qualtor-gcc:14.2.0-gtest1.12.1-cxx11",
+      "tag": "docker.io/library/qualtor-gcc:14.2.0-gtest1.12.1-cxx11",
       "id": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
       "platform": "linux/arm64"
     },
     "clang": {
-      "tag": "qualtor-clang:19.1.7-mull0.34.2-gtest1.12.1-cxx11",
+      "tag": "docker.io/library/qualtor-clang:19.1.7-mull0.34.2-gtest1.12.1-cxx11",
       "id": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f",
       "platform": "linux/arm64"
     }
   },
-  "finished_at": "2026-10-28T08:11:05.252994+00:00"
+  "finished_at": "2026-10-29T04:10:28.249815+00:00"
 }

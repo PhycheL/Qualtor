@@ -1,0 +1,232 @@
+{
+  "task": "yaml-cpp-emitter-utils",
+  "note": "按全部有定义输入及真实 Mull IR 复核；不以有限测试幸存作为等价证明。",
+  "mutants": [
+    {
+      "id": "cxx_and_to_or:/repo/src/emitterutils.cpp:226:25:226:26",
+      "reason": "UTF16 代理对 helper 只由 JSON 且 cp >= FFFF 的转义分支调用；公开 JSON 字符串仅对控制字符与 FEFF 调用转义，大码点直接输出 UTF8，char 入口也到不了此区间。该运算不可达。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/emitterutils.cpp:136:15:136:16",
+      "reason": "WriteCodePoint 只接收解码器输出，值属于 0..10FFFF，非法值已替换为 FFFD；这次赋值在公开入口中不可达。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/emitterutils.cpp:48:10:48:12",
+      "reason": "IsAnchorChar 是匿名命名空间 helper，唯一调用点使用 GetNextCodePointAndAdvance 的结果；解码器把整个 D800–DFFF 区间规范为 FFFD，两个端点均不可到达此比较。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/emitterutils.cpp:54:11:54:13",
+      "reason": "IsAnchorChar 的输入只来自解码器；FDD0–FDEF 在解码器已规范为 FFFD，两个端点不可到达。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/emitterutils.cpp:123:17:123:18",
+      "reason": "唯一新增命中值 10FFFF，在原来的后续非字符检测 (cp & FFFE) == FFFE 中同样被替换为 FFFD；最终值与迭代器相同。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/emitterutils.cpp:135:34:135:35",
+      "reason": "WriteCodePoint 的所有调用都接收已解码的码点；10FFFF 在解码器已规范为 FFFD，新增边界不可到达。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/emitterutils.cpp:57:10:57:11",
+      "reason": "解码器拒绝超过 10FFFF 的值；10FFFF 本身又因 (cp & FFFE) == FFFE 被替换为 FFFD，所以新旧边界相同。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_init_const:/repo/src/emitterutils.cpp:234:7:234:13",
+      "reason": "digits 的初始值在进入写数字循环前必定被各分支重写为 2、4 或 8；JSON 代理对分支则直接 return，初始值从不读取。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/emitterutils.cpp:143:24:143:26",
+      "reason": "码点 FFFF 在解码器已作为非字符替换为 FFFD；三字节/四字节边界的唯一差异不可达。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/emitterutils.cpp:444:11:444:13",
+      "reason": "Exp::URI/Tag 每次成功都消费至少一个字节（Word/单字符或 % 加两位十六进制），失败为 -1，永不返回 0；<=0 改为 <0 不改变判定。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll",
+        "benchmark/yaml-cpp-emitter-utils/source/src/exp.h",
+        "benchmark/yaml-cpp-emitter-utils/source/src/regeximpl.h"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/emitterutils.cpp:465:11:465:13",
+      "reason": "Exp::URI 的备选均非空：单字符或 % 加两位十六进制。匹配长度只能为正数或 -1，不会为 0。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll",
+        "benchmark/yaml-cpp-emitter-utils/source/src/exp.h",
+        "benchmark/yaml-cpp-emitter-utils/source/src/regeximpl.h"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/emitterutils.cpp:479:11:479:13",
+      "reason": "Exp::Tag 的备选均非空：单字符或 % 加两位十六进制。匹配长度只能为正数或 -1，不会为 0。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll",
+        "benchmark/yaml-cpp-emitter-utils/source/src/exp.h",
+        "benchmark/yaml-cpp-emitter-utils/source/src/regeximpl.h"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/emitterutils.cpp:48:26:48:28",
+      "reason": "IsAnchorChar 是匿名命名空间 helper，唯一调用点使用 GetNextCodePointAndAdvance 的结果；解码器把整个 D800–DFFF 区间规范为 FFFD，两个端点均不可到达此比较。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/emitterutils.cpp:54:29:54:31",
+      "reason": "IsAnchorChar 的输入只来自解码器；FDD0–FDEF 在解码器已规范为 FFFD，两个端点不可到达。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/emitterutils.cpp:238:24:238:25",
+      "reason": "唯一新增值 FFFF 在字符串解码时已经变为 FFFD，char 入口到不了 FFFF，所以改变边界不会改变公开 API 的结果。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/emitterutils.cpp:37:10:37:11",
+      "reason": "ch == 0x20 已在前面的 switch 返回 false，比较 < 改为 <= 无法改变任何到达该分支的输入。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_or_to_and:/repo/src/emitterutils.cpp:225:16:225:17",
+      "reason": "UTF16 代理对 helper 只由 JSON 且 cp >= FFFF 的转义分支调用。公开 WriteDoubleQuotedString 的 JSON 转义条件仅覆盖控制字符与 FEFF；其他大码点直接 WriteCodePoint。WriteChar 的 char 也到不了此区间。因此该分支不可达。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_or_to_and:/repo/src/emitterutils.cpp:226:12:226:13",
+      "reason": "UTF16 代理对 helper 只由 JSON 且 cp >= FFFF 的转义分支调用；公开 JSON 字符串仅对控制字符与 FEFF 调用转义，大码点直接输出 UTF8，char 入口也到不了此区间。该运算不可达。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/emitterutils.cpp:246:5:246:82",
+      "reason": "IR 确认实际删除了递归转义调用。它位于 JSON 且 cp >= FFFF 分支；公开 JSON 字符串只对控制字符与 FEFF 调用转义，char 入口也不可能达到该码点，该分支不可达。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/emitterutils.cpp:247:5:247:83",
+      "reason": "IR 确认实际删除了递归转义调用。它位于 JSON 且 cp >= FFFF 分支；公开 JSON 字符串只对控制字符与 FEFF 调用转义，char 入口也不可能达到该码点，该分支不可达。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/emitterutils.cpp:171:12:171:17",
+      "reason": "IR 显示 empty() 被替换为 i1 false。空串先被 IsNullString/PlainScalar 正则拒绝，能到达此处的字符串非空，原 empty() 也为 false。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/src/emitterutils.cpp:225:29:225:31",
+      "reason": "UTF16 代理对 helper 只由 JSON 且 cp >= FFFF 的转义分支调用。公开 WriteDoubleQuotedString 的 JSON 转义条件仅覆盖控制字符与 FEFF；其他大码点直接 WriteCodePoint。WriteChar 的 char 也到不了此区间。因此该分支不可达。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll"
+      ],
+      "reviewer": "Codex（AI 复核，Linux ARM64）"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+--- a/source/utf8/checked.h
++++ b/source/utf8/checked.h
+@@ -90,7 +90,7 @@
+         if (!utf8::internal::is_code_point_valid(cp))
+             throw invalid_code_point(cp);
+ 
+-        return internal::append16(cp, result);
++        return internal::append16(0, result);
+     }
+ 
+     template <typename octet_iterator, typename output_iterator>

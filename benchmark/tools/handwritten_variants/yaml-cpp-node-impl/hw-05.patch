@@ -1,0 +1,11 @@
+--- a/include/yaml-cpp/node/impl.h
++++ b/include/yaml-cpp/node/impl.h
+@@ -99,7 +99,7 @@
+ 
+     T t;
+     if (convert<T>::decode(node, t))
+-      return t;
++      return fallback;
+     return fallback;
+   }
+ };

@@ -15,6 +15,12 @@ CASES = {
 }
 COST = {"tokens": {"input": 0, "output": 0}, "seconds": 0, "model_calls": 0, "repair_rounds": 0,
         "note": "校准样本没有生成过程，成本为固定的假数据"}
+# 0.3.0 ARM64 原始结果：runs/step-a-calibration-20261028-03，两轮完全一致。
+EXACT = {
+    "CAL-18": {"C1": 256 / 264, "C2": 0.6584766584766585, "C3": 1.0},
+    "CAL-19": {"C1": 258 / 263, "C2": 0.9073170731707317, "C3": 0.9545454545454546},
+    "CAL-20": {"C1": 370 / 383, "C2": 0.8806818181818182, "C3": 1.0},
+}
 
 
 def main():
@@ -34,11 +40,10 @@ def main():
         write_json(sample / "expected.json", {
             "description": description,
             "reference_copies": ["tests/" + p.name for p in files],
-            "hard": {"status": "scored", "tests_default": "valid", "variants": variants},
-            "relations": [{"metric": "M1_e2e", "op": ">=", "value": 0.8},
-                          {"metric": "C1", "op": ">", "value": 0.8},
-                          {"metric": "C3", "op": ">", "value": 0},
-                          {"metric": "S1", "op": "==", "value": 0}]
+            "hard": {"status": "scored", "tests_default": "valid", "variants": variants,
+                     **({"variant_failed_tests": {"tagged-null": ["NodeTest.LoadNullWithStrTag"]}} if variants else {})},
+            "relations": [{"metric": key, "op": "==", "value": value}
+                          for key, value in {"M1_e2e": 1, **EXACT[sid], "S1": 0, "V3": 0}.items()]
                          + ([{"metric": "M4", "op": "==", "value": 1}] if variants else []),
             "build_evidence": "每次配置检查 compile_commands.json：标准、宏、选项一致；覆盖/Mull 仅作用于 target_sources。",
         })

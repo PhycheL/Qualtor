@@ -1,0 +1,15 @@
+{
+  "files": {
+    "tests/emitter_test.cc": "84535f09827fc48b85ac15710f2d708a6b94fd48acb8435c478da8d67e831063",
+    "tests/encoding_test.cc": "707d7e27668b4708895676b2a1b4dfe6da1d81458da1c838acc2295a742c1f9d",
+    "tests/gen_emitter_test.cc": "1878dc7789e9e518829b5003b82aefa71af2c09c16d556586a4037445a8e2d40",
+    "tests/handler_test.h": "13ca6caff194fc052af11fec6cf8cf228fb325b1b4c12d4dbb34714dd26c4520",
+    "tests/mock_event_handler.h": "ae2825d84fef7fb59b2ee5bebc65cbfc0d69a301f2f6ed7dadcf3ee219247e32",
+    "tests/ostream_wrapper_test.cc": "add9dede485b36015b6a1372d35f080f5fa743e814690fbeaef0f3a1b98e3c42",
+    "tests/reference_options.cc": "c7a49d66fe5f2caa4d3730b0db5d0f8ffb75ffd4c4742593dbff8d8ac14df7ed",
+    "tests/regex_test.cc": "b214b50db6393df1ba471117cd332695fa2dffec532fdd5d796540a41f5bd0b5",
+    "tests/specexamples.h": "b89c177c9c0f55006d4d7917552b97b2b2cd363b49261714668b7c9159176c80",
+    "tests/step_b_boundaries.cc": "326931cead2c14a5616a1e71df20163e31c83ffb3f9ed94d3b7da4a1788ab98a"
+  },
+  "frozen_at": "2026-10-29T00:00:00+00:00"
+}

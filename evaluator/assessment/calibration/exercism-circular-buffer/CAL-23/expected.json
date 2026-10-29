@@ -1,0 +1,95 @@
+{
+  "sample": "CAL-23",
+  "description": "少实例化不缩小冻结分母；只调用构造、write、read",
+  "reference_copy": null,
+  "hard": {
+    "status": "scored",
+    "tests_default": "valid",
+    "variants": {}
+  },
+  "relations": [
+    {
+      "metric": "M1_e2e",
+      "op": "na",
+      "reason": "header_only"
+    },
+    {
+      "metric": "M1_valid",
+      "op": "na",
+      "reason": "header_only"
+    },
+    {
+      "metric": "C2",
+      "op": "na",
+      "reason": "header_only"
+    },
+    {
+      "metric": "C1",
+      "op": "==",
+      "value": 0.8
+    },
+    {
+      "metric": "C1",
+      "op": "<",
+      "ref": "CAL-22"
+    },
+    {
+      "metric": "M2",
+      "op": "<",
+      "value": 1
+    }
+  ],
+  "frozen_coverage_derivation": {
+    "seed_run": "step-b-seed-circular-20261029-01",
+    "denominator_lines": [
+      11,
+      12,
+      16,
+      24,
+      25,
+      26,
+      27,
+      28,
+      32,
+      33,
+      34,
+      35,
+      36,
+      40,
+      41,
+      42,
+      43,
+      46,
+      47,
+      48,
+      49,
+      52,
+      53,
+      54,
+      55
+    ],
+    "covered_lines": [
+      11,
+      12,
+      24,
+      25,
+      26,
+      27,
+      28,
+      32,
+      33,
+      34,
+      35,
+      36,
+      40,
+      41,
+      42,
+      43,
+      52,
+      53,
+      54,
+      55
+    ],
+    "calculation": "20 / 25；clear 和 overwrite 的 5 行保留在分母内，但弱样本未实例化这两个成员。"
+  }
+}

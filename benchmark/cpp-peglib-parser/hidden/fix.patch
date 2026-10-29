@@ -1,0 +1,12 @@
+--- a/peglib.h
++++ b/peglib.h
+@@ -2374,6 +2374,9 @@
+         refs_.insert(ope.name_);
+         if (ope.rule_) {
+             ope.rule_->accept(*this);
++            if (done_ == false) {
++                return;
++            }
+         }
+     }
+     done_ = true;

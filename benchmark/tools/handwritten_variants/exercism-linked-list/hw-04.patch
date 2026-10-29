@@ -1,0 +1,11 @@
+--- a/src/linked_list.h
++++ b/src/linked_list.h
+@@ -41,7 +41,7 @@
+         return true;
+     }
+ 
+-    size_t count() { return current_size; }
++    size_t count() { return current_size + 1; }
+ 
+    private:
+     std::shared_ptr<Node<T>> sentinel;

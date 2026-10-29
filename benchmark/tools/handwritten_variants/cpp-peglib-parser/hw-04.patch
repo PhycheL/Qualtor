@@ -1,0 +1,11 @@
+--- a/peglib.h
++++ b/peglib.h
+@@ -3287,7 +3287,7 @@
+     void enable_trace(Tracer tracer) {
+         if (grammar_ != nullptr) {
+             auto& rule = (*grammar_)[start_];
+-            rule.tracer = tracer;
++            (void)tracer;
+         }
+     }
+ 

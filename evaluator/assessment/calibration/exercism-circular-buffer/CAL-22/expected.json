@@ -1,0 +1,45 @@
+{
+  "sample": "CAL-22",
+  "description": "参考测试；全部 API 的冻结行 25/25、函数 9/9",
+  "hard": {
+    "status": "scored",
+    "tests_default": "valid",
+    "variants": {}
+  },
+  "relations": [
+    {
+      "metric": "M1_e2e",
+      "op": "na",
+      "reason": "header_only"
+    },
+    {
+      "metric": "M1_valid",
+      "op": "na",
+      "reason": "header_only"
+    },
+    {
+      "metric": "C2",
+      "op": "na",
+      "reason": "header_only"
+    },
+    {
+      "metric": "C1",
+      "op": "==",
+      "value": 1
+    },
+    {
+      "metric": "C3",
+      "op": "==",
+      "value": 1
+    },
+    {
+      "metric": "M2",
+      "op": "==",
+      "value": 1
+    }
+  ],
+  "reference_copies": [
+    "tests/catch_compat.h",
+    "tests/circular_buffer_test.cc"
+  ]
+}

@@ -124,9 +124,17 @@ def library_task(task_id,args):
         targets=['peglib.h'];tests=['test/test.cc']
         raw=git(repo,'show',f'{commit}:test/test.cc').decode('utf-8-sig').replace('#define CATCH_CONFIG_MAIN','').replace('#include "catch.hh"','#include "catch2/catch.hpp"')
         text,_=convert_test(raw,'PegParser')
+        # 上游语法调试测试复制全局 Grammar，Definition 的复制构造会改写共享
+        # Holder::outer_。保留测试内容，并在副本析构后恢复指针，支持乱序运行。
+        text=text.replace('#include <peglib.h>', '#include <peglib.h>\n#include "grammar_scope.h"')
+        text=text.replace('    auto g = ParserGenerator::grammar();',
+                          '    GlobalGrammarScope restore;\n    auto g = ParserGenerator::grammar();')
+        text=text.replace('    Grammar g = make_peg_grammar();',
+                          '    GlobalGrammarScope restore;\n    Grammar g = make_peg_grammar();')
         b.write_text(directory/'hidden/reference_tests/parser.cc',text)
         b.copy_file(TOOLS/'catch_compat.h',directory/'hidden/reference_tests/catch_compat.h')
-        variants=[bug_variant(directory,repo,args.bugscpp,'cpp_peglib',5,commit,'left-recursion',['PEG recursion regression'])]
+        variants=[bug_variant(directory,repo,args.bugscpp,'cpp_peglib',5,commit,'left-recursion',
+                              ['PegParser.T051_Left_recursive_with_a_ZOM_content_rule'])]
         repository='https://github.com/yhirose/cpp-peglib';includes=['.'];tier='hard'
     extra_material(directory)
     variants+=b.handwritten_variants(directory)

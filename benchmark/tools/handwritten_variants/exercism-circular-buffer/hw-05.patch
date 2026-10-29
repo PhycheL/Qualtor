@@ -1,0 +1,11 @@
+--- a/src/circular_buffer.h
++++ b/src/circular_buffer.h
+@@ -50,7 +50,7 @@
+ 
+ template <typename ValueType>
+ void circular_buffer<ValueType>::push_back(ValueType item) {
+-    buffer_[tail_] = item;
++    buffer_[tail_] = ValueType();
+     move_position(tail_);
+ }
+ 

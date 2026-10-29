@@ -1,0 +1,31 @@
+{
+  "task": "exercism-linked-list",
+  "review": "AI 编写与逐项检查；Docker 参考测试验证编译和检出，非人工审阅。",
+  "variants": [
+    {
+      "id": "hw-01",
+      "patch": "hw-01.patch",
+      "description": "push 误插入链表头部，元素顺序错误。"
+    },
+    {
+      "id": "hw-02",
+      "patch": "hw-02.patch",
+      "description": "pop 误删除首元素。"
+    },
+    {
+      "id": "hw-03",
+      "patch": "hw-03.patch",
+      "description": "shift 误删除末元素。"
+    },
+    {
+      "id": "hw-04",
+      "patch": "hw-04.patch",
+      "description": "count 多计一个元素，不影响指针操作。"
+    },
+    {
+      "id": "hw-05",
+      "patch": "hw-05.patch",
+      "description": "erase 找到元素并删除后仍返回 false。只用存在元素的用例检出。"
+    }
+  ]
+}

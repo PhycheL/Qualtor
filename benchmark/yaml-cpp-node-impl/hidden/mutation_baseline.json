@@ -1,0 +1,190 @@
+{
+  "task": "yaml-cpp-node-impl",
+  "created_at": "2026-10-29T04:21:45.753064+00:00",
+  "created_by_run": "step-b-formal-20261029-01-yaml-cpp-node-impl",
+  "scorer_version": "0.4.0",
+  "scorer_code_sha256": "a88c9194e273ad9cd3ec962c0b2993a7b1a37b1218a76aee7e406cf7d928af8f",
+  "images": {
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
+  },
+  "mutation": {
+    "applicable": false,
+    "reason": "header_only"
+  },
+  "mutants": [],
+  "equivalent": [],
+  "unstable": [],
+  "review_needed": [],
+  "review": {
+    "status": "reviewed",
+    "by": "Codex（AI 复核，Linux ARM64）",
+    "at": "2026-10-29",
+    "note": "M1 不适用（header_only）；参考 C1 0.8728813559322034 达标，手写变异 5/5 检出，真实缺陷与等价版本按预期。"
+  },
+  "zero_mutants_evidence": [],
+  "reference": {
+    "m1": null,
+    "c1": 0.8728813559322034,
+    "threshold": 0.8,
+    "valid_stable": true,
+    "handwritten": 5,
+    "handwritten_detected": 5,
+    "variants": [
+      {
+        "id": "hw-01",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "NodeApi.ExplicitTagAndDefaultDefinition"
+        ]
+      },
+      {
+        "id": "hw-02",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "NodeEmitterTest.SimpleFlowSeqNode",
+          "NodeEmitterTest.NestFlowSeqNode",
+          "NodeEmitterTest.MixBlockFlowSeqNode",
+          "NodeEmitterTest.NestBlockFlowMapListNode",
+          "NodeEmitterTest.NestBlockMixMapListNode",
+          "NodeEmitterTest.NestFlowMapListNode"
+        ]
+      },
+      {
+        "id": "hw-03",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "LoadNodeTest.ForceInsertIntoMap",
+          "NodeTest.SpecialFlow",
+          "NodeTest.SimpleAppendSequence",
+          "NodeTest.SequenceElementRemoval",
+          "NodeTest.SequenceElementRemovalSizeCheck",
+          "NodeTest.SequenceFirstElementRemoval",
+          "NodeTest.SequenceFirstElementRemovalSizeCheck",
+          "NodeTest.SequenceLastElementRemoval",
+          "NodeTest.SequenceLastElementRemovalSizeCheck",
+          "NodeTest.SimpleAssignSequence",
+          "NodeTest.SimpleMap",
+          "NodeTest.MapWithUndefinedValues",
+          "NodeTest.SeqIntoMap",
+          "NodeTest.MapForceInsert",
+          "NodeTest.StdArray",
+          "NodeTest.StdPair",
+          "NodeTest.SimpleAlias",
+          "NodeTest.AliasAsKey",
+          "NodeTest.SelfReferenceSequence",
+          "NodeTest.ValueSelfReferenceMap",
+          "NodeTest.KeySelfReferenceMap",
+          "NodeTest.SelfReferenceMap",
+          "NodeTest.TempMapVariable",
+          "NodeTest.TempMapVariableAlias",
+          "NodeSpecTest.Ex2_1_SeqScalars",
+          "NodeSpecTest.Ex2_2_MappingScalarsToScalars",
+          "NodeSpecTest.Ex2_3_MappingScalarsToSequences",
+          "NodeSpecTest.Ex2_4_SequenceOfMappings",
+          "NodeSpecTest.Ex2_5_SequenceOfSequences",
+          "NodeSpecTest.Ex2_6_MappingOfMappings",
+          "NodeSpecTest.Ex2_7_TwoDocumentsInAStream",
+          "NodeSpecTest.Ex2_8_PlayByPlayFeed",
+          "NodeSpecTest.Ex2_9_SingleDocumentWithTwoComments",
+          "NodeSpecTest.Ex2_10_SimpleAnchor",
+          "NodeSpecTest.Ex2_11_MappingBetweenSequences",
+          "NodeSpecTest.Ex2_12_CompactNestedMapping",
+          "NodeSpecTest.Ex2_16_IndentationDeterminesScope",
+          "NodeSpecTest.Ex2_17_QuotedScalars",
+          "NodeSpecTest.Ex2_18_MultiLineFlowScalars",
+          "NodeSpecTest.Ex2_23_VariousExplicitTags",
+          "NodeSpecTest.Ex2_24_GlobalTags",
+          "NodeSpecTest.Ex2_25_UnorderedSets",
+          "NodeSpecTest.Ex2_16_OrderedMappings",
+          "NodeSpecTest.Ex2_27_Invoice",
+          "NodeSpecTest.Ex2_28_LogFile",
+          "NodeSpecTest.Ex5_3_BlockStructureIndicators",
+          "NodeSpecTest.Ex5_4_FlowStructureIndicators",
+          "NodeSpecTest.Ex5_6_NodePropertyIndicators",
+          "NodeSpecTest.Ex5_7_BlockScalarIndicators",
+          "NodeSpecTest.Ex5_8_QuotedScalarIndicators",
+          "NodeSpecTest.Ex5_12_TabsAndSpaces",
+          "NodeSpecTest.Ex6_1_IndentationSpaces",
+          "NodeSpecTest.Ex6_2_IndentationIndicators",
+          "NodeSpecTest.Ex6_3_SeparationSpaces",
+          "NodeSpecTest.Ex6_4_LinePrefixes",
+          "NodeSpecTest.Ex6_5_EmptyLines",
+          "NodeSpecTest.Ex6_9_SeparatedComment",
+          "NodeSpecTest.Ex6_11_MultiLineComments",
+          "NodeSpecTest.Ex6_12_SeparationSpacesII",
+          "NodeSpecTest.Ex6_22_GlobalTagPrefix",
+          "NodeSpecTest.Ex6_23_NodeProperties",
+          "NodeSpecTest.Ex6_24_VerbatimTags",
+          "NodeSpecTest.Ex6_26_TagShorthands",
+          "NodeSpecTest.Ex6_28_NonSpecificTags",
+          "NodeSpecTest.Ex6_29_NodeAnchors",
+          "NodeSpecTest.Ex7_1_AliasNodes",
+          "NodeSpecTest.Ex7_2_EmptyNodes",
+          "NodeSpecTest.Ex7_3_CompletelyEmptyNodes",
+          "NodeSpecTest.Ex7_4_DoubleQuotedImplicitKeys",
+          "NodeSpecTest.Ex7_8_SingleQuotedImplicitKeys",
+          "NodeSpecTest.Ex7_10_PlainCharacters",
+          "NodeSpecTest.Ex7_11_PlainImplicitKeys",
+          "NodeSpecTest.Ex7_13_FlowSequence",
+          "NodeSpecTest.Ex7_14_FlowSequenceEntries",
+          "NodeSpecTest.Ex7_15_FlowMappings",
+          "NodeSpecTest.Ex7_16_FlowMappingEntries",
+          "NodeSpecTest.Ex7_17_FlowMappingSeparateValues",
+          "NodeSpecTest.Ex7_18_FlowMappingAdjacentValues",
+          "NodeSpecTest.Ex7_19_SinglePairFlowMappings",
+          "NodeSpecTest.Ex7_20_SinglePairExplicitEntry",
+          "NodeSpecTest.Ex7_21_SinglePairImplicitEntries",
+          "NodeSpecTest.Ex7_23_FlowContent",
+          "NodeSpecTest.Ex7_24_FlowNodes",
+          "NodeSpecTest.Ex8_1_BlockScalarHeader",
+          "NodeSpecTest.Ex8_2_BlockIndentationHeader",
+          "NodeSpecTest.Ex8_4_ChompingFinalLineBreak",
+          "NodeSpecTest.Ex8_6_EmptyScalarChomping",
+          "NodeSpecTest.Ex8_14_BlockSequence",
+          "NodeSpecTest.Ex8_15_BlockSequenceEntryTypes",
+          "NodeSpecTest.Ex8_16_BlockMappings",
+          "NodeSpecTest.Ex8_17_ExplicitBlockMappingEntries",
+          "NodeSpecTest.Ex8_18_ImplicitBlockMappingEntries",
+          "NodeSpecTest.Ex8_19_CompactBlockMappings",
+          "NodeSpecTest.Ex8_20_BlockNodeTypes",
+          "NodeSpecTest.Ex8_22_BlockCollectionNodes"
+        ]
+      },
+      {
+        "id": "hw-04",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "NodeApi.ExplicitTagAndDefaultDefinition"
+        ]
+      },
+      {
+        "id": "hw-05",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "LoadNodeTest.FallbackValues"
+        ]
+      },
+      {
+        "id": "null-string",
+        "kind": "real_bug",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "NodeTest.LoadTildeAsNull"
+        ]
+      }
+    ],
+    "passes": true
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "schema": 1,
+  "id": "cpp-peglib-parser",
+  "set": "dev",
+  "tier": "hard",
+  "tags": [
+    "templates",
+    "header-only"
+  ],
+  "title": "PEG 语法解析",
+  "description": "公开 C++11 库的模板与内联模块。",
+  "source": {
+    "repository": "https://github.com/yhirose/cpp-peglib",
+    "commit": "2d276c8cd9a64800587172b40b8cb74e273a4f88",
+    "root": "benchmark/cpp-peglib-parser/source",
+    "files": {
+      "peglib.h": "8631e7224e75c0f4377fb9affdae3d68e4b1672f30f066ed8d0811c26b2945f2"
+    }
+  },
+  "target_sources": [],
+  "include_dirs": [
+    "."
+  ],
+  "visible": {
+    "files": [
+      "peglib.h"
+    ],
+    "notes": "可见材料只有被测及依赖源码、头文件和公开构建配置；测试使用 C++11 / GoogleTest 1.12.1。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": false,
+    "note": "上游测试作为隐藏参考材料，未投影给生成 Agent。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "隐藏参考测试覆盖的输入；断言以固定源码实际行为为准；不以此收窄等价性判定。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests",
+    "coverage_baseline": "hidden/coverage_baseline.json",
+    "coverage_instantiation": "hidden/coverage_instantiation"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/import_step_b.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": [
+    {
+      "id": "left-recursion",
+      "kind": "real_bug",
+      "expect": "fail",
+      "files": {
+        "peglib.h": "75f78afed15541d52bc65345aee59947a9cbfb9dc76f918d25169aa241b0024d"
+      },
+      "description": "上游缺陷修复的反向补丁",
+      "patch_sha256": "ddb89b02acbd65fd744f4341f1a95b9fd48c69400d09182417238cebbf4f8ca2",
+      "source": {
+        "dataset": "BugsC++ cpp_peglib/5",
+        "dataset_commit": "be5cc489cb2b3127ec3b73cb4adfdd290807f55b",
+        "fix_commit": "2d276c8cd9a64800587172b40b8cb74e273a4f88",
+        "patch_sha256": "ddb89b02acbd65fd744f4341f1a95b9fd48c69400d09182417238cebbf4f8ca2",
+        "regression_tests": [
+          "PegParser.T051_Left_recursive_with_a_ZOM_content_rule"
+        ]
+      }
+    },
+    {
+      "id": "hw-01",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "peglib.h": "438e36cae28a2237515597a76e6dd7c35a3cac79669b4c04202b5d8005332da2"
+      },
+      "description": "普通 parse 接受未消费完的后缀。",
+      "patch_sha256": "6e21a68c69a61cb50687dc8e86eb854bdb29f58aee5c764a8017ded4552cac5e"
+    },
+    {
+      "id": "hw-02",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "peglib.h": "c13ef826f5771c8011d1d45313509129d6dc0560f5cb9f2061699ca2836ab38b"
+      },
+      "description": "search 找到匹配后遗漏位置。",
+      "patch_sha256": "dd9d54083fc6f5a3460f97e4a6e0a19ec33d89b7c02c14d6d897cd35729572c1"
+    },
+    {
+      "id": "hw-03",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "peglib.h": "3a97ff57daba3f7f06017ad43b73fb0ffe3cd6ca0559ac4872e3ea168e597d9f"
+      },
+      "description": "get_rule_names 遗漏规则名称。",
+      "patch_sha256": "8eb08d773115c201fe94d64b5ece3e19a0504fe532d5fc21ab013fc0d9b0d0a8"
+    },
+    {
+      "id": "hw-04",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "peglib.h": "97f164a5eee4d9ebd373ac89c2b718733d7a942d67413fd1706e0a7aad39939a"
+      },
+      "description": "enable_trace 未保存回调。",
+      "patch_sha256": "6ee429938d0cd33cad08d2d0ae5e69c4a4b01409dc6c64f4ec464d612e3297aa"
+    },
+    {
+      "id": "hw-05",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "peglib.h": "fec16235b3cb3f02fc157de540e669c51251908788f34d0e6f8d81bd201e02e8"
+      },
+      "description": "解析失败的错误行号偏移一。",
+      "patch_sha256": "46948a99db87bab68e8ab9a1a53d792ae2d385e75f62f23a5252a0bdab774a8a"
+    }
+  ],
+  "build": {
+    "support_sources": []
+  },
+  "target_headers": [
+    "peglib.h"
+  ]
+}

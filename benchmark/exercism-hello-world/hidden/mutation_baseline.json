@@ -1,0 +1,77 @@
+{
+  "task": "exercism-hello-world",
+  "created_at": "2026-10-29T04:12:03.883267+00:00",
+  "created_by_run": "step-b-formal-20261029-01-exercism-hello-world",
+  "scorer_version": "0.4.0",
+  "scorer_code_sha256": "a88c9194e273ad9cd3ec962c0b2993a7b1a37b1218a76aee7e406cf7d928af8f",
+  "images": {
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
+  },
+  "mutation": {
+    "applicable": false,
+    "reason": "zero_mutants"
+  },
+  "mutants": [],
+  "equivalent": [],
+  "unstable": [],
+  "review_needed": [],
+  "review": {
+    "status": "reviewed",
+    "by": "Codex（AI 复核，Linux ARM64）",
+    "at": "2026-10-29",
+    "note": "M1 不适用（zero_mutants）；参考 C1 1.0 达标，手写变异 3/3 检出，真实缺陷与等价版本按预期。"
+  },
+  "zero_mutants_evidence": [
+    {
+      "returncode": 0,
+      "stdout": "[info] Using config /config/mull.yml\n[info] Warm up run (threads: 1)\n\n       [################################] 1/1. Finished in 0ms\n[info] No mutants found. Mutation score: infinitely high\n[info] Total execution time: 2ms\n",
+      "stdout_log": "/out/logs/20261029T041152538455-mull-runner.stdout.log",
+      "reports": []
+    },
+    {
+      "returncode": 0,
+      "stdout": "[info] Using config /config/mull.yml\n[info] Warm up run (threads: 1)\n\n       [################################] 1/1. Finished in 0ms\n[info] No mutants found. Mutation score: infinitely high\n[info] Total execution time: 2ms\n",
+      "stdout_log": "/out/logs/20261029T041159444331-mull-runner.stdout.log",
+      "reports": []
+    }
+  ],
+  "reference": {
+    "m1": null,
+    "c1": 1.0,
+    "threshold": 0.8,
+    "valid_stable": true,
+    "handwritten": 3,
+    "handwritten_detected": 3,
+    "variants": [
+      {
+        "id": "hw-01",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "HelloWorld.T001_test_hello"
+        ]
+      },
+      {
+        "id": "hw-02",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "HelloWorld.T001_test_hello"
+        ]
+      },
+      {
+        "id": "hw-03",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "HelloWorld.T001_test_hello"
+        ]
+      }
+    ],
+    "passes": true
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "task": "exercism-reverse-string",
+  "review": "AI 编写与逐项检查；Docker 参考测试验证编译和检出，非人工审阅。",
+  "variants": [
+    {
+      "id": "hw-01",
+      "patch": "hw-01.patch",
+      "description": "遗漏反转。"
+    },
+    {
+      "id": "hw-02",
+      "patch": "hw-02.patch",
+      "description": "非空字符串反转时漏掉末字符；显式保护空输入。"
+    },
+    {
+      "id": "hw-03",
+      "patch": "hw-03.patch",
+      "description": "结果多出一个空格。"
+    }
+  ]
+}

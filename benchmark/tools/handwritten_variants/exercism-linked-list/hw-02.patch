@@ -1,0 +1,11 @@
+--- a/src/linked_list.h
++++ b/src/linked_list.h
+@@ -27,7 +27,7 @@
+ 
+     void unshift(T entry) { insert(sentinel, sentinel->next, entry); }
+ 
+-    T pop() { return remove(sentinel->previous); }
++    T pop() { return remove(sentinel->next); }
+ 
+     T shift() { return remove(sentinel->next); }
+ 

@@ -1,0 +1,11 @@
+--- a/source/utf8/checked.h
++++ b/source/utf8/checked.h
+@@ -164,7 +164,7 @@
+             case internal::INVALID_CODE_POINT :
+                 throw invalid_code_point(cp);
+         }
+-        return cp;
++        return cp + 1;
+     }
+ 
+     template <typename word_iterator>

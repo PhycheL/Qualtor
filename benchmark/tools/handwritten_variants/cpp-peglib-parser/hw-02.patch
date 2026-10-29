@@ -1,0 +1,11 @@
+--- a/peglib.h
++++ b/peglib.h
+@@ -3211,7 +3211,7 @@
+                 size_t len = n - pos;
+                 auto r = rule.parse(s + pos, len);
+                 if (r.ret) {
+-                    mpos = pos;
++                    mpos = 0;
+                     mlen = len;
+                     return true;
+                 }

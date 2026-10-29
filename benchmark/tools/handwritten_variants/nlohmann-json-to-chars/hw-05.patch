@@ -1,0 +1,11 @@
+--- a/include/nlohmann/detail/conversions/to_chars.hpp
++++ b/include/nlohmann/detail/conversions/to_chars.hpp
+@@ -1080,7 +1080,7 @@
+ #endif
+     if (value == 0) // +-0
+     {
+-        *first++ = '0';
++        *first++ = '1';
+         // Make it look like a floating-point number (#362, #378)
+         *first++ = '.';
+         *first++ = '0';

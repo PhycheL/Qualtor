@@ -1,0 +1,11 @@
+--- a/include/nlohmann/detail/conversions/to_chars.hpp
++++ b/include/nlohmann/detail/conversions/to_chars.hpp
+@@ -1043,7 +1043,7 @@
+         buf += 1 + static_cast<size_t>(k);
+     }
+ 
+-    *buf++ = 'e';
++    *buf++ = 'E';
+     return append_exponent(buf, n - 1);
+ }
+ 

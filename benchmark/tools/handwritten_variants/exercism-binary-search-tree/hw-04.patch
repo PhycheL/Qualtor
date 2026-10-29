@@ -1,0 +1,11 @@
+--- a/src/binary_search_tree.h
++++ b/src/binary_search_tree.h
+@@ -105,7 +105,7 @@
+ 
+ template <typename T>
+ typename binary_tree<T>::binary_tree_iter binary_tree<T>::begin() const {
+-    return binary_tree_iter(*this);
++    return binary_tree_iter::build_end_iterator(*this);
+ }
+ template <typename T>
+ typename binary_tree<T>::binary_tree_iter binary_tree<T>::end() const {

@@ -22,21 +22,31 @@
   "relations": [
     {
       "metric": "M1_e2e",
-      "op": ">=",
-      "value": 0.8
+      "op": "==",
+      "value": 1
     },
     {
       "metric": "C1",
-      "op": ">",
-      "value": 0.8
+      "op": "==",
+      "value": 0.9809885931558935
+    },
+    {
+      "metric": "C2",
+      "op": "==",
+      "value": 0.9073170731707317
     },
     {
       "metric": "C3",
-      "op": ">",
-      "value": 0
+      "op": "==",
+      "value": 0.9545454545454546
     },
     {
       "metric": "S1",
+      "op": "==",
+      "value": 0
+    },
+    {
+      "metric": "V3",
       "op": "==",
       "value": 0
     }

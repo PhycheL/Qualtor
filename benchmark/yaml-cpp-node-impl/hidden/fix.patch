@@ -1,0 +1,20 @@
+--- a/include/yaml-cpp/node/impl.h
++++ b/include/yaml-cpp/node/impl.h
+@@ -110,6 +110,8 @@
+   const Node& node;
+ 
+   std::string operator()(const S& fallback) const {
++    if (node.Type() == NodeType::Null)
++      return "null";
+     if (node.Type() != NodeType::Scalar)
+       return fallback;
+     return node.Scalar();
+@@ -138,6 +140,8 @@
+   const Node& node;
+ 
+   std::string operator()() const {
++    if (node.Type() == NodeType::Null)
++      return "null";
+     if (node.Type() != NodeType::Scalar)
+       throw TypedBadConversion<std::string>(node.Mark());
+     return node.Scalar();

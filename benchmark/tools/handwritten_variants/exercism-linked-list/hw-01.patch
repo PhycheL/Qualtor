@@ -1,0 +1,11 @@
+--- a/src/linked_list.h
++++ b/src/linked_list.h
+@@ -23,7 +23,7 @@
+         sentinel->previous = sentinel;
+     }
+ 
+-    void push(T entry) { insert(sentinel->previous, sentinel, entry); }
++    void push(T entry) { insert(sentinel, sentinel->next, entry); }
+ 
+     void unshift(T entry) { insert(sentinel, sentinel->next, entry); }
+ 

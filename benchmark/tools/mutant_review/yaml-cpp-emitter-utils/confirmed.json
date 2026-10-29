@@ -1,0 +1,17 @@
+{
+  "task": "yaml-cpp-emitter-utils",
+  "note": "D015：仅无效迭代器行为不同的变异列为不稳定。",
+  "mutants": [
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/emitterutils.cpp:114:16:114:18",
+      "verdict": "undefined_only",
+      "reviewer": "Codex（AI 复核，Linux ARM64）",
+      "note": "IR 把 first == last 的 i1 结果替换为 false。first != last 时与原程序完全相同；first == last 时变异程序解引用 past-the-end 迭代器。除这种无效迭代器行为外没有差异，按 D015 移入不稳定；不把幸存当作等价证据。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "task": "exercism-two-fer",
+  "review": "AI 编写与逐项检查；Docker 参考测试验证编译和检出，非人工审阅。",
+  "variants": [
+    {
+      "id": "hw-01",
+      "patch": "hw-01.patch",
+      "description": "缺省称呼错误。"
+    },
+    {
+      "id": "hw-02",
+      "patch": "hw-02.patch",
+      "description": "忽略显式姓名。"
+    },
+    {
+      "id": "hw-03",
+      "patch": "hw-03.patch",
+      "description": "句尾句点遗漏。"
+    }
+  ]
+}

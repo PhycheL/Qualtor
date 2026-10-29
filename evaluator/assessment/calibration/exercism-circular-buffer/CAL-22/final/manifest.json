@@ -1,0 +1,7 @@
+{
+  "files": {
+    "tests/catch_compat.h": "79ec7940924252c2c68f27e7591b405c7d1f9901c619eabb760a278c92f7ac9d",
+    "tests/circular_buffer_test.cc": "8cb6474c694215292456cf487aafbb8df225731bffe535b1eced96fc8dcf2479"
+  },
+  "frozen_at": "2026-10-29T00:00:00+00:00"
+}

@@ -1,0 +1,83 @@
+{
+  "task": "yaml-cpp-emitter-utils",
+  "reviewer": "Codex（AI 复核，Linux ARM64）",
+  "mutants": [
+    {
+      "id": "cxx_ge_to_gt:/repo/src/emitterutils.cpp:448:16:448:18",
+      "decision": "保留在变异全集中，按每次运行 timeout 单独统计，既不标等价也不记 killed。",
+      "reason": "内层循环不消费一个字节的成功匹配，外层 while 保持同一 buffer，形成不前进的循环；两轮参考和探针均 timeout。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll",
+        "runs/step-b-seed-emitter-20261029-03/prepare_report.json"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/emitterutils.cpp:469:16:469:18",
+      "decision": "保留在变异全集中，按每次运行 timeout 单独统计，既不标等价也不记 killed。",
+      "reason": "内层循环不消费一个字节的成功匹配，外层 while 保持同一 buffer，形成不前进的循环；两轮参考和探针均 timeout。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll",
+        "runs/step-b-seed-emitter-20261029-03/prepare_report.json"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/emitterutils.cpp:483:16:483:18",
+      "decision": "保留在变异全集中，按每次运行 timeout 单独统计，既不标等价也不记 killed。",
+      "reason": "内层循环不消费一个字节的成功匹配，外层 while 保持同一 buffer，形成不前进的循环；两轮参考和探针均 timeout。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll",
+        "runs/step-b-seed-emitter-20261029-03/prepare_report.json"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/emitterutils.cpp:448:16:448:18",
+      "decision": "保留在变异全集中，按每次运行 timeout 单独统计，既不标等价也不记 killed。",
+      "reason": "内层循环不消费一个字节的成功匹配，外层 while 保持同一 buffer，形成不前进的循环；两轮参考和探针均 timeout。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll",
+        "runs/step-b-seed-emitter-20261029-03/prepare_report.json"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/emitterutils.cpp:469:16:469:18",
+      "decision": "保留在变异全集中，按每次运行 timeout 单独统计，既不标等价也不记 killed。",
+      "reason": "内层循环不消费一个字节的成功匹配，外层 while 保持同一 buffer，形成不前进的循环；两轮参考和探针均 timeout。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll",
+        "runs/step-b-seed-emitter-20261029-03/prepare_report.json"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/emitterutils.cpp:483:16:483:18",
+      "decision": "保留在变异全集中，按每次运行 timeout 单独统计，既不标等价也不记 killed。",
+      "reason": "内层循环不消费一个字节的成功匹配，外层 while 保持同一 buffer，形成不前进的循环；两轮参考和探针均 timeout。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll",
+        "runs/step-b-seed-emitter-20261029-03/prepare_report.json"
+      ]
+    },
+    {
+      "id": "cxx_pre_dec_to_pre_inc:/repo/src/emitterutils.cpp:252:22:252:24",
+      "decision": "保留在变异全集中，按每次运行 timeout 单独统计，既不标等价也不记 killed。",
+      "reason": "递减改为递增后循环不能正常终止，持续输出直到超时/资源耗尽。",
+      "evidence": [
+        "benchmark/yaml-cpp-emitter-utils/source/src/emitterutils.cpp",
+        "runs/step-b-ir-20261029-01/mutant-ir.json",
+        "runs/step-b-ir-20261029-01/emitterutils.cpp.ll",
+        "runs/step-b-seed-emitter-20261029-03/prepare_report.json"
+      ]
+    }
+  ]
+}

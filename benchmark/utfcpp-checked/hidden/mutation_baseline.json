@@ -1,0 +1,97 @@
+{
+  "task": "utfcpp-checked",
+  "created_at": "2026-10-29T04:18:19.755723+00:00",
+  "created_by_run": "step-b-formal-20261029-01-utfcpp-checked",
+  "scorer_version": "0.4.0",
+  "scorer_code_sha256": "a88c9194e273ad9cd3ec962c0b2993a7b1a37b1218a76aee7e406cf7d928af8f",
+  "images": {
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
+  },
+  "mutation": {
+    "applicable": false,
+    "reason": "header_only"
+  },
+  "mutants": [],
+  "equivalent": [],
+  "unstable": [],
+  "review_needed": [],
+  "review": {
+    "status": "reviewed",
+    "by": "Codex（AI 复核，Linux ARM64）",
+    "at": "2026-10-29",
+    "note": "M1 不适用（header_only）；参考 C1 0.9344608879492601 达标，手写变异 5/5 检出，真实缺陷与等价版本按预期。"
+  },
+  "zero_mutants_evidence": [],
+  "reference": {
+    "m1": null,
+    "c1": 0.9344608879492601,
+    "threshold": 0.8,
+    "valid_stable": true,
+    "handwritten": 5,
+    "handwritten_detected": 5,
+    "variants": [
+      {
+        "id": "hw-01",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "CheckedAPITests.test_append",
+          "CheckedAPITests.test_utf32to8",
+          "CheckedAPITests.test_utf16to8",
+          "CheckedAPITests.test_replace_invalid",
+          "Utf8Errors.CheckedInvalidInputs",
+          "CPP11APITests.test_append",
+          "CPP11APITests.test_utf16to8",
+          "CPP11APITests.test_utf32to8",
+          "CPP11APITests.test_replace_invalid"
+        ]
+      },
+      {
+        "id": "hw-02",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "CheckedAPITests.test_append16",
+          "CPP11APITests.test_append16"
+        ]
+      },
+      {
+        "id": "hw-03",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "CheckedAPITests.test_distance"
+        ]
+      },
+      {
+        "id": "hw-04",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "Utf8Errors.CheckedInvalidInputs"
+        ]
+      },
+      {
+        "id": "hw-05",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "CheckedAPITests.test_next",
+          "CheckedAPITests.test_peek_next",
+          "CheckedAPITests.test_prior",
+          "CheckedAPITests.test_utf8to16",
+          "CheckedIteratrTests.test_increment",
+          "CheckedIteratrTests.test_decrement",
+          "CPP11APITests.test_utf8to16"
+        ]
+      }
+    ],
+    "passes": true
+  }
+}

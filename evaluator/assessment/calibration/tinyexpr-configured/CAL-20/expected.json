@@ -12,21 +12,31 @@
   "relations": [
     {
       "metric": "M1_e2e",
-      "op": ">=",
-      "value": 0.8
+      "op": "==",
+      "value": 1
     },
     {
       "metric": "C1",
-      "op": ">",
-      "value": 0.8
+      "op": "==",
+      "value": 0.9660574412532638
+    },
+    {
+      "metric": "C2",
+      "op": "==",
+      "value": 0.8806818181818182
     },
     {
       "metric": "C3",
-      "op": ">",
-      "value": 0
+      "op": "==",
+      "value": 1.0
     },
     {
       "metric": "S1",
+      "op": "==",
+      "value": 0
+    },
+    {
+      "metric": "V3",
       "op": "==",
       "value": 0
     }

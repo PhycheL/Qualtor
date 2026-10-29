@@ -88,7 +88,10 @@ def import_exercise(exercise, args, gtest_include):
     by_ext = {Path(s).suffix: Path(s).name for s in solution}
     mapping = {by_ext[Path(e).suffix]: f"exercises/practice/{slug}/{e}" for e in examples if Path(e).suffix in by_ext}
     cpp_files = [name for name in mapping if name.endswith(".cpp")]
-    if not mapping or len(mapping) != len(solution):
+    # 模板练习的 solution 可能列出 .cpp 桩，但上游参考实现只提供头文件。
+    missing_solution = set(Path(s).name for s in solution) - set(mapping)
+    header_example = bool(mapping) and all(Path(n).suffix in ('.h', '.hpp', '.hh', '.hxx', '.inl') for n in mapping)
+    if not mapping or (missing_solution and not (header_example and all(n.endswith('.cpp') for n in missing_solution))):
         return None, "参考解文件与练习规定的文件名对不上"
     with tempfile.TemporaryDirectory(prefix="exercism-import-") as tmp:
         tmp = Path(tmp)

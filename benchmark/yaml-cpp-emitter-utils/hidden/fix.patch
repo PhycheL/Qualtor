@@ -1,0 +1,11 @@
+--- a/src/exp.h
++++ b/src/exp.h
+@@ -37,7 +37,7 @@
+   return e;
+ }
+ inline const RegEx& Break() {
+-  static const RegEx e = RegEx('\n') | RegEx("\r\n");
++  static const RegEx e = RegEx('\n') | RegEx("\r");
+   return e;
+ }
+ inline const RegEx& BlankOrBreak() {

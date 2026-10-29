@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/hello_world.cpp": "exercises/practice/hello-world/.meta/example.cpp",
+    "src/hello_world.h": "exercises/practice/hello-world/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/hello-world/hello_world_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/hello_world.cpp": "a7666eabe588d2b8c45e0a2e95562839ffce71ec2af302a39f6bd04834c1b195",
+    "src/hello_world.h": "567a0f4085fa52a8e8dd23c43800c7744d751e5063bbd8ddff31d86ebf2de5a2"
+  }
+}

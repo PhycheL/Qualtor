@@ -1,0 +1,11 @@
+--- a/src/linked_list.h
++++ b/src/linked_list.h
+@@ -38,7 +38,7 @@
+             ptr = ptr->next;
+         }
+         remove(ptr);
+-        return true;
++        return false;
+     }
+ 
+     size_t count() { return current_size; }

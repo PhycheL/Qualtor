@@ -1,0 +1,9 @@
+{
+  "dataset": "BugsC++ yaml_cpp/9",
+  "dataset_commit": "be5cc489cb2b3127ec3b73cb4adfdd290807f55b",
+  "fix_commit": "a6db7e32ac506d536596d31bdb2b365de1cf35a2",
+  "patch_sha256": "92184797f879291892bb4a1b5a5a2c463999d25c7fbd30850545e670e7ad7689",
+  "regression_tests": [
+    "EmitterTest.UserType2"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "sample": "CAL-25",
+  "description": "Mull 零变异有原始证据，不属于基础设施失败",
+  "hard": {
+    "status": "scored",
+    "tests_default": "valid",
+    "variants": {}
+  },
+  "relations": [
+    {
+      "metric": "M1_e2e",
+      "op": "na",
+      "reason": "zero_mutants"
+    },
+    {
+      "metric": "M1_valid",
+      "op": "na",
+      "reason": "zero_mutants"
+    },
+    {
+      "metric": "M2",
+      "op": "==",
+      "value": 1
+    },
+    {
+      "metric": "C1",
+      "op": ">=",
+      "value": 0.8
+    }
+  ],
+  "reference_copies": [
+    "tests/catch_compat.h",
+    "tests/hello_world_test.cc"
+  ]
+}

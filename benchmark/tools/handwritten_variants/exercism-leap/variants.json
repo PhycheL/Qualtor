@@ -1,0 +1,21 @@
+{
+  "task": "exercism-leap",
+  "review": "AI 编写与逐项检查；Docker 参考测试验证编译和检出，非人工审阅。",
+  "variants": [
+    {
+      "id": "hw-01",
+      "patch": "hw-01.patch",
+      "description": "遗漏世纪年例外。"
+    },
+    {
+      "id": "hw-02",
+      "patch": "hw-02.patch",
+      "description": "遗漏 400 年倍数的闰年规则。"
+    },
+    {
+      "id": "hw-03",
+      "patch": "hw-03.patch",
+      "description": "普通年份整除判断取反。"
+    }
+  ]
+}

@@ -1,19 +1,23 @@
 {
-  "scorer_version": "0.3.0",
-  "scorer_code_sha256": "dd055eac2773c9c2cdd9a6d4fa9e5e3e885150cfa5d3605c71a6f05d48419503",
-  "samples_sha256": "202f9fb03a5f23fab0d7435a0b881e3ae90dbbffa120a08f68b27cc66f2724b4",
+  "scorer_version": "0.4.0",
+  "scorer_code_sha256": "a88c9194e273ad9cd3ec962c0b2993a7b1a37b1218a76aee7e406cf7d928af8f",
+  "samples_sha256": "07e40a650d0cdcb9e2d83f0df44e534287032cb834e8fbd39933d94e059ee98b",
   "tasks": {
+    "exercism-circular-buffer": "985dae2d702848c255effb5d7740d3707f64a20dced58e21c3ee9a444179bc72",
+    "exercism-hello-world": "0a67510db077bdf824bf906c20bdad50ff77870de6ec6b3da385efc897773866",
     "gildedrose-update-quality": "92720d07eeeabc2108b7e7afcfe7554af76147176b3f3de552cd5d19baf24245",
     "md4c-html": "f40d8a6c5bc4be079e313fb517689e1379cdbbc50ba74553392890c0f82fb4bd",
     "tinyexpr-configured": "5c9ec23cdb9604261112e5ddf73c498759005c9e094000db430d720cf3cd328d",
-    "yaml-cpp-document": "01d909231afaaaf68ee8d850038f8af7ceab4c72b24e0fca6044bc9e0f562ca0"
+    "yaml-cpp-document": "01d909231afaaaf68ee8d850038f8af7ceab4c72b24e0fca6044bc9e0f562ca0",
+    "yaml-cpp-emitter-utils": "c29c582be532c7c0cc6a854c88f8207068cb526f94e91fe9308bf5dd8a32947f",
+    "yaml-cpp-node-impl": "ad407ef4c1320a86cd9e26a887eff6c1278ad4c7cb944af2fbb5e6eea504d6ac"
   },
   "images": {
     "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
     "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
   },
-  "run_id": "step-a-calibration-20261028-03",
+  "run_id": "step-b-calibration-20261029-01",
   "passed": true,
   "report": "evaluator/assessment/calibration_report.json",
-  "finished_at": "2026-10-28T08:11:05.252994+00:00"
+  "finished_at": "2026-10-29T04:10:28.249815+00:00"
 }

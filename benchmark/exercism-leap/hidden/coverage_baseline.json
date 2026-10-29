@@ -1,0 +1,19 @@
+{
+  "headers": {
+    "src/leap.h": {
+      "sha256": "ac9d1205291c91a10335d20c98fbac32bac86b09d6cd2bfc77c5e64779aeae0d",
+      "lines": [
+        5,
+        6
+      ],
+      "functions": [
+        [
+          5,
+          13
+        ]
+      ]
+    }
+  },
+  "created_at": "2026-10-29T04:12:37.324628+00:00",
+  "created_by_run": "step-b-formal-20261029-01-exercism-leap"
+}

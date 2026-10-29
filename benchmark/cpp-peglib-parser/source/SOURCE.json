@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/yhirose/cpp-peglib",
+  "commit": "2d276c8cd9a64800587172b40b8cb74e273a4f88",
+  "reference_tests": [
+    "test/test.cc"
+  ],
+  "added_by_qualtor": [],
+  "note": "source/ 文件逐字节取自上述提交；隐藏测试的转换见 hidden/README.md。",
+  "files": {
+    "CMakeLists.txt": "ef55df5552e40e3f1b21ea90aebd29d51296b02e77ffab8be2e93ac5138b3a4a",
+    "LICENSE": "df39dd57e880d45ca5a32c29980e39499cbfa5ae4013fdf9786895e3efee2694",
+    "peglib.h": "8631e7224e75c0f4377fb9affdae3d68e4b1672f30f066ed8d0811c26b2945f2"
+  }
+}

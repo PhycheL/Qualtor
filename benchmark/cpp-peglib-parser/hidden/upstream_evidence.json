@@ -1,0 +1,9 @@
+{
+  "dataset": "BugsC++ cpp_peglib/5",
+  "dataset_commit": "be5cc489cb2b3127ec3b73cb4adfdd290807f55b",
+  "fix_commit": "2d276c8cd9a64800587172b40b8cb74e273a4f88",
+  "patch_sha256": "ddb89b02acbd65fd744f4341f1a95b9fd48c69400d09182417238cebbf4f8ca2",
+  "regression_tests": [
+    "PegParser.T051_Left_recursive_with_a_ZOM_content_rule"
+  ]
+}

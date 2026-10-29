@@ -1,0 +1,11 @@
+--- a/include/yaml-cpp/node/impl.h
++++ b/include/yaml-cpp/node/impl.h
+@@ -271,7 +271,7 @@
+ inline std::size_t Node::size() const {
+   if (!m_isValid)
+     throw InvalidNode(m_invalidKey);
+-  return m_pNode ? m_pNode->size() : 0;
++  return 0;
+ }
+ 
+ inline const_iterator Node::begin() const {

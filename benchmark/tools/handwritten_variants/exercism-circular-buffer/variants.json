@@ -1,0 +1,31 @@
+{
+  "task": "exercism-circular-buffer",
+  "review": "AI 编写与逐项检查；Docker 参考测试验证编译和检出，非人工审阅。",
+  "variants": [
+    {
+      "id": "hw-01",
+      "patch": "hw-01.patch",
+      "description": "容量多分配一个可写槽，满缓冲区边界错误。"
+    },
+    {
+      "id": "hw-02",
+      "patch": "hw-02.patch",
+      "description": "read 后遗漏消费位置更新，重复读到旧值。"
+    },
+    {
+      "id": "hw-03",
+      "patch": "hw-03.patch",
+      "description": "clear 遗漏清空状态。"
+    },
+    {
+      "id": "hw-04",
+      "patch": "hw-04.patch",
+      "description": "overwrite 满时未丢弃最旧项。"
+    },
+    {
+      "id": "hw-05",
+      "patch": "hw-05.patch",
+      "description": "写入时错误保存默认值，位置更新不变。"
+    }
+  ]
+}

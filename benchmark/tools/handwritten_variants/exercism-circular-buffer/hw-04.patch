@@ -1,0 +1,11 @@
+--- a/src/circular_buffer.h
++++ b/src/circular_buffer.h
+@@ -44,7 +44,7 @@
+ 
+ template <typename ValueType>
+ void circular_buffer<ValueType>::overwrite(ValueType item) {
+-    if (is_full()) move_position(head_);
++    /* missing eviction on full buffer */
+     push_back(item);
+ }
+ 

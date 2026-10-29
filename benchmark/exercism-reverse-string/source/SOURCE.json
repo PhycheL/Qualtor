@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/reverse_string.cpp": "exercises/practice/reverse-string/.meta/example.cpp",
+    "src/reverse_string.h": "exercises/practice/reverse-string/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/reverse-string/reverse_string_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/reverse_string.cpp": "32ed34b606bafd03e34ad905f40967f22f45fe531b869f070301028e6b50161b",
+    "src/reverse_string.h": "c18a2898a8c7feef8d722c2b1b569b4be059f5d059557e1ae859ca5149c2b5a3"
+  }
+}

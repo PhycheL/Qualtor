@@ -2,6 +2,87 @@
   "schema": 1,
   "note": "已准入题目清单（R-08）：正式比较只用这里登记、且当前题目指纹与登记时一致的题目。由 benchmark/tools/admit.py 写入。",
   "tasks": {
+    "cpp-peglib-parser": {
+      "task_sha256": "9e3b0680cc08664da06f0875bc8a12296661508d9d5b1d20ff163dbae89b309e",
+      "admitted_at": "2026-10-29T04:22:29.989135+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
+      "note": "M1 不适用（header_only）；参考 C1 0.8869318181818182 达标，手写变异 5/5 检出，真实缺陷与等价版本按预期。",
+      "reference": {
+        "m1": null,
+        "c1": 0.8869318181818182,
+        "threshold": 0.8,
+        "valid_stable": true,
+        "handwritten": 5,
+        "handwritten_detected": 5,
+        "variants": [
+          {
+            "id": "hw-01",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "PegParser.T041_Backreference_test",
+              "PegParser.T043_Nested_capture_test",
+              "PegParser.T070_Macro_exclusive_modifiers"
+            ]
+          },
+          {
+            "id": "hw-02",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "PegApi.SearchPosition"
+            ]
+          },
+          {
+            "id": "hw-03",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "PegApi.RuleNames"
+            ]
+          },
+          {
+            "id": "hw-04",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "PegApi.TraceAndErrorLocation"
+            ]
+          },
+          {
+            "id": "hw-05",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "PegApi.GrammarErrorLocation"
+            ]
+          },
+          {
+            "id": "left-recursion",
+            "kind": "real_bug",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "PegParser.T051_Left_recursive_with_a_ZOM_content_rule"
+            ]
+          }
+        ],
+        "passes": true
+      },
+      "reference_raw_m1": null,
+      "counts": {
+        "mutants": 0,
+        "equivalent": 0,
+        "unstable": 0,
+        "review_needed": 0,
+        "confirmed_non_equivalent": 0
+      }
+    },
     "exercism-acronym": {
       "task_sha256": "d4134700dc0c530989554d8963440bfb90149b13880bd1eee4664353c381ea77",
       "admitted_at": "2026-10-28T03:40:14.553624+00:00",
@@ -200,6 +281,113 @@
         "confirmed_non_equivalent": 0
       }
     },
+    "exercism-binary-search-tree": {
+      "task_sha256": "5875194cec4ea05cf7db127e7dc97e9315961c4794835906db49e3d57642cc5d",
+      "admitted_at": "2026-10-29T04:22:29.866422+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
+      "note": "M1 不适用（header_only）；参考 C1 0.9466666666666667 达标，手写变异 5/5 检出，真实缺陷与等价版本按预期。",
+      "reference": {
+        "m1": null,
+        "c1": 0.9466666666666667,
+        "threshold": 0.8,
+        "valid_stable": true,
+        "handwritten": 5,
+        "handwritten_detected": 5,
+        "variants": [
+          {
+            "id": "hw-01",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "BinarySearchTree.T002_smaller_number_at_left_node",
+              "BinarySearchTree.T004_greater_number_at_right_node",
+              "BinarySearchTree.T005_can_create_complex_tree",
+              "BinarySearchTree.T007_can_sort_if_second_number_is_smaller_than_first",
+              "BinarySearchTree.T009_can_sort_if_second_number_is_greater_than_first",
+              "BinarySearchTree.T010_can_sort_complex_tree",
+              "BinarySearchTree.T011_can_create_complex_tree_strings",
+              "BinarySearchTree.T012_can_sort_complex_tree_strings"
+            ]
+          },
+          {
+            "id": "hw-02",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "BinarySearchTree.T005_can_create_complex_tree",
+              "BinarySearchTree.T010_can_sort_complex_tree",
+              "BinarySearchTree.T011_can_create_complex_tree_strings",
+              "BinarySearchTree.T012_can_sort_complex_tree_strings"
+            ]
+          },
+          {
+            "id": "hw-03",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "TreeApi.IteratorArrowAndEndErrors",
+              "BinarySearchTree.T001_data_is_retained",
+              "BinarySearchTree.T002_smaller_number_at_left_node",
+              "BinarySearchTree.T003_same_number_at_left_node",
+              "BinarySearchTree.T004_greater_number_at_right_node",
+              "BinarySearchTree.T005_can_create_complex_tree",
+              "BinarySearchTree.T006_can_sort_single_number",
+              "BinarySearchTree.T007_can_sort_if_second_number_is_smaller_than_first",
+              "BinarySearchTree.T008_can_sort_if_second_number_is_same_as_first",
+              "BinarySearchTree.T009_can_sort_if_second_number_is_greater_than_first",
+              "BinarySearchTree.T010_can_sort_complex_tree",
+              "BinarySearchTree.T011_can_create_complex_tree_strings",
+              "BinarySearchTree.T012_can_sort_complex_tree_strings"
+            ]
+          },
+          {
+            "id": "hw-04",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "TreeApi.IteratorArrowAndEndErrors",
+              "BinarySearchTree.T006_can_sort_single_number",
+              "BinarySearchTree.T007_can_sort_if_second_number_is_smaller_than_first",
+              "BinarySearchTree.T008_can_sort_if_second_number_is_same_as_first",
+              "BinarySearchTree.T009_can_sort_if_second_number_is_greater_than_first",
+              "BinarySearchTree.T010_can_sort_complex_tree",
+              "BinarySearchTree.T012_can_sort_complex_tree_strings"
+            ]
+          },
+          {
+            "id": "hw-05",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "BinarySearchTree.T002_smaller_number_at_left_node",
+              "BinarySearchTree.T003_same_number_at_left_node",
+              "BinarySearchTree.T004_greater_number_at_right_node",
+              "BinarySearchTree.T005_can_create_complex_tree",
+              "BinarySearchTree.T007_can_sort_if_second_number_is_smaller_than_first",
+              "BinarySearchTree.T008_can_sort_if_second_number_is_same_as_first",
+              "BinarySearchTree.T009_can_sort_if_second_number_is_greater_than_first",
+              "BinarySearchTree.T010_can_sort_complex_tree",
+              "BinarySearchTree.T011_can_create_complex_tree_strings",
+              "BinarySearchTree.T012_can_sort_complex_tree_strings"
+            ]
+          }
+        ],
+        "passes": true
+      },
+      "reference_raw_m1": null,
+      "counts": {
+        "mutants": 0,
+        "equivalent": 0,
+        "unstable": 0,
+        "review_needed": 0,
+        "confirmed_non_equivalent": 0
+      }
+    },
     "exercism-bob": {
       "task_sha256": "8477becf46ed560d50d3055d507e77ae438f11b5482322a4b8d1d27b1a5afa97",
       "admitted_at": "2026-10-28T03:40:14.562791+00:00",
@@ -219,6 +407,106 @@
         "equivalent": 0,
         "unstable": 2,
         "review_needed": 1,
+        "confirmed_non_equivalent": 0
+      }
+    },
+    "exercism-circular-buffer": {
+      "task_sha256": "985dae2d702848c255effb5d7740d3707f64a20dced58e21c3ee9a444179bc72",
+      "admitted_at": "2026-10-29T04:22:29.852289+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
+      "note": "M1 不适用（header_only）；参考 C1 1.0 达标，手写变异 5/5 检出，真实缺陷与等价版本按预期。",
+      "reference": {
+        "m1": null,
+        "c1": 1.0,
+        "threshold": 0.8,
+        "valid_stable": true,
+        "handwritten": 5,
+        "handwritten_detected": 5,
+        "variants": [
+          {
+            "id": "hw-01",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "CircularBuffer.T005_full_buffer_cant_be_written",
+              "CircularBuffer.T012_overwrite_replaces_the_oldest_item_on_full_buffer",
+              "CircularBuffer.T013_overwrite_replaces_the_oldest_item_remaining_in_buffer_follo",
+              "CircularBuffer.T014_full_buffer_cant_be_written_after_overwrite",
+              "CircularBuffer.T015_check_correctness_with_string_type",
+              "CircularBuffer.T016_initial_clear_does_not_affect_wrapping_around"
+            ]
+          },
+          {
+            "id": "hw-02",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "CircularBuffer.T003_each_item_may_only_be_read_once",
+              "CircularBuffer.T004_items_are_read_in_the_order_they_are_written",
+              "CircularBuffer.T006_a_read_frees_up_capacity_for_another_write",
+              "CircularBuffer.T007_read_position_is_maintained_even_across_multiple_writes",
+              "CircularBuffer.T011_overwrite_acts_like_write_on_non_full_buffer",
+              "CircularBuffer.T012_overwrite_replaces_the_oldest_item_on_full_buffer",
+              "CircularBuffer.T013_overwrite_replaces_the_oldest_item_remaining_in_buffer_follo",
+              "CircularBuffer.T015_check_correctness_with_string_type",
+              "CircularBuffer.T016_initial_clear_does_not_affect_wrapping_around"
+            ]
+          },
+          {
+            "id": "hw-03",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "CircularBuffer.T008_items_cleared_out_of_buffer_cant_be_read",
+              "CircularBuffer.T009_clear_frees_up_capacity_for_another_write"
+            ]
+          },
+          {
+            "id": "hw-04",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "CircularBuffer.T012_overwrite_replaces_the_oldest_item_on_full_buffer",
+              "CircularBuffer.T013_overwrite_replaces_the_oldest_item_remaining_in_buffer_follo",
+              "CircularBuffer.T014_full_buffer_cant_be_written_after_overwrite",
+              "CircularBuffer.T015_check_correctness_with_string_type",
+              "CircularBuffer.T016_initial_clear_does_not_affect_wrapping_around"
+            ]
+          },
+          {
+            "id": "hw-05",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "CircularBuffer.T002_can_read_an_item_just_written",
+              "CircularBuffer.T003_each_item_may_only_be_read_once",
+              "CircularBuffer.T004_items_are_read_in_the_order_they_are_written",
+              "CircularBuffer.T006_a_read_frees_up_capacity_for_another_write",
+              "CircularBuffer.T007_read_position_is_maintained_even_across_multiple_writes",
+              "CircularBuffer.T009_clear_frees_up_capacity_for_another_write",
+              "CircularBuffer.T010_clear_does_nothing_on_empty_buffer",
+              "CircularBuffer.T011_overwrite_acts_like_write_on_non_full_buffer",
+              "CircularBuffer.T012_overwrite_replaces_the_oldest_item_on_full_buffer",
+              "CircularBuffer.T013_overwrite_replaces_the_oldest_item_remaining_in_buffer_follo",
+              "CircularBuffer.T014_full_buffer_cant_be_written_after_overwrite",
+              "CircularBuffer.T015_check_correctness_with_string_type",
+              "CircularBuffer.T016_initial_clear_does_not_affect_wrapping_around"
+            ]
+          }
+        ],
+        "passes": true
+      },
+      "reference_raw_m1": null,
+      "counts": {
+        "mutants": 0,
+        "equivalent": 0,
+        "unstable": 0,
+        "review_needed": 0,
         "confirmed_non_equivalent": 0
       }
     },
@@ -508,6 +796,58 @@
         "confirmed_non_equivalent": 0
       }
     },
+    "exercism-hello-world": {
+      "task_sha256": "0a67510db077bdf824bf906c20bdad50ff77870de6ec6b3da385efc897773866",
+      "admitted_at": "2026-10-29T04:22:29.857785+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
+      "note": "M1 不适用（zero_mutants）；参考 C1 1.0 达标，手写变异 3/3 检出，真实缺陷与等价版本按预期。",
+      "reference": {
+        "m1": null,
+        "c1": 1.0,
+        "threshold": 0.8,
+        "valid_stable": true,
+        "handwritten": 3,
+        "handwritten_detected": 3,
+        "variants": [
+          {
+            "id": "hw-01",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "HelloWorld.T001_test_hello"
+            ]
+          },
+          {
+            "id": "hw-02",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "HelloWorld.T001_test_hello"
+            ]
+          },
+          {
+            "id": "hw-03",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "HelloWorld.T001_test_hello"
+            ]
+          }
+        ],
+        "passes": true
+      },
+      "reference_raw_m1": null,
+      "counts": {
+        "mutants": 0,
+        "equivalent": 0,
+        "unstable": 0,
+        "review_needed": 0,
+        "confirmed_non_equivalent": 0
+      }
+    },
     "exercism-hexadecimal": {
       "task_sha256": "ff26ee31349d9360f8ece8dbfa9b453117559e9daef0bab44415b21fac9f8915",
       "admitted_at": "2026-10-28T03:40:14.576151+00:00",
@@ -636,6 +976,157 @@
         "mutants": 21,
         "equivalent": 1,
         "unstable": 1,
+        "review_needed": 0,
+        "confirmed_non_equivalent": 0
+      }
+    },
+    "exercism-leap": {
+      "task_sha256": "a31e5eecc55021ea99f7d00375fff62f49d61d01db36af2349e2257dc20d80b1",
+      "admitted_at": "2026-10-29T04:22:29.881248+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
+      "note": "M1 不适用（header_only）；参考 C1 1.0 达标，手写变异 3/3 检出，真实缺陷与等价版本按预期。",
+      "reference": {
+        "m1": null,
+        "c1": 1.0,
+        "threshold": 0.8,
+        "valid_stable": true,
+        "handwritten": 3,
+        "handwritten_detected": 3,
+        "variants": [
+          {
+            "id": "hw-01",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "Leap.T004_divisible_by_100_not_divisible_by_400",
+              "Leap.T006_divisible_by_200_not_divisible_by_400"
+            ]
+          },
+          {
+            "id": "hw-02",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "Leap.T005_divisible_by_400"
+            ]
+          },
+          {
+            "id": "hw-03",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "Leap.T001_not_divisible_by_4",
+              "Leap.T002_divisible_by_2_not_divisible_by_4",
+              "Leap.T003_divisible_by_4_not_divisible_by_100"
+            ]
+          }
+        ],
+        "passes": true
+      },
+      "reference_raw_m1": null,
+      "counts": {
+        "mutants": 0,
+        "equivalent": 0,
+        "unstable": 0,
+        "review_needed": 0,
+        "confirmed_non_equivalent": 0
+      }
+    },
+    "exercism-linked-list": {
+      "task_sha256": "4ab9f23c56740cc165ff598d096237fee9d09191cfc7bfcd08eb1695804698f7",
+      "admitted_at": "2026-10-29T04:22:29.875005+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
+      "note": "M1 不适用（header_only）；参考 C1 0.9714285714285714 达标，手写变异 5/5 检出，真实缺陷与等价版本按预期。",
+      "reference": {
+        "m1": null,
+        "c1": 0.9714285714285714,
+        "threshold": 0.8,
+        "valid_stable": true,
+        "handwritten": 5,
+        "handwritten_detected": 5,
+        "variants": [
+          {
+            "id": "hw-01",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "LinkedList.T002_push_pop_respectively_add_remove_at_the_end_of_the_list",
+              "LinkedList.T004_shift_gets_first_element_from_the_list",
+              "LinkedList.T006_pop_push_shift_and_unshift_can_be_used_in_any_order",
+              "LinkedList.T013_erases_the_element_with_the_specified_value_from_the_list",
+              "LinkedList.T014_erases_the_element_with_the_specified_value_from_the_list_re",
+              "LinkedList.T015_erases_the_element_with_the_specified_value_from_the_list_re",
+              "LinkedList.T019_erases_only_the_first_occurrence"
+            ]
+          },
+          {
+            "id": "hw-02",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "LinkedList.T002_push_pop_respectively_add_remove_at_the_end_of_the_list",
+              "LinkedList.T006_pop_push_shift_and_unshift_can_be_used_in_any_order",
+              "LinkedList.T013_erases_the_element_with_the_specified_value_from_the_list",
+              "LinkedList.T014_erases_the_element_with_the_specified_value_from_the_list_re",
+              "LinkedList.T019_erases_only_the_first_occurrence"
+            ]
+          },
+          {
+            "id": "hw-03",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "LinkedList.T004_shift_gets_first_element_from_the_list",
+              "LinkedList.T005_unshift_adds_element_at_start_of_the_list",
+              "LinkedList.T006_pop_push_shift_and_unshift_can_be_used_in_any_order",
+              "LinkedList.T015_erases_the_element_with_the_specified_value_from_the_list_re"
+            ]
+          },
+          {
+            "id": "hw-04",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "ListApi.EraseExistingReturnsTrue",
+              "LinkedList.T007_count_an_empty_list",
+              "LinkedList.T008_count_a_list_with_items",
+              "LinkedList.T009_count_is_correct_after_mutation",
+              "LinkedList.T010_popping_to_empty_doesn_t_break_the_list",
+              "LinkedList.T011_shifting_to_empty_doesn_t_break_the_list",
+              "LinkedList.T012_erases_the_only_element",
+              "LinkedList.T013_erases_the_element_with_the_specified_value_from_the_list",
+              "LinkedList.T014_erases_the_element_with_the_specified_value_from_the_list_re",
+              "LinkedList.T015_erases_the_element_with_the_specified_value_from_the_list_re",
+              "LinkedList.T016_erases_the_first_of_two_elements",
+              "LinkedList.T017_erases_the_second_of_two_elements",
+              "LinkedList.T018_erase_does_not_modify_the_list_if_the_element_is_not_found",
+              "LinkedList.T019_erases_only_the_first_occurrence"
+            ]
+          },
+          {
+            "id": "hw-05",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "ListApi.EraseExistingReturnsTrue"
+            ]
+          }
+        ],
+        "passes": true
+      },
+      "reference_raw_m1": null,
+      "counts": {
+        "mutants": 0,
+        "equivalent": 0,
+        "unstable": 0,
         "review_needed": 0,
         "confirmed_non_equivalent": 0
       }
@@ -965,6 +1456,67 @@
       "counts": {
         "mutants": 10,
         "equivalent": 1,
+        "unstable": 0,
+        "review_needed": 0,
+        "confirmed_non_equivalent": 0
+      }
+    },
+    "exercism-reverse-string": {
+      "task_sha256": "72d5bb970e5f2ae1e89afc7028656f33e9d2e0f9b81723b77a32b4547ab08e3d",
+      "admitted_at": "2026-10-29T04:22:29.893344+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
+      "note": "M1 不适用（zero_mutants）；参考 C1 1.0 达标，手写变异 3/3 检出，真实缺陷与等价版本按预期。",
+      "reference": {
+        "m1": null,
+        "c1": 1.0,
+        "threshold": 0.8,
+        "valid_stable": true,
+        "handwritten": 3,
+        "handwritten_detected": 3,
+        "variants": [
+          {
+            "id": "hw-01",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "ReverseString.T002_a_word",
+              "ReverseString.T003_a_capitalized_word",
+              "ReverseString.T004_a_sentence_with_punctuation"
+            ]
+          },
+          {
+            "id": "hw-02",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "ReverseString.T002_a_word",
+              "ReverseString.T003_a_capitalized_word",
+              "ReverseString.T004_a_sentence_with_punctuation",
+              "ReverseString.T005_a_palindrome"
+            ]
+          },
+          {
+            "id": "hw-03",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "ReverseString.T001_an_empty_string",
+              "ReverseString.T002_a_word",
+              "ReverseString.T003_a_capitalized_word",
+              "ReverseString.T004_a_sentence_with_punctuation",
+              "ReverseString.T005_a_palindrome"
+            ]
+          }
+        ],
+        "passes": true
+      },
+      "reference_raw_m1": null,
+      "counts": {
+        "mutants": 0,
+        "equivalent": 0,
         "unstable": 0,
         "review_needed": 0,
         "confirmed_non_equivalent": 0
@@ -1363,6 +1915,61 @@
         "equivalent": 2,
         "unstable": 0,
         "review_needed": 8,
+        "confirmed_non_equivalent": 0
+      }
+    },
+    "exercism-two-fer": {
+      "task_sha256": "5a3b5a9340f2f188afa8656a605d6699fb2900921a3b463a7011d5d1e09fd79f",
+      "admitted_at": "2026-10-29T04:22:29.887152+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
+      "note": "M1 不适用（header_only）；参考 C1 1.0 达标，手写变异 3/3 检出，真实缺陷与等价版本按预期。",
+      "reference": {
+        "m1": null,
+        "c1": 1.0,
+        "threshold": 0.8,
+        "valid_stable": true,
+        "handwritten": 3,
+        "handwritten_detected": 3,
+        "variants": [
+          {
+            "id": "hw-01",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "TwoFer.T001_no_name_given"
+            ]
+          },
+          {
+            "id": "hw-02",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "TwoFer.T002_a_name_given",
+              "TwoFer.T003_another_name_given"
+            ]
+          },
+          {
+            "id": "hw-03",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "TwoFer.T001_no_name_given",
+              "TwoFer.T002_a_name_given",
+              "TwoFer.T003_another_name_given"
+            ]
+          }
+        ],
+        "passes": true
+      },
+      "reference_raw_m1": null,
+      "counts": {
+        "mutants": 0,
+        "equivalent": 0,
+        "unstable": 0,
+        "review_needed": 0,
         "confirmed_non_equivalent": 0
       }
     },
@@ -1894,6 +2501,76 @@
         "confirmed_non_equivalent": 0
       }
     },
+    "nlohmann-json-to-chars": {
+      "task_sha256": "5a3c63ba432f52a4f54863b41eeef3d3769a79a0783737161a6651698d02fa34",
+      "admitted_at": "2026-10-29T04:22:29.979902+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
+      "note": "M1 不适用（header_only）；参考 C1 0.9676113360323887 达标，手写变异 5/5 检出，真实缺陷与等价版本按预期。",
+      "reference": {
+        "m1": null,
+        "c1": 0.9676113360323887,
+        "threshold": 0.8,
+        "valid_stable": true,
+        "handwritten": 5,
+        "handwritten_detected": 5,
+        "variants": [
+          {
+            "id": "hw-01",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "ToChars.T002_formatting"
+            ]
+          },
+          {
+            "id": "hw-02",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "ToChars.T002_formatting"
+            ]
+          },
+          {
+            "id": "hw-03",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "ToChars.T002_formatting"
+            ]
+          },
+          {
+            "id": "hw-04",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "ToChars.T002_formatting"
+            ]
+          },
+          {
+            "id": "hw-05",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "ToChars.T002_formatting"
+            ]
+          }
+        ],
+        "passes": true
+      },
+      "reference_raw_m1": null,
+      "counts": {
+        "mutants": 0,
+        "equivalent": 0,
+        "unstable": 0,
+        "review_needed": 0,
+        "confirmed_non_equivalent": 0
+      }
+    },
     "parrot-refactoring": {
       "task_sha256": "9e01f7d8ee68e11cc35b4ad749f1cd34ee827798fa2d21e95fc1180c0972b882",
       "admitted_at": "2026-10-28T03:40:14.644546+00:00",
@@ -2224,6 +2901,91 @@
         "confirmed_non_equivalent": 0
       }
     },
+    "utfcpp-checked": {
+      "task_sha256": "eac58e96e554d3693043b3a4abc3c605a502a1bb42369e1fb7d7d10a3cc38bd3",
+      "admitted_at": "2026-10-29T04:22:29.960185+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
+      "note": "M1 不适用（header_only）；参考 C1 0.9344608879492601 达标，手写变异 5/5 检出，真实缺陷与等价版本按预期。",
+      "reference": {
+        "m1": null,
+        "c1": 0.9344608879492601,
+        "threshold": 0.8,
+        "valid_stable": true,
+        "handwritten": 5,
+        "handwritten_detected": 5,
+        "variants": [
+          {
+            "id": "hw-01",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "CheckedAPITests.test_append",
+              "CheckedAPITests.test_utf32to8",
+              "CheckedAPITests.test_utf16to8",
+              "CheckedAPITests.test_replace_invalid",
+              "Utf8Errors.CheckedInvalidInputs",
+              "CPP11APITests.test_append",
+              "CPP11APITests.test_utf16to8",
+              "CPP11APITests.test_utf32to8",
+              "CPP11APITests.test_replace_invalid"
+            ]
+          },
+          {
+            "id": "hw-02",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "CheckedAPITests.test_append16",
+              "CPP11APITests.test_append16"
+            ]
+          },
+          {
+            "id": "hw-03",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "CheckedAPITests.test_distance"
+            ]
+          },
+          {
+            "id": "hw-04",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "Utf8Errors.CheckedInvalidInputs"
+            ]
+          },
+          {
+            "id": "hw-05",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "CheckedAPITests.test_next",
+              "CheckedAPITests.test_peek_next",
+              "CheckedAPITests.test_prior",
+              "CheckedAPITests.test_utf8to16",
+              "CheckedIteratrTests.test_increment",
+              "CheckedIteratrTests.test_decrement",
+              "CPP11APITests.test_utf8to16"
+            ]
+          }
+        ],
+        "passes": true
+      },
+      "reference_raw_m1": null,
+      "counts": {
+        "mutants": 0,
+        "equivalent": 0,
+        "unstable": 0,
+        "review_needed": 0,
+        "confirmed_non_equivalent": 0
+      }
+    },
     "yaml-cpp-document": {
       "task_sha256": "01d909231afaaaf68ee8d850038f8af7ceab4c72b24e0fca6044bc9e0f562ca0",
       "admitted_at": "2026-10-28T07:58:12.510822+00:00",
@@ -2243,6 +3005,206 @@
         "equivalent": 4,
         "unstable": 2,
         "review_needed": 5,
+        "confirmed_non_equivalent": 0
+      }
+    },
+    "yaml-cpp-emitter-utils": {
+      "task_sha256": "c29c582be532c7c0cc6a854c88f8207068cb526f94e91fe9308bf5dd8a32947f",
+      "admitted_at": "2026-10-29T04:22:29.946775+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
+      "note": "按 benchmark/tools/mutant_review/yaml-cpp-emitter-utils/ 的复核结论签署：等价候选 22 项均有结论，不稳定 1 项按规则剔除，探针超时 7 项保留在分母中。",
+      "reference": {
+        "killed": 203,
+        "timeout": 7,
+        "total": 210,
+        "m1": 1.0,
+        "threshold": 0.8,
+        "passes": true
+      },
+      "reference_raw_m1": 0.8982300884955752,
+      "counts": {
+        "mutants": 233,
+        "equivalent": 22,
+        "unstable": 1,
+        "review_needed": 7,
+        "confirmed_non_equivalent": 0
+      }
+    },
+    "yaml-cpp-node-impl": {
+      "task_sha256": "ad407ef4c1320a86cd9e26a887eff6c1278ad4c7cb944af2fbb5e6eea504d6ac",
+      "admitted_at": "2026-10-29T04:22:29.923567+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
+      "note": "M1 不适用（header_only）；参考 C1 0.8728813559322034 达标，手写变异 5/5 检出，真实缺陷与等价版本按预期。",
+      "reference": {
+        "m1": null,
+        "c1": 0.8728813559322034,
+        "threshold": 0.8,
+        "valid_stable": true,
+        "handwritten": 5,
+        "handwritten_detected": 5,
+        "variants": [
+          {
+            "id": "hw-01",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "NodeApi.ExplicitTagAndDefaultDefinition"
+            ]
+          },
+          {
+            "id": "hw-02",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "NodeEmitterTest.SimpleFlowSeqNode",
+              "NodeEmitterTest.NestFlowSeqNode",
+              "NodeEmitterTest.MixBlockFlowSeqNode",
+              "NodeEmitterTest.NestBlockFlowMapListNode",
+              "NodeEmitterTest.NestBlockMixMapListNode",
+              "NodeEmitterTest.NestFlowMapListNode"
+            ]
+          },
+          {
+            "id": "hw-03",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "LoadNodeTest.ForceInsertIntoMap",
+              "NodeTest.SpecialFlow",
+              "NodeTest.SimpleAppendSequence",
+              "NodeTest.SequenceElementRemoval",
+              "NodeTest.SequenceElementRemovalSizeCheck",
+              "NodeTest.SequenceFirstElementRemoval",
+              "NodeTest.SequenceFirstElementRemovalSizeCheck",
+              "NodeTest.SequenceLastElementRemoval",
+              "NodeTest.SequenceLastElementRemovalSizeCheck",
+              "NodeTest.SimpleAssignSequence",
+              "NodeTest.SimpleMap",
+              "NodeTest.MapWithUndefinedValues",
+              "NodeTest.SeqIntoMap",
+              "NodeTest.MapForceInsert",
+              "NodeTest.StdArray",
+              "NodeTest.StdPair",
+              "NodeTest.SimpleAlias",
+              "NodeTest.AliasAsKey",
+              "NodeTest.SelfReferenceSequence",
+              "NodeTest.ValueSelfReferenceMap",
+              "NodeTest.KeySelfReferenceMap",
+              "NodeTest.SelfReferenceMap",
+              "NodeTest.TempMapVariable",
+              "NodeTest.TempMapVariableAlias",
+              "NodeSpecTest.Ex2_1_SeqScalars",
+              "NodeSpecTest.Ex2_2_MappingScalarsToScalars",
+              "NodeSpecTest.Ex2_3_MappingScalarsToSequences",
+              "NodeSpecTest.Ex2_4_SequenceOfMappings",
+              "NodeSpecTest.Ex2_5_SequenceOfSequences",
+              "NodeSpecTest.Ex2_6_MappingOfMappings",
+              "NodeSpecTest.Ex2_7_TwoDocumentsInAStream",
+              "NodeSpecTest.Ex2_8_PlayByPlayFeed",
+              "NodeSpecTest.Ex2_9_SingleDocumentWithTwoComments",
+              "NodeSpecTest.Ex2_10_SimpleAnchor",
+              "NodeSpecTest.Ex2_11_MappingBetweenSequences",
+              "NodeSpecTest.Ex2_12_CompactNestedMapping",
+              "NodeSpecTest.Ex2_16_IndentationDeterminesScope",
+              "NodeSpecTest.Ex2_17_QuotedScalars",
+              "NodeSpecTest.Ex2_18_MultiLineFlowScalars",
+              "NodeSpecTest.Ex2_23_VariousExplicitTags",
+              "NodeSpecTest.Ex2_24_GlobalTags",
+              "NodeSpecTest.Ex2_25_UnorderedSets",
+              "NodeSpecTest.Ex2_16_OrderedMappings",
+              "NodeSpecTest.Ex2_27_Invoice",
+              "NodeSpecTest.Ex2_28_LogFile",
+              "NodeSpecTest.Ex5_3_BlockStructureIndicators",
+              "NodeSpecTest.Ex5_4_FlowStructureIndicators",
+              "NodeSpecTest.Ex5_6_NodePropertyIndicators",
+              "NodeSpecTest.Ex5_7_BlockScalarIndicators",
+              "NodeSpecTest.Ex5_8_QuotedScalarIndicators",
+              "NodeSpecTest.Ex5_12_TabsAndSpaces",
+              "NodeSpecTest.Ex6_1_IndentationSpaces",
+              "NodeSpecTest.Ex6_2_IndentationIndicators",
+              "NodeSpecTest.Ex6_3_SeparationSpaces",
+              "NodeSpecTest.Ex6_4_LinePrefixes",
+              "NodeSpecTest.Ex6_5_EmptyLines",
+              "NodeSpecTest.Ex6_9_SeparatedComment",
+              "NodeSpecTest.Ex6_11_MultiLineComments",
+              "NodeSpecTest.Ex6_12_SeparationSpacesII",
+              "NodeSpecTest.Ex6_22_GlobalTagPrefix",
+              "NodeSpecTest.Ex6_23_NodeProperties",
+              "NodeSpecTest.Ex6_24_VerbatimTags",
+              "NodeSpecTest.Ex6_26_TagShorthands",
+              "NodeSpecTest.Ex6_28_NonSpecificTags",
+              "NodeSpecTest.Ex6_29_NodeAnchors",
+              "NodeSpecTest.Ex7_1_AliasNodes",
+              "NodeSpecTest.Ex7_2_EmptyNodes",
+              "NodeSpecTest.Ex7_3_CompletelyEmptyNodes",
+              "NodeSpecTest.Ex7_4_DoubleQuotedImplicitKeys",
+              "NodeSpecTest.Ex7_8_SingleQuotedImplicitKeys",
+              "NodeSpecTest.Ex7_10_PlainCharacters",
+              "NodeSpecTest.Ex7_11_PlainImplicitKeys",
+              "NodeSpecTest.Ex7_13_FlowSequence",
+              "NodeSpecTest.Ex7_14_FlowSequenceEntries",
+              "NodeSpecTest.Ex7_15_FlowMappings",
+              "NodeSpecTest.Ex7_16_FlowMappingEntries",
+              "NodeSpecTest.Ex7_17_FlowMappingSeparateValues",
+              "NodeSpecTest.Ex7_18_FlowMappingAdjacentValues",
+              "NodeSpecTest.Ex7_19_SinglePairFlowMappings",
+              "NodeSpecTest.Ex7_20_SinglePairExplicitEntry",
+              "NodeSpecTest.Ex7_21_SinglePairImplicitEntries",
+              "NodeSpecTest.Ex7_23_FlowContent",
+              "NodeSpecTest.Ex7_24_FlowNodes",
+              "NodeSpecTest.Ex8_1_BlockScalarHeader",
+              "NodeSpecTest.Ex8_2_BlockIndentationHeader",
+              "NodeSpecTest.Ex8_4_ChompingFinalLineBreak",
+              "NodeSpecTest.Ex8_6_EmptyScalarChomping",
+              "NodeSpecTest.Ex8_14_BlockSequence",
+              "NodeSpecTest.Ex8_15_BlockSequenceEntryTypes",
+              "NodeSpecTest.Ex8_16_BlockMappings",
+              "NodeSpecTest.Ex8_17_ExplicitBlockMappingEntries",
+              "NodeSpecTest.Ex8_18_ImplicitBlockMappingEntries",
+              "NodeSpecTest.Ex8_19_CompactBlockMappings",
+              "NodeSpecTest.Ex8_20_BlockNodeTypes",
+              "NodeSpecTest.Ex8_22_BlockCollectionNodes"
+            ]
+          },
+          {
+            "id": "hw-04",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "NodeApi.ExplicitTagAndDefaultDefinition"
+            ]
+          },
+          {
+            "id": "hw-05",
+            "kind": "handwritten",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "LoadNodeTest.FallbackValues"
+            ]
+          },
+          {
+            "id": "null-string",
+            "kind": "real_bug",
+            "expect": "fail",
+            "outcome": "detected",
+            "failed_tests": [
+              "NodeTest.LoadTildeAsNull"
+            ]
+          }
+        ],
+        "passes": true
+      },
+      "reference_raw_m1": null,
+      "counts": {
+        "mutants": 0,
+        "equivalent": 0,
+        "unstable": 0,
+        "review_needed": 0,
         "confirmed_non_equivalent": 0
       }
     },

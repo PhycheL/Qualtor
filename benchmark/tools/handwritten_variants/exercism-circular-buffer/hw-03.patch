@@ -1,0 +1,11 @@
+--- a/src/circular_buffer.h
++++ b/src/circular_buffer.h
+@@ -13,7 +13,7 @@
+     ValueType read();
+     void write(ValueType item);
+     void overwrite(ValueType item);
+-    void clear() { head_ = tail_; }
++    void clear() {}
+ 
+    private:
+     std::vector<ValueType> buffer_;

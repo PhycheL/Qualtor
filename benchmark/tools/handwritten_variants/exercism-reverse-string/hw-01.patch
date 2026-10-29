@@ -1,0 +1,11 @@
+--- a/src/reverse_string.cpp
++++ b/src/reverse_string.cpp
+@@ -3,7 +3,7 @@
+ namespace reverse_string {
+ 
+ std::string reverse_string(const std::string& text) {
+-    return std::string(text.rbegin(), text.rend());
++    return text;
+ }
+ 
+ }  // namespace reverse_string

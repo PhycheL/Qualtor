@@ -1,0 +1,10 @@
+--- a/src/hello_world.cpp
++++ b/src/hello_world.cpp
+@@ -4,6 +4,6 @@
+ 
+ namespace hello_world {
+ 
+-string hello() { return "Hello, World!"; }
++string hello() { return "Hello, World!\n"; }
+ 
+ }  // namespace hello_world

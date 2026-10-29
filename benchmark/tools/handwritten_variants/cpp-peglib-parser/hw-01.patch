@@ -1,0 +1,11 @@
+--- a/peglib.h
++++ b/peglib.h
+@@ -3144,7 +3144,7 @@
+             const auto& rule = (*grammar_)[start_];
+             auto r = rule.parse(s, n, path);
+             output_log(s, n, r);
+-            return r.ret && r.len == n;
++            return r.ret;
+         }
+         return false;
+     }

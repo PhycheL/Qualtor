@@ -1,0 +1,11 @@
+--- a/src/binary_search_tree.h
++++ b/src/binary_search_tree.h
+@@ -37,7 +37,7 @@
+ 
+     const T &data() const { return _data; };
+     const binary_tree_ptr &left() const { return _left; };
+-    const binary_tree_ptr &right() const { return _right; };
++    const binary_tree_ptr &right() const { return _left; };
+ 
+     binary_tree_iter begin() const;
+     binary_tree_iter end() const;

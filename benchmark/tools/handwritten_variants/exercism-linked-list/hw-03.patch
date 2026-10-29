@@ -1,0 +1,11 @@
+--- a/src/linked_list.h
++++ b/src/linked_list.h
+@@ -29,7 +29,7 @@
+ 
+     T pop() { return remove(sentinel->previous); }
+ 
+-    T shift() { return remove(sentinel->next); }
++    T shift() { return remove(sentinel->previous); }
+ 
+     bool erase(T entry) {
+         auto ptr = sentinel->next;

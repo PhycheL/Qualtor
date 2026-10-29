@@ -1,0 +1,11 @@
+--- a/source/utf8/checked.h
++++ b/source/utf8/checked.h
+@@ -129,7 +129,7 @@
+     template <typename octet_iterator, typename output_iterator>
+     inline output_iterator replace_invalid(octet_iterator start, octet_iterator end, output_iterator out)
+     {
+-        static const utfchar32_t replacement_marker = utf8::internal::mask16(0xfffd);
++        static const utfchar32_t replacement_marker = utf8::internal::mask16(0x003f);
+         return utf8::replace_invalid(start, end, out, replacement_marker);
+     }
+ 

@@ -1,0 +1,11 @@
+--- a/include/nlohmann/detail/conversions/to_chars.hpp
++++ b/include/nlohmann/detail/conversions/to_chars.hpp
+@@ -1068,7 +1068,7 @@
+     JSON_ASSERT(std::isfinite(value));
+ 
+     // Use signbit(value) instead of (value < 0) since signbit works for -0.
+-    if (std::signbit(value))
++    if (value < 0)
+     {
+         value = -value;
+         *first++ = '-';

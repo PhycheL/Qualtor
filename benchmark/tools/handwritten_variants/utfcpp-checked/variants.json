@@ -1,0 +1,31 @@
+{
+  "task": "utfcpp-checked",
+  "review": "AI 编写与逐项检查；Docker 参考测试验证编译和检出，非人工审阅。",
+  "variants": [
+    {
+      "id": "hw-01",
+      "patch": "hw-01.patch",
+      "description": "UTF-8 append 错误编码零码点。"
+    },
+    {
+      "id": "hw-02",
+      "patch": "hw-02.patch",
+      "description": "UTF-16 append16 错误编码零码点。"
+    },
+    {
+      "id": "hw-03",
+      "patch": "hw-03.patch",
+      "description": "distance 起始计数多一。"
+    },
+    {
+      "id": "hw-04",
+      "patch": "hw-04.patch",
+      "description": "非法编码替换标记由 U+FFFD 错用为问号。"
+    },
+    {
+      "id": "hw-05",
+      "patch": "hw-05.patch",
+      "description": "checked next 解码码点偏移一；迭代器位置保持原行为。"
+    }
+  ]
+}

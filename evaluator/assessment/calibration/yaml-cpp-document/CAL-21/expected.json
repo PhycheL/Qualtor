@@ -1,0 +1,32 @@
+{
+  "sample": "CAL-21",
+  "description": "去掉 tagged-null 的唯一检出用例；M4 应降为零",
+  "reference_copy": null,
+  "hard": {
+    "status": "scored",
+    "tests_default": "valid",
+    "variants": {
+      "tagged-null": "not_detected"
+    },
+    "variant_failed_tests": {
+      "tagged-null": []
+    }
+  },
+  "relations": [
+    {
+      "metric": "M4",
+      "op": "==",
+      "value": 0
+    },
+    {
+      "metric": "M1_e2e",
+      "op": "<=",
+      "ref": "CAL-18"
+    },
+    {
+      "metric": "S1",
+      "op": "==",
+      "value": 0
+    }
+  ]
+}

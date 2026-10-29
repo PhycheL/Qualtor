@@ -1,0 +1,11 @@
+--- a/source/utf8/checked.h
++++ b/source/utf8/checked.h
+@@ -76,7 +76,7 @@
+         if (!utf8::internal::is_code_point_valid(cp))
+             throw invalid_code_point(cp);
+ 
+-        return internal::append(cp, result);
++        return internal::append(0, result);
+     }
+ 
+     inline void append(utfchar32_t cp, std::string& s)

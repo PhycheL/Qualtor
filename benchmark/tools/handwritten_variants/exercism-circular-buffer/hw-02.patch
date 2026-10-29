@@ -1,0 +1,11 @@
+--- a/src/circular_buffer.h
++++ b/src/circular_buffer.h
+@@ -32,7 +32,7 @@
+ ValueType circular_buffer<ValueType>::read() {
+     if (is_empty()) throw std::domain_error("Circular buffer is empty.");
+     ValueType item = buffer_[head_];
+-    move_position(head_);
++    /* missing head update */
+     return item;
+ }
+ 

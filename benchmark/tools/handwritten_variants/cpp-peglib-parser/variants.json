@@ -1,0 +1,31 @@
+{
+  "task": "cpp-peglib-parser",
+  "review": "AI 编写与逐项检查；Docker 参考测试验证编译和检出，非人工审阅。",
+  "variants": [
+    {
+      "id": "hw-01",
+      "patch": "hw-01.patch",
+      "description": "普通 parse 接受未消费完的后缀。"
+    },
+    {
+      "id": "hw-02",
+      "patch": "hw-02.patch",
+      "description": "search 找到匹配后遗漏位置。"
+    },
+    {
+      "id": "hw-03",
+      "patch": "hw-03.patch",
+      "description": "get_rule_names 遗漏规则名称。"
+    },
+    {
+      "id": "hw-04",
+      "patch": "hw-04.patch",
+      "description": "enable_trace 未保存回调。"
+    },
+    {
+      "id": "hw-05",
+      "patch": "hw-05.patch",
+      "description": "解析失败的错误行号偏移一。"
+    }
+  ]
+}

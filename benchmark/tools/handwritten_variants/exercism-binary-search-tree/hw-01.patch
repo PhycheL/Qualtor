@@ -1,0 +1,11 @@
+--- a/src/binary_search_tree.h
++++ b/src/binary_search_tree.h
+@@ -95,7 +95,7 @@
+ template <typename T>
+ template <typename TParam, typename>
+ void binary_tree<T>::insert(TParam &&data) {
+-    binary_tree_ptr &insert_location = data > _data ? _right : _left;
++    binary_tree_ptr &insert_location = data < _data ? _right : _left;
+     if (!insert_location)
+         insert_location =
+             binary_tree_ptr(new binary_tree(std::forward<TParam>(data)));

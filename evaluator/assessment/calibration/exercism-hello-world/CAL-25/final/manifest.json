@@ -1,0 +1,7 @@
+{
+  "files": {
+    "tests/catch_compat.h": "79ec7940924252c2c68f27e7591b405c7d1f9901c619eabb760a278c92f7ac9d",
+    "tests/hello_world_test.cc": "caa0518aeb043b1dacfa954d2ad11fd525dfd338ba01456aaa719fc8c51e0b3f"
+  },
+  "frozen_at": "2026-10-29T00:00:00+00:00"
+}

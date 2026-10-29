@@ -1,0 +1,13 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/circular_buffer.h": "exercises/practice/circular-buffer/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/circular-buffer/circular_buffer_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/circular_buffer.h": "4fa312ebab3e66fb1ec6c427f70830d11a744c8918797effa733032d81d7b15e"
+  }
+}

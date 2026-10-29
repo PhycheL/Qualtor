@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "id": "exercism-binary-search-tree",
+  "set": "dev",
+  "tier": "medium",
+  "tags": [
+    "exercism",
+    "upstream_tests"
+  ],
+  "title": "binary_search_tree 模块单元测试",
+  "description": "Exercism C++ 练习 binary-search-tree 的参考解作为被测代码；上游 Catch2 测试机械转换为 GoogleTest 作参考测试。公开代码，开发题。",
+  "source": {
+    "repository": "https://github.com/exercism/cpp",
+    "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+    "root": "benchmark/exercism-binary-search-tree/source",
+    "files": {
+      "src/binary_search_tree.h": "f56622e013c6a6f8fb39a628ff000f76cde8930b531e4c8a5adb90c5bfb6b39b"
+    }
+  },
+  "target_sources": [],
+  "include_dirs": [
+    "src"
+  ],
+  "visible": {
+    "files": [
+      "src/binary_search_tree.h"
+    ],
+    "notes": "可见材料只有被测源码、头文件和构建方式（C++11 + GoogleTest 1.12.1）。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": true,
+    "note": "上游 Catch2 测试已转换为 GoogleTest 参考测试，对 Agent 不可见。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "上游测试覆盖的输入；未单独界定评分输入域，探针即参考测试。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests",
+    "coverage_baseline": "hidden/coverage_baseline.json",
+    "coverage_instantiation": "hidden/coverage_instantiation"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/import_exercism.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": [
+    {
+      "id": "hw-01",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/binary_search_tree.h": "72ce76f6b5b1b7e452aa6465498b4f33bdda84662c8463c09f79e1391bd5e0f7"
+      },
+      "description": "插入比较方向颠倒，左右子树错误。",
+      "patch_sha256": "7386065f3269ee74f1e738640b605216411cfec1b0556bc7572ce25cb19b080b"
+    },
+    {
+      "id": "hw-02",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/binary_search_tree.h": "f8e00fe65f8e7b3c9b8944ae27ddf9f63d11eb558919e86d761f0eb0666a39bd"
+      },
+      "description": "已有子树时遗漏递归插入。",
+      "patch_sha256": "5f472bf2d08d0dec0646b19aab0129b11be293e511689c9b89f9bacff9d23d5d"
+    },
+    {
+      "id": "hw-03",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/binary_search_tree.h": "b9db4d8e7b39a06e1fbf36abfbb52b477d506653dec2bcc32512ba5e21d20015"
+      },
+      "description": "构造器遗漏初始值，保留默认值。",
+      "patch_sha256": "49ba3c43dae5ef2dd5d18af0701bc5e3c3fdf9582fbd4e6cf9398aebaf7731a8"
+    },
+    {
+      "id": "hw-04",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/binary_search_tree.h": "7776ba7ca578c7bbcc1d7c48379f466d1b8973332cb8cb6031c12271b64923d4"
+      },
+      "description": "begin 错误返回结束迭代器。",
+      "patch_sha256": "04a1d84c8e6e2c9d077a8993b3d904c159124a14df0f2d46e90858a2505e331e"
+    },
+    {
+      "id": "hw-05",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/binary_search_tree.h": "b825053800b9f9ec9248faf2ea66e5f76b3a19a02cfb3c964e239d91b213e6c0"
+      },
+      "description": "right 访问器误返回左子树。",
+      "patch_sha256": "fd042a958e687fcaf61bacf7541226edb6431b8a7c05f46720b856452975ba16"
+    }
+  ],
+  "target_headers": [
+    "src/binary_search_tree.h"
+  ]
+}

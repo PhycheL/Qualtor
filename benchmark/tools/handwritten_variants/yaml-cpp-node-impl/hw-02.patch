@@ -1,0 +1,11 @@
+--- a/include/yaml-cpp/node/impl.h
++++ b/include/yaml-cpp/node/impl.h
+@@ -188,7 +188,7 @@
+ 
+ inline void Node::SetStyle(EmitterStyle::value style) {
+   EnsureNodeExists();
+-  m_pNode->set_style(style);
++  (void)style;
+ }
+ 
+ // assignment

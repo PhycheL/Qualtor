@@ -94,7 +94,7 @@ class BuildContractTest(unittest.TestCase):
         for path in sorted(common.BENCHMARK.glob("*/task.json")):
             task = common.load_task(path.parent.name)
             baseline = common.load_baseline(task)
-            if "build" not in task and baseline:
+            if "build" not in task and baseline and not common.mutation_not_applicable(task, baseline):
                 with self.subTest(task=task["id"]):
                     self.assertEqual(common.sha256_text(common.mull_config_text(task)),
                                      baseline["mull"]["config_sha256"])

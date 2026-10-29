@@ -1,0 +1,31 @@
+{
+  "task": "exercism-binary-search-tree",
+  "review": "AI 编写与逐项检查；Docker 参考测试验证编译和检出，非人工审阅。",
+  "variants": [
+    {
+      "id": "hw-01",
+      "patch": "hw-01.patch",
+      "description": "插入比较方向颠倒，左右子树错误。"
+    },
+    {
+      "id": "hw-02",
+      "patch": "hw-02.patch",
+      "description": "已有子树时遗漏递归插入。"
+    },
+    {
+      "id": "hw-03",
+      "patch": "hw-03.patch",
+      "description": "构造器遗漏初始值，保留默认值。"
+    },
+    {
+      "id": "hw-04",
+      "patch": "hw-04.patch",
+      "description": "begin 错误返回结束迭代器。"
+    },
+    {
+      "id": "hw-05",
+      "patch": "hw-05.patch",
+      "description": "right 访问器误返回左子树。"
+    }
+  ]
+}

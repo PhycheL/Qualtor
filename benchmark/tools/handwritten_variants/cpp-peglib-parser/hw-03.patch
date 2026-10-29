@@ -1,0 +1,11 @@
+--- a/peglib.h
++++ b/peglib.h
+@@ -3240,7 +3240,7 @@
+         std::vector<std::string> rules;
+         rules.reserve(grammar_->size());
+         for (auto const& r : *grammar_) {
+-            rules.emplace_back(r.first);
++            /* missing rule name */
+         }
+         return rules;
+     }

@@ -1,0 +1,10 @@
+--- a/src/two_fer.h
++++ b/src/two_fer.h
+@@ -4,6 +4,6 @@
+ 
+ namespace two_fer {
+ inline std::string two_fer(const std::string& name = "you") {
+-    return "One for " + name + ", one for me.";
++    return std::string("One for you") + ", one for me.";
+ }
+ }  // namespace two_fer

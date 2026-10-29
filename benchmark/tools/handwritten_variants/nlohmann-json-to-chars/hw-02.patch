@@ -1,0 +1,11 @@
+--- a/include/nlohmann/detail/conversions/to_chars.hpp
++++ b/include/nlohmann/detail/conversions/to_chars.hpp
+@@ -937,7 +937,7 @@
+     }
+     else
+     {
+-        *buf++ = '+';
++        *buf++ = '-';
+     }
+ 
+     auto k = static_cast<std::uint32_t>(e);

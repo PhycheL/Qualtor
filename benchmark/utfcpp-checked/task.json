@@ -1,0 +1,146 @@
+{
+  "schema": 1,
+  "id": "utfcpp-checked",
+  "set": "dev",
+  "tier": "medium",
+  "tags": [
+    "templates",
+    "header-only"
+  ],
+  "title": "UTF 编码转换",
+  "description": "公开 C++11 库的模板与内联模块。",
+  "source": {
+    "repository": "https://github.com/nemtrif/utfcpp",
+    "commit": "b26a5f718f4f370af1852a0d5c6ae8fa031ba7d0",
+    "root": "benchmark/utfcpp-checked/source",
+    "files": {
+      "source/utf8.h": "e92f4cff6d49c4a5935b1302bba283fde734ab951e6f8c4ca4008e9c9e6cf5e9",
+      "source/utf8/checked.h": "f8a41f7a1c834c0306d3ea6df51cfe6cfa0c52266284f50a66b58a07e83a6470",
+      "source/utf8/core.h": "71b228b6c44fdba5dc79510a7016c5baf19efb4225fe832fe46c21c663ab69b6",
+      "source/utf8/cpp11.h": "91e4e2afcb41720ab02e23273ee88d202a4781640ae5efbc5d92df67b2dc8ae0",
+      "source/utf8/cpp17.h": "8ccd918206bae582ebb47710019a9ae39a2648e257c15d418b41d18925cffea3",
+      "source/utf8/cpp20.h": "39c568de98b36717052731fe1de2a7b10d19fef56e9a3afc1b882860527aa25c",
+      "source/utf8/unchecked.h": "e33d6d6493c33f6772e1149afa694caa6fbb44cced054cbb90498e0d8a6f7ebd"
+    }
+  },
+  "target_sources": [],
+  "include_dirs": [
+    "source"
+  ],
+  "visible": {
+    "files": [
+      "source/utf8/checked.h",
+      "source/utf8/core.h",
+      "source/utf8/cpp11.h",
+      "source/utf8/cpp17.h",
+      "source/utf8/cpp20.h",
+      "source/utf8/unchecked.h",
+      "source/utf8.h"
+    ],
+    "notes": "可见材料只有被测及依赖源码、头文件和公开构建配置；测试使用 C++11 / GoogleTest 1.12.1。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": false,
+    "note": "上游测试作为隐藏参考材料，未投影给生成 Agent。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "隐藏参考测试覆盖的输入；断言以固定源码实际行为为准；不以此收窄等价性判定。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests",
+    "coverage_baseline": "hidden/coverage_baseline.json",
+    "coverage_instantiation": "hidden/coverage_instantiation"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/import_step_b.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": [
+    {
+      "id": "hw-01",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "source/utf8/checked.h": "7d52f6dd9f170f5686fbceb9ef7e1a824bd27eb9f8f1b51d8a205687dfd7419a"
+      },
+      "description": "UTF-8 append 错误编码零码点。",
+      "patch_sha256": "da4797d29b4919c595e4edd1ceaf3a12ddc77c3c3a2650a0a44bc92094cc587e"
+    },
+    {
+      "id": "hw-02",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "source/utf8/checked.h": "a0042c7cae356a932dda76be74fdd4c91ac07df1ffd5c68864d9c7ed2dc93259"
+      },
+      "description": "UTF-16 append16 错误编码零码点。",
+      "patch_sha256": "c93e6fb2f4105f2c0750b3c2ed8c8be2f21dca204e763d9b41f3c4969bb0c993"
+    },
+    {
+      "id": "hw-03",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "source/utf8/checked.h": "5923a395634d723bba7f4424290356e8e50e8ff284ce1dae5e86d241db921726"
+      },
+      "description": "distance 起始计数多一。",
+      "patch_sha256": "167960b1b01f3f96a33dd2015dd246e1a0cf6ec0497e5d0f521c5ef7c8adc362"
+    },
+    {
+      "id": "hw-04",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "source/utf8/checked.h": "b03cba254c78c6da4978a44faae7b88fba13cb9ed302d1fe9019f8900f6582b2"
+      },
+      "description": "非法编码替换标记由 U+FFFD 错用为问号。",
+      "patch_sha256": "7d905acd1035c004556dd79b7229af4698007b9525e13db963e1bbdc6eee2b65"
+    },
+    {
+      "id": "hw-05",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "source/utf8/checked.h": "b386ef8b94d46390aa43a06b4392b5b20c3d09ee04f8d32c90b708339e460971"
+      },
+      "description": "checked next 解码码点偏移一；迭代器位置保持原行为。",
+      "patch_sha256": "f2eeaa19b5a9aa6d209ba4ab00a88bd728c48cbd060a509340b494e0c2986ebe"
+    }
+  ],
+  "build": {
+    "support_sources": []
+  },
+  "target_headers": [
+    "source/utf8/core.h",
+    "source/utf8/checked.h",
+    "source/utf8/unchecked.h"
+  ]
+}

@@ -1,0 +1,11 @@
+--- a/source/utf8/checked.h
++++ b/source/utf8/checked.h
+@@ -218,7 +218,7 @@
+     distance (octet_iterator first, octet_iterator last)
+     {
+         typename std::iterator_traits<octet_iterator>::difference_type dist;
+-        for (dist = 0; first < last; ++dist)
++        for (dist = 1; first < last; ++dist)
+             utf8::next(first, last);
+         return dist;
+     }

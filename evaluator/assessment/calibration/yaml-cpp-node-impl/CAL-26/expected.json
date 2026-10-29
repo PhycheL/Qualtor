@@ -1,0 +1,62 @@
+{
+  "sample": "CAL-26",
+  "description": "公共头文件的真实缺陷和手写变异均被检出",
+  "hard": {
+    "status": "scored",
+    "tests_default": "valid",
+    "variants": {
+      "null-string": "detected"
+    },
+    "variant_failed_tests": {
+      "null-string": [
+        "NodeTest.LoadTildeAsNull"
+      ]
+    }
+  },
+  "relations": [
+    {
+      "metric": "M1_e2e",
+      "op": "na",
+      "reason": "header_only"
+    },
+    {
+      "metric": "M1_valid",
+      "op": "na",
+      "reason": "header_only"
+    },
+    {
+      "metric": "C2",
+      "op": "na",
+      "reason": "header_only"
+    },
+    {
+      "metric": "M4",
+      "op": "==",
+      "value": 1
+    },
+    {
+      "metric": "M2",
+      "op": "==",
+      "value": 1
+    }
+  ],
+  "reference_copies": [
+    "tests/api_edges.cc",
+    "tests/emitter_test.cc",
+    "tests/encoding_test.cc",
+    "tests/error_messages_test.cc",
+    "tests/gen_emitter_test.cc",
+    "tests/handler_spec_test.cc",
+    "tests/handler_test.cc",
+    "tests/handler_test.h",
+    "tests/load_node_test.cc",
+    "tests/mock_event_handler.h",
+    "tests/node_spec_test.cc",
+    "tests/node_test.cc",
+    "tests/ostream_wrapper_test.cc",
+    "tests/parser_test.cc",
+    "tests/reference_options.cc",
+    "tests/regex_test.cc",
+    "tests/specexamples.h"
+  ]
+}

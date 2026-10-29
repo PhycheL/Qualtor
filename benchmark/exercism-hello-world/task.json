@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "id": "exercism-hello-world",
+  "set": "dev",
+  "tier": "easy",
+  "tags": [
+    "exercism",
+    "upstream_tests"
+  ],
+  "title": "hello_world 模块单元测试",
+  "description": "Exercism C++ 练习 hello-world 的参考解作为被测代码；上游 Catch2 测试机械转换为 GoogleTest 作参考测试。公开代码，开发题。",
+  "source": {
+    "repository": "https://github.com/exercism/cpp",
+    "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+    "root": "benchmark/exercism-hello-world/source",
+    "files": {
+      "src/hello_world.cpp": "a7666eabe588d2b8c45e0a2e95562839ffce71ec2af302a39f6bd04834c1b195",
+      "src/hello_world.h": "567a0f4085fa52a8e8dd23c43800c7744d751e5063bbd8ddff31d86ebf2de5a2"
+    }
+  },
+  "target_sources": [
+    "src/hello_world.cpp"
+  ],
+  "include_dirs": [
+    "src"
+  ],
+  "visible": {
+    "files": [
+      "src/hello_world.cpp",
+      "src/hello_world.h"
+    ],
+    "notes": "可见材料只有被测源码、头文件和构建方式（C++11 + GoogleTest 1.12.1）。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": true,
+    "note": "上游 Catch2 测试已转换为 GoogleTest 参考测试，对 Agent 不可见。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "上游测试覆盖的输入；未单独界定评分输入域，探针即参考测试。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/import_exercism.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": [
+    {
+      "id": "hw-01",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/hello_world.cpp": "af5850de35456d676b20730817bf48af1b843445c17bbbf2d8031777e7d4faa7"
+      },
+      "description": "遗漏逗号。",
+      "patch_sha256": "91f7f8c16e25e76e876e3992ba09ea967d11fed7d56d5c0f661c7c872fdfae43"
+    },
+    {
+      "id": "hw-02",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/hello_world.cpp": "03ae50ea6adb3b97fbd593897b0d275aeb13b170be7e23438dfa13881b16a5f3"
+      },
+      "description": "首字母大小写错误。",
+      "patch_sha256": "0a61c8c3e08bdb93c3c50efc301ad9b40438622ecc918f4fcb5ac715528ea0ac"
+    },
+    {
+      "id": "hw-03",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/hello_world.cpp": "b3daa22308a266496bdd0a2f04707938eb51ff9adae28f33581bc50df99482db"
+      },
+      "description": "附加多余换行。",
+      "patch_sha256": "1c086d59daf4d133adca8e082debf5cad4b50c20a836ce041094bee67ab054d5"
+    }
+  ]
+}

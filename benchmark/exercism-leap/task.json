@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "id": "exercism-leap",
+  "set": "dev",
+  "tier": "easy",
+  "tags": [
+    "exercism",
+    "upstream_tests"
+  ],
+  "title": "leap 模块单元测试",
+  "description": "Exercism C++ 练习 leap 的参考解作为被测代码；上游 Catch2 测试机械转换为 GoogleTest 作参考测试。公开代码，开发题。",
+  "source": {
+    "repository": "https://github.com/exercism/cpp",
+    "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+    "root": "benchmark/exercism-leap/source",
+    "files": {
+      "src/leap.h": "ac9d1205291c91a10335d20c98fbac32bac86b09d6cd2bfc77c5e64779aeae0d"
+    }
+  },
+  "target_sources": [],
+  "include_dirs": [
+    "src"
+  ],
+  "visible": {
+    "files": [
+      "src/leap.h"
+    ],
+    "notes": "可见材料只有被测源码、头文件和构建方式（C++11 + GoogleTest 1.12.1）。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": true,
+    "note": "上游 Catch2 测试已转换为 GoogleTest 参考测试，对 Agent 不可见。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "上游测试覆盖的输入；未单独界定评分输入域，探针即参考测试。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests",
+    "coverage_baseline": "hidden/coverage_baseline.json"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/import_exercism.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": [
+    {
+      "id": "hw-01",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/leap.h": "faeb8654a65c1624763fb0cb5cb4bd8d5e83e1446955fc117254aa11d64a8b84"
+      },
+      "description": "遗漏世纪年例外。",
+      "patch_sha256": "2aa3b27d4a2884f9fc1a410c397f0256b5ef5a665b6a038e5b77edd8b78f4d6c"
+    },
+    {
+      "id": "hw-02",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/leap.h": "1c1353a6bf6ba8c0d726cab9001d8589a8abcf91df599298db41f146ce568033"
+      },
+      "description": "遗漏 400 年倍数的闰年规则。",
+      "patch_sha256": "9e5b3020865f85d484a44a291522eba1af6a0c2f0fcdc8055d54976548b82058"
+    },
+    {
+      "id": "hw-03",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/leap.h": "73e331b72677c6acd0649155d24e90b3eeb24b9ea04231dea96337439c6a9cc4"
+      },
+      "description": "普通年份整除判断取反。",
+      "patch_sha256": "68f08e43577b40cd414ebc3588cefa75cbaae497cd55ef867cf3d90543629d1d"
+    }
+  ],
+  "target_headers": [
+    "src/leap.h"
+  ]
+}

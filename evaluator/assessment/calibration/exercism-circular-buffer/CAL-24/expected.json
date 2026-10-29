@@ -1,0 +1,33 @@
+{
+  "sample": "CAL-24",
+  "description": "原代码上全部失败；M1 不适用仍为 null",
+  "reference_copy": null,
+  "hard": {
+    "status": "invalid",
+    "tests_default": "failed_on_target",
+    "variants": {},
+    "invalid_reason": "no_valid_tests"
+  },
+  "relations": [
+    {
+      "metric": "M1_e2e",
+      "op": "na",
+      "reason": "header_only"
+    },
+    {
+      "metric": "M1_valid",
+      "op": "na",
+      "reason": "header_only"
+    },
+    {
+      "metric": "C2",
+      "op": "na",
+      "reason": "header_only"
+    },
+    {
+      "metric": "V2",
+      "op": "==",
+      "value": 0
+    }
+  ]
+}

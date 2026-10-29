@@ -1,0 +1,31 @@
+{
+  "task": "yaml-cpp-node-impl",
+  "review": "AI 编写与逐项检查；Docker 参考测试验证编译和检出，非人工审阅。",
+  "variants": [
+    {
+      "id": "hw-01",
+      "patch": "hw-01.patch",
+      "description": "SetTag 遗漏设置标签。"
+    },
+    {
+      "id": "hw-02",
+      "patch": "hw-02.patch",
+      "description": "SetStyle 遗漏更新输出样式。"
+    },
+    {
+      "id": "hw-03",
+      "patch": "hw-03.patch",
+      "description": "非空节点错误报告 size 为 0。"
+    },
+    {
+      "id": "hw-04",
+      "patch": "hw-04.patch",
+      "description": "缺省 null 节点错误判定为未定义。"
+    },
+    {
+      "id": "hw-05",
+      "patch": "hw-05.patch",
+      "description": "带 fallback 的成功转换错误返回缺省值。"
+    }
+  ]
+}

@@ -10,7 +10,7 @@ def ratio(hit, total):
     return {"covered": hit, "total": total, "percent": round(100 * hit / total, 4) if total else None}
 
 
-def parse_text(path):
+def parse_text(path, headers=False):
     lines, branches = {}, []
     current_line = None
     for text in Path(path).read_text().splitlines():
@@ -27,11 +27,14 @@ def parse_text(path):
             ident, count, never, flags = branch.groups()
             branches.append({"line": current_line, "id": int(ident), "count": int(count or 0), "throw": "throw" in flags})
     normal = [b for b in branches if not b["throw"]]
-    return {"line": ratio(sum(v > 0 for v in lines.values()), len(lines)),
+    result = {"line": ratio(sum(v > 0 for v in lines.values()), len(lines)),
             "branch_all": ratio(sum(b["count"] > 0 for b in branches), len(branches)),
             "branch_nonthrow": ratio(sum(b["count"] > 0 for b in normal), len(normal)),
             "uncovered_lines": [k for k, v in lines.items() if not v],
             "uncovered_branches": [b for b in branches if not b["count"]]}
+    if headers:
+        result["line_counts"] = {str(k): v for k, v in sorted(lines.items())}
+    return result
 
 
 def merged_lines(lines):
@@ -246,10 +249,13 @@ def collect_targets(prefix_dir, sources, output, audit, gcov="gcov", headers=Fal
             source = text_source(report)
             source = str(Path(source).resolve()) if source else None
             if source in sources:
-                text_stats[source] = parse_text(report)
+                text_stats[source] = parse_text(report, headers)
                 unit_text[source] = text_stats[source]
+        # 模板的 gcov 文本会省略部分实例的分支，JSON 则保留；纯头文件 C2 不适用。
+        # 对头文件逐 TU 核对每行的实际计数（不只核对比例），源码题仍逐项核对三种统计。
         agreements.append(set(unit_json) == set(unit_text) and all(
-            all(unit_text[s][key] == stats[key] for key in ("line", "branch_all", "branch_nonthrow"))
+            (unit_text[s]["line_counts"] == stats["line_counts"] if headers else
+             all(unit_text[s][key] == stats[key] for key in ("line", "branch_all", "branch_nonthrow")))
             for s, stats in unit_json.items()))
     if headers:
         per_file = {s: merge_header_stats(records) for s, records in header_records.items()}

@@ -1,0 +1,42 @@
+{
+  "sample": "CAL-27",
+  "description": "去掉 null-string 回归测试后真实缺陷未检出",
+  "reference_copy": null,
+  "hard": {
+    "status": "scored",
+    "tests_default": "valid",
+    "variants": {
+      "null-string": "not_detected"
+    },
+    "variant_failed_tests": {
+      "null-string": []
+    }
+  },
+  "relations": [
+    {
+      "metric": "M1_e2e",
+      "op": "na",
+      "reason": "header_only"
+    },
+    {
+      "metric": "M1_valid",
+      "op": "na",
+      "reason": "header_only"
+    },
+    {
+      "metric": "C2",
+      "op": "na",
+      "reason": "header_only"
+    },
+    {
+      "metric": "M4",
+      "op": "==",
+      "value": 0
+    },
+    {
+      "metric": "C1",
+      "op": "<=",
+      "ref": "CAL-26"
+    }
+  ]
+}

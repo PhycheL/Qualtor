@@ -1,0 +1,108 @@
+{
+  "task": "exercism-linked-list",
+  "created_at": "2026-10-29T04:12:32.308659+00:00",
+  "created_by_run": "step-b-formal-20261029-01-exercism-linked-list",
+  "scorer_version": "0.4.0",
+  "scorer_code_sha256": "a88c9194e273ad9cd3ec962c0b2993a7b1a37b1218a76aee7e406cf7d928af8f",
+  "images": {
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
+  },
+  "mutation": {
+    "applicable": false,
+    "reason": "header_only"
+  },
+  "mutants": [],
+  "equivalent": [],
+  "unstable": [],
+  "review_needed": [],
+  "review": {
+    "status": "reviewed",
+    "by": "Codex（AI 复核，Linux ARM64）",
+    "at": "2026-10-29",
+    "note": "M1 不适用（header_only）；参考 C1 0.9714285714285714 达标，手写变异 5/5 检出，真实缺陷与等价版本按预期。"
+  },
+  "zero_mutants_evidence": [],
+  "reference": {
+    "m1": null,
+    "c1": 0.9714285714285714,
+    "threshold": 0.8,
+    "valid_stable": true,
+    "handwritten": 5,
+    "handwritten_detected": 5,
+    "variants": [
+      {
+        "id": "hw-01",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "LinkedList.T002_push_pop_respectively_add_remove_at_the_end_of_the_list",
+          "LinkedList.T004_shift_gets_first_element_from_the_list",
+          "LinkedList.T006_pop_push_shift_and_unshift_can_be_used_in_any_order",
+          "LinkedList.T013_erases_the_element_with_the_specified_value_from_the_list",
+          "LinkedList.T014_erases_the_element_with_the_specified_value_from_the_list_re",
+          "LinkedList.T015_erases_the_element_with_the_specified_value_from_the_list_re",
+          "LinkedList.T019_erases_only_the_first_occurrence"
+        ]
+      },
+      {
+        "id": "hw-02",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "LinkedList.T002_push_pop_respectively_add_remove_at_the_end_of_the_list",
+          "LinkedList.T006_pop_push_shift_and_unshift_can_be_used_in_any_order",
+          "LinkedList.T013_erases_the_element_with_the_specified_value_from_the_list",
+          "LinkedList.T014_erases_the_element_with_the_specified_value_from_the_list_re",
+          "LinkedList.T019_erases_only_the_first_occurrence"
+        ]
+      },
+      {
+        "id": "hw-03",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "LinkedList.T004_shift_gets_first_element_from_the_list",
+          "LinkedList.T005_unshift_adds_element_at_start_of_the_list",
+          "LinkedList.T006_pop_push_shift_and_unshift_can_be_used_in_any_order",
+          "LinkedList.T015_erases_the_element_with_the_specified_value_from_the_list_re"
+        ]
+      },
+      {
+        "id": "hw-04",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "ListApi.EraseExistingReturnsTrue",
+          "LinkedList.T007_count_an_empty_list",
+          "LinkedList.T008_count_a_list_with_items",
+          "LinkedList.T009_count_is_correct_after_mutation",
+          "LinkedList.T010_popping_to_empty_doesn_t_break_the_list",
+          "LinkedList.T011_shifting_to_empty_doesn_t_break_the_list",
+          "LinkedList.T012_erases_the_only_element",
+          "LinkedList.T013_erases_the_element_with_the_specified_value_from_the_list",
+          "LinkedList.T014_erases_the_element_with_the_specified_value_from_the_list_re",
+          "LinkedList.T015_erases_the_element_with_the_specified_value_from_the_list_re",
+          "LinkedList.T016_erases_the_first_of_two_elements",
+          "LinkedList.T017_erases_the_second_of_two_elements",
+          "LinkedList.T018_erase_does_not_modify_the_list_if_the_element_is_not_found",
+          "LinkedList.T019_erases_only_the_first_occurrence"
+        ]
+      },
+      {
+        "id": "hw-05",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "ListApi.EraseExistingReturnsTrue"
+        ]
+      }
+    ],
+    "passes": true
+  }
+}

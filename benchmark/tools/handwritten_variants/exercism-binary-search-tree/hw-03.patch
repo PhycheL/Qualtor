@@ -1,0 +1,11 @@
+--- a/src/binary_search_tree.h
++++ b/src/binary_search_tree.h
+@@ -20,7 +20,7 @@
+     template <typename TParam, typename = enable_if_t<std::is_constructible<
+                                    T, remove_reference_t<TParam>>::value>>
+     explicit binary_tree(TParam &&data)
+-        : _data(std::forward<TParam>(data)), _left(nullptr), _right(nullptr) {}
++        : _data(), _left(nullptr), _right(nullptr) {}
+ 
+     ~binary_tree() = default;
+ 

@@ -1,0 +1,22 @@
+{
+  "files": {
+    "tests/api_edges.cc": "f98e0b9ee4dc4f02b90b0c70c92f9bdfe37662b4ba6da1abd341f9b18d4ec2ad",
+    "tests/emitter_test.cc": "8293706a372ebd5be40b952d47c5ea99f0edbce46361b3e7164a5f5d00e9bb1e",
+    "tests/encoding_test.cc": "707d7e27668b4708895676b2a1b4dfe6da1d81458da1c838acc2295a742c1f9d",
+    "tests/error_messages_test.cc": "8ddd6f67930912f3d0f1b4e5424ac0dfcb29be6dfa1f5ab2c299d33c46867e98",
+    "tests/gen_emitter_test.cc": "1878dc7789e9e518829b5003b82aefa71af2c09c16d556586a4037445a8e2d40",
+    "tests/handler_spec_test.cc": "03cb36f2066ef3e4bbf4d0d467960e0adee0d565a1159fcc5ab22f58d9c3f027",
+    "tests/handler_test.cc": "240c22c54c2db25f830441d6ab97d5538720b6fb2e5bc76d63a2c18c62a5a867",
+    "tests/handler_test.h": "13ca6caff194fc052af11fec6cf8cf228fb325b1b4c12d4dbb34714dd26c4520",
+    "tests/load_node_test.cc": "a87acc836385574cf66c1d5fbf1a957e2c1877ae714712c402a67d7952944b29",
+    "tests/mock_event_handler.h": "ae2825d84fef7fb59b2ee5bebc65cbfc0d69a301f2f6ed7dadcf3ee219247e32",
+    "tests/node_spec_test.cc": "94fd8f8b98969b634a675c03a78aa5bb6272c01d86d0de1e2d0b90029e1caedd",
+    "tests/node_test.cc": "17417f15f04a48c2e8b3ffcf05562f92fdd611a7eb648c04e2ffa397a84db40f",
+    "tests/ostream_wrapper_test.cc": "add9dede485b36015b6a1372d35f080f5fa743e814690fbeaef0f3a1b98e3c42",
+    "tests/parser_test.cc": "b1b7770213b3b50192b87af2a5113fe49ac4ba3eaa2ab1786cb1ea680aeecf30",
+    "tests/reference_options.cc": "c7a49d66fe5f2caa4d3730b0db5d0f8ffb75ffd4c4742593dbff8d8ac14df7ed",
+    "tests/regex_test.cc": "b214b50db6393df1ba471117cd332695fa2dffec532fdd5d796540a41f5bd0b5",
+    "tests/specexamples.h": "b89c177c9c0f55006d4d7917552b97b2b2cd363b49261714668b7c9159176c80"
+  },
+  "frozen_at": "2026-10-29T00:00:00+00:00"
+}
