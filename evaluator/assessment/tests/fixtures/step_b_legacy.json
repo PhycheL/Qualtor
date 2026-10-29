@@ -1,0 +1,520 @@
+{
+  "commit": "08204ac",
+  "tasks": {
+    "exercism-acronym": {
+      "task_md": "5afe6b646418f0fc89256ffdf372b3f14f489bcf26fbb83c1de1bc136496e270",
+      "mull_config": "087340d95eab15b6ad34d07c48dec425b9bce5be2bc05d29e8af0004f810ac9f",
+      "task_sha256": "d4134700dc0c530989554d8963440bfb90149b13880bd1eee4664353c381ea77"
+    },
+    "exercism-affine-cipher": {
+      "task_md": "8750a58871889b93f2644acf5220bc464b8bd5e30541ec567768e759b0bbb97e",
+      "mull_config": "2f52cd45fa94a708febd73c44233189eb3e2c642dfca5e58e31aaf9f2d9b8d58",
+      "task_sha256": "9e8cab5cf5f3ccaeae816a883b685f2fc412eb2d523c541fa387f161eb314cfe"
+    },
+    "exercism-all-your-base": {
+      "task_md": "69c6b59a2fea65243788bb197942ae727155532f8c6eeff8e213b923d8ae8948",
+      "mull_config": "a7aa7592f58ffd79a372545ee9206b4e981a5862a8debb6314ae0de9b82017cd",
+      "task_sha256": "1fb5f49b056bbc0cbfe2d380c0f72bc7f0b91ad26de86dcff228f21ab8705e96"
+    },
+    "exercism-allergies": {
+      "task_md": "3fb11fe0847a54a317fdc214efb76fa1b48378d5fc61f848cd4185d39792ad7f",
+      "mull_config": "699d1668f0caab086f06bfd6c1cddc064754c0a451a5b12034cb97d9622db43d",
+      "task_sha256": "a5214bbf09586304eae475004bc06c1a882853990b6d9a6ba3884a3967702ca5"
+    },
+    "exercism-armstrong-numbers": {
+      "task_md": "df26c608ffb7effb549394573ab6787165b8ad7af3b4c3394813bfc9302c3e1d",
+      "mull_config": "6d0e5152552986d2fe19ffeb2354337d6ea09e5a048f37004bf5df1d7ffbb442",
+      "task_sha256": "5b18eda799af468fd91c5d80e74a7bc22e3103c92739609eae6199b1e99d01ca"
+    },
+    "exercism-atbash-cipher": {
+      "task_md": "a8f1d5bf4479fa4424418cfe5281c2781dabf9ea222b79ef9a27d988f27d1bdf",
+      "mull_config": "53bfef2e3e4f3bd2f5320d94acb58c071623172ac51e1d19c5c8b1d06403d38f",
+      "task_sha256": "a5ee3c91ed0fb4c2aec46904c4e450e7108e7bd1f8eb1e9a5584dc202010e88e"
+    },
+    "exercism-beer-song": {
+      "task_md": "6a4ca9657b4ff44c1140474f7a117dfdffa7f64dd4479a89d86683cb92298f16",
+      "mull_config": "819073d911f20c3fa3c5cde3e4e5ef050bbd72fb48525f7d1a83bb0d7195e4cc",
+      "task_sha256": "2dda21cd9ceee2b5cf05d0d02b0af61ea83971fb49b3f39eb090ae7c7e5b9e37"
+    },
+    "exercism-binary": {
+      "task_md": "51f097c0b38080e488767b98f758cd3954d4dff02f45822a1357b5b65896f716",
+      "mull_config": "fdd1ac0d5ef735b727a0336248621d57d020c7d4352d442defdbf7a00ef545d5",
+      "task_sha256": "dadd1bed848bcf26bfdcb135f0caee320c9ae792993097cc21a3dc724de40ab5"
+    },
+    "exercism-binary-search": {
+      "task_md": "be5d9df723fc36ef342f185b4a55618e91b4803b6daf391599c0dee8dfa0ed93",
+      "mull_config": "55a013ade016adf0669067af0c1fbbe14f5656de9b8d8fe25d24045d0672bf08",
+      "task_sha256": "2899c8ea068d0c6c9a59f40410a688127bcf2bc628ae8346c3bc2f9f5ae421b8"
+    },
+    "exercism-bob": {
+      "task_md": "27b4937cbb6c37722d9e6feb85135642641d3014ea293e5c13c16f3bd15ffbb7",
+      "mull_config": "039560beb8972535d949b486a5920cce961e2c2fc16c28153fb85fbcf775f5fc",
+      "task_sha256": "8477becf46ed560d50d3055d507e77ae438f11b5482322a4b8d1d27b1a5afa97"
+    },
+    "exercism-clock": {
+      "task_md": "92711a1a95be80032a50d66b8bfaec2c041582990d17e13dd82e4fcc5e1e4920",
+      "mull_config": "5dadaf9649b6ef1fa428f19dfe552774415b0255c4783031e00a06960a6a51a3",
+      "task_sha256": "d665c328583e94ed0b895230f35aa6da09d2b6fea07e6496d33d8a6d34338494"
+    },
+    "exercism-collatz-conjecture": {
+      "task_md": "ce80c8acdab0c14718b16e382be0846e745f83254656acbfc6b7eb76f304b9e6",
+      "mull_config": "dd63be36338a383807f987011ad5a43cb479cbbb7c90587d1420d7942893e44c",
+      "task_sha256": "317e0338b5bf94038f09879b4445ea5fe618dd0650bf1646185ee26fd033def1"
+    },
+    "exercism-crypto-square": {
+      "task_md": "de6292672208e4ab5e5a2660ed1ea0c0b685db1ab0d5e282808975a8696d4e0c",
+      "mull_config": "2c60844252c09578c844a67c8e9aa5181dc66b968b5915300e54a9e284a691c4",
+      "task_sha256": "c3eff1615a7dc78986e58f13598fb3f87bf5968e29527ab737bfdf8c1f29152d"
+    },
+    "exercism-darts": {
+      "task_md": "fc0eaa00964f9741deb032424d6134dd15687ecd61ebf0c9d4da28a25df24784",
+      "mull_config": "717c5db524b357f34ae929aa498afa1d56336e09fcda2d5b0acd1136bd2c3a5b",
+      "task_sha256": "3eeafaa4279160de018f68493fb2baade156b1b6c3dcc095aa080c383033bff6"
+    },
+    "exercism-diamond": {
+      "task_md": "5fd9e0c9d1d1fd0b5b22d98865448fa8bb3d3a309911d96bed87543901299864",
+      "mull_config": "13cf7fb9acf58d9b5f5089ff0c9b4a32f58b6cdc6cea39f3bdfdd7b6f0885d8f",
+      "task_sha256": "87a19fd876836de1b5383f481117e45936a39a6e38e9a9ee406866b320842ae3"
+    },
+    "exercism-difference-of-squares": {
+      "task_md": "caaa7085d08293777346cce68885db8d20ed4e0c9852e2edde55b1da154102f0",
+      "mull_config": "63c48a27854433e8dcc1c29e76daffbf993b2874927bedb839b633d97b686b33",
+      "task_sha256": "4688d00479318a5b8db73f9fd7b65e1fb6434dad710cdf87f47b39ec7439f42a"
+    },
+    "exercism-eliuds-eggs": {
+      "task_md": "87d44d0cef389c80f14c5c38707187e27360e13088b06a0b6ac67f1d40710020",
+      "mull_config": "b583493bf0453ceb7344c273c0149ccdac782d80fb305716878048a4f0597dd5",
+      "task_sha256": "6610720b8ad09a3a426afec2f95409d7321ba61500eb40ef6544b4d48d68fbe9"
+    },
+    "exercism-etl": {
+      "task_md": "bb8ab9d839b13300a08635a7cc7370e45595d54f33fce2e59602b67f940aba1b",
+      "mull_config": "57fdded6341836ae03ca9c47bfd1514ced8b5cb46696dc4b9d30a7f836fdf059",
+      "task_sha256": "83566b0aff82d2133596348836b5736d7df881f6b13c717fcc6612ad0d9ccdbe"
+    },
+    "exercism-flower-field": {
+      "task_md": "d14e409ee13310b719fcd9076a74ded589a048399c9cabccccb7b0284afd25cb",
+      "mull_config": "9e86ec2bc90cc6b50a978de0587cebf1d29f6c0d71c380b26f6cd11e6a012cb5",
+      "task_sha256": "af4742198f0d822e646eb53373db6fc50513673cc7b1af84401b764e18426f8b"
+    },
+    "exercism-food-chain": {
+      "task_md": "4a94f6ae23af9c907238574b286158b0972f7c594dfe9a8c113ef79b3454cb01",
+      "mull_config": "f2db37299a1d83cebb56a1424f07a660e7c19b4f15f67af8f201034e139e1c6f",
+      "task_sha256": "3eac8902afca0575a51881563dd7d5b47f5f9920b509f38ba19d1ab32df61d8a"
+    },
+    "exercism-grade-school": {
+      "task_md": "772b7e316cdf6390d5150ef388cf5dea392a06dea19988d0e8bb05e91b140553",
+      "mull_config": "9ae76f08b5f83afffee6db10f2afc27ccb82ab2e94226c177be22b07916c65ce",
+      "task_sha256": "963c372000e9acddde7bdc8b25ebc511e5cc5e76761cd1ee12fd74babd99952a"
+    },
+    "exercism-grains": {
+      "task_md": "bc65ec6dece03a9106095ba417edc90127bf1828906c8bd95ab2cfde4c4d7889",
+      "mull_config": "1875460f5704d04d9aa3a545d519088962d026b4d21b994250e1a39b8b9777d8",
+      "task_sha256": "dfef83ee06bb11f1948aaa84ae302c7d57bb48565b16835c5ab7555fb91883d1"
+    },
+    "exercism-hamming": {
+      "task_md": "bddef111c4a782231068dd637ef5efa97cecc2943afbd68465facf3bffdbeb77",
+      "mull_config": "3696445e7bf95f3620a410a6b8516dd320999708b0bc4e5b92b8af6ee6e13841",
+      "task_sha256": "eb63dd268c171a510bbe529eee2a4db64e730146eb58b968959bc84b3a9504eb"
+    },
+    "exercism-hexadecimal": {
+      "task_md": "5f6a093430857a1a896ca476ce2274a601960a938b6af538a485eaac3e2fabb5",
+      "mull_config": "0b3346bf51f63e90ae88bfecc65037b5318c4654f8cbde3cdee5512d02d13c4b",
+      "task_sha256": "ff26ee31349d9360f8ece8dbfa9b453117559e9daef0bab44415b21fac9f8915"
+    },
+    "exercism-high-scores": {
+      "task_md": "d13c244cfee0c9cc2d6839eb22965cc1789ab0b9aa52b4c7a84a64fbf1197d37",
+      "mull_config": "4741e467ecac1f104099b3ef29ae95a8a85383bbf36ae26d25e622218378ae97",
+      "task_sha256": "b12e4cee08cc55ad1d1454c013affa1f21ed65c2e859cb00cae1e41c6a6020e7"
+    },
+    "exercism-isbn-verifier": {
+      "task_md": "b9561c63e2ec9bb86fb7974ecbe86e2a79614b4d9e0f3ddde19807c4a4851b0b",
+      "mull_config": "728ce05e4b438bebf2f53d0e10c3a0ae4532178e13deaa3623b1bb84df56083c",
+      "task_sha256": "3f68bfc6b38eef90cb99a7aac3aafe309fe01d5bfbcc3895bd81f767f15006f2"
+    },
+    "exercism-isogram": {
+      "task_md": "af67b89e3075c54432b4d1a9e0dd6f7e3391edca0adc48cf66013d874cdd0419",
+      "mull_config": "0d7bb2daaf0b7a462daa5fcec1788a76a2905021eb71f645f64904660464d903",
+      "task_sha256": "b93ea28fe98624b91e006e5ab9e09a75859735f10f7831410e4f82badd1a6cb9"
+    },
+    "exercism-knapsack": {
+      "task_md": "081bec14ec493b28c3fddcddd4d6e9ee00709ec7d27fe553801cfd949777ffb5",
+      "mull_config": "47b9e8a884c55e858ecad283c7956943f15dd5c12e4c65fc2bdf564ac969a451",
+      "task_sha256": "873f5ed045bf37a1f649a9d1f91b2f21885c740f0b31070871cba0389f385af7"
+    },
+    "exercism-largest-series-product": {
+      "task_md": "75559a885ba1a51b7f2f69de3da2e64b899a2d0f42ca73f15fecc2b31ac7cb73",
+      "mull_config": "3726bc4446164fb5e9dae89d3b0f0d7224e49bee1c7cd53f815c70edb05e61b9",
+      "task_sha256": "c0f6732358233e20eed7d91aa711ab94ece23bbc97efec20e2ac13c4119d7da6"
+    },
+    "exercism-luhn": {
+      "task_md": "399faa6d3e6fc8c9eee0ec660ba01cdd237fcf72bd11ce6c1f6fa3a9e50708aa",
+      "mull_config": "3c5e07284f0bc144e8892853a05cb61a612b890760022103552a5111af368d42",
+      "task_sha256": "3abad840f75282257c863bc94b4037421b8a4bf8fd222104bdec23caec6d80af"
+    },
+    "exercism-matching-brackets": {
+      "task_md": "d9a29c6007139878ac875575e5d8b2430c8ea4994d6031660d102bd412856464",
+      "mull_config": "fe24a60e344b1dfba1246ef6192213afbf33c80e93a28b3593c4665fc2445790",
+      "task_sha256": "6986c6e9d25859f1e3eff92b80930e3b3aa3a6db4b57278b1dee4d97ac179743"
+    },
+    "exercism-minesweeper": {
+      "task_md": "e63dcc5e01fb3cd176d4c0579ff37f3fc8de7889c6a4ba43e55ccafcb4745df9",
+      "mull_config": "99c00190f79502997c4daec10f052b7e1d64fae3eec990600a8f2dd39ee215be",
+      "task_sha256": "c22382d233b6e611677967c53365de619b92dafc5af392f4f8d328e2b92da277"
+    },
+    "exercism-nth-prime": {
+      "task_md": "8d252868f88fb28e2996d1d08f9de151d9ce88eca1edda16c3e87082bacb492e",
+      "mull_config": "577989f4a2fec0645490b986d11f1795c79b45db6a853b04e687eec2168377ab",
+      "task_sha256": "0ddda3c154f4680ead792c3f8566047a081284ab07779bbbc39e825558e99eb9"
+    },
+    "exercism-pangram": {
+      "task_md": "9d490d6a0e9b276d05272e6d33fbd61b65d6eb6ace5655daaaf668e378531a3c",
+      "mull_config": "369a344a4426b382287abe77d0f06c5675c6a95beaeeb5b8c2a0a118dd8f20c3",
+      "task_sha256": "3c230254a7d2b9b96b0bb95a555f66cb444f0495ca00d2d55eef18a24dcea974"
+    },
+    "exercism-pascals-triangle": {
+      "task_md": "60f1946e90cdda2b1142a79354b14149646624b67f2ef1da1aaf7150ef2d347f",
+      "mull_config": "f34621c77745899a2e8f8462d9a07b1fae48cdbeaee9ef1c39ac17a5e45b0e43",
+      "task_sha256": "cd04e98965de733b94d24a540beb1a7340e094b812a17cceff257bc78da42ed1"
+    },
+    "exercism-phone-number": {
+      "task_md": "2dc362f6b185e81b6adfe86a4e1096064cda4d4e9960e4385055ebcc180af727",
+      "mull_config": "b9f0b265863a5ecf8fb2320dbdb235c8e5b59c0f10f909680e16eea64a5e53a7",
+      "task_sha256": "e9b5796b37f8a8b3ab9e87e5d91e80b6301daf58c9a8496ab80c0237942a187d"
+    },
+    "exercism-pig-latin": {
+      "task_md": "4e23ba027ad5032a8d6410163f0fc01516740207d2ba07bcc3cfeefaf28bb690",
+      "mull_config": "3a3497f8aa45a4d1dafc4e9d1cf2a7bd512b15c11d21276d9b0162c1fafd39f6",
+      "task_sha256": "c1ea0f8e3cfb5e6e75892db38ccf204cef6d40658809b8f05fd9b5d069858024"
+    },
+    "exercism-prime-factors": {
+      "task_md": "ab77d8d9b24fd29616cf713d47c1e371c3a3fbbb146aa85039a89c00b549e979",
+      "mull_config": "9fd02ed55b0a811ad4e4bbb59ef7832e30b7241b7b1d256c8abd644dae8f2180",
+      "task_sha256": "96ba1d379ded193910b5d50ecd7f81d600c86b10299d4e2c11331eb004f12ea7"
+    },
+    "exercism-protein-translation": {
+      "task_md": "0e81cd30888126bafbe8e241500cabd9485d0d23d00229203710fc6096b1bf75",
+      "mull_config": "b5a2562d5127a893411ec7b31f9c68b3753be8e773a5a33c93a3f009b0acdaac",
+      "task_sha256": "2afb94a6bea5a6c5b57030de1fceb7f053856d2a16d67d48bfb3e83ab576c252"
+    },
+    "exercism-queen-attack": {
+      "task_md": "854d3de77b347c7cd239f9eb822d2fa7bb87f0a87c06dc6fcc4c7b83ce2c49e5",
+      "mull_config": "fbfe9602a8fd231ca1774a80048bffb3e2c690dfe9a1e5528d0f950a335c466d",
+      "task_sha256": "48b0717c314dc4e1c5383117467165dc12aae93666313b2f24c6211e09747d48"
+    },
+    "exercism-rail-fence-cipher": {
+      "task_md": "aa8307a29af1d913f9e87ac7ddb8d1dc32961548a2e09108f3ac8371bbac8694",
+      "mull_config": "bdb4a1185759117541c78b9d654a0c89f52533d320fb16fd459c3331b3604cfb",
+      "task_sha256": "ee67fadcb695ed6b2d21cf85a244e8426d7a77bdccba9c9be584f2a8e0e0433c"
+    },
+    "exercism-raindrops": {
+      "task_md": "9a480d9e9488534ca66e0985cf9ab40d1924d39f7e7bcb2e3e41d36df2d93fc2",
+      "mull_config": "123ad3c75d0319ff2f0530168d5795d8a9ae91a08bf0cd2528777ec753837643",
+      "task_sha256": "bce3f9dd0a0324068d69c064fa129a61f004f1733aabf374d8174c7ef78c0172"
+    },
+    "exercism-resistor-color": {
+      "task_md": "f628760e7337151e1b3b261d7ed558bead27c0919a59d54a0c3eb4ac2e7da458",
+      "mull_config": "40037f6ced9a278d4ae8c266e776c85f3bb06a6ae7c82dc39e5a7dd295956a80",
+      "task_sha256": "74a8c81ebd5cc1e69100da1a1265b6fe676700e86dd3eb84f6295800bb78450b"
+    },
+    "exercism-resistor-color-duo": {
+      "task_md": "9629758841ef6728fbc628832e839b82581756bd211558b33a1e9e9ecaa0cc8d",
+      "mull_config": "5b2e18b05f1effff6edc4ee108b27c80cc2681d3354465e016553d4c1efd3b99",
+      "task_sha256": "0e64a4fc89afa87af1c794da85628eb237b675d45bcd62298ef2af66e2542d4c"
+    },
+    "exercism-rna-transcription": {
+      "task_md": "ed46f74707ba82b89cbf07ff289ba6869e0d4efba9137e9ee86375a2c82fe985",
+      "mull_config": "4ca9636837e6e65c7f66aacf7574a5c330e3477f5852a46c7ad72096a2b08653",
+      "task_sha256": "d6b6a796560ea4ce156f1c154cf2916a5092b99820c195bc025803136e3bc991"
+    },
+    "exercism-robot-name": {
+      "task_md": "e37bf613329572e6f42832e59a67325561b029cefbc83e7ef768731b3b26e75c",
+      "mull_config": "e7fc2f6fd1716f626f63266cb58231ac082af3a1848aa8043346cc139e0a9ca6",
+      "task_sha256": "5156c37f46471e720d6f26d4e0ae90455a203d9af2bb1160ea201c559bed49ec"
+    },
+    "exercism-robot-simulator": {
+      "task_md": "d5f28d6c3e2f090e3268bfed786751dab9f8f534a3ccacf76d02f0203159de98",
+      "mull_config": "5fbebe8de0ec4ba8562c7fb9465938b0a781270cfdf92887ae8493206f117e04",
+      "task_sha256": "04c41b233e5ac63e844152987908c01fda43171da293d8dee091b5a18adda76c"
+    },
+    "exercism-roman-numerals": {
+      "task_md": "96eb4bdbb9975247ee29c338c72db99c8ec62a533ea9ea75026b411abb504811",
+      "mull_config": "44e12c7a76b4a222c011790770d088253e7d26fd242664b3d1952ab0e77836db",
+      "task_sha256": "73a6c0e54cdc90c657e660c0270b4e081e5a46ed6d3e01d3ff5bc7c6011ec682"
+    },
+    "exercism-rotational-cipher": {
+      "task_md": "0ff1b71d42ff3fb829f0ba1018c58d49096edaef1aa59a3d61276a21e18a13de",
+      "mull_config": "05d456dcd3d02a42b510ef6a6d43746d1b53ee5cb810efd11885247fbeaac11f",
+      "task_sha256": "a74daf9269e134e9a5b3b9bc9075cc1df47965207234ae9d2c75cdac9544c74d"
+    },
+    "exercism-run-length-encoding": {
+      "task_md": "bb31ea943857e0350b0799692c36086c07b4b659d18cb840f5d63948f361d9a3",
+      "mull_config": "de43a5bd783c427ba9f906ee2ae56657e52c249ff8f11b73babdf0a6a3201ca7",
+      "task_sha256": "ca75a99efdb58e7675774932af41e5b531cb346ff561044c1b44ef3ad03b5ac9"
+    },
+    "exercism-say": {
+      "task_md": "62b0ab28b95848f6ae2e1586b18008f5908d36bcb0614ec0d8f6e9cfd405c39a",
+      "mull_config": "ebda36274c51b4fa8913b6ec5c015973ae7097438c7ed1bb2956390f4a2fac49",
+      "task_sha256": "439224b3dbfbdad45b4cbd64296eae08bc25151cd81173490b091964ef076ec5"
+    },
+    "exercism-scrabble-score": {
+      "task_md": "ee388ae3f34d67f2994a20eeeebf5fbfd069b6a330c0fe8c7212b8378160d04f",
+      "mull_config": "07df7347bd80e7fc9541f6a14871c19711c951aef6af0fc0df7ca3ac0bf23919",
+      "task_sha256": "2af96f5a3421c4122c74bf4c36b49336c9ccbcad638919b344b8906210f4d837"
+    },
+    "exercism-secret-handshake": {
+      "task_md": "dd33a619dae9ae41a3d9c90983478749732e24d06201c4fc386b0574cd459076",
+      "mull_config": "0e31c19bbdc9df128186ae328fbc97de7a98028fb159b6a113e34b7c8c22dc4e",
+      "task_sha256": "7c56d6d07b46e953229e3db7ff81f8db204de9bb2fb20dadd4d22b489fc5891f"
+    },
+    "exercism-series": {
+      "task_md": "6e6d7c569a40c4fe1126ee2e6e5bf5eead253d11f0abf6c0b34d11b8a7d952f3",
+      "mull_config": "1368b74441b520a48fb6e11c6e725e98f5415dcd65b6db61e1fefedf6ed63be3",
+      "task_sha256": "0ae8d76f1679b33c4e55c13af1c175661dd9fc33367dc47ddb006e6c096a14c4"
+    },
+    "exercism-sieve": {
+      "task_md": "71b3729e5ef832ae5741101ae5077d4d2c32046358d4a6d7692a7172ce59dfff",
+      "mull_config": "604dbc0a389ac68a8f34f310b466a78ca3cd93989b66efe9e8875522c04afb30",
+      "task_sha256": "553837239ed12f1a21e3fa31580248902a8b36d5fadc2c09597b18fab55118e6"
+    },
+    "exercism-simple-linked-list": {
+      "task_md": "f2696da7eacfe78ba86226c152dfe838aec0358143f26fb18c01a451e39a4ea1",
+      "mull_config": "5dfde0055b8d072013be83afc99fe8d100a2a3910cfb1674a25eddb67b954bf9",
+      "task_sha256": "dd65288095a5476db8d9976ad0765dfe8bd940890cf9ad1a7c5e675e362d149f"
+    },
+    "exercism-space-age": {
+      "task_md": "9e64e6681a6ac79c7dbc0534089dfa15394a109fddf3bb9488a0a73d3a7a93bc",
+      "mull_config": "fa8ba3b4af43723baa1f079aa5c87324e440ed2379e408ff980523ee7e541214",
+      "task_sha256": "942bf7b6adb63e8509eeead7c4052db9a50b2e7d86620f1de438dcc1679d0af7"
+    },
+    "exercism-sublist": {
+      "task_md": "fd8ae4167bbac7203539ea84af78527b29836da85f34d8c18230382b43fe264a",
+      "mull_config": "bc701f87ffe7e29fa7da63d9b5b0b96a71baa20f18c843961b74a13421d061eb",
+      "task_sha256": "a163dc921d620c5bd14850f6c0fc4b799b6e65e0bd2e7cd2493871de19f8cf95"
+    },
+    "exercism-sum-of-multiples": {
+      "task_md": "9f8464e0abf43a7b9c4b5084a1d8b99d50679bb2ec4f633a3cbbd4a12421df61",
+      "mull_config": "fd74835c77278ac9ac753159b6fb4bb9fb1012fb734baa3df74e9dd575da7658",
+      "task_sha256": "f0c71ca6bcbdf389b598313fef01ecac94b97a849c1359e79a7c669f61530df9"
+    },
+    "exercism-triangle": {
+      "task_md": "57f2f0875f5cb9253a744433c1a035d8f2b9ccae066dbfe2fda1028b47045668",
+      "mull_config": "e5a32c979ab7d059cadb17396c7d6c22e5a0636f661be6f84cfa43d0a0bd47cd",
+      "task_sha256": "7f1c8f06642816a7bfb3bf3d16e46e8fe851a7070fe1c58ef4f118d4e7c1c0c6"
+    },
+    "exercism-trinary": {
+      "task_md": "798e4303ec39d6848db920f5becf525d1b4180501dccd6a3d409d3b719acb703",
+      "mull_config": "e166994976f9b339ce96d1430e17eb94e9f4bd9d604a6a942d0cea286156928d",
+      "task_sha256": "e616b152bb92a9e3ba37c2c511031f12a2bca857e0f61a6410e8e302a3338ff9"
+    },
+    "exercism-two-bucket": {
+      "task_md": "72601f87ccd27e202f0fbe4118d3d69ac08d560217a2cd65684df843067f9b5c",
+      "mull_config": "4cb19b1a6420c3aa9524d62a3e7696e67f66fc21678bce80abd4ecfa35d87052",
+      "task_sha256": "4fc1f55da50c50409e7097f8160e0333c99a750a76d73d338f8c4a64f7b51526"
+    },
+    "exercism-word-count": {
+      "task_md": "3ddf9e1d0fb4608d862e8699b71ee8dc814ebc5150dba69cf14b927e9b345133",
+      "mull_config": "7f8c120197dc38b4ed05017732a0dd613190ca0d9726a259cff578f4ac223083",
+      "task_sha256": "782c109f4ba468abcb50fd49facffbbc475a6232b2666529ea64f4c73fde9f34"
+    },
+    "exercism-zebra-puzzle": {
+      "task_md": "6b546b11cf28e2325d1ab9ee0d7c3a1bd0724a1c2539d328ab372c471d6e5ee6",
+      "mull_config": "491176ae2c1e143447ec42fdc6dbc0c858d5f0bc6fbf8109cf17a94b777b773c",
+      "task_sha256": "0f391dff84ec1bf0d37494a4d994c6569f3ba6ec823fdbe0c8140a4a8dee9b53"
+    },
+    "gildedrose-update-quality": {
+      "task_md": "9f4de0e7f70278089769cfc9c355d12a3f047f71a6b07636b0bce6c4d0b5736e",
+      "mull_config": "4b25a1a13ae6b86abdd8d74c2b585fc779b73035af084279273a27d3fccbcaba",
+      "task_sha256": "92720d07eeeabc2108b7e7afcfe7554af76147176b3f3de552cd5d19baf24245"
+    },
+    "humaneval-x-cpp-01": {
+      "task_md": "c8b0aa1d1f2a290fcf4c22e827d6fc8ee8a391d40592dc0e5ae3e55e0da2b555",
+      "mull_config": "521715ad1c5b6a57f28b418450d264427dee57c6cd987d8b9000751e54709ac4",
+      "task_sha256": "40295964769e965cf2f5cd8aa106b779bb85841d317d8d4027dfee56ca3c9c06"
+    },
+    "humaneval-x-cpp-02": {
+      "task_md": "a3c0d93b3ac38087735a2f4f28c5d5dde658959d0de81c6e5b0e9be1baefd691",
+      "mull_config": "92b40ad927d20198df7be39cfbc6ea086f154f493e72c3ff07361fc66b132a09",
+      "task_sha256": "b62c12739b7bd3f944d0b2c273c5955972fc5a1bebd2a19d1aca43f41f7d2263"
+    },
+    "humaneval-x-cpp-03": {
+      "task_md": "6e39b68912d8e890ce0994c823217fd8da4e22878ccfc366837b6896cb28c71c",
+      "mull_config": "19edc195c7ab81fb9cb3fc035b9f745c13c5591913b676f5b17849094733e1f0",
+      "task_sha256": "167c4ffa71d1d7dd5411a1024412d044aff0b0297025fdf645da77c9f4b81cac"
+    },
+    "humaneval-x-cpp-04": {
+      "task_md": "fe049a02296df3ce2b06b661b3e4c46a2d82fe63f8014e2cc8bc66e7485b223a",
+      "mull_config": "8ccb6af9a4fe9edda2c5595792bf441508876946723336051cc0cb126fb69433",
+      "task_sha256": "4bc9d8f9456c398db94e0d14043d46f309bb854c337cdfe1bcb0bb099775e57a"
+    },
+    "humaneval-x-cpp-05": {
+      "task_md": "547f7a1a532235d3e865850df1076bd0084d2a54abe9aca8a81b43c970ed853e",
+      "mull_config": "8105c59abe1a16c9d41e2433756a086810dcbfd7f3d018c553d2924aeb38c7fd",
+      "task_sha256": "b7dd4e370faebe64252f177d9d99db57f857eb2dddc8a84e87e3189f4fb9d2c4"
+    },
+    "humaneval-x-cpp-06": {
+      "task_md": "088eb1235704805794fd1955d4a73d1a6eba33adcba60a473266103222974c86",
+      "mull_config": "8074a93f5f0db38812d8244634cd024670b159017305c0caf92844867633971c",
+      "task_sha256": "b491a88328326a0119c1e38963ee36760724e7f46302aea6a7d879101d083988"
+    },
+    "humaneval-x-cpp-07": {
+      "task_md": "690abfe852dd0a617f77fd399609f59fdbf48c7009d784402ce1f64a8b6bdc14",
+      "mull_config": "5da1a2df1da3b3c50f8ceaf5e7c15211dfe24eba55be588ac28cb50b735b131a",
+      "task_sha256": "7fe4cb7446a8c7b7b291ea12497347a4c6621db529d59e03c64f315d10735c33"
+    },
+    "humaneval-x-cpp-08": {
+      "task_md": "4f744f28367433f403be3d2a9bc11e52022e1cc17bb9b9c139286bf8abea9f4b",
+      "mull_config": "8917f7ca7cce54bf2d7d61b6e71009b83e8e6e2678a921535c5e241755440d93",
+      "task_sha256": "4668a40e3153644512aa4f5b55310f9a5b65c7e9c570c4bfb6990573f2f76b09"
+    },
+    "humaneval-x-cpp-09": {
+      "task_md": "ed6dcc493d9aec45a3f6539c562191de48dbfcd09314c6619f2a1606fdea1a7c",
+      "mull_config": "769359456acbe37485fa3f3b225eab307cf6e68067370bb5bff78a280db80ec6",
+      "task_sha256": "2310236ffaeb36738184e2f79bc9656bcb24fa2e5d339f58e7b428234d7d5540"
+    },
+    "humaneval-x-cpp-10": {
+      "task_md": "3a14d925527bb1fad4c2969b81eac8a3f7ce9c777190f3148117ebb653fe1f39",
+      "mull_config": "d514c3a6ab5bdf59ae2ecfffed051738a416ee7d20915a399b4085a522ab13f4",
+      "task_sha256": "961289b46c803776eb4f0c40687bc3de7ca2cacf8342f6b0870160649783d9a5"
+    },
+    "humaneval-x-cpp-11": {
+      "task_md": "6f7d0b02173c9d8f9354cfe6b139aca606f58b2b163e08dfc2083cafd6609259",
+      "mull_config": "be91a03b69d08676a4512e5c77ded115dc5c8bb99940e58a67f52f6561e4a63c",
+      "task_sha256": "4035ff8f2bc054da8c76bd141e00f3a46a2c2a03793aae4d7d989521780460ea"
+    },
+    "humaneval-x-cpp-12": {
+      "task_md": "be19402db4b1b4216b0e09ea1aac768a8a873e35dcbef1271e0f05ea42acfb6f",
+      "mull_config": "458d387ac9edeb4449bae688030a8c48323be3db8b3f938a06c9eefc7d648e14",
+      "task_sha256": "a182aea7a4e6ced609c6b2dd69dd7e65b907f2e5ddb048776f18a3c3fd51a778"
+    },
+    "humaneval-x-cpp-13": {
+      "task_md": "537a4c80d51c5da9e1bf9d1e1fc9808f678dbf8f0f50683d2f09c9a254e59e4f",
+      "mull_config": "ff13ba88bfd5717da2dcf29476fbd8a8c2ee02596f84af90e3ad20669d75e80c",
+      "task_sha256": "cca7767f71d4d102ac3cce18bfaaf99255b46d5abf19ab3cfd46a47551ff99b5"
+    },
+    "humaneval-x-cpp-14": {
+      "task_md": "dfe56a15873d0b1d58b3301c3860cdc9bacd231a8fa8049f7026d53e986ae77d",
+      "mull_config": "19ae05c4357883ae84310c2d63ce7c10ee5c73395c18fa1e3a6ef039c102649f",
+      "task_sha256": "72bedbd9cca0c4ac85fa86fe9c95c05a6ada50e6a389880ba6fe3542f4b081b6"
+    },
+    "humaneval-x-cpp-15": {
+      "task_md": "f33ab8cda8cc21f0d914e7274a6eeb738bcd43c423913e580fd3d0849b83c2d0",
+      "mull_config": "1ffca13255ba6787bf84d38ad7f80c56747ac03bb35e465e53f334edb2aaddaf",
+      "task_sha256": "9f51ab590829d8432b946722d5a67e1d17f4868fe32f591701e6326518427e39"
+    },
+    "humaneval-x-cpp-16": {
+      "task_md": "6ad5a3ee7e0ff1a72d4d9a362cf20afa24276e0f8e14706df91f925461d9a943",
+      "mull_config": "e6bf428d6c6abde51a73428d2a73ff79221a9894fbdeea8f63db7542d58cc1c9",
+      "task_sha256": "5a0e614d1b63a768916436d31330693c7d696e4479de24c6747f3c1e16bd2471"
+    },
+    "humaneval-x-cpp-17": {
+      "task_md": "86b70206970b4fefe46b29024541bb892f6d890243a7f75c9b756af23f05767a",
+      "mull_config": "7ffe86fb1fdebd35c58f1b254b0ef89b69656003e0dbceac7556b4f34a0b1afd",
+      "task_sha256": "c770d511fc9ecf2c4c5dfc57a34df639d7149ce1b3a6a56ed35910655ae6b339"
+    },
+    "humaneval-x-cpp-18": {
+      "task_md": "92331cd3470c6b2efad5c027a162f8b003894f3087af65620bfbb318ddf683df",
+      "mull_config": "d12de66501a84e420e6c98c2ea6bbf9389e4a60c925207a73f233e5bc282fcfb",
+      "task_sha256": "ae607daec7e350700030949d6f3b8726e41a5f9f4f763168ff68e6e76a74b500"
+    },
+    "humaneval-x-cpp-19": {
+      "task_md": "7b3c427d004520d97a63f5c6c9e9cfbf3cada27a4d5a8f407c0ff089f8b98a72",
+      "mull_config": "a5d9d396e9060a8b8eb0b6bb3d9a00f8036b61e5c706289c55e3d8283a043aea",
+      "task_sha256": "d0c98e2dd4a39b23659016040c77bdc64bb4ad31f70c8b662e5620f8dcca16fd"
+    },
+    "humaneval-x-cpp-20": {
+      "task_md": "d875409a757fa2d341ea29a9b4603f4f0480e40f9ee5b925ebbc4393199ded66",
+      "mull_config": "4683715037cc0004b25d39a7b23a3ba6f5d31e0ffbb0ad1261ea2a843c59163d",
+      "task_sha256": "8754e573756b926220df2bf7d45fa1725b50e508f771be830bf363f27e5fb13b"
+    },
+    "md4c-html": {
+      "task_md": "4daf77975208e0b5e6a2750419b0d4e4e3ee100aa868cf4b7d8deff28d862a2e",
+      "mull_config": "e96057927b424580a647e9765076f78eed61a5c0e149ad5220381d3b04960c44",
+      "task_sha256": "f40d8a6c5bc4be079e313fb517689e1379cdbbc50ba74553392890c0f82fb4bd"
+    },
+    "parrot-refactoring": {
+      "task_md": "685d95213e72fff305b8d64943b5b0b403f646f26e7047842be1dff83efe1be7",
+      "mull_config": "0b87581d27a383c90c3ef3a2f31c3b23167f33f285e9439e216e836b66be1c68",
+      "task_sha256": "9e01f7d8ee68e11cc35b4ad749f1cd34ee827798fa2d21e95fc1180c0972b882"
+    },
+    "racing-car-leaderboard": {
+      "task_md": "d4380a097105e7cc0a74d5518cadefabeb5bf60dafa3e3c8e9ebdbbf4561227c",
+      "mull_config": "4d230dcab8c2be9595950ebe61c9665b140ee0d3c0a925da0b7e8ebdf36aca66",
+      "task_sha256": "97c940aaed064f55d69e9a1f1ef395a7dfe1af63dffeb4975f8ef79f93037694"
+    },
+    "racing-car-telemetry": {
+      "task_md": "0c8094eb706b3fc87fcda4191c1a88dd08fa30eb336550dd174685208d8eeab1",
+      "mull_config": "d422dbd9b0fc32d5728049a99e93b5205eb06b3d86d5c53a7e66732518d72afe",
+      "task_sha256": "dddd2d1ebd968786f8535708876d3e4468750a7e644b27d61569b7f0e9cccd37"
+    },
+    "racing-car-text-converter": {
+      "task_md": "7f3ff911e94f3acc76d98c033027735f8b4e4604cccac9230e5d4d0b11d3e3a4",
+      "mull_config": "7205f0f95123f2415e981b5afd07ce40b1bc0cc62a6c63ae6899ab05362bddc8",
+      "task_sha256": "53a5671a23568310b5829398ccb89cee3331cd98faa4b283bdc6da93e880b432"
+    },
+    "racing-car-tire-pressure": {
+      "task_md": "fa5088ca32e6c99a4b267556c9a4dc4c2318e5f65f54f0bd85ea0daaa8b9978c",
+      "mull_config": "53e5b64921c4745f3970d279d0a281767830f7704f43ef8e30db6095fa956a10",
+      "task_sha256": "abc43c08bf16f283bb575dde04a2fd8eb5a42992cb2cc8faf76dfe2524d2ffbd"
+    },
+    "racing-car-turn-ticket": {
+      "task_md": "a6f7309f7b3b691ec1816c940bd8ccd71dcbad7c9b9b25114169856fddcb6b57",
+      "mull_config": "439dd3321cc3bf7c52ac0f7c6aa881aee79eeaa67dbe07dfbaf80e8936341175",
+      "task_sha256": "399e6cee9272599301f8837cbb3abe197d5ab35397df8ff86fec230f9bd13b87"
+    },
+    "supermarket-receipt": {
+      "task_md": "2843c182327f296ed1ee667dd44580a1eacce75987768187faee229471c264e8",
+      "mull_config": "0dc09665029a6ebf632777ac809baed13fdc5c86f17a2fe205e5b2efb70c7578",
+      "task_sha256": "dc2f98c4db9316c453700191065eeb52227001814993ce4c67030a596244a0cd"
+    },
+    "tennis-refactoring-1": {
+      "task_md": "7497a918304d82ece3204c528426a3a13b3d39cd9a0c573b80c287cec74404d3",
+      "mull_config": "e675270cb77abf7be5661380fd16c0f177b709ee115f3c18fd557ecf30664870",
+      "task_sha256": "b596da889db97dba034b11689363c98dc6a665d8aff64fdabda6d42acb257bee"
+    },
+    "tennis-refactoring-2": {
+      "task_md": "990ca84e585385d12a069a6a5824774c3917dfa004bef2680328df3b295f0fc6",
+      "mull_config": "095627f2b0595440ef4d44789d606df34bd7d16b6f7c38c7a4234562db3353de",
+      "task_sha256": "0de10c32935d2dcc7c495de348659a4bf98993864251c074212323a9b112a24a"
+    },
+    "tennis-refactoring-3": {
+      "task_md": "55b31c99a33f79dd9d9c6ad16d58da8fa9c6cd5afdc6c465f0b908e439fb2ab4",
+      "mull_config": "1f8c093c2f15b76d3ad968e5f4c687a5b0a41c42ce9ebd6f1eda71b357e3084f",
+      "task_sha256": "f92426c4d45ad0eea59851a5a8cd76910f3f3aceffe5115343c2ee68dd87d3ee"
+    },
+    "tennis-refactoring-4": {
+      "task_md": "8d5e8eaf621520dfcd86f57eff569ec137dfc7eac995d5c043d9e5d902bb2f14",
+      "mull_config": "fba758b3acfc55bbc96389ef7cdfa6bcf120af015ecd4c6c4299eaa6118bc8ec",
+      "task_sha256": "9fd58e6191e5c40495362c9deb59a5dfeb7ae403d8f3c3a51247737cf8f58ee4"
+    },
+    "tennis-refactoring-6": {
+      "task_md": "0e89e706cf412418178ee5d3731b2e6c9b10cdbf0153506ed311ff55589e7968",
+      "mull_config": "ec2bf0dd284931354d529b5c101e1a1a1a98a04c1d3449511eb2c6cce6418a22",
+      "task_sha256": "a0f23f3bad34c61df3e9b42894c852e8809869ecc9456ea6f8502381b1306d10"
+    },
+    "tennis-refactoring-7": {
+      "task_md": "5ea5a2758155fb17199f58d6cb49173b0ad7ebed2d548e26f1c65bd924a2bdc7",
+      "mull_config": "32f070c37b08cf80b14b7e44bcd04647ecced701e0f7eadeaaf2aff55344bcb7",
+      "task_sha256": "52f1b02ec0c2c4a3c6be2f6e0fad73d74c3b968fa477619740abbd8055e563ce"
+    },
+    "theatrical-players-statement": {
+      "task_md": "411c77885f12f29dd68a5fb31c015f00397b61d77580caf56786e2e3a6603ccd",
+      "mull_config": "e8b082c409081090921d07dac9b964546958416e87d1b6d9257d97db9700784b",
+      "task_sha256": "cb621d7732ac8259c0e362cd4c8614c64c59634ffe7d7d616634c02b21fe9845"
+    },
+    "tinyexpr-configured": {
+      "task_md": "03aad0eab6dc0e617e87c77f643b217430504b2b66c76875be9ff0eb63f90ecd",
+      "mull_config": "9d5f7e6b899421f1db612531106f484c8e58d3bddb53b0a15f0bbb946821d32f",
+      "task_sha256": "5c9ec23cdb9604261112e5ddf73c498759005c9e094000db430d720cf3cd328d"
+    },
+    "yaml-cpp-document": {
+      "task_md": "e7979ec422e4a1c66329c4500d1490e52739e56223d2e6ee913d0dcd80016f30",
+      "mull_config": "2d7a7f680bc9900bf1d8c80a4e230e79c6ed1619b1585af91a25a6e8cf4643cf",
+      "task_sha256": "01d909231afaaaf68ee8d850038f8af7ceab4c72b24e0fca6044bc9e0f562ca0"
+    },
+    "yatzy-refactoring": {
+      "task_md": "118a5ad29c8d88c16af2aac6793e66b728ed8856838423b782b7d7c954cc1a2f",
+      "mull_config": "69cab703658b5f4775e3a1fcaa7341a648a8a94c521eb5a8c21953ce72b45b6e",
+      "task_sha256": "52a393ce1d46b4d5b9cc0e355847d4d610cc89e49fd87f1bbf96165414999187"
+    }
+  }
+}
