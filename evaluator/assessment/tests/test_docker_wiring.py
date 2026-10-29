@@ -174,7 +174,7 @@ class PipelineWiringTest(unittest.TestCase):
         self.assertEqual(calls["clang-build"]["job"]["mode"], "mull")
         self.assertEqual(calls["clang-build"]["env"], {"MULL_CONFIG": "/config/mull.yml"})
         self.assertEqual(calls["mull"]["job"]["tests"], ["S.A", "S.B"])
-        self.assertEqual(calls["v01-build"]["job"]["target_sources"], ["/variant/cpp/src/GildedRose.cc"])
+        self.assertEqual(calls["v01-build"]["job"]["target_sources"], ["/repo/cpp/src/GildedRose.cc"])
         self.assertEqual(calls["v01-build"]["job"]["mode"], "plain")
         hidden = str(self.task["_dir"] / "hidden")
         for label, call in calls.items():
@@ -187,8 +187,9 @@ class PipelineWiringTest(unittest.TestCase):
             if label in ("gcc-build", "gcc-run", "clang-build", "mull"):
                 self.assertNotIn("variant", call["mounts"])
             if label.endswith("-build") and label.startswith("v"):
-                self.assertTrue(call["mounts"]["variant"][1])
-                self.assertTrue(str(call["mounts"]["variant"][0]).startswith(hidden))
+                self.assertNotIn("variant", call["mounts"])
+                self.assertTrue(call["mounts"]["repo"][1])
+                self.assertTrue(str(call["mounts"]["repo"][0]).startswith(str(self.tmp.resolve() / "out")))
             if "config" in call["mounts"]:
                 self.assertIn(label, ("clang-build", "mull"))
         self.assertEqual({v["id"]: v["outcome"] for v in result["variants"]}, {"eq-02": "clean", "hw-01": "detected"})

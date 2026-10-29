@@ -5,7 +5,7 @@
 from pathlib import Path
 import traceback
 
-from common import (REPO, ASSESSMENT, load_baseline, mull_config_text, now, product_test_sources, read_json,
+from common import (REPO, ASSESSMENT, copy_variant_tree, load_baseline, mull_config_text, now, product_test_sources, read_json,
                     assessment_code_sha256, assessment_version, sha256_file, sha256_text, source_root, task_sha256,
                     validate_product, variant_dir, write_json)
 import judge
@@ -55,25 +55,19 @@ class ProductAssessment:
     def at(self, name, host=None):
         return self.ex.at(name, host)
 
-    def repo_path(self, rel):
-        return f"{self.at('repo', self.root)}/{rel}"
+    def repo_path(self, rel, root=None):
+        return f"{self.at('repo', root or self.root)}/{rel}"
 
-    def target_paths(self, overrides=None, variant_root=None):
-        paths = []
-        for rel in self.task["target_sources"]:
-            if overrides and rel in overrides:
-                paths.append(f"{variant_root}/{rel}")
-            else:
-                paths.append(self.repo_path(rel))
-        return paths
+    def target_paths(self, root=None):
+        return [self.repo_path(rel, root) for rel in self.task["target_sources"]]
 
-    def build_job(self, mode, build_mount, target_sources):
+    def build_job(self, mode, build_mount, target_sources, root=None):
         product = self.at("product", self.product)
         return {"phase": "build", "mode": mode, "template_dir": f"{self.at('assessment', ASSESSMENT)}/cmake",
                 "build_dir": build_mount, "target_sources": target_sources,
-                "support_sources": [self.repo_path(rel) for rel in self.task.get("build", {}).get("support_sources", [])],
+                "support_sources": [self.repo_path(rel, root) for rel in self.task.get("build", {}).get("support_sources", [])],
                 "build": self.task.get("build", {}),
-                "include_dirs": [self.repo_path(rel) for rel in self.task["include_dirs"]] + [f"{product}/tests"],
+                "include_dirs": [self.repo_path(rel, root) for rel in self.task["include_dirs"]] + [f"{product}/tests"],
                 "test_sources": [f"{product}/{rel}" for rel in product_test_sources(self.product)],
                 "timeout": TIMEOUT["build"]}
 
@@ -224,12 +218,13 @@ class ProductAssessment:
         label = f"v{index:02d}"
         build_dir = self.out / f"{label}-build" / "build"
         build_dir.mkdir(parents=True)
-        vdir = variant_dir(self.task, variant)
-        targets = self.target_paths(overrides=set(variant["files"]), variant_root=self.at("variant", vdir))
+        vdir = self.out / f"{label}-source"
+        tree_sha256 = copy_variant_tree(self.task, variant, vdir)
+        targets = self.target_paths(vdir)
         step = self.phase(f"{label}-build", "gcc",
-                          {"repo": (self.root, True), "product": (self.product, True), "variant": (vdir, True),
+                          {"repo": (vdir, True), "product": (self.product, True),
                            "build": (build_dir, False)},
-                          self.build_job("plain", self.at("build", build_dir), targets))
+                          self.build_job("plain", self.at("build", build_dir), targets, root=vdir))
         outcomes = {}
         if step["status"] == "built":
             job = {"phase": "run", "mode": "variant", "binary": f"{self.at('build', build_dir)}/scored_tests",
@@ -241,7 +236,7 @@ class ProductAssessment:
         if problem:
             raise Infra(problem)
         return {"id": variant["id"], "kind": variant["kind"], "expect": variant["expect"], "outcome": outcome,
-                "failed_tests": failed, "label": label}
+                "failed_tests": failed, "label": label, "source_tree_sha256": tree_sha256}
 
 
 def assess_product(executor, task, product, out_dir, meta, audit, cost_path=None, prep=False, calibration=None):

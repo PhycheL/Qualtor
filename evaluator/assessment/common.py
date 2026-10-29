@@ -5,7 +5,10 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import shutil
 from build_contract import validate_build
+
+HEADER_SUFFIXES = {".h", ".hh", ".hpp", ".hxx", ".inl"}
 
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "common"))
@@ -133,9 +136,13 @@ def validate_task(task):
         if variant["kind"] not in ("real_bug", "equivalent", "handwritten") or variant["expect"] not in ("fail", "pass"):
             raise TaskError(f"替换版本类型或期望不正确：{variant['id']}")
         for rel, digest in variant["files"].items():
-            # 第一版只支持替换被测源文件；替换头文件会让未替换的源文件仍包含原头文件。
-            if rel not in task["target_sources"]:
-                raise TaskError(f"替换版本 {variant['id']} 只能替换被测源文件：{rel}")
+            visible = task.get("visible", {}).get("files", [])
+            allowed = set(task["target_sources"]) | set(task.get("target_headers", []))
+            allowed |= {p for p in visible if Path(p).suffix in HEADER_SUFFIXES}
+            if rel in build["support_sources"] or rel not in visible or rel not in allowed:
+                raise TaskError(f"替换版本 {variant['id']} 只能替换可见的被测源文件或头文件，不能替换依赖源文件：{rel}")
+            if rel not in task["source"]["files"]:
+                raise TaskError(f"替换文件未登记源码哈希：{rel}")
             path = variant_dir(task, variant) / rel
             if not path.is_file() or sha256_file(path) != digest:
                 raise TaskError(f"替换版本文件缺失或哈希不一致：{variant['id']} {rel}")
@@ -143,6 +150,44 @@ def validate_task(task):
 
 def variant_dir(task, variant):
     return task["_dir"] / "hidden" / "variants" / variant["id"]
+
+
+def checked_file(root, rel, digest):
+    """复制前验证路径和内容；禁止通过目录别名或符号链接越出已登记源码树。"""
+    path = Path(rel)
+    if path.is_absolute() or ".." in path.parts or str(path) != rel:
+        raise TaskError(f"不合法的源码路径：{rel}")
+    current = Path(root)
+    for part in path.parts:
+        current /= part
+        if current.is_symlink():
+            raise TaskError(f"源码路径不能经过符号链接：{rel}")
+    if not current.is_file() or sha256_file(current) != digest:
+        raise TaskError(f"源码缺失或哈希不一致：{rel}")
+    return current
+
+
+def copy_variant_tree(task, variant, destination):
+    """按登记清单复制整棵树并原位替换，使同目录引号包含也指向替换版本。"""
+    destination = Path(destination)
+    destination.mkdir(parents=True, exist_ok=False)
+    hashes = dict(task["source"]["files"])
+    for rel, digest in hashes.items():
+        source = checked_file(source_root(task), rel, digest)
+        target = destination / rel
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source, target)
+        if sha256_file(target) != digest:
+            raise TaskError(f"源码复制后哈希不一致：{rel}")
+    for rel, digest in variant["files"].items():
+        source = checked_file(variant_dir(task, variant), rel, digest)
+        if rel not in hashes:
+            raise TaskError(f"替换文件未登记：{rel}")
+        shutil.copyfile(source, destination / rel)
+        if sha256_file(destination / rel) != digest:
+            raise TaskError(f"替换复制后哈希不一致：{rel}")
+        hashes[rel] = digest
+    return sha256_text("\n".join(f"{rel}\0{hashes[rel]}" for rel in sorted(hashes)))
 
 
 def hidden_path(task, key):

@@ -42,3 +42,62 @@ class StepBFixesTest(unittest.TestCase):
         table = calibrate.markdown(report)
         self.assertIn('| M4 | V2 |', table)
         self.assertIn('| — | 1.000 | 1.000 | 0.800 | 0.000 | M1: header_only |', table)
+
+class VariantTreeTest(unittest.TestCase):
+    def setUp(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        self.root = Path(tmp.name)
+        source = self.root / 'source'
+        source.mkdir()
+        for name, text in {'a.cpp':'#include "a.h"\nint f(){ return value(); }\n',
+                           'a.h':'inline int value(){ return 1; }\n', 'dep.cpp':'int dep(){ return 0; }\n'}.items():
+            (source / name).write_text(text)
+        self.task = common.load_task('gildedrose-update-quality')
+        self.task.update(_dir=self.root, source={'root':str(source), 'files':{p.name:common.sha256_file(p) for p in source.iterdir()}},
+                         target_sources=['a.cpp'], include_dirs=['.'], visible={'files':['a.cpp','a.h','dep.cpp']},
+                         build={'support_sources':['dep.cpp']}, variants=[])
+        v = self.root / 'hidden/variants/header/a.h'
+        v.parent.mkdir(parents=True)
+        v.write_text('inline int value(){ return 2; }\n')
+        self.variant = {'id':'header','kind':'handwritten','expect':'fail','files':{'a.h':common.sha256_file(v)}}
+        self.task['variants'] = [self.variant]
+
+    def test_quoted_include_uses_in_place_copy_and_same_compile_unit_list(self):
+        import pipeline
+        from audit import Audit
+        from test_docker_wiring import ScriptedExecutor
+        common.validate_task(self.task)
+        product = self.root / 'product/tests'
+        product.mkdir(parents=True)
+        (product / 't.cc').write_text('// test\n')
+        ex = ScriptedExecutor(['S.A'])
+        assessment = pipeline.ProductAssessment(ex, self.task, product.parent, self.root/'out', {}, Audit(self.root/'audit'))
+        result = assessment._variant(1, self.variant, ['S.A'])
+        call = ex.calls[0]
+        copied, ro = call['mounts']['repo']
+        self.assertTrue(ro)
+        self.assertNotIn('variant', call['mounts'])
+        self.assertEqual(call['job']['target_sources'], ['/repo/a.cpp'])
+        self.assertEqual(call['job']['support_sources'], ['/repo/dep.cpp'])
+        self.assertEqual((copied/'a.h').read_text(),'inline int value(){ return 2; }\n')
+        self.assertEqual((copied/'a.cpp').read_bytes(),(common.source_root(self.task)/'a.cpp').read_bytes())
+        self.assertEqual(len(result['source_tree_sha256']),64)
+        from host_executor import HostExecutor
+        assessment.ex=HostExecutor()
+        self.assertEqual(assessment.target_paths(copied), [str(copied/'a.cpp')])
+        self.assertEqual((common.source_root(self.task)/'a.h').read_text(),'inline int value(){ return 1; }\n')
+
+    def test_support_source_and_invisible_header_rejected(self):
+        for rel in ['dep.cpp','hidden.h']:
+            self.variant['files']={rel:'0'*64}
+            with self.assertRaisesRegex(common.TaskError, '只能替换'):
+                common.validate_task(self.task)
+
+    def test_hash_mismatch_rejected_before_compilation(self):
+        self.variant['files']['a.h']='0'*64
+        with self.assertRaisesRegex(common.TaskError,'哈希不一致'):
+            common.copy_variant_tree(self.task,self.variant,self.root/'copy')
+        self.task['source']['files']['a.cpp']='0'*64
+        with self.assertRaisesRegex(common.TaskError,'哈希不一致'):
+            common.copy_variant_tree(self.task,self.variant,self.root/'copy2')
