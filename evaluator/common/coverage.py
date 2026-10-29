@@ -161,6 +161,7 @@ def collect_targets(prefix_dir, sources, output, audit, gcov="gcov"):
     .gcno 位于 .gcda 去掉前缀后的原始绝对路径；先复制到 .gcda 旁边，再在独立目录中运行 gcov。
     """
     prefix_dir, output = Path(prefix_dir), Path(output)
+    output.mkdir(parents=True, exist_ok=True)
     sources = set(sources)
     per_file, text_stats = {}, {}
     gcdas = sorted(prefix_dir.rglob("*.gcda"))

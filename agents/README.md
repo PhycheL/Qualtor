@@ -47,7 +47,7 @@ GCC 镜像引用配置在 `toolchains/images.json`，使用完整名称 `docker.
            "defines": ["FEATURE_ENABLED", "LIMIT=8"], "compile_options": ["-fno-strict-aliasing"]}}
 ```
 
-`build` 只接受这四个子字段。三个列表缺省为空；依赖文件与被测文件互斥，参与编译链接。编译宏采用 `NAME` 或 `NAME=value`，值限单个标识符或数值，不接受字符串、路径或表达式；宏名称不能重复。选项白名单为 `-fno-strict-aliasing`、`-fwrapv`、`-fsigned-char`、`-funsigned-char`，后两项不能同时使用。宏和选项作用于被测、依赖、测试全部编译单元。
+`build` 只接受这四个子字段。三个列表缺省为空；依赖文件与被测文件互斥，参与编译链接。编译宏采用 `NAME` 或 `NAME=value`，值限单个标识符或数值，不接受字符串、路径或表达式；宏名称不能重复。宏名和标识符形式的宏值不得以 `__` 或下划线加大写字母开头，也不得为 C99/C11/C++11 关键字、替代记号或 `defined`。选项白名单为 `-fno-strict-aliasing`、`-fwrapv`、`-fsigned-char`、`-funsigned-char`，后两项不能同时使用。宏和选项作用于被测、依赖、测试全部编译单元。
 
 源文件支持 `.c`、`.cc`、`.cpp`、`.cxx`。含 `.c` 时必须声明 `c99` 或 `c11`；C++ 固定为 C++11，C/C++ 均关闭语言扩展。C++11 断言头只作用于 C++。每次配置后核对并保留 `compile_commands.json`，确认语言标准、宏、选项和编译单元。
 

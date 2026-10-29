@@ -108,11 +108,18 @@ def _compare(op, value, other):
     raise ValueError(op)
 
 
-def check_relations(sample_id, expected, metrics_by_sample, capabilities):
+def check_relations(sample_id, expected, metrics_by_sample, capabilities, not_applicable=None):
     """相对期望：指标的范围或样本之间的大小关系。返回 (problems, skipped)。"""
     problems, skipped = [], []
     for relation in expected.get("relations", []):
         metric = relation["metric"]
+        if relation["op"] == "na":
+            own = metrics_by_sample.get(sample_id) or {}
+            reason_key = "M1" if metric in ("M1_e2e", "M1_valid") else metric
+            reason = (not_applicable or {}).get(sample_id, {}).get(reason_key)
+            if metric not in own or own[metric] is not None or not reason or reason != relation.get("reason"):
+                problems.append(f"{metric}: 期望不适用 {relation.get('reason')}，实际 {own.get(metric)} / {reason}")
+            continue
         if NEEDS.get(metric) and not capabilities.get(NEEDS[metric]):
             skipped.append(f"{metric} 需要 {NEEDS[metric]}")
             continue
@@ -164,11 +171,13 @@ def evaluate(task, samples, results, capabilities):
         views = [judge.stable_view(r) for r in rounds]
         if any(view != views[0] for view in views[1:]):
             entry["problems"].append("重复评分结果不一致（除耗时字段外）")
-        problems, skipped = check_relations(sid, sample["expected"], metrics, capabilities)
+        na = {name: rs[0].get("not_applicable", {}) for name, rs in results.items()}
+        problems, skipped = check_relations(sid, sample["expected"], metrics, capabilities, na)
         entry["problems"] += problems
         entry["skipped"] += skipped
         entry["metrics"] = {k: metrics[sid].get(k) for k in ("M1_e2e", "M1_valid", "C1", "C2", "C3", "S1", "S2_max",
-                                                              "V3", "M2", "F1")}
+                                                              "V2", "V3", "M2", "M4", "F1")}
+        entry["not_applicable"] = rounds[0].get("not_applicable", {})
         entry["passed"] = not entry["problems"]
         report["passed"] = report["passed"] and entry["passed"]
         report["samples"][sid] = entry
@@ -181,14 +190,15 @@ def markdown(report):
              f"- 结论：**{'通过' if report['passed'] else '未通过'}**" + ("（部分题目或样本，不计为正式校准）" if report["partial"] else ""),
              f"- 题目：" + "、".join(f"{tid}（{len(info['samples'])} 个样本）" for tid, info in report["tasks"].items()),
              f"- 每个样本评分 {report['rounds']} 次；镜像：" + "、".join(f"{k} {v['id'][:19]}" for k, v in report["images"].items()),
-             "", "| 题目 | 样本 | 结论 | 状态 | M1 端到端 | C1 | S1 | 问题 |", "|---|---|---|---|---|---|---|---|"]
+             "", "| 题目 | 样本 | 结论 | 状态 | M1 端到端 | M4 | V2 | C1 | S1 | 不适用原因 | 问题 |", "|---|---|---|---|---|---|---|---|---|---|---|"]
     fmt = lambda v: "—" if v is None else f"{v:.3f}"
     for sid, entry in report["samples"].items():
         m = entry["metrics"]
         status = entry["status"] + (f"（{entry['invalid_reason']}）" if entry["invalid_reason"] else "")
         problems = "；".join(entry["problems"]).replace("|", "/") or "—"
         lines.append(f"| {entry['task']} | {sid} | {'通过' if entry['passed'] else '未通过'} | {status} | {fmt(m['M1_e2e'])} | "
-                     f"{fmt(m['C1'])} | {fmt(m['S1'])} | {problems} |")
+                     f"{fmt(m.get('M4'))} | {fmt(m.get('V2'))} | {fmt(m['C1'])} | {fmt(m['S1'])} | "
+                     f"{', '.join(k + ': ' + v for k, v in entry.get('not_applicable', {}).items()) or '—'} | {problems} |")
     return "\n".join(lines) + "\n"
 
 

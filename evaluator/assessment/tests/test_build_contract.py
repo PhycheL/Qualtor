@@ -32,7 +32,7 @@ class BuildContractTest(unittest.TestCase):
 
     def test_both_contracts_accept_defaults_and_mixed_languages_without_mutating_task(self):
         build = {"support_sources": ["support.cc", "support.c"], "c_standard": "c99",
-                 "defines": ["FEATURE", "LIMIT=8", "EPS=0.5", "MASK=0xFF"],
+                 "defines": ["TE_POW_FROM_RIGHT", "TE_NAT_LOG", "FEATURE", "LIMIT=8", "EPS=0.5", "MASK=0xFF"],
                  "compile_options": ["-fno-strict-aliasing", "-fsigned-char"]}
         before = copy.deepcopy(build)
         outputs = [m.validate_build(build, ["a.c"], self.visible, self.root)
@@ -46,7 +46,7 @@ class BuildContractTest(unittest.TestCase):
         bad = [None, [], {"link_libraries": []}, {"support_sources": "support.cc"},
                {"support_sources": ["a.cc"]}, {"support_sources": ["missing.cc"]},
                {"support_sources": ["../a.cc"]}, {"support_sources": ["support.cc", "support.cc"]},
-               {"defines": ["X;Y"]}, {"defines": ["X=$<CONFIG>"]}, {"defines": ["X=1", "X=2"]},
+               *[{"defines": [v]} for v in ("__GNUC__", "_GLIBCXX_DEBUG", "private", "defined", "X=__LINE__", "X=int")], {"defines": ["X;Y"]}, {"defines": ["X=$<CONFIG>"]}, {"defines": ["X=1", "X=2"]},
                {"defines": ["__cplusplus=202002L"]}, {"defines": ["X=\"path\""]},
                {"compile_options": ["-std=c++20"]}, {"compile_options": ["@args"]},
                {"compile_options": ["-fsigned-char", "-funsigned-char"]},
