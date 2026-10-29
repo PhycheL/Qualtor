@@ -46,7 +46,7 @@ def phase_build(job, audit):
                "-DQUALTOR_TARGET_SOURCES=" + ";".join(job["target_sources"]),
                "-DQUALTOR_INCLUDE_DIRS=" + ";".join(job["include_dirs"]),
                "-DQUALTOR_TEST_SOURCES=" + ";".join(job["test_sources"])]
-    command += cmake_build_args(job.get("build", {}), job.get("support_sources", []))
+    command += cmake_build_args(job.get("build", {}), job.get("support_sources", []), job.get("target_headers"))
     for key, option in (("cc", "CMAKE_C_COMPILER"), ("cxx", "CMAKE_CXX_COMPILER"), ("make_program", "CMAKE_MAKE_PROGRAM"),
                         ("gtest_prefix", "CMAKE_PREFIX_PATH")):
         if job.get(key):
@@ -57,7 +57,7 @@ def phase_build(job, audit):
         return {"status": "infra_error", "reason": "cmake_configure_failed", "log": configured["stderr_log"]}
     commands = json.loads((build_dir / "compile_commands.json").read_text())
     problems = compile_command_problems(commands, job["target_sources"], job.get("support_sources", []),
-                                        job["test_sources"], job.get("build", {}), job["mode"])
+                                        job["test_sources"], job.get("build", {}), job["mode"], job.get("target_headers"))
     if problems:
         return {"status": "infra_error", "reason": "compile_commands_mismatch",
                 "problems": problems}
@@ -220,10 +220,10 @@ def collect_coverage(job, runner, valid, coverage, audit):
         return {"status": "error", "reason": "coverage_run_not_clean", "outcomes": run["outcomes"]}
     try:
         data = gcov_tools.collect_targets(prefix, coverage["sources"], runner.out / "coverage", audit,
-                                          gcov=coverage.get("gcov", "gcov"))
+                                          gcov=coverage.get("gcov", "gcov"), headers=coverage.get("headers", False))
     except Exception as error:  # 覆盖率只是诊断指标，失败时单独标出，不影响其他步骤
         return {"status": "error", "reason": f"gcov_failed: {error}"}
-    if data["missing_sources"] or not data["parsers_agree"]:
+    if (data["missing_sources"] and not coverage.get("headers")) or not data["parsers_agree"]:
         return {"status": "error", "reason": "coverage_incomplete", "data": data}
     return {"status": "ok", "data": data}
 
@@ -260,6 +260,10 @@ def phase_mull(job, audit):
         return {"status": "infra_error", "reason": "mull_runner_failed", "returncode": result["returncode"],
                 "timed_out": result["timed_out"], "log": result["stderr_log"]}
     reports = sorted(report_dir.glob("mutations*.json"))
+    if job.get("allow_zero_mutants") and zero_mutants(result, reports):
+        return {"status": "ok", "mutants": [], "not_applicable": "zero_mutants",
+                "zero_mutants_evidence": {"returncode": result["returncode"], "stdout": result["stdout"],
+                                          "stdout_log": result["stdout_log"], "reports": []}}
     if len(reports) != 1:
         return {"status": "infra_error", "reason": f"unexpected_mull_reports: {len(reports)}"}
     report = json.loads(reports[0].read_text())
@@ -267,6 +271,11 @@ def phase_mull(job, audit):
     if problem:
         return {"status": "infra_error", "reason": problem}
     return {"status": "ok", "mutants": mutants, "report": str(reports[0]), "config": report.get("config")}
+
+
+def zero_mutants(result, reports):
+    return (result["returncode"] == 0 and not result.get("timed_out")
+            and "No mutants found" in result.get("stdout", "") and not reports)
 
 
 def parse_mull_report(report, sources):

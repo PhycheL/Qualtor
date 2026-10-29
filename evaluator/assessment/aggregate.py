@@ -66,6 +66,11 @@ def metric_value(result, name):
     return (result.get("metrics") or {}).get(name)
 
 
+def is_not_applicable(result, metric):
+    key = "M1" if metric in ("M1_e2e", "M1_valid") else metric
+    return key in (result.get("not_applicable") or {})
+
+
 def index(results, set_name=None, phase=None):
     """{agent_version: {task_id: {trial: result}}}，并检查重复。"""
     table, duplicates = {}, []
@@ -99,6 +104,9 @@ def summarize_task(trials):
            "statuses": {s: sum(r["status"] == s for r in results) for s in sorted({r["status"] for r in results})}}
     for name in RATIO_METRICS:
         out[name] = mean(metric_value(r, name) for r in usable)
+    out["not_applicable"] = {m: sum(is_not_applicable(r, m) for r in results) for m in RATIO_METRICS}
+    out["missing"] = {m: sum(metric_value(r, m) is None and not is_not_applicable(r, m) for r in results)
+                      for m in RATIO_METRICS}
     s2 = [v for r in usable for v in ((r.get("metrics") or {}).get("S2") or {}).values()]
     out["S2_median"] = statistics.median(s2) if s2 else None
     for field in COST_FIELDS:
@@ -117,6 +125,9 @@ def summarize(results, set_name, phase):
         for name in RATIO_METRICS + ["S2_median"]:
             values = [t[name] for t in per_task.values() if t[name] is not None]
             overall[name] = {"mean": mean(values), "tasks": len(values)}
+            if name in RATIO_METRICS:
+                overall[name].update(not_applicable_tasks=sum(t["not_applicable"][name] > 0 for t in per_task.values()),
+                                     missing_tasks=sum(t["missing"][name] > 0 for t in per_task.values()))
         summary[agent] = {"tasks": per_task, "overall": overall}
     return summary
 
@@ -153,6 +164,9 @@ def paired_bootstrap(per_task, replicates, seed):
 def paired_values(table, baseline, candidate, metric):
     pairs, tasks = [], []
     for task in sorted(set(table.get(baseline, {})) & set(table.get(candidate, {}))):
+        if metric in ("M1_e2e", "M1_valid") and any(is_not_applicable(r, metric)
+                for agent in (baseline, candidate) for r in table[agent][task].values()):
+            continue
         a = [metric_value(r, metric) for r in table[baseline][task].values()]
         b = [metric_value(r, metric) for r in table[candidate][task].values()]
         a, b = [v for v in a if v is not None], [v for v in b if v is not None]
@@ -176,7 +190,11 @@ def compare(results, baseline, candidate, delta_min, tolerances, set_name="dev",
         guards[metric] = {"delta": g_delta, "ci": [g_low, g_high], "worse": worse, "tolerance": epsilon,
                           "passes": worse is not None and worse <= epsilon, "tasks": len(g_tasks)}
     decision = decide(delta, low, high, delta_min, guards)
+    excluded = sorted(t for t in set(table.get(baseline, {})) & set(table.get(candidate, {}))
+                      if primary in ("M1_e2e", "M1_valid") and any(is_not_applicable(r, primary)
+                          for agent in (baseline, candidate) for r in table[agent][t].values()))
     return {"baseline": baseline, "candidate": candidate, "set": set_name, "phase": phase, "primary": primary,
+            "excluded_not_applicable": {"count": len(excluded), "tasks": excluded},
             "tasks": tasks, "n_tasks": len(tasks), "delta": delta, "ci": [low, high], "delta_min": delta_min,
             "guards": guards, "decision": decision,
             "note": "题数不足 10，结论仅供参考" if len(tasks) < 10 else None,

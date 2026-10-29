@@ -112,26 +112,81 @@ def text_source(path):
     return None
 
 
-def parse_json_sources(path, sources):
+def parse_json_sources(path, sources, headers=False):
     """gcov JSON -> {源文件: 行、分支、函数计数}，只保留指定的被测源文件。"""
     with gzip.open(path, "rt") as stream:
         document = json.load(stream)
     found = {}
     for entry in document["files"]:
-        if entry["file"] not in sources:
+        source = str(Path(entry["file"]).resolve())
+        if source not in sources:
             continue
         lines = merged_lines(entry["lines"])
         branches = [b for line in entry["lines"] for b in line.get("branches", [])]
         normal = [b for b in branches if not b.get("throw", False)]
         functions = merged_functions(entry.get("functions", []))
-        found[entry["file"]] = {
+        found[source] = {
             "line": ratio(sum(c > 0 for c in lines.values()), len(lines)),
             "branch_all": ratio(sum(b["count"] > 0 for b in branches), len(branches)),
             "branch_nonthrow": ratio(sum(b["count"] > 0 for b in normal), len(normal)),
             "function": ratio(sum(c > 0 for c in functions.values()), len(functions)),
             "uncovered_functions": sorted(name for (name, _), count in functions.items() if not count),
             "format_version": document.get("format_version"), "gcc_version": document.get("gcc_version")}
+        if headers:
+            positions = {}
+            for function in entry.get("functions", []):
+                key = f"{function['start_line']}:{function['start_column']}"
+                positions[key] = positions.get(key, 0) + function.get("execution_count", 0)
+            found[source].update(line_counts={str(k): v for k, v in sorted(lines.items())}, function_counts=positions)
     return found
+
+
+def merge_header_stats(records):
+    """按源码位置合并所有编译单元和模板实例；C2 不跨实例合并。"""
+    lines, functions = {}, {}
+    for stats in records:
+        for key, count in stats.get("line_counts", {}).items():
+            lines[key] = lines.get(key, 0) + count
+        for key, count in stats.get("function_counts", {}).items():
+            functions[key] = functions.get(key, 0) + count
+    return {"line": ratio(sum(c > 0 for c in lines.values()), len(lines)),
+            "function": ratio(sum(c > 0 for c in functions.values()), len(functions)),
+            "branch_all": ratio(0, 0), "branch_nonthrow": ratio(0, 0),
+            "uncovered_functions": sorted(k for k, c in functions.items() if not c),
+            "line_counts": lines, "function_counts": functions}
+
+
+def freeze_headers(files, hashes):
+    """准备阶段用源码位置冻结分母；各头文件至少一行，时间等元数据由调用方记录。"""
+    frozen = {}
+    for rel, digest in hashes.items():
+        stats = files.get(rel, {})
+        lines = sorted(int(n) for n in stats.get("line_counts", {}))
+        functions = sorted([int(v) for v in key.split(":")] for key in stats.get("function_counts", {}))
+        if not lines:
+            raise ValueError(f"被测头文件没有冻结代码行：{rel}")
+        frozen[rel] = {"sha256": digest, "lines": lines, "functions": functions}
+    return {"headers": frozen}
+
+
+def frozen_header_coverage(files, baseline):
+    """仅在冻结集合上统计；缺少实例化为未覆盖，不缩小分母。"""
+    result = {}
+    for rel, frozen in baseline["headers"].items():
+        stats = files.get(rel, {})
+        lines = {str(n) for n in frozen["lines"]}
+        functions = {f"{line}:{col}" for line, col in frozen["functions"]}
+        actual_lines, actual_functions = stats.get("line_counts", {}), stats.get("function_counts", {})
+        result[rel] = {"lines": ratio(sum(actual_lines.get(k, 0) > 0 for k in lines), len(lines)),
+                       "branches": ratio(0, 0),
+                       "functions": ratio(sum(actual_functions.get(k, 0) > 0 for k in functions), len(functions)),
+                       "uncovered_functions": sorted(k for k in functions if not actual_functions.get(k, 0)),
+                       "outside_frozen_lines": len(set(actual_lines) - lines),
+                       "outside_frozen_functions": len(set(actual_functions) - functions),
+                       "no_executable_code": False}
+    total = {key: {field: sum(s[key][field] for s in result.values()) for field in ("covered", "total")}
+             for key in ("lines", "branches", "functions")}
+    return {"files": result, "total": total}
 
 
 def empty_targets(prefix_dir, gcdas, sources, missing):
@@ -155,15 +210,16 @@ def no_code_stats():
             "uncovered_functions": [], "format_version": None, "gcc_version": None, "no_executable_code": True}
 
 
-def collect_targets(prefix_dir, sources, output, audit, gcov="gcov"):
+def collect_targets(prefix_dir, sources, output, audit, gcov="gcov", headers=False):
     """采集 GCOV_PREFIX 下的 .gcda（GCOV_PREFIX_STRIP=0），对被测源文件分别用文本和 JSON 两种输出核对。
 
     .gcno 位于 .gcda 去掉前缀后的原始绝对路径；先复制到 .gcda 旁边，再在独立目录中运行 gcov。
     """
     prefix_dir, output = Path(prefix_dir), Path(output)
     output.mkdir(parents=True, exist_ok=True)
-    sources = set(sources)
+    sources = {str(Path(s).resolve()) for s in sources}
     per_file, text_stats = {}, {}
+    header_records, agreements = {}, []
     gcdas = sorted(prefix_dir.rglob("*.gcda"))
     for index, data in enumerate(gcdas):
         notes = Path("/" + str(data.relative_to(prefix_dir))).with_suffix(".gcno")
@@ -177,25 +233,34 @@ def collect_targets(prefix_dir, sources, output, audit, gcov="gcov"):
         json_run = audit.run(f"gcov-json-{index:02d}", [gcov, "-b", "-c", "-j", "-p", str(data)], cwd=json_dir)
         if text_run["returncode"] or json_run["returncode"]:
             raise RuntimeError("gcov failed; see logs")
+        unit_json, unit_text = {}, {}
         for report in sorted(json_dir.glob("*.gcov.json.gz")):
-            for source, stats in parse_json_sources(report, sources).items():
-                if source in per_file:
+            for source, stats in parse_json_sources(report, sources, headers).items():
+                unit_json[source] = stats
+                if headers:
+                    header_records.setdefault(source, []).append(stats)
+                elif source in per_file:
                     raise ValueError(f"{source} appears in more than one gcov data file")
                 per_file[source] = stats
         for report in sorted(text_dir.glob("*.gcov")):
             source = text_source(report)
+            source = str(Path(source).resolve()) if source else None
             if source in sources:
                 text_stats[source] = parse_text(report)
+                unit_text[source] = text_stats[source]
+        agreements.append(set(unit_json) == set(unit_text) and all(
+            all(unit_text[s][key] == stats[key] for key in ("line", "branch_all", "branch_nonthrow"))
+            for s, stats in unit_json.items()))
+    if headers:
+        per_file = {s: merge_header_stats(records) for s, records in header_records.items()}
     missing = sorted(sources - set(per_file))
-    empty = empty_targets(prefix_dir, gcdas, sources, missing)
+    empty = [] if headers else empty_targets(prefix_dir, gcdas, sources, missing)
     for source in empty:  # 没有可执行代码的文件按 0/0 计入，不再让整题覆盖率不可用
         per_file[source] = no_code_stats()
         text_stats[source] = {"line": ratio(0, 0), "branch_all": ratio(0, 0), "branch_nonthrow": ratio(0, 0),
                               "uncovered_lines": [], "uncovered_branches": []}
     missing = [source for source in missing if source not in empty]
-    agree = all(source in text_stats and all(text_stats[source][k] == per_file[source][k]
-                                             for k in ("line", "branch_all", "branch_nonthrow"))
-                for source in per_file)
+    agree = all(agreements)
     total = {key: {"covered": sum(per_file[s][field]["covered"] for s in per_file),
                    "total": sum(per_file[s][field]["total"] for s in per_file)}
              for key, field in (("lines", "line"), ("branches", "branch_all"), ("functions", "function"))}

@@ -24,15 +24,22 @@ from audit import Audit  # noqa: E402
 from runs import finish, new_manifest, write_manifest  # noqa: E402
 from common import (REPO, RUNS, check_run_id, default_run_id, freeze_product, hidden_path,  # noqa: E402
                     load_task, mull_config_text, now, assessment_code_sha256, assessment_version, write_json)
+from coverage import freeze_headers, frozen_header_coverage, merge_header_stats
 import judge  # noqa: E402
 import pipeline  # noqa: E402
 
 
-def make_product(source_dir, product):
+def make_product(source_dir, product, instantiation=None):
     (product / "tests").mkdir(parents=True)
     for path in sorted(Path(source_dir).iterdir()):
         if path.is_file() and path.suffix in (".cc", ".h"):
             shutil.copy2(path, product / "tests" / path.name)
+    if instantiation and instantiation.is_dir():
+        for path in sorted(instantiation.glob("*.cc")):
+            target = product / "tests" / ("coverage_instantiation_" + path.name)
+            if target.exists():
+                raise ValueError(f"实例化文件与参考测试重名：{target}")
+            shutil.copy2(path, target)
     freeze_product(product)
     return product
 
@@ -49,6 +56,29 @@ def suite_problems(name, result):
 
 def build_baseline(task, runs, config_text, images, run_id):
     """runs: {"reference": [result, ...], "probe": [result, ...]}。"""
+    reasons = {(r.get("not_applicable") or {}).get("M1") for rs in runs.values() for r in rs}
+    if reasons != {None}:
+        if len(reasons) != 1 or None in reasons:
+            raise ValueError("各次运行的 M1 适用性不一致")
+        reason = reasons.pop()
+        refs = runs["reference"]
+        c1s = [r["metrics"]["C1"] for r in refs]
+        threshold = task["params"].get("reference_min_c1", 0.8)
+        variants = refs[0].get("variants", [])
+        handwritten = [v for v in variants if v["kind"] == "handwritten" and v["expect"] == "fail"]
+        return {"task": task["id"], "created_at": now(), "created_by_run": run_id,
+                "scorer_version": assessment_version(), "scorer_code_sha256": assessment_code_sha256(),
+                "images": {k:v["id"] for k,v in images.items()},
+                "mutation": {"applicable": False, "reason": reason},
+                "mutants": [], "equivalent": [], "unstable": [], "review_needed": [],
+                "review": {"status":"pending", "by":None, "at":None, "note":"核对参考覆盖率与替换版本检出"},
+                "zero_mutants_evidence": [r["zero_mutants_evidence"] for r in refs] if reason == "zero_mutants" else [],
+                "reference": {"m1":None, "c1":min(c1s) if all(c is not None for c in c1s) else None,
+                              "threshold":threshold, "valid_stable": all(not suite_problems('reference', r) for r in refs),
+                              "handwritten":len(handwritten),
+                              "handwritten_detected":sum(v["outcome"] == "detected" for v in handwritten),
+                              "variants": [{k:v[k] for k in ('id','kind','expect','outcome','failed_tests')} for v in variants],
+                              "passes": all(c is not None and c >= threshold for c in c1s)}}
     ids = None
     statuses = {"reference": {}, "probe": {}}
     meta = {}
@@ -96,7 +126,7 @@ def build_baseline(task, runs, config_text, images, run_id):
         "task": task["id"], "created_at": now(), "created_by_run": run_id,
         "scorer_version": assessment_version(), "scorer_code_sha256": assessment_code_sha256(),
         "images": {k: v["id"] for k, v in images.items()},
-        "mull": {"config_sha256": runs["reference"][0]["mull_config_sha256"], "config": config_text},
+        "mull": {"config_sha256": runs["reference"][0].get("mull_config_sha256"), "config": config_text},
         "mutants": mutants, "equivalent": equivalent, "unstable": unstable, "review_needed": review,
         "review": {"status": "pending", "by": None, "at": None,
                    "note": "等价变异候选由有界穷举探针自动给出；人工逐个复核后，把 status 改为 reviewed 并填写 by、at"},
@@ -110,11 +140,48 @@ def admission(task, runs):
     problems = []
     for suite, results in runs.items():
         for result in results:
+            actual = {v["id"] for v in result.get("variants") or []}
+            if actual != {v["id"] for v in task["variants"]}:
+                problems.append(f"{suite} 替换版本结果不完整")
             for variant in result.get("variants") or []:
                 expected = "detected" if variant["expect"] == "fail" else "clean"
                 if variant["outcome"] != expected:
                     problems.append(f"{suite} 在 {variant['id']} 上为 {variant['outcome']}，应为 {expected}")
+    if any((r.get("not_applicable") or {}).get("M1") for r in runs["reference"]):
+        count = sum(v["kind"] == "handwritten" and v["expect"] == "fail" for v in task["variants"])
+        minimum = handwritten_minimum(task)
+        if count < minimum:
+            problems.append(f"M1 不适用的题需要至少 {minimum} 个手写变异，实际 {count}")
     return sorted(set(problems))
+
+
+def handwritten_minimum(task):
+    small = {"exercism-leap", "exercism-two-fer", "exercism-hello-world", "exercism-reverse-string"}
+    if task["id"] in small:
+        from common import source_root
+        paths = task["target_sources"] + task.get("target_headers", [])
+        lines = [line.strip() for rel in paths for line in (source_root(task) / rel).read_text().splitlines()]
+        effective = [line for line in lines if line and not line.startswith(("//", "/*", "*", "#"))]
+        if len(effective) <= 30:
+            return 3
+    return 5
+
+
+def coverage_baseline(task, references, run_id):
+    files = {}
+    for rel in task["target_headers"]:
+        records = [(r.get("counts", {}).get("coverage") or {}).get("files", {}).get(rel, {}) for r in references]
+        files[rel] = merge_header_stats(records)
+    frozen = freeze_headers(files, {rel:task["source"]["files"][rel] for rel in task["target_headers"]})
+    frozen.update(created_at=now(), created_by_run=run_id)
+    for result in references:
+        # 准入的参考 C1 也按刚冻结的集合计算。
+        raw = result["counts"]["coverage"]
+        counts = frozen_header_coverage(raw["files"], frozen)
+        for metric, field in (("C1", "lines"), ("C3", "functions")):
+            c = counts["total"][field]
+            result["metrics"][metric] = c["covered"] / c["total"] if c["total"] else None
+    return frozen
 
 
 def main():
@@ -150,27 +217,38 @@ def run_prepare(args, run_dir, evidence, parser):
     if args.write and target.exists() and not args.force:
         parser.error(f"{target} 已存在；确认要重新标定时加 --force")
     executor = DockerExecutor(Audit(evidence / "host"), evidence, args.run_id)
-    products = {"reference": make_product(hidden_path(task, "reference_tests"), run_dir / "products" / "reference"),
-                "probe": make_product(hidden_path(task, "equivalence_probe"), run_dir / "products" / "probe")}
-    runs, problems = {"reference": [], "probe": []}, []
+    products = {"reference": make_product(hidden_path(task, "reference_tests"), run_dir / "products" / "reference",
+                                         hidden_path(task, "coverage_instantiation"))}
+    probe = hidden_path(task, "equivalence_probe")
+    if probe and probe.is_dir() and not task.get("target_headers"):
+        products["probe"] = make_product(probe, run_dir / "products" / "probe")
+    runs, problems = {"reference": []}, []
     for index in range(1, args.repeats + 1):
         for suite, product in products.items():
+            if suite == "probe" and runs["reference"][-1].get("not_applicable", {}).get("M1"):
+                continue
             print(f"准备模式评分：{suite} 第 {index} 次", flush=True)
             out = run_dir / "prep" / f"{suite}-{index}"
             result = pipeline.assess_product(executor, task, product, out, {"prep_suite": suite, "round": index},
                                             Audit(out.parent / f"{suite}-{index}-host"), prep=True,
                                             calibration={"status": "not_required_for_prep"})
-            runs[suite].append(result)
+            runs.setdefault(suite, []).append(result)
             problems += suite_problems(f"{suite} 第 {index} 次", result)
     if problems:
         write_json(run_dir / "prepare_report.json", {"passed": False, "problems": problems})
         print("\n".join(problems))
         return 1, False
+    frozen = coverage_baseline(task, runs["reference"], args.run_id) if task.get("target_headers") else None
+    if frozen:
+        write_json(run_dir / "coverage_baseline.json", frozen)
+    if not runs["reference"][0].get("not_applicable", {}).get("M1") and not runs.get("probe"):
+        raise ValueError("M1 适用的题必须提供等价探针")
     config_text = mull_config_text(task)
     draft = build_baseline(task, runs, config_text, executor.images, args.run_id)
     problems += admission(task, runs)
     if not draft["reference"]["passes"]:
-        problems.append(f"参考强测试集 M1 = {draft['reference']['m1']}，低于阈值 {draft['reference']['threshold']}；需要补强")
+        metric = "c1" if "mutation" in draft else "m1"
+        problems.append(f"参考强测试集 {metric} = {draft['reference'][metric]}，低于阈值 {draft['reference']['threshold']}；需要补强")
     write_json(run_dir / "mutation_baseline.json", draft)
     report = {"passed": not problems, "problems": problems, "reference": draft["reference"],
               "mutants": len(draft["mutants"]), "equivalent_candidates": len(draft["equivalent"]),
@@ -183,6 +261,8 @@ def run_prepare(args, run_dir, evidence, parser):
         print("问题：" + problem)
     if args.write and not problems:
         write_json(target, draft)
+        if frozen:
+            write_json(hidden_path(task, "coverage_baseline"), frozen)
         print(f"已写入 {target}；请人工复核等价变异候选后，把 review.status 改为 reviewed")
     elif args.write:
         print("存在问题，未写入题目包")

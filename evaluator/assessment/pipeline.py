@@ -5,7 +5,8 @@
 from pathlib import Path
 import traceback
 
-from common import (REPO, ASSESSMENT, copy_variant_tree, load_baseline, mull_config_text, now, product_test_sources, read_json,
+from common import (REPO, ASSESSMENT, copy_variant_tree, load_baseline, load_coverage_baseline,
+                    mutation_not_applicable, mull_config_text, now, product_test_sources, read_json,
                     assessment_code_sha256, assessment_version, sha256_file, sha256_text, source_root, task_sha256,
                     validate_product, variant_dir, write_json)
 import judge
@@ -65,6 +66,8 @@ class ProductAssessment:
         product = self.at("product", self.product)
         return {"phase": "build", "mode": mode, "template_dir": f"{self.at('assessment', ASSESSMENT)}/cmake",
                 "build_dir": build_mount, "target_sources": target_sources,
+                **({"target_headers": [self.repo_path(rel, root) for rel in self.task["target_headers"]]}
+                   if self.task.get("target_headers") else {}),
                 "support_sources": [self.repo_path(rel, root) for rel in self.task.get("build", {}).get("support_sources", [])],
                 "build": self.task.get("build", {}),
                 "include_dirs": [self.repo_path(rel, root) for rel in self.task["include_dirs"]] + [f"{product}/tests"],
@@ -102,6 +105,11 @@ class ProductAssessment:
         self.result["status"], self.result["invalid_reason"], self.result["infra_detail"] = status, reason, infra
 
     def _assess(self):
+        na = mutation_not_applicable(self.task, {} if self.prep else None)
+        if na:
+            self.result["not_applicable"] = {"M1": na}
+        if self.task.get("target_headers"):
+            self.result.setdefault("not_applicable", {})["C2"] = "header_only"
         # 成本来自生成过程，即使产物无效也必须保留，不能被后面的提前返回跳过。
         if self.cost_path and self.cost_path.is_file():
             self.result["cost"] = read_json(self.cost_path)
@@ -127,7 +135,10 @@ class ProductAssessment:
                "test_timeout": self.params["test_timeout_seconds"], "repeats": self.params["stability_repeats"],
                "shuffle_seeds": self.params["shuffle_seeds"],
                "coverage": ({"prefix_dir": f"{self.at('out', self.out / 'gcc-run')}/gcov-final",
-                             "sources": self.target_paths(), "gcov": "gcov-14"} if coverage else None)}
+                             "sources": ([self.repo_path(p) for p in self.task["target_headers"]]
+                                         if self.task.get("target_headers") else self.target_paths()),
+                             **({"headers": True} if self.task.get("target_headers") else {}),
+                             "gcov": "gcov-14"} if coverage else None)}
         step = self.phase("gcc-run", "gcc", {"repo": (self.root, True), "build": (gcc_build, True)}, job, kind="run")
         record = step["record"]
         self._check_record(record)
@@ -139,7 +150,9 @@ class ProductAssessment:
             return self._finish(status, reason)
         valid = judge.valid_tests(record)
         # 步骤 6：变异测试
-        if self.ex.capabilities["mull"]:
+        if na:
+            pass
+        elif self.ex.capabilities["mull"]:
             self._mull(valid)
         else:
             self.result["warnings"].append("mull_skipped: executor 不支持 Mull（仅限宿主机辅助检查）")
@@ -165,6 +178,18 @@ class ProductAssessment:
             self.result["warnings"].append(f"coverage_unavailable: {coverage.get('reason')}")
             return None
         data = coverage["data"]
+        if self.task.get("target_headers"):
+            from coverage import frozen_header_coverage
+            files = {_rel(path, self.repo_path("")): stats for path, stats in data["files"].items()}
+            if self.prep:
+                return {"files": files, "total": data["total"]}
+            baseline = load_coverage_baseline(self.task)
+            if not baseline or set(baseline.get("headers", {})) != set(self.task["target_headers"]):
+                raise Infra("missing_or_mismatched_coverage_baseline")
+            for rel, frozen in baseline["headers"].items():
+                if frozen["sha256"] != self.task["source"]["files"][rel] or not frozen["lines"]:
+                    raise Infra(f"coverage_baseline_source_changed: {rel}")
+            return frozen_header_coverage(files, baseline)
         files = {}
         for path, stats in data["files"].items():
             files[_rel(path, self.repo_path(""))] = {"lines": stats["line"], "branches": stats["branch_all"],
@@ -191,11 +216,15 @@ class ProductAssessment:
             raise Infra(f"clang_build_failed: {step.get('reason')}; {step.get('diagnostics')}")
         job = {"phase": "mull", "binary": f"{self.at('build', clang_build)}/scored_tests", "tests": valid,
                "sources": self.target_paths(), "workers": 2,
+               "allow_zero_mutants": self.prep,
                "minimum_timeout_ms": self.params["mull_minimum_timeout_ms"], "timeout": TIMEOUT["mull"]}
         step = self.phase("mull", "clang", {"repo": (self.root, True), "build": (clang_build, True),
                                             "config": (config_dir, True)}, job, env, kind="mull")
         mutants = step["mutants"]
         self.result["mull_config_sha256"] = config_sha
+        if self.prep and step.get("not_applicable") == "zero_mutants":
+            self.result["not_applicable"] = {"M1": "zero_mutants"}
+            self.result["zero_mutants_evidence"] = step["zero_mutants_evidence"]
         if self.prep:
             self.result["raw_mutants"] = [{k: m[k] for k in ("id", "mutator", "status", "location")} for m in mutants]
             counts = {}

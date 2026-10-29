@@ -214,10 +214,14 @@ def metrics(result):
     else:
         out["M1_e2e"] = 0.0
         out["M1_valid"] = None
+    if (result.get("not_applicable") or {}).get("M1"):
+        out["M1_e2e"] = out["M1_valid"] = None
     coverage = counts.get("coverage") if status == SCORED else None
     for key, field in (("C1", "lines"), ("C2", "branches"), ("C3", "functions")):
         total = (coverage or {}).get("total", {}).get(field)
         out[key] = _ratio(total["covered"], total["total"]) if total else None
+        if key in (result.get("not_applicable") or {}):
+            out[key] = None
     variants = [v for v in (result.get("variants") or []) if status == SCORED]
     handwritten = [v for v in variants if v["kind"] == "handwritten" and v["outcome"] != "build_failed"]
     real = [v for v in variants if v["kind"] == "real_bug" and v["outcome"] != "build_failed"]
@@ -243,6 +247,7 @@ def stable_view(result):
             "build": (result.get("build") or {}).get("status"),
             "tests": result.get("tests"), "counts": result.get("counts"),
             "mutants": result.get("mutants"),
+            "not_applicable": result.get("not_applicable", {}),
             "variants": [{k: v.get(k) for k in ("id", "kind", "expect", "outcome", "failed_tests")}
                          for v in result.get("variants") or []]}
     return view

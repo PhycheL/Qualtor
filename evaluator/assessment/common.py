@@ -6,9 +6,7 @@ import json
 from pathlib import Path
 import re
 import shutil
-from build_contract import validate_build
-
-HEADER_SUFFIXES = {".h", ".hh", ".hpp", ".hxx", ".inl"}
+from build_contract import HEADER_SUFFIXES, validate_build, validate_targets
 
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "common"))
@@ -116,6 +114,8 @@ def validate_task(task):
     try:
         build = validate_build(task.get("build", {}), task["target_sources"],
                                task.get("visible", {}).get("files", []), root)
+        validate_targets(task["target_sources"], task.get("target_headers"),
+                         task.get("visible", {}).get("files", []), root, build["support_sources"])
     except ValueError as error:
         raise TaskError(str(error)) from error
     for rel, digest in task["source"]["files"].items():
@@ -125,7 +125,7 @@ def validate_task(task):
     for rel in task["target_sources"] + task["include_dirs"]:
         if not (root / rel).exists():
             raise TaskError(f"路径不存在：{rel}")
-    for rel in task["target_sources"] + build["support_sources"]:
+    for rel in task["target_sources"] + task.get("target_headers", []) + build["support_sources"]:
         if rel not in task["source"]["files"]:
             raise TaskError(f"被测源文件未登记哈希：{rel}")
     ids = set()
@@ -200,13 +200,31 @@ def load_baseline(task):
     return read_json(path) if path and path.is_file() else None
 
 
+def load_coverage_baseline(task):
+    path = hidden_path(task, "coverage_baseline")
+    return read_json(path) if path and path.is_file() else None
+
+
+def mutation_not_applicable(task, baseline=None):
+    if not task["target_sources"] and task.get("target_headers"):
+        return "header_only"
+    baseline = load_baseline(task) if baseline is None else baseline
+    mutation = (baseline or {}).get("mutation", {})
+    if mutation.get("applicable") is False:
+        if mutation.get("reason") != "zero_mutants" or baseline.get("mutants"):
+            raise TaskError("不合法的 M1 不适用分母")
+        return "zero_mutants"
+    return None
+
+
 def task_sha256(task):
     """题目指纹：task.json 与全部隐藏材料；变异分母只取实质内容，不含复核状态等元数据。"""
     hidden = task["_dir"] / "hidden"
     baseline_path = hidden_path(task, "mutation_baseline")
+    coverage_path = hidden_path(task, "coverage_baseline")
     parts = [f"task.json\0{task['_sha256']}"]
     for path in sorted(p for p in hidden.rglob("*") if p.is_file()):
-        if baseline_path and path == baseline_path:
+        if path in (baseline_path, coverage_path):
             continue
         parts.append(f"{path.relative_to(task['_dir'])}\0{sha256_file(path)}")
     baseline = load_baseline(task)
@@ -215,7 +233,12 @@ def task_sha256(task):
                    "mutants": sorted(m["id"] for m in baseline.get("mutants", [])),
                    "equivalent": sorted(m["id"] for m in baseline.get("equivalent", [])),
                    "unstable": sorted(m["id"] for m in baseline.get("unstable", []))}
+        if "mutation" in baseline:
+            essence["mutation"] = baseline["mutation"]
         parts.append("baseline\0" + sha256_text(json.dumps(essence, sort_keys=True)))
+    coverage = load_coverage_baseline(task)
+    if coverage:
+        parts.append("coverage_baseline\0" + sha256_text(json.dumps(coverage["headers"], sort_keys=True)))
     return sha256_text("\n".join(parts))
 
 

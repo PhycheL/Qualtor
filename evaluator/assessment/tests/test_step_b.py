@@ -101,3 +101,94 @@ class VariantTreeTest(unittest.TestCase):
         self.task['source']['files']['a.cpp']='0'*64
         with self.assertRaisesRegex(common.TaskError,'哈希不一致'):
             common.copy_variant_tree(self.task,self.variant,self.root/'copy2')
+
+class HeaderCoverageTest(unittest.TestCase):
+    def test_instantiations_and_translation_units_share_source_positions(self):
+        import gzip
+        import json
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp)/'data.gz'
+            doc={'format_version':'2','files':[{'file':'/repo/./api.h',
+                 'lines':[{'line_number':10,'count':0},{'line_number':10,'count':2},{'line_number':11,'count':0}],
+                 'functions':[{'name':'f<int>','start_line':10,'start_column':2,'execution_count':0},
+                              {'name':'f<double>','start_line':10,'start_column':2,'execution_count':2}]}]}
+            with gzip.open(path,'wt') as stream: json.dump(doc,stream)
+            a=coverage.parse_json_sources(path,{'/repo/api.h'},headers=True)['/repo/api.h']
+            b={'line_counts':{'10':1,'11':3,'20':0},'function_counts':{'10:2':1,'20:3':0}}
+            merged=coverage.merge_header_stats([a,b])
+            self.assertEqual(merged['line_counts'],{'10':3,'11':3,'20':0})
+            self.assertEqual(merged['function']['total'],2)
+            frozen=coverage.freeze_headers({'api.h':merged},{'api.h':'digest'})
+            sparse=coverage.frozen_header_coverage({'api.h':a},frozen)
+            self.assertEqual(sparse['total']['lines'],{'covered':1,'total':3})
+            self.assertEqual(sparse['total']['functions'],{'covered':1,'total':2})
+            a['line_counts']['999']=10
+            extra=coverage.frozen_header_coverage({'api.h':a},frozen)
+            self.assertEqual(extra['total'],sparse['total'])
+            self.assertEqual(extra['files']['api.h']['outside_frozen_lines'],1)
+            self.assertEqual(coverage.frozen_header_coverage({},frozen)['total']['lines'],{'covered':0,'total':3})
+            with self.assertRaises(ValueError): coverage.freeze_headers({}, {'missing.h':'hash'})
+
+    def test_header_contract_and_all_unit_instrumentation(self):
+        import build_contract as c
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp)
+            for rel in ('a.h','a.cc','dep.cc'): (root/rel).write_text('')
+            c.validate_targets([],['a.h'],['a.h'],root)
+            for targets,headers in [([],None),([],[]),(['a.cc'],['a.h']),([],['a.cc']),([],['../a.h']),([],['a.h','a.h'])]:
+                with self.assertRaises(ValueError): c.validate_targets(targets,headers,['a.h','a.cc'],root)
+            (root/'link.h').symlink_to(root/'a.h')
+            with self.assertRaises(ValueError): c.validate_targets([],['link.h'],['link.h'],root)
+            commands=[{'file':p,'arguments':['-std=c++11','-include','/cmake/cxx11_guard.h','--coverage']} for p in ('/repo/dep.cc','/product/t.cc')]
+            self.assertEqual(c.compile_command_problems(commands,[],['/repo/dep.cc'],['/product/t.cc'],{},'coverage',['/repo/a.h']),[])
+            commands[0]['arguments'].remove('--coverage')
+            self.assertTrue(c.compile_command_problems(commands,[],['/repo/dep.cc'],['/product/t.cc'],{},'coverage',['/repo/a.h']))
+
+    def test_legacy_fingerprints_and_mull_configs_match_frozen_08204ac(self):
+        fixture=common.read_json(Path(__file__).parent/'fixtures/step_b_legacy.json')
+        self.assertEqual(len(fixture['tasks']),103)
+        for task_id, expected in fixture['tasks'].items():
+            task=common.load_task(task_id)
+            with self.subTest(task=task_id):
+                self.assertEqual(common.task_sha256(task),expected['task_sha256'])
+                self.assertEqual(common.sha256_text(common.mull_config_text(task)),expected['mull_config'])
+
+
+class ApplicabilityTest(unittest.TestCase):
+    def test_zero_mutants_requires_all_three_conditions(self):
+        from container_steps import zero_mutants
+        good={'returncode':0,'stdout':'[info] No mutants found','timed_out':False}
+        self.assertTrue(zero_mutants(good,[]))
+        for record,reports in [({**good,'returncode':1},[]),({**good,'stdout':''},[]),(good,['report.json']),({**good,'timed_out':True},[])]:
+            self.assertFalse(zero_mutants(record,reports))
+
+    def test_invalid_header_product_has_no_end_to_end_m1(self):
+        import judge
+        from audit import Audit
+        from test_docker_wiring import ScriptedExecutor
+        import pipeline
+        with tempfile.TemporaryDirectory() as tmp:
+            task=common.load_task('gildedrose-update-quality')
+            task.update(target_sources=[],target_headers=['cpp/src/GildedRose.h'])
+            result=pipeline.assess_product(ScriptedExecutor([]),task,Path(tmp)/'missing',Path(tmp)/'out',{},Audit(Path(tmp)/'audit'))
+            self.assertEqual(result['status'],'invalid')
+            self.assertIsNone(result['metrics']['M1_e2e'])
+            self.assertEqual(result['not_applicable'],{'M1':'header_only','C2':'header_only'})
+            self.assertEqual(result['metrics']['V2'],0)
+            result['not_applicable']={'M1':'zero_mutants'}
+            self.assertIsNone(judge.metrics(result)['M1_e2e'])
+
+    def test_summary_counts_and_comparison_exclude_na(self):
+        import aggregate
+        results=[]
+        for agent in ('A','B'):
+            for task in ('source','header','missing'):
+                results.append({'task':{'id':task,'set':'dev'},'meta':{'agent_version':agent,'trial':1,'phase':'final'},
+                                'status':'infra_error' if task=='missing' else 'scored',
+                                'not_applicable':{'M1':'header_only'} if task=='header' else {},
+                                'metrics':{'M1_e2e':1 if task=='source' else None}})
+        summary=aggregate.summarize(results,'dev','final')['A']['overall']['M1_e2e']
+        self.assertEqual(summary,{'mean':1,'tasks':1,'not_applicable_tasks':1,'missing_tasks':1})
+        comparison=aggregate.compare(results,'A','B',0.1,{},replicates=20)
+        self.assertEqual(comparison['tasks'],['source'])
+        self.assertEqual(comparison['excluded_not_applicable'],{'count':1,'tasks':['header']})

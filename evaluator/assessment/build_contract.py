@@ -6,6 +6,7 @@ import shlex
 BUILD_FIELDS = {"support_sources", "defines", "compile_options", "c_standard"}
 COMPILE_OPTIONS = {"-fno-strict-aliasing", "-fwrapv", "-fsigned-char", "-funsigned-char"}
 SOURCE_SUFFIXES = {".c", ".cc", ".cpp", ".cxx"}
+HEADER_SUFFIXES = {".h", ".hh", ".hpp", ".hxx", ".inl"}
 DEFINE = re.compile(r"[A-Za-z_][A-Za-z0-9_]*(?:=(?:[A-Za-z_][A-Za-z0-9_]*|[+-]?(?:0[xX][0-9A-Fa-f]+|[0-9]+(?:\.[0-9]+)?)(?:[uUlLfF]*)))?")
 KEYWORDS = set("""alignas alignof and and_eq asm auto bitand bitor bool break case catch char char16_t
 char32_t class compl const constexpr const_cast continue decltype default delete do double dynamic_cast
@@ -18,6 +19,34 @@ _Alignas _Alignof _Atomic _Bool _Complex _Generic _Imaginary _Noreturn _Static_a
 
 def reserved_identifier(value):
     return value.startswith("__") or bool(re.match(r"_[A-Z]", value)) or value in KEYWORDS
+
+
+def validate_targets(targets, headers, visible, root, support=()):
+    """D018：评分对象只能是非空源文件列表或非空头文件列表。None 表示旧题未声明头文件。"""
+    if not isinstance(targets, list) or not all(isinstance(p, str) and p for p in targets):
+        raise ValueError("target_sources 必须是路径列表")
+    if headers is not None and (not isinstance(headers, list) or not headers
+                                or not all(isinstance(p, str) and p for p in headers)):
+        raise ValueError("target_headers 必须是非空路径列表")
+    if bool(targets) == bool(headers):
+        raise ValueError("只支持纯源文件或纯头文件题；拒绝空目标和混合题")
+    selected = targets + (headers or [])
+    if len(selected) != len(set(selected)) or set(selected) & set(support):
+        raise ValueError("被测文件不能重复，且须与 support_sources 互斥")
+    if not set(selected) <= set(visible):
+        raise ValueError("被测文件必须全部可见")
+    for rel in headers or []:
+        path = Path(rel)
+        if (path.is_absolute() or ".." in path.parts or str(path) != rel or path.suffix not in HEADER_SUFFIXES
+                or any(c in rel for c in '\0;,\\\n\r$<>"\'')):
+            raise ValueError(f"不合法的被测头文件路径：{rel}")
+        current = Path(root)
+        for part in path.parts:
+            current /= part
+            if current.is_symlink():
+                raise ValueError(f"被测头文件不能经过符号链接：{rel}")
+        if not current.is_file():
+            raise ValueError(f"被测头文件不存在：{rel}")
 
 
 def validate_build(build, targets, visible, root):
@@ -68,17 +97,19 @@ def validate_build(build, targets, visible, root):
     return result
 
 
-def cmake_build_args(build, support_sources):
+def cmake_build_args(build, support_sources, target_headers=None):
     """输入已在宿主机校验；按 argv 传递，禁止拼接 shell。"""
     args = ["-DQUALTOR_SUPPORT_SOURCES=" + ";".join(support_sources),
             "-DQUALTOR_DEFINES=" + ";".join(build.get("defines", [])),
             "-DQUALTOR_COMPILE_OPTIONS=" + ";".join(build.get("compile_options", []))]
     if "c_standard" in build:
         args.append("-DQUALTOR_C_STANDARD=" + build["c_standard"][1:])
+    if target_headers:
+        args.append("-DQUALTOR_TARGET_HEADERS=" + ";".join(target_headers))
     return args
 
 
-def compile_command_problems(commands, targets, support, tests, build, mode="plain"):
+def compile_command_problems(commands, targets, support, tests, build, mode="plain", target_headers=None):
     """核对真实编译命令：标准、宏、选项与每一类编译单元的插桩边界。"""
     expected = set(targets + support + tests)
     problems = []
@@ -99,7 +130,7 @@ def compile_command_problems(commands, targets, support, tests, build, mode="pla
         for option in build.get("compile_options", []):
             if option not in args:
                 problems.append(f"缺少选项 {option}：{path}")
-        if ("--coverage" in args) != (mode == "coverage" and path in targets):
+        if ("--coverage" in args) != (mode == "coverage" and (bool(target_headers) or path in targets)):
             problems.append(f"覆盖插桩作用范围错误：{path}")
         if any(a.startswith("-fpass-plugin=") for a in args) != (mode == "mull" and path in targets):
             problems.append(f"Mull 插件作用范围错误：{path}")
