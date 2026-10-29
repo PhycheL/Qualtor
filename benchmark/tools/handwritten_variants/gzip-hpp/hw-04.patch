@@ -1,0 +1,11 @@
+--- a/include/gzip/utils.hpp
++++ b/include/gzip/utils.hpp
+@@ -7,7 +7,7 @@
+ // zlib structures or functions like inflate/deflate)
+ inline bool is_compressed(const char* data, std::size_t size)
+ {
+-    return size > 2 &&
++    return size > 3 &&
+            (
+                // zlib
+                (

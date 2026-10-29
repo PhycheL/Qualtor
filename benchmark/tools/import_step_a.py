@@ -47,10 +47,15 @@ def create(task_id):
 
 
 def finish_task(directory, repository, commit, targets, support, includes, tier, tags, title, description,
-                origins, build=None, variants=(), target_headers=None, generated_by="benchmark/tools/import_step_a.py"):
+                origins, build=None, variants=(), target_headers=None, generated_by="benchmark/tools/import_step_a.py",
+                provenance_extra=None):
     root = directory / "source"
-    files = [str(p.relative_to(root)) for p in sorted(root.rglob("*")) if p.is_file()]
-    visible = [p for p in files if Path(p).suffix in (".c", ".cc", ".cpp", ".cxx", ".h", ".hh", ".hpp", ".hxx", ".inl")]
+    files = [str(p.relative_to(root)) for p in sorted(root.rglob("*")) if p.is_file() and p.name != 'SOURCE.json']
+    suffixes = (".c", ".cc", ".cpp", ".cxx", ".h", ".hh", ".hpp", ".hxx", ".inl")
+    if (build or {}).get('environment'):
+        suffixes += ('.proto',)
+    visible = [p for p in files if Path(p).suffix in suffixes]
+    generated = json.loads((root / 'SOURCE.json').read_text()).get('generated', []) if (root / 'SOURCE.json').is_file() else []
     config = {"support_sources": support, **(build or {})}
     copy_reference_as_probe(directory)
     note = review_note(directory.name)
@@ -59,7 +64,10 @@ def finish_task(directory, repository, commit, targets, support, includes, tier,
             stream.write("\n" + note + "\n")
     write_task(directory, task_id=directory.name, tier=tier, tags=tags, title=title, description=description,
                provenance={"repository": repository, "commit": commit, "reference_tests": origins,
-                           "added_by_qualtor": [], "note": "source/ 文件逐字节取自上述提交；隐藏测试的转换见 hidden/README.md。"},
+                           "added_by_qualtor": [],
+                           "note": ("source/ 除 generated 登记的配置头外逐字节取自上述提交；隐藏测试的转换见 hidden/README.md。"
+                                    if generated else "source/ 文件逐字节取自上述提交；隐藏测试的转换见 hidden/README.md。"),
+                           **({'generated': generated} if generated else {}), **(provenance_extra or {})},
                source_files=files, target_sources=targets, include_dirs=includes, visible_files=visible,
                existing_tests={"available": False, "note": "上游测试作为隐藏参考材料，未投影给生成 Agent。"},
                scoring_domain="隐藏参考测试覆盖的输入；断言以固定源码实际行为为准；不以此收窄等价性判定。",

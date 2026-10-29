@@ -1,0 +1,16 @@
+{
+  "repository": "https://github.com/google/libphonenumber",
+  "commit": "b4e9b73792be6c9c5aeb6bc560dd95ab64623d4f",
+  "reference_tests": [
+    "Qualtor field-by-field comparisons"
+  ],
+  "added_by_qualtor": [],
+  "note": "source/ 文件逐字节取自上述提交；隐藏测试的转换见 hidden/README.md。",
+  "files": {
+    "LICENSE": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9",
+    "cpp/src/phonenumbers/phonenumber.cc": "f600c829bff91bff73e6cabe9c488d5eb2792c24958e1d31629ca3a4e4035cb3",
+    "cpp/src/phonenumbers/phonenumber.h": "2389b9011cff8a0db387756f08795de037307110b45509f060a662d0a62bf506",
+    "proto/phonenumbers/phonemetadata.proto": "8fde44367124bec8d8a0f630fb92d888c1b967558d949055a09f55ca7b42d32c",
+    "proto/phonenumbers/phonenumber.proto": "318e28f59e78fdef1656ea9c89287fefc6138fc0b6dc49d748d1271f2bfba95a"
+  }
+}

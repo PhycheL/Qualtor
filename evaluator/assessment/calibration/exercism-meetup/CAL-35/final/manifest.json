@@ -1,0 +1,7 @@
+{
+  "files": {
+    "tests/catch_compat.h": "79ec7940924252c2c68f27e7591b405c7d1f9901c619eabb760a278c92f7ac9d",
+    "tests/meetup_test.cc": "d6d4de07324a12dd01730c6898adba408fc444d449967f09b44de3a4e8a40e2b"
+  },
+  "frozen_at": "2026-10-29T16:19:39.788656+00:00"
+}

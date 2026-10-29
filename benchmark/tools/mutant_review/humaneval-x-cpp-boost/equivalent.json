@@ -1,0 +1,26 @@
+{
+  "task": "humaneval-x-cpp-boost",
+  "note": "按 D011/D015 复核；源码有定义的输入域不由隐藏测试收窄。平台相关结论只验证 Linux ARM64。",
+  "mutants": [
+    {
+      "id": "cxx_gt_to_ge:/repo/src/cpp_137.cc:53:13:53:14",
+      "reason": "前一条 numa == numb 已返回 None，故可达该比较的有定义输入不相等；< 改 <= 或 > 改 >= 不改变结果。NaN 导致落到非 void 函数末尾的输入属于原程序 UB，不据其推翻等价。",
+      "evidence": [
+        "runs/step-c-seed-20261029-03-humaneval-x-cpp-boost/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-boost/source/src/cpp_137.cc:53",
+        "runs/step-c-ir-humaneval-x-cpp-boost-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_137.cc:52:13:52:14",
+      "reason": "前一条 numa == numb 已返回 None，故可达该比较的有定义输入不相等；< 改 <= 或 > 改 >= 不改变结果。NaN 导致落到非 void 函数末尾的输入属于原程序 UB，不据其推翻等价。",
+      "evidence": [
+        "runs/step-c-seed-20261029-03-humaneval-x-cpp-boost/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-boost/source/src/cpp_137.cc:52",
+        "runs/step-c-ir-humaneval-x-cpp-boost-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    }
+  ]
+}

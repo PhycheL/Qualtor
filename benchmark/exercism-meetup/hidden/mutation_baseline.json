@@ -1,0 +1,155 @@
+{
+  "environment": {
+    "name": "bank-20261021",
+    "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd",
+    "images": {
+      "gcc": {
+        "tag": "docker.io/library/qualtor-env-bank-20261021-gcc:9abcad8ef238",
+        "id": "sha256:2f3d4143870ad0135491dbaeea1b4d4af80bdfc274bfced8913f903a35c5a5a5",
+        "platform": "linux/arm64"
+      },
+      "clang": {
+        "tag": "docker.io/library/qualtor-env-bank-20261021-clang:9abcad8ef238",
+        "id": "sha256:76b0083ec874c3ee645584e7208e930112a02028870640fc98e9c618685b49da",
+        "platform": "linux/arm64"
+      }
+    }
+  },
+  "task": "exercism-meetup",
+  "created_at": "2026-10-29T16:18:42.959548+00:00",
+  "created_by_run": "step-c-formal-20261030-01-exercism-meetup",
+  "scorer_version": "0.5.0",
+  "scorer_code_sha256": "6d1c01fb6422665bd3dc90441c96cc86d5839dca21f44eaf7f693e5e7cf66639",
+  "images": {
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
+  },
+  "mutation": {
+    "applicable": false,
+    "reason": "header_only"
+  },
+  "mutants": [],
+  "equivalent": [],
+  "unstable": [],
+  "review_needed": [],
+  "review": {
+    "status": "reviewed",
+    "by": "Gemini（AI 复核，Linux ARM64）",
+    "at": "2026-10-30",
+    "note": "M1 不适用（header_only）；参考 C1 1.0 达标，手写变异 5/5 检出，真实缺陷与等价版本按预期。"
+  },
+  "zero_mutants_evidence": [],
+  "reference": {
+    "m1": null,
+    "c1": 1.0,
+    "threshold": 0.8,
+    "valid_stable": true,
+    "handwritten": 5,
+    "handwritten_detected": 5,
+    "variants": [
+      {
+        "id": "hw-01",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "Meetup.T001_monteenth_of_May_2013",
+          "Meetup.T006_tuesteenth_of_August_2013",
+          "Meetup.T008_wednesteenth_of_February_2013",
+          "Meetup.T011_thursteenth_of_June_2013",
+          "Meetup.T015_friteenth_of_September_2013",
+          "Meetup.T020_sunteenth_of_October_2013"
+        ]
+      },
+      {
+        "id": "hw-02",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "Meetup.T035_second_Monday_of_March_2013",
+          "Meetup.T036_second_Monday_of_April_2013",
+          "Meetup.T037_second_Tuesday_of_May_2013",
+          "Meetup.T038_second_Tuesday_of_June_2013",
+          "Meetup.T039_second_Wednesday_of_July_2013",
+          "Meetup.T040_second_Wednesday_of_August_2013",
+          "Meetup.T041_second_Thursday_of_September_2013",
+          "Meetup.T042_second_Thursday_of_October_2013",
+          "Meetup.T043_second_Friday_of_November_2013",
+          "Meetup.T044_second_Friday_of_December_2013",
+          "Meetup.T045_second_Saturday_of_January_2013",
+          "Meetup.T046_second_Saturday_of_February_2013",
+          "Meetup.T047_second_Sunday_of_March_2013",
+          "Meetup.T048_second_Sunday_of_April_2013"
+        ]
+      },
+      {
+        "id": "hw-03",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "Meetup.T049_third_Monday_of_March_2013",
+          "Meetup.T050_third_Monday_of_April_2013",
+          "Meetup.T051_third_Tuesday_of_May_2013",
+          "Meetup.T052_third_Tuesday_of_June_2013",
+          "Meetup.T053_third_Wednesday_of_July_2013",
+          "Meetup.T054_third_Wednesday_of_August_2013",
+          "Meetup.T055_third_Thursday_of_September_2013",
+          "Meetup.T056_third_Thursday_of_October_2013",
+          "Meetup.T057_third_Friday_of_November_2013",
+          "Meetup.T058_third_Friday_of_December_2013",
+          "Meetup.T059_third_Saturday_of_January_2013",
+          "Meetup.T060_third_Saturday_of_February_2013",
+          "Meetup.T061_third_Sunday_of_March_2013",
+          "Meetup.T062_third_Sunday_of_April_2013"
+        ]
+      },
+      {
+        "id": "hw-04",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "Meetup.T063_fourth_Monday_of_March_2013",
+          "Meetup.T064_fourth_Monday_of_April_2013",
+          "Meetup.T065_fourth_Tuesday_of_May_2013",
+          "Meetup.T066_fourth_Tuesday_of_June_2013",
+          "Meetup.T067_fourth_Wednesday_of_July_2013",
+          "Meetup.T068_fourth_Wednesday_of_August_2013",
+          "Meetup.T069_fourth_Thursday_of_September_2013",
+          "Meetup.T070_fourth_Thursday_of_October_2013",
+          "Meetup.T071_fourth_Friday_of_November_2013",
+          "Meetup.T072_fourth_Friday_of_December_2013",
+          "Meetup.T073_fourth_Saturday_of_January_2013",
+          "Meetup.T074_fourth_Saturday_of_February_2013",
+          "Meetup.T075_fourth_Sunday_of_March_2013",
+          "Meetup.T076_fourth_Sunday_of_April_2013"
+        ]
+      },
+      {
+        "id": "hw-05",
+        "kind": "handwritten",
+        "expect": "fail",
+        "outcome": "detected",
+        "failed_tests": [
+          "Meetup.T077_last_Monday_of_March_2013",
+          "Meetup.T078_last_Monday_of_April_2013",
+          "Meetup.T079_last_Tuesday_of_May_2013",
+          "Meetup.T080_last_Tuesday_of_June_2013",
+          "Meetup.T081_last_Wednesday_of_July_2013",
+          "Meetup.T082_last_Wednesday_of_August_2013",
+          "Meetup.T083_last_Thursday_of_September_2013",
+          "Meetup.T084_last_Thursday_of_October_2013",
+          "Meetup.T085_last_Friday_of_November_2013",
+          "Meetup.T086_last_Friday_of_December_2013",
+          "Meetup.T087_last_Saturday_of_January_2013",
+          "Meetup.T088_last_Saturday_of_February_2013",
+          "Meetup.T089_last_Sunday_of_March_2013",
+          "Meetup.T090_last_Sunday_of_April_2013"
+        ]
+      }
+    ],
+    "passes": true
+  }
+}

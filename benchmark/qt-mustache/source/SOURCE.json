@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/robertknight/qt-mustache",
+  "commit": "79f65c080c852ecd45dbb10960241a2bc7cfcf47",
+  "reference_tests": [
+    "tests/test_mustache.cpp",
+    "tests/specs/*.json"
+  ],
+  "added_by_qualtor": [],
+  "note": "source/ 文件逐字节取自上述提交；隐藏测试的转换见 hidden/README.md。",
+  "files": {
+    "LICENSE": "f2eb7f7f21b9495b0cbadff977cf9440003734153bbaf4f280c9ae2dcf0d87c0",
+    "src/mustache.cpp": "60b9e008ca5f5940ac038db0d5f71b684e6fc997262b68fc1ef9812576221f4d",
+    "src/mustache.h": "4902359f485875599e22a4fe7c2b8144fbf11bb6fac6eec1af3c44f885f7ccde"
+  }
+}

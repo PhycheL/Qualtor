@@ -1,0 +1,31 @@
+{
+  "task": "gzip-hpp",
+  "review": "AI 编写与逐项检查，非人工审阅；各变异保持操作有定义，Docker 验证待执行。",
+  "variants": [
+    {
+      "id": "hw-01",
+      "patch": "hw-01.patch",
+      "description": "gzip 错误输出为 zlib 格式。"
+    },
+    {
+      "id": "hw-02",
+      "patch": "hw-02.patch",
+      "description": "错误拒绝恰好达到大小上限的有效输入。"
+    },
+    {
+      "id": "hw-03",
+      "patch": "hw-03.patch",
+      "description": "解压结果多一个尾字节。"
+    },
+    {
+      "id": "hw-04",
+      "patch": "hw-04.patch",
+      "description": "错误拒绝三字节头。"
+    },
+    {
+      "id": "hw-05",
+      "patch": "hw-05.patch",
+      "description": "错误识别 zlib 头标记。"
+    }
+  ]
+}

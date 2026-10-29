@@ -1,0 +1,249 @@
+{
+  "schema": 1,
+  "id": "libtiff-strip",
+  "set": "dev",
+  "tier": "hard",
+  "tags": [
+    "environment",
+    "libtiff"
+  ],
+  "title": "libtiff-strip",
+  "description": "第三方依赖与公开构建配置；源码按固定上游提交入库，开发题。",
+  "source": {
+    "repository": "https://github.com/vadz/libtiff",
+    "commit": "d651abc097d91fac57f33b5f9447d0a9183f58e7",
+    "root": "benchmark/libtiff-strip/source",
+    "files": {
+      "libtiff/t4.h": "f58267daf0248038b0b6ad348436b0448ba8367c24e9aae824a29b18cc4e51f8",
+      "libtiff/tif_aux.c": "7c587203f667821449c9f2234e648b882c95f143ab5184ec122375932abf4b31",
+      "libtiff/tif_close.c": "7f2e17fc704f928d0c1e899de5600e64a7db93701396d1cff8452c1be794ab7a",
+      "libtiff/tif_codec.c": "593502073dbc681e92c81f76246ad0f80a451f8bbe333af5bc41be665fba17b2",
+      "libtiff/tif_color.c": "f9aecd4ad7f610eceb9a84c83d7dd22f8d52768f7479127e56753fe441ae328e",
+      "libtiff/tif_compress.c": "ccf0ab4b036558a41d85a527f6408837494c4b1788b44f44b7cf7287e6a39a88",
+      "libtiff/tif_config.h": "e0bae756b34caee3c7d9b0a7d7b90f646d49023d2e733b285a269c9a6b16f4ab",
+      "libtiff/tif_config.vc.h": "7fa17b7ee2adef9529938186ed9f3bca59ae4f8a466cc9cd63d6230f4061d9fe",
+      "libtiff/tif_config.wince.h": "b0bbb6bdcd74cdfccd97d94f6294b9535a3266838c6251610009b25b1b798d23",
+      "libtiff/tif_dir.c": "fcfb4d9cb1915ee1183dfbbb8d8a7fc3a10ebe0641e309cfa8ac6aca431198af",
+      "libtiff/tif_dir.h": "9e771fb058e551acb60bc370824ab2e6f0dd193aa096371b34c3453c40898cf9",
+      "libtiff/tif_dirinfo.c": "d1d5187d20a2f906d39049ff7ff821f9f0181e2799362f13625ff981e4fdaf88",
+      "libtiff/tif_dirread.c": "a8b104b58acc25391a5de81b37f58402b31d6c742fbde6c59e1e122fbe363dc7",
+      "libtiff/tif_dirwrite.c": "aafe59c5f3c7a235557d0ae0a755f65bd9d256acf0e91b9e63c50026698481bf",
+      "libtiff/tif_dumpmode.c": "e2eae6e4f126c373ff576616c8968318a30affadbaa9f4d72681617ca1499e4d",
+      "libtiff/tif_error.c": "f4d3c693816872868adb4bb79e60fce560eeb2527c68a4679b96575613f16189",
+      "libtiff/tif_extension.c": "05da26f62656d7685ee82b8afc0b031e920d3eb8515c7ad1f83186f931ebed04",
+      "libtiff/tif_fax3.c": "bd2971e586ee92fb977f30520eaed8185b58115a56e7d5dd3866afe887ca902f",
+      "libtiff/tif_fax3.h": "6ca0c777185cb4ebbcbf094babbb9722d3ccdbe9cd87a7382b25a111e7cde4cc",
+      "libtiff/tif_fax3sm.c": "827ce55eebc2006d3305b5a19891dc44f89c33c5233e837ebf766c0675b6dab1",
+      "libtiff/tif_flush.c": "2d013988b9fe367909b9cc6fe3ee1082b187658eb182c5454403ac23da6f8fe6",
+      "libtiff/tif_getimage.c": "a58185be980c2cef250089065c09ce0f55c8008b683e2643d650af834f18b5ee",
+      "libtiff/tif_jbig.c": "9c096131851cf8a4b97c3dfdcb552c67306bb5f6bd59ecfcc7870a0bc61cb3c5",
+      "libtiff/tif_jpeg.c": "398afd8190ca181de41d522cb9b80606852bad4be4ae4390a400bdccb1634153",
+      "libtiff/tif_jpeg_12.c": "2958b021f4b57aa330715433ab24f87a8b7b191cf4995b171f414ebe8e6eac87",
+      "libtiff/tif_luv.c": "84ba915b50f9b350e6dc9fbbac0b76928afa1b3796cbfd4536812e900c42267a",
+      "libtiff/tif_lzma.c": "afa3371dc48a1d981433af5be4fa19f68e26510b44bc1771ea36b6f3ef924cc4",
+      "libtiff/tif_lzw.c": "ae7a83418825d7d42ef6cb6ccc41477623244019bc9cc3a214f9ae5023230647",
+      "libtiff/tif_next.c": "c1547a8679737d2afd719cfa8c48e30aec643a562c2faf745e72d543c62a85f7",
+      "libtiff/tif_ojpeg.c": "2ec65649ffbde664929d1e64a51ac6ecfc5fb885fabf72df65790b5aaddc4807",
+      "libtiff/tif_open.c": "6ede26db3c7fdc4be4547241fa181992ede5083630bf89ab5aeedfd8d266778b",
+      "libtiff/tif_packbits.c": "7bd882ca216c306da2c821479891b4eaac694cecf5e1b72af9a38c412f44e64d",
+      "libtiff/tif_pixarlog.c": "632da8f442dc472a1133e781ef2c1a29afde51f0b5a683d93e12ef7c1994c1b5",
+      "libtiff/tif_predict.c": "d2725b0b6cd6c8257e8db377ea8b3d087a5832fd497d3b1bc25dee99bee16fb2",
+      "libtiff/tif_predict.h": "db8fd14a45ae89508ded8e14f92d84c45361a271cecd0b23efe1aacd64266d4c",
+      "libtiff/tif_print.c": "0299dcd9d090c0675114ab8f60a0038bcaef0cb8a7a0a9ac624e8c9d21191c89",
+      "libtiff/tif_read.c": "445e9b8431b90e310f0180ef2dcedd14eadda0ebd3b067467380dfad29601816",
+      "libtiff/tif_strip.c": "69bcf3f1aa7e69f3f60f45a672732c0dbe990fb56c55eca03643b4fc0091259e",
+      "libtiff/tif_swab.c": "e6bf720054389fe8a09ebc7f23602926c74deb487b156760bdee76c26fe9c48b",
+      "libtiff/tif_thunder.c": "5a96e50d5366de486d417443ad141c4c3e20b1e27154a6ebc3050ac4f34939b2",
+      "libtiff/tif_tile.c": "ea611b9aca67a3e45e94f4870e1753b91759ceec8242807bf4b645f1413f8d3c",
+      "libtiff/tif_unix.c": "6a73e9224e05c1378c9b92631633e91948f174f4c2ea964a83025e510a9132ef",
+      "libtiff/tif_version.c": "2229f8db01a825202e6fe346308362b953fac5d1e56411d7787c171ee72cf2f3",
+      "libtiff/tif_warning.c": "d1faa214c1aa9189dbdf8e5bca00a438fda9259361c9c9dd88abe2825d486ce9",
+      "libtiff/tif_write.c": "f4f0a6e725fb5a9d42e7033364a0a5c62a02d4ab739804d4d89ea02bd7864bf8",
+      "libtiff/tif_zip.c": "3d2e74e0f25bca410e4f8e053527fa215370c3d57ba25877f021e0921e7f2041",
+      "libtiff/tiff.h": "da64037f60c12dbf40db427d2bd0c4fa2c4ee2778c602d74cc9e0bdcec18cfd3",
+      "libtiff/tiffconf.h": "48d2319191bc7958c7e4410d6303ec4939bd78582b71b239c2296551ab379404",
+      "libtiff/tiffconf.vc.h": "7236057a722033056022f3ee1122a42406a8f62f23c673e5ec06e08e42455f02",
+      "libtiff/tiffconf.wince.h": "9dde071d9b17a0c345ffe651809b2e1e39972041585171e3542c3091a237e932",
+      "libtiff/tiffio.h": "91c0adabfd51783beacac327f79c06489bbd0a680654a6758d7101e0ccaf6f97",
+      "libtiff/tiffiop.h": "56cd69f09216b7f55500646a231a23836336e474e6d902bd1f71b8297dc8a0da",
+      "libtiff/tiffvers.h": "a03e7ce3c04cefc201211b5a3d376e24a7e151a27704849dcd8577c4464b05ae",
+      "libtiff/uvcode.h": "a3f20294e5d6164eae7a1f6c4874dc4c97f3111718c69b9abf0e92f063087e0e",
+      "port/dummy.c": "678db04a6e51a73562dc3414fcae58726d2642bb0c4855650551f67444b9885f"
+    }
+  },
+  "target_sources": [
+    "libtiff/tif_strip.c"
+  ],
+  "include_dirs": [
+    "libtiff"
+  ],
+  "visible": {
+    "files": [
+      "libtiff/t4.h",
+      "libtiff/tif_aux.c",
+      "libtiff/tif_close.c",
+      "libtiff/tif_codec.c",
+      "libtiff/tif_color.c",
+      "libtiff/tif_compress.c",
+      "libtiff/tif_config.h",
+      "libtiff/tif_config.vc.h",
+      "libtiff/tif_config.wince.h",
+      "libtiff/tif_dir.c",
+      "libtiff/tif_dir.h",
+      "libtiff/tif_dirinfo.c",
+      "libtiff/tif_dirread.c",
+      "libtiff/tif_dirwrite.c",
+      "libtiff/tif_dumpmode.c",
+      "libtiff/tif_error.c",
+      "libtiff/tif_extension.c",
+      "libtiff/tif_fax3.c",
+      "libtiff/tif_fax3.h",
+      "libtiff/tif_fax3sm.c",
+      "libtiff/tif_flush.c",
+      "libtiff/tif_getimage.c",
+      "libtiff/tif_jbig.c",
+      "libtiff/tif_jpeg.c",
+      "libtiff/tif_jpeg_12.c",
+      "libtiff/tif_luv.c",
+      "libtiff/tif_lzma.c",
+      "libtiff/tif_lzw.c",
+      "libtiff/tif_next.c",
+      "libtiff/tif_ojpeg.c",
+      "libtiff/tif_open.c",
+      "libtiff/tif_packbits.c",
+      "libtiff/tif_pixarlog.c",
+      "libtiff/tif_predict.c",
+      "libtiff/tif_predict.h",
+      "libtiff/tif_print.c",
+      "libtiff/tif_read.c",
+      "libtiff/tif_strip.c",
+      "libtiff/tif_swab.c",
+      "libtiff/tif_thunder.c",
+      "libtiff/tif_tile.c",
+      "libtiff/tif_unix.c",
+      "libtiff/tif_version.c",
+      "libtiff/tif_warning.c",
+      "libtiff/tif_write.c",
+      "libtiff/tif_zip.c",
+      "libtiff/tiff.h",
+      "libtiff/tiffconf.h",
+      "libtiff/tiffconf.vc.h",
+      "libtiff/tiffconf.wince.h",
+      "libtiff/tiffio.h",
+      "libtiff/tiffiop.h",
+      "libtiff/tiffvers.h",
+      "libtiff/uvcode.h",
+      "port/dummy.c"
+    ],
+    "notes": "可见材料只有被测及依赖源码、头文件和公开构建配置；测试使用 C++11 / GoogleTest 1.12.1。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": false,
+    "note": "上游测试作为隐藏参考材料，未投影给生成 Agent。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "隐藏参考测试覆盖的输入；断言以固定源码实际行为为准；不以此收窄等价性判定。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/import_step_c.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": [
+    {
+      "id": "bugscpp-5",
+      "kind": "real_bug",
+      "expect": "fail",
+      "files": {
+        "libtiff/tif_strip.c": "8fc9d5ed58210f0be1c9be9b6615e9484293bf78b6ca8a267d874bb412b95d3d"
+      },
+      "description": "BugsC++ 固定 buggy.patch 作用于修复提交；参考测试验证修复后的行为。",
+      "patch_sha256": "bbb7bd20308789322fd08307df6a809d53a366b0d42d530469d1c596baab4f94",
+      "source": {
+        "repository": "https://github.com/Suresoft-GLaDOS/bugscpp",
+        "project": "libtiff",
+        "commit": "be5cc489cb2b3127ec3b73cb4adfdd290807f55b",
+        "bug": 5,
+        "patch_sha256": "bbb7bd20308789322fd08307df6a809d53a366b0d42d530469d1c596baab4f94"
+      }
+    }
+  ],
+  "build": {
+    "support_sources": [
+      "libtiff/tif_aux.c",
+      "libtiff/tif_close.c",
+      "libtiff/tif_codec.c",
+      "libtiff/tif_color.c",
+      "libtiff/tif_compress.c",
+      "libtiff/tif_dir.c",
+      "libtiff/tif_dirinfo.c",
+      "libtiff/tif_dirread.c",
+      "libtiff/tif_dirwrite.c",
+      "libtiff/tif_dumpmode.c",
+      "libtiff/tif_error.c",
+      "libtiff/tif_extension.c",
+      "libtiff/tif_fax3.c",
+      "libtiff/tif_fax3sm.c",
+      "libtiff/tif_flush.c",
+      "libtiff/tif_getimage.c",
+      "libtiff/tif_jbig.c",
+      "libtiff/tif_jpeg.c",
+      "libtiff/tif_jpeg_12.c",
+      "libtiff/tif_luv.c",
+      "libtiff/tif_lzma.c",
+      "libtiff/tif_lzw.c",
+      "libtiff/tif_next.c",
+      "libtiff/tif_ojpeg.c",
+      "libtiff/tif_open.c",
+      "libtiff/tif_packbits.c",
+      "libtiff/tif_pixarlog.c",
+      "libtiff/tif_predict.c",
+      "libtiff/tif_print.c",
+      "libtiff/tif_read.c",
+      "libtiff/tif_swab.c",
+      "libtiff/tif_thunder.c",
+      "libtiff/tif_tile.c",
+      "libtiff/tif_unix.c",
+      "libtiff/tif_version.c",
+      "libtiff/tif_warning.c",
+      "libtiff/tif_write.c",
+      "libtiff/tif_zip.c",
+      "port/dummy.c"
+    ],
+    "environment": "bank-20261021",
+    "link_libraries": [
+      "ZLIB::ZLIB"
+    ],
+    "c_standard": "c99"
+  }
+}

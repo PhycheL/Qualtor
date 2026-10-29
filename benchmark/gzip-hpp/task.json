@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "id": "gzip-hpp",
+  "set": "dev",
+  "tier": "easy",
+  "tags": [
+    "environment",
+    "gzip-hpp"
+  ],
+  "title": "gzip-hpp",
+  "description": "第三方依赖与公开构建配置；源码按固定上游提交入库，开发题。",
+  "source": {
+    "repository": "https://github.com/mapbox/gzip-hpp",
+    "commit": "7546b35aba5917154a0e9ae43f804b57d22bb966",
+    "root": "benchmark/gzip-hpp/source",
+    "files": {
+      "include/gzip/compress.hpp": "280992b6b1e52138e2f1566c02193fb20b36d59a6a69801c3f3ce06d81794495",
+      "include/gzip/config.hpp": "e77b5b3cb61eed8035e3d20bbdc3b75af64407bff44fcaa62fec7c6892afed6e",
+      "include/gzip/decompress.hpp": "f9ce8912a74a2d89c40576cc7fe47038aa5c9d12d249082a77e7cc246b39fda3",
+      "include/gzip/utils.hpp": "cddd9c00b738071fd051c3319c5cb8deae8d750a243ab76e278e86b26e73d3e3",
+      "include/gzip/version.hpp": "17107e0d49013b1421513f65c61686db05f030ccd52b76bd359a82211c12dd57"
+    }
+  },
+  "target_sources": [],
+  "include_dirs": [
+    "include"
+  ],
+  "visible": {
+    "files": [
+      "include/gzip/compress.hpp",
+      "include/gzip/config.hpp",
+      "include/gzip/decompress.hpp",
+      "include/gzip/utils.hpp",
+      "include/gzip/version.hpp"
+    ],
+    "notes": "可见材料只有被测及依赖源码、头文件和公开构建配置；测试使用 C++11 / GoogleTest 1.12.1。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": false,
+    "note": "上游测试作为隐藏参考材料，未投影给生成 Agent。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "隐藏参考测试覆盖的输入；断言以固定源码实际行为为准；不以此收窄等价性判定。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests",
+    "coverage_baseline": "hidden/coverage_baseline.json"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/import_step_c.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": [
+    {
+      "id": "hw-01",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "include/gzip/compress.hpp": "7bca80011f76d79dde9a14adfb196c43b2f5df052178445e800a56780aa3cecd"
+      },
+      "description": "gzip 错误输出为 zlib 格式。",
+      "patch_sha256": "56b2470b46d2dc91dbe922af9cc8507296eac9cea7143267a0a8861d741a4bd0"
+    },
+    {
+      "id": "hw-02",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "include/gzip/compress.hpp": "d398e943d137c35d68dbdff277914120e2ae89de0a5c9b2fd474b8e259fed44a"
+      },
+      "description": "错误拒绝恰好达到大小上限的有效输入。",
+      "patch_sha256": "83a33ec9f0ad7dde8bd1bce75e81956bab269818acc9074f0cefe2f9a05e7598"
+    },
+    {
+      "id": "hw-03",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "include/gzip/decompress.hpp": "9519d15ce58c311000190e5fc520176466e819ff33c4f1a4aa3cfb1101137ea6"
+      },
+      "description": "解压结果多一个尾字节。",
+      "patch_sha256": "3b804fecf2f4c2e108c577f6843cfd1e5d8782738f37dbecba89de45253502c6"
+    },
+    {
+      "id": "hw-04",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "include/gzip/utils.hpp": "2554d149396a9fce55edf4993fd2f936a0366431016181e657cbc0273231cb96"
+      },
+      "description": "错误拒绝三字节头。",
+      "patch_sha256": "ca63f16f91e1c2628255b99a0d36153092fef115036c6c7b7958e976c0103e40"
+    },
+    {
+      "id": "hw-05",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "include/gzip/utils.hpp": "e0b0a2ba1308288d8c570db5e5756b799ecbed0da34fc4a7bd75f172355bc24c"
+      },
+      "description": "错误识别 zlib 头标记。",
+      "patch_sha256": "a6da0f625291731fe5257665c634a0256ccdd20caa785b460d7c20cd6ed6b7aa"
+    }
+  ],
+  "build": {
+    "support_sources": [],
+    "environment": "bank-20261021",
+    "link_libraries": [
+      "ZLIB::ZLIB"
+    ],
+    "defines": [
+      "DEBUG"
+    ]
+  },
+  "target_headers": [
+    "include/gzip/compress.hpp",
+    "include/gzip/decompress.hpp",
+    "include/gzip/utils.hpp"
+  ]
+}

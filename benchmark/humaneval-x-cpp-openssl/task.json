@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "id": "humaneval-x-cpp-openssl",
+  "set": "dev",
+  "tier": "easy",
+  "tags": [
+    "humaneval-x",
+    "environment",
+    "openssl"
+  ],
+  "title": "HumanEval-X openssl 函数",
+  "description": "独立的第三方依赖函数组；公开开发题。",
+  "source": {
+    "repository": "https://github.com/zai-org/CodeGeeX",
+    "commit": "2838420b7b4492cf3d16bce5320e26e65960c9e2",
+    "root": "benchmark/humaneval-x-cpp-openssl/source",
+    "files": {
+      "src/cpp_162.cc": "eacddda73cfea2abc6aca759b857ed8c69c7b2d0f0033708345a7a8bd8869d83",
+      "src/functions.h": "c92dd8d78684d115dc77ebe63bf3504d4c8b4c257214cc389dfba91fd6df833a"
+    }
+  },
+  "target_sources": [
+    "src/cpp_162.cc"
+  ],
+  "include_dirs": [
+    "src"
+  ],
+  "visible": {
+    "files": [
+      "src/cpp_162.cc",
+      "src/functions.h"
+    ],
+    "notes": "可见材料只有被测及依赖源码、头文件和公开构建配置；测试使用 C++11 / GoogleTest 1.12.1。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": true,
+    "note": "上游测试作为隐藏参考材料。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "参考测试的定义行为输入；不以此收窄 D015 等价性判定。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/import_humaneval_x.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": [],
+  "build": {
+    "environment": "bank-20261021",
+    "link_libraries": [
+      "OpenSSL::Crypto"
+    ],
+    "defines": [
+      "OPENSSL_API_COMPAT=0x10101000L"
+    ]
+  }
+}

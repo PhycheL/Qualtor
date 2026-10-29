@@ -1,0 +1,306 @@
+{
+  "task": "qt-aes",
+  "note": "按 D011/D015 复核；源码有定义的输入域不由隐藏测试收窄。平台相关结论只验证 Linux ARM64。",
+  "mutants": [
+    {
+      "id": "cxx_add_to_sub:/repo/qaesencryption.cpp:298:62:298:63",
+      "reason": "expandKey 中 (i * 4) + 0 改为 (i * 4) - 0，整数加减 0 恒等。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:298",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/qaesencryption.cpp:332:24:332:25",
+      "reason": "expandKey 中 i * 4 + 0 改为 i * 4 - 0，整数加减 0 恒等。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:332",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/qaesencryption.cpp:332:78:332:79",
+      "reason": "expandKey 中 (i - m_nk) * 4 + 0 改为 (i - m_nk) * 4 - 0，整数加减 0 恒等。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:332",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_and_to_or:/repo/qaesencryption.cpp:49:95:49:96",
+      "reason": "匿名命名空间中的 multiply(x, y) 仅由 invMixColumns 调用，且第二个参数恒为 {0x09, 0x0b, 0x0d, 0x0e} 之一；这四个常量第 3 位均为 1（(y >> 3) == 1），故 ((y >> 3) & 1) 与 ((y >> 3) | 1) 恒等于 1。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:49",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/qaesencryption.cpp:239:19:239:20",
+      "reason": "m_expandedKey 仅在 expandKey 入口用于 roundKey.resize(m_expandedKey) 预分配；随后循环通过 QByteArray::operator[] 按 i=0..m_nb*(m_nr+1)-1 写入 176/208/240 字节，m_expandedKey 从 240/208/176 改为 42 时 QByteRef 自动扩容至相同最终长度与内容。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:239",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/qaesencryption.cpp:30:14:30:15",
+      "reason": "secureZero 仅用于函数末尾擦除即将析构的局部 QByteArray 缓冲区（expandedKey、saltBlock、u、t、counter 等），将擦除字节从 0 改为 42 不影响任何返回值或外部可观察状态。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:30",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/qaesencryption.cpp:222:30:222:32",
+      "reason": "aesParams 中 (level >= 0 && level <= 2) ? level : 0 在 level == 0 时真假两分支结果均为 0，将 >= 改为 > 完全等价。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:222",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_init_const:/repo/qaesencryption.cpp:162:9:162:15",
+      "reason": "keyLen 初值在紧邻的 switch(level) 中被 AES_128/192/256 及 default 分支全覆盖赋值，初值 0 改为 42 从未被读取。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:162",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_init_const:/repo/qaesencryption.cpp:29:14:29:15",
+      "reason": "secureZero 仅擦除即将销毁的局部 QByteArray 缓冲区；循环初值 i=0 改为 i=42 时（无论 ba.size() <= 42 不进入循环或 ba.size() > 42 从偏移 42 开始擦除）均在有定义范围内且不影响任何返回值或外部可观察状态。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:29",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_init_const:/repo/qaesencryption.cpp:559:13:559:22",
+      "reason": "xcryptCTR 中 blockSize 初值改为 42 后，当 input.size() - i >= m_blocklen(16) 时 if 分支仍将其覆写为 16；当末块不足 16 字节时 input.mid(i, 42) 自动截断为剩余长度 input.size() - i，keyStream.left(42) 为 16 字节，byteXor 取二者长度 std::min 仍异或剩余字节，结果完全一致。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:559",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/qaesencryption.cpp:29:23:29:24",
+      "reason": "secureZero 中 i < ba.size() 改为 i >= ba.size() 时，因 ba.isEmpty() 已提前返回，ba.size() > 0 而初值 i = 0，循环条件首轮即为假；仅跳过死存储擦除，无外部可观察差异。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:29",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/qaesencryption.cpp:107:27:107:28",
+      "reason": "RemovePadding 的 PKCS7 分支在 i == 16（当 len >= 16）时，若 padLen <= 16 则 inPad = (16 < padLen) 为 0，mask = 0，good &= ~0 不变且仅合法读取 ret.at(len - 17)；若 padLen > 16 则第 105 行已置 good = 0，good &= ... 仍为 0。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:107",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/qaesencryption.cpp:173:44:173:45",
+      "reason": "generateKey 中 derived.size() < keyLen 改为 <= 后，当 derived.size() 恰好达到 keyLen 时多派生一个分块，但第 192 行返回 derived.left(keyLen) 截断回 keyLen 字节，返回值完全相同（资源/耗时差异按 D015 排除）。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:173",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/qaesencryption.cpp:548:32:548:33",
+      "reason": "xcryptOFB 中 i < input.size() 改为 <= 后，当 input.size() 为 16 的倍数时在 i == input.size() 多向 ofbTemp 追加 16 字节，但第 552 行 byteXor(input, ofbTemp) 按 std::min(input.size(), ofbTemp.size()) 截断，输出不变。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:548",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/qaesencryption.cpp:557:23:557:24",
+      "reason": "xcryptCTR 中 i < input.size() 改为 <= 后，当 input.size() 为 16 的倍数时在 i == input.size() 处 blockSize = 0，input.mid(i, 0) 与 keyStream.left(0) 均为空，byteXor 追加空 QByteArray，返回值不变。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:557",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/qaesencryption.cpp:654:27:654:28",
+      "reason": "encode 的 CFB 分支在 i == alignedText.size() 处，cipher 作用于 16 字节 cfbFeedback（有定义），alignedText.mid(size(), 16) 返回空 QByteArray，byteXor 返回空 QByteArray，ret.append 不改变密文输出。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:654",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/qaesencryption.cpp:798:27:798:28",
+      "reason": "decode 的 CFB 分支在 i == rawText.size() 处，cipher 作用于 16 字节 cfbFeedback（有定义），rawText.mid(size(), 16) 返回空 QByteArray，byteXor 返回空 QByteArray，ret.append 不改变明文输出。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:798",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/qaesencryption.cpp:26:12:26:19",
+      "reason": "真实 Mull IR 将 secureZero 中 ba.isEmpty() 的 i1 返回值替换为 false（trunc i32 42 to i1）；当 ba 非空时与原代码相同，当 ba 为空时 ba.size() == 0，后续 for (i = 0; i < 0; ++i) 仍不执行循环体，直接返回。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:26",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/qaesencryption.cpp:50:55:50:84",
+      "reason": "multiply(x, y) 仅由 invMixColumns 以 y ∈ {0x09, 0x0b, 0x0d, 0x0e} 调用；((y >> 4) & 1) 恒为 0，与 0 相乘结果恒为 0，故将右侧 xtime 嵌套调用替换为 42 后 0 * 42 仍为 0。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:50",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/qaesencryption.cpp:50:61:50:83",
+      "reason": "multiply(x, y) 仅由 invMixColumns 以 y ∈ {0x09, 0x0b, 0x0d, 0x0e} 调用；((y >> 4) & 1) 恒为 0，将内层 xtime 调用替换为 42 后经外层求值再乘 0 仍恒为 0。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:50",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/qaesencryption.cpp:50:67:50:82",
+      "reason": "multiply(x, y) 仅由 invMixColumns 以 y ∈ {0x09, 0x0b, 0x0d, 0x0e} 调用；((y >> 4) & 1) 恒为 0，将内层 xtime 调用替换为 42 后再乘 0 仍恒为 0。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:50",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/qaesencryption.cpp:50:73:50:81",
+      "reason": "multiply(x, y) 仅由 invMixColumns 以 y ∈ {0x09, 0x0b, 0x0d, 0x0e} 调用；((y >> 4) & 1) 恒为 0，将最内层 xtime(x) 替换为 42 后再乘 0 仍恒为 0。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:50",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/qaesencryption.cpp:574:31:574:38",
+      "reason": "encode 中 m_blocklen 恒为 16；当 iv.isEmpty() 为真时 iv.size() == 0 != 16，右侧 iv.size() != m_blocklen 已为真，故将 iv.isEmpty() 替换为 false（trunc i32 42 to i1）不改变条件真假。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:574",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/qaesencryption.cpp:716:31:716:38",
+      "reason": "decode 中 m_blocklen 恒为 16；当 iv.isEmpty() 为真时 iv.size() == 0 != 16，右侧 iv.size() != m_blocklen 已为真，故将 iv.isEmpty() 替换为 false（trunc i32 42 to i1）不改变条件真假。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:716",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/qaesencryption.cpp:176:50:176:52",
+      "reason": "generateKey 中 keyLen <= 32 且每个 HMAC 摘要长度至少 16 字节（MD4/MD5 为 16，SHA-1 及以上 >= 20），循环中 block 只取 1 或 2；对 block ∈ {1, 2}，(block >> 24) & 0xff 与 (block << 24) & 0xff 恒等于 0。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:176",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/qaesencryption.cpp:177:50:177:52",
+      "reason": "generateKey 中 block 只取 1 或 2；对 block ∈ {1, 2}，(block >> 16) & 0xff 与 (block << 16) & 0xff 恒等于 0。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:177",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/qaesencryption.cpp:178:50:178:52",
+      "reason": "generateKey 中 block 只取 1 或 2；对 block ∈ {1, 2}，(block >> 8) & 0xff 与 (block << 8) & 0xff 恒等于 0。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:178",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/qaesencryption.cpp:50:44:50:46",
+      "reason": "multiply(x, y) 仅由 invMixColumns 以 y ∈ {0x09, 0x0b, 0x0d, 0x0e} 调用；这四个值均 < 16 且为非零值，(y >> 4) & 1 与 (y << 4) & 1 恒等于 0。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:50",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/qaesencryption.cpp:559:55:559:56",
+      "reason": "xcryptCTR 中 input.size() - i 改为 input.size() + i 后，blockSize 恒 >= 16 并被三元运算符截断为 m_blocklen(16)；当末块不足 16 字节时 input.mid(i, 16) 自动截断为剩余字节数，byteXor 按最小长度异或，输出完全一致。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:559",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_xor_to_or:/repo/qaesencryption.cpp:50:39:50:40",
+      "reason": "multiply(x, y) 仅由 invMixColumns 以 y ∈ {0x09, 0x0b, 0x0d, 0x0e} 调用；第 50 行的 ((y >> 4) & 1) * ... 项恒为 0，故与 0 做异或（^）或按位或（|）结果恒相同。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:50",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    }
+  ]
+}

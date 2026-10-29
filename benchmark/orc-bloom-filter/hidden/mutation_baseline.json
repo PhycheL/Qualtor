@@ -1,0 +1,3763 @@
+{
+  "environment": {
+    "name": "bank-20261021",
+    "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd",
+    "images": {
+      "gcc": {
+        "tag": "docker.io/library/qualtor-env-bank-20261021-gcc:9abcad8ef238",
+        "id": "sha256:2f3d4143870ad0135491dbaeea1b4d4af80bdfc274bfced8913f903a35c5a5a5",
+        "platform": "linux/arm64"
+      },
+      "clang": {
+        "tag": "docker.io/library/qualtor-env-bank-20261021-clang:9abcad8ef238",
+        "id": "sha256:76b0083ec874c3ee645584e7208e930112a02028870640fc98e9c618685b49da",
+        "platform": "linux/arm64"
+      }
+    }
+  },
+  "task": "orc-bloom-filter",
+  "created_at": "2026-10-29T12:14:59.303029+00:00",
+  "created_by_run": "step-c-seed-20261029-12-orc-bloom-filter",
+  "scorer_version": "0.5.0",
+  "scorer_code_sha256": "6d1c01fb6422665bd3dc90441c96cc86d5839dca21f44eaf7f693e5e7cf66639",
+  "images": {
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
+  },
+  "mull": {
+    "config_sha256": "9dac735e351d1554b3b33337725d8d5a2bebf979976251fecc76e5a41ef26672",
+    "config": "# 由评分器根据 task.json 生成；修改算子要升级变异分母。\nmutators:\n  - cxx_all\nincludePaths:\n  - '/repo/c\\+\\+/src/BloomFilter\\.cc$'\n"
+  },
+  "mutants": [
+    {
+      "id": "cxx_add_assign_to_sub_assign:/repo/c++/src/BloomFilter.cc:194:45:194:47",
+      "mutator": "cxx_add_assign_to_sub_assign",
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 45
+        },
+        "end": {
+          "line": 194,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_add_assign_to_sub_assign:/repo/c++/src/BloomFilter.cc:284:45:284:47",
+      "mutator": "cxx_add_assign_to_sub_assign",
+      "location": {
+        "start": {
+          "line": 284,
+          "column": 45
+        },
+        "end": {
+          "line": 284,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/c++/src/BloomFilter.cc:131:19:131:20",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 19
+        },
+        "end": {
+          "line": 131,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/c++/src/BloomFilter.cc:220:36:220:37",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 220,
+          "column": 36
+        },
+        "end": {
+          "line": 220,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/c++/src/BloomFilter.cc:237:36:237:37",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 36
+        },
+        "end": {
+          "line": 237,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/c++/src/BloomFilter.cc:195:25:195:26",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 195,
+          "column": 25
+        },
+        "end": {
+          "line": 195,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/c++/src/BloomFilter.cc:214:49:214:50",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 49
+        },
+        "end": {
+          "line": 214,
+          "column": 50
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/c++/src/BloomFilter.cc:231:49:231:50",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 231,
+          "column": 49
+        },
+        "end": {
+          "line": 231,
+          "column": 50
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/c++/src/BloomFilter.cc:285:25:285:26",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 285,
+          "column": 25
+        },
+        "end": {
+          "line": 285,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/c++/src/BloomFilter.cc:52:42:52:43",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 42
+        },
+        "end": {
+          "line": 52,
+          "column": 43
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/c++/src/BloomFilter.cc:131:14:131:15",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 14
+        },
+        "end": {
+          "line": 131,
+          "column": 15
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/c++/src/BloomFilter.cc:132:23:132:24",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 23
+        },
+        "end": {
+          "line": 132,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/c++/src/BloomFilter.cc:179:23:179:24",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 179,
+          "column": 23
+        },
+        "end": {
+          "line": 179,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/c++/src/BloomFilter.cc:182:14:182:15",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 14
+        },
+        "end": {
+          "line": 182,
+          "column": 15
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/c++/src/BloomFilter.cc:223:22:223:23",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 22
+        },
+        "end": {
+          "line": 223,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/c++/src/BloomFilter.cc:240:22:240:23",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 240,
+          "column": 22
+        },
+        "end": {
+          "line": 240,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_bitwise_not_to_noop:/repo/c++/src/BloomFilter.cc:223:24:223:25",
+      "mutator": "cxx_bitwise_not_to_noop",
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 24
+        },
+        "end": {
+          "line": 223,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_bitwise_not_to_noop:/repo/c++/src/BloomFilter.cc:240:24:240:25",
+      "mutator": "cxx_bitwise_not_to_noop",
+      "location": {
+        "start": {
+          "line": 240,
+          "column": 24
+        },
+        "end": {
+          "line": 240,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_div_to_mul:/repo/c++/src/BloomFilter.cc:101:52:101:53",
+      "mutator": "cxx_div_to_mul",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 52
+        },
+        "end": {
+          "line": 101,
+          "column": 53
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_div_to_mul:/repo/c++/src/BloomFilter.cc:278:50:278:51",
+      "mutator": "cxx_div_to_mul",
+      "location": {
+        "start": {
+          "line": 278,
+          "column": 50
+        },
+        "end": {
+          "line": 278,
+          "column": 51
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_div_to_mul:/repo/c++/src/BloomFilter.cc:38:36:38:37",
+      "mutator": "cxx_div_to_mul",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 36
+        },
+        "end": {
+          "line": 38,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_div_to_mul:/repo/c++/src/BloomFilter.cc:96:47:96:48",
+      "mutator": "cxx_div_to_mul",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 47
+        },
+        "end": {
+          "line": 96,
+          "column": 48
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/c++/src/BloomFilter.cc:112:14:112:16",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 14
+        },
+        "end": {
+          "line": 112,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/c++/src/BloomFilter.cc:183:43:183:45",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 43
+        },
+        "end": {
+          "line": 183,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/c++/src/BloomFilter.cc:293:21:293:23",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 293,
+          "column": 21
+        },
+        "end": {
+          "line": 293,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/c++/src/BloomFilter.cc:294:30:294:32",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 294,
+          "column": 30
+        },
+        "end": {
+          "line": 294,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/c++/src/BloomFilter.cc:30:21:30:23",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 21
+        },
+        "end": {
+          "line": 30,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/c++/src/BloomFilter.cc:124:35:124:36",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 35
+        },
+        "end": {
+          "line": 124,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/c++/src/BloomFilter.cc:126:23:126:24",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 23
+        },
+        "end": {
+          "line": 126,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/c++/src/BloomFilter.cc:124:35:124:36",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 35
+        },
+        "end": {
+          "line": 124,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/c++/src/BloomFilter.cc:126:23:126:24",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 23
+        },
+        "end": {
+          "line": 126,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:100:12:100:13",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 12
+        },
+        "end": {
+          "line": 100,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:129:14:129:16",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 14
+        },
+        "end": {
+          "line": 129,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:137:14:137:20",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 14
+        },
+        "end": {
+          "line": 137,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:146:14:146:20",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 14
+        },
+        "end": {
+          "line": 146,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:190:19:190:20",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 190,
+          "column": 19
+        },
+        "end": {
+          "line": 190,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:194:21:194:24",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 21
+        },
+        "end": {
+          "line": 194,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:214:13:214:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 13
+        },
+        "end": {
+          "line": 214,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:217:13:217:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 13
+        },
+        "end": {
+          "line": 217,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:219:18:219:19",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 219,
+          "column": 18
+        },
+        "end": {
+          "line": 219,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:220:15:220:27",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 220,
+          "column": 15
+        },
+        "end": {
+          "line": 220,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:225:16:225:19",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 16
+        },
+        "end": {
+          "line": 225,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:231:13:231:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 231,
+          "column": 13
+        },
+        "end": {
+          "line": 231,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:234:13:234:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 13
+        },
+        "end": {
+          "line": 234,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:236:18:236:19",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 236,
+          "column": 18
+        },
+        "end": {
+          "line": 236,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:237:15:237:27",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 15
+        },
+        "end": {
+          "line": 237,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:242:16:242:19",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 242,
+          "column": 16
+        },
+        "end": {
+          "line": 242,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:280:19:280:20",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 280,
+          "column": 19
+        },
+        "end": {
+          "line": 280,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:284:21:284:24",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 284,
+          "column": 21
+        },
+        "end": {
+          "line": 284,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:67:17:67:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 17
+        },
+        "end": {
+          "line": 67,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:94:12:94:13",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 12
+        },
+        "end": {
+          "line": 94,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/c++/src/BloomFilter.cc:219:27:219:29",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 219,
+          "column": 27
+        },
+        "end": {
+          "line": 219,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/c++/src/BloomFilter.cc:236:27:236:29",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 236,
+          "column": 27
+        },
+        "end": {
+          "line": 236,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/c++/src/BloomFilter.cc:219:27:219:29",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 219,
+          "column": 27
+        },
+        "end": {
+          "line": 219,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/c++/src/BloomFilter.cc:236:27:236:29",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 236,
+          "column": 27
+        },
+        "end": {
+          "line": 236,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lshift_to_rshift:/repo/c++/src/BloomFilter.cc:182:33:182:35",
+      "mutator": "cxx_lshift_to_rshift",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 33
+        },
+        "end": {
+          "line": 182,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lshift_to_rshift:/repo/c++/src/BloomFilter.cc:195:34:195:36",
+      "mutator": "cxx_lshift_to_rshift",
+      "location": {
+        "start": {
+          "line": 195,
+          "column": 34
+        },
+        "end": {
+          "line": 195,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lshift_to_rshift:/repo/c++/src/BloomFilter.cc:195:51:195:53",
+      "mutator": "cxx_lshift_to_rshift",
+      "location": {
+        "start": {
+          "line": 195,
+          "column": 51
+        },
+        "end": {
+          "line": 195,
+          "column": 53
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lshift_to_rshift:/repo/c++/src/BloomFilter.cc:285:34:285:36",
+      "mutator": "cxx_lshift_to_rshift",
+      "location": {
+        "start": {
+          "line": 285,
+          "column": 34
+        },
+        "end": {
+          "line": 285,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lshift_to_rshift:/repo/c++/src/BloomFilter.cc:285:51:285:53",
+      "mutator": "cxx_lshift_to_rshift",
+      "location": {
+        "start": {
+          "line": 285,
+          "column": 51
+        },
+        "end": {
+          "line": 285,
+          "column": 53
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lshift_to_rshift:/repo/c++/src/BloomFilter.cc:48:43:48:45",
+      "mutator": "cxx_lshift_to_rshift",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 43
+        },
+        "end": {
+          "line": 48,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lshift_to_rshift:/repo/c++/src/BloomFilter.cc:52:50:52:52",
+      "mutator": "cxx_lshift_to_rshift",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 50
+        },
+        "end": {
+          "line": 52,
+          "column": 52
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lshift_to_rshift:/repo/c++/src/BloomFilter.cc:56:25:56:27",
+      "mutator": "cxx_lshift_to_rshift",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 25
+        },
+        "end": {
+          "line": 56,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/c++/src/BloomFilter.cc:126:36:126:37",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 36
+        },
+        "end": {
+          "line": 126,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/c++/src/BloomFilter.cc:222:24:222:25",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 222,
+          "column": 24
+        },
+        "end": {
+          "line": 222,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/c++/src/BloomFilter.cc:239:24:239:25",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 239,
+          "column": 24
+        },
+        "end": {
+          "line": 239,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/c++/src/BloomFilter.cc:126:36:126:37",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 36
+        },
+        "end": {
+          "line": 126,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/c++/src/BloomFilter.cc:222:24:222:25",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 222,
+          "column": 24
+        },
+        "end": {
+          "line": 222,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/c++/src/BloomFilter.cc:239:24:239:25",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 239,
+          "column": 24
+        },
+        "end": {
+          "line": 239,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_minus_to_noop:/repo/c++/src/BloomFilter.cc:101:33:101:34",
+      "mutator": "cxx_minus_to_noop",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 33
+        },
+        "end": {
+          "line": 101,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/c++/src/BloomFilter.cc:101:36:101:37",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 36
+        },
+        "end": {
+          "line": 101,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/c++/src/BloomFilter.cc:101:69:101:70",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 69
+        },
+        "end": {
+          "line": 101,
+          "column": 70
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/c++/src/BloomFilter.cc:220:40:220:41",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 220,
+          "column": 40
+        },
+        "end": {
+          "line": 220,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/c++/src/BloomFilter.cc:237:40:237:41",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 40
+        },
+        "end": {
+          "line": 237,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/c++/src/BloomFilter.cc:73:46:73:47",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 46
+        },
+        "end": {
+          "line": 73,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/c++/src/BloomFilter.cc:96:51:96:52",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 51
+        },
+        "end": {
+          "line": 96,
+          "column": 52
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/c++/src/BloomFilter.cc:190:28:190:30",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 190,
+          "column": 28
+        },
+        "end": {
+          "line": 190,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/c++/src/BloomFilter.cc:194:34:194:36",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 34
+        },
+        "end": {
+          "line": 194,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/c++/src/BloomFilter.cc:251:18:251:20",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 251,
+          "column": 18
+        },
+        "end": {
+          "line": 251,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/c++/src/BloomFilter.cc:251:57:251:59",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 251,
+          "column": 57
+        },
+        "end": {
+          "line": 251,
+          "column": 59
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/c++/src/BloomFilter.cc:280:28:280:30",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 280,
+          "column": 28
+        },
+        "end": {
+          "line": 280,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/c++/src/BloomFilter.cc:284:34:284:36",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 284,
+          "column": 34
+        },
+        "end": {
+          "line": 284,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/c++/src/BloomFilter.cc:310:20:310:22",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 310,
+          "column": 20
+        },
+        "end": {
+          "line": 310,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/c++/src/BloomFilter.cc:315:67:315:69",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 315,
+          "column": 67
+        },
+        "end": {
+          "line": 315,
+          "column": 69
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/c++/src/BloomFilter.cc:52:78:52:80",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 78
+        },
+        "end": {
+          "line": 52,
+          "column": 80
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/c++/src/BloomFilter.cc:60:22:60:24",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 22
+        },
+        "end": {
+          "line": 60,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/c++/src/BloomFilter.cc:67:26:67:28",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 26
+        },
+        "end": {
+          "line": 67,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_or_assign_to_and_assign:/repo/c++/src/BloomFilter.cc:195:15:195:17",
+      "mutator": "cxx_or_assign_to_and_assign",
+      "location": {
+        "start": {
+          "line": 195,
+          "column": 15
+        },
+        "end": {
+          "line": 195,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_or_assign_to_and_assign:/repo/c++/src/BloomFilter.cc:285:15:285:17",
+      "mutator": "cxx_or_assign_to_and_assign",
+      "location": {
+        "start": {
+          "line": 285,
+          "column": 15
+        },
+        "end": {
+          "line": 285,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_or_assign_to_and_assign:/repo/c++/src/BloomFilter.cc:48:34:48:36",
+      "mutator": "cxx_or_assign_to_and_assign",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 34
+        },
+        "end": {
+          "line": 48,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_or_assign_to_and_assign:/repo/c++/src/BloomFilter.cc:68:16:68:18",
+      "mutator": "cxx_or_assign_to_and_assign",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 16
+        },
+        "end": {
+          "line": 68,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/c++/src/BloomFilter.cc:67:44:67:46",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 44
+        },
+        "end": {
+          "line": 67,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/c++/src/BloomFilter.cc:190:45:190:47",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 190,
+          "column": 45
+        },
+        "end": {
+          "line": 190,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/c++/src/BloomFilter.cc:219:49:219:51",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 219,
+          "column": 49
+        },
+        "end": {
+          "line": 219,
+          "column": 51
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/c++/src/BloomFilter.cc:236:49:236:51",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 236,
+          "column": 49
+        },
+        "end": {
+          "line": 236,
+          "column": 51
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/c++/src/BloomFilter.cc:280:46:280:48",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 280,
+          "column": 46
+        },
+        "end": {
+          "line": 280,
+          "column": 48
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_rem_to_div:/repo/c++/src/BloomFilter.cc:131:41:131:42",
+      "mutator": "cxx_rem_to_div",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 41
+        },
+        "end": {
+          "line": 131,
+          "column": 42
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rem_to_div:/repo/c++/src/BloomFilter.cc:183:28:183:29",
+      "mutator": "cxx_rem_to_div",
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 28
+        },
+        "end": {
+          "line": 183,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rem_to_div:/repo/c++/src/BloomFilter.cc:225:58:225:59",
+      "mutator": "cxx_rem_to_div",
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 58
+        },
+        "end": {
+          "line": 225,
+          "column": 59
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rem_to_div:/repo/c++/src/BloomFilter.cc:242:58:242:59",
+      "mutator": "cxx_rem_to_div",
+      "location": {
+        "start": {
+          "line": 242,
+          "column": 58
+        },
+        "end": {
+          "line": 242,
+          "column": 59
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rem_to_div:/repo/c++/src/BloomFilter.cc:48:53:48:54",
+      "mutator": "cxx_rem_to_div",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 53
+        },
+        "end": {
+          "line": 48,
+          "column": 54
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rem_to_div:/repo/c++/src/BloomFilter.cc:52:60:52:61",
+      "mutator": "cxx_rem_to_div",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 60
+        },
+        "end": {
+          "line": 52,
+          "column": 61
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:124:5:125:51",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 5
+        },
+        "end": {
+          "line": 125,
+          "column": 51
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:126:5:127:72",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 5
+        },
+        "end": {
+          "line": 127,
+          "column": 72
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:133:13:133:18",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 13
+        },
+        "end": {
+          "line": 133,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:138:5:138:42",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 5
+        },
+        "end": {
+          "line": 138,
+          "column": 42
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:142:5:142:31",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 5
+        },
+        "end": {
+          "line": 142,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:183:5:183:85",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 5
+        },
+        "end": {
+          "line": 183,
+          "column": 85
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:187:15:187:20",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 15
+        },
+        "end": {
+          "line": 187,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:199:15:199:20",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 199,
+          "column": 15
+        },
+        "end": {
+          "line": 199,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:204:5:204:46",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 204,
+          "column": 5
+        },
+        "end": {
+          "line": 204,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:226:16:226:19",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 16
+        },
+        "end": {
+          "line": 226,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:261:14:261:19",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 261,
+          "column": 14
+        },
+        "end": {
+          "line": 261,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:265:14:265:19",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 265,
+          "column": 14
+        },
+        "end": {
+          "line": 265,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:269:17:269:37",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 269,
+          "column": 17
+        },
+        "end": {
+          "line": 269,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:276:19:276:33",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 276,
+          "column": 19
+        },
+        "end": {
+          "line": 276,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:324:9:324:14",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 324,
+          "column": 9
+        },
+        "end": {
+          "line": 324,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:101:38:101:51",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 38
+        },
+        "end": {
+          "line": 101,
+          "column": 51
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:101:55:101:68",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 55
+        },
+        "end": {
+          "line": 101,
+          "column": 68
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:101:71:101:84",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 71
+        },
+        "end": {
+          "line": 101,
+          "column": 84
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:116:12:117:58",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 12
+        },
+        "end": {
+          "line": 117,
+          "column": 58
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:129:41:129:79",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 41
+        },
+        "end": {
+          "line": 129,
+          "column": 79
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:137:23:137:49",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 23
+        },
+        "end": {
+          "line": 137,
+          "column": 49
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:142:13:142:30",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 13
+        },
+        "end": {
+          "line": 142,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:146:23:146:49",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 23
+        },
+        "end": {
+          "line": 146,
+          "column": 49
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:147:12:147:50",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 12
+        },
+        "end": {
+          "line": 147,
+          "column": 50
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:151:12:151:39",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 12
+        },
+        "end": {
+          "line": 151,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:151:21:151:38",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 21
+        },
+        "end": {
+          "line": 151,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:155:12:155:24",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 12
+        },
+        "end": {
+          "line": 155,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:159:21:159:28",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 21
+        },
+        "end": {
+          "line": 159,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:182:26:182:30",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 26
+        },
+        "end": {
+          "line": 182,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:190:37:190:41",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 190,
+          "column": 37
+        },
+        "end": {
+          "line": 190,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:243:21:243:24",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 243,
+          "column": 21
+        },
+        "end": {
+          "line": 243,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:273:9:273:25",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 273,
+          "column": 9
+        },
+        "end": {
+          "line": 273,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:276:42:276:55",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 276,
+          "column": 42
+        },
+        "end": {
+          "line": 276,
+          "column": 55
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:278:36:278:49",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 278,
+          "column": 36
+        },
+        "end": {
+          "line": 278,
+          "column": 49
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:280:38:280:42",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 280,
+          "column": 38
+        },
+        "end": {
+          "line": 280,
+          "column": 42
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:295:21:295:23",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 295,
+          "column": 21
+        },
+        "end": {
+          "line": 295,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:56:18:56:22",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 18
+        },
+        "end": {
+          "line": 56,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:60:15:60:19",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 15
+        },
+        "end": {
+          "line": 60,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:60:37:60:41",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 37
+        },
+        "end": {
+          "line": 60,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:63:19:63:23",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 19
+        },
+        "end": {
+          "line": 63,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:63:51:63:55",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 51
+        },
+        "end": {
+          "line": 63,
+          "column": 55
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:67:35:67:39",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 35
+        },
+        "end": {
+          "line": 67,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:73:54:73:58",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 54
+        },
+        "end": {
+          "line": 73,
+          "column": 58
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:81:18:81:20",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 18
+        },
+        "end": {
+          "line": 81,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:96:53:96:66",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 53
+        },
+        "end": {
+          "line": 96,
+          "column": 66
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/c++/src/BloomFilter.cc:155:25:155:27",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 25
+        },
+        "end": {
+          "line": 155,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/c++/src/BloomFilter.cc:189:44:189:46",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 189,
+          "column": 44
+        },
+        "end": {
+          "line": 189,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/c++/src/BloomFilter.cc:195:43:195:45",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 195,
+          "column": 43
+        },
+        "end": {
+          "line": 195,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/c++/src/BloomFilter.cc:217:72:217:74",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 72
+        },
+        "end": {
+          "line": 217,
+          "column": 74
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/c++/src/BloomFilter.cc:234:72:234:74",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 72
+        },
+        "end": {
+          "line": 234,
+          "column": 74
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/c++/src/BloomFilter.cc:285:43:285:45",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 285,
+          "column": 43
+        },
+        "end": {
+          "line": 285,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/c++/src/BloomFilter.cc:43:26:43:28",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 26
+        },
+        "end": {
+          "line": 43,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/c++/src/BloomFilter.cc:44:40:44:42",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 40
+        },
+        "end": {
+          "line": 44,
+          "column": 42
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/c++/src/BloomFilter.cc:48:17:48:19",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 17
+        },
+        "end": {
+          "line": 48,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/c++/src/BloomFilter.cc:52:25:52:27",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 25
+        },
+        "end": {
+          "line": 52,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/c++/src/BloomFilter.cc:131:35:131:36",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 35
+        },
+        "end": {
+          "line": 131,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/c++/src/BloomFilter.cc:195:58:195:59",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 195,
+          "column": 58
+        },
+        "end": {
+          "line": 195,
+          "column": 59
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/c++/src/BloomFilter.cc:285:58:285:59",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 285,
+          "column": 58
+        },
+        "end": {
+          "line": 285,
+          "column": 59
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    }
+  ],
+  "equivalent": [
+    {
+      "id": "cxx_add_assign_to_sub_assign:/repo/c++/src/BloomFilter.cc:194:45:194:47",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_add_assign_to_sub_assign:/repo/c++/src/BloomFilter.cc:284:45:284:47",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_and_to_or:/repo/c++/src/BloomFilter.cc:195:25:195:26",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_and_to_or:/repo/c++/src/BloomFilter.cc:285:25:285:26",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_div_to_mul:/repo/c++/src/BloomFilter.cc:278:50:278:51",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:190:19:190:20",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:194:21:194:24",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:280:19:280:20",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:284:21:284:24",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lshift_to_rshift:/repo/c++/src/BloomFilter.cc:195:34:195:36",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lshift_to_rshift:/repo/c++/src/BloomFilter.cc:195:51:195:53",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lshift_to_rshift:/repo/c++/src/BloomFilter.cc:285:34:285:36",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lshift_to_rshift:/repo/c++/src/BloomFilter.cc:285:51:285:53",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/c++/src/BloomFilter.cc:190:28:190:30",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/c++/src/BloomFilter.cc:194:34:194:36",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/c++/src/BloomFilter.cc:280:28:280:30",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/c++/src/BloomFilter.cc:284:34:284:36",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_or_assign_to_and_assign:/repo/c++/src/BloomFilter.cc:195:15:195:17",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_or_assign_to_and_assign:/repo/c++/src/BloomFilter.cc:285:15:285:17",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/c++/src/BloomFilter.cc:190:45:190:47",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/c++/src/BloomFilter.cc:280:46:280:48",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:124:5:125:51",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:126:5:127:72",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:183:5:183:85",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:199:15:199:20",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:190:37:190:41",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:278:36:278:49",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:280:38:280:42",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/c++/src/BloomFilter.cc:189:44:189:46",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/c++/src/BloomFilter.cc:195:43:195:45",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/c++/src/BloomFilter.cc:285:43:285:45",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/c++/src/BloomFilter.cc:195:58:195:59",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/c++/src/BloomFilter.cc:285:58:285:59",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    }
+  ],
+  "unstable": [
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:204:5:204:46",
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:204",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/BloomFilter.cc.ll"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    }
+  ],
+  "review_needed": [
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/c++/src/BloomFilter.cc:219:49:219:51",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/c++/src/BloomFilter.cc:236:49:236:51",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "by": "Gemini（AI 复核，Linux ARM64）",
+    "at": "2026-10-30",
+    "note": "按 benchmark/tools/mutant_review/orc-bloom-filter/ 的复核结论签署：等价候选 33 项均有结论，不稳定 1 项按规则剔除，探针超时 2 项保留在分母中。"
+  },
+  "reference": {
+    "killed": 124,
+    "timeout": 2,
+    "total": 126,
+    "m1": 1.0,
+    "threshold": 0.8,
+    "passes": true
+  }
+}

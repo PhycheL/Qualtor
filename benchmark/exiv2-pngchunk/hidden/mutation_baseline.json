@@ -1,0 +1,5600 @@
+{
+  "environment": {
+    "name": "bank-20261021",
+    "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd",
+    "images": {
+      "gcc": {
+        "tag": "docker.io/library/qualtor-env-bank-20261021-gcc:9abcad8ef238",
+        "id": "sha256:2f3d4143870ad0135491dbaeea1b4d4af80bdfc274bfced8913f903a35c5a5a5",
+        "platform": "linux/arm64"
+      },
+      "clang": {
+        "tag": "docker.io/library/qualtor-env-bank-20261021-clang:9abcad8ef238",
+        "id": "sha256:76b0083ec874c3ee645584e7208e930112a02028870640fc98e9c618685b49da",
+        "platform": "linux/arm64"
+      }
+    }
+  },
+  "task": "exiv2-pngchunk",
+  "created_at": "2026-10-29T12:31:00.685571+00:00",
+  "created_by_run": "step-c-seed-20261029-13-exiv2-pngchunk",
+  "scorer_version": "0.5.0",
+  "scorer_code_sha256": "6d1c01fb6422665bd3dc90441c96cc86d5839dca21f44eaf7f693e5e7cf66639",
+  "images": {
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
+  },
+  "mull": {
+    "config_sha256": "3509509f62e061ee74c6ba64bdfb0cb4f3698a734a80934771e2e2d9bb13ee46",
+    "config": "# 由评分器根据 task.json 生成；修改算子要升级变异分母。\nmutators:\n  - cxx_all\nincludePaths:\n  - '/repo/src/pngchunk_int\\.cpp$'\n"
+  },
+  "mutants": [
+    {
+      "id": "cxx_add_assign_to_sub_assign:/repo/src/pngchunk_int.cpp:721:25:721:27",
+      "mutator": "cxx_add_assign_to_sub_assign",
+      "location": {
+        "start": {
+          "line": 721,
+          "column": 25
+        },
+        "end": {
+          "line": 721,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:121:24:121:25",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 24
+        },
+        "end": {
+          "line": 121,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:173:74:173:75",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 74
+        },
+        "end": {
+          "line": 173,
+          "column": 75
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:179:64:179:65",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 179,
+          "column": 64
+        },
+        "end": {
+          "line": 179,
+          "column": 65
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:181:64:181:65",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 64
+        },
+        "end": {
+          "line": 181,
+          "column": 65
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:198:64:198:65",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 198,
+          "column": 64
+        },
+        "end": {
+          "line": 198,
+          "column": 65
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:198:68:198:69",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 198,
+          "column": 68
+        },
+        "end": {
+          "line": 198,
+          "column": 69
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:198:87:198:88",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 198,
+          "column": 87
+        },
+        "end": {
+          "line": 198,
+          "column": 88
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:202:69:202:70",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 202,
+          "column": 69
+        },
+        "end": {
+          "line": 202,
+          "column": 70
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:202:73:202:74",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 202,
+          "column": 73
+        },
+        "end": {
+          "line": 202,
+          "column": 74
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:202:92:202:93",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 202,
+          "column": 92
+        },
+        "end": {
+          "line": 202,
+          "column": 93
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:207:102:207:103",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 102
+        },
+        "end": {
+          "line": 207,
+          "column": 103
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:207:106:207:107",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 106
+        },
+        "end": {
+          "line": 207,
+          "column": 107
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:207:130:207:131",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 130
+        },
+        "end": {
+          "line": 207,
+          "column": 131
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:207:79:207:80",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 79
+        },
+        "end": {
+          "line": 207,
+          "column": 80
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:207:83:207:84",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 83
+        },
+        "end": {
+          "line": 207,
+          "column": 84
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:284:31:284:32",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 284,
+          "column": 31
+        },
+        "end": {
+          "line": 284,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:662:87:662:88",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 662,
+          "column": 87
+        },
+        "end": {
+          "line": 662,
+          "column": 88
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/src/pngchunk_int.cpp:329:39:329:40",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 329,
+          "column": 39
+        },
+        "end": {
+          "line": 329,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/src/pngchunk_int.cpp:738:36:738:37",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 738,
+          "column": 36
+        },
+        "end": {
+          "line": 738,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_and_to_or:/repo/src/pngchunk_int.cpp:739:33:739:34",
+      "mutator": "cxx_and_to_or",
+      "location": {
+        "start": {
+          "line": 739,
+          "column": 33
+        },
+        "end": {
+          "line": 739,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/pngchunk_int.cpp:272:29:272:30",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 272,
+          "column": 29
+        },
+        "end": {
+          "line": 272,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/pngchunk_int.cpp:284:25:284:26",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 284,
+          "column": 25
+        },
+        "end": {
+          "line": 284,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/pngchunk_int.cpp:465:24:465:25",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 465,
+          "column": 24
+        },
+        "end": {
+          "line": 465,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/pngchunk_int.cpp:471:27:471:28",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 471,
+          "column": 27
+        },
+        "end": {
+          "line": 471,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/pngchunk_int.cpp:479:37:479:38",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 479,
+          "column": 37
+        },
+        "end": {
+          "line": 479,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/pngchunk_int.cpp:502:24:502:25",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 502,
+          "column": 24
+        },
+        "end": {
+          "line": 502,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/pngchunk_int.cpp:509:27:509:28",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 509,
+          "column": 27
+        },
+        "end": {
+          "line": 509,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/pngchunk_int.cpp:561:19:561:20",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 561,
+          "column": 19
+        },
+        "end": {
+          "line": 561,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/pngchunk_int.cpp:598:19:598:20",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 598,
+          "column": 19
+        },
+        "end": {
+          "line": 598,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/pngchunk_int.cpp:666:20:666:21",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 666,
+          "column": 20
+        },
+        "end": {
+          "line": 666,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/pngchunk_int.cpp:719:21:719:22",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 719,
+          "column": 21
+        },
+        "end": {
+          "line": 719,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/pngchunk_int.cpp:74:20:74:21",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 20
+        },
+        "end": {
+          "line": 74,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/pngchunk_int.cpp:75:20:75:21",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 20
+        },
+        "end": {
+          "line": 75,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_div_to_mul:/repo/src/pngchunk_int.cpp:678:37:678:38",
+      "mutator": "cxx_div_to_mul",
+      "location": {
+        "start": {
+          "line": 678,
+          "column": 37
+        },
+        "end": {
+          "line": 678,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:135:17:135:19",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 17
+        },
+        "end": {
+          "line": 135,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:159:22:159:24",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 22
+        },
+        "end": {
+          "line": 159,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:170:22:170:24",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 22
+        },
+        "end": {
+          "line": 170,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:183:37:183:39",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 37
+        },
+        "end": {
+          "line": 183,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:183:64:183:66",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 64
+        },
+        "end": {
+          "line": 183,
+          "column": 66
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:184:39:184:41",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 39
+        },
+        "end": {
+          "line": 184,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:201:34:201:36",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 201,
+          "column": 34
+        },
+        "end": {
+          "line": 201,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:201:63:201:65",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 201,
+          "column": 63
+        },
+        "end": {
+          "line": 201,
+          "column": 65
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:201:92:201:94",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 201,
+          "column": 92
+        },
+        "end": {
+          "line": 201,
+          "column": 94
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:209:37:209:39",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 37
+        },
+        "end": {
+          "line": 209,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:217:44:217:46",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 44
+        },
+        "end": {
+          "line": 217,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:217:73:217:75",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 73
+        },
+        "end": {
+          "line": 217,
+          "column": 75
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:254:61:254:63",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 254,
+          "column": 61
+        },
+        "end": {
+          "line": 254,
+          "column": 63
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:255:61:255:63",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 255,
+          "column": 61
+        },
+        "end": {
+          "line": 255,
+          "column": 63
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:270:85:270:87",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 270,
+          "column": 85
+        },
+        "end": {
+          "line": 270,
+          "column": 87
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:305:57:305:59",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 305,
+          "column": 57
+        },
+        "end": {
+          "line": 305,
+          "column": 59
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:317:29:317:31",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 317,
+          "column": 29
+        },
+        "end": {
+          "line": 317,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:356:56:356:58",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 356,
+          "column": 56
+        },
+        "end": {
+          "line": 356,
+          "column": 58
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:387:53:387:55",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 387,
+          "column": 53
+        },
+        "end": {
+          "line": 387,
+          "column": 55
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:416:47:416:49",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 416,
+          "column": 47
+        },
+        "end": {
+          "line": 416,
+          "column": 49
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:469:28:469:30",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 469,
+          "column": 28
+        },
+        "end": {
+          "line": 469,
+          "column": 30
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:473:33:473:35",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 473,
+          "column": 33
+        },
+        "end": {
+          "line": 473,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:487:27:487:29",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 487,
+          "column": 27
+        },
+        "end": {
+          "line": 487,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:524:29:524:31",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 524,
+          "column": 29
+        },
+        "end": {
+          "line": 524,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:615:24:615:26",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 615,
+          "column": 24
+        },
+        "end": {
+          "line": 615,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:636:21:636:23",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 636,
+          "column": 21
+        },
+        "end": {
+          "line": 636,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:642:16:642:18",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 642,
+          "column": 16
+        },
+        "end": {
+          "line": 642,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:647:20:647:22",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 647,
+          "column": 20
+        },
+        "end": {
+          "line": 647,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:647:35:647:37",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 647,
+          "column": 35
+        },
+        "end": {
+          "line": 647,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:647:49:647:51",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 647,
+          "column": 49
+        },
+        "end": {
+          "line": 647,
+          "column": 51
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:650:20:650:22",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 650,
+          "column": 20
+        },
+        "end": {
+          "line": 650,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:668:20:668:22",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 668,
+          "column": 20
+        },
+        "end": {
+          "line": 668,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:674:16:674:18",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 674,
+          "column": 16
+        },
+        "end": {
+          "line": 674,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:681:20:681:22",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 681,
+          "column": 20
+        },
+        "end": {
+          "line": 681,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:706:25:706:27",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 706,
+          "column": 25
+        },
+        "end": {
+          "line": 706,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:718:21:718:23",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 718,
+          "column": 21
+        },
+        "end": {
+          "line": 718,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:737:24:737:26",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 737,
+          "column": 24
+        },
+        "end": {
+          "line": 737,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/pngchunk_int.cpp:121:32:121:34",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 32
+        },
+        "end": {
+          "line": 121,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/pngchunk_int.cpp:137:32:137:34",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 32
+        },
+        "end": {
+          "line": 137,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/pngchunk_int.cpp:161:32:161:34",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 32
+        },
+        "end": {
+          "line": 161,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/pngchunk_int.cpp:172:32:172:34",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 172,
+          "column": 32
+        },
+        "end": {
+          "line": 172,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/pngchunk_int.cpp:174:36:174:38",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 36
+        },
+        "end": {
+          "line": 174,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/pngchunk_int.cpp:192:60:192:62",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 60
+        },
+        "end": {
+          "line": 192,
+          "column": 62
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/pngchunk_int.cpp:253:24:253:26",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 253,
+          "column": 24
+        },
+        "end": {
+          "line": 253,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/pngchunk_int.cpp:304:24:304:26",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 304,
+          "column": 24
+        },
+        "end": {
+          "line": 304,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/pngchunk_int.cpp:355:24:355:26",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 355,
+          "column": 24
+        },
+        "end": {
+          "line": 355,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/pngchunk_int.cpp:386:24:386:26",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 386,
+          "column": 24
+        },
+        "end": {
+          "line": 386,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/pngchunk_int.cpp:415:24:415:26",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 415,
+          "column": 24
+        },
+        "end": {
+          "line": 415,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/pngchunk_int.cpp:628:16:628:18",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 628,
+          "column": 16
+        },
+        "end": {
+          "line": 628,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/pngchunk_int.cpp:121:32:121:34",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 32
+        },
+        "end": {
+          "line": 121,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/pngchunk_int.cpp:137:32:137:34",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 32
+        },
+        "end": {
+          "line": 137,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/pngchunk_int.cpp:161:32:161:34",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 32
+        },
+        "end": {
+          "line": 161,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/pngchunk_int.cpp:172:32:172:34",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 172,
+          "column": 32
+        },
+        "end": {
+          "line": 172,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/pngchunk_int.cpp:174:36:174:38",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 36
+        },
+        "end": {
+          "line": 174,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/pngchunk_int.cpp:192:60:192:62",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 60
+        },
+        "end": {
+          "line": 192,
+          "column": 62
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/pngchunk_int.cpp:253:24:253:26",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 253,
+          "column": 24
+        },
+        "end": {
+          "line": 253,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/pngchunk_int.cpp:304:24:304:26",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 304,
+          "column": 24
+        },
+        "end": {
+          "line": 304,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/pngchunk_int.cpp:355:24:355:26",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 355,
+          "column": 24
+        },
+        "end": {
+          "line": 355,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/pngchunk_int.cpp:386:24:386:26",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 386,
+          "column": 24
+        },
+        "end": {
+          "line": 386,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/pngchunk_int.cpp:415:24:415:26",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 415,
+          "column": 24
+        },
+        "end": {
+          "line": 415,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/pngchunk_int.cpp:628:16:628:18",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 628,
+          "column": 16
+        },
+        "end": {
+          "line": 628,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:261:24:261:25",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 261,
+          "column": 24
+        },
+        "end": {
+          "line": 261,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:308:30:308:31",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 308,
+          "column": 30
+        },
+        "end": {
+          "line": 308,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:331:40:331:41",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 331,
+          "column": 40
+        },
+        "end": {
+          "line": 331,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:362:24:362:25",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 362,
+          "column": 24
+        },
+        "end": {
+          "line": 362,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:367:53:367:54",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 367,
+          "column": 53
+        },
+        "end": {
+          "line": 367,
+          "column": 54
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:390:27:390:28",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 390,
+          "column": 27
+        },
+        "end": {
+          "line": 390,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:395:53:395:54",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 395,
+          "column": 53
+        },
+        "end": {
+          "line": 395,
+          "column": 54
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:477:37:477:38",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 477,
+          "column": 37
+        },
+        "end": {
+          "line": 477,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:478:31:478:32",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 478,
+          "column": 31
+        },
+        "end": {
+          "line": 478,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:518:36:518:37",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 518,
+          "column": 36
+        },
+        "end": {
+          "line": 518,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:663:27:663:28",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 663,
+          "column": 27
+        },
+        "end": {
+          "line": 663,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:704:38:704:39",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 704,
+          "column": 38
+        },
+        "end": {
+          "line": 704,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:704:65:704:66",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 704,
+          "column": 65
+        },
+        "end": {
+          "line": 704,
+          "column": 66
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/pngchunk_int.cpp:261:24:261:25",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 261,
+          "column": 24
+        },
+        "end": {
+          "line": 261,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/pngchunk_int.cpp:308:30:308:31",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 308,
+          "column": 30
+        },
+        "end": {
+          "line": 308,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/pngchunk_int.cpp:331:40:331:41",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 331,
+          "column": 40
+        },
+        "end": {
+          "line": 331,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/pngchunk_int.cpp:362:24:362:25",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 362,
+          "column": 24
+        },
+        "end": {
+          "line": 362,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/pngchunk_int.cpp:367:53:367:54",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 367,
+          "column": 53
+        },
+        "end": {
+          "line": 367,
+          "column": 54
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/pngchunk_int.cpp:390:27:390:28",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 390,
+          "column": 27
+        },
+        "end": {
+          "line": 390,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/pngchunk_int.cpp:395:53:395:54",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 395,
+          "column": 53
+        },
+        "end": {
+          "line": 395,
+          "column": 54
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/pngchunk_int.cpp:477:37:477:38",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 477,
+          "column": 37
+        },
+        "end": {
+          "line": 477,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/pngchunk_int.cpp:478:31:478:32",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 478,
+          "column": 31
+        },
+        "end": {
+          "line": 478,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/pngchunk_int.cpp:518:36:518:37",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 518,
+          "column": 36
+        },
+        "end": {
+          "line": 518,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/pngchunk_int.cpp:663:27:663:28",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 663,
+          "column": 27
+        },
+        "end": {
+          "line": 663,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/pngchunk_int.cpp:704:38:704:39",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 704,
+          "column": 38
+        },
+        "end": {
+          "line": 704,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/pngchunk_int.cpp:704:65:704:66",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 704,
+          "column": 65
+        },
+        "end": {
+          "line": 704,
+          "column": 66
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:116:13:116:20",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 13
+        },
+        "end": {
+          "line": 116,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:154:18:154:36",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 18
+        },
+        "end": {
+          "line": 154,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:166:18:166:26",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 18
+        },
+        "end": {
+          "line": 166,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:259:18:259:24",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 259,
+          "column": 18
+        },
+        "end": {
+          "line": 259,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:266:22:266:25",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 266,
+          "column": 22
+        },
+        "end": {
+          "line": 266,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:268:27:268:28",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 27
+        },
+        "end": {
+          "line": 268,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:285:31:285:33",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 285,
+          "column": 31
+        },
+        "end": {
+          "line": 285,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:311:26:311:34",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 311,
+          "column": 26
+        },
+        "end": {
+          "line": 311,
+          "column": 34
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:312:26:312:33",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 312,
+          "column": 26
+        },
+        "end": {
+          "line": 312,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:360:18:360:24",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 360,
+          "column": 18
+        },
+        "end": {
+          "line": 360,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:366:40:366:43",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 366,
+          "column": 40
+        },
+        "end": {
+          "line": 366,
+          "column": 43
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:394:40:394:43",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 394,
+          "column": 40
+        },
+        "end": {
+          "line": 394,
+          "column": 43
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:459:16:459:31",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 459,
+          "column": 16
+        },
+        "end": {
+          "line": 459,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:461:13:461:16",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 461,
+          "column": 13
+        },
+        "end": {
+          "line": 461,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:496:16:496:29",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 496,
+          "column": 16
+        },
+        "end": {
+          "line": 496,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:560:15:560:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 560,
+          "column": 15
+        },
+        "end": {
+          "line": 560,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:597:15:597:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 597,
+          "column": 15
+        },
+        "end": {
+          "line": 597,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:657:14:657:20",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 657,
+          "column": 14
+        },
+        "end": {
+          "line": 657,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:699:22:699:29",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 699,
+          "column": 22
+        },
+        "end": {
+          "line": 699,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:701:19:701:20",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 701,
+          "column": 19
+        },
+        "end": {
+          "line": 701,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:736:37:736:38",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 736,
+          "column": 37
+        },
+        "end": {
+          "line": 736,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/src/pngchunk_int.cpp:112:24:112:26",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 24
+        },
+        "end": {
+          "line": 112,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/src/pngchunk_int.cpp:203:73:203:75",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 203,
+          "column": 73
+        },
+        "end": {
+          "line": 203,
+          "column": 75
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/src/pngchunk_int.cpp:658:20:658:22",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 658,
+          "column": 20
+        },
+        "end": {
+          "line": 658,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/src/pngchunk_int.cpp:658:34:658:36",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 658,
+          "column": 34
+        },
+        "end": {
+          "line": 658,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/src/pngchunk_int.cpp:678:24:678:26",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 678,
+          "column": 24
+        },
+        "end": {
+          "line": 678,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/pngchunk_int.cpp:112:24:112:26",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 24
+        },
+        "end": {
+          "line": 112,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/pngchunk_int.cpp:203:73:203:75",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 203,
+          "column": 73
+        },
+        "end": {
+          "line": 203,
+          "column": 75
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/pngchunk_int.cpp:658:20:658:22",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 658,
+          "column": 20
+        },
+        "end": {
+          "line": 658,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/pngchunk_int.cpp:658:34:658:36",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 658,
+          "column": 34
+        },
+        "end": {
+          "line": 658,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/pngchunk_int.cpp:678:24:678:26",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 678,
+          "column": 24
+        },
+        "end": {
+          "line": 678,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/pngchunk_int.cpp:155:40:155:41",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 40
+        },
+        "end": {
+          "line": 155,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/pngchunk_int.cpp:268:35:268:36",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 35
+        },
+        "end": {
+          "line": 268,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/pngchunk_int.cpp:316:32:316:33",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 316,
+          "column": 32
+        },
+        "end": {
+          "line": 316,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/pngchunk_int.cpp:701:28:701:29",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 701,
+          "column": 28
+        },
+        "end": {
+          "line": 701,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/pngchunk_int.cpp:703:24:703:25",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 703,
+          "column": 24
+        },
+        "end": {
+          "line": 703,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/pngchunk_int.cpp:704:24:704:25",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 704,
+          "column": 24
+        },
+        "end": {
+          "line": 704,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/pngchunk_int.cpp:704:51:704:52",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 704,
+          "column": 51
+        },
+        "end": {
+          "line": 704,
+          "column": 52
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/pngchunk_int.cpp:715:28:715:29",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 715,
+          "column": 28
+        },
+        "end": {
+          "line": 715,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/pngchunk_int.cpp:736:46:736:47",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 736,
+          "column": 46
+        },
+        "end": {
+          "line": 736,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/pngchunk_int.cpp:155:40:155:41",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 40
+        },
+        "end": {
+          "line": 155,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/pngchunk_int.cpp:268:35:268:36",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 35
+        },
+        "end": {
+          "line": 268,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/pngchunk_int.cpp:316:32:316:33",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 316,
+          "column": 32
+        },
+        "end": {
+          "line": 316,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/pngchunk_int.cpp:701:28:701:29",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 701,
+          "column": 28
+        },
+        "end": {
+          "line": 701,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/pngchunk_int.cpp:703:24:703:25",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 703,
+          "column": 24
+        },
+        "end": {
+          "line": 703,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/pngchunk_int.cpp:704:24:704:25",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 704,
+          "column": 24
+        },
+        "end": {
+          "line": 704,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/pngchunk_int.cpp:704:51:704:52",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 704,
+          "column": 51
+        },
+        "end": {
+          "line": 704,
+          "column": 52
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/pngchunk_int.cpp:715:28:715:29",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 715,
+          "column": 28
+        },
+        "end": {
+          "line": 715,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/pngchunk_int.cpp:736:46:736:47",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 736,
+          "column": 46
+        },
+        "end": {
+          "line": 736,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_assign_to_div_assign:/repo/src/pngchunk_int.cpp:475:33:475:35",
+      "mutator": "cxx_mul_assign_to_div_assign",
+      "location": {
+        "start": {
+          "line": 475,
+          "column": 33
+        },
+        "end": {
+          "line": 475,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_assign_to_div_assign:/repo/src/pngchunk_int.cpp:516:31:516:33",
+      "mutator": "cxx_mul_assign_to_div_assign",
+      "location": {
+        "start": {
+          "line": 516,
+          "column": 31
+        },
+        "end": {
+          "line": 516,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/src/pngchunk_int.cpp:459:53:459:54",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 459,
+          "column": 53
+        },
+        "end": {
+          "line": 459,
+          "column": 54
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/src/pngchunk_int.cpp:496:64:496:65",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 496,
+          "column": 64
+        },
+        "end": {
+          "line": 496,
+          "column": 65
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/src/pngchunk_int.cpp:662:49:662:50",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 662,
+          "column": 49
+        },
+        "end": {
+          "line": 662,
+          "column": 50
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/src/pngchunk_int.cpp:699:39:699:40",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 699,
+          "column": 39
+        },
+        "end": {
+          "line": 699,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/src/pngchunk_int.cpp:719:42:719:43",
+      "mutator": "cxx_mul_to_div",
+      "location": {
+        "start": {
+          "line": 719,
+          "column": 42
+        },
+        "end": {
+          "line": 719,
+          "column": 43
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/pngchunk_int.cpp:117:29:117:31",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 29
+        },
+        "end": {
+          "line": 117,
+          "column": 31
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/pngchunk_int.cpp:143:37:143:39",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 37
+        },
+        "end": {
+          "line": 143,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/pngchunk_int.cpp:279:25:279:27",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 279,
+          "column": 25
+        },
+        "end": {
+          "line": 279,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/pngchunk_int.cpp:367:25:367:27",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 367,
+          "column": 25
+        },
+        "end": {
+          "line": 367,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/pngchunk_int.cpp:395:25:395:27",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 395,
+          "column": 25
+        },
+        "end": {
+          "line": 395,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/pngchunk_int.cpp:489:24:489:26",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 489,
+          "column": 24
+        },
+        "end": {
+          "line": 489,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/pngchunk_int.cpp:633:20:633:22",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 633,
+          "column": 20
+        },
+        "end": {
+          "line": 633,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/pngchunk_int.cpp:688:24:688:26",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 688,
+          "column": 24
+        },
+        "end": {
+          "line": 688,
+          "column": 26
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/pngchunk_int.cpp:119:20:119:22",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 20
+        },
+        "end": {
+          "line": 119,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/pngchunk_int.cpp:268:72:268:74",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 72
+        },
+        "end": {
+          "line": 268,
+          "column": 74
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/pngchunk_int.cpp:701:47:701:49",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 701,
+          "column": 47
+        },
+        "end": {
+          "line": 701,
+          "column": 49
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/pngchunk_int.cpp:478:25:478:27",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 478,
+          "column": 25
+        },
+        "end": {
+          "line": 478,
+          "column": 27
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/pngchunk_int.cpp:736:68:736:70",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 736,
+          "column": 68
+        },
+        "end": {
+          "line": 736,
+          "column": 70
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rem_to_div:/repo/src/pngchunk_int.cpp:718:18:718:19",
+      "mutator": "cxx_rem_to_div",
+      "location": {
+        "start": {
+          "line": 718,
+          "column": 18
+        },
+        "end": {
+          "line": 718,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rem_to_div:/repo/src/pngchunk_int.cpp:737:19:737:20",
+      "mutator": "cxx_rem_to_div",
+      "location": {
+        "start": {
+          "line": 737,
+          "column": 19
+        },
+        "end": {
+          "line": 737,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/pngchunk_int.cpp:419:13:419:92",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 419,
+          "column": 13
+        },
+        "end": {
+          "line": 419,
+          "column": 92
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/pngchunk_int.cpp:464:17:464:22",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 464,
+          "column": 17
+        },
+        "end": {
+          "line": 464,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/pngchunk_int.cpp:90:9:90:62",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 9
+        },
+        "end": {
+          "line": 90,
+          "column": 62
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:190:58:190:62",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 190,
+          "column": 58
+        },
+        "end": {
+          "line": 190,
+          "column": 62
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:199:100:199:104",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 199,
+          "column": 100
+        },
+        "end": {
+          "line": 199,
+          "column": 104
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:254:20:254:60",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 254,
+          "column": 20
+        },
+        "end": {
+          "line": 254,
+          "column": 60
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:255:20:255:60",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 255,
+          "column": 20
+        },
+        "end": {
+          "line": 255,
+          "column": 60
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:256:35:256:40",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 35
+        },
+        "end": {
+          "line": 256,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:270:25:270:84",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 270,
+          "column": 25
+        },
+        "end": {
+          "line": 270,
+          "column": 84
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:305:16:305:56",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 305,
+          "column": 16
+        },
+        "end": {
+          "line": 305,
+          "column": 56
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:306:35:306:40",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 306,
+          "column": 35
+        },
+        "end": {
+          "line": 306,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:331:33:331:37",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 331,
+          "column": 33
+        },
+        "end": {
+          "line": 331,
+          "column": 37
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:334:74:334:78",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 334,
+          "column": 74
+        },
+        "end": {
+          "line": 334,
+          "column": 78
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:341:33:341:38",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 341,
+          "column": 33
+        },
+        "end": {
+          "line": 341,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:356:16:356:55",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 356,
+          "column": 16
+        },
+        "end": {
+          "line": 356,
+          "column": 55
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:357:34:357:39",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 357,
+          "column": 34
+        },
+        "end": {
+          "line": 357,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:366:56:366:69",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 366,
+          "column": 56
+        },
+        "end": {
+          "line": 366,
+          "column": 69
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:387:16:387:52",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 387,
+          "column": 16
+        },
+        "end": {
+          "line": 387,
+          "column": 52
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:388:34:388:39",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 388,
+          "column": 34
+        },
+        "end": {
+          "line": 388,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:394:56:394:69",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 394,
+          "column": 56
+        },
+        "end": {
+          "line": 394,
+          "column": 69
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:403:21:403:68",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 403,
+          "column": 21
+        },
+        "end": {
+          "line": 403,
+          "column": 68
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:416:16:416:46",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 416,
+          "column": 16
+        },
+        "end": {
+          "line": 416,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:417:34:417:39",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 417,
+          "column": 34
+        },
+        "end": {
+          "line": 417,
+          "column": 39
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:465:26:468:56",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 465,
+          "column": 26
+        },
+        "end": {
+          "line": 468,
+          "column": 56
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:496:57:496:61",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 496,
+          "column": 57
+        },
+        "end": {
+          "line": 496,
+          "column": 61
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:503:87:503:91",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 503,
+          "column": 87
+        },
+        "end": {
+          "line": 503,
+          "column": 91
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:557:57:557:61",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 557,
+          "column": 57
+        },
+        "end": {
+          "line": 557,
+          "column": 61
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:561:88:561:92",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 561,
+          "column": 88
+        },
+        "end": {
+          "line": 561,
+          "column": 92
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:593:57:593:61",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 593,
+          "column": 57
+        },
+        "end": {
+          "line": 593,
+          "column": 61
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:598:88:598:92",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 598,
+          "column": 88
+        },
+        "end": {
+          "line": 598,
+          "column": 92
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:663:56:663:88",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 663,
+          "column": 56
+        },
+        "end": {
+          "line": 663,
+          "column": 88
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:734:75:734:79",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 734,
+          "column": 75
+        },
+        "end": {
+          "line": 734,
+          "column": 79
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:736:60:736:64",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 736,
+          "column": 60
+        },
+        "end": {
+          "line": 736,
+          "column": 64
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:74:22:74:70",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 22
+        },
+        "end": {
+          "line": 74,
+          "column": 70
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:75:22:75:70",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 22
+        },
+        "end": {
+          "line": 75,
+          "column": 70
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/src/pngchunk_int.cpp:738:30:738:32",
+      "mutator": "cxx_rshift_to_lshift",
+      "location": {
+        "start": {
+          "line": 738,
+          "column": 30
+        },
+        "end": {
+          "line": 738,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:154:51:154:52",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 51
+        },
+        "end": {
+          "line": 154,
+          "column": 52
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:154:61:154:62",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 61
+        },
+        "end": {
+          "line": 154,
+          "column": 62
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:166:44:166:45",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 44
+        },
+        "end": {
+          "line": 166,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:166:54:166:55",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 54
+        },
+        "end": {
+          "line": 166,
+          "column": 55
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:187:59:187:60",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 59
+        },
+        "end": {
+          "line": 187,
+          "column": 60
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:187:69:187:70",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 69
+        },
+        "end": {
+          "line": 187,
+          "column": 70
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:198:53:198:54",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 198,
+          "column": 53
+        },
+        "end": {
+          "line": 198,
+          "column": 54
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:207:68:207:69",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 68
+        },
+        "end": {
+          "line": 207,
+          "column": 69
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:268:43:268:44",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 43
+        },
+        "end": {
+          "line": 268,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:289:62:289:63",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 289,
+          "column": 62
+        },
+        "end": {
+          "line": 289,
+          "column": 63
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:318:80:318:81",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 318,
+          "column": 80
+        },
+        "end": {
+          "line": 318,
+          "column": 81
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:662:94:662:95",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 662,
+          "column": 94
+        },
+        "end": {
+          "line": 662,
+          "column": 95
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:678:32:678:33",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 678,
+          "column": 32
+        },
+        "end": {
+          "line": 678,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    }
+  ],
+  "equivalent": [
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:198:64:198:65",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:198:68:198:69",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:198:87:198:88",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:202:92:202:93",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:681:20:681:22",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/pngchunk_int.cpp:172:32:172:34",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/pngchunk_int.cpp:192:60:192:62",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:308:30:308:31",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:331:40:331:41",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:477:37:477:38",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:518:36:518:37",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:311:26:311:34",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:312:26:312:33",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/pngchunk_int.cpp:155:40:155:41",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/pngchunk_int.cpp:316:32:316:33",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/pngchunk_int.cpp:419:13:419:92",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/pngchunk_int.cpp:90:9:90:62",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:331:33:331:37",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:187:59:187:60",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:187:69:187:70",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:198:53:198:54",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    }
+  ],
+  "unstable": [
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:173:74:173:75",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:173",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/pngchunk_int.cpp:703:24:703:25",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:703",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    }
+  ],
+  "review_needed": [
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:469:28:469:30",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:487:27:487:29",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:524:29:524:31",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_mul_assign_to_div_assign:/repo/src/pngchunk_int.cpp:516:31:516:33",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/pngchunk_int.cpp:478:25:478:27",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "by": "Gemini（AI 复核，Linux ARM64）",
+    "at": "2026-10-30",
+    "note": "按 benchmark/tools/mutant_review/exiv2-pngchunk/ 的复核结论签署：等价候选 21 项均有结论，不稳定 2 项按规则剔除，探针超时 5 项保留在分母中。"
+  },
+  "reference": {
+    "killed": 209,
+    "timeout": 5,
+    "total": 219,
+    "m1": 0.9766355140186916,
+    "threshold": 0.8,
+    "passes": true
+  },
+  "confirmed_non_equivalent": [
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:367:53:367:54",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:367",
+        "runs/step-c-counterexample-20261030-01/products/exiv2-pngchunk/final/tests/review_counterexamples.cc",
+        "runs/step-c-counterexample-20261030-01-exiv2-pngchunk/trials/exiv2-pngchunk/trial-1/score/0.5.0/final/result.json",
+        "runs/step-c-counterexample-20261030-01-exiv2-pngchunk/trials/exiv2-pngchunk/trial-1/score/0.5.0/final/mull/step.json"
+      ],
+      "reason": "探针未区分，复核已确认不等价，保留在分母中"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:395:53:395:54",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:395",
+        "runs/step-c-counterexample-20261030-01/products/exiv2-pngchunk/final/tests/review_counterexamples.cc",
+        "runs/step-c-counterexample-20261030-01-exiv2-pngchunk/trials/exiv2-pngchunk/trial-1/score/0.5.0/final/result.json",
+        "runs/step-c-counterexample-20261030-01-exiv2-pngchunk/trials/exiv2-pngchunk/trial-1/score/0.5.0/final/mull/step.json"
+      ],
+      "reason": "探针未区分，复核已确认不等价，保留在分母中"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:403:21:403:68",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:403",
+        "runs/step-c-counterexample-20261030-01/products/exiv2-pngchunk/final/tests/review_counterexamples.cc",
+        "runs/step-c-counterexample-20261030-01-exiv2-pngchunk/trials/exiv2-pngchunk/trial-1/score/0.5.0/final/result.json",
+        "runs/step-c-counterexample-20261030-01-exiv2-pngchunk/trials/exiv2-pngchunk/trial-1/score/0.5.0/final/mull/step.json"
+      ],
+      "reason": "探针未区分，复核已确认不等价，保留在分母中"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:289:62:289:63",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:289",
+        "runs/step-c-counterexample-20261030-01/products/exiv2-pngchunk/final/tests/review_counterexamples.cc",
+        "runs/step-c-counterexample-20261030-01-exiv2-pngchunk/trials/exiv2-pngchunk/trial-1/score/0.5.0/final/result.json",
+        "runs/step-c-counterexample-20261030-01-exiv2-pngchunk/trials/exiv2-pngchunk/trial-1/score/0.5.0/final/mull/step.json"
+      ],
+      "reason": "探针未区分，复核已确认不等价，保留在分母中"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:318:80:318:81",
+      "verdict": "non_equivalent_verified",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:318",
+        "runs/step-c-counterexample-20261030-01/products/exiv2-pngchunk/final/tests/review_counterexamples.cc",
+        "runs/step-c-counterexample-20261030-01-exiv2-pngchunk/trials/exiv2-pngchunk/trial-1/score/0.5.0/final/result.json",
+        "runs/step-c-counterexample-20261030-01-exiv2-pngchunk/trials/exiv2-pngchunk/trial-1/score/0.5.0/final/mull/step.json"
+      ],
+      "reason": "探针未区分，复核已确认不等价，保留在分母中"
+    }
+  ]
+}

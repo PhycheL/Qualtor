@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "id": "orc-bloom-filter",
+  "set": "dev",
+  "tier": "medium",
+  "tags": [
+    "environment",
+    "codegen",
+    "orc"
+  ],
+  "title": "orc-bloom-filter",
+  "description": "第三方依赖与公开构建配置；源码按固定上游提交入库，开发题。",
+  "source": {
+    "repository": "https://github.com/apache/orc",
+    "commit": "bf5f743448d6036f0ef48c50ca845292be3fceba",
+    "root": "benchmark/orc-bloom-filter/source",
+    "files": {
+      "c++/include/orc/BloomFilter.hh": "339ccc0a553d2392ac738b8b5d11d27caa15c33f6316b33eb28b0f3e067bd7a9",
+      "c++/include/orc/orc-config.hh": "0e7481bff63b5b383826515f4bad95e0567a6615db0cc84483521f306483e589",
+      "c++/src/Adaptor.hh": "bcb69b5acfcdd59a9874b038f3cc0f771a970d55446a9c2c11f6b6b3d4d4813d",
+      "c++/src/BloomFilter.cc": "85125d9c5a67a4defb9903c9d4b3aad3dde351698d4dab9a10c5df81de5e2a35",
+      "c++/src/BloomFilter.hh": "24a4c069319b7e52785f8b47d447e6697568e99df1653051a27b4de78479bcec",
+      "c++/src/Murmur3.cc": "60fdf69c7b52557546ff25435522ad61deb0dd2657ca2a36f096ca70b2c21012",
+      "c++/src/Murmur3.hh": "2be14ef1bd76746d5ff41a61877dd982403686f66e1261d17b2f3e699a281ef2",
+      "c++/src/wrap/orc-proto-wrapper.hh": "cd16f5a9378a7a332b0306194362cfc8e662d14f8f50d0fc0d2de8b56a8322c8",
+      "proto/orc_proto.proto": "ad99f989db343ff3045f6b0d356a5ded13760e1447ed9c5df63b3e720a4ed46e"
+    }
+  },
+  "target_sources": [
+    "c++/src/BloomFilter.cc"
+  ],
+  "include_dirs": [
+    "c++/src",
+    "c++/include"
+  ],
+  "visible": {
+    "files": [
+      "c++/include/orc/BloomFilter.hh",
+      "c++/include/orc/orc-config.hh",
+      "c++/src/Adaptor.hh",
+      "c++/src/BloomFilter.cc",
+      "c++/src/BloomFilter.hh",
+      "c++/src/Murmur3.cc",
+      "c++/src/Murmur3.hh",
+      "c++/src/wrap/orc-proto-wrapper.hh",
+      "proto/orc_proto.proto"
+    ],
+    "notes": "可见材料只有被测及依赖源码、头文件和公开构建配置；测试使用 C++11 / GoogleTest 1.12.1。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": false,
+    "note": "上游测试作为隐藏参考材料，未投影给生成 Agent。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "隐藏参考测试覆盖的输入；断言以固定源码实际行为为准；不以此收窄等价性判定。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/import_step_c.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": [],
+  "build": {
+    "support_sources": [
+      "c++/src/Murmur3.cc"
+    ],
+    "environment": "bank-20261021",
+    "link_libraries": [
+      "protobuf::libprotobuf"
+    ],
+    "codegen": [
+      {
+        "tool": "protoc",
+        "inputs": [
+          "proto/orc_proto.proto"
+        ],
+        "import_dirs": [
+          "proto"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "task": "exercism-meetup",
+  "review": "AI 编写与逐项检查；日期操作均有定义；检出与编译尚待 Docker 核验，非人工审阅。",
+  "variants": [
+    {
+      "id": "hw-01",
+      "patch": "hw-01.patch",
+      "description": "teenth 的搜索起点后移，漏掉日期 13。"
+    },
+    {
+      "id": "hw-02",
+      "patch": "hw-02.patch",
+      "description": "把第二个星期几误作第三个。"
+    },
+    {
+      "id": "hw-03",
+      "patch": "hw-03.patch",
+      "description": "把第三个星期几误作第四个。"
+    },
+    {
+      "id": "hw-04",
+      "patch": "hw-04.patch",
+      "description": "把第四个星期几误作第三个。"
+    },
+    {
+      "id": "hw-05",
+      "patch": "hw-05.patch",
+      "description": "把最后一个星期几误作第一个。"
+    }
+  ]
+}

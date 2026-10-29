@@ -1,0 +1,93 @@
+{
+  "task": "exiv2-pngchunk",
+  "note": "复核结论。non_equivalent_verified：真实 Mull 反例已检出，移回分母；undefined_only：只在未定义行为下与原代码不同（D015），列为不稳定、不计入分母。",
+  "mutants": [
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:173:74:173:75",
+      "verdict": "undefined_only",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "将 &data.pData_[keysize+3] 改为 &data.pData_[keysize-3]。当 keysize < 3 时构造并读取指向 data.pData_ 之前的越界指针（UB）；当 keysize >= 3 时，因 [keysize-3, keysize+3) 含 key 末尾及 key 终止符 NUL（至少 1 个 NUL），std::count 只增不减：原本通过第 174 行的输入仍通过，而原本在 [keysize+3, size_) 内少于 2 个 NUL 的输入即便因前面字节凑够 2 个 NUL 越过第 174 行，随后也在第 183–202 行因找不到第二个 NUL 或越界检查失败抛出同一 kerCorruptedMetadata 异常。除 keysize < 3 的越界读取 UB 外无有定义行为差异，按 D015 列为不稳定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:173",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:367:53:367:54",
+      "verdict": "non_equivalent_verified",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "Raw profile type xmp 分支中 idx > 0 改为 idx >= 0；当 XMP 包首字节即为 '<'（idx == 0）时，变异额外通过 EXV_WARNING 输出 Removing 0 characters 告警，已被真实 Mull 反例 Killed。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:367",
+        "runs/step-c-counterexample-20261030-01/products/exiv2-pngchunk/final/tests/review_counterexamples.cc",
+        "runs/step-c-counterexample-20261030-01-exiv2-pngchunk/trials/exiv2-pngchunk/trial-1/score/0.5.0/final/result.json",
+        "runs/step-c-counterexample-20261030-01-exiv2-pngchunk/trials/exiv2-pngchunk/trial-1/score/0.5.0/final/mull/step.json"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:395:53:395:54",
+      "verdict": "non_equivalent_verified",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "XML:com.adobe.xmp 分支中 idx > 0 改为 idx >= 0；当 XMP 包首字节即为 '<'（idx == 0）时，变异额外通过 EXV_WARNING 输出 Removing 0 characters 告警，已被真实 Mull 反例 Killed。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:395",
+        "runs/step-c-counterexample-20261030-01/products/exiv2-pngchunk/final/tests/review_counterexamples.cc",
+        "runs/step-c-counterexample-20261030-01-exiv2-pngchunk/trials/exiv2-pngchunk/trial-1/score/0.5.0/final/result.json",
+        "runs/step-c-counterexample-20261030-01-exiv2-pngchunk/trials/exiv2-pngchunk/trial-1/score/0.5.0/final/mull/step.json"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/pngchunk_int.cpp:703:24:703:25",
+      "verdict": "undefined_only",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "parseChunkContent 中 enforce(sp < eot, kerCorruptedMetadata) 改为 sp <= eot。当输入在长度字段前即到达缓冲区末尾（sp == eot）时，原代码抛出 kerCorruptedMetadata 异常，而变异跳过该检查并在第 706 行 while (*sp != '\\n') 解引用 one-past-the-end 指针 eot（越界读取 UB）。在所有 sp < eot 的输入上行为完全一致，按 D015 列为不稳定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:703",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:403:21:403:68",
+      "verdict": "non_equivalent_verified",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "XML:com.adobe.xmp 分支中将 XmpParser::decode(pImage->xmpData(), xmpPacket) 调用结果替换为 42（跳过函数调用）；原调用在非空 xmpPacket 下会通过 EXV_WARNING 记录 XMP toolkit support not compiled in. 告警，已被真实 Mull 反例 Killed。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:403",
+        "runs/step-c-counterexample-20261030-01/products/exiv2-pngchunk/final/tests/review_counterexamples.cc",
+        "runs/step-c-counterexample-20261030-01-exiv2-pngchunk/trials/exiv2-pngchunk/trial-1/score/0.5.0/final/result.json",
+        "runs/step-c-counterexample-20261030-01-exiv2-pngchunk/trials/exiv2-pngchunk/trial-1/score/0.5.0/final/mull/step.json"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:289:62:289:63",
+      "verdict": "non_equivalent_verified",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "Raw profile type exif 分支调用 TiffParser::decode 时将 length - pos 改为 length + pos；在合法 28 字节 Exif/TIFF 缓冲且 IFD 条目声明 count=100、offset=20（位于缓冲内）的输入上，原代码与变异均在 tiffvisitor_int.cpp:1534 安全截断 size=0 而不越界读取，但 EXV_ERROR 告警中的超出字节数分别为 98 与 86，已被真实 Mull 反例 Killed。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:289",
+        "runs/step-c-counterexample-20261030-01/products/exiv2-pngchunk/final/tests/review_counterexamples.cc",
+        "runs/step-c-counterexample-20261030-01-exiv2-pngchunk/trials/exiv2-pngchunk/trial-1/score/0.5.0/final/result.json",
+        "runs/step-c-counterexample-20261030-01-exiv2-pngchunk/trials/exiv2-pngchunk/trial-1/score/0.5.0/final/mull/step.json"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:318:80:318:81",
+      "verdict": "non_equivalent_verified",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "Raw profile type iptc 分支调用 Photoshop::locateIptcIrb 时将 pEnd - pCur 改为 pEnd + pCur；在 13 字节奇数长度合法 8BIM 块输入上，所有字节均在界内且单轮结束循环，原代码满足 position + dataSize == sizePsData 向 stderr 输出未偶对齐告警而变异不输出，已被真实 Mull 反例 Killed。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:318",
+        "runs/step-c-counterexample-20261030-01/products/exiv2-pngchunk/final/tests/review_counterexamples.cc",
+        "runs/step-c-counterexample-20261030-01-exiv2-pngchunk/trials/exiv2-pngchunk/trial-1/score/0.5.0/final/result.json",
+        "runs/step-c-counterexample-20261030-01-exiv2-pngchunk/trials/exiv2-pngchunk/trial-1/score/0.5.0/final/mull/step.json"
+      ]
+    }
+  ]
+}

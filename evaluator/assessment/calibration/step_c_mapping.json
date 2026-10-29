@@ -1,0 +1,67 @@
+{
+  "mapping": {
+    "CAL-30": {
+      "retained": "CAL-30",
+      "task": "humaneval-x-cpp-openssl",
+      "purpose": "链接 OpenSSL；环境配方与双镜像一致",
+      "assertions": [
+        "hard",
+        "relations",
+        "environment"
+      ]
+    },
+    "CAL-31": {
+      "retained": "CAL-31",
+      "task": "humaneval-x-cpp-openssl",
+      "purpose": "只测试空输入；保留真实的强弱关系",
+      "assertions": [
+        "hard",
+        "relations",
+        "environment"
+      ]
+    },
+    "CAL-32": {
+      "retained": "CAL-32",
+      "task": "qt-aes",
+      "purpose": "moc 生成单元不计覆盖和变异",
+      "assertions": [
+        "hard",
+        "relations",
+        "environment",
+        "build_boundary"
+      ]
+    },
+    "CAL-33": {
+      "retained": "CAL-33",
+      "task": "orc-bloom-filter",
+      "purpose": "protoc 生成单元不计覆盖和变异",
+      "assertions": [
+        "hard",
+        "relations",
+        "environment",
+        "build_boundary"
+      ]
+    },
+    "CAL-34": {
+      "retained": "CAL-34",
+      "task": "humaneval-x-cpp-boost",
+      "purpose": "第三方环境头文件",
+      "assertions": [
+        "hard",
+        "relations",
+        "environment"
+      ]
+    },
+    "CAL-35": {
+      "retained": "CAL-35",
+      "task": "exercism-meetup",
+      "purpose": "环境加纯头文件：M1 不适用、冻结覆盖及手写检出",
+      "assertions": [
+        "hard",
+        "relations",
+        "environment"
+      ]
+    }
+  },
+  "note": "本轮六项独立保留；若后续替补导致合并，必须保留双方全部适用断言并更新关系引用。"
+}

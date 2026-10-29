@@ -1,0 +1,16 @@
+{
+  "task": "orc-bloom-filter",
+  "note": "D015 静态类型别名复核；不是声称 UBSan 能检测 strict-aliasing。",
+  "mutants": [
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:204:5:204:46",
+      "verdict": "undefined_only",
+      "reason": "原 addDouble 通过 reinterpret_cast<int64_t&>(data) 读取 double 对象，违反 C++11 的 glvalue 类型访问规则。pragma 仅关闭警告，未给出允许该访问的语言语义。该单一变异删除 addLong 调用，所有可观察差异都发生在原程序的此 UB 路径上；不能把其稳定检出当作有定义输入反例。",
+      "evidence": [
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:204",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/BloomFilter.cc.ll"
+      ],
+      "by": "Codex（2026-10-29；源码类型规则与固定 Mull IR 复核，非 sanitizer 实测）"
+    }
+  ]
+}

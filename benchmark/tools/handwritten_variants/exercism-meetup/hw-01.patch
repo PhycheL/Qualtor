@@ -1,0 +1,11 @@
+--- a/src/meetup.h
++++ b/src/meetup.h
+@@ -145,7 +145,7 @@
+    private:
+     boost::gregorian::date teenth_day(boost::date_time::weekdays day) const {
+         return boost::gregorian::first_day_of_the_week_after(day).get_date(
+-            {year_, month_, 12});
++            {year_, month_, 13});
+     }
+ 
+     boost::gregorian::date first_weekday(boost::date_time::weekdays day) const {

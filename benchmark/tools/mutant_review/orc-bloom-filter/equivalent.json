@@ -1,0 +1,336 @@
+{
+  "task": "orc-bloom-filter",
+  "note": "按 D011/D015 复核；源码有定义的输入域不由隐藏测试收窄。平台相关结论只验证 Linux ARM64。",
+  "mutants": [
+    {
+      "id": "cxx_add_assign_to_sub_assign:/repo/c++/src/BloomFilter.cc:194:45:194:47",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:194",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_add_assign_to_sub_assign:/repo/c++/src/BloomFilter.cc:284:45:284:47",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:284",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_and_to_or:/repo/c++/src/BloomFilter.cc:195:25:195:26",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:195",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_and_to_or:/repo/c++/src/BloomFilter.cc:285:25:285:26",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:285",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_div_to_mul:/repo/c++/src/BloomFilter.cc:278:50:278:51",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:278",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:190:19:190:20",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:190",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:194:21:194:24",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:194",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:280:19:280:20",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:280",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_init_const:/repo/c++/src/BloomFilter.cc:284:21:284:24",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:284",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_lshift_to_rshift:/repo/c++/src/BloomFilter.cc:195:34:195:36",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:195",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_lshift_to_rshift:/repo/c++/src/BloomFilter.cc:195:51:195:53",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:195",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_lshift_to_rshift:/repo/c++/src/BloomFilter.cc:285:34:285:36",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:285",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_lshift_to_rshift:/repo/c++/src/BloomFilter.cc:285:51:285:53",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:285",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/c++/src/BloomFilter.cc:190:28:190:30",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:190",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/c++/src/BloomFilter.cc:194:34:194:36",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:194",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/c++/src/BloomFilter.cc:280:28:280:30",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:280",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/c++/src/BloomFilter.cc:284:34:284:36",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:284",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_or_assign_to_and_assign:/repo/c++/src/BloomFilter.cc:195:15:195:17",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:195",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_or_assign_to_and_assign:/repo/c++/src/BloomFilter.cc:285:15:285:17",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:285",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/c++/src/BloomFilter.cc:190:45:190:47",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:190",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/c++/src/BloomFilter.cc:280:46:280:48",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:280",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:124:5:125:51",
+      "reason": "真实 IR 生效副本只删除 std::__new_allocator<char> 的空析构，无新增调用；checkArgument、字符串析构和错误消息均保留，所有有定义输入行为相同。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:124",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:126:5:127:72",
+      "reason": "真实 IR 生效副本只删除 std::__new_allocator<char> 的空析构，无新增调用；checkArgument、字符串析构和错误消息均保留，所有有定义输入行为相同。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:126",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:183:5:183:85",
+      "reason": "真实 IR 生效副本只删除 std::__new_allocator<char> 的空析构，无新增调用；checkArgument、字符串析构和错误消息均保留，所有有定义输入行为相同。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:183",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/c++/src/BloomFilter.cc:199:15:199:20",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:199",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:190:37:190:41",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:190",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:278:36:278:49",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:278",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/c++/src/BloomFilter.cc:280:38:280:42",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:280",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/c++/src/BloomFilter.cc:189:44:189:46",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:189",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/c++/src/BloomFilter.cc:195:43:195:45",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:195",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_rshift_to_lshift:/repo/c++/src/BloomFilter.cc:285:43:285:45",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:285",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/c++/src/BloomFilter.cc:195:58:195:59",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:195",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/c++/src/BloomFilter.cc:285:58:285:59",
+      "reason": "该语句仅在 isLittleEndian()==false 的大端转换分支。冻结 Linux ARM64 镜像为小端，输入不能改变该平台属性；此变异不改变分支条件，因此在本平台不可达。AMD64 未实测；改架构须重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-orc-bloom-filter/mutation_baseline.json",
+        "benchmark/orc-bloom-filter/source/c++/src/BloomFilter.cc:285",
+        "runs/step-c-ir-orc-bloom-filter-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    }
+  ]
+}

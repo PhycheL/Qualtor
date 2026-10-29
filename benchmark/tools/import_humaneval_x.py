@@ -446,6 +446,61 @@ def plan_bundles(rows):
     return [[by_id[i] for i in b] for b in bundles]
 
 
+def build_environment_bundle(name, rows, args):
+    """新增独立组；原 01–20 的材料和生成路径不变，不在宿主机运行 C++。"""
+    ids = [22, 137] if name == 'boost' else [162]
+    problems = [row for row in rows if int(row['task_id'].split('/')[1]) in ids]
+    task_id = 'humaneval-x-cpp-' + name
+    directory = bankutil.reset_task_dir(task_id, args.force)
+    header = ['#pragma once', '#include <string>', '#include <vector>', '#include <list>',
+              '#include <boost/any.hpp>' if name == 'boost' else '#include <openssl/md5.h>',
+              'using namespace std;']
+    if name == 'boost':
+        header.append('typedef std::list<boost::any> list_any;')
+    blocks, sources = [], []
+    for problem in problems:
+        pid = int(problem['task_id'].split('/')[1])
+        # 上游 prompt + canonical_solution 按字节拼接；只新建独立的函数声明头。
+        content = problem['prompt'] + problem['canonical_solution']
+        rel = f'src/cpp_{pid:03d}.cc'
+        bankutil.write_text(directory / 'source' / rel, content)
+        sources.append(rel)
+        header.extend(fn['signature'] + ';' for fn in functions(content))
+        _, block = convert_upstream(problem)
+        blocks.append(block)
+    bankutil.write_text(directory / 'source/src/functions.h', '\n'.join(header) + '\n')
+    bankutil.copy_file(args.license, directory / 'source/LICENSE')
+    bankutil.write_text(directory / 'hidden/reference_tests/upstream_tests.cc',
+        '#include "functions.h"\n#include <gtest/gtest.h>\n#define HE_ASSERT(...) EXPECT_TRUE((__VA_ARGS__))\n'
+        + '\n'.join(blocks))
+    for path in sorted((TOOLS / 'step_c' / task_id / 'reference_tests').glob('*')):
+        bankutil.copy_file(path, directory / 'hidden/reference_tests' / path.name)
+    bankutil.copy_reference_as_probe(directory)
+    bankutil.write_text(directory / 'hidden/README.md', f'''# {task_id}
+
+源码为 HumanEval-X {', '.join(p['task_id'] for p in problems)} 的 prompt + canonical_solution 原样拼接；
+函数声明头由导入工具生成。参考测试机械转换上游 assert，并加入 step_c 中的边界测试；探针为参考副本。
+CPP/137 只以 int、有限 double、可转换为有限实数的 string 调用；不支持类型和 NaN 会触发原程序未定义行为，
+不作为参考输入。变异的等价与 UB 仍须逐项按 D015 复核。编译和测试仅在 Docker 标定时验证。
+''')
+    visible = sources + ['src/functions.h']
+    build = {'environment': 'bank-20261021',
+             'link_libraries': ['Boost::headers' if name == 'boost' else 'OpenSSL::Crypto']}
+    if name == 'openssl':
+        build['defines'] = ['OPENSSL_API_COMPAT=0x10101000L']
+    bankutil.write_task(directory, task_id=task_id, tier='easy', tags=['humaneval-x', 'environment', name],
+        title='HumanEval-X ' + name + ' 函数', description='独立的第三方依赖函数组；公开开发题。',
+        provenance={'repository': 'https://github.com/zai-org/CodeGeeX', 'commit': args.commit,
+                    'license': 'Apache-2.0', 'dataset': 'codegeex/benchmark/humaneval-x/cpp/data/humaneval_cpp.jsonl.gz',
+                    'dataset_sha256': bankutil.sha256_file(args.data), 'problems': [p['task_id'] for p in problems],
+                    'added_by_qualtor': ['src/functions.h']},
+        source_files=visible + ['LICENSE'], target_sources=sources, include_dirs=['src'], visible_files=visible,
+        existing_tests={'available': True, 'note': '上游测试作为隐藏参考材料。'},
+        scoring_domain='参考测试的定义行为输入；不以此收窄 D015 等价性判定。', probe_mode='reference_copy',
+        generated_by='benchmark/tools/import_humaneval_x.py', build=build)
+    print('生成 ' + task_id)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--data", required=True)
@@ -453,7 +508,8 @@ def main():
     parser.add_argument("--license", required=True)
     parser.add_argument("--clang", default="c++")
     parser.add_argument("--gcc", default="g++-14")
-    parser.add_argument("--gcc-gtest", required=True)
+    parser.add_argument("--gcc-gtest")
+    parser.add_argument('--environment-groups', nargs='+', choices=['boost', 'openssl'])
     parser.add_argument("--only", type=int, nargs="*", help="只生成指定编号的题，如 --only 1 2")
     parser.add_argument("--jobs", type=int, default=4)
     parser.add_argument("--force", action="store_true")
@@ -461,6 +517,12 @@ def main():
     opener = gzip.open if args.data.endswith(".gz") else open
     with opener(args.data, "rt", encoding="utf-8") as handle:
         rows = [json.loads(line) for line in handle if line.strip()]
+    if args.environment_groups:
+        for name in args.environment_groups:
+            build_environment_bundle(name, rows, args)
+        return 0
+    if not args.gcc_gtest:
+        parser.error('旧分组的探针生成需要 --gcc-gtest；环境分组使用后续 Docker 标定')
     bundles = plan_bundles(rows)
     jobs = [(n, b) for n, b in enumerate(bundles, 1) if not args.only or n in args.only]
 

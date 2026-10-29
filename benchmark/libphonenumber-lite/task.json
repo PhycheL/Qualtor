@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "id": "libphonenumber-lite",
+  "set": "dev",
+  "tier": "easy",
+  "tags": [
+    "environment",
+    "codegen",
+    "libphonenumber"
+  ],
+  "title": "libphonenumber-lite",
+  "description": "第三方依赖与公开构建配置；源码按固定上游提交入库，开发题。",
+  "source": {
+    "repository": "https://github.com/google/libphonenumber",
+    "commit": "b4e9b73792be6c9c5aeb6bc560dd95ab64623d4f",
+    "root": "benchmark/libphonenumber-lite/source",
+    "files": {
+      "cpp/src/phonenumbers/phonenumber.cc": "f600c829bff91bff73e6cabe9c488d5eb2792c24958e1d31629ca3a4e4035cb3",
+      "cpp/src/phonenumbers/phonenumber.h": "2389b9011cff8a0db387756f08795de037307110b45509f060a662d0a62bf506",
+      "proto/phonenumbers/phonemetadata.proto": "8fde44367124bec8d8a0f630fb92d888c1b967558d949055a09f55ca7b42d32c",
+      "proto/phonenumbers/phonenumber.proto": "318e28f59e78fdef1656ea9c89287fefc6138fc0b6dc49d748d1271f2bfba95a"
+    }
+  },
+  "target_sources": [
+    "cpp/src/phonenumbers/phonenumber.cc"
+  ],
+  "include_dirs": [
+    "cpp/src"
+  ],
+  "visible": {
+    "files": [
+      "cpp/src/phonenumbers/phonenumber.cc",
+      "cpp/src/phonenumbers/phonenumber.h",
+      "proto/phonenumbers/phonemetadata.proto",
+      "proto/phonenumbers/phonenumber.proto"
+    ],
+    "notes": "可见材料只有被测及依赖源码、头文件和公开构建配置；测试使用 C++11 / GoogleTest 1.12.1。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": false,
+    "note": "上游测试作为隐藏参考材料，未投影给生成 Agent。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "隐藏参考测试覆盖的输入；断言以固定源码实际行为为准；不以此收窄等价性判定。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/import_step_c.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": [],
+  "build": {
+    "support_sources": [],
+    "environment": "bank-20261021",
+    "link_libraries": [
+      "protobuf::libprotobuf-lite"
+    ],
+    "codegen": [
+      {
+        "tool": "protoc",
+        "inputs": [
+          "proto/phonenumbers/phonenumber.proto",
+          "proto/phonenumbers/phonemetadata.proto"
+        ],
+        "import_dirs": [
+          "proto"
+        ]
+      }
+    ]
+  }
+}

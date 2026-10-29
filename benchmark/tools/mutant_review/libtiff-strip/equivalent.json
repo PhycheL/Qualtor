@@ -1,0 +1,146 @@
+{
+  "task": "libtiff-strip",
+  "note": "按 D011/D015 复核；源码有定义的输入域不由隐藏测试收窄。平台相关结论只验证 Linux ARM64。",
+  "mutants": [
+    {
+      "id": "cxx_assign_const:/repo/libtiff/tif_strip.c:149:4:149:5",
+      "reason": "固定 Linux ARM64 中 tmsize_t 与 uint64 均为 64 位；uint64→tmsize_t→uint64 保留全部位，(uint64)n!=m 永远为假，故该溢出处理分支不可达。结论依赖固定工具链与架构，需随架构重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-10-libtiff-strip/mutation_baseline.json",
+        "benchmark/libtiff-strip/source/libtiff/tif_strip.c:149",
+        "runs/step-c-ir-libtiff-strip-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/libtiff/tif_strip.c:197:5:197:6",
+      "reason": "固定 Linux ARM64 中 tmsize_t 与 uint64 均为 64 位；uint64→tmsize_t→uint64 保留全部位，(uint64)n!=m 永远为假，故该溢出处理分支不可达。结论依赖固定工具链与架构，需随架构重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-10-libtiff-strip/mutation_baseline.json",
+        "benchmark/libtiff-strip/source/libtiff/tif_strip.c:197",
+        "runs/step-c-ir-libtiff-strip-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/libtiff/tif_strip.c:231:4:231:5",
+      "reason": "固定 Linux ARM64 中 tmsize_t 与 uint64 均为 64 位；uint64→tmsize_t→uint64 保留全部位，(uint64)n!=m 永远为假，故该溢出处理分支不可达。结论依赖固定工具链与架构，需随架构重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-10-libtiff-strip/mutation_baseline.json",
+        "benchmark/libtiff-strip/source/libtiff/tif_strip.c:231",
+        "runs/step-c-ir-libtiff-strip-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/libtiff/tif_strip.c:266:8:266:9",
+      "reason": "rows=8192/scanlinesize；scanlinesize==0 已替换为 1，因此 rows<=8192，绝不达到 0xFFFFFFFF。此比较/分支赋值不可影响输出。",
+      "evidence": [
+        "runs/step-c-seed-20261029-10-libtiff-strip/mutation_baseline.json",
+        "benchmark/libtiff-strip/source/libtiff/tif_strip.c:266",
+        "runs/step-c-ir-libtiff-strip-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/libtiff/tif_strip.c:349:4:349:5",
+      "reason": "固定 Linux ARM64 中 tmsize_t 与 uint64 均为 64 位；uint64→tmsize_t→uint64 保留全部位，(uint64)n!=m 永远为假，故该溢出处理分支不可达。结论依赖固定工具链与架构，需随架构重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-10-libtiff-strip/mutation_baseline.json",
+        "benchmark/libtiff-strip/source/libtiff/tif_strip.c:349",
+        "runs/step-c-ir-libtiff-strip-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/libtiff/tif_strip.c:386:4:386:5",
+      "reason": "固定 Linux ARM64 中 tmsize_t 与 uint64 均为 64 位；uint64→tmsize_t→uint64 保留全部位，(uint64)n!=m 永远为假，故该溢出处理分支不可达。结论依赖固定工具链与架构，需随架构重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-10-libtiff-strip/mutation_baseline.json",
+        "benchmark/libtiff-strip/source/libtiff/tif_strip.c:386",
+        "runs/step-c-ir-libtiff-strip-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/libtiff/tif_strip.c:216:10:216:11",
+      "reason": "rps==imagelength 时将 rps 重新赋为相同值；> 改 >= 不改变后续条带高度或尺寸。",
+      "evidence": [
+        "runs/step-c-seed-20261029-10-libtiff-strip/mutation_baseline.json",
+        "benchmark/libtiff-strip/source/libtiff/tif_strip.c:216",
+        "runs/step-c-ir-libtiff-strip-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/libtiff/tif_strip.c:265:16:265:17",
+      "reason": "rows=8192/scanlinesize；scanlinesize==0 已替换为 1，因此 rows<=8192，绝不达到 0xFFFFFFFF。此比较/分支赋值不可影响输出。",
+      "evidence": [
+        "runs/step-c-seed-20261029-10-libtiff-strip/mutation_baseline.json",
+        "benchmark/libtiff-strip/source/libtiff/tif_strip.c:265",
+        "runs/step-c-ir-libtiff-strip-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/libtiff/tif_strip.c:148:3:148:62",
+      "reason": "固定 Linux ARM64 中 tmsize_t 与 uint64 均为 64 位；uint64→tmsize_t→uint64 保留全部位，(uint64)n!=m 永远为假，故该溢出处理分支不可达。结论依赖固定工具链与架构，需随架构重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-10-libtiff-strip/mutation_baseline.json",
+        "benchmark/libtiff-strip/source/libtiff/tif_strip.c:148",
+        "runs/step-c-ir-libtiff-strip-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/libtiff/tif_strip.c:196:4:196:63",
+      "reason": "固定 Linux ARM64 中 tmsize_t 与 uint64 均为 64 位；uint64→tmsize_t→uint64 保留全部位，(uint64)n!=m 永远为假，故该溢出处理分支不可达。结论依赖固定工具链与架构，需随架构重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-10-libtiff-strip/mutation_baseline.json",
+        "benchmark/libtiff-strip/source/libtiff/tif_strip.c:196",
+        "runs/step-c-ir-libtiff-strip-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/libtiff/tif_strip.c:230:3:230:62",
+      "reason": "固定 Linux ARM64 中 tmsize_t 与 uint64 均为 64 位；uint64→tmsize_t→uint64 保留全部位，(uint64)n!=m 永远为假，故该溢出处理分支不可达。结论依赖固定工具链与架构，需随架构重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-10-libtiff-strip/mutation_baseline.json",
+        "benchmark/libtiff-strip/source/libtiff/tif_strip.c:230",
+        "runs/step-c-ir-libtiff-strip-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/libtiff/tif_strip.c:301:29:302:77",
+      "reason": "外层条件已要求 td_samplesperpixel==3，内层相邻检查 td_samplesperpixel!=3 不可达，期间没有能修改该字段的调用，删除此错误回调等价。",
+      "evidence": [
+        "runs/step-c-seed-20261029-10-libtiff-strip/mutation_baseline.json",
+        "benchmark/libtiff-strip/source/libtiff/tif_strip.c:301",
+        "runs/step-c-ir-libtiff-strip-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/libtiff/tif_strip.c:348:3:348:73",
+      "reason": "固定 Linux ARM64 中 tmsize_t 与 uint64 均为 64 位；uint64→tmsize_t→uint64 保留全部位，(uint64)n!=m 永远为假，故该溢出处理分支不可达。结论依赖固定工具链与架构，需随架构重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-10-libtiff-strip/mutation_baseline.json",
+        "benchmark/libtiff-strip/source/libtiff/tif_strip.c:348",
+        "runs/step-c-ir-libtiff-strip-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/libtiff/tif_strip.c:385:3:385:73",
+      "reason": "固定 Linux ARM64 中 tmsize_t 与 uint64 均为 64 位；uint64→tmsize_t→uint64 保留全部位，(uint64)n!=m 永远为假，故该溢出处理分支不可达。结论依赖固定工具链与架构，需随架构重标定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-10-libtiff-strip/mutation_baseline.json",
+        "benchmark/libtiff-strip/source/libtiff/tif_strip.c:385",
+        "runs/step-c-ir-libtiff-strip-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "task": "exiv2-pngchunk",
+  "note": "按 D011/D015 复核；源码有定义的输入域不由隐藏测试收窄。平台相关结论只验证 Linux ARM64。",
+  "mutants": [
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:198:64:198:65",
+      "reason": "第 174 行已强制要求 [keysize+3, data.size_) 内至少含 2 个 NUL 字节，因此从 prog（第一个 NUL 之后）起必然在 data.pData_+data.size_ 之前遇到第二个 NUL；strnlen 在该 NUL 处提前终止，传入更大的上限（+ 改 - 或 - 改 +）不改变返回值或读取范围。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:198",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:198:68:198:69",
+      "reason": "第 174 行已强制要求 [keysize+3, data.size_) 内至少含 2 个 NUL 字节，因此从 prog（第一个 NUL 之后）起必然在 data.pData_+data.size_ 之前遇到第二个 NUL；strnlen 在该 NUL 处提前终止，传入更大的上限不改变返回值或读取范围。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:198",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:198:87:198:88",
+      "reason": "第 174 行已强制要求 [keysize+3, data.size_) 内至少含 2 个 NUL 字节，因此从 prog（第一个 NUL 之后）起必然在 data.pData_+data.size_ 之前遇到第二个 NUL；strnlen 在该 NUL 处提前终止，上限改大（+1 改 -1）不改变返回值或读取范围。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:198",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/pngchunk_int.cpp:202:92:202:93",
+      "reason": "第 174 行保证 [keysize+3, data.size_) 中至少有 2 个 NUL，故第一个 NUL 之后的 keysize+3+languageTextSize+1 恒 <= data.size_，原 enforce 条件在此处恒成立；把 +1 改为 -1 只使左值再减 2，在非负长度下同样恒 <= data.size_，不会抛异常。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:202",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/pngchunk_int.cpp:681:20:681:22",
+      "reason": "构建未定义 DEBUG 宏，if (length == 0) 分支体为空语句；将 == 改为 != 不产生任何指令效果。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:681",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/pngchunk_int.cpp:172:32:172:34",
+      "reason": "当 data.size_ == Safe::add(keysize, 3) 时，原代码通过第 172 行后在第 173–174 行对空区间 [pData_+size_, pData_+size_) 调用 std::count 得到 0 < 2，立即抛出同一 kerCorruptedMetadata 异常；将 >= 改为 > 在第 172 行直接抛出相同异常。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:172",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/pngchunk_int.cpp:192:60:192:62",
+      "reason": "第 174 行保证 [keysize+3, data.size_) 内至少有两个 NUL，故第一个 NUL 偏移 languageTextSize 满足 keysize+3+languageTextSize <= data.size_-2，即 data.size_ >= keysize+5+languageTextSize > keysize+4+languageTextSize；相等情况不可达。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:192",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:308:30:308:31",
+      "reason": "parseChunkContent 返回的 psData.size_ 恒 >= 0。当 psData.size_ == 0 时，变异进入分支后 pCur == pEnd，while 循环不执行，iptcBlob 为空；IptcParser::decode(pImage->iptcData(), nullptr, 0) 仅对本就为空的 iptcData 调用 clear() 并返回 0，无任何日志或状态差异。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:308",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:331:40:331:41",
+      "reason": "iptcBlob 是 std::vector<byte>，size() 无符号；> 0 改 >= 0 仅在 iptcBlob.empty() 时多调用一次 IptcParser::decode(pImage->iptcData(), nullptr, 0)，其实现在 sizeIptcData==0 时只对已空的 iptcData 执行 clear() 并返回 0，无可见差异。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:331",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:477:37:477:38",
+      "reason": "zlibUncompress 中 uncompressedLen 初值为 <=131072 的值且每次循环翻倍；当翻倍后恰好等于 131072 时此前必满足 < 131072，故 dos == 0。原代码以 uncompressedLen=131072、dos=0 调 uncompress，若仍 Z_BUF_ERROR 则下一轮设为 131072、dos=1 再调一次相同参数的确定性 uncompress 后退出；变异首次即设 dos=1、uncompressedLen=131072，结果与异常完全相同。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:477",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/pngchunk_int.cpp:518:36:518:37",
+      "reason": "zlibCompress 仅由 makeUtf8CompressedTxtChunk 在 text.size() >= 1 时调用；zlib compress2 对长度 L 的最大输出上界为 L + (L >> 12) + (L >> 14) + (L >> 25) + 13，当 L >= 13 时初始 2*L 已 >= compressBound(L)，首次即返回 Z_OK；仅 1 <= L <= 12 可能进入 Z_BUF_ERROR，此时翻倍后的 compressedLen 至多为 48，绝不可能达到 131072。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:518",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:311:26:311:34",
+      "reason": "Photoshop::locateIptcIrb 入口无条件执行 *sizeIptc = 0（jpgimage.cpp:151），其初值 0 改为 42 在任何读取前即被覆盖。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:311",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_init_const:/repo/src/pngchunk_int.cpp:312:26:312:33",
+      "reason": "Photoshop::locateIptcIrb 入口无条件执行 *sizeHdr = 0（jpgimage.cpp:150），其初值 0 改为 42 在任何读取前即被覆盖。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:312",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/pngchunk_int.cpp:155:40:155:41",
+      "reason": "第 147 行已检查 data.size_ >= Safe::add(keysize, 2)，且 keysize >= 0，故 compressedTextSize = data.size_ - keysize - 2 <= data.size_ - 2 < data.size_；两边相等不可达。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:155",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/pngchunk_int.cpp:316:32:316:33",
+      "reason": "当 pCur == pEnd 时，额外一轮调用 Photoshop::locateIptcIrb(pCur, 0, ...)；其中 i < sizePsData - 12 即 0 < -12 为假，不解引用 pPsData 即返回 3，循环随即终止且不向 iptcBlob 追加任何字节。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:316",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/pngchunk_int.cpp:419:13:419:92",
+      "reason": "真实 Mull IR（.26）仅删除临时 std::string 的 std::__new_allocator<char>::~__new_allocator() 空析构调用；std::string 释放与输出均保持不变。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:419",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/pngchunk_int.cpp:90:9:90:62",
+      "reason": "真实 Mull IR（.3）仅删除按值传入 parseTXTChunk 的临时 DataBuf 析构调用；返回值已拷贝构造完成，仅造成临时堆缓冲泄漏，按 D015 视为等价。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:90",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/pngchunk_int.cpp:331:33:331:37",
+      "reason": "将 iptcBlob.size() 替换为 42 后条件 42 > 0 恒真；当 iptcBlob 非空时与原分支一致，当 iptcBlob 为空时调用 IptcParser::decode(pImage->iptcData(), nullptr, 0)，后者在 sizeIptcData==0 时只对已空 iptcData 调用 clear() 并返回 0，无任何可观察差异。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:331",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:187:59:187:60",
+      "reason": "第 174 行已保证 [keysize+3, data.size_) 内至少有 2 个 NUL 字节，故 strnlen 从 languageText 起必在缓冲区内遇到第一个 NUL 并返回其偏移；上限改大（- 改 +）不会越过该 NUL，返回值与读取范围不变。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:187",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:187:69:187:70",
+      "reason": "第 174 行已保证 [keysize+3, data.size_) 内至少有 2 个 NUL 字节，故 strnlen 从 languageText 起必在缓冲区内遇到第一个 NUL 并返回其偏移；上限改大（-3 改 +3）不会越过该 NUL，返回值与读取范围不变。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:187",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/pngchunk_int.cpp:198:53:198:54",
+      "reason": "第 174 行已保证 [keysize+3, data.size_) 内至少有 2 个 NUL 字节，故从 prog 起必在缓冲区内遇到第二个 NUL；strnlen 在该 NUL 处停止，上限中的 - 改为 + 不改变返回值或读取范围。",
+      "evidence": [
+        "runs/step-c-seed-20261029-13-exiv2-pngchunk/mutation_baseline.json",
+        "benchmark/exiv2-pngchunk/source/src/pngchunk_int.cpp:198",
+        "runs/step-c-ir-exiv2-pngchunk-20261029-01/mutant-ir.json"
+      ],
+      "by": "Gemini（2026-10-30；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    }
+  ]
+}

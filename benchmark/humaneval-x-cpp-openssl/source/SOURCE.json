@@ -1,0 +1,18 @@
+{
+  "repository": "https://github.com/zai-org/CodeGeeX",
+  "commit": "2838420b7b4492cf3d16bce5320e26e65960c9e2",
+  "license": "Apache-2.0",
+  "dataset": "codegeex/benchmark/humaneval-x/cpp/data/humaneval_cpp.jsonl.gz",
+  "dataset_sha256": "dcf2e280a1e91bbc3c5f90edb41397e8a9ac1ccc9f5d2b70082f0b0fbfb6dbb0",
+  "problems": [
+    "CPP/162"
+  ],
+  "added_by_qualtor": [
+    "src/functions.h"
+  ],
+  "files": {
+    "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "src/cpp_162.cc": "eacddda73cfea2abc6aca759b857ed8c69c7b2d0f0033708345a7a8bd8869d83",
+    "src/functions.h": "c92dd8d78684d115dc77ebe63bf3504d4c8b4c257214cc389dfba91fd6df833a"
+  }
+}

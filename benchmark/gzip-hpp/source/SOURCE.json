@@ -1,0 +1,18 @@
+{
+  "repository": "https://github.com/mapbox/gzip-hpp",
+  "commit": "7546b35aba5917154a0e9ae43f804b57d22bb966",
+  "reference_tests": [
+    "test/test_io.cpp",
+    "Qualtor bounded compression cases"
+  ],
+  "added_by_qualtor": [],
+  "note": "source/ 文件逐字节取自上述提交；隐藏测试的转换见 hidden/README.md。",
+  "files": {
+    "LICENSE.md": "7d2d492a7eedb4cc25a6dbc7274c15f9dbd8f8695865b2fff3fd681d1aa22063",
+    "include/gzip/compress.hpp": "280992b6b1e52138e2f1566c02193fb20b36d59a6a69801c3f3ce06d81794495",
+    "include/gzip/config.hpp": "e77b5b3cb61eed8035e3d20bbdc3b75af64407bff44fcaa62fec7c6892afed6e",
+    "include/gzip/decompress.hpp": "f9ce8912a74a2d89c40576cc7fe47038aa5c9d12d249082a77e7cc246b39fda3",
+    "include/gzip/utils.hpp": "cddd9c00b738071fd051c3319c5cb8deae8d750a243ab76e278e86b26e73d3e3",
+    "include/gzip/version.hpp": "17107e0d49013b1421513f65c61686db05f030ccd52b76bd359a82211c12dd57"
+  }
+}

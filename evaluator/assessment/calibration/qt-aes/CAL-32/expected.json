@@ -1,0 +1,40 @@
+{
+  "sample": "CAL-32",
+  "original_ids": [
+    "CAL-32"
+  ],
+  "description": "moc 生成单元不计覆盖和变异",
+  "hard": {
+    "status": "scored",
+    "tests_default": "valid"
+  },
+  "relations": [
+    {
+      "metric": "M1_e2e",
+      "op": ">=",
+      "value": 0.8
+    }
+  ],
+  "environment": {
+    "name": "bank-20261021",
+    "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd",
+    "images": {
+      "gcc": {
+        "tag": "docker.io/library/qualtor-env-bank-20261021-gcc:9abcad8ef238",
+        "id": "sha256:2f3d4143870ad0135491dbaeea1b4d4af80bdfc274bfced8913f903a35c5a5a5",
+        "platform": "linux/arm64"
+      },
+      "clang": {
+        "tag": "docker.io/library/qualtor-env-bank-20261021-clang:9abcad8ef238",
+        "id": "sha256:76b0083ec874c3ee645584e7208e930112a02028870640fc98e9c618685b49da",
+        "platform": "linux/arm64"
+      }
+    }
+  },
+  "build_boundary": true,
+  "reference_copies": [
+    "tests/resources.h",
+    "tests/runner_options.cc",
+    "tests/upstream_tests.cc"
+  ]
+}

@@ -1,0 +1,266 @@
+cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
+project(QtAES VERSION 2.0.0 LANGUAGES CXX)
+
+set(QTAES_STANDALONE_BUILD OFF)
+if(PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+    set(QTAES_STANDALONE_BUILD ON)
+endif()
+
+option(QTAES_ENABLE_AESNI      "${PROJECT_NAME}: Enable AES-NI"                         OFF)
+option(QTAES_ENABLE_INSTALL    "${PROJECT_NAME}: Enable install"                         ${QTAES_STANDALONE_BUILD})
+option(QTAES_ENABLE_TESTS      "${PROJECT_NAME}: Enable tests"                           ${QTAES_STANDALONE_BUILD})
+option(QTAES_ENABLE_WERROR     "${PROJECT_NAME}: Treat warnings as errors"               OFF)
+option(QTAES_ENABLE_SANITIZERS "${PROJECT_NAME}: Enable AddressSanitizer + UBSan"        OFF)
+option(QTAES_ENABLE_FUZZING             "${PROJECT_NAME}: Build libFuzzer fuzz target (Clang only)" OFF)
+option(QTAES_ENABLE_OPENSSL_CROSS_CHECK "${PROJECT_NAME}: Build OpenSSL interop cross-check tests"   OFF)
+option(QTAES_CONSTANT_TIME_SBOX         "${PROJECT_NAME}: Use constant-time S-box (no table lookups)" OFF)
+
+# GNUInstallDirs is needed for CMAKE_INSTALL_* variables used in
+# target_include_directories and the install() calls below.
+include(GNUInstallDirs)
+
+if(QTAES_STANDALONE_BUILD)
+    if(NOT CMAKE_CXX_STANDARD)
+        set(CMAKE_CXX_STANDARD 11)
+        set(CMAKE_CXX_STANDARD_REQUIRED ON)
+        set(CMAKE_CXX_EXTENSIONS OFF)
+    endif()
+
+    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+        add_compile_options(
+            -Wall
+            -Wextra
+            -pedantic
+            $<$<BOOL:${QTAES_ENABLE_WERROR}>:-Werror>)
+
+        # Hardening flags for Release builds.
+        # -fstack-protector-strong: emit stack canaries for functions with
+        #   addressable local buffers — catches stack-based buffer overflows.
+        # -D_FORTIFY_SOURCE=2: enables glibc bounds-checking on string/memory
+        #   functions at both compile time and runtime.
+        # These are standard practice for security-sensitive libraries and have
+        # negligible performance impact.
+        add_compile_options(
+            $<$<CONFIG:Release,RelWithDebInfo>:-fstack-protector-strong>
+            $<$<CONFIG:Release,RelWithDebInfo>:-D_FORTIFY_SOURCE=2>)
+    elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+        add_compile_options(
+            /W4
+            $<$<BOOL:${QTAES_ENABLE_WERROR}>:/WX>
+            # MSVC equivalent: enable basic security checks and SDL checks
+            $<$<CONFIG:Release,RelWithDebInfo>:/GS>
+            $<$<CONFIG:Release,RelWithDebInfo>:/sdl>)
+    endif()
+endif()
+
+# Locate Qt (prefer Qt6, fall back to Qt5) and derive the versioned package name.
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
+set(QT_PACKAGE_NAME Qt${QT_VERSION_MAJOR})
+
+set(QT_COMPS Core)
+if(QTAES_ENABLE_TESTS OR QTAES_ENABLE_OPENSSL_CROSS_CHECK)
+    list(APPEND QT_COMPS Test)
+endif()
+find_package(${QT_PACKAGE_NAME} REQUIRED COMPONENTS ${QT_COMPS})
+
+add_library(QtAES)
+
+# Per-target MOC/RCC — avoid polluting parent builds when used as a subdirectory.
+set_target_properties(QtAES PROPERTIES AUTOMOC ON)
+
+if(NOT QTAES_STANDALONE_BUILD)
+    add_library(${PROJECT_NAME}::QtAES ALIAS QtAES)
+endif()
+
+# Generate export header unconditionally so that builds with
+# -DBUILD_SHARED_LIBS=ON work correctly in all modes.
+include(GenerateExportHeader)
+generate_export_header(QtAES EXPORT_MACRO_NAME QTAESSHARED_EXPORT)
+
+# Qt-style forwarding header — allows #include <QAESEncryption> (no .h extension,
+# consistent with Qt class headers like QByteArray, QObject, etc.)
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}/QAESEncryption" "#include \"qaesencryption.h\"")
+
+target_sources(QtAES
+    PRIVATE
+        qaesencryption.cpp
+        qaesencryption.h)
+
+target_include_directories(QtAES
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}>)
+
+target_compile_definitions(QtAES
+    PRIVATE
+        QT_DISABLE_DEPRECATED_BEFORE=0x060000)
+
+if(QTAES_CONSTANT_TIME_SBOX)
+    target_compile_definitions(QtAES PUBLIC QTAES_CONSTANT_TIME_SBOX)
+endif()
+
+if(QTAES_ENABLE_AESNI)
+    # AES-NI uses x86 intrinsics and inline asm — reject unsupported architectures at
+    # configure time rather than letting the build fail with a cryptic compiler error.
+    if(NOT (CMAKE_SYSTEM_PROCESSOR MATCHES "x86_64|AMD64|i[3-6]86|x86"))
+        message(FATAL_ERROR
+            "QTAES_ENABLE_AESNI is only supported on x86/x86-64. "
+            "Detected processor: ${CMAKE_SYSTEM_PROCESSOR}")
+    endif()
+
+    include(CheckCXXCompilerFlag)
+
+    target_sources(QtAES
+        PRIVATE
+            aesni/aesni-key-exp.h
+            aesni/aesni-key-init.h
+            aesni/aesni-enc-ecb.h
+            aesni/aesni-enc-cbc.h
+            aesni/aesni-enc-cfb.h
+            aesni/aesni-enc-ofb.h
+            aesni/aesni-enc-ctr.h)
+
+    target_compile_definitions(QtAES
+        PUBLIC
+            USE_INTEL_AES_IF_AVAILABLE)
+
+    check_cxx_compiler_flag(-maes CXX_COMPILER_HAS_FLAG_MAES)
+
+    target_compile_options(QtAES
+        PRIVATE
+            $<$<BOOL:${CXX_COMPILER_HAS_FLAG_MAES}>:-maes>)
+endif()
+
+target_link_libraries(QtAES
+    PUBLIC
+        ${QT_PACKAGE_NAME}::Core)
+
+if(QTAES_ENABLE_SANITIZERS)
+    if(NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+        message(FATAL_ERROR "QTAES_ENABLE_SANITIZERS requires GCC or Clang.")
+    endif()
+    set(_QTAES_SAN_FLAGS -fsanitize=address,undefined -fno-omit-frame-pointer)
+    # Compile flags go on the library so object files are instrumented.
+    target_compile_options(QtAES PRIVATE ${_QTAES_SAN_FLAGS})
+endif()
+
+if(QTAES_ENABLE_TESTS)
+    enable_testing()
+
+    add_executable(AESTest)
+
+    # Per-target RCC for the test executable.
+    set_target_properties(AESTest PROPERTIES AUTOMOC ON AUTORCC ON)
+
+    target_sources(AESTest
+        PRIVATE
+            main.cpp
+            res.qrc
+            unit_test/aestest.cpp
+            unit_test/aestest.h)
+
+    # Qt::Core is already a transitive dependency via QtAES; only Test is needed here.
+    target_link_libraries(AESTest
+        PRIVATE
+            QtAES
+            ${QT_PACKAGE_NAME}::Test)
+
+    if(QTAES_ENABLE_SANITIZERS)
+        # Compile flags for test sources; link flags for the final executable.
+        target_compile_options(AESTest PRIVATE ${_QTAES_SAN_FLAGS})
+        target_link_options(AESTest PRIVATE ${_QTAES_SAN_FLAGS})
+    endif()
+
+    add_test(
+        NAME AESTest
+        COMMAND AESTest)
+endif()
+
+if(QTAES_ENABLE_FUZZING)
+    if(NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+        message(FATAL_ERROR "QTAES_ENABLE_FUZZING requires Clang (libFuzzer is a Clang-only feature).")
+    endif()
+
+    set(_QTAES_FUZZ_FLAGS -fsanitize=fuzzer,address -fno-omit-frame-pointer)
+
+    add_executable(fuzz_encrypt fuzz/fuzz_encrypt.cpp)
+
+    set_target_properties(fuzz_encrypt PROPERTIES AUTOMOC ON)
+
+    target_link_libraries(fuzz_encrypt PRIVATE QtAES)
+
+    target_compile_options(QtAES   PRIVATE ${_QTAES_FUZZ_FLAGS})
+    target_compile_options(fuzz_encrypt PRIVATE ${_QTAES_FUZZ_FLAGS})
+    target_link_options   (fuzz_encrypt PRIVATE ${_QTAES_FUZZ_FLAGS})
+endif()
+
+if(QTAES_ENABLE_OPENSSL_CROSS_CHECK)
+    find_package(OpenSSL REQUIRED)
+
+    add_executable(AESCrossCheck)
+
+    set_target_properties(AESCrossCheck PROPERTIES AUTOMOC ON)
+
+    target_sources(AESCrossCheck
+        PRIVATE
+            unit_test/aes_openssl_crosscheck_main.cpp
+            unit_test/aes_openssl_crosscheck.cpp
+            unit_test/aes_openssl_crosscheck.h)
+
+    target_link_libraries(AESCrossCheck
+        PRIVATE
+            QtAES
+            ${QT_PACKAGE_NAME}::Test
+            OpenSSL::Crypto)
+
+    if(NOT QTAES_ENABLE_TESTS)
+        enable_testing()
+    endif()
+
+    add_test(
+        NAME AESCrossCheck
+        COMMAND AESCrossCheck)
+endif()
+
+if(QTAES_ENABLE_INSTALL)
+    include(CMakePackageConfigHelpers)
+
+    install(
+        TARGETS QtAES
+        EXPORT ${PROJECT_NAME}Targets
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+
+    install(
+        FILES
+            qaesencryption.h
+            "${CMAKE_CURRENT_BINARY_DIR}/qtaes_export.h"
+            "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}/QAESEncryption"
+        DESTINATION
+            ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME})
+
+    install(
+        FILES
+            LICENSE
+            README.md
+        DESTINATION ${CMAKE_INSTALL_DOCDIR})
+
+    install(
+        EXPORT ${PROJECT_NAME}Targets
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
+        NAMESPACE ${PROJECT_NAME}::)
+
+    configure_file(${PROJECT_NAME}Config.cmake.in ${PROJECT_NAME}Config.cmake @ONLY)
+
+    write_basic_package_version_file(
+        "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+        COMPATIBILITY AnyNewerVersion)
+
+    install(
+        FILES
+            "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+            "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME})
+endif()

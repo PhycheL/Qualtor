@@ -23,6 +23,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shlex
 import sys
 
 REPO = Path(__file__).resolve().parents[2]
@@ -142,6 +143,26 @@ def demangle(names):
     return dict(zip(names, out)) if len(out) == len(names) else {}
 
 
+def prepared_command(build, source, output):
+    """保留已验证的真实编译命令，只将对象输出改为文本 IR。"""
+    rows = json.loads((Path(build) / 'compile_commands.json').read_text())
+    rows = [row for row in rows if row['file'] == '/repo/' + source]
+    if len(rows) != 1 or rows[0]['directory'] != '/build':
+        raise ValueError('已标定构建中没有唯一的被测单元：' + source)
+    command = rows[0].get('arguments') or shlex.split(rows[0]['command'])
+    if '-fpass-plugin=/usr/lib/mull-ir-frontend-19' not in command:
+        raise ValueError('需要已加载 Mull 的 Clang 构建')
+    result, skip = [], False
+    for token in command:
+        if skip:
+            skip = False
+        elif token == '-o':
+            skip = True
+        elif token != '-c':
+            result.append(token)
+    return result + ['-S', '-emit-llvm', '-o', output]
+
+
 def emit(args):
     import common
     from audit import Audit
@@ -157,11 +178,22 @@ def emit(args):
                                                          if "mutant_ir.py" in (m.get("pending") or ""))))
     if not args.ids:
         raise SystemExit("没有要核对的变异")
-    image = common.read_json(common.CALIBRATION_STATUS)["images"]["clang"]
-    manifest = new_manifest(args.run_id, "prepare", mode="mutant_ir", task=task["id"], ids=args.ids, image=image)
+    manifest = new_manifest(args.run_id, "prepare", mode="mutant_ir", task=task["id"], ids=args.ids)
     write_manifest(run_dir, manifest)
     (run_dir / "mull.yml").write_text(common.mull_config_text(task))
     audit = Audit(run_dir / "evidence")
+    if task.get('build', {}).get('environment'):
+        from docker_runner import DockerExecutor
+        executor = DockerExecutor(audit, run_dir / 'evidence', args.run_id)
+        image = executor.image_for(task, 'clang')
+        docker = executor.docker
+        manifest['environment'] = executor.environment(task)
+    else:
+        image = common.read_json(common.CALIBRATION_STATUS)["images"]["clang"]
+        docker = ['docker']
+    manifest['image'] = image
+    manifest['prepared_build'] = str(args.prepared_build) if args.prepared_build else None
+    write_manifest(run_dir, manifest)
     sources = sorted({i.split(":")[1].removeprefix("/repo/") for i in args.ids})
     report = []
     for source in sources:
@@ -169,16 +201,25 @@ def emit(args):
         build = task.get("build", {})
         language = (["clang-19", "-std=" + build["c_standard"]] if Path(source).suffix == ".c"
                     else ["clang++-19", "-std=c++11", "-include", "/assessment/cxx11_guard.h"])
-        command = ["docker", "run", "--rm", "--network", "none", "--read-only", "--cpus", "1", "--memory", "1g",
+        mounts = []
+        assessment = common.ASSESSMENT / 'cmake'
+        compiler = [*language, "-O0", "-g", *["-D" + d for d in build.get("defines", [])],
+                    *build.get("compile_options", []), "-grecord-command-line",
+                    "-fpass-plugin=/usr/lib/mull-ir-frontend-19", "-S", "-emit-llvm",
+                    *[f"-I/repo/{d}" for d in task["include_dirs"]], f"/repo/{source}", "-o", f"/out/{out.name}"]
+        if args.prepared_build:
+            assessment = common.ASSESSMENT
+            mounts = ['--mount', f'type=bind,source={args.prepared_build.resolve()},target=/build,readonly', '-w', '/build']
+            compiler = prepared_command(args.prepared_build, source, '/out/' + out.name)
+        elif build.get('link_libraries') and build.get('codegen'):
+            raise ValueError('代码生成题需要 --prepared-build，以复用生成头与真实编译参数')
+        command = docker + ["run", "--rm", "--network", "none", "--read-only", "--cpus", "1", "--memory", "1g",
                    "--pids-limit", "256", "--cap-drop", "ALL", "--security-opt", "no-new-privileges",
                    "--user", f"{os.getuid()}:{os.getgid()}", "--tmpfs", "/tmp:rw,nosuid,nodev,size=256m,mode=1777",
                    "--mount", f"type=bind,source={common.source_root(task)},target=/repo,readonly",
-                   "--mount", f"type=bind,source={common.ASSESSMENT / 'cmake'},target=/assessment,readonly",
-                   "--mount", f"type=bind,source={run_dir},target=/out", "-e", "MULL_CONFIG=/out/mull.yml", image,
-                   *language, "-O0", "-g", *["-D" + d for d in build.get("defines", [])],
-                   *build.get("compile_options", []),
-                   "-grecord-command-line", "-fpass-plugin=/usr/lib/mull-ir-frontend-19", "-S", "-emit-llvm",
-                   *[f"-I/repo/{d}" for d in task["include_dirs"]], f"/repo/{source}", "-o", f"/out/{out.name}"]
+                   "--mount", f"type=bind,source={assessment},target=/assessment,readonly",
+                   "--mount", f"type=bind,source={run_dir},target=/out", *mounts,
+                   "-e", "MULL_CONFIG=/out/mull.yml", image['id'] if isinstance(image, dict) else image, *compiler]
         result = audit.run(f"emit-{Path(source).name}", command, timeout=300)
         if result["returncode"] != 0:
             finish(run_dir, manifest, "failed", error=f"导出 {source} 的 IR 失败")
@@ -247,6 +288,7 @@ def main():
     e.add_argument("--pending", action="store_true", help="核对 mutant_review 中标记待 mutant_ir 核对的结论")
     e.add_argument("--resolve", action="store_true", help="只删去析构调用时清除 pending 并写入证据")
     e.add_argument("--run-id", required=True)
+    e.add_argument('--prepared-build', type=Path, help='已标定的 clang-build/build；复用真实命令和生成头')
     a = sub.add_parser("analyze", help="分析已导出的 IR 文件")
     a.add_argument("--ll", required=True, type=Path)
     a.add_argument("--ids", nargs="+", required=True)

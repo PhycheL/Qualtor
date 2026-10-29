@@ -1,0 +1,136 @@
+{
+  "task": "qt-mustache",
+  "note": "按 D011/D015 复核；源码有定义的输入域不由隐藏测试收窄。平台相关结论只验证 Linux ARM64。",
+  "mutants": [
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:338:15:338:16",
+      "reason": "先 setError，while 条件下一次必为 false；该 lastTagEnd 赋值在错误返回之前不再读取，不影响错误文本/位置或已输出内容。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-qt-mustache/mutation_baseline.json",
+        "benchmark/qt-mustache/source/src/mustache.cpp:338",
+        "runs/step-c-ir-qt-mustache-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:417:11:417:12",
+      "reason": "初始 tag.type 在所有分支均再次赋值：#、^、/、!、>、= 各自设置类型，else 最后设 Value；此初值从未被读取。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-qt-mustache/mutation_baseline.json",
+        "benchmark/qt-mustache/source/src/mustache.cpp:417",
+        "runs/step-c-ir-qt-mustache-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/mustache.cpp:353:24:353:25",
+      "reason": "新增 indentation==0 分支只追加 repeated(0) 并在 LF 后插入空字符串；LF 搜索位置递增，文本不变。资源/耗时差异按 D015 排除。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-qt-mustache/mutation_baseline.json",
+        "benchmark/qt-mustache/source/src/mustache.cpp:353",
+        "runs/step-c-ir-qt-mustache-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/mustache.cpp:487:42:487:43",
+      "reason": "当 pos==endPos 且结束标记首字符为空白时，只额外跳过该空白；后续收集循环的 pos<endPos 或 pos<endPos-1 均为 false，start/end marker 内容不变。若这一步会越过整个 QString，原独占 EOF 标签自身随后违反 QStringView::mid 前置条件，不属于原程序有定义输入。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-qt-mustache/mutation_baseline.json",
+        "benchmark/qt-mustache/source/src/mustache.cpp:487",
+        "runs/step-c-ir-qt-mustache-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/mustache.cpp:500:42:500:43",
+      "reason": "当 pos==endPos 且结束标记首字符为空白时，只额外跳过该空白；后续收集循环的 pos<endPos 或 pos<endPos-1 均为 false，start/end marker 内容不变。若这一步会越过整个 QString，原独占 EOF 标签自身随后违反 QStringView::mid 前置条件，不属于原程序有定义输入。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-qt-mustache/mutation_baseline.json",
+        "benchmark/qt-mustache/source/src/mustache.cpp:500",
+        "runs/step-c-ir-qt-mustache-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/mustache.cpp:300:6:300:66",
+      "reason": "真实 IR 仅删除错误字符串临时对象的 QString 析构；setError 调用仍执行且保存内容/位置。差异仅是引用计数未释放造成泄漏，按 D015 等价，不是删除错误处理。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-qt-mustache/mutation_baseline.json",
+        "benchmark/qt-mustache/source/src/mustache.cpp:300",
+        "runs/step-c-ir-qt-mustache-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/mustache.cpp:326:6:326:75",
+      "reason": "真实 IR 仅删除错误字符串临时对象的 QString 析构；setError 调用仍执行且保存内容/位置。差异仅是引用计数未释放造成泄漏，按 D015 等价，不是删除错误处理。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-qt-mustache/mutation_baseline.json",
+        "benchmark/qt-mustache/source/src/mustache.cpp:326",
+        "runs/step-c-ir-qt-mustache-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/mustache.cpp:337:4:337:45",
+      "reason": "真实 IR 仅删除错误字符串临时对象的 QString 析构；setError 调用仍执行且保存内容/位置。差异仅是引用计数未释放造成泄漏，按 D015 等价，不是删除错误处理。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-qt-mustache/mutation_baseline.json",
+        "benchmark/qt-mustache/source/src/mustache.cpp:337",
+        "runs/step-c-ir-qt-mustache-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/mustache.cpp:493:4:493:59",
+      "reason": "真实 IR 仅删除错误字符串临时对象的 QString 析构；setError 调用仍执行且保存内容/位置。差异仅是引用计数未释放造成泄漏，按 D015 等价，不是删除错误处理。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-qt-mustache/mutation_baseline.json",
+        "benchmark/qt-mustache/source/src/mustache.cpp:493",
+        "runs/step-c-ir-qt-mustache-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/mustache.cpp:506:4:506:59",
+      "reason": "真实 IR 仅删除错误字符串临时对象的 QString 析构；setError 调用仍执行且保存内容/位置。差异仅是引用计数未释放造成泄漏，按 D015 等价，不是删除错误处理。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-qt-mustache/mutation_baseline.json",
+        "benchmark/qt-mustache/source/src/mustache.cpp:506",
+        "runs/step-c-ir-qt-mustache-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/mustache.cpp:532:6:532:59",
+      "reason": "真实 IR 仅删除错误字符串临时对象的 QString 析构；setError 调用仍执行且保存内容/位置。差异仅是引用计数未释放造成泄漏，按 D015 等价，不是删除错误处理。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-qt-mustache/mutation_baseline.json",
+        "benchmark/qt-mustache/source/src/mustache.cpp:532",
+        "runs/step-c-ir-qt-mustache-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:105:12:105:20",
+      "reason": "固定 Qt5 QVariantMap 的 type ID 为 8，42 不等于它；真实 IR 始终走 toHash。原 QVariantMap 转 toHash 保持键值；所有其他内置/自定义类型原本也走 toHash，包括同时注册 Map/Hash 转换的自定义类型，故无输出差异。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-qt-mustache/mutation_baseline.json",
+        "benchmark/qt-mustache/source/src/mustache.cpp:105",
+        "runs/step-c-ir-qt-mustache-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/mustache.cpp:471:22:471:23",
+      "reason": "仅改变临时 name 的 reserve 参数，不改变名称字符读取；容量、长度上限及分配失败是 D015 的资源差异。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-qt-mustache/mutation_baseline.json",
+        "benchmark/qt-mustache/source/src/mustache.cpp:471",
+        "runs/step-c-ir-qt-mustache-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    }
+  ]
+}

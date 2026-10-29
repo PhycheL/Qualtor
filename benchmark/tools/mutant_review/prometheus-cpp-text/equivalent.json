@@ -1,0 +1,196 @@
+{
+  "task": "prometheus-cpp-text",
+  "note": "按 D011/D015 复核；源码有定义的输入域不由隐藏测试收窄。平台相关结论只验证 Linux ARM64。",
+  "mutants": [
+    {
+      "id": "cxx_add_to_sub:/repo/lib/text_serializer.cc:31:35:31:36",
+      "reason": "仅改变临时 escaped string 的 reserve 容量或删除 reserve，不改变后续逐字符追加和输出；size()-1 的下溢也只导致超 max_size/分配失败，按 D015 的资源差异处理。真实 IR 核对 reserve 调用。",
+      "evidence": [
+        "runs/step-c-seed-20261029-04-prometheus-cpp-text/mutation_baseline.json",
+        "benchmark/prometheus-cpp-text/source/lib/text_serializer.cc:31",
+        "runs/step-c-ir-prometheus-cpp-text-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_init_const:/repo/lib/gauge.cc:30:8:30:15",
+      "reason": "仅把 compare_exchange_weak 的初始 expected 改为 42。若当前值不是 42，第一次 CAS 失败并把 expected 更新为实际值；若当前值是 42，第一次运算已正确。循环会重试，原子成功更新和结果相同；仅重试次数/时序差异，不以资源耗尽判非等价。",
+      "evidence": [
+        "runs/step-c-seed-20261029-04-prometheus-cpp-text/mutation_baseline.json",
+        "benchmark/prometheus-cpp-text/source/lib/gauge.cc:30",
+        "runs/step-c-ir-prometheus-cpp-text-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_init_const:/repo/lib/text_serializer.cc:132:10:132:18",
+      "reason": "last 的初值仅用于空 bucket 列表；-infinity 改 42 或 infinity() 改 42 后取负，均仍不等于 +infinity，都会补发 +Inf。非空列表在比较前被每个 bucket.upper_bound 覆盖。",
+      "evidence": [
+        "runs/step-c-seed-20261029-04-prometheus-cpp-text/mutation_baseline.json",
+        "benchmark/prometheus-cpp-text/source/lib/text_serializer.cc:132",
+        "runs/step-c-ir-prometheus-cpp-text-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_init_const:/repo/lib/text_serializer.cc:26:8:26:12",
+      "reason": "真实 IR 将 bool 初值改为 i1 42 的截断值 false，与原 copy=false 相同；不能按源码 int 42 的隐式 bool 转换猜测 Mull 行为。",
+      "evidence": [
+        "runs/step-c-seed-20261029-04-prometheus-cpp-text/mutation_baseline.json",
+        "benchmark/prometheus-cpp-text/source/lib/text_serializer.cc:26",
+        "runs/step-c-ir-prometheus-cpp-text-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/lib/text_serializer.cc:19:15:19:16",
+      "reason": "此分支已由 isinf(v) 限定为正无穷或负无穷，v 不可能等于 0，因此 <0 和 <=0 相同。",
+      "evidence": [
+        "runs/step-c-seed-20261029-04-prometheus-cpp-text/mutation_baseline.json",
+        "benchmark/prometheus-cpp-text/source/lib/text_serializer.cc:19",
+        "runs/step-c-ir-prometheus-cpp-text-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/lib/text_serializer.cc:102:3:102:41",
+      "reason": "真实 IR 的生效副本只删除 std::__new_allocator<char> 空析构；WriteHead/WriteValue 等实际输出调用仍在，未删除被测序列化操作，故等价。",
+      "evidence": [
+        "runs/step-c-seed-20261029-04-prometheus-cpp-text/mutation_baseline.json",
+        "benchmark/prometheus-cpp-text/source/lib/text_serializer.cc:102",
+        "runs/step-c-ir-prometheus-cpp-text-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/lib/text_serializer.cc:107:5:108:38",
+      "reason": "真实 IR 的生效副本只删除 std::__new_allocator<char> 空析构；WriteHead/WriteValue 等实际输出调用仍在，未删除被测序列化操作，故等价。",
+      "evidence": [
+        "runs/step-c-seed-20261029-04-prometheus-cpp-text/mutation_baseline.json",
+        "benchmark/prometheus-cpp-text/source/lib/text_serializer.cc:107",
+        "runs/step-c-ir-prometheus-cpp-text-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/lib/text_serializer.cc:116:3:116:33",
+      "reason": "真实 IR 的生效副本只删除 std::__new_allocator<char> 空析构；WriteHead/WriteValue 等实际输出调用仍在，未删除被测序列化操作，故等价。",
+      "evidence": [
+        "runs/step-c-seed-20261029-04-prometheus-cpp-text/mutation_baseline.json",
+        "benchmark/prometheus-cpp-text/source/lib/text_serializer.cc:116",
+        "runs/step-c-ir-prometheus-cpp-text-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/lib/text_serializer.cc:124:3:124:43",
+      "reason": "真实 IR 的生效副本只删除 std::__new_allocator<char> 空析构；WriteHead/WriteValue 等实际输出调用仍在，未删除被测序列化操作，故等价。",
+      "evidence": [
+        "runs/step-c-seed-20261029-04-prometheus-cpp-text/mutation_baseline.json",
+        "benchmark/prometheus-cpp-text/source/lib/text_serializer.cc:124",
+        "runs/step-c-ir-prometheus-cpp-text-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/lib/text_serializer.cc:128:3:128:41",
+      "reason": "真实 IR 的生效副本只删除 std::__new_allocator<char> 空析构；WriteHead/WriteValue 等实际输出调用仍在，未删除被测序列化操作，故等价。",
+      "evidence": [
+        "runs/step-c-seed-20261029-04-prometheus-cpp-text/mutation_baseline.json",
+        "benchmark/prometheus-cpp-text/source/lib/text_serializer.cc:128",
+        "runs/step-c-ir-prometheus-cpp-text-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/lib/text_serializer.cc:134:5:134:79",
+      "reason": "真实 IR 的生效副本只删除 std::__new_allocator<char> 空析构；WriteHead/WriteValue 等实际输出调用仍在，未删除被测序列化操作，故等价。",
+      "evidence": [
+        "runs/step-c-seed-20261029-04-prometheus-cpp-text/mutation_baseline.json",
+        "benchmark/prometheus-cpp-text/source/lib/text_serializer.cc:134",
+        "runs/step-c-ir-prometheus-cpp-text-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/lib/text_serializer.cc:141:5:141:60",
+      "reason": "真实 IR 的生效副本只删除 std::__new_allocator<char> 空析构；WriteHead/WriteValue 等实际输出调用仍在，未删除被测序列化操作，故等价。",
+      "evidence": [
+        "runs/step-c-seed-20261029-04-prometheus-cpp-text/mutation_baseline.json",
+        "benchmark/prometheus-cpp-text/source/lib/text_serializer.cc:141",
+        "runs/step-c-ir-prometheus-cpp-text-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/lib/text_serializer.cc:31:14:31:21",
+      "reason": "仅改变临时 escaped string 的 reserve 容量或删除 reserve，不改变后续逐字符追加和输出；size()-1 的下溢也只导致超 max_size/分配失败，按 D015 的资源差异处理。真实 IR 核对 reserve 调用。",
+      "evidence": [
+        "runs/step-c-seed-20261029-04-prometheus-cpp-text/mutation_baseline.json",
+        "benchmark/prometheus-cpp-text/source/lib/text_serializer.cc:31",
+        "runs/step-c-ir-prometheus-cpp-text-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/lib/text_serializer.cc:83:3:83:33",
+      "reason": "真实 IR 的生效副本只删除 std::__new_allocator<char> 空析构；WriteHead/WriteValue 等实际输出调用仍在，未删除被测序列化操作，故等价。",
+      "evidence": [
+        "runs/step-c-seed-20261029-04-prometheus-cpp-text/mutation_baseline.json",
+        "benchmark/prometheus-cpp-text/source/lib/text_serializer.cc:83",
+        "runs/step-c-ir-prometheus-cpp-text-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/lib/text_serializer.cc:90:3:90:33",
+      "reason": "真实 IR 的生效副本只删除 std::__new_allocator<char> 空析构；WriteHead/WriteValue 等实际输出调用仍在，未删除被测序列化操作，故等价。",
+      "evidence": [
+        "runs/step-c-seed-20261029-04-prometheus-cpp-text/mutation_baseline.json",
+        "benchmark/prometheus-cpp-text/source/lib/text_serializer.cc:90",
+        "runs/step-c-ir-prometheus-cpp-text-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/lib/text_serializer.cc:98:3:98:43",
+      "reason": "真实 IR 的生效副本只删除 std::__new_allocator<char> 空析构；WriteHead/WriteValue 等实际输出调用仍在，未删除被测序列化操作，故等价。",
+      "evidence": [
+        "runs/step-c-seed-20261029-04-prometheus-cpp-text/mutation_baseline.json",
+        "benchmark/prometheus-cpp-text/source/lib/text_serializer.cc:98",
+        "runs/step-c-ir-prometheus-cpp-text-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/lib/gauge.cc:30:25:30:29",
+      "reason": "仅把 compare_exchange_weak 的初始 expected 改为 42。若当前值不是 42，第一次 CAS 失败并把 expected 更新为实际值；若当前值是 42，第一次运算已正确。循环会重试，原子成功更新和结果相同；仅重试次数/时序差异，不以资源耗尽判非等价。",
+      "evidence": [
+        "runs/step-c-seed-20261029-04-prometheus-cpp-text/mutation_baseline.json",
+        "benchmark/prometheus-cpp-text/source/lib/gauge.cc:30",
+        "runs/step-c-ir-prometheus-cpp-text-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/lib/text_serializer.cc:132:18:132:57",
+      "reason": "last 的初值仅用于空 bucket 列表；-infinity 改 42 或 infinity() 改 42 后取负，均仍不等于 +infinity，都会补发 +Inf。非空列表在比较前被每个 bucket.upper_bound 覆盖。",
+      "evidence": [
+        "runs/step-c-seed-20261029-04-prometheus-cpp-text/mutation_baseline.json",
+        "benchmark/prometheus-cpp-text/source/lib/text_serializer.cc:132",
+        "runs/step-c-ir-prometheus-cpp-text-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/lib/text_serializer.cc:31:28:31:32",
+      "reason": "仅改变临时 escaped string 的 reserve 容量或删除 reserve，不改变后续逐字符追加和输出；size()-1 的下溢也只导致超 max_size/分配失败，按 D015 的资源差异处理。真实 IR 核对 reserve 调用。",
+      "evidence": [
+        "runs/step-c-seed-20261029-04-prometheus-cpp-text/mutation_baseline.json",
+        "benchmark/prometheus-cpp-text/source/lib/text_serializer.cc:31",
+        "runs/step-c-ir-prometheus-cpp-text-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）"
+    }
+  ]
+}

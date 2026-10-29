@@ -1,0 +1,11 @@
+--- a/include/gzip/decompress.hpp
++++ b/include/gzip/decompress.hpp
+@@ -90,7 +90,7 @@
+             size_uncompressed += (2 * size - inflate_s.avail_out);
+         } while (inflate_s.avail_out == 0);
+         inflateEnd(&inflate_s);
+-        output.resize(size_uncompressed);
++        output.resize(size_uncompressed + 1);
+     }
+ };
+ 

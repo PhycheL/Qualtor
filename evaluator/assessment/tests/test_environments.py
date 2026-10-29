@@ -167,6 +167,11 @@ class EnvironmentTests(unittest.TestCase):
             self.assertEqual(common.calibration_status(images)['status'], 'stale')
             with patch.object(common, 'task_environment', return_value=(self.recipe, 'new-recipe')):
                 self.assertEqual(common.calibration_status(None)['status'], 'stale')
+            common.write_json(common.CALIBRATION_STATUS, {**record, 'environments': {}})
+            task = {'id': 'new-environment-task', 'build': {'environment': self.recipe['name']}}
+            self.assertEqual(common.calibration_status(images, task,
+                environment_resolver=lambda _: environment)['status'], 'stale')
+            self.assertEqual(common.calibration_status(images)['status'], 'passed')
 
     def test_stale_environment_denominator_stops_before_any_build(self):
         import common

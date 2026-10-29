@@ -1,12 +1,17 @@
 {
-  "scorer_version": "0.4.1",
-  "scorer_code_sha256": "9da5694e4f285d1319d5e66ee81c3335c171f501ff37f3f0f45c8d61f8f7f5ff",
-  "samples_sha256": "d4cb4e6e32b5c37dc475755392ef27ad816ad32832828db29784630555b60e53",
+  "scorer_version": "0.5.0",
+  "scorer_code_sha256": "6d1c01fb6422665bd3dc90441c96cc86d5839dca21f44eaf7f693e5e7cf66639",
+  "samples_sha256": "620743f95be12dc1ba878ae94f17436d5bba8378bb1ded5e15d2ea8bc7684f9f",
   "tasks": {
     "exercism-circular-buffer": "985dae2d702848c255effb5d7740d3707f64a20dced58e21c3ee9a444179bc72",
     "exercism-hello-world": "0a67510db077bdf824bf906c20bdad50ff77870de6ec6b3da385efc897773866",
+    "exercism-meetup": "5971c72dd0a675d9ffff192a830206fdbce24a1318d43dab7477db10fc823ef8",
     "gildedrose-update-quality": "92720d07eeeabc2108b7e7afcfe7554af76147176b3f3de552cd5d19baf24245",
+    "humaneval-x-cpp-boost": "3d456c21c099fe1ee509562ab63afe10af0425b2c396289a62d79e5962efcb5c",
+    "humaneval-x-cpp-openssl": "90aa148e3a667fe4bf38c3812afa31fe37f5160974276b65a9444fe2d094439c",
     "md4c-html": "f40d8a6c5bc4be079e313fb517689e1379cdbbc50ba74553392890c0f82fb4bd",
+    "orc-bloom-filter": "e1d3253dac05b9b9699ee3cdf3d28f7c9804b7e9a01a4a47784d25bb1c339c20",
+    "qt-aes": "fb81d2fe78cb08fb60d778d7686300d416363c25507dc78e20dabf5f451ec761",
     "tinyexpr-configured": "5c9ec23cdb9604261112e5ddf73c498759005c9e094000db430d720cf3cd328d",
     "yaml-cpp-document": "01d909231afaaaf68ee8d850038f8af7ceab4c72b24e0fca6044bc9e0f562ca0",
     "yaml-cpp-emitter-utils": "ae6dc389a3fe100aae195e2831ed07c076f2d4353974adb86b382c786d13ed08",
@@ -16,8 +21,26 @@
     "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
     "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
   },
-  "run_id": "step-b-closeout-calibration-20261029-01",
+  "environments": {
+    "bank-20261021": {
+      "name": "bank-20261021",
+      "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd",
+      "images": {
+        "gcc": {
+          "tag": "docker.io/library/qualtor-env-bank-20261021-gcc:9abcad8ef238",
+          "id": "sha256:2f3d4143870ad0135491dbaeea1b4d4af80bdfc274bfced8913f903a35c5a5a5",
+          "platform": "linux/arm64"
+        },
+        "clang": {
+          "tag": "docker.io/library/qualtor-env-bank-20261021-clang:9abcad8ef238",
+          "id": "sha256:76b0083ec874c3ee645584e7208e930112a02028870640fc98e9c618685b49da",
+          "platform": "linux/arm64"
+        }
+      }
+    }
+  },
+  "run_id": "step-c-calibration-20261030-01",
   "passed": true,
   "report": "evaluator/assessment/calibration_report.json",
-  "finished_at": "2026-10-29T06:43:58.531901+00:00"
+  "finished_at": "2026-10-29T17:12:48.655552+00:00"
 }

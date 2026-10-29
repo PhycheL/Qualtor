@@ -25,7 +25,6 @@ import bankutil  # noqa: E402
 
 TOOLS = Path(__file__).resolve().parent
 EXCLUDED = {
-    "meetup": "依赖 Boost（R-01，步骤 C）",
     "list-ops": "参考解使用 C++17 的 [[maybe_unused]]，不能原样按 C++11 接入",
 }
 CATCH_BLOCK = re.compile(r'^[ \t]*#[ \t]*ifdef[ \t]+EXERCISM_TEST_SUITE[^\n]*\n(?:[^\n]*\n){0,3}?[ \t]*#[ \t]*endif[^\n]*\n', re.M)
@@ -80,6 +79,9 @@ def import_exercise(exercise, args, gtest_include):
     slug = exercise.name
     if slug in EXCLUDED:
         return None, EXCLUDED[slug]
+    environment = getattr(args, 'environment', None) if slug == 'meetup' else None
+    if slug == 'meetup' and not environment:
+        return None, 'meetup 需要 --environment bank-20261021'
     meta = json.loads((exercise / ".meta" / "config.json").read_text(encoding="utf-8"))
     files = meta.get("files", {})
     solution, tests, examples = files.get("solution", []), files.get("test", []), files.get("example", [])
@@ -104,7 +106,7 @@ def import_exercise(exercise, args, gtest_include):
             check = tmp / "header_check.cc"
             check.write_text(''.join(f'#include "{n}"\n' for n in headers))
             units = [check]
-        if not compiles(args.cxx, units, [tmp], extra=("-pedantic-errors",) if header_only else ()):
+        if not getattr(args, 'defer_build', False) and not compiles(args.cxx, units, [tmp], extra=("-pedantic-errors",) if header_only else ()):
             return None, "参考解不能按 C++11 编译"
         loc = sum(len((tmp / n).read_text(encoding="utf-8").splitlines()) for n in mapping)
         suite = bankutil.camel(slug)
@@ -112,7 +114,7 @@ def import_exercise(exercise, args, gtest_include):
         test_name = Path(tests[0]).stem + ".cc"
         (tmp / test_name).write_text(converted, encoding="utf-8")
         shutil.copyfile(TOOLS / "catch_compat.h", tmp / "catch_compat.h")
-        if gtest_include and not compiles(args.cxx, [tmp / test_name], [tmp, gtest_include]):
+        if not getattr(args, 'defer_build', False) and gtest_include and not compiles(args.cxx, [tmp / test_name], [tmp, gtest_include]):
             return None, "转换后的测试不能按 C++11 编译（需人工转换）"
         task_id = f"exercism-{slug}"
         task_dir = bankutil.reset_task_dir(task_id, args.force)
@@ -122,7 +124,7 @@ def import_exercise(exercise, args, gtest_include):
         ref = task_dir / bankutil.HIDDEN["reference_tests"]
         bankutil.copy_file(tmp / test_name, ref / test_name)
         bankutil.copy_file(TOOLS / "catch_compat.h", ref / "catch_compat.h")
-    extra = TOOLS / "step_b" / task_id
+    extra = TOOLS / ("step_c" if environment else "step_b") / task_id
     if extra.is_dir():
         for path in sorted(extra.rglob("*")):
             if path.is_file():
@@ -156,7 +158,8 @@ def import_exercise(exercise, args, gtest_include):
         existing_tests={"available": True, "note": "上游 Catch2 测试已转换为 GoogleTest 参考测试，对 Agent 不可见。"},
         scoring_domain="上游测试覆盖的输入；未单独界定评分输入域，探针即参考测试。",
         probe_mode="reference_copy", generated_by="benchmark/tools/import_exercism.py", variants=variants,
-        target_headers=[f"src/{n}" for n in headers] if header_only else None)
+        target_headers=[f"src/{n}" for n in headers] if header_only else None,
+        build={'environment': environment, 'link_libraries': ['Boost::headers']} if environment else None)
     return task_id, f"{cases} 个上游用例，{loc} 行"
 
 
@@ -167,6 +170,8 @@ def main():
     parser.add_argument("--slugs", nargs="*")
     parser.add_argument("--cxx", default=os.environ.get("QUALTOR_HOST_CXX", "c++"))
     parser.add_argument("--force", action="store_true")
+    parser.add_argument('--environment', help='meetup 使用的构建环境')
+    parser.add_argument('--defer-build', action='store_true', help='只导入材料；编译有效性留给后续 Docker 标定，不调用宿主机编译器')
     args = parser.parse_args()
     gtest = os.environ.get("QUALTOR_HOST_GTEST")
     gtest_include = str(Path(gtest) / "include") if gtest else None

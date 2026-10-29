@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "id": "exercism-meetup",
+  "set": "dev",
+  "tier": "medium",
+  "tags": [
+    "exercism",
+    "upstream_tests"
+  ],
+  "title": "meetup 模块单元测试",
+  "description": "Exercism C++ 练习 meetup 的参考解作为被测代码；上游 Catch2 测试机械转换为 GoogleTest 作参考测试。公开代码，开发题。",
+  "source": {
+    "repository": "https://github.com/exercism/cpp",
+    "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+    "root": "benchmark/exercism-meetup/source",
+    "files": {
+      "src/meetup.h": "53f097b8a815290a4358aecbcfd5e67ce504ad0c908f6aec0f0601df87b98f94"
+    }
+  },
+  "target_sources": [],
+  "include_dirs": [
+    "src"
+  ],
+  "visible": {
+    "files": [
+      "src/meetup.h"
+    ],
+    "notes": "可见材料只有被测及依赖源码、头文件和公开构建配置；测试使用 C++11 / GoogleTest 1.12.1。"
+  },
+  "allowed_test_files": [
+    "tests/*.cc",
+    "tests/*.h"
+  ],
+  "existing_tests": {
+    "available": true,
+    "note": "上游 Catch2 测试已转换为 GoogleTest 参考测试，对 Agent 不可见。"
+  },
+  "budget": {
+    "tokens": null,
+    "seconds": null,
+    "repair_rounds": 3,
+    "note": "只限制修复轮次；token 与时间记录但不设上限（D005）"
+  },
+  "scoring_domain": "上游测试覆盖的输入；未单独界定评分输入域，探针即参考测试。",
+  "params": {
+    "stability_repeats": 10,
+    "shuffle_seeds": [
+      1,
+      2,
+      3
+    ],
+    "test_timeout_seconds": 5,
+    "mull_minimum_timeout_ms": 3000,
+    "reference_min_m1": 0.8
+  },
+  "mull": {
+    "mutators": [
+      "cxx_all"
+    ]
+  },
+  "hidden": {
+    "mutation_baseline": "hidden/mutation_baseline.json",
+    "reference_tests": "hidden/reference_tests",
+    "equivalence_probe": "hidden/equivalence_probe/tests",
+    "coverage_baseline": "hidden/coverage_baseline.json"
+  },
+  "preparation": {
+    "probe_mode": "reference_copy",
+    "probe_note": "探针即参考测试的副本：等价候选就是参考测试未杀死的变异，变异分母为参考测试可检出的变异，人工复核时把不等价的变异移回分母。",
+    "generated_by": "benchmark/tools/import_exercism.py",
+    "review": "参考测试与探针为工具生成或机械转换，尚未人工审阅"
+  },
+  "variants": [
+    {
+      "id": "hw-01",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/meetup.h": "8840cc93ad96adb03a872f8cab2b58d2fa17a3a04c815fdedce89cc38584d994"
+      },
+      "description": "teenth 的搜索起点后移，漏掉日期 13。",
+      "patch_sha256": "a0a483a1416d8ee18e3aaa36e09add19aa2a613e5809a03134eb3a8efd3a1a97"
+    },
+    {
+      "id": "hw-02",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/meetup.h": "5b4c2bfb75b1708370ff9f2389e65fb0b290be6fc58196c8892930e07b3fcce9"
+      },
+      "description": "把第二个星期几误作第三个。",
+      "patch_sha256": "23d46505ccba2d3f25139b19d52b738f51d4f7fa38f926c9f4f18b060151b0f1"
+    },
+    {
+      "id": "hw-03",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/meetup.h": "d2499d70b25539c7748d8f9e44679495c49f7b240cd672c1ceb49ab32e4aa144"
+      },
+      "description": "把第三个星期几误作第四个。",
+      "patch_sha256": "0f3de6e8502da1414da1d4e41f0ee75318babb8a483b365fed74357ccfb39718"
+    },
+    {
+      "id": "hw-04",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/meetup.h": "703a907fc5ca8166e7ddb8938e8160bd11b94016e49e2babf3b91b6c74d05457"
+      },
+      "description": "把第四个星期几误作第三个。",
+      "patch_sha256": "27820aa8c079af72d46db6f001ed9474aba659cf1dde5118c1b65843fff8f618"
+    },
+    {
+      "id": "hw-05",
+      "kind": "handwritten",
+      "expect": "fail",
+      "files": {
+        "src/meetup.h": "ee4acfb80542c323bc9cb4c506c735027ba521a75ed83fbccaedbc3d96e468ea"
+      },
+      "description": "把最后一个星期几误作第一个。",
+      "patch_sha256": "5f75285eb029163526f157491dd677e345f60c2136d227ef83958e19989ff02d"
+    }
+  ],
+  "build": {
+    "environment": "bank-20261021",
+    "link_libraries": [
+      "Boost::headers"
+    ]
+  },
+  "target_headers": [
+    "src/meetup.h"
+  ]
+}

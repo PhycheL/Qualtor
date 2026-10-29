@@ -1,0 +1,11 @@
+--- a/src/meetup.h
++++ b/src/meetup.h
+@@ -178,7 +178,7 @@
+     }
+ 
+     boost::gregorian::date last_weekday(boost::date_time::weekdays day) const {
+-        return boost::gregorian::last_day_of_the_week_in_month(day, month_)
++        return boost::gregorian::first_day_of_the_week_in_month(day, month_)
+             .get_date(year_);
+     }
+ 

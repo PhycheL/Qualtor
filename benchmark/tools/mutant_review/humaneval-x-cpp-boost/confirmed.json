@@ -1,0 +1,74 @@
+{
+  "task": "humaneval-x-cpp-boost",
+  "note": "按 D011/D015 复核；源码有定义的输入域不由隐藏测试收窄。平台相关结论只验证 Linux ARM64。",
+  "mutants": [
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_137.cc:26:27:26:28",
+      "reason": "<= 多读取一次 C++11 string[size()] 的 NUL，不会进入逗号替换，不改变有限正常输出；但 size()==INT_MAX 且含逗号时，额外的末次 i++ 发生 signed overflow。原循环此时在 i==INT_MAX 退出，变异仅引入 UB，按 D015 排除。极大输入的结论是源码整数边界证明，未声称实际分配 INT_MAX 字节。",
+      "evidence": [
+        "runs/step-c-seed-20261029-03-humaneval-x-cpp-boost/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-boost/source/src/cpp_137.cc:26",
+        "runs/step-c-ir-humaneval-x-cpp-boost-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）",
+      "verdict": "undefined_only"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/cpp_137.cc:41:27:41:28",
+      "reason": "<= 多读取一次 C++11 string[size()] 的 NUL，不会进入逗号替换，不改变有限正常输出；但 size()==INT_MAX 且含逗号时，额外的末次 i++ 发生 signed overflow。原循环此时在 i==INT_MAX 退出，变异仅引入 UB，按 D015 排除。极大输入的结论是源码整数边界证明，未声称实际分配 INT_MAX 字节。",
+      "evidence": [
+        "runs/step-c-seed-20261029-03-humaneval-x-cpp-boost/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-boost/source/src/cpp_137.cc:41",
+        "runs/step-c-ir-humaneval-x-cpp-boost-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）",
+      "verdict": "undefined_only"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/cpp_137.cc:25:30:25:33",
+      "reason": "真实 IR 将 string::end 的 i64 返回值换成 42，形成不可从 begin 到达的无效迭代器范围。原输入正常，源码等义副本触发 AddressSanitizer invalid-pointer-pair；只有 UB 差异。",
+      "evidence": [
+        "runs/step-c-seed-20261029-03-humaneval-x-cpp-boost/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-boost/source/src/cpp_137.cc:25",
+        "runs/step-c-ir-humaneval-x-cpp-boost-20261029-01/mutant-ir.json",
+        "runs/step-c-ub-boost-20261029-01/results.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）",
+      "verdict": "undefined_only"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/cpp_137.cc:25:44:25:47",
+      "reason": "真实 IR 仅把比较用 end() 返回值改为地址 42；无逗号时新增扫描但不修改字符串，有逗号时执行原扫描。正常有限输出相同；无逗号且 size()>INT_MAX 时，原代码跳过循环而变异 int i 溢出，仅有 UB 差异。极大输入用源码边界证明，未声称实测该内存规模。",
+      "evidence": [
+        "runs/step-c-seed-20261029-03-humaneval-x-cpp-boost/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-boost/source/src/cpp_137.cc:25",
+        "runs/step-c-ir-humaneval-x-cpp-boost-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）",
+      "verdict": "undefined_only"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/cpp_137.cc:40:30:40:33",
+      "reason": "真实 IR 将 string::end 的 i64 返回值换成 42，形成不可从 begin 到达的无效迭代器范围。原输入正常，源码等义副本触发 AddressSanitizer invalid-pointer-pair；只有 UB 差异。",
+      "evidence": [
+        "runs/step-c-seed-20261029-03-humaneval-x-cpp-boost/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-boost/source/src/cpp_137.cc:40",
+        "runs/step-c-ir-humaneval-x-cpp-boost-20261029-01/mutant-ir.json",
+        "runs/step-c-ub-boost-20261029-01/results.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）",
+      "verdict": "undefined_only"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/cpp_137.cc:40:44:40:47",
+      "reason": "真实 IR 仅把比较用 end() 返回值改为地址 42；无逗号时新增扫描但不修改字符串，有逗号时执行原扫描。正常有限输出相同；无逗号且 size()>INT_MAX 时，原代码跳过循环而变异 int i 溢出，仅有 UB 差异。极大输入用源码边界证明，未声称实测该内存规模。",
+      "evidence": [
+        "runs/step-c-seed-20261029-03-humaneval-x-cpp-boost/mutation_baseline.json",
+        "benchmark/humaneval-x-cpp-boost/source/src/cpp_137.cc:40",
+        "runs/step-c-ir-humaneval-x-cpp-boost-20261029-01/mutant-ir.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）",
+      "verdict": "undefined_only"
+    }
+  ]
+}

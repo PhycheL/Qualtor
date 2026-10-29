@@ -1,0 +1,18 @@
+{
+  "repository": "https://github.com/bricke/Qt-AES",
+  "commit": "fe02771df612ca80fdb12b1d48b6e089e1933e6b",
+  "reference_tests": [
+    "unit_test/aestest.cpp",
+    "unit_test/aestest.h",
+    "unit_test/*.txt"
+  ],
+  "added_by_qualtor": [],
+  "note": "source/ 文件逐字节取自上述提交；隐藏测试的转换见 hidden/README.md。",
+  "files": {
+    "CMakeLists.txt": "e7237f0a3dd377b3a19bb192d47482c6a516e4f59a77d71c8c56d315a784d66c",
+    "LICENSE": "88d9b4eb60579c191ec391ca04c16130572d7eedc4a86daa58bf28c6e14c9bcd",
+    "aes_ct_sbox.h": "464460018a08ae327ae3cbf112adcc92a9efd2e28d7e8ad083acdd7baa8b5f0d",
+    "qaesencryption.cpp": "4ced58dc6aabaa19bacc0ca2c9dc7beade7523af0cfd54b3e12dd1de47258b16",
+    "qaesencryption.h": "05cfde7bde9562d42d29c45f66de7407802f2f3770e9f4ec294040df26249376"
+  }
+}

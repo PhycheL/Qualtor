@@ -69,6 +69,8 @@ def prepare(task_id, args):
     final, moved = None, []
     if draft_path.is_file():
         draft = json.loads(draft_path.read_text(encoding="utf-8"))
+        if 'environment' in draft:
+            entry['environment'] = draft['environment']
         if draft.get("mutation", {}).get("applicable") is False:
             entry.update(not_applicable=draft["mutation"]["reason"], reference_c1=draft["reference"].get("c1"),
                          handwritten=draft["reference"].get("handwritten"),

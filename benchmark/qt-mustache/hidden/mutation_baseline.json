@@ -1,0 +1,4658 @@
+{
+  "environment": {
+    "name": "bank-20261021",
+    "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd",
+    "images": {
+      "gcc": {
+        "tag": "docker.io/library/qualtor-env-bank-20261021-gcc:9abcad8ef238",
+        "id": "sha256:2f3d4143870ad0135491dbaeea1b4d4af80bdfc274bfced8913f903a35c5a5a5",
+        "platform": "linux/arm64"
+      },
+      "clang": {
+        "tag": "docker.io/library/qualtor-env-bank-20261021-clang:9abcad8ef238",
+        "id": "sha256:76b0083ec874c3ee645584e7208e930112a02028870640fc98e9c618685b49da",
+        "platform": "linux/arm64"
+      }
+    }
+  },
+  "task": "qt-mustache",
+  "created_at": "2026-10-29T11:57:54.303673+00:00",
+  "created_by_run": "step-c-seed-20261029-09-qt-mustache",
+  "scorer_version": "0.5.0",
+  "scorer_code_sha256": "6d1c01fb6422665bd3dc90441c96cc86d5839dca21f44eaf7f693e5e7cf66639",
+  "images": {
+    "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
+    "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
+  },
+  "mull": {
+    "config_sha256": "5d9219a8462cc4bf489194fde05dadc577881f9e60f6ac4a5e4eba8493c2d241",
+    "config": "# 由评分器根据 task.json 生成；修改算子要升级变异分母。\nmutators:\n  - cxx_all\nincludePaths:\n  - '/repo/src/mustache\\.cpp$'\n"
+  },
+  "mutants": [
+    {
+      "id": "cxx_add_assign_to_sub_assign:/repo/src/mustache.cpp:414:12:414:14",
+      "mutator": "cxx_add_assign_to_sub_assign",
+      "location": {
+        "start": {
+          "line": 414,
+          "column": 12
+        },
+        "end": {
+          "line": 414,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_add_assign_to_sub_assign:/repo/src/mustache.cpp:48:6:48:8",
+      "mutator": "cxx_add_assign_to_sub_assign",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 6
+        },
+        "end": {
+          "line": 48,
+          "column": 8
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/mustache.cpp:358:53:358:54",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 358,
+          "column": 53
+        },
+        "end": {
+          "line": 358,
+          "column": 54
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/mustache.cpp:359:53:359:54",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 359,
+          "column": 53
+        },
+        "end": {
+          "line": 359,
+          "column": 54
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/mustache.cpp:410:62:410:63",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 410,
+          "column": 62
+        },
+        "end": {
+          "line": 410,
+          "column": 63
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/mustache.cpp:421:20:421:21",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 421,
+          "column": 20
+        },
+        "end": {
+          "line": 421,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/mustache.cpp:428:37:428:38",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 428,
+          "column": 37
+        },
+        "end": {
+          "line": 428,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/mustache.cpp:431:37:431:38",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 431,
+          "column": 37
+        },
+        "end": {
+          "line": 431,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/mustache.cpp:434:37:434:38",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 434,
+          "column": 37
+        },
+        "end": {
+          "line": 434,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/mustache.cpp:439:37:439:38",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 439,
+          "column": 37
+        },
+        "end": {
+          "line": 439,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/mustache.cpp:442:32:442:33",
+      "mutator": "cxx_add_to_sub",
+      "location": {
+        "start": {
+          "line": 442,
+          "column": 32
+        },
+        "end": {
+          "line": 442,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:261:13:261:14",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 261,
+          "column": 13
+        },
+        "end": {
+          "line": 261,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:292:15:292:16",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 292,
+          "column": 15
+        },
+        "end": {
+          "line": 292,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:317:16:317:17",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 317,
+          "column": 16
+        },
+        "end": {
+          "line": 317,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:332:16:332:17",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 332,
+          "column": 16
+        },
+        "end": {
+          "line": 332,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:338:15:338:16",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 338,
+          "column": 15
+        },
+        "end": {
+          "line": 338,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:359:14:359:15",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 359,
+          "column": 14
+        },
+        "end": {
+          "line": 359,
+          "column": 15
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:367:15:367:16",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 367,
+          "column": 15
+        },
+        "end": {
+          "line": 367,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:376:15:376:16",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 376,
+          "column": 15
+        },
+        "end": {
+          "line": 376,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:379:15:379:16",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 379,
+          "column": 15
+        },
+        "end": {
+          "line": 379,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:395:13:395:14",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 395,
+          "column": 13
+        },
+        "end": {
+          "line": 395,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:417:11:417:12",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 417,
+          "column": 11
+        },
+        "end": {
+          "line": 417,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:418:12:418:13",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 418,
+          "column": 12
+        },
+        "end": {
+          "line": 418,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:419:10:419:11",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 419,
+          "column": 10
+        },
+        "end": {
+          "line": 419,
+          "column": 11
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:421:6:421:7",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 421,
+          "column": 6
+        },
+        "end": {
+          "line": 421,
+          "column": 7
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:422:9:422:10",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 422,
+          "column": 9
+        },
+        "end": {
+          "line": 422,
+          "column": 10
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:427:12:427:13",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 427,
+          "column": 12
+        },
+        "end": {
+          "line": 427,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:430:12:430:13",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 430,
+          "column": 12
+        },
+        "end": {
+          "line": 430,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:433:12:433:13",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 433,
+          "column": 12
+        },
+        "end": {
+          "line": 433,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:436:12:436:13",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 436,
+          "column": 12
+        },
+        "end": {
+          "line": 436,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:438:12:438:13",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 438,
+          "column": 12
+        },
+        "end": {
+          "line": 438,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:441:12:441:13",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 441,
+          "column": 12
+        },
+        "end": {
+          "line": 441,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:445:19:445:20",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 445,
+          "column": 19
+        },
+        "end": {
+          "line": 445,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:448:19:448:20",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 448,
+          "column": 19
+        },
+        "end": {
+          "line": 448,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:454:12:454:13",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 454,
+          "column": 12
+        },
+        "end": {
+          "line": 454,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:457:12:457:13",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 457,
+          "column": 12
+        },
+        "end": {
+          "line": 457,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:538:7:538:8",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 538,
+          "column": 7
+        },
+        "end": {
+          "line": 538,
+          "column": 8
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:575:12:575:13",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 575,
+          "column": 12
+        },
+        "end": {
+          "line": 575,
+          "column": 13
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:576:10:576:11",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 576,
+          "column": 10
+        },
+        "end": {
+          "line": 576,
+          "column": 11
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:577:18:577:19",
+      "mutator": "cxx_assign_const",
+      "location": {
+        "start": {
+          "line": 577,
+          "column": 18
+        },
+        "end": {
+          "line": 577,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:105:23:105:25",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 23
+        },
+        "end": {
+          "line": 105,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:146:27:146:29",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 27
+        },
+        "end": {
+          "line": 146,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:174:12:174:14",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 12
+        },
+        "end": {
+          "line": 174,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:275:20:275:22",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 275,
+          "column": 20
+        },
+        "end": {
+          "line": 275,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:277:16:277:18",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 277,
+          "column": 16
+        },
+        "end": {
+          "line": 277,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:286:23:286:25",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 286,
+          "column": 23
+        },
+        "end": {
+          "line": 286,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:288:30:288:32",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 288,
+          "column": 30
+        },
+        "end": {
+          "line": 288,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:298:20:298:22",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 298,
+          "column": 20
+        },
+        "end": {
+          "line": 298,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:299:20:299:22",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 299,
+          "column": 20
+        },
+        "end": {
+          "line": 299,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:324:20:324:22",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 324,
+          "column": 20
+        },
+        "end": {
+          "line": 324,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:325:20:325:22",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 325,
+          "column": 20
+        },
+        "end": {
+          "line": 325,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:37:10:37:12",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 10
+        },
+        "end": {
+          "line": 37,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:39:17:39:19",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 17
+        },
+        "end": {
+          "line": 39,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:406:18:406:20",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 406,
+          "column": 18
+        },
+        "end": {
+          "line": 406,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:411:16:411:18",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 411,
+          "column": 16
+        },
+        "end": {
+          "line": 411,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:41:17:41:19",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 17
+        },
+        "end": {
+          "line": 41,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:43:17:43:19",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 17
+        },
+        "end": {
+          "line": 43,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:451:17:451:19",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 451,
+          "column": 17
+        },
+        "end": {
+          "line": 451,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:524:20:524:22",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 524,
+          "column": 20
+        },
+        "end": {
+          "line": 524,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:526:27:526:29",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 526,
+          "column": 27
+        },
+        "end": {
+          "line": 526,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:526:64:526:66",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 526,
+          "column": 64
+        },
+        "end": {
+          "line": 526,
+          "column": 66
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:528:27:528:29",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 528,
+          "column": 27
+        },
+        "end": {
+          "line": 528,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:530:17:530:19",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 530,
+          "column": 17
+        },
+        "end": {
+          "line": 530,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:561:43:561:45",
+      "mutator": "cxx_eq_to_ne",
+      "location": {
+        "start": {
+          "line": 561,
+          "column": 43
+        },
+        "end": {
+          "line": 561,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/mustache.cpp:129:43:129:45",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 43
+        },
+        "end": {
+          "line": 129,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/src/mustache.cpp:406:39:406:41",
+      "mutator": "cxx_ge_to_gt",
+      "location": {
+        "start": {
+          "line": 406,
+          "column": 39
+        },
+        "end": {
+          "line": 406,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/mustache.cpp:129:43:129:45",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 43
+        },
+        "end": {
+          "line": 129,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_lt:/repo/src/mustache.cpp:406:39:406:41",
+      "mutator": "cxx_ge_to_lt",
+      "location": {
+        "start": {
+          "line": 406,
+          "column": 39
+        },
+        "end": {
+          "line": 406,
+          "column": 41
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/mustache.cpp:114:22:114:23",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 22
+        },
+        "end": {
+          "line": 114,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/mustache.cpp:304:19:304:20",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 304,
+          "column": 19
+        },
+        "end": {
+          "line": 304,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/mustache.cpp:353:24:353:25",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 353,
+          "column": 24
+        },
+        "end": {
+          "line": 353,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/mustache.cpp:357:20:357:21",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 357,
+          "column": 20
+        },
+        "end": {
+          "line": 357,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/mustache.cpp:557:15:557:16",
+      "mutator": "cxx_gt_to_ge",
+      "location": {
+        "start": {
+          "line": 557,
+          "column": 15
+        },
+        "end": {
+          "line": 557,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/mustache.cpp:114:22:114:23",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 22
+        },
+        "end": {
+          "line": 114,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/mustache.cpp:304:19:304:20",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 304,
+          "column": 19
+        },
+        "end": {
+          "line": 304,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/mustache.cpp:353:24:353:25",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 353,
+          "column": 24
+        },
+        "end": {
+          "line": 353,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/mustache.cpp:357:20:357:21",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 357,
+          "column": 20
+        },
+        "end": {
+          "line": 357,
+          "column": 21
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/mustache.cpp:557:15:557:16",
+      "mutator": "cxx_gt_to_le",
+      "location": {
+        "start": {
+          "line": 557,
+          "column": 15
+        },
+        "end": {
+          "line": 557,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/mustache.cpp:129:11:129:12",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 11
+        },
+        "end": {
+          "line": 129,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/mustache.cpp:273:6:273:16",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 273,
+          "column": 6
+        },
+        "end": {
+          "line": 273,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/mustache.cpp:303:9:303:18",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 303,
+          "column": 9
+        },
+        "end": {
+          "line": 303,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/mustache.cpp:305:15:305:16",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 305,
+          "column": 15
+        },
+        "end": {
+          "line": 305,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/mustache.cpp:34:11:34:12",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 11
+        },
+        "end": {
+          "line": 34,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/mustache.cpp:356:9:356:16",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 356,
+          "column": 9
+        },
+        "end": {
+          "line": 356,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/mustache.cpp:36:10:36:12",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 10
+        },
+        "end": {
+          "line": 36,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/mustache.cpp:405:6:405:17",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 405,
+          "column": 6
+        },
+        "end": {
+          "line": 405,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/mustache.cpp:410:6:410:15",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 410,
+          "column": 6
+        },
+        "end": {
+          "line": 410,
+          "column": 15
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/mustache.cpp:450:8:450:16",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 450,
+          "column": 8
+        },
+        "end": {
+          "line": 450,
+          "column": 16
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/mustache.cpp:519:6:519:14",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 519,
+          "column": 6
+        },
+        "end": {
+          "line": 519,
+          "column": 14
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/mustache.cpp:520:6:520:9",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 520,
+          "column": 6
+        },
+        "end": {
+          "line": 520,
+          "column": 9
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/mustache.cpp:552:6:552:11",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 552,
+          "column": 6
+        },
+        "end": {
+          "line": 552,
+          "column": 11
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/mustache.cpp:553:6:553:9",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 553,
+          "column": 6
+        },
+        "end": {
+          "line": 553,
+          "column": 9
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_init_const:/repo/src/mustache.cpp:554:6:554:17",
+      "mutator": "cxx_init_const",
+      "location": {
+        "start": {
+          "line": 554,
+          "column": 6
+        },
+        "end": {
+          "line": 554,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_gt:/repo/src/mustache.cpp:568:13:568:15",
+      "mutator": "cxx_le_to_gt",
+      "location": {
+        "start": {
+          "line": 568,
+          "column": 13
+        },
+        "end": {
+          "line": 568,
+          "column": 15
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/mustache.cpp:568:13:568:15",
+      "mutator": "cxx_le_to_lt",
+      "location": {
+        "start": {
+          "line": 568,
+          "column": 13
+        },
+        "end": {
+          "line": 568,
+          "column": 15
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/mustache.cpp:305:22:305:23",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 305,
+          "column": 22
+        },
+        "end": {
+          "line": 305,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/mustache.cpp:34:18:34:19",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 18
+        },
+        "end": {
+          "line": 34,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/mustache.cpp:357:35:357:36",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 357,
+          "column": 35
+        },
+        "end": {
+          "line": 357,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/mustache.cpp:475:43:475:44",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 475,
+          "column": 43
+        },
+        "end": {
+          "line": 475,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/mustache.cpp:487:42:487:43",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 487,
+          "column": 42
+        },
+        "end": {
+          "line": 487,
+          "column": 43
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/mustache.cpp:491:43:491:44",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 491,
+          "column": 43
+        },
+        "end": {
+          "line": 491,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/mustache.cpp:500:42:500:43",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 500,
+          "column": 42
+        },
+        "end": {
+          "line": 500,
+          "column": 43
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/mustache.cpp:504:43:504:44",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 504,
+          "column": 43
+        },
+        "end": {
+          "line": 504,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/mustache.cpp:569:11:569:12",
+      "mutator": "cxx_lt_to_ge",
+      "location": {
+        "start": {
+          "line": 569,
+          "column": 11
+        },
+        "end": {
+          "line": 569,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/mustache.cpp:305:22:305:23",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 305,
+          "column": 22
+        },
+        "end": {
+          "line": 305,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/mustache.cpp:34:18:34:19",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 18
+        },
+        "end": {
+          "line": 34,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/mustache.cpp:357:35:357:36",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 357,
+          "column": 35
+        },
+        "end": {
+          "line": 357,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/mustache.cpp:475:43:475:44",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 475,
+          "column": 43
+        },
+        "end": {
+          "line": 475,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/mustache.cpp:487:42:487:43",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 487,
+          "column": 42
+        },
+        "end": {
+          "line": 487,
+          "column": 43
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/mustache.cpp:491:43:491:44",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 491,
+          "column": 43
+        },
+        "end": {
+          "line": 491,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/mustache.cpp:500:42:500:43",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 500,
+          "column": 42
+        },
+        "end": {
+          "line": 500,
+          "column": 43
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/mustache.cpp:504:43:504:44",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 504,
+          "column": 43
+        },
+        "end": {
+          "line": 504,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/mustache.cpp:569:11:569:12",
+      "mutator": "cxx_lt_to_le",
+      "location": {
+        "start": {
+          "line": 569,
+          "column": 11
+        },
+        "end": {
+          "line": 569,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/mustache.cpp:190:57:190:59",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 190,
+          "column": 57
+        },
+        "end": {
+          "line": 190,
+          "column": 59
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/mustache.cpp:461:15:461:17",
+      "mutator": "cxx_ne_to_eq",
+      "location": {
+        "start": {
+          "line": 461,
+          "column": 15
+        },
+        "end": {
+          "line": 461,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_dec_to_post_inc:/repo/src/mustache.cpp:129:50:129:52",
+      "mutator": "cxx_post_dec_to_post_inc",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 50
+        },
+        "end": {
+          "line": 129,
+          "column": 52
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/mustache.cpp:305:36:305:38",
+      "mutator": "cxx_post_inc_to_post_dec",
+      "location": {
+        "start": {
+          "line": 305,
+          "column": 36
+        },
+        "end": {
+          "line": 305,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_pre_dec_to_pre_inc:/repo/src/mustache.cpp:529:4:529:6",
+      "mutator": "cxx_pre_dec_to_pre_inc",
+      "location": {
+        "start": {
+          "line": 529,
+          "column": 4
+        },
+        "end": {
+          "line": 529,
+          "column": 6
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_dec_to_pre_inc:/repo/src/mustache.cpp:558:3:558:5",
+      "mutator": "cxx_pre_dec_to_pre_inc",
+      "location": {
+        "start": {
+          "line": 558,
+          "column": 3
+        },
+        "end": {
+          "line": 558,
+          "column": 5
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/mustache.cpp:446:4:446:6",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 446,
+          "column": 4
+        },
+        "end": {
+          "line": 446,
+          "column": 6
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/mustache.cpp:449:4:449:6",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 449,
+          "column": 4
+        },
+        "end": {
+          "line": 449,
+          "column": 6
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/mustache.cpp:452:5:452:7",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 452,
+          "column": 5
+        },
+        "end": {
+          "line": 452,
+          "column": 7
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/mustache.cpp:473:3:473:5",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 473,
+          "column": 3
+        },
+        "end": {
+          "line": 473,
+          "column": 5
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/mustache.cpp:477:3:477:5",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 477,
+          "column": 3
+        },
+        "end": {
+          "line": 477,
+          "column": 5
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/mustache.cpp:488:3:488:5",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 488,
+          "column": 3
+        },
+        "end": {
+          "line": 488,
+          "column": 5
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/mustache.cpp:497:3:497:5",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 497,
+          "column": 3
+        },
+        "end": {
+          "line": 497,
+          "column": 5
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/mustache.cpp:501:3:501:5",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 501,
+          "column": 3
+        },
+        "end": {
+          "line": 501,
+          "column": 5
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/mustache.cpp:50:4:50:6",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4
+        },
+        "end": {
+          "line": 50,
+          "column": 6
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/mustache.cpp:510:3:510:5",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 510,
+          "column": 3
+        },
+        "end": {
+          "line": 510,
+          "column": 5
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/mustache.cpp:527:4:527:6",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 527,
+          "column": 4
+        },
+        "end": {
+          "line": 527,
+          "column": 6
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/mustache.cpp:563:4:563:6",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 563,
+          "column": 4
+        },
+        "end": {
+          "line": 563,
+          "column": 6
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/mustache.cpp:572:3:572:5",
+      "mutator": "cxx_pre_inc_to_pre_dec",
+      "location": {
+        "start": {
+          "line": 572,
+          "column": 3
+        },
+        "end": {
+          "line": 572,
+          "column": 5
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/mustache.cpp:260:10:260:15",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 260,
+          "column": 10
+        },
+        "end": {
+          "line": 260,
+          "column": 15
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/mustache.cpp:262:17:262:22",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 262,
+          "column": 17
+        },
+        "end": {
+          "line": 262,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/mustache.cpp:300:6:300:66",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 300,
+          "column": 6
+        },
+        "end": {
+          "line": 300,
+          "column": 66
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/mustache.cpp:326:6:326:75",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 326,
+          "column": 6
+        },
+        "end": {
+          "line": 326,
+          "column": 75
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/mustache.cpp:337:4:337:45",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 337,
+          "column": 4
+        },
+        "end": {
+          "line": 337,
+          "column": 45
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/mustache.cpp:493:4:493:59",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 493,
+          "column": 4
+        },
+        "end": {
+          "line": 493,
+          "column": 59
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/mustache.cpp:506:4:506:59",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 506,
+          "column": 4
+        },
+        "end": {
+          "line": 506,
+          "column": 59
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/mustache.cpp:532:6:532:59",
+      "mutator": "cxx_remove_void_call",
+      "location": {
+        "start": {
+          "line": 532,
+          "column": 6
+        },
+        "end": {
+          "line": 532,
+          "column": 59
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:105:12:105:20",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 12
+        },
+        "end": {
+          "line": 105,
+          "column": 20
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:114:14:114:19",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 14
+        },
+        "end": {
+          "line": 114,
+          "column": 19
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:117:22:117:29",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 22
+        },
+        "end": {
+          "line": 117,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:125:10:125:12",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 10
+        },
+        "end": {
+          "line": 125,
+          "column": 12
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:125:36:125:43",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 36
+        },
+        "end": {
+          "line": 125,
+          "column": 43
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:156:25:156:32",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 156,
+          "column": 25
+        },
+        "end": {
+          "line": 156,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:225:15:225:23",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 15
+        },
+        "end": {
+          "line": 225,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:267:40:267:46",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 267,
+          "column": 40
+        },
+        "end": {
+          "line": 267,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:36:29:36:36",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 29
+        },
+        "end": {
+          "line": 36,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:397:22:397:29",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 397,
+          "column": 22
+        },
+        "end": {
+          "line": 397,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:405:28:405:35",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 405,
+          "column": 28
+        },
+        "end": {
+          "line": 405,
+          "column": 35
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:410:26:410:33",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 410,
+          "column": 26
+        },
+        "end": {
+          "line": 410,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:410:81:410:87",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 410,
+          "column": 81
+        },
+        "end": {
+          "line": 410,
+          "column": 87
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:414:30:414:36",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 414,
+          "column": 30
+        },
+        "end": {
+          "line": 414,
+          "column": 36
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:426:15:426:17",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 426,
+          "column": 15
+        },
+        "end": {
+          "line": 426,
+          "column": 17
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:429:22:429:24",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 429,
+          "column": 22
+        },
+        "end": {
+          "line": 429,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:432:22:432:24",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 432,
+          "column": 22
+        },
+        "end": {
+          "line": 432,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:435:22:435:24",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 435,
+          "column": 22
+        },
+        "end": {
+          "line": 435,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:437:22:437:24",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 437,
+          "column": 22
+        },
+        "end": {
+          "line": 437,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:440:22:440:24",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 440,
+          "column": 22
+        },
+        "end": {
+          "line": 440,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:444:16:444:18",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 444,
+          "column": 16
+        },
+        "end": {
+          "line": 444,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:447:23:447:25",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 447,
+          "column": 23
+        },
+        "end": {
+          "line": 447,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:472:25:472:32",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 472,
+          "column": 25
+        },
+        "end": {
+          "line": 472,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:475:26:475:33",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 475,
+          "column": 26
+        },
+        "end": {
+          "line": 475,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:487:25:487:32",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 487,
+          "column": 25
+        },
+        "end": {
+          "line": 487,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:48:14:48:33",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 14
+        },
+        "end": {
+          "line": 48,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:491:26:491:33",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 491,
+          "column": 26
+        },
+        "end": {
+          "line": 491,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:492:23:492:25",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 492,
+          "column": 23
+        },
+        "end": {
+          "line": 492,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:500:25:500:32",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 500,
+          "column": 25
+        },
+        "end": {
+          "line": 500,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "timeout",
+        "timeout"
+      ],
+      "probe_status": [
+        "timeout",
+        "timeout"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:504:26:504:33",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 504,
+          "column": 26
+        },
+        "end": {
+          "line": 504,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:505:23:505:25",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 505,
+          "column": 23
+        },
+        "end": {
+          "line": 505,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:531:21:531:23",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 531,
+          "column": 21
+        },
+        "end": {
+          "line": 531,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:557:30:557:32",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 557,
+          "column": 30
+        },
+        "end": {
+          "line": 557,
+          "column": 32
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:557:44:557:46",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 557,
+          "column": 44
+        },
+        "end": {
+          "line": 557,
+          "column": 46
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:559:16:559:18",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 559,
+          "column": 16
+        },
+        "end": {
+          "line": 559,
+          "column": 18
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:559:26:559:33",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 559,
+          "column": 26
+        },
+        "end": {
+          "line": 559,
+          "column": 33
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:561:22:561:24",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 561,
+          "column": 22
+        },
+        "end": {
+          "line": 561,
+          "column": 24
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:561:32:561:40",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 561,
+          "column": 32
+        },
+        "end": {
+          "line": 561,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:568:24:568:28",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 568,
+          "column": 24
+        },
+        "end": {
+          "line": 568,
+          "column": 28
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:568:42:568:44",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 568,
+          "column": 42
+        },
+        "end": {
+          "line": 568,
+          "column": 44
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:568:54:568:56",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 568,
+          "column": 54
+        },
+        "end": {
+          "line": 568,
+          "column": 56
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:569:21:569:25",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 569,
+          "column": 21
+        },
+        "end": {
+          "line": 569,
+          "column": 25
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:569:40:569:42",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 569,
+          "column": 40
+        },
+        "end": {
+          "line": 569,
+          "column": 42
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:569:48:569:55",
+      "mutator": "cxx_replace_scalar_call",
+      "location": {
+        "start": {
+          "line": 569,
+          "column": 48
+        },
+        "end": {
+          "line": 569,
+          "column": 55
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/mustache.cpp:129:37:129:38",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 37
+        },
+        "end": {
+          "line": 129,
+          "column": 38
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/mustache.cpp:278:60:278:61",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 278,
+          "column": 60
+        },
+        "end": {
+          "line": 278,
+          "column": 61
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/mustache.cpp:281:62:281:63",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 281,
+          "column": 62
+        },
+        "end": {
+          "line": 281,
+          "column": 63
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/mustache.cpp:311:75:311:76",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 311,
+          "column": 75
+        },
+        "end": {
+          "line": 311,
+          "column": 76
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/mustache.cpp:357:62:357:63",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 357,
+          "column": 62
+        },
+        "end": {
+          "line": 357,
+          "column": 63
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/mustache.cpp:422:21:422:22",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 422,
+          "column": 21
+        },
+        "end": {
+          "line": 422,
+          "column": 22
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/mustache.cpp:442:46:442:47",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 442,
+          "column": 46
+        },
+        "end": {
+          "line": 442,
+          "column": 47
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/mustache.cpp:451:28:451:29",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 451,
+          "column": 28
+        },
+        "end": {
+          "line": 451,
+          "column": 29
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/mustache.cpp:471:22:471:23",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 471,
+          "column": 22
+        },
+        "end": {
+          "line": 471,
+          "column": 23
+        }
+      },
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/mustache.cpp:504:52:504:53",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 504,
+          "column": 52
+        },
+        "end": {
+          "line": 504,
+          "column": 53
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/mustache.cpp:557:39:557:40",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 557,
+          "column": 39
+        },
+        "end": {
+          "line": 557,
+          "column": 40
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/mustache.cpp:568:49:568:50",
+      "mutator": "cxx_sub_to_add",
+      "location": {
+        "start": {
+          "line": 568,
+          "column": 49
+        },
+        "end": {
+          "line": 568,
+          "column": 50
+        }
+      },
+      "reference_status": [
+        "killed",
+        "killed"
+      ],
+      "probe_status": [
+        "killed",
+        "killed"
+      ]
+    }
+  ],
+  "equivalent": [
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:338:15:338:16",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:417:11:417:12",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/src/mustache.cpp:353:24:353:25",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/mustache.cpp:487:42:487:43",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/mustache.cpp:500:42:500:43",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/mustache.cpp:300:6:300:66",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/mustache.cpp:326:6:326:75",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/mustache.cpp:337:4:337:45",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/mustache.cpp:493:4:493:59",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/mustache.cpp:506:4:506:59",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_remove_void_call:/repo/src/mustache.cpp:532:6:532:59",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:105:12:105:20",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/src/mustache.cpp:471:22:471:23",
+      "method": "bounded_probe",
+      "reason": "在有界穷举探针下未被区分：可能是等价变异，也可能是引入了未表现出来的未定义行为；需人工复核"
+    }
+  ],
+  "unstable": [
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:448:19:448:20",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-qt-mustache/mutation_baseline.json",
+        "benchmark/qt-mustache/source/src/mustache.cpp:448",
+        "runs/step-c-ir-qt-mustache-20261029-01/mutant-ir.json",
+        "runs/step-c-ub-mustache-20261029-04/results.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/mustache.cpp:568:13:568:15",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-qt-mustache/mutation_baseline.json",
+        "benchmark/qt-mustache/source/src/mustache.cpp:568",
+        "runs/step-c-ir-qt-mustache-20261029-01/mutant-ir.json",
+        "runs/step-c-ub-mustache-20261029-04/results.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/mustache.cpp:34:18:34:19",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-qt-mustache/mutation_baseline.json",
+        "benchmark/qt-mustache/source/src/mustache.cpp:34",
+        "runs/step-c-ir-qt-mustache-20261029-01/mutant-ir.json",
+        "runs/step-c-ub-mustache-20261029-04/results.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:125:36:125:43",
+      "reference_status": [
+        "survived",
+        "survived"
+      ],
+      "probe_status": [
+        "survived",
+        "survived"
+      ],
+      "verdict": "undefined_only",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-qt-mustache/mutation_baseline.json",
+        "benchmark/qt-mustache/source/src/mustache.cpp:125",
+        "runs/step-c-ir-qt-mustache-20261029-01/mutant-ir.json",
+        "runs/step-c-ub-mustache-20261029-04/results.json"
+      ],
+      "reason": "复核确认只在未定义行为下与原代码不同，结果取决于二进制与执行条件（D015），从分母中剔除"
+    }
+  ],
+  "review_needed": [
+    {
+      "id": "cxx_add_assign_to_sub_assign:/repo/src/mustache.cpp:414:12:414:14",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_add_assign_to_sub_assign:/repo/src/mustache.cpp:48:6:48:8",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/mustache.cpp:358:53:358:54",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/mustache.cpp:359:53:359:54",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_add_to_sub:/repo/src/mustache.cpp:410:62:410:63",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:292:15:292:16",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:317:16:317:17",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:332:16:332:17",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:419:10:419:11",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:427:12:427:13",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:430:12:430:13",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:433:12:433:13",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:436:12:436:13",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:438:12:438:13",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:441:12:441:13",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:457:12:457:13",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:538:7:538:8",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:576:10:576:11",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:174:12:174:14",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:277:16:277:18",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:298:20:298:22",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:299:20:299:22",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:324:20:324:22",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/src/mustache.cpp:325:20:325:22",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_gt_to_le:/repo/src/mustache.cpp:304:19:304:20",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_init_const:/repo/src/mustache.cpp:303:9:303:18",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_init_const:/repo/src/mustache.cpp:405:6:405:17",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_init_const:/repo/src/mustache.cpp:410:6:410:15",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_init_const:/repo/src/mustache.cpp:520:6:520:9",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_lt_to_ge:/repo/src/mustache.cpp:500:42:500:43",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/mustache.cpp:305:22:305:23",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_ne_to_eq:/repo/src/mustache.cpp:190:57:190:59",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_post_inc_to_post_dec:/repo/src/mustache.cpp:305:36:305:38",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/src/mustache.cpp:50:4:50:6",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:156:25:156:32",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:405:28:405:35",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:410:26:410:33",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:500:25:500:32",
+      "reason": "探针结果为 timeout，保留在分母中，请人工确认"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "by": "Gemini（AI 复核，Linux ARM64）",
+    "at": "2026-10-30",
+    "note": "按 benchmark/tools/mutant_review/qt-mustache/ 的复核结论签署：等价候选 13 项均有结论，不稳定 4 项按规则剔除，探针超时 38 项保留在分母中。"
+  },
+  "reference": {
+    "killed": 141,
+    "timeout": 38,
+    "total": 179,
+    "m1": 1.0,
+    "threshold": 0.8,
+    "passes": true
+  }
+}

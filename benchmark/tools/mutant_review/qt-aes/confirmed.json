@@ -1,0 +1,332 @@
+{
+  "task": "qt-aes",
+  "note": "复核结论。non_equivalent_verified：真实 Mull 反例已检出，移回分母；undefined_only：只在未定义行为下与原代码不同（D015），列为不稳定、不计入分母。",
+  "mutants": [
+    {
+      "id": "cxx_assign_const:/repo/qaesencryption.cpp:573:17:573:18",
+      "verdict": "undefined_only",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "真实 Mull IR 将 encode 入口 *ok = false 的 store i8 0 改为 store i8 42。若后续返回前 *ok 被重新赋值为 true/false 则无差异；若提前返回且调用方读取 *ok，C++ 对值为 42 的 bool 解引用违反 !range !{i8 0, i8 2} 属于未定义行为（且截断最低位仍为 0）。按 D015 列为不稳定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:573",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/qaesencryption.cpp:711:17:711:18",
+      "verdict": "undefined_only",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "真实 Mull IR 将 decode 入口 *ok = false 的 store i8 0 改为 store i8 42。若后续返回前 *ok 被重新赋值为 true/false 则无差异；若提前返回且调用方读取 *ok，C++ 对值为 42 的 bool 解引用违反 !range !{i8 0, i8 2} 属于未定义行为（且截断最低位仍为 0）。按 D015 列为不稳定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:711",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/qaesencryption.cpp:79:17:79:18",
+      "verdict": "undefined_only",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "真实 Mull IR 将 RemovePadding 入口 *ok = false 的 store i8 0 改为 store i8 42。成功路径会被 *ok = true 覆盖；失败路径调用方读取值为 42 的 bool 违反 !range !{i8 0, i8 2} 属于未定义行为（且截断最低位仍为 0）。按 D015 列为不稳定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:79",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_assign_const:/repo/qaesencryption.cpp:82:21:82:22",
+      "verdict": "non_equivalent_verified",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "RemovePadding 在空输入 rawText.isEmpty() 分支将 *ok = true 替换为 store i8 42（最低位为 0），传入空 QByteArray 且检查 ok 参数时已被真实 Mull 反例 Killed。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:82",
+        "runs/step-c-counterexample-20261030-01/products/qt-aes/final/tests/review_counterexamples.cc",
+        "runs/step-c-counterexample-20261030-01-qt-aes/trials/qt-aes/trial-1/score/0.5.0/final/result.json",
+        "runs/step-c-counterexample-20261030-01-qt-aes/trials/qt-aes/trial-1/score/0.5.0/final/mull/step.json"
+      ]
+    },
+    {
+      "id": "cxx_eq_to_ne:/repo/qaesencryption.cpp:91:39:91:41",
+      "verdict": "non_equivalent_verified",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "RemovePadding 的 Padding::ZERO 分支将 ret.at(ret.length()-1) == 0x00 改为 != 0x00，已被真实 Mull 反例 Killed。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:91",
+        "runs/step-c-counterexample-20261030-01/products/qt-aes/final/tests/review_counterexamples.cc",
+        "runs/step-c-counterexample-20261030-01-qt-aes/trials/qt-aes/trial-1/score/0.5.0/final/result.json",
+        "runs/step-c-counterexample-20261030-01-qt-aes/trials/qt-aes/trial-1/score/0.5.0/final/mull/step.json"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/qaesencryption.cpp:131:29:131:31",
+      "verdict": "undefined_only",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "RemovePadding 的 Padding::ISO 分支将 marker_index >= 0 改为 > 0。当输入至少含一个非零字节时 marker_index 在 >= 0 处停在首个非零字节，两者完全相同；仅当非空输入全为 0x00 字节时两者不同，但此时原代码将 marker_index 递减至 -1 并在第 140 行调用 ret.at(-1) 违反 QByteArray::at 前置条件（越界读取 UB）。按 D015 列为不稳定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:131",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/qaesencryption.cpp:563:40:563:42",
+      "verdict": "non_equivalent_verified",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "xcryptCTR 的 128 位计数器进位循环将 j >= 0 改为 j > 0，当计数器全部为 0xff 发生向最高字节 byte 0 的进位时结果不同，已被真实 Mull 反例 Killed。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:563",
+        "runs/step-c-counterexample-20261030-01/products/qt-aes/final/tests/review_counterexamples.cc",
+        "runs/step-c-counterexample-20261030-01-qt-aes/trials/qt-aes/trial-1/score/0.5.0/final/result.json",
+        "runs/step-c-counterexample-20261030-01-qt-aes/trials/qt-aes/trial-1/score/0.5.0/final/mull/step.json"
+      ]
+    },
+    {
+      "id": "cxx_ge_to_gt:/repo/qaesencryption.cpp:716:17:716:19",
+      "verdict": "non_equivalent_verified",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "decode 的 IV 校验将 m_mode >= CBC 改为 m_mode > CBC，使得 CBC 模式下传入空或错误长度 IV 时不再拒绝，已被真实 Mull 反例 Killed。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:716",
+        "runs/step-c-counterexample-20261030-01/products/qt-aes/final/tests/review_counterexamples.cc",
+        "runs/step-c-counterexample-20261030-01-qt-aes/trials/qt-aes/trial-1/score/0.5.0/final/result.json",
+        "runs/step-c-counterexample-20261030-01-qt-aes/trials/qt-aes/trial-1/score/0.5.0/final/mull/step.json"
+      ]
+    },
+    {
+      "id": "cxx_gt_to_ge:/repo/qaesencryption.cpp:159:78:159:79",
+      "verdict": "non_equivalent_verified",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "generateKey 将 iterations > 500000 改为 iterations >= 500000，在边界输入 iterations = 500000 上原代码返回派生密钥而变异返回空 QByteArray，已被真实 Mull 反例 Killed。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:159",
+        "runs/step-c-counterexample-20261030-01/products/qt-aes/final/tests/review_counterexamples.cc",
+        "runs/step-c-counterexample-20261030-01-qt-aes/trials/qt-aes/trial-1/score/0.5.0/final/result.json",
+        "runs/step-c-counterexample-20261030-01-qt-aes/trials/qt-aes/trial-1/score/0.5.0/final/mull/step.json"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/qaesencryption.cpp:107:37:107:38",
+      "verdict": "undefined_only",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "RemovePadding 的 PKCS7 分支将 i < len 改为 i <= len。当 len > 16 时受 i < 16 限制完全一致；当 len <= 16 时在 i == len 处执行 ret.at(len - 1 - len) 即 ret.at(-1)，违反 QByteArray::at 前置条件发生越界读取 UB。按 D015 列为不稳定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:107",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/qaesencryption.cpp:296:23:296:24",
+      "verdict": "non_equivalent_verified",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "expandKey 将 i < m_nb * (m_nr + 1) 改为 <=，多执行一轮循环使返回的扩展密钥长度增加 4 字节（AES-128 从 176 变为 180），已被真实 Mull 反例 Killed。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:296",
+        "runs/step-c-counterexample-20261030-01/products/qt-aes/final/tests/review_counterexamples.cc",
+        "runs/step-c-counterexample-20261030-01-qt-aes/trials/qt-aes/trial-1/score/0.5.0/final/result.json",
+        "runs/step-c-counterexample-20261030-01-qt-aes/trials/qt-aes/trial-1/score/0.5.0/final/mull/step.json"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/qaesencryption.cpp:29:23:29:24",
+      "verdict": "undefined_only",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "secureZero 中 i < ba.size() 改为 i <= ba.size()，在 i == ba.size() 时向 p[ba.size()] 越界写入一字节（UB），有定义部分无任何可观察差异。按 D015 列为不稳定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:29",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/qaesencryption.cpp:346:18:346:19",
+      "verdict": "undefined_only",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "addRoundKey 中 i < 4 改为 i <= 4，在 i == 4 时对 16 字节 state 缓冲区的 it[16..19] 越界读写并在最后一轮访问 expKey.at(176) 越界（UB）。按 D015 列为不稳定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:346",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/qaesencryption.cpp:355:20:355:21",
+      "verdict": "undefined_only",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "subBytes 中 i < 16 改为 i <= 16，在 i == 16 时对 16 字节 state 缓冲区的 it[16] 越界读写（UB）。按 D015 列为不稳定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:355",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/qaesencryption.cpp:398:20:398:21",
+      "verdict": "undefined_only",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "mixColumns 中 i < 16 改为 i <= 16，在 i == 16 时对 16 字节 state 缓冲区的 it[16..19] 越界读写（UB）。按 D015 列为不稳定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:398",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/qaesencryption.cpp:423:20:423:21",
+      "verdict": "undefined_only",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "invMixColumns 中 i < 16 改为 i <= 16，在 i == 16 时对 16 字节 state 缓冲区的 it[16..19] 越界读写（UB）。按 D015 列为不稳定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:423",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/qaesencryption.cpp:441:22:441:23",
+      "verdict": "undefined_only",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "invSubBytes 中 i < 16 改为 i <= 16，在 i == 16 时对 16 字节 state 缓冲区的 it[16] 越界读写（UB）。按 D015 列为不稳定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:441",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/qaesencryption.cpp:606:24:606:25",
+      "verdict": "undefined_only",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "encode 的 ECB 分支将 i < alignedText.size() 改为 <=；当 i == alignedText.size() 时 alignedText.mid(size(), 16) 返回空 QByteArray（0 字节），随即传入 cipher(expandedKey, &state) 对 state.begin()[0..15] 执行 16 字节越界读写（UB）。按 D015 列为不稳定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:606",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/qaesencryption.cpp:629:24:629:25",
+      "verdict": "undefined_only",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "encode 的 CBC 分支将 i < alignedText.size() 改为 <=；当 i == alignedText.size() 时 byteXor(alignedText.mid(size(), 16), ivTemp) 因左操作数为空返回 0 字节 QByteArray，随即传入 cipher(expandedKey, &state) 对 state.begin()[0..15] 执行 16 字节越界读写（UB）。按 D015 列为不稳定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:629",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/qaesencryption.cpp:751:24:751:25",
+      "verdict": "undefined_only",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "decode 的 ECB 分支将 i < rawText.size() 改为 <=；当 i == rawText.size() 时 rawText.mid(size(), 16) 返回空 QByteArray（0 字节），随即传入 invCipher(expandedKey, &state) 对 state.begin()[0..15] 执行 16 字节越界读写（UB）。按 D015 列为不稳定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:751",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/qaesencryption.cpp:772:28:772:29",
+      "verdict": "undefined_only",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "decode 的 CBC 分支将 i < rawText.size() 改为 <=；当 i == rawText.size() 时 rawText.mid(size(), 16) 返回空 QByteArray（0 字节），随即传入 invCipher(expandedKey, &state) 对 state.begin()[0..15] 执行 16 字节越界读写（UB）。按 D015 列为不稳定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:772",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_mul_to_div:/repo/qaesencryption.cpp:50:53:50:54",
+      "verdict": "undefined_only",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "multiply(x, y) 仅由 invMixColumns 以 y ∈ {0x09, 0x0b, 0x0d, 0x0e} 调用，((y >> 4) & 1) 恒为 0；将 * 改为 / 后计算 0 / xtime(xtime(xtime(xtime(x))))。当该除数非 0 时结果仍为 0，当 x == 0 等使除数为 0 时触发有符号整数除以 0 的未定义行为（ARM64 sdiv 指令对除 0 返回 0，故未崩溃）。按 D015 列为不稳定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:50",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_pre_inc_to_pre_dec:/repo/qaesencryption.cpp:173:54:173:56",
+      "verdict": "non_equivalent_verified",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "generateKey 中 ++block 改为 --block；在使用 16 字节摘要（如 MD5）派生 32 字节 AES-256 密钥时第二分块的计数器由 2 变为 0，已被真实 Mull 反例 Killed。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:173",
+        "runs/step-c-counterexample-20261030-01/products/qt-aes/final/tests/review_counterexamples.cc",
+        "runs/step-c-counterexample-20261030-01-qt-aes/trials/qt-aes/trial-1/score/0.5.0/final/result.json",
+        "runs/step-c-counterexample-20261030-01-qt-aes/trials/qt-aes/trial-1/score/0.5.0/final/mull/step.json"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/qaesencryption.cpp:29:28:29:32",
+      "verdict": "undefined_only",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "secureZero 中将 ba.size() 替换为 42；当局部缓冲区长度 < 42（如 16/20/32 字节）时向 p[ba.size()..41] 越界写入 0（UB），有定义部分仅涉及局部销毁缓冲擦除。按 D015 列为不稳定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:29",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/qaesencryption.cpp:580:24:580:28",
+      "verdict": "non_equivalent_verified",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "encode 在 Padding::NONE 分支将 rawText.size() % m_blocklen 中的 rawText.size() 替换为 42（42 % 16 == 10 != 0），导致合法 16 字节对齐明文被拒绝并返回空，已被真实 Mull 反例 Killed。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:580",
+        "runs/step-c-counterexample-20261030-01/products/qt-aes/final/tests/review_counterexamples.cc",
+        "runs/step-c-counterexample-20261030-01-qt-aes/trials/qt-aes/trial-1/score/0.5.0/final/result.json",
+        "runs/step-c-counterexample-20261030-01-qt-aes/trials/qt-aes/trial-1/score/0.5.0/final/mull/step.json"
+      ]
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/qaesencryption.cpp:81:17:81:24",
+      "verdict": "undefined_only",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "真实 Mull IR 将 RemovePadding 中 rawText.isEmpty() 的 i1 返回值替换为 false。当 rawText 非空时与原代码完全相同；当 rawText 为空时：Padding::NONE 仍返回空且 *ok = true（与原代码相同），而 ZERO/PKCS7/ISO 分别在 ret.at(ret.length()-1) 或 marker_index = -1 处调用 ret.at(-1) 违反 QByteArray::at 前置条件发生越界读取 UB。按 D015 列为不稳定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:81",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/qaesencryption.cpp:91:35:91:36",
+      "verdict": "undefined_only",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "RemovePadding 的 Padding::ZERO 分支将 ret.at(ret.length() - 1) 改为 ret.at(ret.length() + 1)，在任意非空输入上立即越界访问 QByteArray::at(length + 1) 违反前置条件（UB）。按 D015 列为不稳定。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:91",
+        "runs/step-c-ir-qt-aes-20261029-01/mutant-ir.json"
+      ]
+    },
+    {
+      "id": "cxx_sub_to_add:/repo/qaesencryption.cpp:92:36:92:37",
+      "verdict": "non_equivalent_verified",
+      "reviewer": "Gemini（AI 复核，Linux ARM64）",
+      "note": "RemovePadding 的 Padding::ZERO 分支将 ret.remove(ret.length() - 1, 1) 改为 ret.remove(ret.length() + 1, 1)；QByteArray::remove 对越界起始下标安全返回自身而不缩短长度，在尾随 0x00 输入上导致有定义的死循环，已被真实 Mull 反例检出（Timeout）。",
+      "evidence": [
+        "runs/step-c-seed-20261029-06-qt-aes/mutation_baseline.json",
+        "benchmark/qt-aes/source/qaesencryption.cpp:92",
+        "runs/step-c-counterexample-20261030-01/products/qt-aes/final/tests/review_counterexamples.cc",
+        "runs/step-c-counterexample-20261030-01-qt-aes/trials/qt-aes/trial-1/score/0.5.0/final/result.json",
+        "runs/step-c-counterexample-20261030-01-qt-aes/trials/qt-aes/trial-1/score/0.5.0/final/mull/step.json"
+      ]
+    }
+  ]
+}

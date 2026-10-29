@@ -1,0 +1,54 @@
+{
+  "sample": "CAL-35",
+  "original_ids": [
+    "CAL-35"
+  ],
+  "description": "环境加纯头文件：M1 不适用、冻结覆盖及手写检出",
+  "hard": {
+    "status": "scored",
+    "tests_default": "valid"
+  },
+  "relations": [
+    {
+      "metric": "M1_e2e",
+      "op": "na",
+      "reason": "header_only"
+    },
+    {
+      "metric": "M1_valid",
+      "op": "na",
+      "reason": "header_only"
+    },
+    {
+      "metric": "C1",
+      "op": "==",
+      "value": 1.0
+    },
+    {
+      "metric": "M2",
+      "op": "==",
+      "value": 1
+    }
+  ],
+  "environment": {
+    "name": "bank-20261021",
+    "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd",
+    "images": {
+      "gcc": {
+        "tag": "docker.io/library/qualtor-env-bank-20261021-gcc:9abcad8ef238",
+        "id": "sha256:2f3d4143870ad0135491dbaeea1b4d4af80bdfc274bfced8913f903a35c5a5a5",
+        "platform": "linux/arm64"
+      },
+      "clang": {
+        "tag": "docker.io/library/qualtor-env-bank-20261021-clang:9abcad8ef238",
+        "id": "sha256:76b0083ec874c3ee645584e7208e930112a02028870640fc98e9c618685b49da",
+        "platform": "linux/arm64"
+      }
+    }
+  },
+  "build_boundary": false,
+  "reference_copies": [
+    "tests/catch_compat.h",
+    "tests/meetup_test.cc"
+  ]
+}

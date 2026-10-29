@@ -322,6 +322,10 @@ def calibration_status(images, task=None, environment_resolver=None):
     if not CALIBRATION_STATUS.is_file():
         return {"status": "missing"}
     record = read_json(CALIBRATION_STATUS)
+    requested_environment = (task or {}).get('build', {}).get('environment')
+    if requested_environment and requested_environment not in record.get('environments', {}):
+        return {'status': 'stale', 'run_id': record.get('run_id'),
+                'reason': f'题目环境 {requested_environment} 尚未完成校准'}
     for name, expected in record.get('environments', {}).items():
         try:
             selected = task_environment({'environment': name})

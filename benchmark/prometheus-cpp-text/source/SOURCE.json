@@ -1,0 +1,49 @@
+{
+  "repository": "https://github.com/jupp0r/prometheus-cpp",
+  "commit": "a97127c9aeec8decb76cf3bec1fb9c9a0dd4a9fc",
+  "reference_tests": [
+    "tests/counter_test.cc",
+    "tests/gauge_test.cc",
+    "tests/histogram_test.cc",
+    "Qualtor serialization boundaries"
+  ],
+  "added_by_qualtor": [],
+  "note": "source/ 文件逐字节取自上述提交；隐藏测试的转换见 hidden/README.md。",
+  "additional_sources": [
+    {
+      "repository": "https://github.com/prometheus/client_model",
+      "commit": "fa8ad6fec33561be4280a8f0514318c79d7f6cb6",
+      "files": {
+        "proto/metrics.proto": "metrics.proto",
+        "proto/LICENSE": "LICENSE"
+      },
+      "note": "主提交固定的 prometheus/client_model gitlink；原文件字节不改写。"
+    }
+  ],
+  "files": {
+    "LICENSE": "002c2696d92b5c8cf956c11072baa58eaf9f6ade995c031ea635c6a1ee342ad1",
+    "include/prometheus/check_names.h": "ceaf03ed22441fa336da0c844a69a22a6e3bfce0be91a35a85ed27dece353785",
+    "include/prometheus/collectable.h": "7a12a05cdc0049e65ba5dd1cd39d55b9d5a3d35b07a7ad30c5e9da749f418a21",
+    "include/prometheus/counter.h": "156c561d7935a661bf80191d1ff8309bcd671dff865df5e09f3e2da0ca15836b",
+    "include/prometheus/counter_builder.h": "4af644b499ea1aeb7580b2567705e68a5793779d066d93bb03ec763ffdc6931c",
+    "include/prometheus/exposer.h": "343f323ff464b5d854af688c44c622366aee4b2e6f2fb517354314add34fc58e",
+    "include/prometheus/family.h": "0c96d00535724db335875831f47a9a7d9b7a45008196f630a81aa06ff703aa1f",
+    "include/prometheus/gauge.h": "d3eb3e5eaf5657e3061b850e28c09e6afb9ff670e8638977215a078dc5ef6a78",
+    "include/prometheus/gauge_builder.h": "c2c3bd7c0ac738d1a5d4b3de819817fe356caf6adb91d57e19fd9c8d4711f727",
+    "include/prometheus/histogram.h": "b255aead43de7b33257869488d90045ea375b082439acec922e5b633de532e2d",
+    "include/prometheus/histogram_builder.h": "81143808d354a862975622a87ca6fa086c848dd8064c4a6babab4919fed9788a",
+    "include/prometheus/metric.h": "83c05fd305b151b0cd4688dbc7d4683584ada9e1ff498bc9616ddcb8fd03f4ed",
+    "include/prometheus/protobuf_delimited_serializer.h": "fdd9268580fa8bd800f230c638f4b259c59bf8f6e21409660bc206d0a64e3cbf",
+    "include/prometheus/registry.h": "8aa08098169f28b484b809107d1a76158fb72a5745f45f7945608a7f8fc53ac0",
+    "include/prometheus/serializer.h": "7dd1a17d202f90b3689178d19146663aaf24083166f6072951d5734ef097ffda",
+    "include/prometheus/summary.h": "3cc357ddc99613183c934635b7e518e450ee5c3e961c9ef6b6ca8dd7659b2cfb",
+    "include/prometheus/summary_builder.h": "667c9a5cfdd43d037163b380050adf8836dbab9c917165e90aa52c469f31474b",
+    "include/prometheus/text_serializer.h": "69d1a9c86efef9bb3fb79100824ab2f3249d24b5858156ad23b053d5b9cbd98b",
+    "lib/counter.cc": "63e05701873a45e9557e3a9e2db086baf37a43a6d7f43b2a7adb6659b7fe6a5a",
+    "lib/gauge.cc": "5a379d4ecf5f69c6549eac8220018831050af88bc2bdb10f632c3127f503960f",
+    "lib/histogram.cc": "46a81070054e9d1b61e8828fb7b5604f0fc1141c57579fbecac4b7b37bae1ce6",
+    "lib/text_serializer.cc": "c19c3bed36ddcd9d65c9139ff5e961bdb55f2251705156ecf7d4bb95899ec837",
+    "proto/LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "proto/metrics.proto": "7ccbfe9ab99195562f8bc89963efa7f64acce0bb7e7e137d5531fe75d8226f8a"
+  }
+}

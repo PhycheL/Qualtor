@@ -1,0 +1,11 @@
+--- a/include/gzip/compress.hpp
++++ b/include/gzip/compress.hpp
+@@ -36,7 +36,7 @@
+             throw std::runtime_error("size arg is too large to fit into unsigned int type");
+         }
+ #endif
+-        if (size > max_)
++        if (size >= max_)
+         {
+             throw std::runtime_error("size may use more memory than intended when decompressing");
+         }

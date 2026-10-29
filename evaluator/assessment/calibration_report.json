@@ -111,6 +111,34 @@
       "metric_failures": {},
       "passed": true
     },
+    "CAL-35": {
+      "task": "exercism-meetup",
+      "description": "环境加纯头文件：M1 不适用、冻结覆盖及手写检出",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": null,
+        "M1_valid": null,
+        "C1": 1.0,
+        "C2": null,
+        "C3": 1.0,
+        "S1": 0.0,
+        "S2_max": null,
+        "V2": 1,
+        "V3": 0.0,
+        "M2": 1.0,
+        "M4": null,
+        "F1": null
+      },
+      "not_applicable": {
+        "M1": "header_only",
+        "C2": "header_only"
+      },
+      "metric_failures": {},
+      "passed": true
+    },
     "CAL-01": {
       "task": "gildedrose-update-quality",
       "description": "测试文件里没有任何 TEST",
@@ -511,6 +539,81 @@
       "metric_failures": {},
       "passed": true
     },
+    "CAL-34": {
+      "task": "humaneval-x-cpp-boost",
+      "description": "第三方环境头文件",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": 1.0,
+        "M1_valid": 1.0,
+        "C1": 1.0,
+        "C2": 0.6951219512195121,
+        "C3": 1.0,
+        "S1": 0.0,
+        "S2_max": null,
+        "V2": 1,
+        "V3": 0.0,
+        "M2": null,
+        "M4": null,
+        "F1": null
+      },
+      "not_applicable": {},
+      "metric_failures": {},
+      "passed": true
+    },
+    "CAL-30": {
+      "task": "humaneval-x-cpp-openssl",
+      "description": "链接 OpenSSL；环境配方与双镜像一致",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": 1.0,
+        "M1_valid": 1.0,
+        "C1": 1.0,
+        "C2": 0.6818181818181818,
+        "C3": 1.0,
+        "S1": 0.0,
+        "S2_max": null,
+        "V2": 1,
+        "V3": 0.0,
+        "M2": null,
+        "M4": null,
+        "F1": null
+      },
+      "not_applicable": {},
+      "metric_failures": {},
+      "passed": true
+    },
+    "CAL-31": {
+      "task": "humaneval-x-cpp-openssl",
+      "description": "只测试空输入；保留真实的强弱关系",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": 0.07407407407407407,
+        "M1_valid": 0.07407407407407407,
+        "C1": 0.13333333333333333,
+        "C2": 0.09090909090909091,
+        "C3": 1.0,
+        "S1": 0.0,
+        "S2_max": null,
+        "V2": 1,
+        "V3": 0.0,
+        "M2": null,
+        "M4": null,
+        "F1": null
+      },
+      "not_applicable": {},
+      "metric_failures": {},
+      "passed": true
+    },
     "CAL-19": {
       "task": "md4c-html",
       "description": "C99 被测源文件有覆盖、有变异，C 依赖源文件仅参与链接",
@@ -524,6 +627,56 @@
         "C1": 0.9809885931558935,
         "C2": 0.9073170731707317,
         "C3": 0.9545454545454546,
+        "S1": 0.0,
+        "S2_max": null,
+        "V2": 1,
+        "V3": 0.0,
+        "M2": null,
+        "M4": null,
+        "F1": null
+      },
+      "not_applicable": {},
+      "metric_failures": {},
+      "passed": true
+    },
+    "CAL-33": {
+      "task": "orc-bloom-filter",
+      "description": "protoc 生成单元不计覆盖和变异",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": 1.0,
+        "M1_valid": 1.0,
+        "C1": 0.8666666666666667,
+        "C2": 0.5059523809523809,
+        "C3": 1.0,
+        "S1": 0.0,
+        "S2_max": null,
+        "V2": 1,
+        "V3": 0.0,
+        "M2": null,
+        "M4": null,
+        "F1": null
+      },
+      "not_applicable": {},
+      "metric_failures": {},
+      "passed": true
+    },
+    "CAL-32": {
+      "task": "qt-aes",
+      "description": "moc 生成单元不计覆盖和变异",
+      "problems": [],
+      "skipped": [],
+      "status": "scored",
+      "invalid_reason": null,
+      "metrics": {
+        "M1_e2e": 0.976063829787234,
+        "M1_valid": 0.976063829787234,
+        "C1": 0.9274193548387096,
+        "C2": 0.6196868008948546,
+        "C3": 0.8888888888888888,
         "S1": 0.0,
         "S2_max": null,
         "V2": 1,
@@ -675,7 +828,7 @@
               "message": "hex escape sequence out of range"
             }
           ],
-          "evidence_dir": "runs/step-b-closeout-calibration-20261029-01/calibration/yaml-cpp-emitter-utils/CAL-29/round-1/clang-build"
+          "evidence_dir": "runs/step-c-calibration-20261030-01/calibration/yaml-cpp-emitter-utils/CAL-29/round-1/clang-build"
         }
       },
       "passed": true
@@ -754,6 +907,13 @@
         "CAL-25"
       ]
     },
+    "exercism-meetup": {
+      "task_sha256": "5971c72dd0a675d9ffff192a830206fdbce24a1318d43dab7477db10fc823ef8",
+      "passed": true,
+      "samples": [
+        "CAL-35"
+      ]
+    },
     "gildedrose-update-quality": {
       "task_sha256": "92720d07eeeabc2108b7e7afcfe7554af76147176b3f3de552cd5d19baf24245",
       "passed": true,
@@ -776,11 +936,40 @@
         "CAL-16"
       ]
     },
+    "humaneval-x-cpp-boost": {
+      "task_sha256": "3d456c21c099fe1ee509562ab63afe10af0425b2c396289a62d79e5962efcb5c",
+      "passed": true,
+      "samples": [
+        "CAL-34"
+      ]
+    },
+    "humaneval-x-cpp-openssl": {
+      "task_sha256": "90aa148e3a667fe4bf38c3812afa31fe37f5160974276b65a9444fe2d094439c",
+      "passed": true,
+      "samples": [
+        "CAL-30",
+        "CAL-31"
+      ]
+    },
     "md4c-html": {
       "task_sha256": "f40d8a6c5bc4be079e313fb517689e1379cdbbc50ba74553392890c0f82fb4bd",
       "passed": true,
       "samples": [
         "CAL-19"
+      ]
+    },
+    "orc-bloom-filter": {
+      "task_sha256": "e1d3253dac05b9b9699ee3cdf3d28f7c9804b7e9a01a4a47784d25bb1c339c20",
+      "passed": true,
+      "samples": [
+        "CAL-33"
+      ]
+    },
+    "qt-aes": {
+      "task_sha256": "fb81d2fe78cb08fb60d778d7686300d416363c25507dc78e20dabf5f451ec761",
+      "passed": true,
+      "samples": [
+        "CAL-32"
       ]
     },
     "tinyexpr-configured": {
@@ -816,12 +1005,12 @@
     }
   },
   "passed": true,
-  "run_id": "step-b-closeout-calibration-20261029-01",
+  "run_id": "step-c-calibration-20261030-01",
   "rounds": 2,
   "partial": false,
-  "scorer_version": "0.4.1",
-  "scorer_code_sha256": "9da5694e4f285d1319d5e66ee81c3335c171f501ff37f3f0f45c8d61f8f7f5ff",
-  "samples_sha256": "d4cb4e6e32b5c37dc475755392ef27ad816ad32832828db29784630555b60e53",
+  "scorer_version": "0.5.0",
+  "scorer_code_sha256": "6d1c01fb6422665bd3dc90441c96cc86d5839dca21f44eaf7f693e5e7cf66639",
+  "samples_sha256": "620743f95be12dc1ba878ae94f17436d5bba8378bb1ded5e15d2ea8bc7684f9f",
   "images": {
     "gcc": {
       "tag": "docker.io/library/qualtor-gcc:14.2.0-gtest1.12.1-cxx11",
@@ -834,5 +1023,23 @@
       "platform": "linux/arm64"
     }
   },
-  "finished_at": "2026-10-29T06:43:58.531901+00:00"
+  "finished_at": "2026-10-29T17:12:48.655552+00:00",
+  "environments": {
+    "bank-20261021": {
+      "name": "bank-20261021",
+      "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd",
+      "images": {
+        "gcc": {
+          "tag": "docker.io/library/qualtor-env-bank-20261021-gcc:9abcad8ef238",
+          "id": "sha256:2f3d4143870ad0135491dbaeea1b4d4af80bdfc274bfced8913f903a35c5a5a5",
+          "platform": "linux/arm64"
+        },
+        "clang": {
+          "tag": "docker.io/library/qualtor-env-bank-20261021-clang:9abcad8ef238",
+          "id": "sha256:76b0083ec874c3ee645584e7208e930112a02028870640fc98e9c618685b49da",
+          "platform": "linux/arm64"
+        }
+      }
+    }
+  }
 }

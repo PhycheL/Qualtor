@@ -1,0 +1,54 @@
+{
+  "task": "qt-mustache",
+  "note": "按 D011/D015 复核；源码有定义的输入域不由隐藏测试收窄。平台相关结论只验证 Linux ARM64。",
+  "mutants": [
+    {
+      "id": "cxx_assign_const:/repo/src/mustache.cpp:448:19:448:20",
+      "reason": "Raw(2) 改为 42，两个有效 escapeMode 判断均不匹配，若忽略类型约束文本不变；但 42 超出 EscapeMode 枚举范围，UBSan 在 Tag 复制时报告 invalid value。原 Raw 驱动正常，只有 UB 差异。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-qt-mustache/mutation_baseline.json",
+        "benchmark/qt-mustache/source/src/mustache.cpp:448",
+        "runs/step-c-ir-qt-mustache-20261029-01/mutant-ir.json",
+        "runs/step-c-ub-mustache-20261029-04/results.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）",
+      "verdict": "undefined_only"
+    },
+    {
+      "id": "cxx_le_to_lt:/repo/src/mustache.cpp:568:13:568:15",
+      "reason": "差异仅在独占标签到达无换行的文件末尾：原代码把 tag.end 增到 size()+1，随后 QStringView::mid 的长度为负，违反前置条件；变异避免该越界。原程序所有有定义路径都在此边界前退出，输出相同。诊断证实原路径 ASSERT、变异正常，按 D015 不将原程序 UB 的差异计入分母。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-qt-mustache/mutation_baseline.json",
+        "benchmark/qt-mustache/source/src/mustache.cpp:568",
+        "runs/step-c-ir-qt-mustache-20261029-01/mutant-ir.json",
+        "runs/step-c-ub-mustache-20261029-04/results.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）",
+      "verdict": "undefined_only"
+    },
+    {
+      "id": "cxx_lt_to_le:/repo/src/mustache.cpp:34:18:34:19",
+      "reason": "循环 <= 多访问 QString::at(size())，违反 Qt 索引前置条件。原空串正常，副本触发 Qt ASSERT；正常内存中的尾 NUL 没有定义为 QString::at 可访问元素。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-qt-mustache/mutation_baseline.json",
+        "benchmark/qt-mustache/source/src/mustache.cpp:34",
+        "runs/step-c-ir-qt-mustache-20261029-01/mutant-ir.json",
+        "runs/step-c-ub-mustache-20261029-04/results.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）",
+      "verdict": "undefined_only"
+    },
+    {
+      "id": "cxx_replace_scalar_call:/repo/src/mustache.cpp:125:36:125:43",
+      "reason": "真实 IR 的 i1 标量替换截断为 false，移除空栈保护；对非空栈无差异，对空栈调用 last() 违反前置条件。公开 pop/stringValue 驱动证实原代码正常、变异触发 Qt ASSERT。",
+      "evidence": [
+        "runs/step-c-seed-20261029-09-qt-mustache/mutation_baseline.json",
+        "benchmark/qt-mustache/source/src/mustache.cpp:125",
+        "runs/step-c-ir-qt-mustache-20261029-01/mutant-ir.json",
+        "runs/step-c-ub-mustache-20261029-04/results.json"
+      ],
+      "by": "Codex（2026-10-29；固定 Linux ARM64 环境，源码与真实 Mull IR 复核）",
+      "verdict": "undefined_only"
+    }
+  ]
+}

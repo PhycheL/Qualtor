@@ -1,0 +1,13 @@
+{
+  "repository": "https://github.com/exercism/cpp",
+  "commit": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+  "license": "MIT",
+  "upstream_paths": {
+    "src/meetup.h": "exercises/practice/meetup/.meta/example.h"
+  },
+  "upstream_tests": "exercises/practice/meetup/meetup_test.cpp",
+  "files": {
+    "LICENSE": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+    "src/meetup.h": "53f097b8a815290a4358aecbcfd5e67ce504ad0c908f6aec0f0601df87b98f94"
+  }
+}

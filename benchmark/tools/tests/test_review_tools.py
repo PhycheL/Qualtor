@@ -145,6 +145,19 @@ class MutantIrTest(unittest.TestCase):
         self.assertEqual((report[0]["removed_calls"], report[0]["added_calls"]), ({"_ZN1SD2Ev": 1}, {}))
         self.assertIn("problem", report[1])
 
+    def test_prepared_command_preserves_environment_and_generated_headers(self):
+        import mutant_ir
+        (self.tmp / 'compile_commands.json').write_text(json.dumps([{
+            'file': '/repo/src/a.cc', 'directory': '/build',
+            'command': 'clang++-19 -DQT_CORE_LIB -I/build -isystem /usr/include/qt '
+                       '-std=c++11 -fpass-plugin=/usr/lib/mull-ir-frontend-19 -o a.o -c /repo/src/a.cc'}]))
+        self.assertEqual(mutant_ir.prepared_command(self.tmp, 'src/a.cc', '/out/a.ll'),
+                         ['clang++-19', '-DQT_CORE_LIB', '-I/build', '-isystem', '/usr/include/qt',
+                          '-std=c++11', '-fpass-plugin=/usr/lib/mull-ir-frontend-19', '/repo/src/a.cc',
+                          '-S', '-emit-llvm', '-o', '/out/a.ll'])
+        with self.assertRaises(ValueError):
+            mutant_ir.prepared_command(self.tmp, 'not-target.cc', '/out/a.ll')
+
     def test_resolve_only_clears_destructor_only_deletions(self):
         import mutant_ir
         (self.tmp / "t").mkdir()

@@ -1,0 +1,11 @@
+--- a/src/meetup.h
++++ b/src/meetup.h
+@@ -168,7 +168,7 @@
+ 
+     boost::gregorian::date third_weekday(boost::date_time::weekdays day) const {
+         return nth_weekday(
+-            boost::gregorian::nth_day_of_the_week_in_month::third, day);
++            boost::gregorian::nth_day_of_the_week_in_month::fourth, day);
+     }
+ 
+     boost::gregorian::date fourth_weekday(

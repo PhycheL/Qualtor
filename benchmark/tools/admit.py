@@ -45,6 +45,15 @@ def check(task_id):
     baseline = common.load_baseline(task)
     if baseline is None:
         return problems + ["没有变异分母，先在 Docker 中标定"], {}
+    selected = common.task_environment(task.get('build', {}))
+    environment_info = {}
+    if selected:
+        recipe, digest = selected
+        environment = baseline.get('environment', {})
+        if (environment.get('name') != recipe['name'] or environment.get('recipe_sha256') != digest
+                or set(environment.get('images', {})) != {'gcc', 'clang'}):
+            problems.append('变异分母的环境缺失或配方已变化，需重新标定')
+        environment_info['environment'] = environment
     na = common.mutation_not_applicable(task, baseline)
     if na:
         reference = baseline["reference"]
@@ -84,7 +93,7 @@ def check(task_id):
         info = {k:0 for k in ("mutants", "equivalent", "unstable", "review_needed", "confirmed_non_equivalent")}
         info.update(reference_m1=None, reference_raw_m1=None, review=baseline["review"]["status"],
                     not_applicable=na, reference_c1=reference.get("c1"), handwritten=len(hw), handwritten_detected=detected)
-        return problems, info
+        return problems, {**info, **environment_info}
     statuses = [m["reference_status"][0] for m in baseline["mutants"]]
     timeouts = statuses.count("timeout")
     info = {"mutants": len(baseline["mutants"]), "equivalent": len(baseline["equivalent"]),
@@ -104,7 +113,7 @@ def check(task_id):
         if ids:
             problems.append(f"{len(ids)} {label}：" + "、".join(i.split("/src/")[-1] for i in ids[:5])
                             + ("……" if len(ids) > 5 else ""))
-    return problems, info
+    return problems, {**info, **environment_info}
 
 
 def main():
@@ -160,6 +169,8 @@ def main():
                                     "reference_raw_m1": info["reference_raw_m1"],
                                     "counts": {k: info[k] for k in ("mutants", "equivalent", "unstable", "review_needed",
                                                                      "confirmed_non_equivalent")}}
+        if 'environment' in info:
+            record['tasks'][task_id]['environment'] = info['environment']
         print(f"已签署并准入：{task_id}")
     record["tasks"] = dict(sorted(record["tasks"].items()))
     common.write_json(common.ADMISSION, record)
