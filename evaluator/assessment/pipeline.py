@@ -3,6 +3,7 @@
 步骤与判定见 docs/评测模块与校准样本设计.md 第 5 节、docs/评分算法.md 第 3–4 节。
 """
 from pathlib import Path
+import shutil
 import traceback
 
 from common import (REPO, ASSESSMENT, copy_variant_tree, load_baseline, load_coverage_baseline,
@@ -72,6 +73,8 @@ class ProductAssessment:
                 "build": self.task.get("build", {}),
                 "include_dirs": [self.repo_path(rel, root) for rel in self.task["include_dirs"]] + [f"{product}/tests"],
                 "test_sources": [f"{product}/{rel}" for rel in product_test_sources(self.product)],
+                "test_files": [f"{product}/{p.relative_to(self.product)}"
+                               for p in sorted((self.product / "tests").rglob("*")) if p.is_file()],
                 "timeout": TIMEOUT["build"]}
 
     def phase(self, label, toolchain, mounts, job, env=None, kind="build"):
@@ -212,7 +215,11 @@ class ProductAssessment:
                            "build": (clang_build, False)},
                           self.build_job("mull", self.at("build", clang_build), self.target_paths()), env)
         if step["status"] != "built":
-            # 同一份测试在 GCC 下能编译、在 Clang 下不能，属于工具链差异，需要人工排查。
+            if not self.prep and step.get("failure_origin") == "product_tests":
+                self.result["metric_failures"] = {"M1": {
+                    "reason": "clang_test_compile_failed", "errors": step["errors"],
+                    "evidence_dir": self.result["steps"]["clang-build"]["dir"]}}
+                return
             raise Infra(f"clang_build_failed: {step.get('reason')}; {step.get('diagnostics')}")
         job = {"phase": "mull", "binary": f"{self.at('build', clang_build)}/scored_tests", "tests": valid,
                "sources": self.target_paths(), "workers": 2,
@@ -248,7 +255,17 @@ class ProductAssessment:
         build_dir = self.out / f"{label}-build" / "build"
         build_dir.mkdir(parents=True)
         vdir = self.out / f"{label}-source"
-        tree_sha256 = copy_variant_tree(self.task, variant, vdir)
+        if vdir.exists() or vdir.is_symlink():
+            raise Infra(f"variant_source_already_exists: {vdir}")
+        try:
+            tree_sha256 = copy_variant_tree(self.task, variant, vdir)
+            self.result["steps"][f"{label}-source"] = {"status": "copied", "source_tree_sha256": tree_sha256}
+            return self._variant_from_tree(label, variant, valid, vdir, build_dir, tree_sha256)
+        finally:
+            if vdir.exists():
+                shutil.rmtree(vdir)
+
+    def _variant_from_tree(self, label, variant, valid, vdir, build_dir, tree_sha256):
         targets = self.target_paths(vdir)
         step = self.phase(f"{label}-build", "gcc",
                           {"repo": (vdir, True), "product": (self.product, True),

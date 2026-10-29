@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""重建 D018 的 CAL-21–28；期望先固定，再运行完整 Docker 校准。"""
+"""重建 D018/D019 的 CAL-21–29；期望先固定，再运行完整 Docker 校准。"""
 from pathlib import Path
 import re
 import shutil
@@ -82,5 +82,17 @@ def main():
            {'null-string':'not_detected'},weak='LoadTildeAsNull',failed={'null-string':[]})
     sample('yaml-cpp-emitter-utils','CAL-28','替换依赖头 exp.h，与被测源文件的 Mull 并存',
            [relation('M1_e2e','>=',.8),relation('M4','==',1)],{'carriage-return':'detected'})
+    sample('yaml-cpp-emitter-utils','CAL-29','GCC 接受、Clang 拒绝测试中的越界转义；只影响 M1',
+           [relation('M1_e2e','==',0),relation('V2','==',1),relation('C1','>=',.8),relation('M4','==',1)],
+           {'carriage-return':'detected'})
+    folder=HERE/'yaml-cpp-emitter-utils/CAL-29'
+    (folder/'final/tests/clang_escape.cc').write_text(
+        '#include <gtest/gtest.h>\nTEST(ClangCompatibility, OutOfRangeEscape) {\n'
+        '  const char* text = "\\x100";\n  EXPECT_EQ(1u, sizeof("\\x100") - 1);\n  (void)text;\n}\n')
+    freeze_product(folder/'final',frozen_at='2026-10-29T00:00:00+00:00')
+    from common import read_json
+    expected=read_json(folder/'expected.json')
+    expected['hard'].update(metrics={'M1_valid':None},metric_failures={'M1':'clang_test_compile_failed'})
+    write_json(folder/'expected.json',expected)
 
 if __name__=='__main__':main()

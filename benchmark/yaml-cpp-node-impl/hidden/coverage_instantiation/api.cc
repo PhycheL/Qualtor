@@ -14,4 +14,7 @@ void instantiate_yaml_api(YAML::Node& n, const YAML::Node& cn) {
   (void)n.IsDefined(); (void)n.Mark(); (void)n.Type(); (void)n.Scalar();
   (void)n.Tag(); n.SetTag("tag"); (void)n.Style(); n.SetStyle(YAML::EmitterStyle::Flow);
   (void)n.size(); (void)n.is(copied); (void)(n==copied);
+  YAML::Node from_iterator(*cn.begin());
+  const char* const_ptr = "key";
+  (void)n[const_ptr]; (void)cn[const_ptr];
 }

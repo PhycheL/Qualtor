@@ -216,6 +216,8 @@ def metrics(result):
         out["M1_valid"] = None
     if (result.get("not_applicable") or {}).get("M1"):
         out["M1_e2e"] = out["M1_valid"] = None
+    elif (result.get("metric_failures") or {}).get("M1"):
+        out["M1_e2e"], out["M1_valid"] = 0.0, None
     coverage = counts.get("coverage") if status == SCORED else None
     for key, field in (("C1", "lines"), ("C2", "branches"), ("C3", "functions")):
         total = (coverage or {}).get("total", {}).get(field)
@@ -248,6 +250,8 @@ def stable_view(result):
             "tests": result.get("tests"), "counts": result.get("counts"),
             "mutants": result.get("mutants"),
             "not_applicable": result.get("not_applicable", {}),
+            "metric_failures": {k: {f: v[f] for f in ("reason", "errors")}
+                                for k, v in result.get("metric_failures", {}).items()},
             "variants": [{k: v.get(k) for k in ("id", "kind", "expect", "outcome", "failed_tests")}
                          for v in result.get("variants") or []]}
     return view

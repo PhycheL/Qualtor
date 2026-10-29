@@ -3,13 +3,13 @@
   "note": "已准入题目清单（R-08）：正式比较只用这里登记、且当前题目指纹与登记时一致的题目。由 benchmark/tools/admit.py 写入。",
   "tasks": {
     "cpp-peglib-parser": {
-      "task_sha256": "9e3b0680cc08664da06f0875bc8a12296661508d9d5b1d20ff163dbae89b309e",
-      "admitted_at": "2026-10-29T04:22:29.989135+00:00",
+      "task_sha256": "1edd324b02535d2ec14359ff179d5ca3d828022bb8c35bb4ddc3979dc9ea14cd",
+      "admitted_at": "2026-10-29T06:28:03.077663+00:00",
       "by": "Codex（AI 复核，Linux ARM64）",
-      "note": "M1 不适用（header_only）；参考 C1 0.8869318181818182 达标，手写变异 5/5 检出，真实缺陷与等价版本按预期。",
+      "note": "0.4.1 收尾轮：Docker 重新标定通过；公开 API 冻结位置核查与说明修正完成，参考测试和业务源码未改，Q-03 人工审阅未做。",
       "reference": {
         "m1": null,
-        "c1": 0.8869318181818182,
+        "c1": 0.8681868743047831,
         "threshold": 0.8,
         "valid_stable": true,
         "handwritten": 5,
@@ -2902,13 +2902,13 @@
       }
     },
     "utfcpp-checked": {
-      "task_sha256": "eac58e96e554d3693043b3a4abc3c605a502a1bb42369e1fb7d7d10a3cc38bd3",
-      "admitted_at": "2026-10-29T04:22:29.960185+00:00",
+      "task_sha256": "6b814d5e37289e3373ef86c98e2aed75bc5e21e10f51ed14df74d76bc9f1d458",
+      "admitted_at": "2026-10-29T06:28:03.070892+00:00",
       "by": "Codex（AI 复核，Linux ARM64）",
-      "note": "M1 不适用（header_only）；参考 C1 0.9344608879492601 达标，手写变异 5/5 检出，真实缺陷与等价版本按预期。",
+      "note": "0.4.1 收尾轮：Docker 重新标定通过；公开 API 冻结位置核查与说明修正完成，参考测试和业务源码未改，Q-03 人工审阅未做。",
       "reference": {
         "m1": null,
-        "c1": 0.9344608879492601,
+        "c1": 0.9094650205761317,
         "threshold": 0.8,
         "valid_stable": true,
         "handwritten": 5,
@@ -3009,10 +3009,10 @@
       }
     },
     "yaml-cpp-emitter-utils": {
-      "task_sha256": "c29c582be532c7c0cc6a854c88f8207068cb526f94e91fe9308bf5dd8a32947f",
-      "admitted_at": "2026-10-29T04:22:29.946775+00:00",
+      "task_sha256": "ae6dc389a3fe100aae195e2831ed07c076f2d4353974adb86b382c786d13ed08",
+      "admitted_at": "2026-10-29T06:28:03.060300+00:00",
       "by": "Codex（AI 复核，Linux ARM64）",
-      "note": "按 benchmark/tools/mutant_review/yaml-cpp-emitter-utils/ 的复核结论签署：等价候选 22 项均有结论，不稳定 1 项按规则剔除，探针超时 7 项保留在分母中。",
+      "note": "0.4.1 收尾轮：Docker 重新标定通过；公开 API 冻结位置核查与说明修正完成，参考测试和业务源码未改，Q-03 人工审阅未做。",
       "reference": {
         "killed": 203,
         "timeout": 7,
@@ -3031,13 +3031,13 @@
       }
     },
     "yaml-cpp-node-impl": {
-      "task_sha256": "ad407ef4c1320a86cd9e26a887eff6c1278ad4c7cb944af2fbb5e6eea504d6ac",
-      "admitted_at": "2026-10-29T04:22:29.923567+00:00",
+      "task_sha256": "b2bcbc85146ff387ff116db99f3fb1c62aae59cee3be116a312d90c424ea0c67",
+      "admitted_at": "2026-10-29T06:28:03.039541+00:00",
       "by": "Codex（AI 复核，Linux ARM64）",
-      "note": "M1 不适用（header_only）；参考 C1 0.8728813559322034 达标，手写变异 5/5 检出，真实缺陷与等价版本按预期。",
+      "note": "0.4.1 收尾轮：Docker 重新标定通过；公开 API 冻结位置核查与说明修正完成，参考测试和业务源码未改，Q-03 人工审阅未做。",
       "reference": {
         "m1": null,
-        "c1": 0.8728813559322034,
+        "c1": 0.8477366255144033,
         "threshold": 0.8,
         "valid_stable": true,
         "handwritten": 5,

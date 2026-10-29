@@ -41,6 +41,24 @@ void instantiate_peglib_public_api(peg::parser& parser, peg::Definition& rule,
   (void)peg::ast_to_s(ast);
   (void)peg::AstOptimizer(true).optimize(ast);
   (void)context;
+  (void)values.name();
+  // 上游未引用的公开构造/重载；此函数不执行，避免改变参考测试行为。
+  const std::vector<std::shared_ptr<peg::Ope>> operators{peg::chr('a')};
+  const peg::Sequence sequence(operators);
+  peg::Sequence copied_sequence(sequence);
+  peg::Sequence moved_sequence{std::vector<std::shared_ptr<peg::Ope>>(operators)};
+  peg::PrioritizedChoice choice{std::vector<std::shared_ptr<peg::Ope>>(operators)};
+  (void)choice.size();
+  peg::Definition definition(operators.front());
+  peg::Definition moved_definition(std::move(definition));
+  (void)rule.parse("a", data);
+  peg::parser sized_parser("S <- 'a'", 8);
+  (void)parser.load_grammar("S <- 'a'", peg::Rules());
+  (void)static_cast<const peg::parser&>(parser)["S"];
+  (void)peg::call<peg::any>([](){ return peg::any(1); });
+  // 取地址，避免 constexpr 调用被折叠而没有 gcov 函数记录。
+  unsigned int (*tag)(const char*, size_t) = &peg::udl::operator "" _;
+  (void)tag("S", 1);
 }
 
 template struct peg::AstBase<peg::EmptyType>;

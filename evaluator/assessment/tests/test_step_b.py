@@ -3,6 +3,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import calibrate
@@ -71,7 +72,14 @@ class VariantTreeTest(unittest.TestCase):
         product = self.root / 'product/tests'
         product.mkdir(parents=True)
         (product / 't.cc').write_text('// test\n')
-        ex = ScriptedExecutor(['S.A'])
+        class InspectingExecutor(ScriptedExecutor):
+            def run_phase(inner, label, toolchain, mounts, *args):
+                if label == 'v01-build':
+                    copied = mounts['repo'][0]
+                    self.assertEqual((copied/'a.h').read_text(), 'inline int value(){ return 2; }\n')
+                    self.assertEqual((copied/'a.cpp').read_bytes(), (common.source_root(self.task)/'a.cpp').read_bytes())
+                return super().run_phase(label, toolchain, mounts, *args)
+        ex = InspectingExecutor(['S.A'])
         assessment = pipeline.ProductAssessment(ex, self.task, product.parent, self.root/'out', {}, Audit(self.root/'audit'))
         result = assessment._variant(1, self.variant, ['S.A'])
         call = ex.calls[0]
@@ -80,8 +88,7 @@ class VariantTreeTest(unittest.TestCase):
         self.assertNotIn('variant', call['mounts'])
         self.assertEqual(call['job']['target_sources'], ['/repo/a.cpp'])
         self.assertEqual(call['job']['support_sources'], ['/repo/dep.cpp'])
-        self.assertEqual((copied/'a.h').read_text(),'inline int value(){ return 2; }\n')
-        self.assertEqual((copied/'a.cpp').read_bytes(),(common.source_root(self.task)/'a.cpp').read_bytes())
+        self.assertFalse(copied.exists())
         self.assertEqual(len(result['source_tree_sha256']),64)
         from host_executor import HostExecutor
         assessment.ex=HostExecutor()
@@ -101,6 +108,47 @@ class VariantTreeTest(unittest.TestCase):
         self.task['source']['files']['a.cpp']='0'*64
         with self.assertRaisesRegex(common.TaskError,'哈希不一致'):
             common.copy_variant_tree(self.task,self.variant,self.root/'copy2')
+
+    def test_source_and_variant_paths_cannot_traverse_or_use_symlinks(self):
+        source = common.source_root(self.task)
+        original = dict(self.task['source']['files'])
+        for index, rel in enumerate(('../outside.h', '/tmp/outside.h', 'x/../../outside.h')):
+            with self.subTest(path=rel):
+                self.task['source']['files'] = {rel: original['a.h']}
+                with self.assertRaisesRegex(common.TaskError, '不合法的源码路径'):
+                    common.copy_variant_tree(self.task, self.variant, self.root/f'bad-{index}')
+        self.task['source']['files'] = original
+        for index, root in enumerate((source, common.variant_dir(self.task, self.variant))):
+            path = root/'a.h'
+            data = path.read_bytes()
+            other = self.root/f'outside-{index}.h'
+            other.write_bytes(data)
+            path.unlink(); path.symlink_to(other)
+            with self.assertRaisesRegex(common.TaskError, '符号链接'):
+                common.copy_variant_tree(self.task, self.variant, self.root/f'link-{index}')
+            path.unlink(); path.write_bytes(data)
+        (source/'linked-dir').symlink_to(source, target_is_directory=True)
+        self.task['source']['files'] = {'linked-dir/a.h': original['a.h']}
+        with self.assertRaisesRegex(common.TaskError, '符号链接'):
+            common.copy_variant_tree(self.task, self.variant, self.root/'dir-link')
+
+    def test_source_copy_removed_on_copy_build_and_run_failure(self):
+        import pipeline
+        from audit import Audit
+        from test_docker_wiring import ScriptedExecutor
+        for failure in ('copy', 'v01-build', 'v01-run'):
+            with self.subTest(failure=failure):
+                class Failing(ScriptedExecutor):
+                    def run_phase(inner, label, *args):
+                        if label == failure: raise pipeline.Infra('fixture failure')
+                        return super().run_phase(label, *args)
+                if failure == 'copy': self.variant['files']['a.h'] = '0'*64
+                else: self.variant['files']['a.h'] = common.sha256_file(common.variant_dir(self.task,self.variant)/'a.h')
+                out = self.root/failure
+                assessment = pipeline.ProductAssessment(Failing(['S.A']), self.task, self.root/'product', out, {}, Audit(self.root/'audit'))
+                with self.assertRaises((pipeline.Infra, common.TaskError)):
+                    assessment._variant(1, self.variant, ['S.A'])
+                self.assertFalse((out/'v01-source').exists())
 
 class HeaderCoverageTest(unittest.TestCase):
     def test_instantiations_and_translation_units_share_source_positions(self):
@@ -155,6 +203,32 @@ class HeaderCoverageTest(unittest.TestCase):
 
 
 class ApplicabilityTest(unittest.TestCase):
+    def test_na_tasks_skip_clang_and_mull_but_run_variants(self):
+        from audit import Audit
+        from test_docker_wiring import ScriptedExecutor, REFERENCE_PRODUCT
+        import pipeline
+        for reason in ('header_only', 'zero_mutants'):
+            with self.subTest(reason=reason), tempfile.TemporaryDirectory() as tmp:
+                task = common.load_task('gildedrose-update-quality')
+                ex = ScriptedExecutor(['S.A'])
+                with patch.object(pipeline, 'mutation_not_applicable', return_value=reason):
+                    result = pipeline.assess_product(ex, task, REFERENCE_PRODUCT, Path(tmp)/'out', {}, Audit(Path(tmp)/'audit'))
+                self.assertEqual(result['status'], 'scored', result.get('infra_detail'))
+                self.assertTrue(result['variants'])
+                self.assertTrue(all(c['toolchain'] == 'gcc' for c in ex.calls))
+                self.assertIsNone(result['metrics']['M1_e2e'])
+                self.assertIsNone(result['metrics']['M1_valid'])
+
+    def test_zero_mutants_not_allowed_at_scoring(self):
+        from container_steps import phase_mull
+        from unittest.mock import Mock
+        with tempfile.TemporaryDirectory() as tmp:
+            audit = Mock()
+            audit.run.return_value = {'returncode':0, 'timed_out':False, 'stdout':'No mutants found', 'stdout_log':'out'}
+            job = {'out_dir':tmp, 'work_dir':tmp, 'binary':'/build/scored_tests', 'tests':['S.A'],
+                   'minimum_timeout_ms':100, 'allow_zero_mutants':False}
+            self.assertEqual(phase_mull(job,audit), {'status':'infra_error','reason':'unexpected_mull_reports: 0'})
+
     def test_zero_mutants_requires_all_three_conditions(self):
         from container_steps import zero_mutants
         good={'returncode':0,'stdout':'[info] No mutants found','timed_out':False}

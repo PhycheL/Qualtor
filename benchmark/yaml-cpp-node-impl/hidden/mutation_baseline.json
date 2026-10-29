@@ -1,9 +1,9 @@
 {
   "task": "yaml-cpp-node-impl",
-  "created_at": "2026-10-29T04:21:45.753064+00:00",
-  "created_by_run": "step-b-formal-20261029-01-yaml-cpp-node-impl",
-  "scorer_version": "0.4.0",
-  "scorer_code_sha256": "a88c9194e273ad9cd3ec962c0b2993a7b1a37b1218a76aee7e406cf7d928af8f",
+  "created_at": "2026-10-29T06:25:09.354203+00:00",
+  "created_by_run": "step-b-closeout-prepare-20261029-01-yaml-cpp-node-impl",
+  "scorer_version": "0.4.1",
+  "scorer_code_sha256": "9da5694e4f285d1319d5e66ee81c3335c171f501ff37f3f0f45c8d61f8f7f5ff",
   "images": {
     "gcc": "sha256:bd01e6e4f0e786bbc70f71b696a794906dffdf19632dec81204e781d94eeeb9e",
     "clang": "sha256:013ac35a1daed9c4745e6fe27a97765ded1e0b195261a2abb47cb0392f8b962f"
@@ -20,12 +20,12 @@
     "status": "reviewed",
     "by": "Codex（AI 复核，Linux ARM64）",
     "at": "2026-10-29",
-    "note": "M1 不适用（header_only）；参考 C1 0.8728813559322034 达标，手写变异 5/5 检出，真实缺陷与等价版本按预期。"
+    "note": "0.4.1 收尾轮：Docker 重新标定通过；公开 API 冻结位置核查与说明修正完成，参考测试和业务源码未改，Q-03 人工审阅未做。"
   },
   "zero_mutants_evidence": [],
   "reference": {
     "m1": null,
-    "c1": 0.8728813559322034,
+    "c1": 0.8477366255144033,
     "threshold": 0.8,
     "valid_stable": true,
     "handwritten": 5,

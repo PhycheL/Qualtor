@@ -75,15 +75,17 @@ def yaml_task(task_id,args):
     variant=bug_variant(directory,repo,args.bugscpp,'yaml_cpp',number,commit,vid,regression)
     extra_material(directory)
     variants=[variant]+b.handwritten_variants(directory)
+    coverage_description = ('覆盖率构建给全部单元插桩，统计只限被测头文件；准备阶段冻结 coverage_baseline.json。'
+                            if number==4 else '覆盖率只给被测源文件插桩并统计；exp.h 是真实缺陷的替换文件，不是被测头文件。')
     b.write_text(directory/'hidden/README.md',f'''# {task_id} 隐藏材料
 
 业务源码逐字节取自 yaml-cpp `{commit}`；独立快照，保留原始许可证与构建配置。
-被测文件 `{target}`，其余 src/*.cpp 作依赖；头文件题的覆盖率构建给全部单元插桩，统计只限被测头文件。
+被测文件 `{target}`，其余 src/*.cpp 作依赖。{coverage_description}
 参考测试为上游 GoogleTest；扩展名改为 .cc，去除上游已禁用的测试，沿用步骤 A 的 throw_on_failure 设置。
 真实缺陷来自 BugsC++ yaml_cpp/{number} 的 buggy.patch；提交、patch 哈希和回归用例记录在 upstream_evidence.json。
 预期回归用例：{', '.join(regression)}。实际检出名单以 Docker 标定为准。
-手写变异来自 benchmark/tools/handwritten_variants/{task_id}/；均需编译成功并由断言失败检出。
-参考测试未经过人工审阅。准备阶段冻结 coverage_baseline.json；未进入分母的 API 说明见 coverage_notes.md（若有）。
+{'手写变异来自 benchmark/tools/handwritten_variants/'+task_id+'/；均需编译成功并由断言失败检出。' if number==4 else 'M1 使用冻结的 Mull 分母；M4 使用 carriage-return 真实缺陷版本。'}
+参考测试未经过人工审阅。{'冻结范围说明见 coverage_notes.md。' if number==4 else '本题没有头文件冻结覆盖率分母。'}
 ''')
     support=sorted(p for p in names if p.startswith('src/') and p.endswith('.cpp') and p!=target)
     finish_task(directory,'https://github.com/jbeder/yaml-cpp',commit,[] if number==4 else [target],support,
@@ -138,12 +140,18 @@ def library_task(task_id,args):
         repository='https://github.com/yhirose/cpp-peglib';includes=['.'];tier='hard'
     extra_material(directory)
     variants+=b.handwritten_variants(directory)
+    conversion = ('沿用 Catch 断言兼容层，TEST_CASE 改为 GoogleTest，SECTION 独立作用域按顺序执行；'
+                  'GlobalGrammarScope 恢复共享语法的 Holder 指针，保留原断言，原因见 coverage_notes.md。'
+                  if name=='cpp-peglib' else
+                  'utfcpp 只替换 ftest include；其他库沿用 Catch 断言兼容层，TEST_CASE 改为 GoogleTest，SECTION 独立作用域按顺序执行，CAPTURE 仅去除诊断输出。')
+    provenance = ('真实缺陷来自 BugsC++ cpp_peglib/5：在修复提交上应用 buggy.patch 生成 left-recursion 版本；'
+                  '数据集提交、补丁哈希和回归用例见 upstream_evidence.json。\n' if name=='cpp-peglib' else '')
     b.write_text(directory/'hidden/README.md',f'''# {task_id} 隐藏材料
 
 来源：{repository}，提交 `{commit}`。source/ 中业务文件未改动，保留许可证。
 被测头文件：{', '.join(targets)}。其余头文件只作可见依赖，不进入覆盖率分母。
-参考测试从 {', '.join(tests)} 机械转换：utfcpp 只替换 ftest include；其他库沿用 Catch 断言兼容层，TEST_CASE 改为 GoogleTest，SECTION 独立作用域按顺序执行，CAPTURE 仅去除诊断输出。
-手写变异源文件与说明：benchmark/tools/handwritten_variants/{task_id}/；参考测试尚未人工审阅。
+参考测试从 {', '.join(tests)} {'转换' if name=='cpp-peglib' else '机械转换'}：{conversion}
+{provenance}手写变异源文件与说明：benchmark/tools/handwritten_variants/{task_id}/；参考测试尚未人工审阅。
 冻结范围及未实例化成员见 coverage_notes.md（若有）；缺陷、覆盖率和变异检出结论以 Docker 标定为准。
 ''')
     finish_task(directory,repository,commit,[],[],includes,tier,['templates','header-only'],

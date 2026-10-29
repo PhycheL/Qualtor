@@ -72,6 +72,14 @@ def check_hard(hard, result):
     for key in ("status", "invalid_reason"):
         if key in hard and result.get(key) != hard[key]:
             problems.append(f"{key}: 期望 {hard[key]}，实际 {result.get(key)}（{result.get('infra_detail') or ''}）"[:400])
+    for metric, reason in hard.get("metric_failures", {}).items():
+        actual = result.get("metric_failures", {}).get(metric, {})
+        if actual.get("reason") != reason or not actual.get("errors"):
+            problems.append(f"{metric} 失败原因: 期望 {reason} 及错误位置，实际 {actual}")
+    for metric, value in hard.get("metrics", {}).items():
+        metrics = result.get("metrics") or {}
+        if metric not in metrics or metrics[metric] != value:
+            problems.append(f"{metric}: 期望 {value}，实际 {metrics.get(metric)}")
     tests = result.get("tests") or {}
     explicit = hard.get("tests", {})
     for name, status in explicit.items():
@@ -178,6 +186,7 @@ def evaluate(task, samples, results, capabilities):
         entry["metrics"] = {k: metrics[sid].get(k) for k in ("M1_e2e", "M1_valid", "C1", "C2", "C3", "S1", "S2_max",
                                                               "V2", "V3", "M2", "M4", "F1")}
         entry["not_applicable"] = rounds[0].get("not_applicable", {})
+        entry["metric_failures"] = rounds[0].get("metric_failures", {})
         entry["passed"] = not entry["problems"]
         report["passed"] = report["passed"] and entry["passed"]
         report["samples"][sid] = entry
@@ -190,15 +199,17 @@ def markdown(report):
              f"- 结论：**{'通过' if report['passed'] else '未通过'}**" + ("（部分题目或样本，不计为正式校准）" if report["partial"] else ""),
              f"- 题目：" + "、".join(f"{tid}（{len(info['samples'])} 个样本）" for tid, info in report["tasks"].items()),
              f"- 每个样本评分 {report['rounds']} 次；镜像：" + "、".join(f"{k} {v['id'][:19]}" for k, v in report["images"].items()),
-             "", "| 题目 | 样本 | 结论 | 状态 | M1 端到端 | M4 | V2 | C1 | S1 | 不适用原因 | 问题 |", "|---|---|---|---|---|---|---|---|---|---|---|"]
+             "", "| 题目 | 样本 | 结论 | 状态 | M1 端到端 | M4 | V2 | C1 | S1 | 不适用或单项失败原因 | 问题 |", "|---|---|---|---|---|---|---|---|---|---|---|"]
     fmt = lambda v: "—" if v is None else f"{v:.3f}"
     for sid, entry in report["samples"].items():
         m = entry["metrics"]
         status = entry["status"] + (f"（{entry['invalid_reason']}）" if entry["invalid_reason"] else "")
         problems = "；".join(entry["problems"]).replace("|", "/") or "—"
+        reasons = [k + ': ' + v for k, v in entry.get('not_applicable', {}).items()]
+        reasons += [k + ' 失败: ' + v['reason'] for k, v in entry.get('metric_failures', {}).items()]
         lines.append(f"| {entry['task']} | {sid} | {'通过' if entry['passed'] else '未通过'} | {status} | {fmt(m['M1_e2e'])} | "
                      f"{fmt(m.get('M4'))} | {fmt(m.get('V2'))} | {fmt(m['C1'])} | {fmt(m['S1'])} | "
-                     f"{', '.join(k + ': ' + v for k, v in entry.get('not_applicable', {}).items()) or '—'} | {problems} |")
+                     f"{', '.join(reasons) or '—'} | {problems} |")
     return "\n".join(lines) + "\n"
 
 

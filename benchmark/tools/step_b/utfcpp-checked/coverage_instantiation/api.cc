@@ -2,4 +2,8 @@
 #include <string>
 template class utf8::iterator<std::string::iterator>;
 template class utf8::unchecked::iterator<std::string::iterator>;
-// 自由函数模板由上游 checked/unchecked API 测试及 CPP11 测试实例化。
+// 仅准备阶段编译；把上游测试未引用的 unchecked 重载也纳入冻结分母。
+void instantiate_unchecked_replacement(const std::string& input) {
+  (void)utf8::unchecked::replace_invalid(input);
+  (void)utf8::unchecked::replace_invalid(input, 0xfffd);
+}

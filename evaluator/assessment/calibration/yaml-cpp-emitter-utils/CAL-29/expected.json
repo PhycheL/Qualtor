@@ -1,0 +1,51 @@
+{
+  "sample": "CAL-29",
+  "description": "GCC 接受、Clang 拒绝测试中的越界转义；只影响 M1",
+  "hard": {
+    "status": "scored",
+    "tests_default": "valid",
+    "variants": {
+      "carriage-return": "detected"
+    },
+    "metrics": {
+      "M1_valid": null
+    },
+    "metric_failures": {
+      "M1": "clang_test_compile_failed"
+    }
+  },
+  "relations": [
+    {
+      "metric": "M1_e2e",
+      "op": "==",
+      "value": 0
+    },
+    {
+      "metric": "V2",
+      "op": "==",
+      "value": 1
+    },
+    {
+      "metric": "C1",
+      "op": ">=",
+      "value": 0.8
+    },
+    {
+      "metric": "M4",
+      "op": "==",
+      "value": 1
+    }
+  ],
+  "reference_copies": [
+    "tests/emitter_test.cc",
+    "tests/encoding_test.cc",
+    "tests/gen_emitter_test.cc",
+    "tests/handler_test.h",
+    "tests/mock_event_handler.h",
+    "tests/ostream_wrapper_test.cc",
+    "tests/reference_options.cc",
+    "tests/regex_test.cc",
+    "tests/specexamples.h",
+    "tests/step_b_boundaries.cc"
+  ]
+}

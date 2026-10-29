@@ -12,6 +12,7 @@ import argparse
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import sys
 import traceback
@@ -38,6 +39,22 @@ def set_timeout(job, count):
 
 
 # ---- 构建 ----
+
+def test_compile_errors(text, test_files):
+    """完整日志中所有错误均定位到冻结测试文件时才归因于产物；未知失败保守留给基础设施。"""
+    errors = []
+    for line in text.splitlines():
+        if re.search(r"undefined reference|multiple definition|duplicate symbol|LLVM ERROR|"
+                     r"PLEASE submit|Segmentation fault|(?:^|\s)Killed(?:\s|$)", line):
+            return []
+        if not re.search(r"(?:fatal )?error:", line):
+            continue
+        match = re.fullmatch(r"(/[^\n]+?):(\d+):(\d+): (?:fatal )?error: (.+)", line.strip())
+        if not match or match[1] not in test_files:
+            return []
+        errors.append({"file": match[1], "line": int(match[2]), "column": int(match[3]), "message": match[4]})
+    return errors
+
 
 def phase_build(job, audit):
     build_dir = Path(job["build_dir"])
@@ -69,8 +86,13 @@ def phase_build(job, audit):
         diagnostics = [line.strip()[:400] for line in text.splitlines()
                        if "error" in line.lower() or "undefined reference" in line or "multiple definition" in line
                        or "duplicate symbol" in line][:30]
-        return {"status": "build_failed", "reason": "build_timeout" if built["timed_out"] else "compile_or_link_error",
-                "diagnostics": diagnostics, "log": built["stdout_log"]}
+        result = {"status": "build_failed", "reason": "build_timeout" if built["timed_out"] else "compile_or_link_error",
+                  "diagnostics": diagnostics, "log": built["stdout_log"]}
+        if built["returncode"] == 1 and not built["timed_out"] and not built.get("output_incomplete"):
+            errors = test_compile_errors(text, set(job.get("test_files", [])))
+            if errors:
+                result.update(failure_origin="product_tests", errors=errors)
+        return result
     return {"status": "built", "binary": str(binary), "compile_units": len(commands)}
 
 

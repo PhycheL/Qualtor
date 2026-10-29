@@ -111,6 +111,19 @@ class TrialCancellationTest(unittest.TestCase):
                 self.check_stops_before_observer_collects_failure(failure)
 
 class RescoreRecoveryTest(unittest.TestCase):
+    def test_metric_failure_neither_retries_nor_stops_batch(self):
+        result = {'status':'scored','metric_failures':{'M1':{'reason':'clang_test_compile_failed'}},
+                  'metrics':{'M1_e2e':0,'M1_valid':None,'V2':1}}
+        with tempfile.TemporaryDirectory() as tmp, patch.object(host.pipeline,'assess_product',return_value=result) as assess:
+            self.assertEqual(host.score_frozen(None,{},None,Path(tmp)/'score',{},None,{}),result)
+            self.assertEqual(assess.call_count,1)
+            self.assertFalse((Path(tmp)/'infra-retries').exists())
+        trials, errors, cancelled = run.run_trials(
+            lambda task,index: {'task':task['id'],'trial':index,'status':'finished','scores':{'first':result}},
+            [({'id':'t'},i) for i in (1,2)],1)
+        self.assertEqual(len(trials),2)
+        self.assertEqual((errors,cancelled),([],[]))
+
     def test_reference_or_old_fingerprint_results_are_rescored(self):
         for mismatch in ("calibration", "code_sha256", "task", "images", None):
             with self.subTest(mismatch=mismatch), tempfile.TemporaryDirectory() as tmp:
