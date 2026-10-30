@@ -4643,7 +4643,7 @@
   ],
   "review": {
     "status": "reviewed",
-    "by": "Gemini（AI 复核，Linux ARM64）",
+    "by": "Codex（AI 复核，Linux ARM64）",
     "at": "2026-10-30",
     "note": "按 benchmark/tools/mutant_review/qt-mustache/ 的复核结论签署：等价候选 13 项均有结论，不稳定 4 项按规则剔除，探针超时 38 项保留在分母中。"
   },

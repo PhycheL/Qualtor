@@ -32,7 +32,7 @@ python3 setup.py --environment /path/to/my-environment.json
 
 配方只放在 `toolchains/environments/` 一处；产品的构建契约按产品根的固定位置读取该目录，不搜索、不回退到其他位置（[D021-3](../docs/决策记录.md#d021-构建环境身份mull-预热上限与建题审计步骤-c-收尾)）。它锁定 Debian 快照 `20261021T000000Z`、顶层包的精确版本、可用 CMake 库目标与生成器，不接受脚本或 Dockerfile。安装器在已存在的 GCC 基础镜像 ID 上增加依赖，检查所有原有包的版本未变，保存前后完整包清单并运行 C++11 冒烟。镜像不包含项目源码。环境标签包含名称和配方 SHA-256 的前 12 位；实际执行固定到查询得到的镜像 ID。当前构建实现使用 Docker 28 的 legacy builder（`DOCKER_BUILDKIT=0`），以支持本地基础镜像 ID；不能支持该构建器的 Docker 版本需先验证兼容性。构建上下文是只含 `Dockerfile.environment` 的临时目录，不带入 `toolchains/docker/` 中的其他文件，证据目录另存 `gcc/dockerfile.json`（Dockerfile 路径与 SHA-256）。
 
-验证情况：`bank-20261021` 的独立安装已在 Linux ARM64 Docker 中通过：在仓库外的临时目录执行 `python3 setup.py --environment bank-20261021 --output <外部目录>/environment-setup`，GCC 冒烟 6 个用例全部通过（Qualtor 验收证据 `runs/step-c-delivery-20261029-01/`）。之后的三处改动只经本机单元测试，尚未在 Docker 中验证：构建上下文改为上述临时目录；冒烟中 protobuf 用例改用与构建模板相同的 `add_custom_command`；GCC 覆盖率断言改为针对未过滤的原始 gcov 数据。AMD64 未实测。
+验证情况：`bank-20261021` 的独立安装及交付已在 Linux ARM64 Docker 中通过：在仓库外的临时目录执行 `python3 setup.py --environment bank-20261021 --output <外部目录>/environment-setup`，GCC 冒烟 6 个用例全部通过。2026-10-30 已重验临时构建上下文、与模板相同的 protobuf `add_custom_command` 和未过滤的原始 gcov 数据断言；独立交付的 10 项检查全部通过（Qualtor 验收证据 `runs/step-c-closeout-delivery-20261030-01/`、`runs/step-c-closeout-environment-20261030-01/`）。AMD64 未实测。
 
 用户配方的全部字段与 `bank-20261021.json` 相同：`schema: 1`、`name`、`snapshot`、`packages`（包名到精确版本）、`libraries`、`generators`、`cmake_prefix_path`、`imported_compile_definitions`、`imported_compile_options`。仅支持已有接线的 `Boost::headers`、`OpenSSL::Crypto`、`ZLIB::ZLIB`、`protobuf::libprotobuf`、`protobuf::libprotobuf-lite`、`Qt5::Core`；生成器仅 `moc`、`protoc`。CMake 前缀限定环境内 `/usr/` 或 `/opt/` 的安全路径。导入宏与选项仅允许 QtCore 的 `QT_CORE_LIB`、`QT_NO_DEBUG`、`-fPIC`。同名不同内容的配方拒绝覆盖，需另取环境名。安装成功后配方复制进产品目录，独立交付时一同保留。
 
@@ -78,7 +78,7 @@ GCC 镜像引用配置在 `toolchains/images.json`，使用完整名称 `docker.
 
 链接目标和生成器必须在配方中声明，生成器还须链接相应库，同一生成器只能出现一次；不接受自由链接参数、系统 include 路径或 CMake 片段。`{"tool": "moc"}` 只接受 `tool` 字段；protoc 项必须且只能包含 `tool`、`inputs`（非空的 `.proto` 路径列表）和 `import_dirs`（目录列表）。`.proto` 必须可见，输入及 import 目录须为安全相对路径，不得越界或经过符号链接，每个输入都要位于某个 import 目录内。moc 对整个测试可执行文件开启 AUTOMOC；protoc 由模板中固定的 `add_custom_command` 调用 `protobuf::protoc`，`--cpp_out` 写构建目录，按首个包含输入的 import 根保留子目录，示例输出为构建目录内的 `nested/api.pb.h/.cc`。生成文件只存在于构建目录。只需生成一次的配置头应在出题时生成并作为可见源码提供。
 
-环境任务的 TASK.md 增加“可用库目标”和“构建生成器”两行；不带环境的任务继续使用基础 GCC 镜像，提示词不变。启动模型前先查询环境镜像，核对配方哈希、基础层和架构，然后写 `toolchain.json`（实际镜像 ID 与环境名、配方哈希），再在隔离容器中预检包版本和 CMake 目标。任一项不满足时以启动环境错误返回 2，不能作为编译失败反馈给模型；预检失败时已写出的 `toolchain.json` 可用来确认检查的是哪个镜像（先写记录再预检的顺序未在 Docker 中验证）。运行测试同样使用派生环境。
+环境任务的 TASK.md 增加“可用库目标”和“构建生成器”两行；不带环境的任务继续使用基础 GCC 镜像，提示词不变。启动模型前先查询环境镜像，核对配方哈希、基础层和架构，然后写 `toolchain.json`（实际镜像 ID 与环境名、配方哈希），再在隔离容器中预检包版本和 CMake 目标。任一项不满足时以启动环境错误返回 2，不能作为编译失败反馈给模型；预检失败时已写出的 `toolchain.json` 可用来确认检查的是哪个镜像（Linux ARM64 缺包故障实测已确认记录先写出，见 `runs/step-c-closeout-preflight-20261030-01/`）。运行测试同样使用派生环境。
 
 源文件支持 `.c`、`.cc`、`.cpp`、`.cxx`。含 `.c` 时必须声明 `c99` 或 `c11`；C++ 固定为 C++11，C/C++ 均关闭语言扩展。C++11 断言头只作用于 C++。每次配置后核对并保留 `compile_commands.json`，确认语言标准、宏、选项和编译单元。
 

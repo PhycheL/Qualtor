@@ -34,7 +34,7 @@
   "review_needed": [],
   "review": {
     "status": "reviewed",
-    "by": "Gemini（AI 复核，Linux ARM64）",
+    "by": "Codex（AI 复核，Linux ARM64）",
     "at": "2026-10-30",
     "note": "M1 不适用（header_only）；参考 C1 1.0 达标，手写变异 5/5 检出，真实缺陷与等价版本按预期。"
   },

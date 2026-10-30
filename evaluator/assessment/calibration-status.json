@@ -1,17 +1,17 @@
 {
-  "scorer_version": "0.5.0",
-  "scorer_code_sha256": "6d1c01fb6422665bd3dc90441c96cc86d5839dca21f44eaf7f693e5e7cf66639",
+  "scorer_version": "0.5.1",
+  "scorer_code_sha256": "64f5a01bc53babd083e42b2a3b986ed623e326e05931332edcb739efd1616399",
   "samples_sha256": "620743f95be12dc1ba878ae94f17436d5bba8378bb1ded5e15d2ea8bc7684f9f",
   "tasks": {
     "exercism-circular-buffer": "985dae2d702848c255effb5d7740d3707f64a20dced58e21c3ee9a444179bc72",
     "exercism-hello-world": "0a67510db077bdf824bf906c20bdad50ff77870de6ec6b3da385efc897773866",
-    "exercism-meetup": "5971c72dd0a675d9ffff192a830206fdbce24a1318d43dab7477db10fc823ef8",
+    "exercism-meetup": "468430745aff9ca6c1792e7e1c35cec80932084090e6304568db6551b8249b33",
     "gildedrose-update-quality": "92720d07eeeabc2108b7e7afcfe7554af76147176b3f3de552cd5d19baf24245",
-    "humaneval-x-cpp-boost": "3d456c21c099fe1ee509562ab63afe10af0425b2c396289a62d79e5962efcb5c",
-    "humaneval-x-cpp-openssl": "90aa148e3a667fe4bf38c3812afa31fe37f5160974276b65a9444fe2d094439c",
+    "humaneval-x-cpp-boost": "dd540deddfdce9a21ddf44d0fd15f5ca91441693f602e5ec627a1903e16fb09c",
+    "humaneval-x-cpp-openssl": "d5bbc6bc118a9047d225062eab0226e96279ece1dd5f4224772bb3a88f34cb62",
     "md4c-html": "f40d8a6c5bc4be079e313fb517689e1379cdbbc50ba74553392890c0f82fb4bd",
-    "orc-bloom-filter": "e1d3253dac05b9b9699ee3cdf3d28f7c9804b7e9a01a4a47784d25bb1c339c20",
-    "qt-aes": "fb81d2fe78cb08fb60d778d7686300d416363c25507dc78e20dabf5f451ec761",
+    "orc-bloom-filter": "c315f979d69431d3940963494b42354a1ebe952affeb68ebfaf7178c9b039dff",
+    "qt-aes": "ba62ebbf6a0880746dae358c8eff7ff3f42a38734ef3fa0ec483c61f811a7570",
     "tinyexpr-configured": "5c9ec23cdb9604261112e5ddf73c498759005c9e094000db430d720cf3cd328d",
     "yaml-cpp-document": "01d909231afaaaf68ee8d850038f8af7ceab4c72b24e0fca6044bc9e0f562ca0",
     "yaml-cpp-emitter-utils": "ae6dc389a3fe100aae195e2831ed07c076f2d4353974adb86b382c786d13ed08",
@@ -39,8 +39,8 @@
       }
     }
   },
-  "run_id": "step-c-calibration-20261030-01",
+  "run_id": "step-c-closeout-calibration-20261030-01",
   "passed": true,
   "report": "evaluator/assessment/calibration_report.json",
-  "finished_at": "2026-10-29T17:12:48.655552+00:00"
+  "finished_at": "2026-10-30T04:26:43.845052+00:00"
 }

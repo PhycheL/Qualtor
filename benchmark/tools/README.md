@@ -25,6 +25,8 @@
 | `ub_sweep.py`、`ub_drivers/` | 在固定 GCC 镜像中用 libstdc++ 断言加 ASan/UBSan 复核变异的源码副本；`ub_drivers/` 放各题的驱动程序 |
 | `tests/` | 题库工具的单元测试 |
 
+命令审计（D021-3）：`import_step_c.py`、`pregenerate.py`、`fetch_step_c.py`、`prepare_new_tasks.py` 经 `evaluator/common/audit.py` 执行外部命令。`bankutil.run_command` 只在设置了 `bankutil.COMMAND_AUDIT` 时经 Audit，否则直接调用 `subprocess`。`import_step_a.py`、`import_step_b.py`、`import_exercism.py`、`import_humaneval_x.py`、`build_katas.py` 尚未接入，仍直接调用 `subprocess`；由它们生成的题没有审计下的重建证据。
+
 `apply_review.py` 遇到缺失分母也返回失败（退出码 1），不能把未标定的题当作核对通过。对应回归检查：`python3 -B -m unittest discover -s benchmark/tools/tests -p 'test_*.py'`。
 
 `kata_tests/`、`mutant_review/` 与生成器源码中的测试是隐藏材料，只供出题使用，不能放进任何题目的可见文件。
@@ -44,4 +46,4 @@
 4. 运行 `python3 evaluator/assessment/calibration/build_step_a_samples.py` 生成 CAL-18–20 的完整参考副本，再按[评测运行说明](../../docs/评测运行说明.md)完整校准。运行 `verify_step_a_build.py --run-id <新编号>` 验证三类单元与失败后修复。
 5. 使用新 run-id 正式标定（已有分母加 `--force`），再执行 mutant_report、apply_review 核对和 admit 签署。任何新校准题材料或分母实质内容变化都需重新完整校准；仅 review 元数据变化不影响指纹。
 
-本轮重建检查 `runs/step-a-import-replay-20261028-02/summary.json`：三题全部非分母文件逐字节一致。0.3.0 完整校准、19 题正式标定、103 题准入及真实生成证据见[题库验证说明](../../docs/题库验证说明.md)第 14 节。
+2026-10-28 的重建检查 `runs/step-a-import-replay-20261028-02/summary.json`：三题全部非分母文件逐字节一致。0.3.0 完整校准、19 题正式标定、103 题准入及真实生成证据见[题库验证说明](../../docs/题库验证说明.md)第 14 节。

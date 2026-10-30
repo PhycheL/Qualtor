@@ -1176,9 +1176,9 @@
       }
     },
     "exercism-meetup": {
-      "task_sha256": "5971c72dd0a675d9ffff192a830206fdbce24a1318d43dab7477db10fc823ef8",
-      "admitted_at": "2026-10-29T17:13:20.073026+00:00",
-      "by": "Gemini（AI 复核，Linux ARM64）",
+      "task_sha256": "468430745aff9ca6c1792e7e1c35cec80932084090e6304568db6551b8249b33",
+      "admitted_at": "2026-10-30T04:29:52.635368+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
       "note": "M1 不适用（header_only）；参考 C1 1.0 达标，手写变异 5/5 检出，真实缺陷与等价版本按预期。",
       "reference": {
         "m1": null,
@@ -1303,19 +1303,7 @@
       },
       "environment": {
         "name": "bank-20261021",
-        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd",
-        "images": {
-          "gcc": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-gcc:9abcad8ef238",
-            "id": "sha256:2f3d4143870ad0135491dbaeea1b4d4af80bdfc274bfced8913f903a35c5a5a5",
-            "platform": "linux/arm64"
-          },
-          "clang": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-clang:9abcad8ef238",
-            "id": "sha256:76b0083ec874c3ee645584e7208e930112a02028870640fc98e9c618685b49da",
-            "platform": "linux/arm64"
-          }
-        }
+        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd"
       }
     },
     "exercism-minesweeper": {
@@ -2161,9 +2149,9 @@
       }
     },
     "exiv2-pngchunk": {
-      "task_sha256": "7eca283c299d3b5eed49284d1db1dddc3a93dce662687bd57dda09b7e8276041",
-      "admitted_at": "2026-10-29T17:13:20.087738+00:00",
-      "by": "Gemini（AI 复核，Linux ARM64）",
+      "task_sha256": "749c1d0c0076aee51d1d984d8d564afeb368089ce7fab1bb2fad8199350a7c09",
+      "admitted_at": "2026-10-30T04:29:52.643066+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
       "note": "按 benchmark/tools/mutant_review/exiv2-pngchunk/ 的复核结论签署：等价候选 21 项均有结论，不稳定 2 项按规则剔除，探针超时 5 项保留在分母中。",
       "reference": {
         "killed": 209,
@@ -2183,19 +2171,7 @@
       },
       "environment": {
         "name": "bank-20261021",
-        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd",
-        "images": {
-          "gcc": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-gcc:9abcad8ef238",
-            "id": "sha256:2f3d4143870ad0135491dbaeea1b4d4af80bdfc274bfced8913f903a35c5a5a5",
-            "platform": "linux/arm64"
-          },
-          "clang": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-clang:9abcad8ef238",
-            "id": "sha256:76b0083ec874c3ee645584e7208e930112a02028870640fc98e9c618685b49da",
-            "platform": "linux/arm64"
-          }
-        }
+        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd"
       }
     },
     "gildedrose-update-quality": {
@@ -2221,9 +2197,9 @@
       }
     },
     "gzip-hpp": {
-      "task_sha256": "1e9d3e15722156f40c60653aecee2c4f543ec7c11fd44c0591683276a9eb5290",
-      "admitted_at": "2026-10-29T17:13:20.074781+00:00",
-      "by": "Gemini（AI 复核，Linux ARM64）",
+      "task_sha256": "889c636219edeb0e0869c25db22cc8b34ee28178cb27c83a1f1f5e9913c40946",
+      "admitted_at": "2026-10-30T04:29:52.644970+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
       "note": "M1 不适用（header_only）；参考 C1 0.9891304347826086 达标，手写变异 5/5 检出，真实缺陷与等价版本按预期。",
       "reference": {
         "m1": null,
@@ -2291,19 +2267,7 @@
       },
       "environment": {
         "name": "bank-20261021",
-        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd",
-        "images": {
-          "gcc": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-gcc:9abcad8ef238",
-            "id": "sha256:2f3d4143870ad0135491dbaeea1b4d4af80bdfc274bfced8913f903a35c5a5a5",
-            "platform": "linux/arm64"
-          },
-          "clang": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-clang:9abcad8ef238",
-            "id": "sha256:76b0083ec874c3ee645584e7208e930112a02028870640fc98e9c618685b49da",
-            "platform": "linux/arm64"
-          }
-        }
+        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd"
       }
     },
     "humaneval-x-cpp-01": {
@@ -2747,9 +2711,9 @@
       }
     },
     "humaneval-x-cpp-boost": {
-      "task_sha256": "3d456c21c099fe1ee509562ab63afe10af0425b2c396289a62d79e5962efcb5c",
-      "admitted_at": "2026-10-29T17:13:20.061833+00:00",
-      "by": "Gemini（AI 复核，Linux ARM64）",
+      "task_sha256": "dd540deddfdce9a21ddf44d0fd15f5ca91441693f602e5ec627a1903e16fb09c",
+      "admitted_at": "2026-10-30T04:29:52.646049+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
       "note": "按 benchmark/tools/mutant_review/humaneval-x-cpp-boost/ 的复核结论签署：等价候选 2 项均有结论，不稳定 6 项按规则剔除，探针超时 2 项保留在分母中。",
       "reference": {
         "killed": 34,
@@ -2769,25 +2733,13 @@
       },
       "environment": {
         "name": "bank-20261021",
-        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd",
-        "images": {
-          "gcc": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-gcc:9abcad8ef238",
-            "id": "sha256:2f3d4143870ad0135491dbaeea1b4d4af80bdfc274bfced8913f903a35c5a5a5",
-            "platform": "linux/arm64"
-          },
-          "clang": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-clang:9abcad8ef238",
-            "id": "sha256:76b0083ec874c3ee645584e7208e930112a02028870640fc98e9c618685b49da",
-            "platform": "linux/arm64"
-          }
-        }
+        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd"
       }
     },
     "humaneval-x-cpp-openssl": {
-      "task_sha256": "90aa148e3a667fe4bf38c3812afa31fe37f5160974276b65a9444fe2d094439c",
-      "admitted_at": "2026-10-29T17:13:20.060145+00:00",
-      "by": "Gemini（AI 复核，Linux ARM64）",
+      "task_sha256": "d5bbc6bc118a9047d225062eab0226e96279ece1dd5f4224772bb3a88f34cb62",
+      "admitted_at": "2026-10-30T04:29:52.646977+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
       "note": "按 benchmark/tools/mutant_review/humaneval-x-cpp-openssl/ 的复核结论签署：等价候选 0 项均有结论，不稳定 0 项按规则剔除，探针超时 1 项保留在分母中。",
       "reference": {
         "killed": 26,
@@ -2807,25 +2759,13 @@
       },
       "environment": {
         "name": "bank-20261021",
-        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd",
-        "images": {
-          "gcc": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-gcc:9abcad8ef238",
-            "id": "sha256:2f3d4143870ad0135491dbaeea1b4d4af80bdfc274bfced8913f903a35c5a5a5",
-            "platform": "linux/arm64"
-          },
-          "clang": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-clang:9abcad8ef238",
-            "id": "sha256:76b0083ec874c3ee645584e7208e930112a02028870640fc98e9c618685b49da",
-            "platform": "linux/arm64"
-          }
-        }
+        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd"
       }
     },
     "libphonenumber-lite": {
-      "task_sha256": "63d445fc11b7230d6d5db631a038a48b5bf055f886c49c4ebd7d08eba379aa6e",
-      "admitted_at": "2026-10-29T17:13:20.080329+00:00",
-      "by": "Gemini（AI 复核，Linux ARM64）",
+      "task_sha256": "9df4370981744026b26b87caa17c335293e87b78dfefde0a850426fc155ec6fa",
+      "admitted_at": "2026-10-30T04:29:52.648196+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
       "note": "按 benchmark/tools/mutant_review/libphonenumber-lite/ 的复核结论签署：等价候选 0 项均有结论，不稳定 0 项按规则剔除，探针超时 0 项保留在分母中。",
       "reference": {
         "killed": 72,
@@ -2845,25 +2785,13 @@
       },
       "environment": {
         "name": "bank-20261021",
-        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd",
-        "images": {
-          "gcc": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-gcc:9abcad8ef238",
-            "id": "sha256:2f3d4143870ad0135491dbaeea1b4d4af80bdfc274bfced8913f903a35c5a5a5",
-            "platform": "linux/arm64"
-          },
-          "clang": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-clang:9abcad8ef238",
-            "id": "sha256:76b0083ec874c3ee645584e7208e930112a02028870640fc98e9c618685b49da",
-            "platform": "linux/arm64"
-          }
-        }
+        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd"
       }
     },
     "libtiff-strip": {
-      "task_sha256": "29f6eb705b1fe3960f36e7f1a6d2cf01d8e3bd6c3e7dd63023b89f99b3d10b23",
-      "admitted_at": "2026-10-29T17:13:20.091492+00:00",
-      "by": "Gemini（AI 复核，Linux ARM64）",
+      "task_sha256": "b114af7355d253371dfe5bc45cdcde3452eb152ed68473fb005992749021f2ea",
+      "admitted_at": "2026-10-30T04:29:52.651642+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
       "note": "按 benchmark/tools/mutant_review/libtiff-strip/ 的复核结论签署：等价候选 14 项均有结论，不稳定 0 项按规则剔除，探针超时 0 项保留在分母中。",
       "reference": {
         "killed": 113,
@@ -2883,19 +2811,7 @@
       },
       "environment": {
         "name": "bank-20261021",
-        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd",
-        "images": {
-          "gcc": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-gcc:9abcad8ef238",
-            "id": "sha256:2f3d4143870ad0135491dbaeea1b4d4af80bdfc274bfced8913f903a35c5a5a5",
-            "platform": "linux/arm64"
-          },
-          "clang": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-clang:9abcad8ef238",
-            "id": "sha256:76b0083ec874c3ee645584e7208e930112a02028870640fc98e9c618685b49da",
-            "platform": "linux/arm64"
-          }
-        }
+        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd"
       }
     },
     "md4c-html": {
@@ -2991,9 +2907,9 @@
       }
     },
     "orc-bloom-filter": {
-      "task_sha256": "e1d3253dac05b9b9699ee3cdf3d28f7c9804b7e9a01a4a47784d25bb1c339c20",
-      "admitted_at": "2026-10-29T17:13:20.071424+00:00",
-      "by": "Gemini（AI 复核，Linux ARM64）",
+      "task_sha256": "c315f979d69431d3940963494b42354a1ebe952affeb68ebfaf7178c9b039dff",
+      "admitted_at": "2026-10-30T04:29:52.653476+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
       "note": "按 benchmark/tools/mutant_review/orc-bloom-filter/ 的复核结论签署：等价候选 33 项均有结论，不稳定 1 项按规则剔除，探针超时 2 项保留在分母中。",
       "reference": {
         "killed": 124,
@@ -3013,19 +2929,7 @@
       },
       "environment": {
         "name": "bank-20261021",
-        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd",
-        "images": {
-          "gcc": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-gcc:9abcad8ef238",
-            "id": "sha256:2f3d4143870ad0135491dbaeea1b4d4af80bdfc274bfced8913f903a35c5a5a5",
-            "platform": "linux/arm64"
-          },
-          "clang": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-clang:9abcad8ef238",
-            "id": "sha256:76b0083ec874c3ee645584e7208e930112a02028870640fc98e9c618685b49da",
-            "platform": "linux/arm64"
-          }
-        }
+        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd"
       }
     },
     "parrot-refactoring": {
@@ -3051,9 +2955,9 @@
       }
     },
     "prometheus-cpp-text": {
-      "task_sha256": "9e7d3dea389f1739b4fa2177137b9d23558ffeeafe80f94f7a7e06ccc7ec938e",
-      "admitted_at": "2026-10-29T17:13:20.078942+00:00",
-      "by": "Gemini（AI 复核，Linux ARM64）",
+      "task_sha256": "80380a45c2a74e17aab341d8496a96f2bc160df6ce7f28bd31f3b23ad65d9082",
+      "admitted_at": "2026-10-30T04:29:52.655588+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
       "note": "按 benchmark/tools/mutant_review/prometheus-cpp-text/ 的复核结论签署：等价候选 19 项均有结论，不稳定 0 项按规则剔除，探针超时 1 项保留在分母中。",
       "reference": {
         "killed": 96,
@@ -3073,25 +2977,13 @@
       },
       "environment": {
         "name": "bank-20261021",
-        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd",
-        "images": {
-          "gcc": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-gcc:9abcad8ef238",
-            "id": "sha256:2f3d4143870ad0135491dbaeea1b4d4af80bdfc274bfced8913f903a35c5a5a5",
-            "platform": "linux/arm64"
-          },
-          "clang": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-clang:9abcad8ef238",
-            "id": "sha256:76b0083ec874c3ee645584e7208e930112a02028870640fc98e9c618685b49da",
-            "platform": "linux/arm64"
-          }
-        }
+        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd"
       }
     },
     "qt-aes": {
-      "task_sha256": "fb81d2fe78cb08fb60d778d7686300d416363c25507dc78e20dabf5f451ec761",
-      "admitted_at": "2026-10-29T17:13:20.069478+00:00",
-      "by": "Gemini（AI 复核，Linux ARM64）",
+      "task_sha256": "ba62ebbf6a0880746dae358c8eff7ff3f42a38734ef3fa0ec483c61f811a7570",
+      "admitted_at": "2026-10-30T04:29:52.661509+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
       "note": "按 benchmark/tools/mutant_review/qt-aes/ 的复核结论签署：等价候选 30 项均有结论，不稳定 19 项按规则剔除，探针超时 11 项保留在分母中。",
       "reference": {
         "killed": 367,
@@ -3111,25 +3003,13 @@
       },
       "environment": {
         "name": "bank-20261021",
-        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd",
-        "images": {
-          "gcc": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-gcc:9abcad8ef238",
-            "id": "sha256:2f3d4143870ad0135491dbaeea1b4d4af80bdfc274bfced8913f903a35c5a5a5",
-            "platform": "linux/arm64"
-          },
-          "clang": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-clang:9abcad8ef238",
-            "id": "sha256:76b0083ec874c3ee645584e7208e930112a02028870640fc98e9c618685b49da",
-            "platform": "linux/arm64"
-          }
-        }
+        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd"
       }
     },
     "qt-mustache": {
-      "task_sha256": "e41d91480577331c8e0e3de3b27e442626253d409ba48a68f852f986bd8135c7",
-      "admitted_at": "2026-10-29T17:13:20.076827+00:00",
-      "by": "Gemini（AI 复核，Linux ARM64）",
+      "task_sha256": "c5164744746a0cfa5a2231ab76bf0ca8f6ba4558ba3574b64d5cab24a4cd6a38",
+      "admitted_at": "2026-10-30T04:29:52.663453+00:00",
+      "by": "Codex（AI 复核，Linux ARM64）",
       "note": "按 benchmark/tools/mutant_review/qt-mustache/ 的复核结论签署：等价候选 13 项均有结论，不稳定 4 项按规则剔除，探针超时 38 项保留在分母中。",
       "reference": {
         "killed": 141,
@@ -3149,19 +3029,7 @@
       },
       "environment": {
         "name": "bank-20261021",
-        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd",
-        "images": {
-          "gcc": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-gcc:9abcad8ef238",
-            "id": "sha256:2f3d4143870ad0135491dbaeea1b4d4af80bdfc274bfced8913f903a35c5a5a5",
-            "platform": "linux/arm64"
-          },
-          "clang": {
-            "tag": "docker.io/library/qualtor-env-bank-20261021-clang:9abcad8ef238",
-            "id": "sha256:76b0083ec874c3ee645584e7208e930112a02028870640fc98e9c618685b49da",
-            "platform": "linux/arm64"
-          }
-        }
+        "recipe_sha256": "9abcad8ef23837b87fb775972623b6ed5ae0d253632dd008baeb7064d88c77bd"
       }
     },
     "racing-car-leaderboard": {

@@ -828,7 +828,7 @@
               "message": "hex escape sequence out of range"
             }
           ],
-          "evidence_dir": "runs/step-c-calibration-20261030-01/calibration/yaml-cpp-emitter-utils/CAL-29/round-1/clang-build"
+          "evidence_dir": "runs/step-c-closeout-calibration-20261030-01/calibration/yaml-cpp-emitter-utils/CAL-29/round-1/clang-build"
         }
       },
       "passed": true
@@ -908,7 +908,7 @@
       ]
     },
     "exercism-meetup": {
-      "task_sha256": "5971c72dd0a675d9ffff192a830206fdbce24a1318d43dab7477db10fc823ef8",
+      "task_sha256": "468430745aff9ca6c1792e7e1c35cec80932084090e6304568db6551b8249b33",
       "passed": true,
       "samples": [
         "CAL-35"
@@ -937,14 +937,14 @@
       ]
     },
     "humaneval-x-cpp-boost": {
-      "task_sha256": "3d456c21c099fe1ee509562ab63afe10af0425b2c396289a62d79e5962efcb5c",
+      "task_sha256": "dd540deddfdce9a21ddf44d0fd15f5ca91441693f602e5ec627a1903e16fb09c",
       "passed": true,
       "samples": [
         "CAL-34"
       ]
     },
     "humaneval-x-cpp-openssl": {
-      "task_sha256": "90aa148e3a667fe4bf38c3812afa31fe37f5160974276b65a9444fe2d094439c",
+      "task_sha256": "d5bbc6bc118a9047d225062eab0226e96279ece1dd5f4224772bb3a88f34cb62",
       "passed": true,
       "samples": [
         "CAL-30",
@@ -959,14 +959,14 @@
       ]
     },
     "orc-bloom-filter": {
-      "task_sha256": "e1d3253dac05b9b9699ee3cdf3d28f7c9804b7e9a01a4a47784d25bb1c339c20",
+      "task_sha256": "c315f979d69431d3940963494b42354a1ebe952affeb68ebfaf7178c9b039dff",
       "passed": true,
       "samples": [
         "CAL-33"
       ]
     },
     "qt-aes": {
-      "task_sha256": "fb81d2fe78cb08fb60d778d7686300d416363c25507dc78e20dabf5f451ec761",
+      "task_sha256": "ba62ebbf6a0880746dae358c8eff7ff3f42a38734ef3fa0ec483c61f811a7570",
       "passed": true,
       "samples": [
         "CAL-32"
@@ -1005,11 +1005,11 @@
     }
   },
   "passed": true,
-  "run_id": "step-c-calibration-20261030-01",
+  "run_id": "step-c-closeout-calibration-20261030-01",
   "rounds": 2,
   "partial": false,
-  "scorer_version": "0.5.0",
-  "scorer_code_sha256": "6d1c01fb6422665bd3dc90441c96cc86d5839dca21f44eaf7f693e5e7cf66639",
+  "scorer_version": "0.5.1",
+  "scorer_code_sha256": "64f5a01bc53babd083e42b2a3b986ed623e326e05931332edcb739efd1616399",
   "samples_sha256": "620743f95be12dc1ba878ae94f17436d5bba8378bb1ded5e15d2ea8bc7684f9f",
   "images": {
     "gcc": {
@@ -1023,7 +1023,7 @@
       "platform": "linux/arm64"
     }
   },
-  "finished_at": "2026-10-29T17:12:48.655552+00:00",
+  "finished_at": "2026-10-30T04:26:43.845052+00:00",
   "environments": {
     "bank-20261021": {
       "name": "bank-20261021",

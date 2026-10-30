@@ -1,6 +1,6 @@
-# 校准报告 step-c-calibration-20261030-01
+# 校准报告 step-c-closeout-calibration-20261030-01
 
-- 评测模块版本：0.5.0（代码指纹 6d1c01fb6422）
+- 评测模块版本：0.5.1（代码指纹 64f5a01bc53b）
 - 结论：**通过**
 - 题目：exercism-circular-buffer（3 个样本）、exercism-hello-world（1 个样本）、exercism-meetup（1 个样本）、gildedrose-update-quality（16 个样本）、humaneval-x-cpp-boost（1 个样本）、humaneval-x-cpp-openssl（2 个样本）、md4c-html（1 个样本）、orc-bloom-filter（1 个样本）、qt-aes（1 个样本）、tinyexpr-configured（1 个样本）、yaml-cpp-document（2 个样本）、yaml-cpp-emitter-utils（2 个样本）、yaml-cpp-node-impl（2 个样本）
 - 每个样本评分 2 次；镜像：gcc sha256:bd01e6e4f0e7、clang sha256:013ac35a1dae
