@@ -65,6 +65,19 @@ def camel(slug):
 
 _CAPTURED = {}
 
+# D021-3：设置为 evaluator/common/audit.py 的 Audit 后，建题工具的外部命令经它记录命令、时间、退出码和输出。
+# 未设置时保持直接调用，不改变尚未接入审计的旧导入脚本。
+COMMAND_AUDIT = None
+
+
+def run_command(stage, argv, cwd=None, timeout=600):
+    """执行外部命令，返回 (returncode, stdout, stderr)。"""
+    if COMMAND_AUDIT is None:
+        done = subprocess.run(list(map(str, argv)), cwd=cwd, text=True, capture_output=True, timeout=timeout)
+        return done.returncode, done.stdout, done.stderr
+    result = COMMAND_AUDIT.run(stage, argv, cwd=cwd, timeout=timeout)
+    return (124 if result["timed_out"] else result["returncode"]), result["stdout"], result["stderr"]
+
 
 def material_fingerprint(task_dir):
     """题目材料指纹：除两类冻结分母外的全部文件。分母由 Docker 标定产生，不属于建题工具的输出。"""
@@ -286,10 +299,13 @@ def apply_patch_variant(task_dir, patch, variant_id, kind, description, source=N
     with tempfile.TemporaryDirectory(prefix='qualtor-variant-') as tmp:
         copied = Path(tmp) / 'source'
         shutil.copytree(root, copied)
-        result = subprocess.run(['git', 'apply', '--check', str(patch)], cwd=copied, text=True, capture_output=True)
-        if result.returncode:
-            raise ValueError(result.stderr)
-        subprocess.run(['git', 'apply', str(patch)], cwd=copied, check=True, capture_output=True)
+        code, _, stderr = run_command(f'git-apply-check-{task_dir.name}-{variant_id}', ['git', 'apply', '--check', str(patch)], copied)
+        if code:
+            raise ValueError(stderr)
+        argv = ['git', 'apply', str(patch)]
+        code, stdout, stderr = run_command(f'git-apply-{task_dir.name}-{variant_id}', argv, copied)
+        if code:
+            raise subprocess.CalledProcessError(code, argv, stdout, stderr)
         changed = [rel for rel in sorted(set(paths)) if (copied/rel).read_bytes() != (root/rel).read_bytes()]
         if not changed:
             raise ValueError('补丁未改变源码')

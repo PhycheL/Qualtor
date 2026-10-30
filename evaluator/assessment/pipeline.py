@@ -6,7 +6,7 @@ from pathlib import Path
 import shutil
 import traceback
 
-from common import (REPO, ASSESSMENT, copy_variant_tree, load_baseline, load_coverage_baseline,
+from common import (REPO, ASSESSMENT, copy_variant_tree, environment_identity, load_baseline, load_coverage_baseline,
                     mutation_not_applicable, mull_config_text, now, product_test_sources, read_json,
                     assessment_code_sha256, assessment_version, sha256_file, sha256_text, source_root, task_sha256,
                     validate_product, variant_dir, write_json)
@@ -120,7 +120,9 @@ class ProductAssessment:
     def _assess(self):
         if self.task.get('build', {}).get('environment'):
             self.result['environment'] = self.ex.environment(self.task)
-            if not self.prep and (load_baseline(self.task) or {}).get('environment') != self.result['environment']:
+            # D021-1：分母只绑定环境名与配方哈希；镜像 ID 记入结果，由校准状态负责比较。
+            if not self.prep and (environment_identity((load_baseline(self.task) or {}).get('environment'))
+                                  != environment_identity(self.result['environment'])):
                 raise Infra('mutation_baseline_environment_changed')
         na = mutation_not_applicable(self.task, {} if self.prep else None)
         if na:

@@ -108,7 +108,7 @@ def run_trials(work, jobs_list, jobs, cancel=None):
     return results, errors, cancelled
 
 
-def execute(config, config_snapshot, tasks, count, jobs, run_id, scenario=None, watchdog=900):
+def execute(config, config_snapshot, tasks, count, jobs, run_id, scenario=None, watchdog=900, allow_unadmitted=False):
     check_run_id(run_id)
     run = RUNS / run_id
     run.mkdir(parents=True, exist_ok=False)
@@ -121,17 +121,20 @@ def execute(config, config_snapshot, tasks, count, jobs, run_id, scenario=None, 
                 "pi_sha256": tree_hash(AGENTS / "pi"), "pi_runtime_sha256": tree_hash(AGENTS / "pi", runtime=True),
                 "generator_sha256": tree_hash(GENERATOR), "agent_product_sha256": tree_hash(AGENTS),
                 "scorer_version": assessment_version(),
-                "scorer_code_sha256": assessment_code_sha256()})
+                "scorer_code_sha256": assessment_code_sha256(),
+                "allow_unadmitted": allow_unadmitted})
     write_manifest(run, manifest)
     try:
         executor = DockerExecutor(audit, run / "evidence", run_id)
         states = {t["id"]: calibration_status(executor.images, t, getattr(executor, 'environment', None)) for t in tasks}
         manifest["calibration"] = states
-        manifest["admission"] = {t["id"]: admission_status(t, getattr(executor, 'environment', None)) for t in tasks}
+        # D021-1：准入只按题目指纹判断，不依赖本机环境镜像 ID；stale 原样记入 manifest。
+        manifest["admission"] = {t["id"]: admission_status(t) for t in tasks}
         if any(s["status"] != "passed" for s in states.values()):
             raise ValueError(f"评测模块校准必须为 passed，当前：{states}；请先运行 calibrate.py")
-        if any(s['status'] == 'stale' for s in manifest['admission'].values()):
-            raise ValueError('题目准入已失效，需重新标定和准入')
+        unadmitted = {k: v["status"] for k, v in manifest["admission"].items() if v["status"] != "admitted"}
+        if unadmitted and not allow_unadmitted:
+            raise ValueError(f"题目未准入或准入已失效：{unadmitted}；先重新标定并签署准入，非正式运行加 --allow-unadmitted")
         generator = GenerationExecutor(executor)
         manifest.update(images=executor.images, generation_runtime="host-pi")
         write_manifest(run, manifest)
@@ -203,7 +206,8 @@ def main():
     try:
         config, snapshot = load_config(args.config, args.env_file)
         tasks = select_tasks(args.tasks, args.set, args.allow_unadmitted)
-        run, summary = execute(config, snapshot, tasks, args.trials, args.jobs, args.run_id)
+        run, summary = execute(config, snapshot, tasks, args.trials, args.jobs, args.run_id,
+                               allow_unadmitted=args.allow_unadmitted)
     except (ValueError, FileNotFoundError, FileExistsError, RuntimeError) as error:
         parser.exit(2, str(error) + "\n")
     print(f"{summary['status']}；结果：{run / 'summary.json'}")

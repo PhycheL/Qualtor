@@ -98,12 +98,18 @@ def environment_find_packages(recipe, libraries=None):
 
 
 def environment_directory():
-    """只定位配方数据；独立产品和评测分别使用自己的契约实现。"""
-    for parent in Path(__file__).resolve().parents:
-        for candidate in (parent / "toolchains/environments", parent / "agents/toolchains/environments"):
-            if candidate.is_dir():
-                return candidate
-    raise ValueError("构建环境配方目录不存在")
+    """配方只有一处：agents/toolchains/environments（D021）。按本文件所在的固定位置定位，不搜索也不回退：
+    评测侧 evaluator/assessment/build_contract.py 按仓库根定位，产品 generator/build/contract.py 按产品根定位。"""
+    here = Path(__file__).resolve()
+    if here.name == "build_contract.py" and here.parent.name == "assessment" and here.parents[1].name == "evaluator":
+        directory = here.parents[2] / "agents/toolchains/environments"
+    elif here.name == "contract.py" and here.parent.name == "build" and here.parents[1].name == "generator":
+        directory = here.parents[2] / "toolchains/environments"
+    else:
+        raise ValueError(f"无法从契约文件位置确定构建环境配方目录：{here}")
+    if not directory.is_dir():
+        raise ValueError(f"构建环境配方目录不存在：{directory}")
+    return directory
 
 
 def task_environment(build):

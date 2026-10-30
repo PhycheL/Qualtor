@@ -45,15 +45,15 @@ def check(task_id):
     baseline = common.load_baseline(task)
     if baseline is None:
         return problems + ["没有变异分母，先在 Docker 中标定"], {}
-    selected = common.task_environment(task.get('build', {}))
+    identity = common.recipe_identity(task)
     environment_info = {}
-    if selected:
-        recipe, digest = selected
-        environment = baseline.get('environment', {})
-        if (environment.get('name') != recipe['name'] or environment.get('recipe_sha256') != digest
-                or set(environment.get('images', {})) != {'gcc', 'clang'}):
+    if identity:
+        # D021-1：准入只登记环境名与配方哈希；分母仍须是在两个派生镜像上标定的。
+        environment = baseline.get('environment') or {}
+        if (common.environment_identity(environment) != identity
+                or set(environment.get('images') or {}) != {'gcc', 'clang'}):
             problems.append('变异分母的环境缺失或配方已变化，需重新标定')
-        environment_info['environment'] = environment
+        environment_info['environment'] = identity
     na = common.mutation_not_applicable(task, baseline)
     if na:
         reference = baseline["reference"]

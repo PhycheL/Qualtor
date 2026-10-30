@@ -1,20 +1,32 @@
 #!/usr/bin/env python3
-"""从固定归档导入步骤 C 的库与代码生成题；源码不改写，配置头在 Docker 中预生成。"""
+"""从固定归档导入步骤 C 的库与代码生成题；源码不改写，配置头在 Docker 中预生成。
+
+全部外部命令经 evaluator/common/audit.py 记录到 runs/<run-id>/evidence/host（D021-3）；预生成配置头的
+Docker 命令记录在各自的 runs/<run-id>-<题目>-config/evidence。--verify 把题目重建到临时目录，
+与 benchmark/<题目> 逐字节比较（两类冻结分母不是建题输出，不比较；SOURCE.json 中每次生成都会变化的
+证据 run-id 与派生镜像 ID 不比较），不写入题库。
+"""
 import argparse
 import base64
 import json
 from pathlib import Path
 import re
+import shutil
 import sys
+import tempfile
 import zlib
 
-from bankutil import (REPO, reset_task_dir, copy_file, write_text, write_json, handwritten_variants,
+import bankutil
+from bankutil import (REPO, BASELINES, reset_task_dir, copy_file, write_text, write_json, handwritten_variants,
                       apply_patch_variant, sha256_file)
 from import_step_a import finish_task, YAML_OPTIONS
 from import_humaneval_x import scan_block_end
 
 TOOLS = Path(__file__).resolve().parent
+RUNS = REPO / 'runs'
 ENVIRONMENT = 'bank-20261021'
+TASKS = ['qt-aes', 'orc-bloom-filter', 'libphonenumber-lite', 'prometheus-cpp-text', 'qt-mustache', 'gzip-hpp',
+         'libtiff-strip', 'exiv2-pngchunk']
 
 
 def metadata(upstream, name):
@@ -138,8 +150,10 @@ configure_file(Adaptor.hh.in "${CMAKE_CURRENT_BINARY_DIR}/Adaptor.hh")
 configure_file(orc-config.hh.in "${CMAKE_CURRENT_BINARY_DIR}/orc-config.hh")
 ''')
     run_id = args.run_dir.name + '-orc-config'
-    out = REPO / 'runs' / run_id
+    out = RUNS / run_id
     out.mkdir()
+    if bankutil.COMMAND_AUDIT is not None:
+        bankutil.COMMAND_AUDIT.event(kind='pregenerate', task='orc-bloom-filter', evidence_run=run_id)
     manifest = new_manifest(run_id, 'prepare', mode='pregenerate', task='orc-bloom-filter')
     write_manifest(out, manifest)
     spec = {'environment': ENVIRONMENT,
@@ -321,8 +335,10 @@ def gzip_task(args):
 def configured_source(args, directory, repo, outputs, options, clone=False):
     from pregenerate import generate
     from runs import new_manifest, write_manifest, finish as finish_run
-    out = REPO / 'runs' / (args.run_dir.name + '-' + directory.name + '-config')
+    out = RUNS / (args.run_dir.name + '-' + directory.name + '-config')
     out.mkdir()
+    if bankutil.COMMAND_AUDIT is not None:
+        bankutil.COMMAND_AUDIT.event(kind='pregenerate', task=directory.name, evidence_run=out.name)
     manifest = new_manifest(out.name, 'prepare', mode='pregenerate', task=directory.name)
     write_manifest(out, manifest)
     commands = ([['python3', '-c', 'import shutil; shutil.copytree("/input", "/work/source")']]
@@ -337,6 +353,11 @@ def configured_source(args, directory, repo, outputs, options, clone=False):
         finish_run(out, manifest, 'failed', error=str(error))
         raise
     return out
+
+
+# BugsC++ meta.json 中各缺陷的上游修复提交（runs/step-a-20261028-01/upstream/bugscpp 固定提交）。
+BUGSCPP_FIX = {('exiv2', 12): 'b35c43e7c2409978a0c45f35c2ec8c7f625469df',
+               ('libtiff', 5): 'd651abc097d91fac57f33b5f9447d0a9183f58e7'}
 
 
 def bug_variant(directory, project, index, args):
@@ -366,13 +387,18 @@ def libtiff(args):
     for path in (TOOLS / 'step_c/libtiff-strip/reference_tests').glob('*'):
         copy_file(path, directory / 'hidden/reference_tests' / path.name)
     variant = bug_variant(directory, 'libtiff', 5, args)
-    write_text(directory / 'hidden/README.md', '''# libtiff strip
+    write_text(directory / 'hidden/README.md', f'''# libtiff strip
 
 被测 tif_strip.c 与依赖 C 单元保留固定上游字节，依赖列表取自上游 CMake 的 tiff 目标。
 配置头由锁定 GCC 环境重复生成，关闭 jpeg/jbig/lzma，仅启用 zlib 等上游内置能力。
 参考测试直接覆盖条带与扫描行计算；BugsC++ libtiff/5 的补丁去掉 td_nstrips 缓存分支，
-以已缓存条带数与重新计算值不同的有定义结构状态复现。补丁与来源哈希见 buggy.patch 和 task.json。
-BugsC++ 固定提交 be5cc489cb2b3127ec3b73cb4adfdd290807f55b；回归用例 Strips.ComputeAndCount。
+以已缓存条带数与重新计算值不同的有定义结构状态复现。补丁原样保存为 buggy.patch。
+
+真实缺陷版本 {variant['id']}：
+- BugsC++ 仓库 {variant['source']['repository']} 的固定提交 {variant['source']['commit']}，缺陷 libtiff/5；
+  BugsC++ 标注为 CVE-2016-9273（Heap-buffer-overflow in cpStrips），上游修复提交 {BUGSCPP_FIX['libtiff', 5]}。
+- buggy.patch 的 sha256：{variant['patch_sha256']}。
+- 回归用例：Strips.ComputeAndCount。
 ''')
     finish(directory, upstream, 'libtiff', ['libtiff/tif_strip.c'],
            [s for s in sources if s != 'libtiff/tif_strip.c'], ['libtiff'], 'hard', ['ZLIB::ZLIB'],
@@ -402,14 +428,24 @@ def exiv2(args):
     write_text(directory / 'hidden/reference_tests/poc.h', '#pragma once\nstatic const unsigned char issue845[] = {'
                + ','.join(str(b) for b in raw) + '};\n')
     variant = bug_variant(directory, 'exiv2', 12, args)
-    write_text(directory / 'hidden/README.md', '''# Exiv2 PNG chunk
+    write_text(directory / 'hidden/README.md', f'''# Exiv2 PNG chunk
 
 源码及 GPL COPYING 原样入库；依赖源文件取自上游 exiv2lib/exiv2lib_int 目标，XMP 与 NLS 功能关闭。
 配置头在锁定 GCC 环境重复生成，SOURCE.json 保存全部输入、命令、版本和输出哈希。
 参考测试覆盖公开 PngChunk 操作与错误输入；上游 test/data/issue_845_poc.png 原字节内嵌隐藏 poc.h，
-通过 ImageFactory 内存入口回放。BugsC++ exiv2/12 的固定补丁保存为 buggy.patch。
-BugsC++ 提交 be5cc489cb2b3127ec3b73cb4adfdd290807f55b；补丁哈希见 task.json；
-回归用例 PngChunk.ImageContentAndMalformedRawProfiles 与 PngChunk.UpstreamIssue845。
+通过 ImageFactory 内存入口回放。BugsC++ exiv2/12 的固定补丁原样保存为 buggy.patch。
+
+真实缺陷版本 {variant['id']}：
+- BugsC++ 仓库 {variant['source']['repository']} 的固定提交 {variant['source']['commit']}，缺陷 exiv2/12
+  （Out-of-bounds Read），上游修复提交 {BUGSCPP_FIX['exiv2', 12]}。
+- buggy.patch 的 sha256：{variant['patch_sha256']}。补丁删去 readRawProfile 逐位解析长度及溢出检查，
+  改为 atol(startOfLength)，并要求 0 <= length。
+- 回归用例：只有 PngChunk.ImageContentAndMalformedRawProfiles。长度字段为 "-1" 时，修复版本不解析负号、
+  得到长度 0 并返回空结果；缺陷版本 atol 得到 -1，enforce 抛出 Exiv2::Error，EXPECT_NO_THROW 失败。
+  该输入在两个版本上都是有定义行为。长度 9223372036854775808 只用于覆盖修复版本的溢出检查；它在缺陷版本上
+  依赖 atol 溢出（ISO C 未定义行为，glibc 返回 LONG_MAX），检出不依赖这一输入。
+- PngChunk.UpstreamIssue845 在缺陷版本上同样通过，不能检出该缺陷（0.5.0 标定
+  step-c-seed-20261029-13-exiv2-pngchunk 中，缺陷版本只有上一个用例失败）。
 ''')
     finish(directory, args.upstream, 'exiv2', ['src/pngchunk_int.cpp'],
            [s for s in sources if s != 'src/pngchunk_int.cpp'], ['src', 'include/exiv2', 'config'], 'hard', ['ZLIB::ZLIB'],
@@ -417,33 +453,92 @@ BugsC++ 提交 be5cc489cb2b3127ec3b73cb4adfdd290807f55b；补丁哈希见 task.j
            variants=[variant], build={'defines': ['exiv2lib_STATIC']})
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
+def normalized_source_json(path):
+    """SOURCE.json 中每次预生成都会变化的字段：证据 run-id 与派生镜像 ID（D021-1 不比较镜像 ID）。"""
+    data = json.loads(Path(path).read_text())
+    for record in data.get('generated', []):
+        record.pop('evidence_run', None)
+        environment = record.get('environment')
+        if isinstance(environment, dict):
+            record['environment'] = {'name': environment.get('name'), 'recipe_sha256': environment.get('recipe_sha256')}
+    return data
+
+
+def compare_task(expected, actual):
+    """逐字节比较重建结果与题库；返回差异清单。冻结分母由 Docker 标定产生，不属于建题输出。"""
+    def listing(root):
+        return {str(p.relative_to(root)) for p in Path(root).rglob('*')
+                if p.is_file() and not (p.parent.name == 'hidden' and p.name in BASELINES)}
+    have, built = listing(expected), listing(actual)
+    problems = [f'重建缺少：{rel}' for rel in sorted(have - built)]
+    problems += [f'重建多出：{rel}' for rel in sorted(built - have)]
+    for rel in sorted(have & built):
+        if rel == 'source/SOURCE.json':
+            if normalized_source_json(Path(expected) / rel) != normalized_source_json(Path(actual) / rel):
+                problems.append(f'内容不同：{rel}（已忽略 generated 的 evidence_run 与镜像 ID）')
+        elif (Path(expected) / rel).read_bytes() != (Path(actual) / rel).read_bytes():
+            problems.append(f'内容不同：{rel}')
+    return problems
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--upstream', type=Path, required=True)
     parser.add_argument('--extra-upstream', type=Path)
     parser.add_argument('--bugscpp', type=Path, default=REPO / 'runs/step-a-20261028-01/upstream/bugscpp')
-    parser.add_argument('--tasks', nargs='+', choices=['qt-aes', 'orc-bloom-filter', 'libphonenumber-lite', 'prometheus-cpp-text', 'qt-mustache', 'gzip-hpp', 'libtiff-strip', 'exiv2-pngchunk'], required=True)
+    parser.add_argument('--tasks', nargs='+', choices=TASKS, required=True)
     parser.add_argument('--run-id', required=True)
-    parser.add_argument('--force', action='store_true')
-    args = parser.parse_args()
-    args.run_dir = REPO / 'runs' / args.run_id
-    args.run_dir.mkdir(exist_ok=False)
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--force', action='store_true')
+    mode.add_argument('--verify', action='store_true', help='重建到临时目录并与 benchmark/<题目> 逐字节比较，不写入题库')
+    args = parser.parse_args(argv)
     sys.path.insert(0, str(REPO / 'evaluator/common'))
+    from audit import Audit
     from runs import new_manifest, write_manifest, finish as finish_run
-    manifest = new_manifest(args.run_id, 'prepare', mode='step_c_import', tasks=args.tasks)
+    if not re.fullmatch(r'[a-zA-Z0-9][a-zA-Z0-9_-]{0,79}', args.run_id):
+        parser.error('run-id 只能包含字母、数字、-、_')
+    args.run_dir = RUNS / args.run_id
+    args.run_dir.mkdir(parents=True, exist_ok=False)
+    manifest = new_manifest(args.run_id, 'prepare', mode='step_c_import_verify' if args.verify else 'step_c_import',
+                            tasks=args.tasks, argv=sys.argv if argv is None else ['import_step_c.py', *argv])
     write_manifest(args.run_dir, manifest)
     functions = {'qt-aes': qt_aes, 'orc-bloom-filter': orc, 'libphonenumber-lite': phone,
                  'prometheus-cpp-text': prometheus, 'qt-mustache': mustache, 'gzip-hpp': gzip_task,
                  'libtiff-strip': libtiff, 'exiv2-pngchunk': exiv2}
+    audit = Audit(args.run_dir / 'evidence/host')
+    previous = bankutil.COMMAND_AUDIT, bankutil.BENCHMARK
+    scratch = None
     try:
+        bankutil.COMMAND_AUDIT = audit
+        if args.verify:
+            # 只在临时题库中重建；reset_task_dir 与 write_task 都写到 bankutil.BENCHMARK 之下。
+            scratch = Path(tempfile.mkdtemp(prefix='qualtor-verify-'))
+            bankutil.BENCHMARK = scratch / 'benchmark'
+            bankutil.BENCHMARK.mkdir()
         for task in args.tasks:
+            audit.event(kind='import_task', task=task, verify=args.verify)
             functions[task](args)
-            print('生成 ' + task, flush=True)
+            print(('重建 ' if args.verify else '生成 ') + task, flush=True)
+        if args.verify:
+            report = {task: compare_task(previous[1] / task, bankutil.BENCHMARK / task) for task in args.tasks}
+            write_json(args.run_dir / 'verify.json', {'identical': not any(report.values()), 'tasks': report})
+            for task, problems in report.items():
+                print(f"{task}：{'逐字节一致' if not problems else '不一致'}", flush=True)
+                for problem in problems:
+                    print('  - ' + problem, flush=True)
+            finish_run(args.run_dir, manifest, 'completed', passed=not any(report.values()))
+            return 0 if not any(report.values()) else 1
         finish_run(args.run_dir, manifest, 'completed', passed=True)
+        return 0
     except BaseException as error:
+        audit.event(kind='run_error', error=str(error))
         finish_run(args.run_dir, manifest, 'failed', error=str(error))
         raise
+    finally:
+        bankutil.COMMAND_AUDIT, bankutil.BENCHMARK = previous
+        if scratch is not None:
+            shutil.rmtree(scratch, ignore_errors=True)
 
 
 if __name__ == '__main__':
-    main()
+    raise SystemExit(main())

@@ -58,6 +58,37 @@ class EnvironmentTests(unittest.TestCase):
         self.assertEqual((ROOT / 'agents/generator/build/contract.py').read_bytes(),
                          (ROOT / 'evaluator/assessment/build_contract.py').read_bytes())
 
+    def test_recipe_directory_is_unique_and_never_falls_back(self):
+        import importlib.util
+        import shutil
+        def located(path):
+            spec = importlib.util.spec_from_file_location('contract_copy_' + str(abs(hash(str(path)))), path)
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            return module.environment_directory()
+        source = ROOT / 'evaluator/assessment/build_contract.py'
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp).resolve()
+            layouts = {'repo/evaluator/assessment/build_contract.py': 'repo/agents/toolchains/environments',
+                       'product/generator/build/contract.py': 'product/toolchains/environments'}
+            for contract, expected in layouts.items():
+                (root / contract).parent.mkdir(parents=True)
+                shutil.copyfile(source, root / contract)
+                # 以后即使出现 evaluator/toolchains/environments 或上级目录的同名目录，也不能覆盖唯一位置。
+                for decoy in ('repo/evaluator/toolchains/environments', 'repo/evaluator/assessment/toolchains/environments',
+                              'product/generator/toolchains/environments', 'toolchains/environments'):
+                    (root / decoy).mkdir(parents=True, exist_ok=True)
+                with self.subTest(contract=contract), self.assertRaisesRegex(ValueError, '不存在'):
+                    located(root / contract)
+                (root / expected).mkdir(parents=True)
+                self.assertEqual(located(root / contract), root / expected)
+            (root / 'elsewhere').mkdir()
+            shutil.copyfile(source, root / 'elsewhere/build_contract.py')
+            with self.assertRaisesRegex(ValueError, '无法'):
+                located(root / 'elsewhere/build_contract.py')
+        self.assertEqual(located(source), ROOT / 'agents/toolchains/environments')
+        self.assertEqual(located(ROOT / 'agents/generator/build/contract.py'), ROOT / 'agents/toolchains/environments')
+
     def test_task_contract_rejects_unsupported_libraries_generators_and_paths(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
@@ -129,15 +160,37 @@ class EnvironmentTests(unittest.TestCase):
                 self.assertEqual([x for x in command if x.startswith('--timeout=')],
                                  [] if timeout is None else ['--timeout=30000'])
 
-    def test_runtime_environment_change_invalidates_admission(self):
+    def test_mull_test_timeout_type_and_range(self):
+        import common
+        task = common.load_task('qt-aes')
+        self.assertEqual(task['params']['mull_test_timeout_ms'], 30000)
+        for value in (1000, 60000):
+            task['params']['mull_test_timeout_ms'] = value
+            common.validate_task(task)
+        for value in (999, 60001, 0, -1, 30000.0, '30000', True, None):
+            task['params']['mull_test_timeout_ms'] = value
+            with self.subTest(value=value), self.assertRaisesRegex(common.TaskError, '1000–60000'):
+                common.validate_task(task)
+        del task['params']['mull_test_timeout_ms']
+        common.validate_task(task)
+
+    def test_admission_ignores_environment_image_ids(self):
         import common
         from unittest.mock import patch
-        task = common.load_task('gildedrose-update-quality')
-        task['build'] = {'environment': 'bank-20261021'}
-        with patch.object(common, 'admission_state', return_value={'status': 'admitted'}), \
-                patch.object(common, 'load_baseline', return_value={'environment': {'image': 'old'}}):
-            self.assertEqual(common.admission_status(task, lambda _: {'image': 'old'})['status'], 'admitted')
-            self.assertEqual(common.admission_status(task, lambda _: {'image': 'new'})['status'], 'stale')
+        task = common.load_task('humaneval-x-cpp-openssl')
+        baseline = common.load_baseline(task)
+        rebuilt = {**baseline, 'environment': {**baseline['environment'],
+                   'images': {'gcc': {'id': 'sha256:rebuilt-gcc'}, 'clang': {'id': 'sha256:rebuilt-clang'}}}}
+        current = common.task_sha256(task)
+        with patch.object(common, 'load_baseline', return_value=rebuilt):
+            # D021-1：重新标定后只有镜像 ID 不同，题目指纹与准入都不变。
+            self.assertEqual(common.task_sha256(task), current)
+            with patch.object(common, 'load_admission', return_value={task['id']: {'task_sha256': current}}):
+                self.assertEqual(common.admission_status(task)['status'], 'admitted')
+        renamed = {**baseline, 'environment': {**baseline['environment'], 'recipe_sha256': 'other'}}
+        with patch.object(common, 'load_baseline', return_value=renamed), \
+                patch.object(common, 'load_admission', return_value={task['id']: {'task_sha256': current}}):
+            self.assertEqual(common.admission_status(task)['status'], 'stale')
 
     def test_environment_recipe_changes_task_and_admission_fingerprints(self):
         import common
@@ -151,27 +204,84 @@ class EnvironmentTests(unittest.TestCase):
             self.assertEqual(common.admission_state(task['id'], current,
                 {task['id']: {'task_sha256': first}})['status'], 'stale')
 
-    def test_calibration_checks_recipe_and_runtime_images(self):
+    def calibration_record(self):
         import common
-        from unittest.mock import patch
         images = {name: {'id': name} for name in ('gcc', 'clang')}
-        environment = {'name': self.recipe['name'], 'recipe_sha256': self.digest, 'images': images}
+        environment = {'name': self.recipe['name'], 'recipe_sha256': self.digest,
+                       'images': {'gcc': {'id': 'env-gcc'}, 'clang': {'id': 'env-clang'}}}
         record = {'scorer_version': common.assessment_version(), 'scorer_code_sha256': common.assessment_code_sha256(),
                   'samples_sha256': common.samples_sha256(), 'images': {k: v['id'] for k, v in images.items()},
                   'environments': {self.recipe['name']: environment}, 'tasks': {}, 'passed': True}
+        return images, environment, record
+
+    def test_calibration_of_legacy_tasks_ignores_missing_environment_images(self):
+        import common
+        from unittest.mock import patch
+        images, environment, record = self.calibration_record()
+        legacy = common.load_task('gildedrose-update-quality')
+        def missing(_):
+            raise RuntimeError('No such image')
         with tempfile.TemporaryDirectory() as temp, patch.object(common, 'CALIBRATION_STATUS', Path(temp) / 'state.json'):
             common.write_json(common.CALIBRATION_STATUS, record)
-            self.assertEqual(common.calibration_status(images, environment_resolver=lambda _: environment)['status'], 'passed')
-            changed = {**environment, 'images': {'gcc': {'id': 'rebuilt'}, 'clang': images['clang']}}
-            self.assertEqual(common.calibration_status(images, environment_resolver=lambda _: changed)['status'], 'stale')
-            self.assertEqual(common.calibration_status(images)['status'], 'stale')
-            with patch.object(common, 'task_environment', return_value=(self.recipe, 'new-recipe')):
-                self.assertEqual(common.calibration_status(None)['status'], 'stale')
+            for resolver in (None, missing):
+                with self.subTest(resolver=resolver):
+                    self.assertEqual(common.calibration_status(images, legacy, resolver)['status'], 'passed')
+                    self.assertEqual(common.calibration_status(images, None, resolver)['status'], 'passed')
+            # 基础镜像仍按原口径比较。
+            changed = {**images, 'gcc': {'id': 'rebuilt'}}
+            self.assertEqual(common.calibration_status(changed, legacy, missing)['status'], 'stale')
+
+    def test_environment_image_change_stales_calibration_but_not_denominator(self):
+        import common
+        import pipeline
+        from audit import Audit
+        from unittest.mock import Mock, patch
+        images, environment, record = self.calibration_record()
+        task = common.load_task('humaneval-x-cpp-openssl')
+        rebuilt = {**environment, 'images': {'gcc': {'id': 'rebuilt'}, 'clang': environment['images']['clang']}}
+        with tempfile.TemporaryDirectory() as temp, patch.object(common, 'CALIBRATION_STATUS', Path(temp) / 'state.json'):
+            common.write_json(common.CALIBRATION_STATUS, record)
+            self.assertEqual(common.calibration_status(images, task, lambda _: environment)['status'], 'passed')
+            self.assertEqual(common.calibration_status(images, task, lambda _: rebuilt)['status'], 'stale')
+            self.assertEqual(common.calibration_status(images, task)['status'], 'stale')
+            # 只做主机侧检查（images 为 None）时不解析镜像，只核对配方。
+            self.assertEqual(common.calibration_status(None, task)['status'], 'passed')
             common.write_json(common.CALIBRATION_STATUS, {**record, 'environments': {}})
-            task = {'id': 'new-environment-task', 'build': {'environment': self.recipe['name']}}
-            self.assertEqual(common.calibration_status(images, task,
-                environment_resolver=lambda _: environment)['status'], 'stale')
-            self.assertEqual(common.calibration_status(images)['status'], 'passed')
+            self.assertEqual(common.calibration_status(images, task, lambda _: environment)['status'], 'stale')
+        # 分母：镜像 ID 变化不判为分母过期，流程继续到产物校验。
+        executor = Mock(mode='docker', images={}, capabilities={'coverage': True, 'mull': True})
+        executor.environment.return_value = rebuilt
+        with tempfile.TemporaryDirectory() as temp, \
+                patch.object(pipeline, 'load_baseline', return_value={'environment': environment}):
+            result = pipeline.assess_product(executor, task, Path(temp) / 'product', Path(temp) / 'out', {},
+                                             Audit(Path(temp) / 'audit'))
+            self.assertEqual((result['status'], result['invalid_reason']), ('invalid', 'artifact_rejected'))
+            self.assertEqual(result['environment'], rebuilt)
+
+    def test_recipe_change_invalidates_calibration_denominator_and_admission(self):
+        import common
+        import pipeline
+        from audit import Audit
+        from unittest.mock import Mock, patch
+        images, environment, record = self.calibration_record()
+        task = common.load_task('humaneval-x-cpp-openssl')
+        current = common.task_sha256(task)
+        with tempfile.TemporaryDirectory() as temp, patch.object(common, 'CALIBRATION_STATUS', Path(temp) / 'state.json'), \
+                patch.object(common, 'task_environment', return_value=(self.recipe, 'new-recipe')):
+            common.write_json(common.CALIBRATION_STATUS, record)
+            for queried in (None, task, common.load_task('gildedrose-update-quality')):
+                self.assertEqual(common.calibration_status(images, queried, lambda _: environment)['status'], 'stale')
+            self.assertNotEqual(common.task_sha256(task), current)
+            with patch.object(common, 'load_admission', return_value={task['id']: {'task_sha256': current}}):
+                self.assertEqual(common.admission_status(task)['status'], 'stale')
+        executor = Mock(mode='docker', images={}, capabilities={'coverage': True, 'mull': True})
+        executor.environment.return_value = {**environment, 'recipe_sha256': 'new-recipe'}
+        with tempfile.TemporaryDirectory() as temp, \
+                patch.object(pipeline, 'load_baseline', return_value={'environment': environment}):
+            result = pipeline.assess_product(executor, task, Path(temp) / 'product', Path(temp) / 'out', {},
+                                             Audit(Path(temp) / 'audit'))
+            self.assertEqual(result['infra_detail'], 'mutation_baseline_environment_changed')
+            executor.run_phase.assert_not_called()
 
     def test_stale_environment_denominator_stops_before_any_build(self):
         import common

@@ -155,7 +155,8 @@ class GenerationExecutor:
             raise ValueError("不支持的产品结果版本")
         if result.get("toolchain") and result["toolchain"]["id"] != image["id"]:
             raise ValueError("产品编译和评分 GCC 镜像不同，本轮不用于比较")
-        if task.get('build', {}).get('environment'):
+        # 只在产品确实返回了工具链记录时比较；预检取消、agent_error 等没有记录的结果按状态正常处理。
+        if task.get('build', {}).get('environment') and result.get('toolchain') is not None:
             expected = self.ex.environment(task)
             actual = (result.get('toolchain') or {}).get('environment') or {}
             if (actual.get('name') != expected['name'] or actual.get('recipe_sha256') != expected['recipe_sha256']

@@ -94,7 +94,9 @@ TEST(PngChunk, ImageContentAndMalformedRawProfiles) {
   EXPECT_EQ("<x>text</x>", image->xmpPacket());
   decodeImage(image.get(), text("Raw profile type xmp", "\nxmp\n       3\n3c783e\n"));
   EXPECT_EQ("<x>", image->xmpPacket());
-  for (std::string raw : {std::string("\nxmp\n0\n"), std::string("\nxmp\n"),
+  // "-1"：修复版本只按十进制数字解析长度，得到 0 并返回空结果；两个版本上都是有定义行为。
+  // 溢出长度覆盖修复版本的溢出检查。
+  for (std::string raw : {std::string("\nxmp\n0\n"), std::string("\nxmp\n"), std::string("\nxmp\n-1\n00"),
                           std::string("\nxmp\n9223372036854775808\n00")})
     EXPECT_NO_THROW(decodeImage(image.get(), text("Raw profile type xmp", raw)));
   EXPECT_THROW(decodeImage(image.get(), text("Raw profile type xmp", "\nxmp\n10\n00")), Exiv2::Error);

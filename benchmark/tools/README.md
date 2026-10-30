@@ -11,6 +11,9 @@
 | `import_step_a.py`、`step_a/` | 从固定上游提交导入 yaml-cpp、md4c、TinyExpr；保存测试转换与 md4c 实际输出 |
 | `capture_md4c_outputs.py` | 在固定 GCC Docker 捕获上游 770 个输入的实际 HTML，按 D001 冻结逐字节断言 |
 | `verify_step_a_build.py` | 混合 C/C++ 构建、三类单元宏/选项、失败后修复和 support 排除的 Docker 剧本验收 |
+| `fetch_step_c.py`、`import_step_c.py`、`step_c/` | 步骤 C：下载并校验固定上游归档；导入 Qt、protobuf、zlib 与 BugsC++ 题。外部命令经 `evaluator/common/audit.py` 记录到 `runs/<run-id>/evidence/host`（D021-3）；`--verify` 把题目重建到临时目录并与 `benchmark/<题目>` 逐字节比较，不写入题库 |
+| `pregenerate.py` | 在环境 GCC 镜像中两轮生成预生成配置头并登记 `SOURCE.json` 的 `generated`；重跑时替换同一输出的旧记录，`--check` 只核对、不写入 |
+| `bank_facts.py` | 只读：从 `task.json`、分母、准入、配方与校准记录生成题库事实（层级、能力题数、新题分母、CAL-30–35、签署人），供文档引用；`python3 -I -B benchmark/tools/bank_facts.py [--format json]` |
 | `probe_prelude.h` | 探针生成器公共部分：随机输入、C++ 字面值、子进程隔离执行 |
 | `host_check.py` | 宿主机检查：本机编译器跑参考测试、探针与替换版本，不含覆盖率与 Mull |
 | `prepare_new_tasks.py` | Docker 机器上批量标定变异分母并汇总；写入前落实 `mutant_review/` 的复核结论 |

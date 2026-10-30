@@ -80,6 +80,9 @@ def default_run_id(prefix):
 
 # ---- 题目包 ----
 
+# D021-2：params.mull_test_timeout_ms 的允许范围（闭区间，毫秒）。
+MULL_TEST_TIMEOUT_MS = (1000, 60000)
+
 class TaskError(ValueError):
     pass
 
@@ -110,10 +113,11 @@ def validate_task(task):
             raise TaskError(f"task.json 缺少 {key}")
     if task["schema"] != 1 or task["set"] not in ("dev", "acceptance"):
         raise TaskError("task.json 的 schema 或 set 不正确")
-    if 'mull_test_timeout_ms' in task['params']:
-        timeout = task['params']['mull_test_timeout_ms']
-        if type(timeout) is not int or timeout <= 0:
-            raise TaskError('mull_test_timeout_ms 必须是正整数毫秒')
+    if "mull_test_timeout_ms" in task["params"]:
+        # D021-2：映射为 mull-runner --timeout（原始全套测试预热运行的上限）；不设时命令不变。
+        timeout = task["params"]["mull_test_timeout_ms"]
+        if type(timeout) is not int or not MULL_TEST_TIMEOUT_MS[0] <= timeout <= MULL_TEST_TIMEOUT_MS[1]:
+            raise TaskError("params.mull_test_timeout_ms 必须是 1000–60000 之间的整数毫秒")
     root = source_root(task)
     try:
         build = validate_build(task.get("build", {}), task["target_sources"],
@@ -225,6 +229,19 @@ def mutation_not_applicable(task, baseline=None):
     return None
 
 
+def environment_identity(record):
+    """D021-1：环境身份只含环境名与配方哈希。派生镜像 ID 不可复现，只记入结果并用于校准状态比较。"""
+    if not record:
+        return None
+    return {"name": record.get("name"), "recipe_sha256": record.get("recipe_sha256")}
+
+
+def recipe_identity(task):
+    """题目当前声明的环境身份；没有 build.environment 时为 None。"""
+    selected = task_environment(task.get("build", {}))
+    return {"name": selected[0]["name"], "recipe_sha256": selected[1]} if selected else None
+
+
 def task_sha256(task):
     """题目指纹：task.json 与全部隐藏材料；变异分母只取实质内容，不含复核状态等元数据。"""
     hidden = task["_dir"] / "hidden"
@@ -244,7 +261,8 @@ def task_sha256(task):
         if "mutation" in baseline:
             essence["mutation"] = baseline["mutation"]
         if "environment" in baseline:
-            essence["environment"] = baseline["environment"]
+            # D021-1：只绑定环境名与配方哈希；重建镜像后重新标定不应改变题目指纹。
+            essence["environment"] = environment_identity(baseline["environment"])
         parts.append("baseline\0" + sha256_text(json.dumps(essence, sort_keys=True)))
     coverage = load_coverage_baseline(task)
     if coverage:
@@ -318,24 +336,33 @@ def calibration_status(images, task=None, environment_resolver=None):
     """返回当前评测模块代码、样本、镜像和全部校准题目对应的校准状态：passed、failed、stale 或 missing。
 
     task 只用来复用已加载的题目对象；无论查询哪道题，都核对校准记录中的每一道校准题。
+    D021-1：记录中的每个环境都核对配方哈希；环境镜像 ID 只在查询的题目声明了该环境时才解析和比较，
+    没有 build.environment 的题只比较基础镜像，不要求本机存在环境镜像。
     """
     if not CALIBRATION_STATUS.is_file():
         return {"status": "missing"}
     record = read_json(CALIBRATION_STATUS)
-    requested_environment = (task or {}).get('build', {}).get('environment')
-    if requested_environment and requested_environment not in record.get('environments', {}):
-        return {'status': 'stale', 'run_id': record.get('run_id'),
-                'reason': f'题目环境 {requested_environment} 尚未完成校准'}
-    for name, expected in record.get('environments', {}).items():
+    environments = record.get("environments", {})
+    for name, expected in environments.items():
         try:
-            selected = task_environment({'environment': name})
-            if selected[1] != expected['recipe_sha256']:
-                raise ValueError('配方变化')
-            if images is not None and (environment_resolver is None or
-                    environment_resolver({'build': {'environment': name}}) != expected):
-                raise ValueError('镜像变化或未核对环境镜像')
-        except (ValueError, OSError, RuntimeError):
-            return {'status': 'stale', 'run_id': record.get('run_id'), 'reason': f'校准环境 {name} 已变化或不可用'}
+            if recipe_identity({"build": {"environment": name}}) != environment_identity(expected):
+                raise ValueError("配方变化")
+        except (ValueError, OSError):
+            return {"status": "stale", "run_id": record.get("run_id"), "reason": f"校准环境 {name} 的配方已变化或不可读"}
+    requested = (task or {}).get("build", {}).get("environment")
+    if requested:
+        if requested not in environments:
+            return {"status": "stale", "run_id": record.get("run_id"),
+                    "reason": f"题目环境 {requested} 尚未完成校准"}
+        if images is not None:
+            try:
+                if environment_resolver is None:
+                    raise ValueError("未核对环境镜像")
+                if environment_resolver({"build": {"environment": requested}}) != environments[requested]:
+                    raise ValueError("环境镜像变化")
+            except (ValueError, OSError, RuntimeError):
+                return {"status": "stale", "run_id": record.get("run_id"),
+                        "reason": f"校准环境 {requested} 的镜像已变化或不可用"}
     # 校准结论依赖全部校准题的材料：任何一道校准题变化，所有题目的正式评测都不能再复用这次校准。
     for task_id, digest in sorted((record.get("tasks") or {}).items()):
         try:
@@ -376,14 +403,15 @@ def admission_state(task_id, task_sha, admitted=None):
     return {"status": "admitted", "admitted_at": record.get("admitted_at"), "by": record.get("by")}
 
 
-def admission_status(task, environment_resolver=None):
+def admission_status(task):
+    """D021-1：准入只看题目指纹，以及分母记录的环境身份（环境名与配方哈希）是否与题目当前配方一致；
+    不比较镜像 ID，也不要求本机存在环境镜像。"""
     state = admission_state(task["id"], task_sha256(task))
-    if state['status'] == 'admitted' and environment_resolver and task.get('build', {}).get('environment'):
-        baseline = load_baseline(task) or {}
+    if state["status"] == "admitted" and task.get("build", {}).get("environment"):
         try:
-            unchanged = baseline.get('environment') == environment_resolver(task)
-        except (ValueError, OSError, RuntimeError):
+            unchanged = environment_identity((load_baseline(task) or {}).get("environment")) == recipe_identity(task)
+        except (ValueError, OSError):
             unchanged = False
         if not unchanged:
-            return {**state, 'status': 'stale', 'reason': '准入所用环境镜像已变化或不可用，需重新标定和准入'}
+            return {**state, "status": "stale", "reason": "变异分母记录的环境名或配方哈希与题目当前配方不一致，需重新标定和准入"}
     return state

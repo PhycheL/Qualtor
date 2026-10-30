@@ -66,7 +66,12 @@ gtest_discover_tests(env_tests DISCOVERY_MODE PRE_TEST)
     if 'HAVE_QT' in defines:
         text += f'target_sources(env_tests PRIVATE "{smoke}/relay.h")\nset_target_properties(env_tests PROPERTIES AUTOMOC ON)\n'
     if 'HAVE_PROTOBUF' in defines:
-        text += f'protobuf_generate(TARGET env_tests LANGUAGE cpp PROTOS "{smoke}/probe.proto" APPEND_PATH)\n'
+        # 与两套构建模板相同：固定的 add_custom_command 调用导入目标 protobuf::protoc，输出只写构建目录。
+        text += f'''add_custom_command(OUTPUT "${{CMAKE_CURRENT_BINARY_DIR}}/probe.pb.cc" "${{CMAKE_CURRENT_BINARY_DIR}}/probe.pb.h"
+  COMMAND protobuf::protoc "--cpp_out=${{CMAKE_CURRENT_BINARY_DIR}}" "-I{smoke}" "{smoke}/probe.proto"
+  DEPENDS "{smoke}/probe.proto" protobuf::protoc VERBATIM)
+target_sources(env_tests PRIVATE "${{CMAKE_CURRENT_BINARY_DIR}}/probe.pb.cc" "${{CMAKE_CURRENT_BINARY_DIR}}/probe.pb.h")
+'''
         version = call('protoc-version', ['protoc', '--version']).strip()
         if recipe['name'] == 'bank-20261021' and version != 'libprotoc 3.21.12':
             raise ValueError('protoc version mismatch')
@@ -124,16 +129,20 @@ gtest_discover_tests(env_tests DISCOVERY_MODE PRE_TEST)
     if mode == 'gcc':
         reports = output / 'coverage'
         reports.mkdir()
-        files = {}
-        for data in prefix.rglob('*.gcda'):
+        # 断言针对未过滤的原始数据：只有被测单元插桩，测试、moc 与 protoc 生成单元都不能产生覆盖数据。
+        gcda = sorted(prefix.rglob('*.gcda'))
+        assert len(gcda) == 1 and gcda[0].name == 'subject.cc.gcda', gcda
+        raw = {}
+        for data in gcda:
             notes = Path('/' + str(data.relative_to(prefix))).with_suffix('.gcno')
             data.with_suffix('.gcno').write_bytes(notes.read_bytes())
             call('gcov', ['gcov-14', '-j', '-b', '-c', '-p', str(data)], cwd=reports)
         for path in reports.glob('*.gcov.json.gz'):
             for entry in json.loads(gzip.decompress(path.read_bytes()))['files']:
-                if entry['file'] == str(smoke / 'subject.cc'):
-                    files[entry['file']] = entry
-        assert set(files) == {str(smoke / 'subject.cc')}
+                if entry.get('lines') or entry.get('functions'):
+                    raw.setdefault(entry['file'], []).append(entry)
+        assert set(raw) == {str(smoke / 'subject.cc')}, sorted(raw)
+        files = {name: entries[0] for name, entries in raw.items()}
         assert any(line['count'] > 0 for file in files.values() for line in file['lines'])
         (output / 'coverage.json').write_text(json.dumps(files, indent=2) + '\n')
         summary['coverage_files'] = list(files)

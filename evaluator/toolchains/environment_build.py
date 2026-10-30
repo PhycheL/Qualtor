@@ -1,7 +1,10 @@
 """D020 环境构建与隔离预检；产品持有独立副本，不跨产品导入。"""
+import hashlib
 import json
 import os
 from pathlib import Path
+import shutil
+import tempfile
 import uuid
 
 from build_contract import environment_tag
@@ -25,15 +28,23 @@ def build_environment(audit, docker, recipe, digest, base_tag, context, output, 
     (output / "base-image.json").write_text(json.dumps(base, indent=2) + "\n")
     tag = environment_tag(recipe, digest, mode)
     if not skip_build:
-        command = docker + ["build", "--force-rm", "--platform", actual_platform,
-                           "--file", str(Path(context) / "Dockerfile.environment"),
-                           "--build-arg", "BASE_IMAGE=" + base["Id"],
-                           "--build-arg", "RECIPE_SHA256=" + digest,
-                           "--build-arg", "PACKAGES=" + " ".join(k + "=" + v for k, v in recipe["packages"].items()),
-                           "--tag", tag, str(context)]
-        # Docker 28 的 BuildKit 把本地 sha256 ID 当作仓库名；legacy builder 支持按本地 ID 构建。
-        # 显式选择该实现，保持 D020 的基础镜像 ID 锁定，不退回可变标签。
-        call(f"environment-build-{mode}", command, 1800, dict(os.environ, DOCKER_BUILDKIT="0"))
+        # legacy builder 只读取上下文根目录的 .dockerignore，不认 Dockerfile.environment.dockerignore；
+        # 上下文改为只含环境 Dockerfile 的临时目录，不再带上同目录的其他 Dockerfile。镜像内容不变。
+        dockerfile = Path(context) / "Dockerfile.environment"
+        (output / "dockerfile.json").write_text(json.dumps(
+            {"source": str(dockerfile), "sha256": hashlib.sha256(dockerfile.read_bytes()).hexdigest(),
+             "context": ["Dockerfile.environment"]}, indent=2) + "\n")
+        with tempfile.TemporaryDirectory(prefix="qualtor-environment-context-") as isolated:
+            shutil.copyfile(dockerfile, Path(isolated) / "Dockerfile.environment")
+            command = docker + ["build", "--force-rm", "--platform", actual_platform,
+                               "--file", str(Path(isolated) / "Dockerfile.environment"),
+                               "--build-arg", "BASE_IMAGE=" + base["Id"],
+                               "--build-arg", "RECIPE_SHA256=" + digest,
+                               "--build-arg", "PACKAGES=" + " ".join(k + "=" + v for k, v in recipe["packages"].items()),
+                               "--tag", tag, isolated]
+            # Docker 28 的 BuildKit 把本地 sha256 ID 当作仓库名；legacy builder 支持按本地 ID 构建。
+            # 显式选择该实现，保持 D020 的基础镜像 ID 锁定，不退回可变标签。
+            call(f"environment-build-{mode}", command, 1800, dict(os.environ, DOCKER_BUILDKIT="0"))
     item = json.loads(call(f"environment-inspect-{mode}", docker + ["image", "inspect", tag]))[0]
     if item.get("Config", {}).get("Labels", {}).get("org.qualtor.environment.recipe-sha256") != digest:
         raise ValueError("构建环境镜像的配方哈希不一致")

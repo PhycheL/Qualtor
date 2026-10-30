@@ -21,7 +21,7 @@ sys.path.insert(0, str(HERE.parent / "common"))
 from audit import Audit  # noqa: E402
 from common import (CALIBRATION, CALIBRATION_STATUS, REPO, RUNS, check_run_id, default_run_id,  # noqa: E402
                     hidden_path, load_baseline, load_task, now, read_json, samples_sha256, assessment_code_sha256,
-                    assessment_version, sha256_file, task_sha256, write_json)
+                    assessment_version, environment_identity, sha256_file, task_sha256, write_json)
 import judge  # noqa: E402
 from runs import finish, new_manifest, write_manifest  # noqa: E402
 import pipeline  # noqa: E402
@@ -122,7 +122,9 @@ def check_environment_boundary(task, expected, result):
     problems = []
     if 'environment' in expected:
         environment = expected['environment']
-        if result.get('environment') != environment:
+        # D021-1：冻结期望只比较环境名与配方哈希；镜像 ID 由本轮校准环境记录核对（run_calibration）。
+        actual = result.get('environment') or {}
+        if environment_identity(actual) != environment_identity(environment) or set(actual.get('images') or {}) != {'gcc', 'clang'}:
             problems.append('环境记录与冻结期望不一致')
         selected = task_environment(task.get('build', {}))
         if not selected or selected[1] != environment.get('recipe_sha256'):

@@ -3,6 +3,10 @@
 
 spec JSON 是维护者的出题输入，不进入公开 build 契约。输入树只读挂载，命令只能在
 禁网容器的 /work 构建目录中写入；生成后的头文件与命令、工具和全部输入哈希一同登记。
+
+重复运行是幂等的：SOURCE.json 的 generated 中输出路径相同的旧记录被本次记录替换，不重复追加；
+已入库的配置头与重新生成的结果不同时报错。--check 只在 Docker 中重新生成两轮，核对已入库的配置头
+与 generated 记录（命令、工具版本、输入与输出哈希、环境名与配方哈希），不写入 source/。
 """
 import argparse
 import json
@@ -26,7 +30,21 @@ def relative_header(value):
     return path
 
 
-def generate(input_root, source_root, spec, run_dir):
+# 每次生成都会变化、不参与核对的字段：证据 run-id；镜像 ID 不可复现（D021-1），环境只比较名称与配方哈希。
+def comparable(record):
+    environment = record.get('environment') or {}
+    return {'environment': {'name': environment.get('name'), 'recipe_sha256': environment.get('recipe_sha256')},
+            **{key: record.get(key) for key in ('commands', 'tools', 'inputs', 'outputs', 'output_paths')}}
+
+
+def merge_generated(existing, record):
+    """去掉与本次输出路径重叠的旧记录，再登记本次结果；同一输出只保留一条。"""
+    targets = set(record['output_paths'].values())
+    kept = [r for r in existing if not targets & set((r.get('output_paths') or {}).values())]
+    return kept + [record]
+
+
+def generate(input_root, source_root, spec, run_dir, write=True):
     input_root, source_root, run_dir = map(lambda p: Path(p).resolve(), (input_root, source_root, run_dir))
     if set(spec) != {'environment', 'commands', 'tools', 'outputs'}:
         raise ValueError('生成规格必须包含 environment、commands、tools、outputs')
@@ -87,19 +105,39 @@ json.dump(versions,open('/work/versions.json','w'),indent=2)
         hashes.append(current)
     if hashes[0] != hashes[1]:
         raise ValueError('两轮预生成配置头不一致')
-    for output, target in spec['outputs'].items():
-        path = source_root / target
-        if path.exists() and sha256_file(path) != hashes[0][target]:
-            raise ValueError('入库配置头与重复生成结果不同：' + target)
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_bytes((run_dir / 'round-1' / output).read_bytes())
     record = {'environment': executor.environment(task), 'commands': spec['commands'],
               'tools': json.loads((run_dir / 'round-1/versions.json').read_text()),
               'inputs': inputs, 'outputs': hashes[0], 'output_paths': spec['outputs'],
               'reproduced': True, 'evidence_run': run_dir.name}
+    problems = []
+    for output, target in spec['outputs'].items():
+        path = source_root / target
+        if path.exists() and sha256_file(path) != hashes[0][target]:
+            problems.append('入库配置头与重复生成结果不同：' + target)
+        elif not write and not path.is_file():
+            problems.append('入库配置头缺失：' + target)
     metadata = source_root / 'SOURCE.json'
     provenance = json.loads(metadata.read_text()) if metadata.is_file() else {}
-    provenance.setdefault('generated', []).append(record)
+    if not write:
+        targets = set(spec['outputs'].values())
+        matching = [r for r in provenance.get('generated', [])
+                    if targets & set((r.get('output_paths') or {}).values())]
+        if len(matching) != 1 or comparable(matching[0]) != comparable(record):
+            problems.append(f'SOURCE.json 的 generated 记录与本次生成不一致（同一输出的记录 {len(matching)} 条）')
+        if any((provenance.get('files') or {}).get(t) != d for t, d in hashes[0].items()):
+            problems.append('SOURCE.json 的 files 与本次生成的配置头哈希不一致')
+        write_json(run_dir / 'summary.json', {'mode': 'check', 'passed': not problems, 'problems': problems,
+                                              'record': record})
+        if problems:
+            raise ValueError('；'.join(problems))
+        return record
+    if problems:
+        raise ValueError('；'.join(problems))
+    for output, target in spec['outputs'].items():
+        path = source_root / target
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes((run_dir / 'round-1' / output).read_bytes())
+    provenance['generated'] = merge_generated(provenance.get('generated', []), record)
     provenance.setdefault('files', {}).update(hashes[0])
     write_json(metadata, provenance)
     write_json(run_dir / 'summary.json', record)
@@ -112,14 +150,15 @@ def main():
     parser.add_argument('--source', type=Path, required=True)
     parser.add_argument('--spec', type=Path, required=True)
     parser.add_argument('--run-id', required=True)
+    parser.add_argument('--check', action='store_true', help='只核对已入库的配置头与 generated 记录，不写入')
     args = parser.parse_args()
     check_run_id(args.run_id)
     root = REPO / 'runs' / args.run_id
     root.mkdir(exist_ok=False)
-    manifest = new_manifest(args.run_id, 'prepare', mode='pregenerate')
+    manifest = new_manifest(args.run_id, 'prepare', mode='pregenerate_check' if args.check else 'pregenerate')
     write_manifest(root, manifest)
     try:
-        generate(args.input, args.source, json.loads(args.spec.read_text()), root)
+        generate(args.input, args.source, json.loads(args.spec.read_text()), root, write=not args.check)
         finish(root, manifest, 'completed', passed=True)
     except BaseException as error:
         finish(root, manifest, 'failed', error=str(error))

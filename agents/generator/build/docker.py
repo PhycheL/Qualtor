@@ -44,8 +44,10 @@ class DockerCompiler:
             raise ValueError("GCC 镜像平台必须为 linux/arm64 或 linux/amd64")
         if selected:
             self.image['environment'] = {'name': self.recipe['name'], 'recipe_sha256': digest, 'gcc_image_id': self.image['id']}
-            self.preflight_environment()
+        # 先记录所选镜像与环境，预检失败时也能从证据中看到检查的是哪个环境镜像。
         write_json(self.record / "toolchain.json", self.image)
+        if selected:
+            self.preflight_environment()
 
     def preflight_environment(self):
         directory = self.record / 'evidence/environment-input'
